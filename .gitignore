@@ -1,15 +1,54 @@
+# ---------------------------------------------------------------- secrets
+# .env.* catches every variant, including the separate env file the
+# MedlinePlus pipeline will need for the secret key. The ! line re-allows
+# the placeholder template, and must come AFTER the .env.* rule.
+.env
+.env.*
+!.env.example
+
+# Google OAuth downloads its credentials as client_secret_<id>.json
+client_secret*.json
+credentials.json
+*.pem
+*.key
+
+# ------------------------------------------------------------------ python
 __pycache__/
 *.py[cod]
-*.pyo
 *.pyd
-*.db
-*.sqlite3
 .venv/
-.env.local
-.pytest_cache/
-.mypy_cache/
-.idea/
-.vscode/
-.DS_Store
+venv/
+env/
+*.egg-info/
+.eggs/
 build/
 dist/
+
+# ---------------------------------------------------------------- tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# -------------------------------------------------------------- databases
+# SQLite in WAL mode (which the local cache uses) writes two sidecar files
+# next to the database. *.db alone would not catch them.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+
+# -------------------------------------------------------------------- IDE
+.idea/
+*.iml
+.vscode/
+
+# ------------------------------------------------------------------ system
+.DS_Store
+desktop.ini
+
+# -------------------------------------------------------------------- logs
+# Logs can end up holding emails, errors with URLs, even tokens.
+*.log
+logs/
