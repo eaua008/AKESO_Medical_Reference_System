@@ -172,10 +172,95 @@ class ConditionCard(QFrame):
             Theme.token("PRIMARY") if self._bookmarked
             else Theme.token("TEXT_MUTED")
         )
-        self._bookmark_btn.setIcon(
-            QIcon(icons.to_pixmap(icons.star(15, color)))
-        )
+        # Solid when saved, outline when not: the fill is what reads as
+        # "saved" at a glance, not the colour alone.
+        glyph = icons.star_filled if self._bookmarked else icons.star
+        self._bookmark_btn.setIcon(QIcon(icons.to_pixmap(glyph(15, color))))
         self._bookmark_btn.setIconSize(QSize(15, 15))
+
+
+class ConditionEntryRow(QFrame):
+    """One condition in "8-Part Entries" mode: every part, at a glance.
+
+    The eight parts are the monograph's own sections, so the list is a map
+    of what the detail page holds rather than a second design.
+    """
+
+    inspect_requested = Signal(str)
+
+    PARTS = ("Body system", "Nomenclature", "Severity", "Urgency",
+             "Summary", "Symptoms", "Medicines", "Red flags")
+
+    def __init__(self, disease: Disease, system_name: str, index: int) -> None:
+        super().__init__()
+        self.setObjectName("conditionCard")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._id = disease.id
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(18, 14, 18, 14)
+        layout.setSpacing(8)
+
+        head = QHBoxLayout()
+        head.setSpacing(10)
+
+        number = QLabel(f"{index:02d}")
+        number.setObjectName("cardScientificName")
+        head.addWidget(number)
+
+        name = QLabel(disease.name)
+        name.setObjectName("cardConditionName")
+        head.addWidget(name)
+
+        if disease.scientific_name:
+            scientific = QLabel(f"({disease.scientific_name})")
+            scientific.setObjectName("cardScientificName")
+            head.addWidget(scientific)
+
+        head.addStretch(1)
+        if disease.contagious:
+            chip = QLabel("CONTAGIOUS")
+            chip.setObjectName("contagiousChip")
+            head.addWidget(chip)
+        label, style = urgency_style(disease.urgency)
+        pill = QLabel(label)
+        pill.setObjectName(style)
+        head.addWidget(pill)
+        layout.addLayout(head)
+
+        summary = disease.description or "No summary recorded yet."
+        if len(summary) > 60:
+            summary = summary[:60].rsplit(" ", 1)[0] + "\u2026"
+        values = (
+            system_name,
+            disease.scientific_name or "\u2014",
+            disease.severity or "\u2014",
+            label,
+            summary,
+            str(len(disease.symptoms)),
+            str(len(disease.medicines)),
+            str(len(disease.emergency_warning_signs)),
+        )
+
+        grid = QGridLayout()
+        grid.setHorizontalSpacing(18)
+        grid.setVerticalSpacing(2)
+        for column, (part, value) in enumerate(zip(self.PARTS, values)):
+            caption = QLabel(f"{column + 1}. {part.upper()}")
+            caption.setObjectName("subHeading")
+            body = QLabel(value)
+            body.setObjectName("bodyTextMuted")
+            body.setWordWrap(True)
+            grid.addWidget(caption, 0, column)
+            grid.addWidget(body, 1, column)
+            grid.setColumnStretch(column, 2 if part == "Summary" else 1)
+        layout.addLayout(grid)
+
+    def mouseReleaseEvent(self, event) -> None:
+        if (event.button() == Qt.MouseButton.LeftButton
+                and self.rect().contains(event.position().toPoint())):
+            self.inspect_requested.emit(self._id)
+        super().mouseReleaseEvent(event)
 
 
 class DiseaseEncyclopediaView(QWidget):
@@ -190,8 +275,12 @@ class DiseaseEncyclopediaView(QWidget):
         super().__init__(parent)
         self.setObjectName("panel")
 
-        self._cards: list[ConditionCard] = []
+        self._cards: list[QWidget] = []
         self._system_names: dict[str, str] = {}
+        self._diseases: list[Disease] = []
+        self._cards_mode = True
+        # Set by the shell: tells each card whether it is already starred.
+        self.bookmark_lookup = None
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -207,10 +296,10 @@ class DiseaseEncyclopediaView(QWidget):
         page = QWidget()
         page.setObjectName("panel")
         self._page_layout = QVBoxLayout(page)
-        self._page_layout.setContentsMargins(32, 26, 32, 32)
+        self._page_layout.setContentsMargins(30, 18, 30, 30)
         self._page_layout.setSpacing(18)
 
-        self._page_layout.addLayout(self._build_header())
+        self._page_layout.addWidget(self._build_toolbar())
         self._page_layout.addWidget(self._build_filter_bar())
         self._page_layout.addWidget(self._build_grid_container(), 1)
 
@@ -219,39 +308,23 @@ class DiseaseEncyclopediaView(QWidget):
 
     # -------------------------------------------------------------- header
 
-    def _build_header(self) -> QHBoxLayout:
-        row = QHBoxLayout()
-        row.setSpacing(12)
+    def _build_toolbar(self) -> QWidget:
+        """Just the refresh control now — the title moved to the page
+        header so it can sit above the Directory / Compare tabs."""
+        bar = QWidget()
+        bar.setObjectName("panel")
 
-        text_col = QVBoxLayout()
-        text_col.setSpacing(4)
-
-        title = QLabel("Clinical Condition Encyclopedia")
-        title.setObjectName("pageTitle")
-
-        subtitle = QLabel(
-            "Browse peer-reviewed clinical summaries, pathophysiology, "
-            "differential diagnoses, treatments, and prevention tiers"
-        )
-        subtitle.setObjectName("pageSubtitle")
-
-        text_col.addWidget(title)
-        text_col.addWidget(subtitle)
-
-        self._count_badge = QLabel("0 conditions indexed")
-        self._count_badge.setObjectName("countBadge")
+        layout = QHBoxLayout(bar)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addStretch(1)
 
         refresh = QPushButton("Refresh")
         refresh.setObjectName("secondaryButton")
         refresh.setCursor(Qt.CursorShape.PointingHandCursor)
         refresh.setToolTip("Re-read the encyclopedia from Supabase")
-        refresh.clicked.connect(self.refresh_requested.emit)
-
-        row.addLayout(text_col)
-        row.addStretch(1)
-        row.addWidget(refresh)
-        row.addWidget(self._count_badge)
-        return row
+        refresh.clicked.connect(lambda _checked: self.refresh_requested.emit())
+        layout.addWidget(refresh)
+        return bar
 
     # ---------------------------------------------------------- filter bar
 
@@ -269,7 +342,9 @@ class DiseaseEncyclopediaView(QWidget):
             "Search condition, scientific name, or tag\u2026"
         )
         self.search_input.setFixedHeight(38)
-        self.search_input.textChanged.connect(self.filters_changed.emit)
+        self.search_input.textChanged.connect(
+            lambda _text: self.filters_changed.emit()
+        )
 
         self.system_combo = self._combo("All Body Systems")
         self.severity_combo = self._combo("All Severities")
@@ -288,7 +363,9 @@ class DiseaseEncyclopediaView(QWidget):
         combo.setCursor(Qt.CursorShape.PointingHandCursor)
         # userData None means "no constraint" — the service treats it that way.
         combo.addItem(placeholder, None)
-        combo.currentIndexChanged.connect(self.filters_changed.emit)
+        combo.currentIndexChanged.connect(
+            lambda _index: self.filters_changed.emit()
+        )
         return combo
 
     # ---------------------------------------------------------------- grid
@@ -307,6 +384,8 @@ class DiseaseEncyclopediaView(QWidget):
         self._grid.setContentsMargins(0, 0, 0, 0)
         self._grid.setSpacing(18)
         self._grid.setAlignment(Qt.AlignmentFlag.AlignTop)
+        for column in range(CARD_COLUMNS):
+            self._grid.setColumnStretch(column, 1)
 
         self._empty_label = QLabel("No conditions match those filters.")
         self._empty_label.setObjectName("cardSubtitle")
@@ -356,29 +435,45 @@ class DiseaseEncyclopediaView(QWidget):
     def set_diseases(
             self, diseases: list[Disease], total: Optional[int] = None
     ) -> None:
-        """Rebuild the grid from a list of conditions."""
+        """Rebuild the directory from a list of conditions."""
+        self._diseases = diseases
+        self._render()
+
+    def set_display_mode(self, cards: bool) -> None:
+        """Cards, or the numbered 8-part entry list."""
+        if cards == self._cards_mode:
+            return
+        self._cards_mode = cards
+        self._render()
+
+    def _render(self) -> None:
         self._clear_grid()
+        columns = CARD_COLUMNS if self._cards_mode else 1
 
-        for index, disease in enumerate(diseases):
-            card = ConditionCard(
-                disease,
-                self._system_names.get(disease.body_system_id, "Unclassified"),
-            )
+        for index, disease in enumerate(self._diseases):
+            system_name = self._system_names.get(
+                disease.body_system_id, "Unclassified")
+            if self._cards_mode:
+                starred = bool(self.bookmark_lookup(disease.id)) \
+                    if self.bookmark_lookup else False
+                card = ConditionCard(disease, system_name, bookmarked=starred)
+                card.bookmark_toggled.connect(self.bookmark_toggled.emit)
+            else:
+                card = ConditionEntryRow(disease, system_name, index + 1)
             card.inspect_requested.connect(self.inspect_requested.emit)
-            card.bookmark_toggled.connect(self.bookmark_toggled.emit)
 
-            row, column = divmod(index, CARD_COLUMNS)
+            row, column = divmod(index, columns)
             self._grid.addWidget(card, row, column)
             self._cards.append(card)
 
-        self._empty_label.setVisible(not diseases)
-        self._grid_host.setVisible(bool(diseases))
+        # A one-column list must not leave two empty stretched columns.
+        for column in range(CARD_COLUMNS):
+            self._grid.setColumnStretch(column, 1 if column < columns else 0)
 
-        shown = len(diseases)
-        overall = total if total is not None else shown
-        self._count_badge.setText(
-            f"{shown} of {overall} conditions indexed"
-        )
+        self._empty_label.setVisible(not self._diseases)
+        self._grid_host.setVisible(bool(self._diseases))
+
+
 
     def filter_state(self) -> dict:
         """What the controller passes to DiseaseService.search()."""
@@ -400,5 +495,8 @@ class DiseaseEncyclopediaView(QWidget):
     def _clear_grid(self) -> None:
         for card in self._cards:
             self._grid.removeWidget(card)
+            # Hide first: deleteLater waits for the event loop, and until
+            # then the old widget is still painted behind the new one.
+            card.hide()
             card.deleteLater()
         self._cards.clear()

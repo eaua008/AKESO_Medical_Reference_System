@@ -1,24 +1,25 @@
-"""Disease data access backed by Supabase.
+"""Disease data access backed by Supabase — the source of truth.
 
-Drop-in replacement for DiseaseRepository: same method names, same return
-types. DiseaseService does not change, which is the whole point of having a
-repository layer.
+The app no longer reads from this directly during normal use. It reads a
+local copy (CachedDiseaseRepository), and this class is what the background
+sync uses to refresh that copy.
 
-Two-speed loading, on purpose:
+Two ways in:
 
-  all_diseases()  returns LIGHT objects — scalar columns plus tags. That is
-                  everything the grid card shows, in three queries total.
-  get_disease()   returns a FULLY hydrated object, pulling every child table.
-                  Costs about nine queries, but only runs when someone opens
-                  one monograph.
+  fetch_all_hydrated()  every condition with every child table attached.
+                        Each child table is queried ONCE for all conditions
+                        and grouped locally, so it costs about 11 requests
+                        whether there are 6 conditions or 600. Hydrating one
+                        condition at a time would cost 10 per condition.
 
-Fetching every child table for all sixteen conditions just to draw a grid of
-cards would be a lot of wasted round trips.
+  content_version()     one small read. Tells the sync whether anything
+                        changed since the local copy was made.
 
-Not yet handled: offline caching. This repository needs the network. The
-local cache layer wraps this one later.
+It keeps the older single-condition interface too, so it still works as a
+drop-in repository on its own.
 """
 
+from collections import defaultdict
 from typing import Optional
 
 from supabase import Client, create_client
@@ -29,6 +30,7 @@ from app.models.disease import (
     ClinicalReference,
     Differential,
     Disease,
+    Medicine,
     SymptomLink,
 )
 
@@ -48,18 +50,14 @@ class SupabaseDiseaseRepository:
         self._body_systems: list[BodySystem] = []
         self._loaded = False
 
-    # ------------------------------------------------------------- loading
+    # ------------------------------------------------------ light loading
 
     def _ensure_loaded(self) -> None:
         if not self._loaded:
             self.reload()
 
     def reload(self) -> None:
-        """Re-fetch the light disease list and body systems.
-
-        Call this to pick up rows added to Supabase since the app started —
-        it is what makes a newly inserted disease appear in the grid.
-        """
+        """Fetch the light condition list: scalar columns plus tags."""
         try:
             systems = self._client.table("body_systems").select("*").execute()
             diseases = (
@@ -75,63 +73,194 @@ class SupabaseDiseaseRepository:
             ) from exc
 
         self._body_systems = [
-            self._to_body_system(row) for row in (systems.data or [])
+            BodySystem(
+                id=row["id"],
+                name=row["name"],
+                description=row.get("description") or "",
+                icon_name=row.get("icon_name") or "",
+            )
+            for row in (systems.data or [])
         ]
+        system_names = {s.id: s.name for s in self._body_systems}
 
-        # Group tags by disease in one pass rather than querying per disease.
-        tags_by_disease: dict[str, list[str]] = {}
+        tags_by_disease: dict[str, list[str]] = defaultdict(list)
         for row in tags.data or []:
-            tags_by_disease.setdefault(row["disease_id"], []).append(row["tag"])
+            tags_by_disease[row["disease_id"]].append(row["tag"])
 
         self._diseases = []
         for row in diseases.data or []:
-            disease = self._to_disease(row)
+            disease = Disease.from_dict(row)
             disease.tags = tags_by_disease.get(disease.id, [])
+            disease.body_system_name = system_names.get(
+                disease.body_system_id, "Unclassified"
+            )
             self._diseases.append(disease)
 
         self._loaded = True
 
-    # ---------------------------------------------------------- converters
+    # ------------------------------------------------------ bulk hydration
 
-    @staticmethod
-    def _to_body_system(row: dict) -> BodySystem:
-        return BodySystem(
-            id=row["id"],
-            name=row["name"],
-            description=row.get("description") or "",
-            icon_name=row.get("icon_name") or "",
-        )
+    def fetch_all_hydrated(self) -> tuple[list[Disease], list[BodySystem]]:
+        """Every published condition, fully populated, in about 11 requests.
 
-    @staticmethod
-    def _to_disease(row: dict) -> Disease:
-        """Map one `diseases` row onto the model.
-
-        Columns are snake_case in Postgres and snake_case on the model, so
-        this is mostly one-to-one — unlike the JSON repository, which had to
-        translate camelCase.
+        The pattern: fetch a whole child table once, filtered to the
+        condition ids, then group rows by disease_id in Python. Request count
+        stays constant as the encyclopedia grows.
         """
-        return Disease(
-            id=row["id"],
-            name=row["name"],
-            scientific_name=row.get("scientific_name") or "",
-            description=row.get("description") or "",
-            body_system_id=row.get("body_system_id") or "",
-            severity=row.get("severity") or "Moderate",
-            # Left as None when the column is NULL. Do not substitute a
-            # default — an unauthored triage level must not be invented.
-            urgency=row.get("urgency"),
-            urgency_criteria=row.get("urgency_criteria") or "",
-            contagious=row.get("contagious", False),
-            views_count=row.get("views_count", 0),
-            pathophysiology=row.get("pathophysiology") or "",
-            clinicopathologic_correlation=row.get(
-                "clinicopathologic_correlation"
-            ) or "",
-            follow_up_monitoring=row.get("follow_up_monitoring") or "",
-            source_attribution=row.get("source_attribution") or "",
-        )
+        self.reload()
+        ids = [d.id for d in self._diseases]
+        if not ids:
+            return [], list(self._body_systems)
 
-    # --------------------------------------------------------------- reads
+        try:
+            causes = self._grouped_text("disease_causes", ids)
+            risks = self._grouped_text("disease_risk_factors", ids)
+            tests = self._grouped_text("disease_recommended_tests", ids)
+            treatments = self._grouped_text("disease_treatments", ids)
+            home_care = self._grouped_text("disease_home_care", ids)
+            red_flags = self._grouped_text("disease_emergency_signs", ids)
+
+            prevention = self._rows("disease_prevention", ids, order="position")
+            differentials = self._rows("disease_differentials", ids, order="position")
+            references = self._rows("clinical_references", ids, order="position")
+            # Embedded joins: the link row plus the joined record's fields, in
+            # the same request.
+            symptoms = self._rows(
+                "disease_symptoms", ids, select="*, symptoms(id, name, is_red_flag)"
+            )
+            medicines = self._rows(
+                "disease_medicines",
+                ids,
+                select="*, medicines(id, name, generic_name, drug_class, category)",
+                order="position",
+            )
+            related = self._rows(
+                "disease_related", ids, select="disease_id, related_disease_id"
+            )
+        except Exception as exc:
+            raise DiseaseRepositoryError(
+                f"Could not download the full encyclopedia: {exc}"
+            ) from exc
+
+        flat_prev: dict[str, list[str]] = defaultdict(list)
+        tiered_prev: dict[str, dict[str, list[str]]] = defaultdict(
+            lambda: defaultdict(list)
+        )
+        for row in prevention:
+            if row.get("tier"):
+                tiered_prev[row["disease_id"]][row["tier"]].append(row["content"])
+            else:
+                flat_prev[row["disease_id"]].append(row["content"])
+
+        ddx: dict[str, list[Differential]] = defaultdict(list)
+        for row in differentials:
+            ddx[row["disease_id"]].append(
+                Differential(
+                    condition=row["condition"],
+                    distinguishing_feature=row["distinguishing_feature"],
+                )
+            )
+
+        refs: dict[str, list[ClinicalReference]] = defaultdict(list)
+        for row in references:
+            refs[row["disease_id"]].append(ClinicalReference.from_dict(row))
+
+        links: dict[str, list[SymptomLink]] = defaultdict(list)
+        for row in symptoms:
+            links[row["disease_id"]].append(SymptomLink.from_dict(row))
+
+        meds: dict[str, list[Medicine]] = defaultdict(list)
+        for row in medicines:
+            meds[row["disease_id"]].append(Medicine.from_dict(row))
+
+        rel: dict[str, list[str]] = defaultdict(list)
+        for row in related:
+            rel[row["disease_id"]].append(row["related_disease_id"])
+
+        for disease in self._diseases:
+            did = disease.id
+            disease.causes = causes.get(did, [])
+            disease.risk_factors = risks.get(did, [])
+            disease.recommended_tests = tests.get(did, [])
+            disease.treatments = treatments.get(did, [])
+            disease.home_care = home_care.get(did, [])
+            disease.emergency_warning_signs = red_flags.get(did, [])
+            disease.prevention = flat_prev.get(did, [])
+            disease.prevention_tiers = dict(tiered_prev.get(did, {}))
+            disease.differential_diagnosis = ddx.get(did, [])
+            disease.clinical_references = refs.get(did, [])
+            # Cardinal signs first, then by intensity — scan order.
+            disease.symptoms = sorted(
+                links.get(did, []),
+                key=lambda s: (not s.is_primary, -s.typical_intensity),
+            )
+            disease.medicines = meds.get(did, [])
+            disease.related_disease_ids = rel.get(did, [])
+
+        return list(self._diseases), list(self._body_systems)
+
+    def _rows(
+            self,
+            table: str,
+            ids: list[str],
+            select: str = "*",
+            order: Optional[str] = None,
+    ) -> list[dict]:
+        query = self._client.table(table).select(select).in_("disease_id", ids)
+        if order:
+            query = query.order(order)
+        return query.execute().data or []
+
+    def _grouped_text(self, table: str, ids: list[str]) -> dict[str, list[str]]:
+        """An ordered text list for every condition, in one request."""
+        grouped: dict[str, list[str]] = defaultdict(list)
+        for row in self._rows(
+                table, ids, select="disease_id, content, position", order="position"
+        ):
+            grouped[row["disease_id"]].append(row["content"])
+        return grouped
+
+    # ----------------------------------------------------- sync metadata
+
+    def content_version(self) -> int:
+        """The current content watermark. One tiny request."""
+        try:
+            response = (
+                self._client.table("content_version")
+                .select("version")
+                .eq("id", 1)
+                .limit(1)
+                .execute()
+            )
+        except Exception as exc:
+            raise DiseaseRepositoryError(
+                f"Could not check for encyclopedia updates: {exc}"
+            ) from exc
+        rows = response.data or []
+        return int(rows[0]["version"]) if rows else 0
+
+    def stats(self) -> dict[str, int]:
+        """Row counts. head=True returns the count only, no rows."""
+        def count(table: str) -> int:
+            response = (
+                self._client.table(table)
+                .select("id", count="exact", head=True)
+                .execute()
+            )
+            return response.count or 0
+
+        try:
+            return {
+                "body_systems": count("body_systems"),
+                "diseases": count("diseases"),
+                "symptoms": count("symptoms"),
+            }
+        except Exception as exc:
+            raise DiseaseRepositoryError(
+                f"Could not read encyclopedia counts: {exc}"
+            ) from exc
+
+    # ------------------------------------------- single-condition interface
 
     def all_diseases(self) -> list[Disease]:
         self._ensure_loaded()
@@ -143,131 +272,13 @@ class SupabaseDiseaseRepository:
 
     def get_body_system(self, system_id: str) -> Optional[BodySystem]:
         self._ensure_loaded()
-        for system in self._body_systems:
-            if system.id == system_id:
-                return system
-        return None
+        return next((s for s in self._body_systems if s.id == system_id), None)
 
     def count(self) -> int:
         self._ensure_loaded()
         return len(self._diseases)
 
     def get_disease(self, disease_id: str) -> Optional[Disease]:
-        """Fetch one disease with every child table attached."""
-        self._ensure_loaded()
-
-        base = next((d for d in self._diseases if d.id == disease_id), None)
-        if base is None:
-            return None
-
-        try:
-            disease = self._hydrate(base)
-        except Exception as exc:
-            raise DiseaseRepositoryError(
-                f"Could not load the full monograph for {disease_id}: {exc}"
-            ) from exc
-        return disease
-
-    def _hydrate(self, disease: Disease) -> Disease:
-        """Pull the child tables for one disease."""
-        did = disease.id
-
-        disease.causes = self._ordered_list("disease_causes", did)
-        disease.risk_factors = self._ordered_list("disease_risk_factors", did)
-        disease.recommended_tests = self._ordered_list(
-            "disease_recommended_tests", did
-        )
-        disease.treatments = self._ordered_list("disease_treatments", did)
-        disease.home_care = self._ordered_list("disease_home_care", did)
-        disease.emergency_warning_signs = self._ordered_list(
-            "disease_emergency_signs", did
-        )
-
-        # Prevention carries a tier: NULL rows are the flat list, tiered rows
-        # are grouped into prevention_tiers.
-        prevention = (
-            self._client.table("disease_prevention")
-            .select("*")
-            .eq("disease_id", did)
-            .order("position")
-            .execute()
-        )
-        flat: list[str] = []
-        tiers: dict[str, list[str]] = {}
-        for row in prevention.data or []:
-            if row.get("tier"):
-                tiers.setdefault(row["tier"], []).append(row["content"])
-            else:
-                flat.append(row["content"])
-        disease.prevention = flat
-        disease.prevention_tiers = tiers
-
-        differentials = (
-            self._client.table("disease_differentials")
-            .select("*")
-            .eq("disease_id", did)
-            .order("position")
-            .execute()
-        )
-        disease.differential_diagnosis = [
-            Differential(
-                condition=row["condition"],
-                distinguishing_feature=row["distinguishing_feature"],
-            )
-            for row in differentials.data or []
-        ]
-
-        references = (
-            self._client.table("clinical_references")
-            .select("*")
-            .eq("disease_id", did)
-            .order("position")
-            .execute()
-        )
-        disease.clinical_references = [
-            ClinicalReference(
-                id=row["id"],
-                source_name=row["source_name"],
-                citation_text=row["citation_text"],
-            )
-            for row in references.data or []
-        ]
-
-        symptoms = (
-            self._client.table("disease_symptoms")
-            .select("*")
-            .eq("disease_id", did)
-            .execute()
-        )
-        disease.symptoms = [
-            SymptomLink(
-                symptom_id=row["symptom_id"],
-                typical_intensity=row.get("typical_intensity", 0),
-                is_primary=row.get("is_primary", False),
-                weight_multiplier=float(row.get("weight_multiplier", 1.0)),
-            )
-            for row in symptoms.data or []
-        ]
-
-        related = (
-            self._client.table("disease_related")
-            .select("related_disease_id")
-            .eq("disease_id", did)
-            .execute()
-        )
-        disease.related_disease_ids = [
-            row["related_disease_id"] for row in related.data or []
-        ]
-
-        return disease
-
-    def _ordered_list(self, table: str, disease_id: str) -> list[str]:
-        """Read one ordered text list, preserving the author's ordering."""
-        result = (
-            self._client.table(table)
-            .select("content, position")
-            .eq("disease_id", disease_id)
-            .order("position")
-            .execute()
-        )
-        return [row["content"] for row in result.data or []]
+        """One condition, fully hydrated. Reuses the bulk path."""
+        diseases, _ = self.fetch_all_hydrated()
+        return next((d for d in diseases if d.id == disease_id), None)
