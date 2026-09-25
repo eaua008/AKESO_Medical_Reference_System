@@ -87,6 +87,15 @@ class Theme:
     @classmethod
     def stylesheet(cls) -> str:
         p = cls._palette()
+        from app.core.icons import checkmark_file
+        from app.core.emergency_styles import emergency_rules
+        from app.core.wellness_styles import wellness_rules
+        from app.core.symptom_styles import symptom_rules
+        from app.core.medicine_styles import medicine_rules
+        from app.core.checker_styles import checker_rules
+        from app.core.interaction_styles import interaction_rules
+        from app.core.notebook_styles import notebook_rules
+        check_image = checkmark_file("#FFFFFF")
         body_font = f"'{cls.FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         heading_font = f"'{cls.HEADING_FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         return f"""
@@ -224,7 +233,7 @@ class Theme:
            what clipped these labels; the layout handles spacing instead. */
         #navSectionHeader {{
             color: {p['ICON_MUTED']};
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: 1.2px;
             padding: 0px;
@@ -319,7 +328,7 @@ class Theme:
             font-weight: 800;
         }}
         #pageSubtitle {{
-            font-size: 12.5px;
+            font-size: 13px;
             color: {p['TEXT_MUTED']};
         }}
         #countBadge {{
@@ -400,7 +409,7 @@ class Theme:
             color: {p['TEXT_MUTED']};
         }}
         #cardDescription {{
-            font-size: 12.5px;
+            font-size: 13px;
             color: {p['TEXT_MUTED']};
         }}
         #systemChip {{
@@ -409,7 +418,7 @@ class Theme:
             border: 1px solid {p['BADGE_BORDER']};
             border-radius: 5px;
             padding: 4px 9px;
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 800;
             letter-spacing: 0.6px;
         }}
@@ -419,7 +428,7 @@ class Theme:
             border: 1px solid rgba(52, 211, 153, 0.35);
             border-radius: 5px;
             padding: 4px 9px;
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 700;
         }}
         #bookmarkButton {{
@@ -495,7 +504,7 @@ class Theme:
         #severityChipSevere, #severityChipCritical {{
             border-radius: 5px;
             padding: 4px 10px;
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 800;
         }}
         #severityChipMild {{
@@ -630,6 +639,7 @@ class Theme:
         QCheckBox::indicator:checked {{
             background-color: {p['PRIMARY']};
             border: 1px solid {p['PRIMARY']};
+            image: url({check_image});
         }}
 
         #primaryButton {{
@@ -667,4 +677,602 @@ class Theme:
             background-color: {p['PRIMARY']};
             color: white;
         }}
-        """
+        
+        /* ----------------------------------------- disease detail page */
+        #detailTopBar {{
+            background-color: {p['SURFACE']};
+            border-bottom: 1px solid {p['BORDER']};
+        }}
+        #detailTitle {{
+            font-family: {heading_font};
+            font-size: 17px;
+            font-weight: 800;
+            color: {p['TEXT']};
+        }}
+        #detailScientific {{
+            font-size: 13px;
+            font-style: italic;
+            color: {p['TEXT_MUTED']};
+        }}
+ 
+        #detailCard {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 13px;
+        }}
+        #innerCard {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        /* Tinted only when an urgency actually exists. The unknown variant
+           stays neutral so an unassessed condition never reads as a triage
+           decision someone made. */
+        #triageCard {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['PRIMARY']};
+            border-radius: 13px;
+        }}
+        #triageCardUnknown {{
+            background-color: {p['SURFACE']};
+            border: 1px dashed {p['BORDER']};
+            border-radius: 13px;
+        }}
+        #redflagCard {{
+            background-color: {p['DANGER_SOFT']};
+            border: 1px solid {p['DANGER']};
+            border-radius: 13px;
+        }}
+        #triageHeadline {{
+            font-family: {heading_font};
+            font-size: 17px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+ 
+        #sectionHeading {{
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            color: {p['TEXT']};
+        }}
+        #subHeading {{
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #bodyText {{
+            font-size: 13px;
+            color: {p['TEXT']};
+        }}
+        #bodyTextMuted {{
+            font-size: 12px;
+            color: {p['TEXT_MUTED']};
+        }}
+ 
+        #bulletTile {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 9px;
+        }}
+        #bulletTileSuccess {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 9px;
+        }}
+        #bulletTileDanger {{
+            background-color: rgba(251, 113, 133, 0.10);
+            border: 1px solid {p['DANGER']};
+            border-radius: 9px;
+        }}
+        #bulletDot {{ color: {p['BADGE_TEXT']}; font-size: 9px; }}
+        #bulletDotSuccess {{ color: {p['SUCCESS']}; font-size: 12px; font-weight: 800; }}
+        #bulletDotDanger {{ color: {p['DANGER']}; font-size: 12px; }}
+        #bulletText {{
+            font-size: 13px;
+            color: {p['TEXT']};
+        }}
+ 
+        #symptomTile, #medicineTile {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        #symptomTile:hover, #medicineTile:hover {{
+            border: 1px solid {p['PRIMARY']};
+        }}
+        #symptomName {{
+            font-size: 14px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #cardinalChip {{
+            background-color: rgba(251, 146, 60, 0.15);
+            color: #FB923C;
+            border: 1px solid rgba(251, 146, 60, 0.45);
+            border-radius: 9px;
+            padding: 3px 9px;
+            font-size: 10px;
+            font-weight: 800;
+        }}
+        #rxChip {{
+            background-color: {p['PRIMARY_SOFT']};
+            color: {p['BADGE_TEXT']};
+            border: 1px solid {p['BADGE_BORDER']};
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #otcChip {{
+            background-color: rgba(52, 211, 153, 0.12);
+            color: {p['SUCCESS']};
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #tier1Chip {{
+            background-color: {p['PRIMARY']};
+            color: #FFFFFF;
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 10px;
+            font-weight: 800;
+        }}
+        #tier2Chip {{
+            background-color: {p['SURFACE']};
+            color: {p['TEXT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 10px;
+            font-weight: 800;
+        }}
+ 
+        #tierHeadingPrimary {{
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            color: {p['SUCCESS']};
+        }}
+        #tierHeadingSecondary {{
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            color: #38BDF8;
+        }}
+        #tierHeadingTertiary {{
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            color: {p['BADGE_TEXT']};
+        }}
+ 
+        /* ------------------------------------------------- left rail */
+        #railHeading {{
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            color: {p['ICON_MUTED']};
+        }}
+        #progressLabel {{
+            font-size: 10px;
+            font-weight: 800;
+            color: {p['BADGE_TEXT']};
+        }}
+        #readProgress {{
+            background-color: {p['BORDER']};
+            border: none;
+            border-radius: 2px;
+        }}
+        #readProgress::chunk {{
+            background-color: {p['PRIMARY']};
+            border-radius: 2px;
+        }}
+        #tocButton {{
+            background-color: transparent;
+            border: none;
+            border-radius: 7px;
+            color: {p['TEXT_MUTED']};
+            font-size: 12px;
+            font-weight: 600;
+            text-align: left;
+            padding-left: 8px;
+        }}
+        #tocButton:hover {{
+            background-color: {p['SURFACE_ALT']};
+            color: {p['TEXT']};
+        }}
+        #tocButton:checked {{
+            background-color: {p['PRIMARY']};
+            color: #FFFFFF;
+            font-weight: 700;
+        }}
+        #tocBadge {{
+            background-color: {p['SURFACE_ALT']};
+            color: {p['TEXT_MUTED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 5px;
+            padding: 1px 6px;
+            font-size: 9px;
+            font-weight: 800;
+        }}
+        #metaLabel {{
+            font-size: 12px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #metaValue {{
+            font-size: 12px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #relatedPill {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 7px;
+            padding: 7px 11px;
+            font-size: 12px;
+            font-weight: 600;
+            color: {p['TEXT']};
+            text-align: left;
+        }}
+        #relatedPill:hover {{
+            border: 1px solid {p['PRIMARY']};
+        }}
+        #relatedPillPrimary {{
+            background-color: {p['PRIMARY_SOFT']};
+            border: 1px solid {p['BADGE_BORDER']};
+            border-radius: 7px;
+            padding: 7px 11px;
+            font-size: 12px;
+            font-weight: 700;
+            color: {p['BADGE_TEXT']};
+            text-align: left;
+        }}
+        #relatedPillPrimary:hover {{
+            border: 1px solid {p['PRIMARY']};
+        }}
+        
+        /* ------------------------------------- encyclopedia page header */
+        #pageHeader {{
+            background-color: {p['BG']};
+        }}
+        #pageTab {{
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: {p['TEXT_MUTED']};
+            font-size: 13px;
+            font-weight: 600;
+            padding: 0 4px;
+        }}
+        #pageTab:hover {{
+            color: {p['TEXT']};
+        }}
+        #pageTab:checked {{
+            color: {p['BADGE_TEXT']};
+            border-bottom: 2px solid {p['PRIMARY']};
+            font-weight: 700;
+        }}
+ 
+        /* ---------------------------------------- differential compare */
+        #compareColumn {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 13px;
+        }}
+        #compareTitle {{
+            font-family: {heading_font};
+            font-size: 19px;
+            font-weight: 800;
+            color: {p['TEXT']};
+        }}
+        #positionChip {{
+            background-color: {p['SURFACE_ALT']};
+            color: {p['TEXT_MUTED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+        }}
+        #contagiousChip {{
+            background-color: rgba(251, 146, 60, 0.14);
+            color: #FB923C;
+            border: 1px solid rgba(251, 146, 60, 0.4);
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #safeChip {{
+            background-color: rgba(52, 211, 153, 0.12);
+            color: {p['SUCCESS']};
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            border-radius: 5px;
+            padding: 4px 9px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #secondaryChip {{
+            background-color: {p['SURFACE_ALT']};
+            color: {p['TEXT_MUTED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 9px;
+            padding: 3px 9px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+ 
+        #pivotCard {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['PRIMARY']};
+            border-radius: 13px;
+        }}
+        #pivotQuestion {{
+            font-family: {heading_font};
+            font-size: 15px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        /* Amber rather than the usual purple: this panel is assembled from
+           stored fields and has not been reviewed, so it should not look
+           like authored clinical content. */
+        #synthesisChip {{
+            background-color: rgba(251, 191, 36, 0.14);
+            color: #FBBF24;
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            border-radius: 5px;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 800;
+        }}
+ 
+        #matrixCard {{
+            background-color: {p['SURFACE']};
+            border: 1px solid rgba(52, 211, 153, 0.4);
+            border-radius: 13px;
+        }}
+        #matrixHeader {{
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #tierLabel {{
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.7px;
+            color: {p['BADGE_TEXT']};
+        }}
+ 
+        #intensityBar {{
+            background-color: {p['BORDER']};
+            border: none;
+            border-radius: 2px;
+        }}
+        #intensityBar::chunk {{
+            background-color: {p['BADGE_TEXT']};
+            border-radius: 2px;
+        }}
+        #intensityBarCardinal {{
+            background-color: {p['BORDER']};
+            border: none;
+            border-radius: 2px;
+        }}
+        #intensityBarCardinal::chunk {{
+            background-color: #FB923C;
+            border-radius: 2px;
+        }}
+        
+        /* --------------------------------------------- verification code */
+        #otpInput {{
+            background-color: transparent;
+            border: none;
+            color: {p['TEXT']};
+            font-family: {heading_font};
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 12px;
+        }}
+        /* Green rather than the danger red used by #statusLabel, so a
+           "code sent" confirmation never reads as a failure. */
+        #infoLabel {{
+            color: {p['SUCCESS']};
+            font-size: 12px;
+        }}
+        
+        
+        /* ------------------------------------------ auth header / footer */
+        #authHeader {{
+            background-color: {p['SURFACE']};
+            border-bottom: 1px solid {p['BORDER']};
+        }}
+        #authFooter {{
+            background-color: {p['SURFACE']};
+            border-top: 1px solid {p['BORDER']};
+        }}
+        #headerBadge {{
+            background-color: {p['BADGE_BG']};
+            color: {p['BADGE_TEXT']};
+            border: 1px solid {p['BADGE_BORDER']};
+            border-radius: 11px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }}
+        #footerLabel {{
+            font-size: 11px;
+            color: {p['ICON_MUTED']};
+        }}
+ 
+        /* ------------------------------------------------- auth card bits */
+        #requirementsBox {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 8px;
+        }}
+        #dividerLabel {{
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: {p['ICON_MUTED']};
+        }}
+        #googleButton {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 9px;
+            color: {p['TEXT']};
+            font-size: 13px;
+            font-weight: 700;
+        }}
+        #googleButton:hover {{
+            border: 1px solid {p['PRIMARY']};
+        }}
+        #googleButton:disabled {{
+            color: {p['TEXT_MUTED']};
+        }}
+        #eyeToggle {{
+            background-color: transparent;
+            border: none;
+            border-radius: 6px;
+        }}
+        #eyeToggle:hover {{
+            background-color: {p['SURFACE']};
+        }}
+        #heroBadge {{
+            background-color: {p['BADGE_BG']};
+            color: {p['BADGE_TEXT']};
+            border: 1px solid {p['BADGE_BORDER']};
+            border-radius: 12px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }}
+        
+        /* ---------------------------------- sidebar: collapsed layout */
+        /* The attribute selector beats the plain #navButton rule on
+           specificity, so this wins regardless of where it sits in the
+           file. Without it, left padding pushed every icon off-centre in
+           the 70px collapsed column. */
+        #navButton[collapsed="true"],
+        #navButtonFeatured[collapsed="true"],
+        #navButtonDanger[collapsed="true"],
+        #navButtonAccent[collapsed="true"] {{
+            padding-left: 0px;
+            text-align: center;
+        }}
+        #navPartition {{
+            background-color: {p['BORDER']};
+            border: none;
+        }}
+ 
+        /* ------------------------------------------ search suggestions */
+        #searchPopup {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 12px;
+        }}
+        #searchList {{
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }}
+        #searchList::item {{
+            border-radius: 8px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #searchList::item:selected {{
+            background-color: {p['PRIMARY_SOFT']};
+        }}
+        #searchList::item:hover {{
+            background-color: {p['SURFACE_ALT']};
+        }}
+        #searchRowIcon {{
+            background-color: {p['PRIMARY_SOFT']};
+            border-radius: 8px;
+        }}
+        #searchRowTitle {{
+            font-size: 13px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #searchRowSub {{
+            font-size: 11px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #searchKindModule, #searchKindDisease {{
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #searchKindModule {{
+            background-color: {p['SURFACE_ALT']};
+            color: {p['TEXT_MUTED']};
+            border: 1px solid {p['BORDER']};
+        }}
+        #searchKindDisease {{
+            background-color: {p['BADGE_BG']};
+            color: {p['BADGE_TEXT']};
+            border: 1px solid {p['BADGE_BORDER']};
+        }}
+ 
+        /* ------------------------------------------------ account menu */
+        #profileChip:hover {{
+            border: 1px solid {p['PRIMARY']};
+        }}
+        /* The popup window itself must be transparent so the card's
+           rounded corners show. The global QWidget rule would otherwise
+           paint square corners behind them. */
+        #profileMenuShell {{
+            background-color: transparent;
+        }}
+        #profileMenuCard {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 12px;
+        }}
+        #menuName {{
+            font-size: 13px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #menuEmail {{
+            font-size: 11px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #menuSeparator {{
+            background-color: {p['BORDER']};
+            border: none;
+        }}
+        #menuItem, #menuItemAccent, #menuItemDanger {{
+            background-color: transparent;
+            border: none;
+            border-radius: 7px;
+            text-align: left;
+            padding-left: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }}
+        #menuItem {{ color: {p['TEXT']}; }}
+        #menuItemAccent {{ color: {p['BADGE_TEXT']}; }}
+        #menuItemDanger {{ color: {p['DANGER']}; }}
+        #menuItem:hover, #menuItemAccent:hover {{
+            background-color: {p['SURFACE_ALT']};
+        }}
+        #menuItemDanger:hover {{
+            background-color: {p['DANGER_SOFT']};
+        }}
+        #googleButton[googleState="waiting"] {{
+            border: 1px dashed {p['PRIMARY']};
+            color: {p['BADGE_TEXT']};
+        }}
+        #googleButton[googleState="cooldown"] {{
+            color: {p['TEXT_MUTED']};
+        }}
+        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font)

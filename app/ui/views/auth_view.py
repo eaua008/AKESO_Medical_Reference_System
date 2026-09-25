@@ -1,7 +1,19 @@
+"""The login / sign-up screen.
+
+Display only. It shows things and announces that a button was pressed. It
+never imports AuthService or talks to Supabase — AuthController listens to
+these signals and does that work.
+
+Layout matches the redesigned mockup: header bar with logo, platform badge
+and theme toggle; hero on the left with live database counts; auth card on
+the right with password and Google sign-in; footer bar.
+"""
+
 import re
 import sys
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QPointF, QRectF, QSize, Qt, QTimer, Signal
+from PySide6.QtGui import QColor, QIcon, QImage, QPainter, QPen, QPixmap
 from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
@@ -17,70 +29,121 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from app.core import icons
+from app.core.assets import logo_mark_pixmap, logo_pixmap
 from app.core.theme import Theme
 
-# U+FE0E (VARIATION SELECTOR-15) tells Windows to draw the flat, monochrome
-# "text" form of a glyph instead of the full-color emoji form. Without it,
-# lock/mail/person render as colored emoji that clash with the dark theme.
-VS_TEXT = "\uFE0E"
-PULSE = "\u223F"
 
+def _google_g(size: int = 18) -> QPixmap:
+    """The four-colour Google "G", drawn rather than loaded.
 
-def _panel() -> QWidget:
-    """A plain container widget that shows its parent's colour through it.
-
-    Any bare QWidget picks up the global page background from the QWidget
-    stylesheet rule, which paints a dark rectangle over the lighter card.
-    Naming it lets the #formPanel rule clear that background.
+    Drawn with QPainter so there is no image file to ship and it stays crisp
+    at any size.
     """
-    widget = QWidget()
-    widget.setObjectName("formPanel")
-    return widget
+    scale = 2
+    image = QImage(size * scale, size * scale, QImage.Format.Format_ARGB32)
+    image.fill(Qt.GlobalColor.transparent)
+
+    painter = QPainter(image)
+    painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
+    s = size * scale
+    stroke = s * 0.19
+    inset = stroke / 2 + s * 0.06
+    rect = QRectF(inset, inset, s - 2 * inset, s - 2 * inset)
+
+    # Qt angles: 1/16th degree, counter-clockwise from 3 o'clock.
+    segments = [
+        ("#EA4335", 45, 90),    # red, top
+        ("#FBBC05", 135, 90),   # yellow, left
+        ("#34A853", 225, 90),   # green, bottom
+        ("#4285F4", 315, 45),   # blue, lower right
+    ]
+    for color, start, span in segments:
+        pen = QPen(QColor(color))
+        pen.setWidthF(stroke)
+        pen.setCapStyle(Qt.PenCapStyle.FlatCap)
+        painter.setPen(pen)
+        painter.drawArc(rect, start * 16, span * 16)
+
+    # The horizontal bar of the G.
+    pen = QPen(QColor("#4285F4"))
+    pen.setWidthF(stroke)
+    pen.setCapStyle(Qt.PenCapStyle.FlatCap)
+    painter.setPen(pen)
+    mid = s / 2
+    painter.drawLine(QPointF(mid, mid), QPointF(s - inset + stroke / 2, mid))
+    painter.end()
+
+    pixmap = QPixmap.fromImage(image)
+    pixmap.setDevicePixelRatio(scale)
+    return pixmap
 
 
 class FeatureCard(QFrame):
     """Small bordered card used in the hero panel."""
 
-    def __init__(self, title: str, body: str) -> None:
+    def __init__(self, icon_name: str, title: str, body: str) -> None:
         super().__init__()
         self.setObjectName("featureCard")
-        self.setFixedWidth(198)
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(14, 14, 14, 14)
-        layout.setSpacing(7)
+        layout.setContentsMargins(14, 13, 14, 13)
+        layout.setSpacing(6)
+
+        heading = QHBoxLayout()
+        heading.setSpacing(7)
+
+        self._icon = QLabel()
+        self._icon.setObjectName("panel")
+        self._icon.setFixedSize(14, 14)
+        self._icon_name = icon_name
+        self.refresh_icon()
 
         title_label = QLabel(title)
         title_label.setObjectName("featureTitle")
+
+        heading.addWidget(self._icon)
+        heading.addWidget(title_label)
+        heading.addStretch(1)
 
         body_label = QLabel(body)
         body_label.setObjectName("featureBody")
         body_label.setWordWrap(True)
 
-        layout.addWidget(title_label)
+        layout.addLayout(heading)
         layout.addWidget(body_label)
+
+    def refresh_icon(self) -> None:
+        self._icon.setPixmap(
+            icons.to_pixmap(
+                icons.draw(self._icon_name, 14, Theme.token("BADGE_TEXT"))
+            )
+        )
 
 
 class IconField(QFrame):
-    """A line edit with a leading icon glyph, styled as one pill control.
+    """A line edit with a leading icon, styled as one pill control.
 
-    Optionally adds a trailing text button that toggles password visibility.
-    Qt has no built-in "icon inside a line edit" widget, so this composes
-    a label and a borderless QLineEdit inside one bordered frame.
+    Optionally adds a trailing eye button that toggles password visibility.
     """
 
-    def __init__(self, icon: str, placeholder: str, password: bool = False) -> None:
+    def __init__(
+            self, icon_name: str, placeholder: str, password: bool = False
+    ) -> None:
         super().__init__()
         self.setObjectName("iconField")
-        self.setFixedHeight(42)
+        self.setFixedHeight(40)
+        self._icon_name = icon_name
+        self._password = password
+        self._shown = False
 
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(11, 0, 8, 0)
-        layout.setSpacing(8)
+        layout.setContentsMargins(12, 0, 8, 0)
+        layout.setSpacing(9)
 
-        icon_label = QLabel(icon)
-        icon_label.setObjectName("fieldIcon")
-        icon_label.setFixedWidth(16)
+        self._icon = QLabel()
+        self._icon.setObjectName("panel")
+        self._icon.setFixedSize(15, 15)
 
         self._edit = QLineEdit()
         self._edit.setObjectName("iconFieldEdit")
@@ -88,35 +151,55 @@ class IconField(QFrame):
         if password:
             self._edit.setEchoMode(QLineEdit.EchoMode.Password)
 
-        layout.addWidget(icon_label)
+        layout.addWidget(self._icon)
         layout.addWidget(self._edit, 1)
 
+        self._eye: QPushButton | None = None
         if password:
-            toggle = QPushButton("Show")
-            toggle.setObjectName("eyeToggle")
-            toggle.setFixedWidth(38)
-            toggle.setCheckable(True)
-            toggle.setCursor(Qt.CursorShape.PointingHandCursor)
-            toggle.toggled.connect(
-                lambda shown, t=toggle: self._set_visible(shown, t)
-            )
-            layout.addWidget(toggle)
+            self._eye = QPushButton()
+            self._eye.setObjectName("eyeToggle")
+            self._eye.setFixedSize(26, 26)
+            self._eye.setCursor(Qt.CursorShape.PointingHandCursor)
+            self._eye.setToolTip("Show password")
+            self._eye.setIconSize(QSize(15, 15))
+            self._eye.clicked.connect(lambda _checked: self._toggle())
+            layout.addWidget(self._eye)
 
-    def _set_visible(self, shown: bool, button: QPushButton) -> None:
+        self.refresh_icon()
+
+    def _toggle(self) -> None:
+        self._shown = not self._shown
         self._edit.setEchoMode(
-            QLineEdit.EchoMode.Normal if shown else QLineEdit.EchoMode.Password
+            QLineEdit.EchoMode.Normal if self._shown
+            else QLineEdit.EchoMode.Password
         )
-        button.setText("Hide" if shown else "Show")
+        if self._eye is not None:
+            self._eye.setToolTip(
+                "Hide password" if self._shown else "Show password"
+            )
+
+    def refresh_icon(self) -> None:
+        muted = Theme.token("ICON_MUTED")
+        self._icon.setPixmap(
+            icons.to_pixmap(icons.draw(self._icon_name, 15, muted))
+        )
+        if self._eye is not None:
+            self._eye.setIcon(QIcon(icons.to_pixmap(icons.eye(15, muted))))
 
     def text(self) -> str:
         return self._edit.text()
+
+    def clear(self) -> None:
+        self._edit.clear()
+        if self._shown:
+            self._toggle()
 
     def line_edit(self) -> QLineEdit:
         return self._edit
 
 
 class RequirementRow(QWidget):
-    """One line in the password-requirement checklist. Lights up when met."""
+    """One line in the password checklist. Lights up when met."""
 
     def __init__(self, text: str) -> None:
         super().__init__()
@@ -143,7 +226,13 @@ class RequirementRow(QWidget):
             widget.style().polish(widget)
 
 
-def _rich_label(html: str) -> QLabel:
+def _panel() -> QWidget:
+    widget = QWidget()
+    widget.setObjectName("formPanel")
+    return widget
+
+
+def _link_label(html: str) -> QLabel:
     label = QLabel(html)
     label.setObjectName("cardSubtitle")
     label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -153,119 +242,127 @@ def _rich_label(html: str) -> QLabel:
 
 
 class AuthView(QWidget):
-    """The login / sign-up screen.
-
-    Only knows how to display things and how to announce that a button
-    was pressed. It never imports AuthService or talks to Supabase — the
-    controller listens to these signals and does that work instead.
-    """
+    """The login / sign-up screen."""
 
     login_requested = Signal(str, str)
     signup_requested = Signal(str, str, str, str)
+    google_requested = Signal()
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
+        self.setObjectName("panel")
+
+        self._feature_cards: list[FeatureCard] = []
+        self._icon_fields: list[IconField] = []
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
 
-        # The sign-up card is tall. A scroll area keeps the Create Account
-        # button and everything below it reachable on shorter screens rather
-        # than silently clipping off the bottom edge.
+        root.addWidget(self._build_header())
+
         body = _panel()
-        body_layout = QVBoxLayout(body)
-        body_layout.setContentsMargins(40, 24, 40, 40)
+        body_layout = QHBoxLayout(body)
+        body_layout.setContentsMargins(40, 40, 40, 40)
         body_layout.setSpacing(0)
-
-        # Theme toggle used to live in the header. With the header gone it
-        # floats top-right so light/dark mode is still reachable.
-        toggle_row = QHBoxLayout()
-        toggle_row.addStretch(1)
-        self._theme_toggle = QPushButton(
-            "\u2600" if Theme.mode() == "light" else "\U0001F319"
-        )
-        self._theme_toggle.setObjectName("themeToggle")
-        self._theme_toggle.setFixedSize(32, 32)
-        self._theme_toggle.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._theme_toggle.clicked.connect(self._on_theme_toggle)
-        toggle_row.addWidget(self._theme_toggle)
-        body_layout.addLayout(toggle_row)
-        body_layout.addSpacing(16)
-
-        columns = QHBoxLayout()
-        columns.setSpacing(0)
-        columns.addStretch(1)
-        columns.addWidget(self._build_hero(), 0, Qt.AlignmentFlag.AlignTop)
-        columns.addSpacing(80)
-        columns.addWidget(self._build_card(), 0, Qt.AlignmentFlag.AlignTop)
-        columns.addStretch(1)
-        body_layout.addLayout(columns)
+        body_layout.addStretch(1)
+        body_layout.addWidget(self._build_hero(), 0, Qt.AlignmentFlag.AlignVCenter)
+        body_layout.addSpacing(64)
+        body_layout.addWidget(self._build_card(), 0, Qt.AlignmentFlag.AlignVCenter)
         body_layout.addStretch(1)
 
         scroll = QScrollArea()
         scroll.setWidget(body)
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
-        scroll.setHorizontalScrollBarPolicy(
-            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
-        )
-
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         root.addWidget(scroll, 1)
 
-    def _on_theme_toggle(self) -> None:
-        Theme.toggle_mode()
-        app = QApplication.instance()
-        if app is not None:
-            app.setStyleSheet(Theme.stylesheet())
-        self._theme_toggle.setText(
-            "\u2600" if Theme.mode() == "light" else "\U0001F319"
-        )
+        root.addWidget(self._build_footer())
 
-    # ------------------------------------------------------------------- hero
+    # ---------------------------------------------------------------- header
+
+    def _build_header(self) -> QWidget:
+        bar = QFrame()
+        bar.setObjectName("authHeader")
+        bar.setFixedHeight(58)
+
+        layout = QHBoxLayout(bar)
+        layout.setContentsMargins(28, 0, 28, 0)
+        layout.setSpacing(12)
+
+        self._header_logo = QLabel()
+        self._header_logo.setObjectName("brandLogo")
+        self._header_logo.setPixmap(logo_pixmap(26))
+
+        badge = QLabel("Academic Reference Platform")
+        badge.setObjectName("headerBadge")
+        # Fixed vertical policy plus vertical centring. Without both, a QLabel
+        # in a horizontal layout stretches to the full height of the bar,
+        # which is what made this badge fill the header.
+        badge.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+
+        self._theme_btn = QPushButton()
+        self._theme_btn.setObjectName("themeToggle")
+        self._theme_btn.setFixedSize(32, 32)
+        self._theme_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._theme_btn.setToolTip("Switch light / dark mode")
+        self._theme_btn.setIconSize(QSize(16, 16))
+        self._theme_btn.clicked.connect(lambda _checked: self._toggle_theme())
+        self._refresh_theme_icon()
+
+        layout.addWidget(self._header_logo, 0, Qt.AlignmentFlag.AlignVCenter)
+        layout.addStretch(1)
+        layout.addWidget(badge, 0, Qt.AlignmentFlag.AlignVCenter)
+        layout.addWidget(self._theme_btn, 0, Qt.AlignmentFlag.AlignVCenter)
+        return bar
+
+    # ------------------------------------------------------------------ hero
 
     def _build_hero(self) -> QWidget:
         hero = _panel()
-        hero.setFixedWidth(420)
+        hero.setFixedWidth(440)
 
         layout = QVBoxLayout(hero)
-        layout.setContentsMargins(0, 20, 0, 0)
+        layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(16)
 
-        badge = QLabel("Diagnostic Engine v2.5 Architecture")
+        badge = QLabel("Weighted Symptom Correlation & Clinical Study Platform")
         badge.setObjectName("heroBadge")
         badge.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
 
-        title = QLabel("Clinical intelligence at your fingertips.")
+        title = QLabel("Clinical knowledge &\ndifferential study reference.")
         title.setObjectName("heroTitle")
         title.setWordWrap(True)
 
         body = QLabel(
-            "Akeso matches reported symptoms against comprehensive clinical "
-            "disease monographs using weighted probabilistic logic. Log in to "
-            "track physiological vitals, record health journals, and explore "
-            "evidence-based monographs."
+            "Akeso correlates presenting symptoms against curated textbook "
+            "disease monographs using deterministic, weighted clinical "
+            "reasoning. Explore differential considerations, track your "
+            "study journal, and cross-reference curriculum monographs."
         )
         body.setObjectName("heroBody")
         body.setWordWrap(True)
 
         cards = QHBoxLayout()
         cards.setSpacing(12)
-        cards.addWidget(
-            FeatureCard(
-                "Weighted Correlation",
-                "Rule-based symptom weighting with primary and secondary "
-                "correlation scores.",
-            )
-        )
-        cards.addWidget(
-            FeatureCard(
-                "Private & Local",
-                "Client-side encrypted local storage ensures your personal "
-                "health records remain private.",
-            )
-        )
-        cards.addStretch(1)
+        for icon_name, card_title, card_body in [
+            (
+                    "pulse",
+                    "Weighted Correlation",
+                    "Rule-based symptom weighting with primary and secondary "
+                    "correlation scores.",
+            ),
+            (
+                    "shield",
+                    "Row-Level Security",
+                    "Clinical reference data is read-only to clients, enforced "
+                    "by Postgres row-level security.",
+            ),
+        ]:
+            card = FeatureCard(icon_name, card_title, card_body)
+            self._feature_cards.append(card)
+            cards.addWidget(card, 1)
 
         line = QFrame()
         line.setObjectName("separator")
@@ -274,77 +371,80 @@ class AuthView(QWidget):
         layout.addWidget(badge)
         layout.addWidget(title)
         layout.addWidget(body)
-        layout.addSpacing(6)
+        layout.addSpacing(4)
         layout.addLayout(cards)
-        layout.addSpacing(6)
+        layout.addSpacing(4)
         layout.addWidget(line)
         layout.addLayout(self._build_stats())
-        layout.addStretch(1)
         return hero
 
     def _build_stats(self) -> QHBoxLayout:
+        """Counts start as dashes and are filled from the database.
+
+        Placeholder dashes rather than numbers, so nothing on screen claims
+        a count that has not actually been read.
+        """
         row = QHBoxLayout()
-        row.setSpacing(24)
-        for number, label in [
-            ("15+", "Body Systems"),
-            ("200+", "Disease Monographs"),
-            ("100%", "Rule-Based"),
+        row.setSpacing(20)
+
+        self._stat_values: dict[str, QLabel] = {}
+        for key, label_text in [
+            ("body_systems", "Body Systems Represented"),
+            ("diseases", "Diseases Indexed"),
+            ("symptoms", "Clinical Symptoms"),
         ]:
             group = QHBoxLayout()
             group.setSpacing(6)
-            num = QLabel(number)
-            num.setObjectName("statNumber")
-            text = QLabel(label)
+
+            value = QLabel("\u2014")
+            value.setObjectName("statNumber")
+            text = QLabel(label_text)
             text.setObjectName("statLabel")
-            group.addWidget(num)
+
+            group.addWidget(value)
             group.addWidget(text)
             row.addLayout(group)
+            self._stat_values[key] = value
+
         row.addStretch(1)
         return row
 
-    # -------------------------------------------------------------- auth card
+    # ------------------------------------------------------------------ card
 
     def _build_card(self) -> QWidget:
         card = QFrame()
         card.setObjectName("authCard")
-        card.setFixedWidth(400)
-        card.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Maximum)
+        card.setFixedWidth(404)
 
         layout = QVBoxLayout(card)
-        layout.setContentsMargins(28, 26, 28, 26)
-        layout.setSpacing(14)
+        layout.setContentsMargins(28, 26, 28, 24)
+        layout.setSpacing(12)
 
-        logo = QLabel(PULSE)
-        logo.setObjectName("logoBox")
-        logo.setFixedSize(40, 40)
-        logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        logo_row = QHBoxLayout()
-        logo_row.addStretch(1)
-        logo_row.addWidget(logo)
-        logo_row.addStretch(1)
+        self._card_logo = QLabel()
+        self._card_logo.setObjectName("brandLogo")
+        self._card_logo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._card_logo.setPixmap(logo_mark_pixmap(46))
 
         self._title_label = QLabel("Sign In to Akeso")
         self._title_label.setObjectName("cardTitle")
         self._title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self._subtitle_label = QLabel(
-            "Enter your credentials to access your diagnostic engine"
+            "Enter your credentials to access your clinical study workspace"
         )
         self._subtitle_label.setObjectName("cardSubtitle")
         self._subtitle_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._subtitle_label.setWordWrap(True)
 
-        layout.addLayout(logo_row)
+        layout.addWidget(self._card_logo)
         layout.addWidget(self._title_label)
         layout.addWidget(self._subtitle_label)
         layout.addSpacing(4)
         layout.addWidget(self._build_tab_bar())
 
-        # Plain show()/hide() instead of QStackedWidget: a stacked widget
-        # always reserves room for its tallest page, so the login card would
-        # keep the sign-up form's height. Hidden siblings contribute nothing
-        # to layout, so the card genuinely resizes between tabs.
+        # Plain show/hide rather than QStackedWidget: a stacked widget
+        # reserves room for its tallest page, which left an empty gap under
+        # the shorter login form.
         self._login_form = self._build_login_form()
         self._signup_form = self._build_signup_form()
         self._signup_form.hide()
@@ -360,7 +460,24 @@ class AuthView(QWidget):
         self._status.setObjectName("statusLabel")
         self._status.setWordWrap(True)
         self._status.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._status.hide()
         layout.addWidget(self._status)
+
+        layout.addLayout(self._build_divider("OR"))
+        layout.addWidget(self._build_google_button())
+
+        line = QFrame()
+        line.setObjectName("separator")
+        line.setFixedHeight(1)
+        layout.addSpacing(4)
+        layout.addWidget(line)
+
+        self._switch_label = _link_label("")
+        self._switch_label.linkActivated.connect(
+            lambda _href: self._switch_tab(0 if self._signup_form.isVisible() else 1)
+        )
+        layout.addWidget(self._switch_label)
+        self._refresh_switch_label()
         return card
 
     def _build_tab_bar(self) -> QWidget:
@@ -378,7 +495,9 @@ class AuthView(QWidget):
             button.setObjectName("tabButton")
             button.setCheckable(True)
             button.setCursor(Qt.CursorShape.PointingHandCursor)
-            button.clicked.connect(lambda _, i=index: self._switch_tab(i))
+            button.clicked.connect(
+                lambda _checked, i=index: self._switch_tab(i)
+            )
             layout.addWidget(button)
 
         self._login_tab.setChecked(True)
@@ -392,7 +511,7 @@ class AuthView(QWidget):
 
         email_label = QLabel("Email or Username")
         email_label.setObjectName("fieldLabel")
-        self._login_email = IconField("\u2709" + VS_TEXT, "user@akeso.org")
+        self._login_email = IconField("mail", "user@akeso.org or gmail.com")
 
         password_row = QHBoxLayout()
         password_label = QLabel("Password")
@@ -404,8 +523,10 @@ class AuthView(QWidget):
         password_row.addWidget(forgot)
 
         self._login_password = IconField(
-            "\U0001F512" + VS_TEXT, "\u2022" * 8, password=True
+            "lock", "\u2022" * 8, password=True
         )
+        # Enter in the password field submits, as users expect.
+        self._login_password.line_edit().returnPressed.connect(self._emit_login)
 
         self._remember = QCheckBox("Remember me")
         self._remember.setChecked(True)
@@ -413,18 +534,9 @@ class AuthView(QWidget):
         self._login_button = QPushButton("Log In to Akeso  \u2192")
         self._login_button.setObjectName("primaryButton")
         self._login_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._login_button.clicked.connect(self._emit_login)
+        self._login_button.clicked.connect(lambda _checked: self._emit_login())
 
-        divider = QFrame()
-        divider.setObjectName("separator")
-        divider.setFixedHeight(1)
-
-        footer = _rich_label(
-            "Don't have an account?&nbsp; "
-            '<a href="#" style="color:#A29BFE; text-decoration:none; '
-            'font-weight:700;">Sign Up</a>'
-        )
-        footer.linkActivated.connect(lambda _: self._switch_tab(1))
+        self._icon_fields += [self._login_email, self._login_password]
 
         layout.addWidget(email_label)
         layout.addWidget(self._login_email)
@@ -435,10 +547,6 @@ class AuthView(QWidget):
         layout.addWidget(self._remember)
         layout.addSpacing(6)
         layout.addWidget(self._login_button)
-        layout.addSpacing(12)
-        layout.addWidget(divider)
-        layout.addSpacing(10)
-        layout.addWidget(footer)
         return form
 
     def _build_signup_form(self) -> QWidget:
@@ -447,14 +555,17 @@ class AuthView(QWidget):
         layout.setContentsMargins(0, 6, 0, 0)
         layout.setSpacing(6)
 
-        self._signup_name = IconField("\U0001F464" + VS_TEXT, "Alex Rivera")
-        self._signup_email = IconField("\u2709" + VS_TEXT, "user@akeso.org")
-        self._signup_password = IconField(
-            "\U0001F512" + VS_TEXT, "Min 8 characters", password=True
-        )
-        self._signup_confirm = IconField(
-            "\U0001F512" + VS_TEXT, "Re-enter password", password=True
-        )
+        self._signup_name = IconField("user", "Alex Rivera")
+        self._signup_email = IconField("mail", "user@akeso.org or gmail.com")
+        self._signup_password = IconField("lock", "Min 8 characters", password=True)
+        self._signup_confirm = IconField("lock", "Re-enter password", password=True)
+
+        self._icon_fields += [
+            self._signup_name,
+            self._signup_email,
+            self._signup_password,
+            self._signup_confirm,
+        ]
 
         for text, field in (
                 ("Full Name", self._signup_name),
@@ -466,7 +577,7 @@ class AuthView(QWidget):
             layout.addWidget(label)
             layout.addWidget(field)
 
-        layout.addLayout(self._build_requirements())
+        layout.addWidget(self._build_requirements())
 
         confirm_row = QHBoxLayout()
         confirm_label = QLabel("Confirm Password")
@@ -478,41 +589,34 @@ class AuthView(QWidget):
         confirm_row.addWidget(self._match_label)
         layout.addLayout(confirm_row)
         layout.addWidget(self._signup_confirm)
+
         layout.addLayout(self._build_terms_row())
 
         self._signup_button = QPushButton("Create Account")
         self._signup_button.setObjectName("primaryButton")
         self._signup_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._signup_button.clicked.connect(self._emit_signup)
+        self._signup_button.clicked.connect(lambda _checked: self._emit_signup())
         layout.addSpacing(6)
         layout.addWidget(self._signup_button)
-
-        divider = QFrame()
-        divider.setObjectName("separator")
-        divider.setFixedHeight(1)
-
-        footer = _rich_label(
-            "Already have an account?&nbsp; "
-            '<a href="#" style="color:#A29BFE; text-decoration:none; '
-            'font-weight:700;">Log In</a>'
-        )
-        footer.linkActivated.connect(lambda _: self._switch_tab(0))
-        layout.addSpacing(10)
-        layout.addWidget(divider)
-        layout.addSpacing(8)
-        layout.addWidget(footer)
 
         self._signup_password.line_edit().textChanged.connect(
             self._update_requirements
         )
-        self._signup_password.line_edit().textChanged.connect(self._update_match)
-        self._signup_confirm.line_edit().textChanged.connect(self._update_match)
+        self._signup_password.line_edit().textChanged.connect(
+            lambda _text: self._update_match()
+        )
+        self._signup_confirm.line_edit().textChanged.connect(
+            lambda _text: self._update_match()
+        )
         return form
 
-    def _build_requirements(self) -> QGridLayout:
-        grid = QGridLayout()
-        grid.setContentsMargins(2, 8, 2, 8)
-        grid.setHorizontalSpacing(16)
+    def _build_requirements(self) -> QWidget:
+        box = QFrame()
+        box.setObjectName("requirementsBox")
+
+        grid = QGridLayout(box)
+        grid.setContentsMargins(10, 8, 10, 8)
+        grid.setHorizontalSpacing(14)
         grid.setVerticalSpacing(4)
 
         self._req_length = RequirementRow("8+ characters")
@@ -526,7 +630,7 @@ class AuthView(QWidget):
         grid.addWidget(self._req_lower, 1, 0)
         grid.addWidget(self._req_number, 1, 1)
         grid.addWidget(self._req_special, 2, 0, 1, 2)
-        return grid
+        return box
 
     def _update_requirements(self, password: str) -> None:
         self._req_length.set_met(len(password) >= 8)
@@ -554,9 +658,9 @@ class AuthView(QWidget):
         self._terms_check = QCheckBox()
         text = QLabel(
             "I agree to Akeso's "
-            '<a href="#" style="color:#A29BFE; text-decoration:none;">Terms of '
-            "Service</a> and acknowledge that this diagnostic tool is for "
-            "reference and informational tracking."
+            f'<a href="#" style="color:{Theme.token("BADGE_TEXT")};">'
+            "Terms of Service</a> and acknowledge that this study tool is "
+            "for reference and educational use only."
         )
         text.setObjectName("cardSubtitle")
         text.setWordWrap(True)
@@ -567,7 +671,59 @@ class AuthView(QWidget):
         row.addWidget(text, 1)
         return row
 
-    # ----------------------------------------------------------- interactions
+    def _build_divider(self, text: str) -> QHBoxLayout:
+        row = QHBoxLayout()
+        row.setContentsMargins(0, 4, 0, 4)
+        row.setSpacing(12)
+
+        for side in (0, 1):
+            line = QFrame()
+            line.setObjectName("separator")
+            line.setFixedHeight(1)
+            if side == 0:
+                row.addWidget(line, 1)
+                label = QLabel(text)
+                label.setObjectName("dividerLabel")
+                row.addWidget(label)
+            else:
+                row.addWidget(line, 1)
+        return row
+
+    def _build_google_button(self) -> QPushButton:
+        self._google_btn = QPushButton("  Continue with Google")
+        self._google_btn.setObjectName("googleButton")
+        self._google_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._google_btn.setFixedHeight(42)
+        self._google_btn.setIcon(QIcon(_google_g(18)))
+        self._google_btn.setIconSize(QSize(18, 18))
+        self._google_btn.clicked.connect(lambda _checked: self.google_requested.emit())
+
+        # The button has three states: idle ("Continue with Google"),
+        # waiting ("Cancel", with a countdown), and cooldown ("Try again in
+        # Ns", disabled). Tracked explicitly so that unrelated code — like
+        # a password login finishing — cannot re-enable it mid-cooldown.
+        self._google_state = "idle"
+        self._cooldown_left = 0
+        self._cooldown_timer = QTimer(self)
+        self._cooldown_timer.setInterval(1000)
+        self._cooldown_timer.timeout.connect(self._tick_cooldown)
+        return self._google_btn
+
+    def _build_footer(self) -> QWidget:
+        bar = QFrame()
+        bar.setObjectName("authFooter")
+        bar.setFixedHeight(44)
+
+        layout = QHBoxLayout(bar)
+        label = QLabel(
+            "Akeso Academic Reference Platform v2.5  \u2022  Clinical "
+            "Weighted Symptom Correlation & Health Reference"
+        )
+        label.setObjectName("footerLabel")
+        layout.addWidget(label, 0, Qt.AlignmentFlag.AlignCenter)
+        return bar
+
+    # ----------------------------------------------------------- interaction
 
     def _switch_tab(self, index: int) -> None:
         self._login_tab.setChecked(index == 0)
@@ -579,13 +735,25 @@ class AuthView(QWidget):
         if index == 0:
             self._title_label.setText("Sign In to Akeso")
             self._subtitle_label.setText(
-                "Enter your credentials to access your diagnostic engine"
+                "Enter your credentials to access your clinical study workspace"
             )
         else:
             self._title_label.setText("Create an Account")
             self._subtitle_label.setText(
-                "Set up your diagnostic profile and personal health workspace"
+                "Set up your medical student profile and personal study workspace"
             )
+        self._refresh_switch_label()
+
+    def _refresh_switch_label(self) -> None:
+        link_color = Theme.token("BADGE_TEXT")
+        if self._signup_form.isVisible():
+            prompt, action = "Already have an account?", "Log In"
+        else:
+            prompt, action = "Don't have an account?", "Sign Up"
+        self._switch_label.setText(
+            f"{prompt}&nbsp; <a href='#' style='color:{link_color}; "
+            f"text-decoration:none; font-weight:700;'>{action}</a>"
+        )
 
     def _emit_login(self) -> None:
         self.login_requested.emit(
@@ -600,7 +768,44 @@ class AuthView(QWidget):
             self._signup_confirm.text(),
         )
 
-    # ------------------------------------------------------------- public API
+    # ---------------------------------------------------------------- theme
+
+    def _toggle_theme(self) -> None:
+        Theme.toggle_mode()
+        app = QApplication.instance()
+        if app is not None:
+            app.setStyleSheet(Theme.stylesheet())
+        self.refresh_theme()
+
+    def _refresh_theme_icon(self) -> None:
+        image = (
+            icons.sun(16, Theme.token("TEXT_MUTED")) if Theme.mode() == "light"
+            else icons.moon(16, Theme.token("BADGE_TEXT"))
+        )
+        self._theme_btn.setIcon(QIcon(icons.to_pixmap(image)))
+
+    def refresh_theme(self) -> None:
+        """Redraw every pixmap after a palette switch.
+
+        Stylesheets reapply themselves; the logos and icons were baked with
+        the old colours and must be regenerated.
+        """
+        self._header_logo.setPixmap(logo_pixmap(26))
+        self._card_logo.setPixmap(logo_mark_pixmap(46))
+        self._refresh_theme_icon()
+        for card in self._feature_cards:
+            card.refresh_icon()
+        for field in self._icon_fields:
+            field.refresh_icon()
+        self._refresh_switch_label()
+
+    # ------------------------------------------------------------ public api
+
+    def set_stats(self, body_systems: int, diseases: int, symptoms: int) -> None:
+        """Fill the hero counts from the database."""
+        self._stat_values["body_systems"].setText(str(body_systems))
+        self._stat_values["diseases"].setText(str(diseases))
+        self._stat_values["symptoms"].setText(str(symptoms))
 
     def terms_agreed(self) -> bool:
         return self._terms_check.isChecked()
@@ -610,32 +815,94 @@ class AuthView(QWidget):
 
     def show_error(self, message: str) -> None:
         self._status.setText(message)
+        self._status.show()
 
     def clear_error(self) -> None:
         self._status.setText("")
+        self._status.hide()
 
     def set_busy(self, busy: bool) -> None:
-        self._login_button.setEnabled(not busy)
-        self._signup_button.setEnabled(not busy)
+        for button in (self._login_button, self._signup_button):
+            button.setEnabled(not busy)
+        # The Google button follows its own state rather than a blanket
+        # enable, so finishing a password login cannot cut a cooldown short.
+        self._google_btn.setEnabled(not busy and self._google_state != "cooldown")
         self._login_button.setText(
             "Please wait\u2026" if busy else "Log In to Akeso  \u2192"
         )
         self._signup_button.setText("Please wait\u2026" if busy else "Create Account")
 
+    # --------------------------------------------------------- Google button
+
+    def _set_google_state(self, state: str, text: str) -> None:
+        self._google_state = state
+        self._google_btn.setText(text)
+        # Waiting stays clickable — that click is the cancel. Only the
+        # cooldown disables it.
+        self._google_btn.setEnabled(state != "cooldown")
+        self._google_btn.setProperty("googleState", state)
+        self._google_btn.style().unpolish(self._google_btn)
+        self._google_btn.style().polish(self._google_btn)
+
+    def set_google_waiting(self, waiting: bool) -> None:
+        """Browser open and waiting — or back to idle."""
+        if waiting:
+            self._cooldown_timer.stop()
+            self._set_google_state(
+                "waiting", "  Waiting for Google\u2026  Cancel"
+            )
+        else:
+            self._cooldown_timer.stop()
+            self._set_google_state("idle", "  Continue with Google")
+
+    def set_google_countdown(self, remaining: int) -> None:
+        """Show seconds left before the backstop timeout gives up."""
+        if self._google_state == "waiting":
+            self._google_btn.setText(
+                f"  Waiting for Google\u2026  Cancel ({remaining}s)"
+            )
+
+    def start_google_cooldown(self, seconds: int) -> None:
+        """Disable the button briefly after a cancelled or failed attempt."""
+        self._cooldown_left = seconds
+        self._set_google_state("cooldown", f"  Try again in {seconds}s")
+        self._cooldown_timer.start()
+
+    def _tick_cooldown(self) -> None:
+        self._cooldown_left -= 1
+        if self._cooldown_left <= 0:
+            self._cooldown_timer.stop()
+            self._set_google_state("idle", "  Continue with Google")
+        else:
+            self._google_btn.setText(f"  Try again in {self._cooldown_left}s")
+
+    def reset(self) -> None:
+        """Clear every field. Called on logout.
+
+        On a shared machine, leaving the previous user's email in the field
+        would tell the next person who was here.
+        """
+        for field in self._icon_fields:
+            field.clear()
+        self._terms_check.setChecked(False)
+        self._update_requirements("")
+        self._match_label.setText("")
+        self.clear_error()
+        # Stop any cooldown, or it could carry over into the next session.
+        self._cooldown_timer.stop()
+        self._set_google_state("idle", "  Continue with Google")
+        self.set_busy(False)
+        self._switch_tab(0)
+
 
 def main() -> int:
-    """Standalone preview: run `python -m app.ui.views.auth_view` from the
-    project root (with the venv active) to see this screen without booting
-    the rest of the app, Supabase included.
-    """
+    """Preview on its own: python -m app.ui.views.auth_view"""
     app = QApplication(sys.argv)
     app.setStyleSheet(Theme.stylesheet())
-
     view = AuthView()
+    view.set_stats(10, 6, 15)
     view.resize(1440, 900)
-    view.setWindowTitle("Akeso — Diagnostic Engine (preview)")
-    view.login_requested.connect(lambda e, p: print("login:", e, bool(p)))
-    view.signup_requested.connect(lambda *a: print("signup:", a[:2]))
+    view.setWindowTitle("Akeso \u2014 auth preview")
     view.show()
     return app.exec()
 

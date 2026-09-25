@@ -1,13 +1,18 @@
 """Akeso left navigation rail.
 
-Collapsed to icon width, expands on hover, pinnable so it stops moving while
-you work.
+Collapsed to icon width, expands on hover, pinnable open.
 
-Nav items can declare a required role. Anything listing "roles" is only built
-for users holding one of them — the widget is never created, not merely
-hidden. This is a UI convenience only: real enforcement belongs in row level
-security and the service layer, since anyone who can run the app can edit its
-Python.
+When collapsed, two things change so the rail stays readable:
+
+  * icons are centred — the expanded style left-aligns them with padding,
+    which in a 70px column put every icon noticeably off-centre
+  * section headers are replaced by thin partition lines, so the groups
+    stay visually separate without their labels
+
+Nav items can declare a required role. Items listing "roles" are only built
+for users holding one of them. That is a UI convenience only — real
+enforcement belongs in row-level security, since anyone who can run the app
+can edit its Python.
 """
 
 from typing import Dict, List, Optional
@@ -46,7 +51,7 @@ HEADER_HEIGHT = 30
 # Pure data. Adding a screen means adding one dict — no layout code.
 #   roles    optional; absent means visible to everyone
 #   accent   "danger" or "primary" tints the row
-#   featured renders as a solid primary pill with a chevron
+#   featured solid primary pill with a chevron
 NAV_SECTIONS = [
     {
         "header": "NAVIGATION",
@@ -57,6 +62,7 @@ NAV_SECTIONS = [
                 "icon": "pulse",
                 "featured": True,
             },
+            {"id": "drug-checker", "label": "Drug Interaction Checker", "icon": "shield"},
         ],
     },
     {
@@ -66,20 +72,8 @@ NAV_SECTIONS = [
             {"id": "diseases", "label": "Disease Encyclopedia", "icon": "book"},
             {"id": "symptoms", "label": "Symptom Encyclopedia", "icon": "pulse"},
             {"id": "medicines", "label": "Medicine Reference", "icon": "pill"},
-            # Ampersands are escaped by NavButton, not here — keep labels
-            # written the way they should read.
-            {
-                "id": "medications",
-                "label": "Medication & Drug Safety",
-                "icon": "clock",
-            },
             {"id": "body-systems", "label": "Body System Explorer", "icon": "heart"},
-            {
-                "id": "journal",
-                "label": "Personal Health Journal",
-                "icon": "notebook",
-            },
-            {"id": "wellness", "label": "Wellness Calculators", "icon": "leaf"},
+            {"id": "wellness", "label": "Wellness Calculators", "icon": "calculator"},
             {
                 "id": "emergency",
                 "label": "Emergency Guide",
@@ -87,11 +81,13 @@ NAV_SECTIONS = [
                 "accent": "danger",
             },
             {"id": "articles", "label": "Health Articles", "icon": "stack"},
+            {"id": "exchange", "label": "Clinical Exchange", "icon": "chat"},
         ],
     },
     {
         "header": "USER WORKSPACE",
         "items": [
+            {"id": "notebook", "label": "Study Notebook", "icon": "notebook"},
             {"id": "account", "label": "Account Settings", "icon": "user"},
             {"id": "favorites", "label": "Bookmarks", "icon": "star"},
             {"id": "history", "label": "Search History", "icon": "clock"},
@@ -109,7 +105,11 @@ NAV_SECTIONS = [
 
 
 def visible_items(role: str = "user") -> List[Dict]:
-    """Flatten NAV_SECTIONS to the items this role may see."""
+    """Flatten NAV_SECTIONS to the items this role may see.
+
+    Also used by search, so a user can never search their way to a module
+    their role hides from the sidebar.
+    """
     allowed = []
     for section in NAV_SECTIONS:
         for item in section["items"]:
@@ -117,6 +117,17 @@ def visible_items(role: str = "user") -> List[Dict]:
             if roles is None or role in roles:
                 allowed.append(item)
     return allowed
+
+
+def _repolish(widget: QWidget) -> None:
+    """Re-apply the stylesheet after a dynamic property changes.
+
+    Qt resolves property selectors like [collapsed="true"] once, when the
+    style is applied. Changing the property later does nothing visible
+    until the widget is unpolished and polished again.
+    """
+    widget.style().unpolish(widget)
+    widget.style().polish(widget)
 
 
 class NavButton(QPushButton):
@@ -146,11 +157,7 @@ class NavButton(QPushButton):
 
     @staticmethod
     def _escape(text: str) -> str:
-        """Qt reads '&' in button text as a mnemonic marker and swallows it.
-
-        "Medication & Drug Safety" renders as "Medication  Drug Safety" with
-        the D underlined. Doubling the ampersand escapes it.
-        """
+        """Qt reads '&' as a mnemonic marker and swallows it; double it."""
         return text.replace("&", "&&")
 
     def _icon_color(self) -> str:
@@ -159,14 +166,12 @@ class NavButton(QPushButton):
         accent = self._item.get("accent")
         if accent == "danger":
             return Theme.token("DANGER")
-        if accent == "primary":
-            return Theme.token("PRIMARY_TEXT_ON_NAV")
-        if self._active:
+        if accent == "primary" or self._active:
             return Theme.token("PRIMARY_TEXT_ON_NAV")
         return Theme.token("TEXT_MUTED")
 
     def refresh_icon(self) -> None:
-        image = icons.draw(self._item["icon"], size=17, color=self._icon_color())
+        image = icons.draw(self._item["icon"], 17, self._icon_color())
         self.setIcon(QIcon(icons.to_pixmap(image)))
 
     def set_active(self, active: bool) -> None:
@@ -176,8 +181,11 @@ class NavButton(QPushButton):
 
     def set_expanded(self, expanded: bool) -> None:
         # Blank the text rather than let it clip — half-drawn glyphs read as
-        # a rendering bug.
+        # a rendering bug. The collapsed property switches the stylesheet to
+        # a centred, unpadded layout for the icon.
         self.setText(self._escape(f"  {self._item['label']}") if expanded else "")
+        self.setProperty("collapsed", not expanded)
+        _repolish(self)
 
 
 class AkesoSidebarNav(QFrame):
@@ -200,9 +208,12 @@ class AkesoSidebarNav(QFrame):
         self.is_pinned = pinned
         self.is_expanded = pinned
         self.nav_buttons: Dict[str, NavButton] = {}
-        self._section_rows: List[QWidget] = []
+        self._section_headers: List[QWidget] = []
+        self._partitions: List[QWidget] = []
         self._chevrons: List[QLabel] = []
         self.pin_btn: Optional[QPushButton] = None
+        self._pin_row_layout: Optional[QHBoxLayout] = None
+        self._nav_label: Optional[QLabel] = None
 
         self.setFixedWidth(EXPANDED_WIDTH if pinned else COLLAPSED_WIDTH)
 
@@ -220,9 +231,7 @@ class AkesoSidebarNav(QFrame):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
-        scroll.setHorizontalScrollBarPolicy(
-            Qt.ScrollBarPolicy.ScrollBarAlwaysOff
-        )
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         content = QWidget()
         content.setObjectName("panel")
@@ -230,22 +239,29 @@ class AkesoSidebarNav(QFrame):
         layout.setContentsMargins(12, 8, 12, 14)
         layout.setSpacing(ROW_SPACING)
 
-        for index, section in enumerate(NAV_SECTIONS):
+        first = True
+        for section in NAV_SECTIONS:
             items = [
-                item
-                for item in section["items"]
+                item for item in section["items"]
                 if item.get("roles") is None or self.role in item["roles"]
             ]
-            # A fully filtered section would leave a dangling header with
-            # nothing beneath it.
+            # A fully filtered section would leave a dangling header.
             if not items:
                 continue
 
-            row = self._build_section_header(
-                section["header"], with_pin=(index == 0)
-            )
-            layout.addWidget(row)
-            self._section_rows.append(row)
+            if first:
+                # The first header also carries the pin, and stays visible
+                # when collapsed so the pin remains reachable.
+                layout.addWidget(self._build_pin_row(section["header"]))
+                first = False
+            else:
+                partition = self._build_partition()
+                layout.addWidget(partition)
+                self._partitions.append(partition)
+
+                header = self._build_section_header(section["header"])
+                layout.addWidget(header)
+                self._section_headers.append(header)
 
             for item in items:
                 layout.addWidget(self._build_row(item))
@@ -257,22 +273,75 @@ class AkesoSidebarNav(QFrame):
         if self.active_tab in self.nav_buttons:
             self.nav_buttons[self.active_tab].set_active(True)
 
+    def _build_pin_row(self, text: str) -> QWidget:
+        row = QWidget()
+        row.setObjectName("panel")
+        row.setFixedHeight(HEADER_HEIGHT + 6)
+
+        self._pin_row_layout = QHBoxLayout(row)
+        self._pin_row_layout.setContentsMargins(4, 0, 2, 0)
+        self._pin_row_layout.setSpacing(0)
+
+        self._nav_label = QLabel(text)
+        self._nav_label.setObjectName("navSectionHeader")
+        self._nav_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        # Stretch 1: when visible it takes the free space and pushes the pin
+        # right. When hidden, the pin has the row to itself and centres.
+        self._pin_row_layout.addWidget(self._nav_label, 1)
+
+        self.pin_btn = QPushButton()
+        self.pin_btn.setObjectName("pinButton")
+        self.pin_btn.setCheckable(True)
+        self.pin_btn.setChecked(self.is_pinned)
+        self.pin_btn.setFixedSize(26, 26)
+        self.pin_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.pin_btn.setIconSize(QSize(14, 14))
+        self.pin_btn.clicked.connect(lambda _c: self._toggle_pin())
+        self._refresh_pin_icon()
+        self._pin_row_layout.addWidget(self.pin_btn)
+        return row
+
+    def _build_section_header(self, text: str) -> QWidget:
+        row = QWidget()
+        row.setObjectName("panel")
+        row.setFixedHeight(HEADER_HEIGHT)
+        layout = QHBoxLayout(row)
+        # No vertical margins, and #navSectionHeader has no padding either:
+        # padding stacked on a fixed row height is what clipped these before.
+        layout.setContentsMargins(4, 0, 2, 0)
+        label = QLabel(text)
+        label.setObjectName("navSectionHeader")
+        label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        layout.addWidget(label)
+        return row
+
+    @staticmethod
+    def _build_partition() -> QWidget:
+        """A short divider shown only when collapsed, in place of headers."""
+        holder = QWidget()
+        holder.setObjectName("panel")
+        holder.setFixedHeight(17)
+        layout = QVBoxLayout(holder)
+        layout.setContentsMargins(10, 8, 10, 8)
+        line = QFrame()
+        line.setObjectName("navPartition")
+        line.setFixedHeight(1)
+        layout.addWidget(line)
+        return holder
+
     def _build_row(self, item: Dict) -> QWidget:
         button = NavButton(item)
-        button.clicked.connect(
-            lambda _=False, tid=item["id"]: self.select_tab(tid)
-        )
+        button.clicked.connect(lambda _c=False, tid=item["id"]: self.select_tab(tid))
         self.nav_buttons[item["id"]] = button
 
         if not item.get("featured"):
             return button
 
         # The featured pill carries a trailing chevron, overlaid on the
-        # button so the button's own icon and text stay where they are.
+        # button so the button's own icon and text stay put.
         wrapper = QWidget()
         wrapper.setObjectName("panel")
         wrapper.setFixedHeight(ROW_HEIGHT)
-
         stack = QHBoxLayout(wrapper)
         stack.setContentsMargins(0, 0, 0, 0)
         stack.addWidget(button)
@@ -284,42 +353,7 @@ class AkesoSidebarNav(QFrame):
         chevron.move(EXPANDED_WIDTH - 24 - 26, (ROW_HEIGHT - 14) // 2)
         chevron.raise_()
         self._chevrons.append(chevron)
-
         return wrapper
-
-    def _build_section_header(self, text: str, with_pin: bool) -> QWidget:
-        row = QWidget()
-        row.setObjectName("panel")
-        row.setFixedHeight(HEADER_HEIGHT)
-
-        layout = QHBoxLayout(row)
-        # Vertical margins are 0 deliberately, and the stylesheet must not
-        # add padding to #navSectionHeader either — padding stacked on top
-        # of a fixed row height is what clipped these labels.
-        layout.setContentsMargins(4, 0, 2, 0)
-        layout.setSpacing(0)
-
-        label = QLabel(text)
-        label.setObjectName("navSectionHeader")
-        label.setAlignment(
-            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter
-        )
-        layout.addWidget(label)
-        layout.addStretch(1)
-
-        if with_pin:
-            self.pin_btn = QPushButton()
-            self.pin_btn.setObjectName("pinButton")
-            self.pin_btn.setCheckable(True)
-            self.pin_btn.setChecked(self.is_pinned)
-            self.pin_btn.setFixedSize(22, 22)
-            self.pin_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-            self.pin_btn.setIconSize(QSize(14, 14))
-            self.pin_btn.clicked.connect(self._toggle_pin)
-            self._refresh_pin_icon()
-            layout.addWidget(self.pin_btn)
-
-        return row
 
     def _build_animation(self) -> None:
         self._anim = QParallelAnimationGroup(self)
@@ -331,13 +365,13 @@ class AkesoSidebarNav(QFrame):
 
     # ------------------------------------------------------------ behaviour
 
-    def enterEvent(self, event: QEvent) -> None:
+    def enterEvent(self, event: QEvent) -> None:  # noqa: N802
         if not self.is_pinned:
             self._animate_to(EXPANDED_WIDTH)
             self._apply_expansion(True)
         super().enterEvent(event)
 
-    def leaveEvent(self, event: QEvent) -> None:
+    def leaveEvent(self, event: QEvent) -> None:  # noqa: N802
         if not self.is_pinned:
             self._animate_to(COLLAPSED_WIDTH)
             self._apply_expansion(False)
@@ -353,12 +387,23 @@ class AkesoSidebarNav(QFrame):
 
     def _apply_expansion(self, expanded: bool) -> None:
         self.is_expanded = expanded
-        for row in self._section_rows:
-            row.setVisible(expanded)
+
+        for header in self._section_headers:
+            header.setVisible(expanded)
+        for partition in self._partitions:
+            partition.setVisible(not expanded)
         for button in self.nav_buttons.values():
             button.set_expanded(expanded)
         for chevron in self._chevrons:
             chevron.setVisible(expanded)
+
+        if self._nav_label is not None and self._pin_row_layout is not None:
+            self._nav_label.setVisible(expanded)
+            self._pin_row_layout.setAlignment(
+                self.pin_btn,
+                (Qt.AlignmentFlag.AlignRight if expanded else Qt.AlignmentFlag.AlignHCenter)
+                | Qt.AlignmentFlag.AlignVCenter,
+                )
 
     def _toggle_pin(self) -> None:
         self.is_pinned = self.pin_btn.isChecked()
@@ -370,14 +415,12 @@ class AkesoSidebarNav(QFrame):
     def _refresh_pin_icon(self) -> None:
         if self.pin_btn is None:
             return
-        if self.is_pinned:
-            image = icons.pin(14, Theme.token("PRIMARY"))
-        else:
-            image = icons.pin_off(14, Theme.token("TEXT_MUTED"))
-        self.pin_btn.setIcon(QIcon(icons.to_pixmap(image)))
-        self.pin_btn.setToolTip(
-            "Unpin sidebar" if self.is_pinned else "Keep sidebar open"
+        image = (
+            icons.pin(14, Theme.token("PRIMARY")) if self.is_pinned
+            else icons.pin_off(14, Theme.token("TEXT_MUTED"))
         )
+        self.pin_btn.setIcon(QIcon(icons.to_pixmap(image)))
+        self.pin_btn.setToolTip("Unpin sidebar" if self.is_pinned else "Keep sidebar open")
 
     # ----------------------------------------------------------------- api
 
@@ -390,11 +433,7 @@ class AkesoSidebarNav(QFrame):
         self.tabChanged.emit(tab_id)
 
     def refresh_theme(self) -> None:
-        """Redraw icons after a palette switch.
-
-        Stylesheets reapply themselves; these icons are pixmaps baked with
-        the old colours.
-        """
+        """Redraw icons after a palette switch — they are baked pixmaps."""
         for button in self.nav_buttons.values():
             button.refresh_icon()
         self._refresh_pin_icon()
