@@ -123,18 +123,51 @@ class MatchResult:
     rank_value: float = 0.0
     matched: list[MatchedSymptom] = field(default_factory=list)
     missing: list[str] = field(default_factory=list)
+    # Reported symptoms the condition's reference entry does not list. "Not
+    # linked", not "rules it out": the data has no negative associations.
     inconsistent: list[str] = field(default_factory=list)
     boosters: list[str] = field(default_factory=list)   # why the score was raised
     matched_count: int = 0
-    total_hallmarks: int = 0
+    total_hallmarks: int = 0            # every symptom linked to the condition
+    explained_count: int = 0            # reported symptoms this condition lists
+    reported_count: int = 0             # symptoms the user reported
     weighted_sum: int = 0
     weighted_max: int = 0
     alignment: int = 0                  # how closely intensities matched, %
     emergency_signs: list[str] = field(default_factory=list)
+    # The weighted values the ranking really uses (the counts above are for
+    # reading; these decide the order). All 0-1 except boost (a multiplier).
+    coverage: float = 0.0               # share of the condition's weighted picture
+    explained: float = 0.0              # share of the user's weighted symptoms
+    boost: float = 1.0                  # exposure / history multiplier
 
     @property
     def has_primary(self) -> bool:
         return any(m.is_primary for m in self.matched)
+
+    @property
+    def base_score(self) -> float:
+        """sqrt(coverage x explained) x 100, before boosters."""
+        return (self.coverage * self.explained) ** 0.5 * 100.0
+
+    def why(self) -> list[str]:
+        """Plain-language breakdown of the rank, for tooltips and notes."""
+        hallmarks = [m.name for m in self.matched if m.is_primary]
+        lines = [
+            f"Covers {self.coverage:.0%} of this condition's weighted picture: "
+            f"{self.matched_count} of its {self.total_hallmarks} symptoms reported"
+            + (f", including hallmark {', '.join(hallmarks)} (counts x1.5)" if hallmarks else "")
+            + ". Intensity, onset and duration adjust this.",
+            f"Explains {self.explained:.0%} of your weighted symptoms: "
+            f"{self.explained_count} of {self.reported_count} (more specific symptoms weigh more).",
+            f"Base score = \u221a({self.coverage:.0%} \u00d7 {self.explained:.0%}) = {self.base_score:.1f}",
+        ]
+        if self.boosters:
+            lines.append("Boosters: " + "; ".join(self.boosters))
+            lines.append(f"Rank score = {self.base_score:.1f} \u00d7 {self.boost:.2f} = {self.rank_value:.1f}")
+        else:
+            lines.append("No exposure or history boosters apply.")
+        return lines
 
 
 @dataclass

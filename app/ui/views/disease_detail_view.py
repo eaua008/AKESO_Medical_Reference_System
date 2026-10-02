@@ -12,9 +12,10 @@ on a clinical page reads as a failed load, and a condition with no linked
 drugs should say nothing rather than show a blank frame.
 """
 
+from html import escape
 from typing import Optional
 
-from PySide6.QtCore import QSize, Qt, Signal
+from PySide6.QtCore import QEvent, QObject, QSize, Qt, Signal
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QFrame,
@@ -33,6 +34,8 @@ from app.core import icons
 from app.core.models_helpers import urgency_style
 from app.core.theme import Theme
 from app.models.disease import Disease, Medicine, SymptomLink
+from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain, elide_button, fit_width
+from app.ui.components.reference_cards import safe_url
 from app.ui.views.section_highlight import SectionHighlighter
 
 # key, TOC label, icon name
@@ -50,6 +53,11 @@ SECTION_META = {
     "redflags": ("Emergency Red Flags", "alert"),
     "references": ("Textbook References", "book"),
 }
+
+
+# The rail is 252 px wide; the 22 px content cards margins left too little
+# room, so section names and the "2-Tier" badge ran past the edge.
+RAIL_CARD_MARGINS = (14, 16, 14, 16)
 
 
 def _card(object_name: str = "detailCard") -> tuple[QFrame, QVBoxLayout]:
@@ -98,6 +106,28 @@ def _chip(text: str, object_name: str) -> QLabel:
     chip.setObjectName(object_name)
     chip.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
     return chip
+
+
+class _BadgePinner(QObject):
+    """Keeps a TOC badge against the right edge of its button."""
+
+    def __init__(self, chip: QLabel, button: QPushButton) -> None:
+        super().__init__(button)
+        self._chip = chip
+        self._full = button.text()
+
+    def eventFilter(self, watched, event) -> bool:  # noqa: N802
+        if event.type() == QEvent.Type.Resize:
+            self._chip.move(watched.width() - self._chip.width() - 10,
+                            (watched.height() - self._chip.height()) // 2)
+            # Shorten the caption rather than let it run under the badge.
+            # ("&&" is one visible "&", so measure the visible text.)
+            visible = self._full.replace("&&", "&")
+            room = watched.width() - self._chip.width() - 10 - 46   # icon + padding
+            shown = watched.fontMetrics().elidedText(visible, Qt.TextElideMode.ElideRight, room)
+            watched.setText(shown.replace("&", "&&"))
+            watched.setToolTip(visible.strip() if shown != visible else "")
+        return False
 
 
 class Tile(QFrame):
@@ -292,12 +322,12 @@ class DiseaseDetailView(QWidget):
         back.setObjectName("secondaryButton")
         back.setCursor(Qt.CursorShape.PointingHandCursor)
         back.clicked.connect(lambda _checked: self.back_requested.emit())
+        self.back_button = back         # hidden when shown in a PageSheet
 
-        self._title_label = QLabel("")
-        self._title_label.setObjectName("detailTitle")
-
-        self._scientific_label = QLabel("")
-        self._scientific_label.setObjectName("detailScientific")
+        # Elided, not fixed-width: "Acute Coronary Syndrome (incl. Myocardial
+        # Infarction)" plus its scientific name used to force the whole window
+        # wider than the screen. The full text is in the tooltip.
+        self._titles = TitlePair("detailTitle", "detailScientific")
 
         self._check_btn = QPushButton("  Check Symptoms")
         self._check_btn.setObjectName("primaryButton")
@@ -320,9 +350,7 @@ class DiseaseDetailView(QWidget):
         self._bookmark_btn.clicked.connect(self._toggle_bookmark)
 
         layout.addWidget(back)
-        layout.addWidget(self._title_label)
-        layout.addWidget(self._scientific_label)
-        layout.addStretch(1)
+        layout.addWidget(self._titles, 1)
         layout.addWidget(self._check_btn)
         layout.addWidget(self._compare_btn)
         layout.addWidget(self._bookmark_btn)
@@ -351,10 +379,13 @@ class DiseaseDetailView(QWidget):
         layout.addStretch(1)
 
         rail.setWidget(holder)
+        fit_width(rail)
+        self._rail_holder = holder
         return rail
 
     def _build_toc_card(self) -> QWidget:
         card, layout = _card()
+        layout.setContentsMargins(*RAIL_CARD_MARGINS)
         layout.setSpacing(4)
 
         header = QHBoxLayout()
@@ -382,6 +413,7 @@ class DiseaseDetailView(QWidget):
 
     def _build_metadata_card(self) -> QWidget:
         card, layout = _card()
+        layout.setContentsMargins(*RAIL_CARD_MARGINS)
 
         heading = QLabel("AT-A-GLANCE METADATA")
         heading.setObjectName("railHeading")
@@ -397,10 +429,12 @@ class DiseaseDetailView(QWidget):
 
     def _build_related_card(self) -> QWidget:
         self._related_card, layout = _card()
+        layout.setContentsMargins(*RAIL_CARD_MARGINS)
 
         header = QHBoxLayout()
         heading = QLabel("RELATED ENTITIES")
         heading.setObjectName("railHeading")
+        heading.setWordWrap(True)
         link = QLabel("CROSS-LINKS")
         link.setObjectName("linkLabel")
         header.addWidget(heading)
@@ -441,9 +475,9 @@ class DiseaseDetailView(QWidget):
         self._disease = disease
         self._bookmarked = bookmarked
 
-        self._title_label.setText(disease.name)
-        self._scientific_label.setText(
-            f"({disease.scientific_name})" if disease.scientific_name else ""
+        self._titles.set_texts(
+            disease.name,
+            f"({disease.scientific_name})" if disease.scientific_name else "",
         )
         self._refresh_bookmark_icon()
 
@@ -451,6 +485,12 @@ class DiseaseDetailView(QWidget):
         self._build_sections(disease)
         self._fill_metadata(disease)
         self._fill_related(disease)
+        # Long headings and names wrap instead of widening the page.
+        contain(self._scroll.widget())
+        contain(self._rail_holder, limit=200, buttons=False)
+        for pill in self._rail_holder.findChildren(QPushButton):
+            if pill.objectName().startswith("relatedPill"):
+                elide_button(pill, 200)
 
         self._scroll.verticalScrollBar().setValue(0)
         self._on_scrolled(0)
@@ -538,7 +578,10 @@ class DiseaseDetailView(QWidget):
             chip = QLabel(badge, button)
             chip.setObjectName("tocBadge")
             chip.adjustSize()
-            chip.move(252 - 44 - 26 - chip.width(), (31 - chip.height()) // 2)
+            # Pinned to the button's right edge whatever its width (it used to
+            # assume a 252 px rail and overlapped the text once a scrollbar
+            # appeared).
+            button.installEventFilter(_BadgePinner(chip, button))
 
         # Insert before the trailing stretch so the list stays top-aligned.
         self._toc_layout.insertWidget(self._toc_layout.count() - 1, button)
@@ -650,7 +693,7 @@ class DiseaseDetailView(QWidget):
     def _causes(self, d: Disease) -> QWidget:
         card, layout = _card()
         layout.addWidget(_heading("Causes & contributing etiology", "stack"))
-        layout.addLayout(self._two_column([Tile(c) for c in d.causes]))
+        layout.addWidget(self._two_column([Tile(c) for c in d.causes]))
         return card
 
     def _symptoms(self, d: Disease) -> QWidget:
@@ -671,7 +714,7 @@ class DiseaseDetailView(QWidget):
             tile = SymptomTile(symptom)
             tile.inspect_requested.connect(self.symptom_requested.emit)
             tiles.append(tile)
-        layout.addLayout(self._grid(tiles, columns=3))
+        layout.addWidget(self._grid(tiles, columns=3))
         return card
 
     def _differentials(self, d: Disease) -> QWidget:
@@ -692,7 +735,7 @@ class DiseaseDetailView(QWidget):
                 )
             )
             tiles.append(tile)
-        layout.addLayout(self._grid(tiles, columns=2))
+        layout.addWidget(self._grid(tiles, columns=2))
         return card
 
     def _prevention(self, d: Disease) -> QWidget:
@@ -707,9 +750,7 @@ class DiseaseDetailView(QWidget):
             ("tertiary", "3. Tertiary Management", "tierHeadingTertiary"),
         ]
 
-        columns = QHBoxLayout()
-        columns.setSpacing(12)
-        shown = 0
+        tier_cards: list[QWidget] = []
         for key, title, heading_object in tiers:
             items = d.prevention_tiers.get(key, [])
             if not items:
@@ -724,15 +765,15 @@ class DiseaseDetailView(QWidget):
             for item in items:
                 column_layout.addWidget(_body(f"\u2022  {item}", "bulletText"))
             column_layout.addStretch(1)
-            columns.addWidget(column, 1)
-            shown += 1
+            tier_cards.append(column)
 
-        if shown:
-            layout.addLayout(columns)
+        if tier_cards:
+            # Three across when there is room, stacked on narrow windows.
+            layout.addWidget(self._grid(tier_cards, 3, min_width=240))
 
         if d.prevention:
             layout.addWidget(_body("GENERAL PREVENTION", "subHeading"))
-            layout.addLayout(self._two_column([Tile(p) for p in d.prevention]))
+            layout.addWidget(self._two_column([Tile(p) for p in d.prevention]))
         return card
 
     def _treatments(self, d: Disease) -> QWidget:
@@ -784,7 +825,7 @@ class DiseaseDetailView(QWidget):
             tile = MedicineTile(medicine)
             tile.open_requested.connect(self.medicine_requested.emit)
             tiles.append(tile)
-        layout.addLayout(self._grid(tiles, columns=2))
+        layout.addWidget(self._grid(tiles, columns=2))
         return card
 
     def _redflags(self, d: Disease) -> QWidget:
@@ -796,7 +837,7 @@ class DiseaseDetailView(QWidget):
                 Theme.token("DANGER"),
             )
         )
-        layout.addLayout(
+        layout.addWidget(
             self._two_column(
                 [
                     Tile(sign, "\u26A0", "danger")
@@ -862,13 +903,8 @@ class DiseaseDetailView(QWidget):
 
         # A grid, two per row: monographs now carry three to six citations,
         # and a single row squeezed them until each was unreadable.
-        columns = QGridLayout()
-        columns.setHorizontalSpacing(14)
-        columns.setVerticalSpacing(12)
-        columns.setColumnStretch(0, 1)
-        columns.setColumnStretch(1, 1)
-
-        for index, reference in enumerate(d.clinical_references):
+        tiles: list[QWidget] = []
+        for reference in d.clinical_references:
             tile, tile_layout = _card("innerCard")
             tile_layout.setSpacing(7)
 
@@ -884,15 +920,18 @@ class DiseaseDetailView(QWidget):
             if reference.specialty:
                 specialty = QLabel(reference.specialty)
                 specialty.setObjectName("metaLabel")
-                tier_row.addWidget(specialty)
+                specialty.setWordWrap(True)
+                specialty.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+                tier_row.addWidget(specialty, 1)
             tile_layout.addLayout(tier_row)
 
             tile_layout.addWidget(_body(reference.source_name, "symptomName"))
             tile_layout.addWidget(_body(reference.citation_text, "bodyTextMuted"))
 
-            if reference.url:
+            url = safe_url(reference.url)
+            if url:
                 link = QLabel(
-                    f'<a href="{reference.url}" style="color:'
+                    f'<a href="{escape(url, quote=True)}" style="color:'
                     f'{Theme.token("BADGE_TEXT")}; text-decoration:none;">'
                     f"{'Access Mother Book' if reference.is_mother_book else 'Open reference'} \u2197</a>"
                 )
@@ -902,10 +941,10 @@ class DiseaseDetailView(QWidget):
                 tile_layout.addWidget(link)
 
             tile_layout.addStretch(1)
-            row, column = divmod(index, 2)
-            columns.addWidget(tile, row, column)
+            tiles.append(tile)
 
-        layout.addLayout(columns)
+        # Two per row when there is room, one when the window is narrow.
+        layout.addWidget(self._grid(tiles, 2, min_width=340))
 
         if d.source_attribution:
             attribution, attribution_layout = _card("innerCard")
@@ -926,21 +965,20 @@ class DiseaseDetailView(QWidget):
 
     # -------------------------------------------------------------- layout
 
-    @staticmethod
-    def _grid(widgets: list[QWidget], columns: int) -> QGridLayout:
-        grid = QGridLayout()
-        grid.setHorizontalSpacing(12)
-        grid.setVerticalSpacing(11)
-        for index, widget in enumerate(widgets):
-            row, column = divmod(index, columns)
-            grid.addWidget(widget, row, column)
-        # Equal stretch on every column, occupied or not, so a lone tile does
-        # not expand to fill the whole row.
-        for column in range(columns):
-            grid.setColumnStretch(column, 1)
+    def _grid(self, widgets: list[QWidget], columns: int,
+              min_width: int = 270) -> ResponsiveGrid:
+        """Up to `columns` per row, fewer when the page is narrow.
+
+        A fixed three-across grid of symptom tiles needed ~750 px, so on a
+        smaller window the section slid past the right edge and was cut off.
+        Unused columns keep their share, so a lone tile does not fill the row.
+        """
+        grid = ResponsiveGrid(min_width, columns, spacing=12)
+        grid.watch(self._scroll.viewport())
+        grid.set_cards(widgets)
         return grid
 
-    def _two_column(self, widgets: list[QWidget]) -> QGridLayout:
+    def _two_column(self, widgets: list[QWidget]) -> ResponsiveGrid:
         return self._grid(widgets, 2)
 
     # ------------------------------------------------------------- sidebar
@@ -963,6 +1001,7 @@ class DiseaseDetailView(QWidget):
         for index, (label_text, value_text) in enumerate(rows):
             label = QLabel(label_text)
             label.setObjectName("metaLabel")
+            label.setWordWrap(True)
 
             value = QLabel(value_text)
             value.setObjectName("metaValue")

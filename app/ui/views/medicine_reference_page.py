@@ -1,4 +1,5 @@
-"""Medicine Reference page: catalogue and monograph, stacked."""
+"""Medicine Reference page: the catalogue, and the monograph, which slides
+in over it in the shell's sheet (stacked if there is none)."""
 
 from typing import Optional
 
@@ -19,14 +20,25 @@ class MedicineReferencePage(QStackedWidget):
         self.addWidget(self.monograph)
         self.monograph.back_requested.connect(self.show_catalog)
         self._current: Optional[MedicineMonograph] = None
+        self._sheet = None
+
+    def attach_sheet(self, sheet) -> None:
+        self._sheet = sheet
+        self.removeWidget(self.monograph)
+        sheet.adopt(self.monograph, self.monograph.back_requested)
 
     def show_catalog(self) -> None:
+        if self._sheet is not None:
+            self._sheet.close_sheet()
         self.setCurrentWidget(self.catalog)
 
     def show_detail(self, medicine: MedicineMonograph) -> None:
         self._current = medicine
         self.monograph.show_medicine(medicine)
-        self.setCurrentWidget(self.monograph)
+        if self._sheet is not None:
+            self._sheet.open_sheet()
+        else:
+            self.setCurrentWidget(self.monograph)
 
     def refresh_theme(self) -> None:
         """Called by the shell on theme change: redraw painted icons."""

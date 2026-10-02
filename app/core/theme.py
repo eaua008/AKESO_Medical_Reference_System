@@ -95,6 +95,10 @@ class Theme:
         from app.core.checker_styles import checker_rules
         from app.core.interaction_styles import interaction_rules
         from app.core.notebook_styles import notebook_rules
+        from app.core.control_styles import control_rules
+        from app.core.account_styles import account_rules
+        from app.core.exchange_styles import exchange_rules
+        from app.core.admin_styles import admin_rules
         check_image = checkmark_file("#FFFFFF")
         body_font = f"'{cls.FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         heading_font = f"'{cls.HEADING_FONT}', '{cls.FALLBACK_FONT}', sans-serif"
@@ -148,6 +152,23 @@ class Theme:
             height: 0;
         }}
         QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
+            background: transparent;
+        }}
+        QScrollBar:horizontal {{
+            background: transparent;
+            height: 10px;
+            margin: 2px 0 0 0;
+        }}
+        QScrollBar::handle:horizontal {{
+            background: {p['BORDER']};
+            border-radius: 4px;
+            min-width: 40px;
+        }}
+        QScrollBar::handle:horizontal:hover {{ background: {p['PRIMARY']}; }}
+        QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {{
+            width: 0;
+        }}
+        QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {{
             background: transparent;
         }}
 
@@ -1275,4 +1296,4 @@ class Theme:
         #googleButton[googleState="cooldown"] {{
             color: {p['TEXT_MUTED']};
         }}
-        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font)
+        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font)

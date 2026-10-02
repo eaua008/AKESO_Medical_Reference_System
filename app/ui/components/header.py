@@ -250,6 +250,8 @@ class AkesoHeader(QFrame):
         self.setFixedHeight(64)
         self._user_name = user_name
         self._user_email = user_email
+        self._role_caption = "STUDENT"
+        self._avatar_png: Optional[bytes] = None
         self._popup: Optional[SearchPopup] = None
         self._menu: Optional[ProfileMenu] = None
 
@@ -403,8 +405,14 @@ class AkesoHeader(QFrame):
         self.fav_btn = IconButton("star", "Saved bookmarks")
         self.fav_btn.clicked.connect(lambda _c: self.navigationRequested.emit("favorites"))
 
-        self.notif_btn = IconButton("bell", "Alerts and reminders")
+        self.notif_btn = IconButton("bell", "Notifications")
         self.notif_btn.clicked.connect(lambda _c: self.navigationRequested.emit("notifications"))
+        # Unread count, drawn over the bell's top-right corner.
+        self._notif_badge = QLabel("", self.notif_btn)
+        self._notif_badge.setObjectName("exBadge")
+        self._notif_badge.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._notif_badge.setFixedHeight(16)
+        self._notif_badge.hide()
 
         self.theme_btn = IconButton(
             "moon" if Theme.mode() == "dark" else "sun", "Switch theme"
@@ -439,13 +447,16 @@ class AkesoHeader(QFrame):
         avatar.setObjectName("avatarCircle")
         avatar.setFixedSize(28, 28)
         avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._avatar = avatar
 
         text_col = QVBoxLayout()
         text_col.setSpacing(0)
         name = QLabel(self._user_name)
         name.setObjectName("profileName")
-        role = QLabel("MEDICAL STUDENT")
+        role = QLabel(self._role_caption)
         role.setObjectName("profileRole")
+        self._name_label = name
+        self._role_label = role
         text_col.addWidget(name)
         text_col.addWidget(role)
 
@@ -457,6 +468,48 @@ class AkesoHeader(QFrame):
         layout.addLayout(text_col)
         layout.addWidget(self._chevron)
         return self._chip
+
+    def set_unread(self, count: int) -> None:
+        """The number on the bell (hidden at 0)."""
+        if count <= 0:
+            self._notif_badge.hide()
+            self.notif_btn.setToolTip("Notifications")
+            return
+        text = "99+" if count > 99 else str(count)
+        self._notif_badge.setText(text)
+        width = max(16, 8 + 7 * len(text))
+        self._notif_badge.setFixedWidth(width)
+        self._notif_badge.move(self.notif_btn.width() - width, 0)
+        self._notif_badge.show()
+        self._notif_badge.raise_()
+        self.notif_btn.setToolTip(f"{count} unread notification{'s' if count != 1 else ''}")
+
+    def set_identity(self, name: str, role_caption: str,
+                     avatar_png: Optional[bytes] = None) -> None:
+        """Name, caption ("NURSING STUDENT", "ADMIN") and photo in the chip.
+
+        Called by the shell whenever the Account page saves a change.
+        """
+        self._user_name = name or self._user_name
+        self._role_caption = role_caption or self._role_caption
+        self._avatar_png = avatar_png
+        self._name_label.setText(self._user_name)
+        self._role_label.setText(self._role_caption)
+        self._paint_avatar()
+
+    def _paint_avatar(self) -> None:
+        from app.core.avatar_image import circle_pixmap
+        if self._avatar_png:
+            self._avatar.setText("")
+            self._avatar.setObjectName("panel")
+            self._avatar.setPixmap(circle_pixmap(self._avatar_png, 28, self._user_name,
+                                                 Theme.token("PRIMARY"), "#FFFFFF"))
+        else:
+            self._avatar.setPixmap(QPixmap())
+            self._avatar.setObjectName("avatarCircle")
+            self._avatar.setText((self._user_name[:1] or "U").upper())
+        self._avatar.style().unpolish(self._avatar)
+        self._avatar.style().polish(self._avatar)
 
     def _open_menu(self) -> None:
         # Built fresh each time, so it always reflects the current theme and

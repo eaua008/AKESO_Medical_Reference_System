@@ -9,13 +9,12 @@ Display only: it emits filter changes and clicks.
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
     QApplication,
     QButtonGroup,
     QComboBox,
     QFrame,
-    QGridLayout,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -27,6 +26,7 @@ from PySide6.QtWidgets import (
 
 from app.core import icons
 from app.core.theme import Theme
+from app.ui.components.fluid import ResponsiveGrid, contain
 from app.models.medicine import MedicineMonograph
 from app.services.medicine_service import SCOPES
 
@@ -169,15 +169,22 @@ class MedicineEntryRow(QFrame):
             str(len(medicine.interactions)),
             str(len(medicine.references)),
         )
-        grid = QGridLayout()
-        grid.setHorizontalSpacing(18)
-        grid.setVerticalSpacing(2)
+        # One row of eight when there is room, two rows of four when narrow.
+        # The catalogue calls self.parts.watch(viewport) once the row is placed.
+        cells = []
         for column, (part, value) in enumerate(zip(self.PARTS, values)):
-            grid.addWidget(_label(f"{column + 1}. {part.upper()}", "mdPartLabel", wrap=False),
-                           0, column)
-            grid.addWidget(_label(value, "mdPartValue"), 1, column)
-            grid.setColumnStretch(column, 2 if part in ("Class", "Dosage") else 1)
-        layout.addLayout(grid)
+            cell = QWidget()
+            cell.setObjectName("panel")
+            cell_layout = QVBoxLayout(cell)
+            cell_layout.setContentsMargins(0, 0, 0, 0)
+            cell_layout.setSpacing(2)
+            cell_layout.addWidget(_label(f"{column + 1}. {part.upper()}", "mdPartLabel"))
+            cell_layout.addWidget(_label(value, "mdPartValue"))
+            cell_layout.addStretch(1)
+            cells.append(cell)
+        self.parts = ResponsiveGrid(105, len(cells), spacing=14, steps=(8, 4, 2))
+        self.parts.set_cards(cells)
+        layout.addWidget(self.parts)
 
     def mouseReleaseEvent(self, event) -> None:
         if (event.button() == Qt.MouseButton.LeftButton
@@ -186,47 +193,16 @@ class MedicineEntryRow(QFrame):
         super().mouseReleaseEvent(event)
 
 
-class CardGrid(QWidget):
-    """Lays cards out in as many columns as fit, re-flowing on resize."""
+class CardGrid(ResponsiveGrid):
+    """Cards in as many columns as the visible width allows.
+
+    Columns used to be counted from the grid's own width, which long card
+    titles had already stretched, so the grid kept widening itself. The
+    shared ResponsiveGrid counts from the scroll viewport instead.
+    """
 
     def __init__(self) -> None:
-        super().__init__()
-        self.setObjectName("panel")
-        self._grid = QGridLayout(self)
-        self._grid.setContentsMargins(0, 0, 0, 0)
-        self._grid.setSpacing(16)
-        self._cards: list[QWidget] = []
-        self._columns = 0
-        self._fixed_columns: Optional[int] = None
-
-    def set_cards(self, cards: list[QWidget], columns: Optional[int] = None) -> None:
-        for card in self._cards:
-            self._grid.removeWidget(card)
-            card.hide()
-            card.deleteLater()
-        self._cards = cards
-        self._fixed_columns = columns
-        self._columns = 0
-        self._relayout()
-
-    def resizeEvent(self, event) -> None:
-        super().resizeEvent(event)
-        self._relayout()
-
-    def _relayout(self) -> None:
-        columns = self._fixed_columns or max(
-            1, min(MAX_COLUMNS, self.width() // CARD_MIN_WIDTH))
-        if columns == self._columns:
-            return
-        self._columns = columns
-        for card in self._cards:
-            self._grid.removeWidget(card)
-        for index, card in enumerate(self._cards):
-            row, column = divmod(index, columns)
-            self._grid.addWidget(card, row, column)
-            card.show()
-        for column in range(MAX_COLUMNS):
-            self._grid.setColumnStretch(column, 1 if column < columns else 0)
+        super().__init__(CARD_MIN_WIDTH, MAX_COLUMNS, spacing=16)
 
 
 class MedicineCatalogView(QWidget):
@@ -238,6 +214,7 @@ class MedicineCatalogView(QWidget):
         self.setObjectName("panel")
         self._cards_mode = True
         self._medicines: list[MedicineMonograph] = []
+        self._render_pending = False
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -265,6 +242,8 @@ class MedicineCatalogView(QWidget):
         layout.addStretch(1)
 
         scroll.setWidget(page)
+        self.grid.watch(scroll.viewport())
+        contain(page, buttons=False)
         root.addWidget(scroll)
 
     # ------------------------------------------------------------ builders
@@ -387,11 +366,32 @@ class MedicineCatalogView(QWidget):
         self.count_badge.setText(
             f"{total} Formulations" if len(medicines) == total
             else f"{len(medicines)} of {total}")
-        self._render()
+        self._render_when_seen()
         if total and not medicines:
             self.show_status("No formulation matches these filters.")
         elif total:
             self.status.hide()
+
+    # Building every card takes about half a second. While the page is
+    # hidden (at sign-in, every page is) that waits until it is first shown,
+    # or until the app is idle a moment later, so the dashboard opens sooner.
+    def _render_when_seen(self) -> None:
+        if self.isVisible():
+            self._render_pending = False
+            self._render()
+            return
+        if not self._render_pending:
+            self._render_pending = True
+            QTimer.singleShot(1800, self._render_if_pending)
+
+    def _render_if_pending(self) -> None:
+        if self._render_pending:
+            self._render_pending = False
+            self._render()
+
+    def showEvent(self, event) -> None:  # noqa: N802
+        super().showEvent(event)
+        self._render_if_pending()
 
     def _render(self) -> None:
         if self._cards_mode:
@@ -402,6 +402,10 @@ class MedicineCatalogView(QWidget):
             columns = 1
         for widget in widgets:
             widget.clicked.connect(self.medicine_chosen.emit)
+        for widget in widgets:
+            if hasattr(widget, "parts"):
+                widget.parts.watch(self.grid.viewport())
+            contain(widget, limit=CARD_MIN_WIDTH - 80)
         self.grid.set_cards(widgets, columns)
 
     def show_status(self, message: str) -> None:

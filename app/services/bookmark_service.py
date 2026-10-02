@@ -12,6 +12,7 @@ from typing import Callable, Optional
 
 from app.models.bookmark import (
     DISEASE,
+    EXCHANGE,
     KIND_ORDER,
     MEDICINE,
     SYMPTOM,
@@ -29,6 +30,7 @@ class BookmarkService:
             disease_lookup: Optional[Callable[[str], object]] = None,
             symptom_lookup: Optional[Callable[[str], object]] = None,
             medicine_lookup: Optional[Callable[[str], object]] = None,
+            exchange_lookup: Optional[Callable[[str], Optional[dict]]] = None,
     ) -> None:
         # owner: the signed-in account. Two people sharing a machine keep
         # separate bookmarks, and signing out hides them.
@@ -38,6 +40,7 @@ class BookmarkService:
             DISEASE: disease_lookup,
             SYMPTOM: symptom_lookup,
             MEDICINE: medicine_lookup,
+            EXCHANGE: exchange_lookup,
         }
 
     # ------------------------------------------------------------- state
@@ -89,6 +92,15 @@ class BookmarkService:
                 description="This entry has been removed from the encyclopedia "
                             "since you bookmarked it.",
                 missing=True,
+            )
+        if bookmark.entity_type == EXCHANGE:
+            # A Clinical Exchange post: title remembered when it was last seen.
+            return BookmarkEntry(
+                bookmark=bookmark,
+                title=entry.get("title", "Clinical Exchange post"),
+                subtitle="Clinical Exchange",
+                description=entry.get("excerpt", ""),
+                meta="Case discussion" if entry.get("kind") == "case" else "Question",
             )
         if bookmark.entity_type == DISEASE:
             return BookmarkEntry(

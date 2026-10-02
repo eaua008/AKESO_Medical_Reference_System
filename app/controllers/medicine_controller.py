@@ -17,6 +17,7 @@ class MedicineController(QObject):
     # Re-emitted for the shell, which owns navigation between modules.
     condition_chosen = Signal(str)   # open this disease
     case_requested = Signal(str)     # "Present Case" in peer discussions
+    opened = Signal(str)             # a monograph was shown (study activity)
 
     def __init__(self, page: MedicineReferencePage,
                  service: Optional[MedicineService] = None) -> None:
@@ -67,3 +68,4 @@ class MedicineController(QObject):
         medicine = self._service.get(medicine_id)
         if medicine is not None:
             self._page.show_detail(medicine)
+            self.opened.emit(medicine_id)

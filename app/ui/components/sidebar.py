@@ -38,6 +38,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.core import icons
+from app.core.admin_styles import admin_amber
 from app.core.theme import Theme
 
 COLLAPSED_WIDTH = 70
@@ -50,7 +51,7 @@ HEADER_HEIGHT = 30
 
 # Pure data. Adding a screen means adding one dict — no layout code.
 #   roles    optional; absent means visible to everyone
-#   accent   "danger" or "primary" tints the row
+#   accent   "danger", "primary" or "admin" (amber) tints the row
 #   featured solid primary pill with a chevron
 NAV_SECTIONS = [
     {
@@ -93,12 +94,17 @@ NAV_SECTIONS = [
             {"id": "history", "label": "Search History", "icon": "clock"},
             {"id": "notifications", "label": "Notifications", "icon": "bell"},
             {"id": "settings", "label": "Settings", "icon": "gear"},
-            {
-                "id": "admin",
-                "label": "Admin Control Panel",
-                "icon": "shield",
-                "roles": ["admin"],
-            },
+        ],
+    },
+    {
+        # Admin Control Panel (migration 004). Hidden from everyone else; the
+        # database refuses non-admins anyway.
+        "header": "ADMIN",
+        "items": [
+            {"id": "admin-users", "label": "User Management", "icon": "users",
+             "roles": ["admin"], "accent": "admin"},
+            {"id": "admin-content", "label": "Content Management", "icon": "database",
+             "roles": ["admin"], "accent": "admin"},
         ],
     },
 ]
@@ -144,6 +150,8 @@ class NavButton(QPushButton):
             self.setObjectName("navButtonDanger")
         elif item.get("accent") == "primary":
             self.setObjectName("navButtonAccent")
+        elif item.get("accent") == "admin":
+            self.setObjectName("navButtonAdmin")
         else:
             self.setObjectName("navButton")
 
@@ -166,6 +174,8 @@ class NavButton(QPushButton):
         accent = self._item.get("accent")
         if accent == "danger":
             return Theme.token("DANGER")
+        if accent == "admin":
+            return admin_amber()
         if accent == "primary" or self._active:
             return Theme.token("PRIMARY_TEXT_ON_NAV")
         return Theme.token("TEXT_MUTED")
@@ -175,9 +185,13 @@ class NavButton(QPushButton):
         self.setIcon(QIcon(icons.to_pixmap(image)))
 
     def set_active(self, active: bool) -> None:
+        # Only the two items whose state changed redraw their icon, not all
+        # seventeen on every tab switch.
+        changed = active != getattr(self, "_active", None)
         self._active = active
         self.setChecked(active)
-        self.refresh_icon()
+        if changed:
+            self.refresh_icon()
 
     def set_expanded(self, expanded: bool) -> None:
         # Blank the text rather than let it clip — half-drawn glyphs read as
@@ -192,6 +206,7 @@ class AkesoSidebarNav(QFrame):
     """Collapsible navigation rail. Expands on hover unless pinned open."""
 
     tabChanged = Signal(str)
+    pinChanged = Signal(bool)              # the user pressed the pin
 
     def __init__(
             self,
@@ -259,7 +274,8 @@ class AkesoSidebarNav(QFrame):
                 layout.addWidget(partition)
                 self._partitions.append(partition)
 
-                header = self._build_section_header(section["header"])
+                header = self._build_section_header(
+                    section["header"], admin=section["header"] == "ADMIN")
                 layout.addWidget(header)
                 self._section_headers.append(header)
 
@@ -301,7 +317,7 @@ class AkesoSidebarNav(QFrame):
         self._pin_row_layout.addWidget(self.pin_btn)
         return row
 
-    def _build_section_header(self, text: str) -> QWidget:
+    def _build_section_header(self, text: str, admin: bool = False) -> QWidget:
         row = QWidget()
         row.setObjectName("panel")
         row.setFixedHeight(HEADER_HEIGHT)
@@ -311,6 +327,8 @@ class AkesoSidebarNav(QFrame):
         layout.setContentsMargins(4, 0, 2, 0)
         label = QLabel(text)
         label.setObjectName("navSectionHeader")
+        if admin:
+            label.setProperty("tone", "admin")
         label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         layout.addWidget(label)
         return row
@@ -411,6 +429,23 @@ class AkesoSidebarNav(QFrame):
         if self.is_pinned:
             self._animate_to(EXPANDED_WIDTH)
             self._apply_expansion(True)
+        self.pinChanged.emit(self.is_pinned)
+
+    def set_pinned(self, pinned: bool) -> None:
+        """Pin or unpin from elsewhere (Settings), without echoing pinChanged."""
+        if self.pin_btn is None or pinned == self.is_pinned:
+            return
+        self.pin_btn.blockSignals(True)
+        self.pin_btn.setChecked(pinned)
+        self.pin_btn.blockSignals(False)
+        self.is_pinned = pinned
+        self._refresh_pin_icon()
+        if pinned:
+            self._animate_to(EXPANDED_WIDTH)
+            self._apply_expansion(True)
+        elif not self.underMouse():
+            self._animate_to(COLLAPSED_WIDTH)
+            self._apply_expansion(False)
 
     def _refresh_pin_icon(self) -> None:
         if self.pin_btn is None:

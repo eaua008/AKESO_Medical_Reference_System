@@ -14,6 +14,7 @@ from typing import Optional
 from PySide6.QtCore import QObject, QUrl, Signal
 from PySide6.QtGui import QDesktopServices
 
+from app.core.background import wait_for
 from app.core.google_oauth import REDIRECT_URL, OAuthCallbackListener
 from app.repositories.auth_repository import AuthError, PendingVerification
 from app.services.auth_service import AuthService
@@ -41,6 +42,12 @@ class AuthController(QObject):
         # afterwards, and whether a "cancelled" message counts as an error.
         self._google_succeeded = False
         self._google_cancelled = False
+        # Set when the signup form's Terms box was ticked, so the account
+        # can record that acceptance once it exists (see AccountGate).
+        self._signup_consent = ""      # the email it was ticked for
+        # True while a sign-in request is on its way. The window stays
+        # responsive meanwhile (wait_for), so a second click must be ignored.
+        self._working = False
 
         view.login_requested.connect(self._handle_login)
         view.signup_requested.connect(self._handle_signup)
@@ -49,21 +56,27 @@ class AuthController(QObject):
     # --------------------------------------------------------------- login
 
     def _handle_login(self, email: str, password: str) -> None:
+        if self._working:
+            return
         self._view.clear_error()
         self._view.set_busy(True)
+        self._working = True
         try:
-            user = self._service.log_in(email, password)
+            user = wait_for(lambda: self._service.log_in(email, password))
         except PendingVerification:
             # The account exists but was never confirmed. Send them to
             # verification rather than a dead-end error.
             self._view.set_busy(False)
+            self._working = False
             self._open_verification(resend=True)
             return
         except AuthError as exc:
             self._view.show_error(str(exc))
         else:
+            self._working = False
             self.authenticated.emit(user)
         finally:
+            self._working = False
             self._view.set_busy(False)
 
     # -------------------------------------------------------------- signup
@@ -80,19 +93,26 @@ class AuthController(QObject):
             )
             return
 
+        if self._working:
+            return
+        self._signup_consent = email.strip().lower()
         self._view.set_busy(True)
+        self._working = True
         try:
-            user = self._service.register(name, email, password, confirm)
+            user = wait_for(lambda: self._service.register(name, email, password, confirm))
         except PendingVerification:
             self._view.set_busy(False)
+            self._working = False
             self._open_verification()
             return
         except AuthError as exc:
             self._view.show_error(str(exc))
         else:
             # Only reached if "Confirm email" is switched off in Supabase.
+            self._working = False
             self.authenticated.emit(user)
         finally:
+            self._working = False
             self._view.set_busy(False)
 
     # -------------------------------------------------------------- Google
@@ -105,6 +125,8 @@ class AuthController(QObject):
         redirect that may never come. The person who closed the tab is the
         only one who knows, so they get to decide.
         """
+        if self._working:
+            return                      # finishing a sign-in already
         if self._listener is not None and self._listener.isRunning():
             self._google_cancelled = True
             self._listener.requestInterruption()
@@ -138,11 +160,26 @@ class AuthController(QObject):
             )
 
     def _on_google_code(self, code: str) -> None:
+        # Back from the browser: bring Akeso to the front, then trade the
+        # code for a session on a worker thread. Done on the UI thread,
+        # this network call (and the account checks after it) froze the
+        # window long enough for Windows to call it "Not Responding".
+        window = self._view.window()
+        if window.isMinimized():
+            window.showNormal()
+        window.raise_()
+        window.activateWindow()
+        self._view.set_signing_in("Signing you in\u2026")
+        self._working = True
         try:
-            user = self._service.complete_google_sign_in(code)
+            user = wait_for(lambda: self._service.complete_google_sign_in(code))
         except AuthError as exc:
+            self._view.set_signing_in(None)
             self._view.show_error(str(exc))
+            self._view.start_google_cooldown(GOOGLE_COOLDOWN_SECONDS)
             return
+        finally:
+            self._working = False
         self._google_succeeded = True
         self.authenticated.emit(user)
 
@@ -155,6 +192,10 @@ class AuthController(QObject):
 
     def _on_google_finished(self) -> None:
         self._listener = None
+        if self._working:
+            # The code arrived and is being exchanged right now; that path
+            # resets the button whichever way it ends.
+            return
         if self._google_succeeded:
             # The screen is switching to the dashboard; nothing to cool down.
             self._view.set_google_waiting(False)
@@ -204,7 +245,7 @@ class AuthController(QObject):
 
         self._dialog.set_busy(True)
         try:
-            user = self._service.verify_code(code)
+            user = wait_for(lambda: self._service.verify_code(code))
         except AuthError as exc:
             self._dialog.show_error(str(exc))
             self._dialog.set_busy(False)
@@ -218,10 +259,20 @@ class AuthController(QObject):
         if not self._dialog:
             return
         try:
-            self._service.resend_code()
+            wait_for(self._service.resend_code)
             self._dialog.show_info("A new code is on its way.")
         except AuthError as exc:
             self._dialog.show_error(str(exc))
+
+    # ------------------------------------------------------------ session
+
+    def session_client(self):
+        return self._service.session_client()
+
+    def take_signup_consent(self, email: str) -> bool:
+        """True once, for the account whose signup form had Terms ticked."""
+        consent, self._signup_consent = self._signup_consent, ""
+        return bool(consent) and consent == (email or "").strip().lower()
 
     # -------------------------------------------------------------- logout
 

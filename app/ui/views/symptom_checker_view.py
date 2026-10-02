@@ -50,6 +50,8 @@ from app.models.checker import (
     is_pain_symptom,
 )
 from app.models.symptom import Symptom
+from app.ui.views.compare_view import FlowLayout
+from app.ui.components.fluid import HScrollArea, ResponsiveGrid, contain, fit_width
 from app.ui.views.checker_widgets import (
     SuggestionChip,
     SymptomParameters,
@@ -86,6 +88,7 @@ class MatchCard(QFrame):
         layout.addLayout(self._build_head(match, rank, expanded))
         if expanded:
             self._build_body(layout, match)
+        contain(self, limit=160, buttons=False)    # long names wrap on narrow windows
 
     def _build_head(self, match: MatchResult, rank: int, expanded: bool) -> QHBoxLayout:
         head = QHBoxLayout()
@@ -105,14 +108,23 @@ class MatchCard(QFrame):
             names.addWidget(_label(match.scientific_name, "ccMatchSci", wrap=False))
         head.addLayout(names, 1)
 
+        # The two weighted values the ranking really uses, then the plain
+        # counts. Hover for the full breakdown (hallmarks, intensity, boosters).
+        why = "\n".join(match.why())
         score = QVBoxLayout()
         score.setSpacing(2)
-        value = QHBoxLayout()
-        value.addStretch(1)
-        value.addWidget(_label(f"{match.score:.0f}", "ccScore", wrap=False))
-        value.addWidget(_label("%", "ccScorePercent", wrap=False))
-        score.addLayout(value)
+        headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}",
+                          "ccMatrixScore", wrap=False)
+        headline.setToolTip(why)
+        score.addWidget(headline, 0, Qt.AlignmentFlag.AlignRight)
+        counts = _label(f"{match.matched_count}/{match.total_hallmarks} of its symptoms \u00b7 "
+                        f"{match.explained_count}/{match.reported_count} of yours"
+                        + ("  \u2191 boosted" if match.boosters else ""),
+                        "ccMuted", wrap=False)
+        counts.setToolTip(why)
+        score.addWidget(counts, 0, Qt.AlignmentFlag.AlignRight)
         bar = QProgressBar()
+        bar.setToolTip(why)
         bar.setObjectName("ccScoreBar")
         bar.setRange(0, 100)
         bar.setValue(int(match.score))
@@ -158,11 +170,10 @@ class MatchCard(QFrame):
 
         # reasoning
         reasoning, reasoning_layout = _card("Multi-factor algorithmic reasoning", "search")
-        reasoning_layout.addWidget(_label(
-            f"Matches {match.matched_count} of {match.total_hallmarks} defined symptoms "
-            f"for {match.name}. Includes "
-            f"{sum(1 for m in match.matched if m.is_primary)} hallmark symptom(s).",
-            "ccBody"))
+        # Why it ranks where it does, in the same numbers the ranking uses.
+        for line in match.why():
+            if not line.startswith("Boosters:"):      # listed in the box below
+                reasoning_layout.addWidget(_label(line, "ccBody"))
         if match.boosters:
             box = QFrame()
             box.setObjectName("ccBoosterBox")
@@ -274,6 +285,7 @@ class SymptomCheckerView(QWidget):
     suggestion_chosen = Signal(str)
     save_case_requested = Signal()      # Save to Notebook
     open_case_requested = Signal()      # Open the saved case in the notebook
+    unlink_requested = Signal()         # stop saving into the linked note
 
     def __init__(self, parent: Optional[QWidget] = None) -> None:
         super().__init__(parent)
@@ -286,6 +298,7 @@ class SymptomCheckerView(QWidget):
         self._view_mode = "both"
         self._last_result: Optional[CheckerResult] = None
         self._saved_case = False
+        self._link_title = ""
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -301,6 +314,7 @@ class SymptomCheckerView(QWidget):
         self._page.setSpacing(14)
 
         self._page.addWidget(self._build_header())
+        self._page.addWidget(self._build_link_bar())
         self._page.addWidget(self._build_disclaimer())
         self._page.addWidget(self._build_specificity())
         self._page.addWidget(self._build_selection())
@@ -314,6 +328,7 @@ class SymptomCheckerView(QWidget):
         self._page.addStretch(1)
 
         self._scroll.setWidget(page)
+        self._four_columns.watch(self._scroll.viewport())
         root.addWidget(self._scroll)
 
     # ----------------------------------------------------------- builders
@@ -415,6 +430,7 @@ class SymptomCheckerView(QWidget):
         self._list_layout.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self._list_layout.addStretch(1)
         self._list_scroll.setWidget(list_host)
+        fit_width(self._list_scroll)       # never wider than its panel
         picker_layout.addWidget(self._list_scroll)
         row.addWidget(picker, 2)
 
@@ -440,6 +456,7 @@ class SymptomCheckerView(QWidget):
         self._params_layout.addWidget(self._no_params)
         self._params_layout.addStretch(1)
         self._params_scroll.setWidget(params_host)
+        fit_width(self._params_scroll)
         params_layout.addWidget(self._params_scroll)
         row.addWidget(params, 3)
         return holder
@@ -455,7 +472,7 @@ class SymptomCheckerView(QWidget):
         title = QVBoxLayout()
         title.setSpacing(2)
         title.addWidget(_label("Associated symptom checklist (auto-suggested co-occurrences)",
-                               "ccSuggestTitle", wrap=False))
+                               "ccSuggestTitle"))
         self._suggest_sub = _label("Choose symptoms to see what commonly occurs with them.",
                                    "ccSuggestSub")
         title.addWidget(self._suggest_sub)
@@ -463,19 +480,22 @@ class SymptomCheckerView(QWidget):
         head.addWidget(_label("RULE-BASED CROSS-DISEASE QUERY", "ccCrossQuery", wrap=False))
         layout.addLayout(head)
 
-        self._suggest_row = QHBoxLayout()
-        self._suggest_row.setSpacing(8)
-        self._suggest_row.addStretch(1)
-        layout.addLayout(self._suggest_row)
+        # Chips wrap onto new lines. In a single row, five or six long
+        # suggestions pushed the whole page past the right edge.
+        holder = QWidget()
+        holder.setObjectName("panel")
+        self._suggest_row = FlowLayout(8, 8)
+        holder.setLayout(self._suggest_row)
+        layout.addWidget(holder)
         self._suggest_card = card
         return card
 
     def _build_four_columns(self) -> QWidget:
-        holder = QWidget()
-        holder.setObjectName("panel")
-        row = QHBoxLayout(holder)
-        row.setContentsMargins(0, 0, 0, 0)
-        row.setSpacing(14)
+        # Four across on a wide window, two by two on a narrower one (four
+        # fixed columns needed ~1,330 px and ran off smaller screens).
+        holder = ResponsiveGrid(300, 4, spacing=14, steps=(4, 2, 1))
+        self._four_columns = holder
+        cards: list[QWidget] = []
 
         # 1. exposure
         exposure, exposure_layout = _card("Exposure / risk toggles", "alert",
@@ -487,7 +507,7 @@ class SymptomCheckerView(QWidget):
             self._exposure_boxes[key] = box
             exposure_layout.addWidget(box)
         exposure_layout.addStretch(1)
-        row.addWidget(exposure, 1)
+        cards.append(exposure)
 
         # 2. comorbidity
         history, history_layout = _card("Comorbidity / history", "heart",
@@ -504,7 +524,7 @@ class SymptomCheckerView(QWidget):
         self._no_history.toggled.connect(self._on_no_history)
         history_layout.addWidget(self._no_history)
         history_layout.addStretch(1)
-        row.addWidget(history, 1)
+        cards.append(history)
 
         # 3. vitals
         vitals, vitals_layout = _card("Objective vital signs", "pulse",
@@ -564,7 +584,7 @@ class SymptomCheckerView(QWidget):
             extra.addLayout(cell, 1)
         vitals_layout.addLayout(extra)
         vitals_layout.addStretch(1)
-        row.addWidget(vitals, 1)
+        cards.append(vitals)
 
         # 4. family history
         family, family_layout = _card("Family & hereditary risk", "user",
@@ -596,10 +616,12 @@ class SymptomCheckerView(QWidget):
             family_inner.addWidget(item)
         family_inner.addStretch(1)
         family_scroll.setWidget(family_host)
+        fit_width(family_scroll)
         family_layout.addWidget(family_scroll)
-        row.addWidget(family, 1)
+        cards.append(family)
 
         self._update_temp_status()
+        holder.set_cards(cards)
         return holder
 
     def _build_demographics(self) -> QWidget:
@@ -701,6 +723,7 @@ class SymptomCheckerView(QWidget):
                 continue
             row = SymptomRow(symptom, symptom.id in self._selected)
             row.toggled_symptom.connect(self._on_symptom_toggled)
+            contain(row, limit=200, buttons=False)     # long names wrap
             self._list_layout.insertWidget(self._list_layout.count() - 1, row)
             self._rows.append(row)
 
@@ -737,6 +760,9 @@ class SymptomCheckerView(QWidget):
             card = SymptomParameters(entry, is_pain)
             card.removed.connect(lambda sid: self._on_symptom_toggled(sid, False))
             card.changed.connect(self.symptoms_changed.emit)
+            # A long symptom name wraps instead of pushing the panel wider
+            # ("Signs of dehydration (sunken eyes, dry mouth, intense thirst)").
+            contain(card, limit=200, buttons=False)
             self._params_layout.addWidget(card)
             self._param_cards[entry.symptom_id] = card
 
@@ -775,7 +801,6 @@ class SymptomCheckerView(QWidget):
                 chip.clicked.connect(lambda _c=False, sid=symptom_id:
                                      self.suggestion_chosen.emit(sid))
                 self._suggest_row.addWidget(chip)
-        self._suggest_row.addStretch(1)
 
     def clear(self) -> None:
         self._selected.clear()
@@ -890,7 +915,8 @@ class SymptomCheckerView(QWidget):
             view.clicked.connect(self.open_case_requested.emit)
             row.addWidget(view)
         else:
-            save = QPushButton("\u25a3  Save to Notebook")
+            save = QPushButton(f"\u25a3  Save to \u201c{self._link_title}\u201d"
+                               if self._link_title else "\u25a3  Save to Notebook")
             save.setObjectName("ccPrimaryButton")
             save.setCursor(Qt.CursorShape.PointingHandCursor)
             save.clicked.connect(self.save_case_requested.emit)
@@ -919,6 +945,61 @@ class SymptomCheckerView(QWidget):
         save.clicked.connect(self.save_case_requested.emit)
         row.addWidget(save)
         return card
+
+    # ------------------------------------------------- linked to a note
+
+    def _build_link_bar(self) -> QWidget:
+        """Shown when the checker was opened from a note in the Study
+        Notebook: saving then updates that note instead of making a new one."""
+        self._link_bar = QFrame()
+        self._link_bar.setObjectName("ccJournalStrip")
+        row = QHBoxLayout(self._link_bar)
+        row.setContentsMargins(16, 10, 16, 10)
+        row.setSpacing(10)
+        row.addWidget(_label("Linked to your notebook:", "ccJournalTitle", wrap=False))
+        self._link_text = _label("", "ccMuted")
+        row.addWidget(self._link_text, 1)
+        unlink = QPushButton("Unlink")
+        unlink.setObjectName("ccLinkButton")
+        unlink.setCursor(Qt.CursorShape.PointingHandCursor)
+        unlink.clicked.connect(self.unlink_requested.emit)
+        row.addWidget(unlink)
+        self._link_bar.hide()
+        return self._link_bar
+
+    def set_link(self, title: str) -> None:
+        self._link_title = title
+        self._link_text.setText(
+            f"\u201c{title}\u201d. Save to Notebook updates that note." if title else "")
+        self._link_bar.setVisible(bool(title))
+        if self._last_result:
+            self.show_result(self._last_result)
+
+    def load_input(self, data: CheckerInput) -> None:
+        """Fill the form from a saved case, so it can be edited and re-run."""
+        self.clear()
+        for entry in data.symptoms:
+            self._selected[entry.symptom_id] = entry
+        self._render_symptom_list()
+        self._render_parameters()
+        v = data.vitals
+        self.temperature.setValue(v.temperature if self.temperature.maximum() <= 50
+                                  else v.temperature * 9 / 5 + 32)
+        self.heart_rate.setValue(v.heart_rate)
+        self.bp_systolic.setValue(v.bp_systolic)
+        self.bp_diastolic.setValue(v.bp_diastolic)
+        self.spo2.setValue(v.spo2)
+        self.resp_rate.setValue(v.resp_rate)
+        self.age.setValue(data.age)
+        self.sex.setCurrentIndex(max(0, self.sex.findData(data.sex)))
+        for key, box in self._exposure_boxes.items():
+            box.setChecked(key in data.exposures)
+        self._no_history.setChecked(not data.comorbidities)
+        for key, box in self._comorbidity_boxes.items():
+            box.setChecked(key in data.comorbidities)
+        for key, box in self._family_boxes.items():
+            box.setChecked(key in data.family_history)
+        self.symptoms_changed.emit()
 
     @property
     def last_result(self) -> Optional[CheckerResult]:
@@ -1006,69 +1087,165 @@ class SymptomCheckerView(QWidget):
                 layout.addWidget(_label(f"\u2022  {sign}", "ccRedBody"))
         return card
 
+    # Matrix geometry. Every row has the same fixed height so the three
+    # parts (pinned conditions | scrolling symptoms | pinned triage & match)
+    # stay lined up.
+    MX_ROW, MX_HEAD = 58, 70
+    MX_NAME_W, MX_SYMPTOM_W, MX_TRIAGE_W, MX_MATCH_W = 250, 140, 150, 220
+
     def _build_matrix(self, result: CheckerResult) -> QWidget:
-        """One column per reported symptom, rule-in / rule-out per condition."""
-        card, layout = _card("1. Clinical differential matrix (rule-in / rule-out)",
-                             "stack", trailing="Cross-condition comparative evaluation")
+        """Every ranked condition as a row, every reported symptom as a column.
+
+        All conditions are listed, not just the top few: a low match can still
+        be the one that matters. The condition names stay pinned on the left
+        and triage + match on the right; only the symptom columns scroll
+        sideways (drag the bar under the table, or Shift + mouse wheel).
+        """
+        matches = result.matches
+        card, layout = _card("1. Clinical differential matrix", "stack",
+                             trailing=f"All {len(matches)} ranked conditions")
 
         legend = QHBoxLayout()
         legend.setSpacing(14)
-        for text, style in (("Expected / hallmark (rule-in)", "ccGood"),
-                            ("Inconsistent (rule-out)", "ccBad"),
-                            ("Not associated", "ccMuted")):
-            legend.addWidget(_label(f"\u25cf  {text}", style, wrap=False))
+        for text, style in (("\u25cf  Hallmark / present: listed for this condition", "ccGood"),
+                            ("\u2014 not linked: this condition's entry does not list it", "ccMuted"),
+                            ("\u2191 a risk-factor booster applied", "ccMuted")):
+            legend.addWidget(_label(text, style, wrap=False))
         legend.addStretch(1)
         layout.addLayout(legend)
 
         names = self.selected_names()
-        grid = QGridLayout()
-        grid.setHorizontalSpacing(12)
-        grid.setVerticalSpacing(7)
-        headers = ["Candidate condition", *[n.upper() for n in names],
-                   "Triage urgency", "Correlation score"]
-        for column, caption in enumerate(headers):
-            grid.addWidget(_label(caption.upper(), "ccFieldLabel", wrap=False), 0, column)
 
-        for row, match in enumerate(result.matches, 1):
-            cell = QVBoxLayout()
-            cell.setSpacing(1)
-            cell.addWidget(_label(f"#{row}  {match.name}", "ccMatrixName", wrap=False))
-            if match.scientific_name:
-                cell.addWidget(_label(match.scientific_name, "ccMatchSci", wrap=False))
-            grid.addLayout(cell, row, 0)
+        def cell(width: Optional[int], head: bool = False) -> tuple[QWidget, QHBoxLayout]:
+            box = QWidget()
+            box.setObjectName("ccMxHead" if head else "ccMxCell")
+            box.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
+            box.setFixedHeight(self.MX_HEAD if head else self.MX_ROW)
+            if width:
+                box.setFixedWidth(width)
+            row = QHBoxLayout(box)
+            row.setContentsMargins(8, 4, 8, 4)
+            row.setSpacing(6)
+            return box, row
 
+        def column(object_name: str, width: int) -> tuple[QWidget, QVBoxLayout]:
+            holder = QWidget()
+            holder.setObjectName(object_name)
+            holder.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
+            holder.setFixedWidth(width)
+            stack = QVBoxLayout(holder)
+            stack.setContentsMargins(0, 0, 0, 0)
+            stack.setSpacing(0)
+            return holder, stack
+
+        # ---- left, pinned: the conditions
+        left, left_stack = column("ccMxPinLeft", self.MX_NAME_W)
+        box, row = cell(self.MX_NAME_W, head=True)
+        row.addWidget(_label("CANDIDATE CONDITION", "ccFieldLabel"), 1, Qt.AlignmentFlag.AlignBottom)
+        left_stack.addWidget(box)
+        for rank, match in enumerate(matches, 1):
+            box, row = cell(self.MX_NAME_W)
+            name = _label(f"#{rank}  {match.name}", "ccMatrixName")
+            name.setToolTip(match.scientific_name or match.name)
+            row.addWidget(name, 1)
+            left_stack.addWidget(box)
+        left_stack.addStretch(1)
+
+        # ---- middle, scrolls sideways: one column per reported symptom
+        grid_host = QWidget()
+        grid_host.setObjectName("panel")
+        grid = QGridLayout(grid_host)
+        grid.setContentsMargins(0, 0, 0, 0)
+        grid.setHorizontalSpacing(0)
+        grid.setVerticalSpacing(0)
+        for index, symptom_name in enumerate(names):
+            box, row = cell(self.MX_SYMPTOM_W, head=True)
+            head = _label(symptom_name.upper(), "ccFieldLabel")
+            head.setToolTip(symptom_name)
+            row.addWidget(head, 1, Qt.AlignmentFlag.AlignBottom)
+            grid.addWidget(box, 0, index)
+        for rank, match in enumerate(matches, 1):
             matched = {m.name: m for m in match.matched}
-            for index, name in enumerate(names, start=1):
-                entry = matched.get(name)
+            for index, symptom_name in enumerate(names):
+                box, row = cell(self.MX_SYMPTOM_W)
+                entry = matched.get(symptom_name)
                 if entry is not None:
-                    text = "Hallmark" if entry.is_primary else "Present"
-                    style = "ccPillGood"
-                elif name in match.inconsistent:
-                    text, style = "\u2715 Inconsistent", "ccPillBad"
+                    pill = _label("Hallmark" if entry.is_primary else "Present",
+                                  "ccPillGood", wrap=False)
+                    pill.setToolTip(f"Your intensity {entry.user_intensity}/10, typical "
+                                    f"{entry.typical_intensity}/10 in {match.name}")
+                    row.addWidget(pill, 0, Qt.AlignmentFlag.AlignVCenter)
                 else:
-                    text, style = "\u2014", "ccMuted"
-                grid.addWidget(_label(text, style, wrap=False), row, index)
+                    dash = _label("\u2014", "ccMuted", wrap=False)
+                    dash.setToolTip(f"Not linked: the {match.name} entry does not list "
+                                    f"{symptom_name}")
+                    row.addWidget(dash, 0, Qt.AlignmentFlag.AlignVCenter)
+                row.addStretch(1)
+                grid.addWidget(box, rank, index)
+        grid.setColumnStretch(len(names), 1)          # spare width sits at the end
+        middle = HScrollArea()
+        middle.setObjectName("ccMxScroll")
+        middle.setWidget(grid_host)
+        middle.fit_height()
 
+        # ---- right, pinned: triage and match
+        right, right_stack = column("ccMxPinRight", self.MX_TRIAGE_W + self.MX_MATCH_W)
+        box, row = cell(None, head=True)
+        triage_head = _label("TRIAGE URGENCY", "ccFieldLabel")
+        triage_head.setFixedWidth(self.MX_TRIAGE_W - 14)
+        row.addWidget(triage_head, 0, Qt.AlignmentFlag.AlignBottom)
+        row.addWidget(_label("MATCH  (hover for the working)", "ccFieldLabel"), 1,
+                      Qt.AlignmentFlag.AlignBottom)
+        right_stack.addWidget(box)
+        for match in matches:
+            box, row = cell(None)
             urgency = _label(URGENCY_LABELS.get(match.urgency, "Not specified"),
                              "ccUrgencyPill", wrap=False)
             urgency.setProperty("urgency", match.urgency.lower() or "none")
-            grid.addWidget(urgency, row, len(names) + 1)
+            urgency_slot = QWidget()
+            urgency_slot.setObjectName("ccMxSlot")
+            urgency_slot.setFixedWidth(self.MX_TRIAGE_W - 14)
+            slot = QHBoxLayout(urgency_slot)
+            slot.setContentsMargins(0, 0, 0, 0)
+            slot.addWidget(urgency, 0, Qt.AlignmentFlag.AlignVCenter)
+            slot.addStretch(1)
+            row.addWidget(urgency_slot)
 
+            why = "\n".join(match.why())
             score = QVBoxLayout()
-            score.setSpacing(2)
-            score.addWidget(_label(f"{match.score:.0f}%", "ccMatrixScore", wrap=False))
+            score.setSpacing(1)
+            headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}"
+                              + ("  \u2191" if match.boosters else ""),
+                              "ccMatrixScore", wrap=False)
+            counts = _label(f"{match.matched_count}/{match.total_hallmarks} of its \u00b7 "
+                            f"{match.explained_count}/{match.reported_count} of yours",
+                            "ccMuted", wrap=False)
             bar = QProgressBar()
             bar.setObjectName("ccScoreBar")
             bar.setRange(0, 100)
             bar.setValue(int(match.score))
             bar.setTextVisible(False)
             bar.setFixedHeight(3)
-            bar.setFixedWidth(80)
-            score.addWidget(bar)
-            grid.addLayout(score, row, len(names) + 2)
+            bar.setMaximumWidth(150)
+            for widget in (headline, counts, bar):
+                widget.setToolTip(why)
+                score.addWidget(widget)
+            row.addLayout(score)
+            row.addStretch(1)       # keep every row's content left-aligned
+            right_stack.addWidget(box)
+        right_stack.addStretch(1)
 
-        grid.setColumnStretch(0, 3)
-        layout.addLayout(grid)
+        table = QHBoxLayout()
+        table.setSpacing(0)
+        table.addWidget(left, 0, Qt.AlignmentFlag.AlignTop)
+        table.addWidget(middle, 1, Qt.AlignmentFlag.AlignTop)
+        table.addWidget(right, 0, Qt.AlignmentFlag.AlignTop)
+        layout.addLayout(table)
+        layout.addWidget(_label(
+            "Ranked by the weighted values, not the counts: hallmark symptoms, how "
+            "specific each symptom is, the intensity you reported and any risk factors "
+            "all count. Hover a Match cell for the full working. Scroll the symptom "
+            "columns with the bar under the table or Shift + mouse wheel.", "ccMuted"))
         return card
 
     def _clear_results(self) -> None:

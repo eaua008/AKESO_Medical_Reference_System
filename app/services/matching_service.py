@@ -12,16 +12,28 @@ exists in the database:
 How a score is produced, for one condition:
 
     effective weight = symptom weight x multiplier x (1.5 if hallmark)
-    maximum          = sum of effective weight x 10 over every hallmark
+    maximum          = sum of effective weight x 10 over every linked symptom
     earned           = effective weight x reported intensity, adjusted for
                        how closely intensity, onset and duration align
-    score            = earned / maximum, then exposure and history boosters
+
+    coverage         = earned / maximum
+                       how much of the CONDITION's picture was reported
+    explained        = weight of reported symptoms the condition lists /
+                       weight of all reported symptoms
+                       how much of the USER's picture the condition explains
+    score            = sqrt(coverage x explained), then exposure and
+                       history boosters
+
+Both sides matter. Coverage alone let a condition with one linked symptom
+score 80%+ while ignoring a dozen other symptoms it doesn't explain. The
+geometric mean is high only when BOTH are high (like an F1 score).
 
 No diagnosis is produced: this ranks conditions worth reading about, and the
 view says so. Triage is decided by vitals and red flags first, and only then
 by the top match.
 """
 
+import math
 from typing import Iterable, Optional
 
 from app.models.checker import (
@@ -36,7 +48,7 @@ from app.models.checker import (
 )
 
 HALLMARK_BONUS = 1.5     # a hallmark counts for more than an associated sign
-MAX_SCORE, MIN_SCORE = 98.0, 12.0   # never claim certainty, never claim zero
+MAX_SCORE, MIN_SCORE = 98.0, 1.0    # never claim certainty
 
 
 class MatchingService:
@@ -138,7 +150,11 @@ class MatchingService:
         inconsistent = [entry.name for sid, entry in reported.items()
                         if sid not in linked_ids]
 
-        raw = earned / max_possible * 100.0
+        coverage = min(1.0, earned / max_possible)
+        reported_weight = sum(float(weights.get(sid, 6)) for sid in reported) or 1.0
+        explained_ids = [sid for sid in reported if sid in linked_ids]
+        explained = sum(float(weights.get(sid, 6)) for sid in explained_ids) / reported_weight
+        raw = math.sqrt(coverage * explained) * 100.0
         boost, reasons = self._boosters(disease, data)
         ranked = raw * boost
         # The cap keeps the UI honest (never "100% certain"), but two capped
@@ -155,9 +171,11 @@ class MatchingService:
             matched=matched, missing=missing, inconsistent=inconsistent,
             boosters=reasons,
             matched_count=len(matched), total_hallmarks=len(links),
+            explained_count=len(explained_ids), reported_count=len(reported),
             weighted_sum=int(earned), weighted_max=int(max_possible),
             alignment=int(alignment_sum / alignment_count * 100) if alignment_count else 0,
             emergency_signs=list(getattr(disease, "emergency_warning_signs", []) or []),
+            coverage=coverage, explained=explained, boost=boost,
         )
 
     @staticmethod
@@ -292,8 +310,9 @@ class MatchingService:
                                     "department immediately.")
             result.triage_rationale = (
                 "Critical vital signs detected." if vitals_emergency else
-                f"{emergency_match.name} scores {emergency_match.score:.0f}% and can "
-                "deteriorate within hours.")
+                f"{emergency_match.name} explains {emergency_match.explained_count} of "
+                f"{emergency_match.reported_count} reported symptoms and is marked "
+                "Emergency in the reference data.")
             if emergency_match and not vitals_emergency:
                 result.emergency_warnings = emergency_match.emergency_signs
         elif top and (top.urgency == "SEEK_URGENT_CARE" or severe_symptom):

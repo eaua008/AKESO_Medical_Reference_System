@@ -125,6 +125,10 @@ class FlowLayout(QLayout):
         self._h_spacing = h_spacing
         self._v_spacing = v_spacing
         self.setContentsMargins(0, 0, 0, 0)
+        # heightForWidth is asked for again and again during one resize
+        # (thousands of times across a page of cards); the answer only
+        # changes when the items do, so remember it per width.
+        self._hfw: dict[int, int] = {}
 
     def __del__(self) -> None:
         while self.takeAt(0) is not None:
@@ -134,6 +138,13 @@ class FlowLayout(QLayout):
 
     def addItem(self, item) -> None:  # noqa: N802
         self._items.append(item)
+        self.invalidate()
+
+    def invalidate(self) -> None:
+        cache = getattr(self, "_hfw", None)    # Qt calls this during __init__ too
+        if cache:
+            cache.clear()
+        super().invalidate()
 
     def count(self) -> int:
         return len(self._items)
@@ -142,7 +153,10 @@ class FlowLayout(QLayout):
         return self._items[index] if 0 <= index < len(self._items) else None
 
     def takeAt(self, index: int):  # noqa: N802
-        return self._items.pop(index) if 0 <= index < len(self._items) else None
+        if not 0 <= index < len(self._items):
+            return None
+        self._hfw.clear()
+        return self._items.pop(index)
 
     def expandingDirections(self) -> Qt.Orientation:  # noqa: N802
         return Qt.Orientation(0)
@@ -153,7 +167,10 @@ class FlowLayout(QLayout):
         return True
 
     def heightForWidth(self, width: int) -> int:  # noqa: N802
-        return self._arrange(QRect(0, 0, width, 0), apply=False)
+        height = self._hfw.get(width)
+        if height is None:
+            height = self._hfw[width] = self._arrange(QRect(0, 0, width, 0), apply=False)
+        return height
 
     def setGeometry(self, rect: QRect) -> None:  # noqa: N802
         super().setGeometry(rect)

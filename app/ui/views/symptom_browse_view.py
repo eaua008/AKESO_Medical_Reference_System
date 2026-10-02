@@ -10,7 +10,7 @@ what to show.
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
     QButtonGroup,
     QComboBox,
@@ -28,6 +28,7 @@ from PySide6.QtWidgets import (
 
 from app.core import icons
 from app.core.theme import Theme
+from app.ui.components.fluid import ResponsiveGrid, contain
 from app.models.symptom import Symptom
 from app.ui.views.compare_view import FlowLayout, WrapChip
 
@@ -85,12 +86,13 @@ class SymptomCard(QFrame):
             f"\u25cf  Weight: {symptom.diagnostic_weight}/10", symptom.tier_key))
         layout.addLayout(top)
 
-        title = QHBoxLayout()
-        title.setSpacing(8)
-        title.addWidget(_label(symptom.name, "syCardTitle", wrap=False))
+        # Name above the scientific name, both wrapping: side by side on one
+        # line they made some cards ~500 px wide and pushed the grid off-screen.
+        title = QVBoxLayout()
+        title.setSpacing(2)
+        title.addWidget(_label(symptom.name, "syCardTitle"))
         if symptom.scientific_name:
-            title.addWidget(_label(f"({symptom.scientific_name})", "syCardSci", wrap=False))
-        title.addStretch(1)
+            title.addWidget(_label(f"({symptom.scientific_name})", "syCardSci"))
         layout.addLayout(title)
 
         if symptom.description:
@@ -186,46 +188,16 @@ class SymptomEntryRow(QFrame):
         super().mouseReleaseEvent(event)
 
 
-class CardGrid(QWidget):
-    """Lays cards out in as many columns as fit, re-flowing on resize."""
+class CardGrid(ResponsiveGrid):
+    """Cards in as many columns as the visible width allows.
+
+    Columns used to be counted from the grid's own width, which long card
+    titles had already stretched, so the grid kept widening itself. The
+    shared ResponsiveGrid counts from the scroll viewport instead.
+    """
 
     def __init__(self) -> None:
-        super().__init__()
-        self.setObjectName("panel")
-        self._grid = QGridLayout(self)
-        self._grid.setContentsMargins(0, 0, 0, 0)
-        self._grid.setSpacing(16)
-        self._cards: list[QWidget] = []
-        self._columns = 0
-
-    def set_cards(self, cards: list[QWidget], columns: Optional[int] = None) -> None:
-        for card in self._cards:
-            self._grid.removeWidget(card)
-            card.hide()
-            card.deleteLater()
-        self._cards = cards
-        self._fixed_columns = columns
-        self._columns = 0
-        self._relayout()
-
-    def resizeEvent(self, event) -> None:
-        super().resizeEvent(event)
-        self._relayout()
-
-    def _relayout(self) -> None:
-        columns = getattr(self, "_fixed_columns", None) or max(
-            1, min(MAX_COLUMNS, self.width() // CARD_MIN_WIDTH))
-        if columns == self._columns:
-            return
-        self._columns = columns
-        for card in self._cards:
-            self._grid.removeWidget(card)
-        for index, card in enumerate(self._cards):
-            row, column = divmod(index, columns)
-            self._grid.addWidget(card, row, column)
-            card.show()
-        for column in range(MAX_COLUMNS):
-            self._grid.setColumnStretch(column, 1 if column < columns else 0)
+        super().__init__(CARD_MIN_WIDTH, MAX_COLUMNS, spacing=16)
 
 
 class SymptomBrowseView(QWidget):
@@ -237,6 +209,7 @@ class SymptomBrowseView(QWidget):
         self.setObjectName("panel")
         self._cards_mode = True
         self._symptoms: list[Symptom] = []
+        self._render_pending = False
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -265,6 +238,8 @@ class SymptomBrowseView(QWidget):
         layout.addStretch(1)
 
         scroll.setWidget(page)
+        self.grid.watch(scroll.viewport())
+        contain(page, buttons=False)
         root.addWidget(scroll)
 
     # ------------------------------------------------------------ builders
@@ -395,11 +370,32 @@ class SymptomBrowseView(QWidget):
         self.count_badge.setText(
             f"{total} Symptoms Cataloged" if len(symptoms) == total
             else f"{len(symptoms)} of {total} Entries")
-        self._render()
+        self._render_when_seen()
         if total and not symptoms:
             self.show_status("No entry matches these filters.")
         elif total:
             self.status.hide()
+
+    # Building every card takes about half a second. While the page is
+    # hidden (at sign-in, every page is) that waits until it is first shown,
+    # or until the app is idle a moment later, so the dashboard opens sooner.
+    def _render_when_seen(self) -> None:
+        if self.isVisible():
+            self._render_pending = False
+            self._render()
+            return
+        if not self._render_pending:
+            self._render_pending = True
+            QTimer.singleShot(1200, self._render_if_pending)
+
+    def _render_if_pending(self) -> None:
+        if self._render_pending:
+            self._render_pending = False
+            self._render()
+
+    def showEvent(self, event) -> None:  # noqa: N802
+        super().showEvent(event)
+        self._render_if_pending()
 
     def _render(self) -> None:
         if self._cards_mode:
@@ -410,6 +406,8 @@ class SymptomBrowseView(QWidget):
             columns = 1
         for widget in widgets:
             widget.clicked.connect(self.symptom_chosen.emit)
+        for widget in widgets:
+            contain(widget, limit=CARD_MIN_WIDTH - 80)
         self.grid.set_cards(widgets, columns)
 
     def show_status(self, message: str) -> None:

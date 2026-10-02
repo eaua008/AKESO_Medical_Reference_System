@@ -33,6 +33,8 @@ from PySide6.QtWidgets import (
 from app.core import icons
 from app.core.theme import Theme
 from app.models.symptom import AssociatedCondition, Symptom
+from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain
+from app.ui.components.reference_cards import reference_grid
 from app.ui.views.compare_view import FlowLayout, WrapChip
 from app.ui.views.section_highlight import SectionHighlighter
 
@@ -162,12 +164,12 @@ class SymptomDetailView(QWidget):
         back.setCursor(Qt.CursorShape.PointingHandCursor)
         back.clicked.connect(self.back_requested.emit)
         row.addWidget(back)
+        self.back_button = back         # hidden when shown in a PageSheet
 
-        self._title = _label("", "detailTitle", wrap=False)
-        self._scientific = _label("", "detailScientific", wrap=False)
-        row.addWidget(self._title)
-        row.addWidget(self._scientific)
-        row.addStretch(1)
+        # Elided, not fixed-width: a long name used to force the whole window
+        # wider than the screen. The full name is in the tooltip.
+        self._titles = TitlePair("detailTitle", "detailScientific")
+        row.addWidget(self._titles, 1)
 
         self._session_button = QPushButton("\u26a1  Add to Active Session")
         self._session_button.setObjectName("syPrimaryAction")
@@ -195,6 +197,7 @@ class SymptomDetailView(QWidget):
         rail = QWidget()
         rail.setObjectName("panel")
         rail.setFixedWidth(250)
+        self._rail = rail
         layout = QVBoxLayout(rail)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(14)
@@ -286,8 +289,7 @@ class SymptomDetailView(QWidget):
 
     def show_symptom(self, s: Symptom) -> None:
         self._symptom = s
-        self._title.setText(s.name)
-        self._scientific.setText(f"({s.scientific_name})" if s.scientific_name else "")
+        self._titles.set_texts(s.name, f"({s.scientific_name})" if s.scientific_name else "")
         starred = bool(self.bookmark_lookup(s.id)) if self.bookmark_lookup else False
         self._bookmark.blockSignals(True)
         self._bookmark.setChecked(starred)
@@ -386,16 +388,16 @@ class SymptomDetailView(QWidget):
         # 5. Cardinal conditions linked
         layout = self._section("conditions", 5, "Cardinal Conditions Linked in Knowledge Graph", "heart")
         if s.conditions:
-            grid = QGridLayout()
-            grid.setSpacing(10)
-            for index, condition in enumerate(s.conditions):
+            cards = []
+            for condition in s.conditions:
                 card = ConditionCard(condition)
                 card.clicked.connect(self.condition_chosen.emit)
-                row, column = divmod(index, 3)
-                grid.addWidget(card, row, column)
-            for column in range(3):
-                grid.setColumnStretch(column, 1)
-            layout.addLayout(grid)
+                cards.append(card)
+            # Three across when there is room, fewer on narrow windows.
+            grid = ResponsiveGrid(210, 3, spacing=10)
+            grid.watch(self._scroll.viewport())
+            grid.set_cards(cards)
+            layout.addWidget(grid)
         else:
             layout.addWidget(_label(
                 "No condition in the Disease Encyclopedia lists this symptom yet. "
@@ -437,32 +439,20 @@ class SymptomDetailView(QWidget):
         layout = self._section("references", 8, "Academic Citations & Mother Book References", "book")
         layout.addWidget(_label(
             "Two-tier academic provenance for medical students and clinicians.", "syMuted"))
-        tiers = QHBoxLayout()
-        tiers.setSpacing(12)
-        mother = s.mother_book
-        tiers.addWidget(self._reference_box(
-            "TIER 1 \u2014 MOTHER BOOK",
-            mother.source_name if mother else "Not recorded",
-            mother.citation_text if mother else "", primary=True), 1)
-        supporting = s.supporting_references
-        tiers.addWidget(self._reference_box(
-            "TIER 2 \u2014 SPECIFIC REFERENCE",
-            supporting[0].source_name if supporting else "Not recorded",
-            supporting[0].citation_text if supporting else "", primary=False), 1)
-        layout.addLayout(tiers)
+        # Every citation gets its own card, with a working link when it has a
+        # URL (same layout as the Disease Encyclopedia).
+        layout.addWidget(reference_grid(s.references, "sy", self._scroll.viewport()))
 
-        if s.source_attribution or len(supporting) > 1:
+        if s.source_attribution:
             box = QFrame()
             box.setObjectName("syFactBox")
             box_layout = QVBoxLayout(box)
             box_layout.setContentsMargins(14, 10, 14, 10)
             box_layout.setSpacing(4)
             box_layout.addWidget(_label(
-                "CONSOLIDATED CLINICAL GUIDELINES & ATTRIBUTIONS", "sySectionLabel", wrap=False))
-            if s.source_attribution:
-                box_layout.addWidget(_label(f"\u2022  {s.source_attribution}", "syItem"))
-            for reference in supporting[1:]:
-                box_layout.addWidget(_label(f"\u2022  {reference.source_name}", "syItem"))
+                "CONSOLIDATED CLINICAL GUIDELINES & ATTRIBUTIONS", "sySectionLabel"))
+            for line in [x.strip() for x in s.source_attribution.split(";") if x.strip()]:
+                box_layout.addWidget(_label(f"\u2022  {line}", "syItem"))
             layout.addWidget(box)
 
         # Peer discussions (Clinical Exchange feeds this once it is built)
@@ -481,24 +471,13 @@ class SymptomDetailView(QWidget):
         self._content.addStretch(1)
         self._fill_glance(s)
         self._fill_related(s)
+        # Long headings and names wrap instead of widening the page.
+        contain(self._scroll.widget())
+        contain(self._rail, limit=226)
         self._scroll.verticalScrollBar().setValue(0)
         # One event-loop turn later the sections have real positions.
         QTimer.singleShot(0, lambda: self._on_scrolled(
             self._scroll.verticalScrollBar().value()))
-
-    @staticmethod
-    def _reference_box(tier: str, source: str, citation: str, primary: bool) -> QFrame:
-        box = QFrame()
-        box.setObjectName("syRefPrimary" if primary else "syRef")
-        layout = QVBoxLayout(box)
-        layout.setContentsMargins(14, 12, 14, 12)
-        layout.setSpacing(4)
-        layout.addWidget(_label(tier, "syRefTierPrimary" if primary else "syRefTier", wrap=False))
-        layout.addWidget(_label(source, "syRefSource"))
-        if citation:
-            layout.addWidget(_label(citation, "syRefCitation"))
-        layout.addStretch(1)
-        return box
 
     # -------------------------------------------------------------- rail
 
@@ -514,7 +493,7 @@ class SymptomDetailView(QWidget):
             ("Red Flags", str(len(s.red_flags))),
         )
         for index, (caption, value) in enumerate(rows, start=1):
-            self._glance.addWidget(_label(caption, "syGlanceKey", wrap=False), index, 0)
+            self._glance.addWidget(_label(caption, "syGlanceKey"), index, 0)
             value_label = _label(value, "syGlanceValue")
             value_label.setAlignment(Qt.AlignmentFlag.AlignRight)
             self._glance.addWidget(value_label, index, 1)
