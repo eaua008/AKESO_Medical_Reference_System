@@ -15,7 +15,6 @@ from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (
     QComboBox,
     QFrame,
-    QGridLayout,
     QHBoxLayout,
     QLabel,
     QLineEdit,
@@ -29,6 +28,7 @@ from PySide6.QtWidgets import (
 from app.core import icons
 from app.core.models_helpers import urgency_style  # see edits file
 from app.core.theme import Theme
+from app.ui.components.fluid import ResponsiveGrid, contain
 from app.models.disease import BodySystem, Disease
 
 CARD_COLUMNS = 3
@@ -242,19 +242,29 @@ class ConditionEntryRow(QFrame):
             str(len(disease.emergency_warning_signs)),
         )
 
-        grid = QGridLayout()
-        grid.setHorizontalSpacing(18)
-        grid.setVerticalSpacing(2)
+        # The eight parts sit in one row when there is room and reflow to two
+        # rows of four on narrow windows (eight fixed columns needed ~960 px).
+        # The list view calls self.parts.watch(viewport) once the row is placed.
+        cells = []
         for column, (part, value) in enumerate(zip(self.PARTS, values)):
+            cell = QWidget()
+            cell.setObjectName("panel")
+            cell_layout = QVBoxLayout(cell)
+            cell_layout.setContentsMargins(0, 0, 0, 0)
+            cell_layout.setSpacing(2)
             caption = QLabel(f"{column + 1}. {part.upper()}")
             caption.setObjectName("subHeading")
+            caption.setWordWrap(True)
             body = QLabel(value)
             body.setObjectName("bodyTextMuted")
             body.setWordWrap(True)
-            grid.addWidget(caption, 0, column)
-            grid.addWidget(body, 1, column)
-            grid.setColumnStretch(column, 2 if part == "Summary" else 1)
-        layout.addLayout(grid)
+            cell_layout.addWidget(caption)
+            cell_layout.addWidget(body)
+            cell_layout.addStretch(1)
+            cells.append(cell)
+        self.parts = ResponsiveGrid(105, len(cells), spacing=14, steps=(8, 4, 2))
+        self.parts.set_cards(cells)
+        layout.addWidget(self.parts)
 
     def mouseReleaseEvent(self, event) -> None:
         if (event.button() == Qt.MouseButton.LeftButton
@@ -304,9 +314,19 @@ class DiseaseEncyclopediaView(QWidget):
         self._page_layout.addWidget(self._build_grid_container(), 1)
 
         scroll.setWidget(page)
+        self._grid_host.watch(scroll.viewport())
+        contain(page, buttons=False)
         root.addWidget(scroll)
 
     # -------------------------------------------------------------- header
+
+    def set_page_header(self, header: QWidget) -> None:
+        """Put the page's title block at the top of this scrollable page."""
+        self._page_layout.insertWidget(0, header)
+        header.show()
+
+    def take_page_header(self, header: QWidget) -> None:
+        self._page_layout.removeWidget(header)
 
     def _build_toolbar(self) -> QWidget:
         """Just the refresh control now — the title moved to the page
@@ -378,14 +398,9 @@ class DiseaseEncyclopediaView(QWidget):
         outer.setContentsMargins(0, 0, 0, 0)
         outer.setSpacing(0)
 
-        self._grid_host = QWidget()
-        self._grid_host.setObjectName("panel")
-        self._grid = QGridLayout(self._grid_host)
-        self._grid.setContentsMargins(0, 0, 0, 0)
-        self._grid.setSpacing(18)
-        self._grid.setAlignment(Qt.AlignmentFlag.AlignTop)
-        for column in range(CARD_COLUMNS):
-            self._grid.setColumnStretch(column, 1)
+        # Up to three columns, fewer when the window is narrow: a fixed three
+        # columns of 330 px cards forced the page wider than small screens.
+        self._grid_host = ResponsiveGrid(CARD_MIN_WIDTH, CARD_COLUMNS, spacing=18)
 
         self._empty_label = QLabel("No conditions match those filters.")
         self._empty_label.setObjectName("cardSubtitle")
@@ -448,8 +463,7 @@ class DiseaseEncyclopediaView(QWidget):
 
     def _render(self) -> None:
         self._clear_grid()
-        columns = CARD_COLUMNS if self._cards_mode else 1
-
+        cards: list[QWidget] = []
         for index, disease in enumerate(self._diseases):
             system_name = self._system_names.get(
                 disease.body_system_id, "Unclassified")
@@ -461,19 +475,16 @@ class DiseaseEncyclopediaView(QWidget):
             else:
                 card = ConditionEntryRow(disease, system_name, index + 1)
             card.inspect_requested.connect(self.inspect_requested.emit)
-
-            row, column = divmod(index, columns)
-            self._grid.addWidget(card, row, column)
-            self._cards.append(card)
-
-        # A one-column list must not leave two empty stretched columns.
-        for column in range(CARD_COLUMNS):
-            self._grid.setColumnStretch(column, 1 if column < columns else 0)
+            if hasattr(card, "parts"):
+                card.parts.watch(self._grid_host.viewport())
+            contain(card, limit=CARD_MIN_WIDTH - 60)
+            cards.append(card)
+        self._cards = cards
+        # Cards mode: as many columns as fit. List mode: always one.
+        self._grid_host.set_cards(cards, None if self._cards_mode else 1)
 
         self._empty_label.setVisible(not self._diseases)
         self._grid_host.setVisible(bool(self._diseases))
-
-
 
     def filter_state(self) -> dict:
         """What the controller passes to DiseaseService.search()."""
@@ -493,10 +504,7 @@ class DiseaseEncyclopediaView(QWidget):
     # ------------------------------------------------------------ internal
 
     def _clear_grid(self) -> None:
-        for card in self._cards:
-            self._grid.removeWidget(card)
-            # Hide first: deleteLater waits for the event loop, and until
-            # then the old widget is still painted behind the new one.
-            card.hide()
-            card.deleteLater()
-        self._cards.clear()
+        # ResponsiveGrid hides the old cards before deleting them, so they
+        # are not painted behind the new ones while deleteLater waits.
+        self._grid_host.set_cards([])
+        self._cards = []

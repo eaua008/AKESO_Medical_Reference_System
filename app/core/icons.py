@@ -582,6 +582,10 @@ def draw(name: str, size: int = 18, color: str = "#9CA3AF") -> QImage:
     """Render an icon by name; falls back to a dot if the name is unknown."""
     fn = NAV_ICONS.get(name)
     if fn is None:
+        # Names only the Lucide set has (e.g. "users", "database").
+        from app.core import lucide
+        if name in lucide.PATHS:
+            return lucide.pixmap(name, size, color).toImage()
         image = _new_image(size)
         p = _painter_for(image, size, color, 2.0)
         p.drawPoint(QPointF(12, 12))

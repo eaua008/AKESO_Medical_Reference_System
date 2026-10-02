@@ -134,6 +134,12 @@ class AuthService:
         self._pending_email = None
         return user
 
+    # ------------------------------------------------------------ session
+
+    def session_client(self):
+        """The Supabase client holding the signed-in session."""
+        return self._repository.client
+
     # -------------------------------------------------------------- logout
 
     def log_out(self) -> None:

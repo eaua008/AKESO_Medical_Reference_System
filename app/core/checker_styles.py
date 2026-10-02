@@ -358,6 +358,18 @@ def checker_rules(p: dict, heading_font: str) -> str:
             font-size: 11px; font-weight: 800; color: {GOOD};
         }}
 
+        /* matrix: every row a fixed height so the pinned left/right parts
+           line up with the scrolling middle */
+        #ccMxCell {{
+            background: transparent;
+            border-bottom: 1px solid {p['BORDER']};
+        }}
+        #ccMxHead {{ background: transparent; border-bottom: 1px solid {p['BORDER']}; }}
+        #ccMxPinLeft {{ border-right: 1px solid {p['BORDER']}; background: transparent; }}
+        #ccMxPinRight {{ border-left: 1px solid {p['BORDER']}; background: transparent; }}
+        #ccMxScroll, #ccMxScroll > QWidget > QWidget {{ background: transparent; border: none; }}
+        #ccMxSlot {{ background: transparent; }}
+
         /* matrix cells */
         #ccPillGood, #ccPillBad {{
             border-radius: 7px; padding: 3px 9px;

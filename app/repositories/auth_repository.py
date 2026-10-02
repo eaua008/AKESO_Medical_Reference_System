@@ -90,8 +90,21 @@ class AuthRepository:
 
         return User.from_supabase(response.user)
 
+    @property
+    def client(self) -> Client:
+        """The signed-in client, for the account repositories (their data is
+        private, so they need this session rather than a client of their own)."""
+        return self._client
+
     def sign_out(self) -> None:
-        self._client.auth.sign_out()
+        # "local" ends the session on THIS computer only. The library's
+        # default ("global") signs the account out of every device, which
+        # would make the Devices list and "Sign out all other devices"
+        # meaningless: every ordinary sign-out would already do that.
+        try:
+            self._client.auth.sign_out({"scope": "local"})
+        except Exception as exc:  # noqa: BLE001 - the local session is dropped regardless
+            raise AuthError(self._friendly(exc)) from exc
 
     # ----------------------------------------------------------------- OTP
 
@@ -178,6 +191,10 @@ class AuthRepository:
             return "That email is already registered."
         if "email not confirmed" in text:
             return "Please verify your email before logging in."
+        if "banned" in text:
+            # Set by an admin in User Management (migration 004).
+            return ("This account has been suspended by an administrator. "
+                    "Contact your Akeso administrator if you think this is a mistake.")
         return f"Unexpected error: {exc}"
 
     @staticmethod

@@ -20,6 +20,7 @@ class SymptomController(QObject):
     session_requested = Signal(str)    # "Add to Active Session" / correlation
     matching_requested = Signal(str)   # "Find Matching Diseases"
     case_requested = Signal(str)       # "Present Case"
+    opened = Signal(str)               # an entry was shown (study activity)
 
     def __init__(self, page: SymptomEncyclopediaPage,
                  service: Optional[SymptomService] = None) -> None:
@@ -73,3 +74,4 @@ class SymptomController(QObject):
         symptom = self._service.get(symptom_id)
         if symptom is not None:
             self._page.show_detail(symptom)
+            self.opened.emit(symptom_id)

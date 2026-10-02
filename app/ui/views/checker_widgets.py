@@ -14,8 +14,9 @@ Two things worth knowing:
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QEvent, Qt, Signal
 from PySide6.QtWidgets import (
+    QAbstractScrollArea,
     QButtonGroup,
     QCheckBox,
     QComboBox,
@@ -24,6 +25,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QPushButton,
+    QSizePolicy,
     QSlider,
     QVBoxLayout,
     QWidget,
@@ -188,6 +190,10 @@ class SymptomParameters(QFrame):
         grid = QGridLayout()
         grid.setHorizontalSpacing(10)
         grid.setVerticalSpacing(4)
+        self._grid = grid
+        self._cells: list[tuple[QLabel, QComboBox]] = []
+        self._columns = 0
+        self._viewport: Optional[QWidget] = None
         self.onset = _combo(ONSETS, entry.onset)
         self.pattern = _combo(PATTERNS, entry.pattern)
         self.trend = _combo(TRENDS, entry.trend)
@@ -195,11 +201,59 @@ class SymptomParameters(QFrame):
         for column, (caption, widget) in enumerate((
                 ("Onset", self.onset), ("Pattern", self.pattern),
                 ("Trend", self.trend), ("Duration", self.duration))):
-            grid.addWidget(_label(caption.upper(), "ccFieldLabel", wrap=False), 0, column)
-            grid.addWidget(widget, 1, column)
-            grid.setColumnStretch(column, 1)
+            # Let the boxes shrink a little on narrow panels: the closed box
+            # may shorten its text, the open list still shows it in full.
+            widget.setSizeAdjustPolicy(
+                QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
+            widget.setMinimumContentsLength(6)
+            self._cells.append((_label(caption.upper(), "ccFieldLabel", wrap=False), widget))
             widget.currentIndexChanged.connect(lambda _i: self.changed.emit())
+        self._arrange(4)
         layout.addLayout(grid)
+
+    # ------------------------------------------- 4 across, or 2 x 2 if narrow
+
+    def _arrange(self, columns: int) -> None:
+        """Onset / pattern / trend / duration: one row of four on a wide
+        panel, two rows of two on a narrow one (four boxes need ~560 px, and
+        forcing them into one row pushed the panel past the window edge)."""
+        if columns == self._columns:
+            return
+        self._columns = columns
+        for label, combo in self._cells:
+            self._grid.removeWidget(label)
+            self._grid.removeWidget(combo)
+        for index, (label, combo) in enumerate(self._cells):
+            row, column = divmod(index, columns)
+            self._grid.addWidget(label, row * 2, column)
+            self._grid.addWidget(combo, row * 2 + 1, column)
+        for column in range(4):
+            self._grid.setColumnStretch(column, 1 if column < columns else 0)
+
+    def showEvent(self, event) -> None:  # noqa: N802
+        super().showEvent(event)
+        if self._viewport is None:
+            # Decide from the scroll panel's visible width, not our own width
+            # (which a too-wide row would already have stretched).
+            parent = self.parentWidget()
+            while parent is not None and not isinstance(parent, QAbstractScrollArea):
+                parent = parent.parentWidget()
+            if parent is not None:
+                self._viewport = parent.viewport()
+                self._viewport.installEventFilter(self)
+        self._fit()
+
+    def eventFilter(self, watched, event) -> bool:  # noqa: N802
+        if watched is self._viewport and event.type() == QEvent.Type.Resize:
+            self._fit()
+        return False
+
+    def _fit(self) -> None:
+        if self._viewport is None:
+            return
+        needed = sum(combo.minimumSizeHint().width() for _l, combo in self._cells)
+        needed += 3 * self._grid.horizontalSpacing() + 40      # card margins
+        self._arrange(4 if self._viewport.width() >= needed else 2)
 
     # --------------------------------------------------- severity controls
 
@@ -251,6 +305,10 @@ class SymptomParameters(QFrame):
             button.setCheckable(True)
             button.setChecked(value == self._intensity)
             button.setFixedHeight(30)
+            # Eleven boxes in one row: let them shrink to fit the panel
+            # (their padded default width made the row ~600 px wide).
+            button.setMinimumWidth(24)
+            button.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
             button.setCursor(Qt.CursorShape.PointingHandCursor)
             button.clicked.connect(lambda _c=False, v=value: self._set_intensity(v))
             self._scale_group.addButton(button, value)

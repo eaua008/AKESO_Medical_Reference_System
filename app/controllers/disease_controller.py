@@ -29,6 +29,7 @@ class DiseaseController(QObject):
     """Feeds the encyclopedia screens and keeps their data current."""
 
     check_symptoms_requested = Signal(str)
+    opened = Signal(str)       # a monograph was shown (study activity)
 
     def __init__(
             self,
@@ -50,7 +51,7 @@ class DiseaseController(QObject):
         self._compare.selection_changed.connect(self._run_comparison)
         self._compare.monograph_requested.connect(self.inspect)
 
-        self._detail.back_requested.connect(self._page.show_grid)
+        self._detail.back_requested.connect(self._page.close_detail)
         self._detail.check_symptoms_requested.connect(
             self.check_symptoms_requested.emit
         )
@@ -146,6 +147,7 @@ class DiseaseController(QObject):
 
         self._detail.show_disease(disease)
         self._page.show_detail()
+        self.opened.emit(disease_id)
 
     # ----------------------------------------------------------- comparison
 

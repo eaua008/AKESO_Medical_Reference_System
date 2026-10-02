@@ -27,6 +27,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from app.ui.components.fluid import contain
 from app.ui.views.compare_view import CompareView
 from app.ui.views.disease_detail_view import DiseaseDetailView
 from app.ui.views.disease_encyclopedia_view import DiseaseEncyclopediaView
@@ -48,6 +49,8 @@ class EncyclopediaPage(QWidget):
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
+        self._root = root
+        self._header_in_grid = False
 
         # Views first: the header's toggle talks to grid_view, and the mode
         # handler asks the stack which screen is showing.
@@ -61,10 +64,21 @@ class EncyclopediaPage(QWidget):
         self._stack.addWidget(self.detail_view)
 
         self._header = self._build_header()
+        # The long title and subtitle wrap on narrow windows instead of
+        # forcing the window wider than the screen.
+        contain(self._header, buttons=False)
         root.addWidget(self._header)
         root.addWidget(self._stack, 1)
 
+        self._sheet = None
         self.show_grid()
+
+    def attach_sheet(self, sheet) -> None:
+        """The shell's slide-in sheet (app/ui/components/page_sheet.py):
+        monographs open in it, over the directory, instead of replacing it."""
+        self._sheet = sheet
+        self._stack.removeWidget(self.detail_view)
+        sheet.adopt(self.detail_view, self.detail_view.back_requested)
 
     # -------------------------------------------------------------- header
 
@@ -210,17 +224,54 @@ class EncyclopediaPage(QWidget):
         self._directory_tab.setChecked(active == GRID_INDEX)
         self._compare_tab.setChecked(active == COMPARE_INDEX)
 
+    def _place_header(self, in_grid: bool) -> None:
+        """On the directory the header lives INSIDE the grid's scroll area,
+        so it scrolls away with the cards (like the Symptom and Medicine
+        pages); elsewhere it sits above the view as before."""
+        if in_grid == self._header_in_grid:
+            return
+        margins = self._header.layout()
+        if in_grid:
+            self._root.removeWidget(self._header)
+            margins.setContentsMargins(0, 4, 0, 0)     # the grid page has its own
+            self.grid_view.set_page_header(self._header)
+        else:
+            self.grid_view.take_page_header(self._header)
+            margins.setContentsMargins(30, 22, 30, 0)
+            self._root.insertWidget(0, self._header)
+        self._header_in_grid = in_grid
+
     def show_grid(self) -> None:
+        self._close_sheet()
         self._stack.setCurrentIndex(GRID_INDEX)
+        self._place_header(True)
         self._header.show()
         self._set_tabs(GRID_INDEX)
 
     def show_compare(self) -> None:
+        self._close_sheet()
         self._stack.setCurrentIndex(COMPARE_INDEX)
+        self._place_header(False)
         self._header.show()
         self._set_tabs(COMPARE_INDEX)
 
+    def _close_sheet(self) -> None:
+        if self._sheet is not None:
+            self._sheet.close_sheet()
+
+    def close_detail(self) -> None:
+        """Back / X / Esc on a monograph: back to whichever screen opened it."""
+        if self._sheet is not None:
+            self._sheet.close_sheet()
+        else:
+            self.show_grid()
+
     def show_detail(self) -> None:
+        if self._sheet is not None:
+            # Slides in over the directory (or the comparison) it came from,
+            # which is still there when the sheet closes.
+            self._sheet.open_sheet()
+            return
         self._stack.setCurrentIndex(DETAIL_INDEX)
         # The monograph carries its own top bar with a back button; keeping
         # the browse header above it would stack two navigation rows.

@@ -463,6 +463,15 @@ class AuthView(QWidget):
         self._status.hide()
         layout.addWidget(self._status)
 
+        # "Signing you in…" / "Setting up your dashboard…" while the steps
+        # after a successful sign-in run (see set_signing_in).
+        self._progress = QLabel("")
+        self._progress.setObjectName("cardSubtitle")
+        self._progress.setWordWrap(True)
+        self._progress.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._progress.hide()
+        layout.addWidget(self._progress)
+
         layout.addLayout(self._build_divider("OR"))
         layout.addWidget(self._build_google_button())
 
@@ -666,10 +675,15 @@ class AuthView(QWidget):
         text.setWordWrap(True)
         text.setTextFormat(Qt.TextFormat.RichText)
         text.setOpenExternalLinks(False)
+        text.linkActivated.connect(self._show_terms)
 
         row.addWidget(self._terms_check, 0, Qt.AlignmentFlag.AlignTop)
         row.addWidget(text, 1)
         return row
+
+    def _show_terms(self, _link: str = "") -> None:
+        from app.ui.views.account.account_dialogs import LegalDialog
+        LegalDialog("terms", parent=self).exec()
 
     def _build_divider(self, text: str) -> QHBoxLayout:
         row = QHBoxLayout()
@@ -772,10 +786,12 @@ class AuthView(QWidget):
 
     def _toggle_theme(self) -> None:
         Theme.toggle_mode()
-        app = QApplication.instance()
-        if app is not None:
-            app.setStyleSheet(Theme.stylesheet())
+        # Only the login screen exists here, so a full restyle is cheap.
+        from app.ui.theme_scope import apply_app_stylesheet
+        apply_app_stylesheet()
         self.refresh_theme()
+        from app.core.preferences import PreferenceStore
+        PreferenceStore().update(theme=Theme.mode())   # remembered for next launch
 
     def _refresh_theme_icon(self) -> None:
         image = (
@@ -831,6 +847,23 @@ class AuthView(QWidget):
             "Please wait\u2026" if busy else "Log In to Akeso  \u2192"
         )
         self._signup_button.setText("Please wait\u2026" if busy else "Create Account")
+
+    def set_signing_in(self, text: str | None) -> None:
+        """Lock the card and show progress while sign-in finishes (the
+        code exchange, the account checks, building the dashboard). The
+        window keeps responding meanwhile; this stops a second sign-in
+        from starting. None unlocks it again."""
+        busy = text is not None
+        if busy:
+            self.clear_error()
+            self._progress.setText(text)
+            self._google_btn.setText("  " + text)
+        elif self._google_state != "cooldown":
+            self._set_google_state("idle", "  Continue with Google")
+        self._progress.setVisible(busy)
+        for widget in (self._login_form, self._signup_form, self._google_btn,
+                       self._switch_label):
+            widget.setEnabled(not busy)
 
     # --------------------------------------------------------- Google button
 
