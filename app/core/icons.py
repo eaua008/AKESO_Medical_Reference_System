@@ -258,9 +258,71 @@ def stack(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
     return _finish(image)
 
 
+def chat(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
+    """Two overlapping speech bubbles — Clinical Exchange."""
+    image = _new_image(size)
+    p = _painter_for(image, size, color, width)
+
+    # Front bubble, tail at the bottom left.
+    front = QPainterPath()
+    front.moveTo(5, 4)
+    front.lineTo(15, 4)
+    front.quadTo(17, 4, 17, 6)
+    front.lineTo(17, 12)
+    front.quadTo(17, 14, 15, 14)
+    front.lineTo(9, 14)
+    front.lineTo(5, 17.5)
+    front.lineTo(5, 14)
+    front.quadTo(3, 14, 3, 12)
+    front.lineTo(3, 6)
+    front.quadTo(3, 4, 5, 4)
+    p.drawPath(front)
+
+    # Back bubble peeking out on the right, tail at the bottom right.
+    back = QPainterPath()
+    back.moveTo(17, 9)
+    back.lineTo(19, 9)
+    back.quadTo(21, 9, 21, 11)
+    back.lineTo(21, 17)
+    back.quadTo(21, 19, 19, 19)
+    back.lineTo(19, 21)
+    back.lineTo(16.5, 19)
+    back.lineTo(12, 19)
+    back.quadTo(10, 19, 10, 17)
+    back.lineTo(10, 14)
+    p.drawPath(back)
+
+    p.end()
+    return _finish(image)
+
+
 def star(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
     image = _new_image(size)
     p = _painter_for(image, size, color, width)
+    path = QPainterPath()
+    pts = [
+        (12, 3), (14.6, 9.2), (21, 9.7), (16.2, 14.1),
+        (17.7, 20.5), (12, 17.1), (6.3, 20.5), (7.8, 14.1),
+        (3, 9.7), (9.4, 9.2),
+    ]
+    path.moveTo(*pts[0])
+    for pt in pts[1:]:
+        path.lineTo(*pt)
+    path.closeSubpath()
+    p.drawPath(path)
+    p.end()
+    return _finish(image)
+
+
+def star_filled(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
+    """Solid star — the bookmarked state.
+
+    Same path as star(), but painted with a brush as well as a pen. The pen
+    keeps the edge crisp at small sizes; brush alone looks slightly thin.
+    """
+    image = _new_image(size)
+    p = _painter_for(image, size, color, width)
+    p.setBrush(QColor(color))
     path = QPainterPath()
     pts = [
         (12, 3), (14.6, 9.2), (21, 9.7), (16.2, 14.1),
@@ -409,6 +471,84 @@ def pin_off(size: int = 14, color: str = "#9CA3AF", width: float = 1.7) -> QImag
     return _finish(image)
 
 
+def calculator(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
+    """Calculator — wellness calculators."""
+    image = _new_image(size)
+    p = _painter_for(image, size, color, width)
+
+    p.drawRoundedRect(QRectF(5, 3, 14, 18), 2.5, 2.5)   # body
+    p.drawRoundedRect(QRectF(8, 6, 8, 4), 1, 1)         # display
+
+    # Keys drawn a touch heavier than the outline, so they still read as
+    # buttons at the 17px sidebar size instead of fading into specks.
+    keys = QPen(p.pen())
+    keys.setWidthF(width * 1.5)
+    p.setPen(keys)
+    for y in (14, 17.5):
+        for x in (9, 12, 15):
+            p.drawPoint(QPointF(x, y))
+
+    p.end()
+    return _finish(image)
+
+def stethoscope(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
+    """Stethoscope — symptom checker."""
+    image = _new_image(size)
+    p = _painter_for(image, size, color, width)
+
+    # Ear tips.
+    p.drawLine(QPointF(5.5, 3), QPointF(5.5, 4.5))
+    p.drawLine(QPointF(11.5, 3), QPointF(11.5, 4.5))
+
+    # The U-shaped headset.
+    headset = QPainterPath()
+    headset.moveTo(5.5, 4)
+    headset.lineTo(5.5, 8.5)
+    headset.cubicTo(5.5, 12.5, 11.5, 12.5, 11.5, 8.5)
+    headset.lineTo(11.5, 4)
+    p.drawPath(headset)
+
+    # Tube running down and curving round to the chestpiece.
+    tube = QPainterPath()
+    tube.moveTo(8.5, 11.5)
+    tube.cubicTo(8.5, 21, 18.5, 21, 18.5, 14.8)
+    p.drawPath(tube)
+
+    # Chestpiece.
+    p.drawEllipse(QPointF(18.5, 12.5), 2.3, 2.3)
+
+    p.end()
+    return _finish(image)
+
+
+def human(size: int = 18, color: str = "#9CA3AF", width: float = 1.8) -> QImage:
+    """Full-body figure — body system explorer.
+
+    Deliberately a whole body, not head-and-shoulders: the "user" icon
+    already means "your account", and the two should never be confused.
+    """
+    image = _new_image(size)
+    p = _painter_for(image, size, color, width)
+
+    p.drawEllipse(QPointF(12, 4.6), 2.2, 2.2)   # head
+
+    body = QPainterPath()
+    body.moveTo(12, 7.6)
+    body.lineTo(12, 14)                          # torso
+    body.moveTo(6.5, 10)
+    body.lineTo(12, 9)
+    body.lineTo(17.5, 10)                        # arms
+    body.moveTo(12, 14)
+    body.lineTo(8.5, 21)                         # left leg
+    body.moveTo(12, 14)
+    body.lineTo(15.5, 21)                        # right leg
+    p.drawPath(body)
+
+    p.end()
+    return _finish(image)
+
+
+
 # Lookup used by the sidebar so nav config can stay pure data.
 NAV_ICONS = {
     "grid": grid,
@@ -419,21 +559,33 @@ NAV_ICONS = {
     "heart": heart,
     "notebook": notebook,
     "clock": clock,
-    "leaf": leaf,
+    "calculator": calculator,
     "alert": alert,
     "stack": stack,
+    "chat": chat,
     "star": star,
+    "star-filled": star_filled,
     "bell": bell,
     "gear": gear,
     "shield": shield,
     "user": user,
+    "mail": mail,
+    "lock": lock,
+    "eye": eye,
+    "moon": moon,
+    "sun": sun,
+    "stethoscope": stethoscope,
+    "human": human,
 }
-
 
 def draw(name: str, size: int = 18, color: str = "#9CA3AF") -> QImage:
     """Render an icon by name; falls back to a dot if the name is unknown."""
     fn = NAV_ICONS.get(name)
     if fn is None:
+        # Names only the Lucide set has (e.g. "users", "database").
+        from app.core import lucide
+        if name in lucide.PATHS:
+            return lucide.pixmap(name, size, color).toImage()
         image = _new_image(size)
         p = _painter_for(image, size, color, 2.0)
         p.drawPoint(QPointF(12, 12))

@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "region": "Philippines",
+  "featured_hotline": {
+    "name": "National Emergency Hotline",
+    "number": "911",
+    "description": "Police, fire, ambulance and disaster response. Free from any mobile or landline, nationwide.",
+    "alt_numbers": []
+  },
+  "call_tips": [
+    "Give your exact location: barangay, street, and a nearby landmark.",
+    "Say what happened and how many people are hurt.",
+    "Stay on the line until the dispatcher tells you to hang up."
+  ],
+  "local_note": "Local numbers differ by LGU. Save your barangay hall and nearest hospital too.",
+  "hotlines": [
+    {
+      "name": "Philippine Red Cross",
+      "number": "143",
+      "description": "Ambulance, rescue and disaster response, blood services",
+      "alt_numbers": ["(02) 8790-2300"]
+    },
+    {
+      "name": "Philippine National Police",
+      "number": "117",
+      "description": "Police assistance",
+      "alt_numbers": ["0917-847-5757 (text)"]
+    },
+    {
+      "name": "Bureau of Fire Protection (NCR)",
+      "number": "(02) 8426-0219",
+      "description": "Fire response in Metro Manila. Elsewhere, call 911 or your local fire station.",
+      "alt_numbers": ["(02) 8426-0246"]
+    },
+    {
+      "name": "NDRRMC Operations Center",
+      "number": "(02) 8911-1406",
+      "description": "Disaster response and coordination",
+      "alt_numbers": ["(02) 8912-2665"]
+    },
+    {
+      "name": "NCMH Crisis Hotline",
+      "number": "1553",
+      "description": "24/7 mental health crisis support",
+      "alt_numbers": ["0917-899-8727 (Globe/TM)", "0919-057-1553 (Smart/TNT)"]
+    },
+    {
+      "name": "National Poison Management and Control Center (UP-PGH)",
+      "number": "(02) 8524-1078",
+      "description": "24/7 poisoning advice",
+      "alt_numbers": ["0966-718-9904"]
+    },
+    {
+      "name": "DOH Health Hotline",
+      "number": "1555",
+      "description": "Health information, including the nearest Animal Bite Treatment Center",
+      "alt_numbers": []
+    }
+  ],
+  "protocols": [
+    {
+      "id": "cpr",
+      "title": "Hands-Only CPR (Adult)",
+      "local_name": "",
+      "urgency": "critical",
+      "keywords": ["cardiac arrest", "heart", "not breathing", "unconscious", "aed", "resuscitation"],
+      "warning_signs": [
+        "Unresponsive when tapped and shouted at",
+        "Not breathing, or only gasping"
+      ],
+      "steps": [
+        "Check that the scene is safe, then tap the person's shoulders and shout \"Are you okay?\"",
+        "If there's no response and no normal breathing, call 911 on speakerphone, or have someone call and bring an AED if one is nearby.",
+        "Lay the person on their back on a firm, flat surface.",
+        "Put the heel of one hand on the center of the chest, place your other hand on top, and interlock your fingers.",
+        "Push hard and fast: 5 to 6 cm (2 to 2.4 in) deep, 100 to 120 times a minute, letting the chest rise fully between pushes.",
+        "If you're trained, give 2 rescue breaths after every 30 compressions. If not, keep doing compressions only.",
+        "When an AED arrives, turn it on and follow its voice prompts. Continue until help takes over or the person starts breathing normally."
+      ],
+      "avoid": [
+        "Checking for a pulse if you're untrained, which delays compressions",
+        "Long pauses between compressions"
+      ],
+      "call_when": "Immediately, before starting compressions, or have someone else call while you begin.",
+      "source": "Philippine Red Cross Basic Life Support; AHA 2020 Guidelines"
+    },
+    {
+      "id": "choking",
+      "title": "Choking (Adult & Child)",
+      "local_name": "Nabibilaukan",
+      "urgency": "critical",
+      "keywords": ["airway", "obstruction", "heimlich", "food", "throat"],
+      "warning_signs": [
+        "Can't speak, cough, or breathe",
+        "Hands clutching the throat",
+        "High-pitched sound or no sound when trying to breathe",
+        "Lips or skin turning bluish"
+      ],
+      "steps": [
+        "Ask \"Are you choking?\" If the person can cough forcefully, encourage them to keep coughing.",
+        "If they can't cough, speak, or breathe, stand slightly behind them and lean them forward at the waist.",
+        "Give up to 5 firm back blows between the shoulder blades with the heel of your hand.",
+        "If the object is still stuck, give up to 5 abdominal thrusts: fist just above the navel, other hand over it, pull sharply in and up.",
+        "Keep alternating 5 back blows and 5 abdominal thrusts until the object comes out or the person becomes unresponsive.",
+        "For pregnant or very large people, use chest thrusts instead of abdominal thrusts. For infants, use back blows and chest thrusts, never abdominal thrusts.",
+        "If they become unresponsive, lower them to the ground, call 911, and start CPR. Look in the mouth before giving any rescue breaths."
+      ],
+      "avoid": [
+        "Blind finger sweeps; only remove an object you can see",
+        "Hitting the back of someone who is still coughing forcefully",
+        "Holding a child upside down"
+      ],
+      "call_when": "If the object doesn't come out quickly or the person becomes unresponsive. If someone else is there, have them call while you help.",
+      "source": "Philippine Red Cross Basic Life Support; American Red Cross / ILCOR 2020"
+    },
+    {
+      "id": "bleeding",
+      "title": "Severe Bleeding",
+      "local_name": "Matinding Pagdurugo",
+      "urgency": "critical",
+      "keywords": ["wound", "cut", "blood", "hemorrhage", "tourniquet", "shock"],
+      "warning_signs": [
+        "Blood spurting or flowing steadily",
+        "Blood soaking through cloth or bandages",
+        "Pale, cold, clammy skin",
+        "Confusion or fainting"
+      ],
+      "steps": [
+        "Protect your hands with gloves or a plastic bag if available.",
+        "Press firmly on the wound with a clean cloth or gauze, using both hands if needed.",
+        "Keep pressing without stopping. If blood soaks through, add more cloth on top instead of lifting the first layer.",
+        "If something is stuck in the wound, leave it in place and press around it.",
+        "Once the bleeding slows, wrap the wound firmly with a bandage.",
+        "Have the person lie down and keep them warm while you wait for help.",
+        "If you're trained and a limb keeps bleeding heavily despite pressure, apply a tourniquet above the wound and note the time."
+      ],
+      "avoid": [
+        "Removing objects stuck in the wound",
+        "Lifting the dressing to check the wound",
+        "Putting powders or home remedies on the wound"
+      ],
+      "call_when": "Immediately for bleeding that won't slow with pressure, spurting blood, or signs of shock.",
+      "source": "Philippine Red Cross First Aid; American Red Cross"
+    },
+    {
+      "id": "stroke",
+      "title": "Stroke (BE FAST)",
+      "local_name": "",
+      "urgency": "critical",
+      "keywords": ["brain", "face drooping", "slurred speech", "weakness", "paralysis", "befast", "fast"],
+      "warning_signs": [
+        "Sudden loss of balance",
+        "Sudden blurred or lost vision",
+        "Face drooping on one side",
+        "Weakness in one arm or leg",
+        "Slurred or strange speech",
+        "Sudden severe headache"
+      ],
+      "steps": [
+        "B, Balance: sudden dizziness, or loss of balance or coordination?",
+        "E, Eyes: sudden trouble seeing in one or both eyes?",
+        "F, Face: ask them to smile. Does one side droop?",
+        "A, Arms: ask them to raise both arms. Does one drift down?",
+        "S, Speech: ask them to repeat a simple phrase. Is it slurred or strange?",
+        "T, Time: if you see any of these signs, call 911 right away and note the time the symptoms started.",
+        "Keep the person comfortable and still. If they're drowsy or vomiting, lay them on their side."
+      ],
+      "avoid": [
+        "Giving food, drinks, or medicine, including aspirin",
+        "Waiting to see if the symptoms pass",
+        "Letting them sleep it off or drive themselves"
+      ],
+      "call_when": "Immediately. Treatment works best within the first hours, so the time the symptoms started matters.",
+      "source": "American Stroke Association (BE FAST)"
+    },
+    {
+      "id": "burns",
+      "title": "Burns & Scalds",
+      "local_name": "Paso",
+      "urgency": "urgent",
+      "keywords": ["fire", "scald", "hot water", "electrical", "chemical", "blister"],
+      "warning_signs": [
+        "Blisters or broken skin",
+        "White, leathery, or charred skin",
+        "Burns on the face, hands, feet, groin, or joints",
+        "Burns from electricity or chemicals"
+      ],
+      "steps": [
+        "Stop the burning by moving away from the heat source. For electrical burns, switch off the power first.",
+        "Cool the burn under cool running water for up to 20 minutes.",
+        "Remove rings, watches, and tight clothing near the burn before it swells, but nothing that is stuck to the skin.",
+        "Cover loosely with clean plastic wrap or a sterile non-stick dressing.",
+        "For chemical burns, brush off any dry powder first, then rinse with plenty of running water.",
+        "Keep the person warm. Cool only the burn, not the whole body."
+      ],
+      "avoid": [
+        "Toothpaste, butter, oil, or ice",
+        "Popping blisters",
+        "Pulling off clothing stuck to the burn"
+      ],
+      "call_when": "For large or deep burns, burns on the face, hands, feet, groin or joints, electrical or chemical burns, or any burn on a young child or older adult.",
+      "source": "Philippine Red Cross First Aid; European Resuscitation Council 2021"
+    },
+    {
+      "id": "heat-stroke",
+      "title": "Heat Stroke",
+      "local_name": "",
+      "urgency": "critical",
+      "keywords": ["heat", "hyperthermia", "sun", "heat exhaustion", "summer", "heat index"],
+      "warning_signs": [
+        "Very high body temperature",
+        "Hot skin, whether red, dry, or damp",
+        "Confusion, slurred speech, or collapse",
+        "Seizures",
+        "Fast, strong pulse"
+      ],
+      "steps": [
+        "Move the person to a shaded, cool, or air-conditioned place.",
+        "Remove excess clothing.",
+        "Cool them quickly: wet their skin with cool water and fan them, or put cold wet cloths or ice packs on the neck, armpits, and groin.",
+        "If they're fully awake and can swallow, give sips of cool water.",
+        "If they're unresponsive, lay them on their side and watch their breathing. Start CPR if they stop breathing normally.",
+        "Keep cooling them until help arrives."
+      ],
+      "avoid": [
+        "Giving drinks to someone who is confused or unresponsive",
+        "Giving paracetamol or aspirin to lower the temperature; it doesn't work for heat stroke",
+        "Leaving the person alone"
+      ],
+      "call_when": "Immediately if the person is confused, collapses, or has a seizure. Heat stroke can be fatal.",
+      "source": "DOH heat-related illness advisories; Philippine Red Cross First Aid"
+    },
+    {
+      "id": "drowning",
+      "title": "Drowning",
+      "local_name": "Pagkalunod",
+      "urgency": "critical",
+      "keywords": ["water", "swimming", "flood", "beach", "pool", "rescue"],
+      "warning_signs": [
+        "Head low in the water, mouth at water level",
+        "No shouting for help; drowning is often silent",
+        "Not breathing, or only gasping, after rescue",
+        "Coughing, vomiting, or confusion after rescue"
+      ],
+      "steps": [
+        "Don't jump in unless you're trained. Reach with a pole or branch, or throw something that floats.",
+        "Shout for help and have someone call 911.",
+        "Once the person is out of the water, check whether they respond and are breathing normally.",
+        "If they're not breathing normally, start CPR. If you're trained, include rescue breaths, since lack of oxygen is the main problem in drowning.",
+        "If they're breathing, lay them on their side and keep them warm.",
+        "Anyone rescued from drowning should see a doctor, even if they seem fine."
+      ],
+      "avoid": [
+        "Swimming out without training or something that floats",
+        "Pressing on the stomach or holding the person upside down to drain water",
+        "Entering floodwater or fast-moving currents"
+      ],
+      "call_when": "Immediately for anyone pulled from the water who is unresponsive, not breathing normally, or confused.",
+      "source": "Philippine Red Cross Water Safety; European Resuscitation Council 2021"
+    },
+    {
+      "id": "animal-bite",
+      "title": "Animal Bite or Scratch",
+      "local_name": "Kagat ng Hayop",
+      "urgency": "same_day",
+      "keywords": ["rabies", "dog", "cat", "bite", "scratch", "abtc", "anti-rabies", "vaccine"],
+      "warning_signs": [
+        "Bite or scratch from a dog, cat, or other mammal",
+        "Broken skin or bleeding",
+        "Animal is stray, unvaccinated, or acting strangely",
+        "Animal saliva on an open wound, eyes, or mouth"
+      ],
+      "steps": [
+        "Wash the wound right away with soap and running water for 15 minutes.",
+        "Apply an antiseptic such as povidone-iodine or 70% alcohol.",
+        "Cover with clean gauze. Don't close or stitch the wound.",
+        "Go to the nearest Animal Bite Treatment Center (ABTC) or hospital the same day. Anti-rabies vaccine is free at government ABTCs.",
+        "If the animal is a pet, ask about its vaccination and have it observed for 14 days. Tell the ABTC if it gets sick or dies."
+      ],
+      "avoid": [
+        "Tandok, tambal, or other traditional remedies",
+        "Putting garlic, herbs, or ointments on the wound",
+        "Waiting to see if the animal gets sick before getting vaccinated"
+      ],
+      "call_when": "Call 911 for severe bites with heavy bleeding. For every other bite, go to an ABTC the same day; rabies is fatal once symptoms appear.",
+      "source": "DOH Administrative Order 164 s. 2002; DOH rabies advisories"
+    }
+  ]
+}
