@@ -31,5 +31,9 @@ class User:
         return cls(
             id=raw.id,
             email=raw.email,
-            display_name=metadata.get("display_name"),
+            display_name=(
+                    metadata.get("display_name")
+                    or metadata.get("full_name")
+                    or metadata.get("name")
+            ),
         )

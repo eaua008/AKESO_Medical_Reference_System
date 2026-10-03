@@ -1,26 +1,21 @@
 """Business rules for the disease encyclopedia.
 
 Search, filtering and sorting live here rather than in the view, so the same
-rules apply whether the caller is the desktop grid, a test, or the global
-search box in the header.
+rules apply whether the caller is the grid, the global search box, or a test.
 
-The repository is injected. Point it at a different repository — local JSON,
-a cache, anything with the same method names — and nothing here changes.
+The repository is injected. By default it is now CachedDiseaseRepository,
+which reads from a local copy and syncs from Supabase in the background.
+Nothing in this class changed to make that work beyond the default below —
+which is the point of having a repository layer.
 """
 
 from typing import Optional
 
 from app.models.disease import BodySystem, Disease
-from app.repositories.supabase_disease_repository import (
-    SupabaseDiseaseRepository,
-)
+from app.repositories.cached_disease_repository import CachedDiseaseRepository
 
-# Ordered by clinical urgency, not alphabetically, so "sort by severity"
-# means something sensible.
 SEVERITY_ORDER = {"Mild": 0, "Moderate": 1, "Severe": 2, "Critical": 3}
 
-# These are the values that actually exist in the data. Note SEEK_URGENT_CARE
-# rather than URGENT.
 URGENCY_ORDER = {
     "SELF_CARE": 0,
     "SEE_DOCTOR_SOON": 1,
@@ -33,22 +28,15 @@ class DiseaseService:
     """Query and filter the disease reference set."""
 
     def __init__(self, repository: Optional[object] = None) -> None:
-        self._repository = repository or SupabaseDiseaseRepository()
+        self._repository = repository or CachedDiseaseRepository()
 
     # --------------------------------------------------------------- reads
 
     def all_diseases(self) -> list[Disease]:
-        """Every published condition, sorted by name.
-
-        Sorted so this and search() agree on ordering — an unsorted variant
-        here would silently differ from what the grid shows.
-        """
-        return sorted(
-            self._repository.all_diseases(), key=lambda d: d.name.lower()
-        )
+        """Every condition, sorted by name, so this agrees with search()."""
+        return sorted(self._repository.all_diseases(), key=lambda d: d.name.lower())
 
     def get(self, disease_id: str) -> Optional[Disease]:
-        """One condition, fully hydrated with its child tables."""
         return self._repository.get_disease(disease_id)
 
     def body_systems(self) -> list[BodySystem]:
@@ -61,9 +49,25 @@ class DiseaseService:
     def count(self) -> int:
         return self._repository.count()
 
+    def stats(self) -> dict[str, int]:
+        return self._repository.stats()
+
+    # ---------------------------------------------------------------- sync
+
     def reload(self) -> None:
-        """Re-read from the database so newly added rows appear."""
+        """Re-read the local copy into memory. Fast; no network."""
         self._repository.reload()
+
+    def sync(self, force: bool = False) -> bool:
+        """Refresh the local copy from Supabase. Returns True if it changed.
+
+        Blocking — call from SyncWorker, never the UI thread.
+        """
+        return self._repository.sync(force=force)
+
+    def has_local_copy(self) -> bool:
+        is_empty = getattr(self._repository, "is_empty", None)
+        return not is_empty() if callable(is_empty) else True
 
     # ------------------------------------------------------------ querying
 
@@ -75,11 +79,7 @@ class DiseaseService:
             urgency: Optional[str] = None,
             sort_by: str = "name",
     ) -> list[Disease]:
-        """Filter the full set down to what the user asked for.
-
-        Filters combine with AND. Empty or None means "no constraint", so
-        calling this with no arguments returns everything sorted by name.
-        """
+        """Filters combine with AND; empty or None means no constraint."""
         results = self._repository.all_diseases()
 
         if query:
@@ -96,11 +96,8 @@ class DiseaseService:
     @staticmethod
     def _sort(diseases: list[Disease], sort_by: str) -> list[Disease]:
         if sort_by == "severity":
-            # Descending: most severe first, which is what gets scanned for.
             return sorted(
-                diseases,
-                key=lambda d: SEVERITY_ORDER.get(d.severity, 0),
-                reverse=True,
+                diseases, key=lambda d: SEVERITY_ORDER.get(d.severity, 0), reverse=True
             )
         if sort_by == "urgency":
             return sorted(
@@ -115,45 +112,27 @@ class DiseaseService:
     # ------------------------------------------------------- filter options
 
     def severities(self) -> list[str]:
-        """Severity values actually present, in clinical order."""
         present = {d.severity for d in self._repository.all_diseases()}
         return sorted(present, key=lambda s: SEVERITY_ORDER.get(s, 0))
 
     def urgencies(self) -> list[str]:
-        """Urgency values actually present, in clinical order.
-
-        Conditions with no authored urgency are simply absent — there is no
-        filter option for "unassessed", because that is a gap in the data
-        rather than a category.
-        """
-        present = {
-            d.urgency for d in self._repository.all_diseases() if d.urgency
-        }
+        """Urgency values actually present. Unassessed conditions are simply
+        absent — a gap in the data is not a category to filter by."""
+        present = {d.urgency for d in self._repository.all_diseases() if d.urgency}
         return sorted(present, key=lambda u: URGENCY_ORDER.get(u, 0))
 
     # -------------------------------------------------------- cross-links
 
     def related_diseases(self, disease: Disease) -> list[Disease]:
-        """Resolve related IDs into real Disease objects.
-
-        Missing IDs are skipped rather than raising: reference data is
-        hand-authored, and one bad cross-link should not break a monograph.
-        """
-        found = []
-        for related_id in disease.related_disease_ids:
-            for candidate in self._repository.all_diseases():
-                if candidate.id == related_id:
-                    found.append(candidate)
-                    break
-        return found
+        """Resolve related ids; missing ones are skipped, not fatal."""
+        by_id = {d.id: d for d in self._repository.all_diseases()}
+        return [by_id[i] for i in disease.related_disease_ids if i in by_id]
 
     def group_by_body_system(self) -> dict[str, list[Disease]]:
-        """Conditions bucketed under their body system name."""
         grouped: dict[str, list[Disease]] = {}
         for disease in self._repository.all_diseases():
             key = self.body_system_name(disease.body_system_id)
             grouped.setdefault(key, []).append(disease)
-
         for diseases in grouped.values():
             diseases.sort(key=lambda d: d.name.lower())
         return dict(sorted(grouped.items()))

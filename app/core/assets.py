@@ -65,6 +65,36 @@ def logo_pixmap(height: int = 30) -> QPixmap:
     _cache[key] = scaled
     return scaled
 
+def logo_mark_pixmap(height: int = 44) -> QPixmap:
+    """The logo mark alone, cropped from the full wordmark.
+
+    Crop bounds were measured from the artwork's alpha channel. Both
+    variants have a clear gap between the mark and the divider line:
+
+        LIGHTLOGO  mark x=111..690, divider starts x=745
+        DARKLOGO   mark x=147..654, divider starts x=725
+
+    x=90..710 therefore contains the whole mark in both files and excludes
+    the divider. If the artwork is ever replaced, re-measure.
+    """
+    path = logo_path_for_theme()
+    key = (str(path) + ":mark", height)
+    if key in _cache:
+        return _cache[key]
+    if not path.exists():
+        return QPixmap()
+
+    source = QPixmap(str(path))
+    if source.isNull():
+        return QPixmap()
+
+    mark = source.copy(90, 0, 620, source.height())
+    scaled = mark.scaledToHeight(
+        height * 2, Qt.TransformationMode.SmoothTransformation
+    )
+    scaled.setDevicePixelRatio(2)
+    _cache[key] = scaled
+    return scaled
 
 def clear_cache() -> None:
     """Drop cached pixmaps. Call if logo files are replaced at runtime."""
