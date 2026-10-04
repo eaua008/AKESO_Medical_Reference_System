@@ -31,6 +31,7 @@ from PySide6.QtWidgets import (
 
 from app.core import icons
 from app.core.assets import logo_mark_pixmap, logo_pixmap
+from app.core.device_identity import APP_VERSION   # one version for the whole app
 from app.core.theme import Theme
 
 
@@ -730,7 +731,7 @@ class AuthView(QWidget):
 
         layout = QHBoxLayout(bar)
         label = QLabel(
-            "Akeso Academic Reference Platform v2.5  \u2022  Clinical "
+            f"Akeso Academic Reference Platform v{APP_VERSION}  \u2022  Clinical "
             "Weighted Symptom Correlation & Health Reference"
         )
         label.setObjectName("footerLabel")

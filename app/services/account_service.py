@@ -7,7 +7,6 @@ modified by whoever runs it.
 """
 
 import json
-import re
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,7 +24,6 @@ from app.repositories.local_account_data import LocalAccountData
 from app.repositories.profile_repository import ProfileRepository
 from app.repositories.security_repository import SecurityRepository
 
-HANDLE_PATTERN = re.compile(r"^[a-z0-9_]{3,20}$")
 MAX_AVATAR_BYTES = 1_000_000
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 
@@ -94,14 +92,6 @@ class AccountService:
                 raise AccountError("Please enter the name you want shown.")
             if len(clean["display_name"]) > 60:
                 raise AccountError("Names can be at most 60 characters.")
-        if "handle" in clean:
-            handle = (clean["handle"] or "").lstrip("@").lower()
-            if not handle:
-                clean["handle"] = None
-            elif not HANDLE_PATTERN.match(handle):
-                raise AccountError("Handles use 3–20 lowercase letters, numbers or underscores.")
-            else:
-                clean["handle"] = handle
         if "bio" in clean and len(clean["bio"]) > 280:
             raise AccountError("The bio can be at most 280 characters.")
         if "program" in clean and clean["program"] not in (None, *PROGRAM_LABELS):
@@ -128,16 +118,9 @@ class AccountService:
         diff = {k: v for k, v in clean.items() if getattr(current, k) != v}
         if not diff:
             return current
-        if diff.get("handle") and diff["handle"] != (current.handle or "") \
-                and not self._profiles.handle_available(diff["handle"]):
-            raise AccountError(f"@{diff['handle']} is already taken.")
         updated = Profile.from_row(self._profiles.update(diff))
         self._log("profile_updated", {"fields": sorted(diff)})
         return updated
-
-    def handle_available(self, handle: str) -> bool:
-        handle = handle.lstrip("@").lower()
-        return bool(HANDLE_PATTERN.match(handle)) and self._profiles.handle_available(handle)
 
     def set_avatar(self, png: bytes) -> Profile:
         if not png.startswith(PNG_SIGNATURE):
@@ -187,7 +170,6 @@ class AccountService:
             CompletenessItem("school", "Add your school and year level",
                              bool(p.school and p.year_level), "profile"),
             CompletenessItem("interests", "Pick your interest areas", bool(p.interests), "profile"),
-            CompletenessItem("handle", "Claim an @handle", bool(p.handle), "profile"),
             CompletenessItem("verified", "Verify your school email",
                              p.is_verified_student, "profile"),
             CompletenessItem("mfa", "Turn on two-factor sign-in", snapshot.mfa.enabled, "security"),

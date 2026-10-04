@@ -36,17 +36,23 @@ _css_cache: dict[str, str] = {}
 _app_mode: Optional[str] = None     # the mode the app-level stylesheet is in
 
 
-def stylesheet(mode: Optional[str] = None) -> str:
-    """Theme.stylesheet() for a mode, built once and reused."""
-    mode = mode or Theme.mode()
-    if mode not in _css_cache:
-        current = Theme.mode()
+def stylesheet(key: Optional[str] = None) -> str:
+    """Theme.stylesheet() for a theme + mode ("dracula:dark"), built once
+    and reused. A bare "dark"/"light" means that mode in the current theme."""
+    key = key or Theme.key()
+    if ":" not in key:
+        key = f"{Theme.color_theme()}:{key}"
+    if key not in _css_cache:
+        theme, mode = key.split(":", 1)
+        current_theme, current_mode = Theme.color_theme(), Theme.mode()
+        Theme.set_color_theme(theme)
         Theme.set_mode(mode)
         try:
-            _css_cache[mode] = Theme.stylesheet()
+            _css_cache[key] = Theme.stylesheet()
         finally:
-            Theme.set_mode(current)
-    return _css_cache[mode]
+            Theme.set_color_theme(current_theme)
+            Theme.set_mode(current_mode)
+    return _css_cache[key]
 
 
 def apply_app_stylesheet() -> None:
@@ -59,11 +65,12 @@ def apply_app_stylesheet() -> None:
     app = QApplication.instance()
     if app is not None:
         app.setStyleSheet(stylesheet())
-        _app_mode = Theme.mode()
+        _app_mode = Theme.key()
 
 
 def app_mode() -> str:
-    return _app_mode or Theme.mode()
+    """The theme + mode key the app-level stylesheet is in."""
+    return _app_mode or Theme.key()
 
 
 class ThemeScope(QObject):
@@ -73,7 +80,7 @@ class ThemeScope(QObject):
         super().__init__(parent)
         global _app_mode
         if _app_mode is None:           # app stylesheet was set elsewhere
-            _app_mode = Theme.mode()
+            _app_mode = Theme.key()
         self._areas: dict[QWidget, Optional[Callable[[], None]]] = {}
         self._queue: list[QWidget] = []
         self._timer = QTimer(self)
@@ -115,7 +122,7 @@ class ThemeScope(QObject):
     # ------------------------------------------------------------ switch
 
     def switch(self) -> None:
-        """Call after Theme.toggle_mode()."""
+        """Call after Theme.toggle_mode() or Theme.set_color_theme()."""
         for backdrop in self._backdrops:
             backdrop.update()
         for widget in list(self._areas):
@@ -134,12 +141,12 @@ class ThemeScope(QObject):
 
     @staticmethod
     def _current(widget: QWidget) -> bool:
-        return (widget.property(MODE_PROPERTY) or app_mode()) == Theme.mode()
+        return (widget.property(MODE_PROPERTY) or app_mode()) == Theme.key()
 
     def _restyle(self, widget: QWidget) -> None:
         if self._current(widget):
             return
-        mode = Theme.mode()
+        mode = Theme.key()
         # Back in the app-level mode: drop the widget's own copy, so it goes
         # back to one stylesheet (cheaper for every widget built later).
         widget.setStyleSheet("" if mode == app_mode() else stylesheet(mode))
@@ -166,7 +173,7 @@ class ThemeScope(QObject):
             if any(window is area or window.isAncestorOf(area) for area in self._areas):
                 continue
             if not self._current(window):
-                mode = Theme.mode()
+                mode = Theme.key()
                 window.setStyleSheet("" if mode == app_mode() else stylesheet(mode))
                 window.setProperty(MODE_PROPERTY, None if mode == app_mode() else mode)
 

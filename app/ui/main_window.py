@@ -11,7 +11,7 @@ before anyone has signed in.
 from typing import Optional
 
 from PySide6.QtCore import QEventLoop, QTimer
-from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
 
 from app.controllers.account_gate import AccountGate
 from app.controllers.auth_controller import AuthController
@@ -21,6 +21,7 @@ from app.models.user import User
 from app.repositories.supabase_disease_repository import DiseaseRepositoryError
 from app.services.disease_service import DiseaseService
 from app.ui.dashboard_shell import DashboardShell
+from app.ui import window_frame
 from app.ui.theme_scope import app_mode, apply_app_stylesheet
 from app.ui.views.auth_view import AuthView
 
@@ -37,7 +38,22 @@ class MainWindow(QMainWindow):
         self.resize(1480, 920)
 
         self._screens = QStackedWidget()
-        self.setCentralWidget(self._screens)
+        # On Windows, Akeso's own title strip (logo + minimise / maximise /
+        # close in the app's colours) replaces the grey Windows one.
+        title_bar = window_frame.install(self)
+        if title_bar is None:
+            self.setCentralWidget(self._screens)
+        else:
+            frame = QWidget()
+            column = QVBoxLayout(frame)
+            column.setContentsMargins(0, 0, 0, 0)
+            column.setSpacing(0)
+            column.addWidget(title_bar)
+            column.addWidget(self._screens, 1)
+            self.setCentralWidget(frame)
+            self.title_bar = title_bar
+            # The header's logo, bigger, filling the strip + header height.
+            self.brand_logo = window_frame.BrandLogo(frame, title_bar, self._screens)
 
         self.auth_view = AuthView()
         self._screens.addWidget(self.auth_view)
@@ -164,7 +180,7 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def _sync_app_theme() -> None:
-        if app_mode() != Theme.mode():
+        if app_mode() != Theme.key():
             apply_app_stylesheet()
 
     def closeEvent(self, event) -> None:  # noqa: N802

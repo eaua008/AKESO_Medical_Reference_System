@@ -34,7 +34,7 @@ def notebook_rules(p: dict, heading_font: str) -> str:
 
     dark = Theme.mode() == "dark"
     amber = "#FBBF24" if dark else "#B45309"
-    strip_bg = "#101017" if dark else "#ECECF2"
+    strip_bg = p["BG"] if dark else p["SURFACE_ALT"]
     chip_text = "#111118" if dark else "#FFFFFF"
 
     folder_rules = []
@@ -77,7 +77,7 @@ def notebook_rules(p: dict, heading_font: str) -> str:
         /* tabs */
         #nbStripRow {{ background-color: transparent; }}
         #nbTab {{
-            background-color: {p['SURFACE_ALT'] if not dark else '#16161E'};
+            background-color: {p['SURFACE_ALT'] if not dark else p['SURFACE']};
             border: 1px solid {p['BORDER']};
             border-bottom: none;
             border-top-left-radius: 8px;

@@ -13,6 +13,11 @@ Lists (tags), the case ids and the workspace layout are stored as JSON
 text columns: SQLite has no array type, and these are always read and
 written whole, never searched with SQL.
 
+Cloud copy (migration 011): rows with synced = 0 are sent to the
+account's notebook in Supabase by NotebookSync (services/notebook_sync.py),
+and changes made on other computers are merged back in. The methods under
+"cloud sync" below are the only ones it uses.
+
 Interaction case studies used to live in akeso_cases.db. The first time an
 owner opens the app after this update, import_legacy_cases() copies them
 in once; the old file is left untouched.
@@ -216,6 +221,90 @@ class LocalNotebookStore:
         with self._connect() as db:
             db.execute("UPDATE notebook_items SET deleted_at = ?, synced = 0 "
                        "WHERE id = ? AND owner = ?", (now_iso(), item_id, owner))
+
+    # ---------------------------------------------------------- cloud sync
+
+    _SUBJECT_SYNC = "id, name, created_at, updated_at, deleted_at"
+    _ITEM_SYNC = ("id, kind, title, subject_id, tags, body, case_data, workspace, pinned, "
+                  "created_at, updated_at, deleted_at")
+
+    def pending(self, owner: str) -> tuple[list[dict], list[dict]]:
+        """Subjects and items changed here since the last upload (deleted
+        ones included, so the deletion reaches the other computers)."""
+        with self._connect() as db:
+            subjects = db.execute(f"SELECT {self._SUBJECT_SYNC} FROM subjects "
+                                  "WHERE owner = ? AND synced = 0", (owner,)).fetchall()
+            items = db.execute(f"SELECT {self._ITEM_SYNC} FROM notebook_items "
+                               "WHERE owner = ? AND synced = 0", (owner,)).fetchall()
+        s_keys = [k.strip() for k in self._SUBJECT_SYNC.split(",")]
+        i_keys = [k.strip() for k in self._ITEM_SYNC.split(",")]
+        return ([dict(zip(s_keys, r)) for r in subjects],
+                [dict(zip(i_keys, r)) for r in items])
+
+    def has_pending(self, owner: str) -> bool:
+        with self._connect() as db:
+            row = db.execute("SELECT (SELECT count(*) FROM subjects WHERE owner = ? AND synced = 0)"
+                             " + (SELECT count(*) FROM notebook_items WHERE owner = ? AND synced = 0)",
+                             (owner, owner)).fetchone()
+        return bool(row and row[0])
+
+    def mark_synced(self, owner: str, table: str, row: dict) -> None:
+        """Uploaded. Only if the row still is what was uploaded: an edit
+        made while the upload ran keeps synced = 0 and goes next time."""
+        if table == "subjects":
+            sql = ("UPDATE subjects SET synced = 1 WHERE owner = ? AND id = ? AND name = ? "
+                   "AND updated_at = ? AND deleted_at IS ?")
+            args = (owner, row["id"], row["name"], row["updated_at"], row["deleted_at"])
+        else:
+            sql = ("UPDATE notebook_items SET synced = 1 WHERE owner = ? AND id = ? "
+                   "AND updated_at = ? AND deleted_at IS ? AND subject_id = ? AND pinned = ? "
+                   "AND workspace = ? AND title = ?")
+            args = (owner, row["id"], row["updated_at"], row["deleted_at"], row["subject_id"],
+                    row["pinned"], row["workspace"], row["title"])
+        with self._connect() as db:
+            db.execute(sql, args)
+
+    def local_row(self, owner: str, table: str, row_id: str) -> Optional[dict]:
+        cols = self._SUBJECT_SYNC if table == "subjects" else self._ITEM_SYNC
+        name = "subjects" if table == "subjects" else "notebook_items"
+        with self._connect() as db:
+            r = db.execute(f"SELECT {cols}, synced FROM {name} WHERE owner = ? AND id = ?",
+                           (owner, row_id)).fetchone()
+        if r is None:
+            return None
+        keys = [k.strip() for k in cols.split(",")] + ["synced"]
+        return dict(zip(keys, r))
+
+    def put_remote_subject(self, owner: str, row: dict) -> None:
+        """Store a subject as it is in the cloud (already marked synced)."""
+        with self._connect() as db:
+            db.execute(
+                "INSERT INTO subjects (id, owner, name, created_at, updated_at, deleted_at, synced) "
+                "VALUES (?, ?, ?, ?, ?, ?, 1) "
+                "ON CONFLICT(id) DO UPDATE SET name = excluded.name, "
+                "created_at = excluded.created_at, updated_at = excluded.updated_at, "
+                "deleted_at = excluded.deleted_at, synced = 1 "
+                "WHERE subjects.owner = excluded.owner",
+                (row["id"], owner, row["name"], row["created_at"], row["updated_at"],
+                 row["deleted_at"]))
+
+    def put_remote_item(self, owner: str, row: dict) -> None:
+        """Store a note / case as it is in the cloud (already marked synced).
+        opened_at (when you last opened it on THIS computer) is kept."""
+        with self._connect() as db:
+            db.execute(
+                "INSERT INTO notebook_items (id, owner, kind, title, subject_id, tags, body, "
+                "case_data, workspace, pinned, created_at, updated_at, deleted_at, synced) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1) "
+                "ON CONFLICT(id) DO UPDATE SET kind = excluded.kind, title = excluded.title, "
+                "subject_id = excluded.subject_id, tags = excluded.tags, body = excluded.body, "
+                "case_data = excluded.case_data, workspace = excluded.workspace, "
+                "pinned = excluded.pinned, created_at = excluded.created_at, "
+                "updated_at = excluded.updated_at, deleted_at = excluded.deleted_at, synced = 1 "
+                "WHERE notebook_items.owner = excluded.owner",
+                (row["id"], owner, row["kind"], row["title"], row["subject_id"], row["tags"],
+                 row["body"], row["case_data"], row["workspace"], int(row["pinned"]),
+                 row["created_at"], row["updated_at"], row["deleted_at"]))
 
     # --------------------------------------------------------- legacy data
 

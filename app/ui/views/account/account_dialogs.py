@@ -29,8 +29,8 @@ def match_theme(window: QWidget) -> None:
     """New windows get the app-level stylesheet, which may still be the old
     theme after a light/dark switch (see theme_scope.py). Give this window
     the current one."""
-    if Theme.mode() != app_mode():
-        window.setStyleSheet(stylesheet(Theme.mode()))
+    if Theme.key() != app_mode():
+        window.setStyleSheet(stylesheet(Theme.key()))
 
 
 class AccountDialog(QDialog):

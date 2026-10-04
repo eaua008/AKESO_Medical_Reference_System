@@ -1,11 +1,18 @@
 import os
 from dataclasses import dataclass
-from pathlib import Path
 
 from dotenv import load_dotenv
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-load_dotenv(PROJECT_ROOT / ".env")
+from app.core.paths import app_dir, resource_root
+
+PROJECT_ROOT = resource_root()
+# A .env next to Akeso.exe wins (so a build can be pointed at another
+# Supabase project without rebuilding); otherwise the one bundled inside it,
+# or the project's own .env when running from IntelliJ.
+for _env in (app_dir() / ".env", PROJECT_ROOT / ".env"):
+    if _env.is_file():
+        load_dotenv(_env)
+        break
 
 
 @dataclass(frozen=True)
@@ -26,7 +33,8 @@ class Config:
         if not url or not key:
             raise RuntimeError(
                 "Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY. "
-                "Check that .env exists in the project root and has no quotes."
+                "Check that .env exists in the project root (or next to Akeso.exe) "
+                "and has no quotes."
             )
         return cls(supabase_url=url, supabase_key=key)
 

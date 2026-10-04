@@ -64,10 +64,13 @@ activity that was not you.</li>
 while the switch in Privacy &amp; data is on.</li>
 <li><b>Consents:</b> which version of these documents you accepted, and
 when.</li>
+<li><b>Study Notebook:</b> your notes, saved cases, subjects and the
+pictures you put in them, so they appear on every computer you sign in on.
+A copy also stays on each computer, so the notebook works offline.</li>
 </ul>
 
 <h3>What stays on your computer</h3>
-<p>Bookmarks, saved cases, medications and your Study Notebook are stored
+<p>Bookmarks, search history, medications and your settings are stored only
 on the computer you use. Downloaded reference entries are kept there too,
 so Akeso works offline.</p>
 

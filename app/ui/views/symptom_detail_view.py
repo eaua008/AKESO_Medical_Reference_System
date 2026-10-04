@@ -34,6 +34,8 @@ from app.core import icons
 from app.core.theme import Theme
 from app.models.symptom import AssociatedCondition, Symptom
 from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain
+from app.ui.components.peer_discussions import PeerDiscussionList
+from app.ui.components.related_articles import RelatedArticlesList
 from app.ui.components.reference_cards import reference_grid
 from app.ui.views.compare_view import FlowLayout, WrapChip
 from app.ui.views.section_highlight import SectionHighlighter
@@ -75,7 +77,6 @@ class ConditionCard(QFrame):
         super().__init__()
         self.setObjectName("syConditionCard")
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setToolTip("Inspect this condition in the Disease Encyclopedia")
         self._id = condition.disease_id
 
         row = QHBoxLayout(self)
@@ -188,7 +189,7 @@ class SymptomDetailView(QWidget):
         self._bookmark.setCheckable(True)
         self._bookmark.setFixedWidth(40)
         self._bookmark.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._bookmark.setToolTip("Bookmark this entry (saved once Bookmarks is built)")
+        self._bookmark.setToolTip("Bookmark")
         self._bookmark.toggled.connect(self._on_bookmark_toggled)
         row.addWidget(self._bookmark)
         return bar
@@ -455,7 +456,7 @@ class SymptomDetailView(QWidget):
                 box_layout.addWidget(_label(f"\u2022  {line}", "syItem"))
             layout.addWidget(box)
 
-        # Peer discussions (Clinical Exchange feeds this once it is built)
+        # Peer discussions: Clinical Exchange posts tagged with this symptom
         layout = self._section("peer", 0, "Recent Peer Case Discussions", "chat")
         row = QHBoxLayout()
         row.addWidget(_label(
@@ -466,7 +467,10 @@ class SymptomDetailView(QWidget):
         present.clicked.connect(lambda: self.case_requested.emit(s.id))
         row.addWidget(present)
         layout.addLayout(row)
-        layout.addWidget(_label("No peer discussions are linked to this entry yet.", "syEmptyCentre"))
+        self.peer = PeerDiscussionList("symptom", s.id)
+        layout.addWidget(self.peer)
+        self.related_articles = RelatedArticlesList("symptom", s.id)
+        layout.addWidget(self.related_articles)
 
         self._content.addStretch(1)
         self._fill_glance(s)
@@ -516,7 +520,6 @@ class SymptomDetailView(QWidget):
         for condition in s.conditions:
             chip = WrapChip(condition.name, "syRelatedChip")
             chip.setCursor(Qt.CursorShape.PointingHandCursor)
-            chip.setToolTip("Open in the Disease Encyclopedia")
             # WrapChip is a QLabel, so wire the click through mousePressEvent.
             chip.mousePressEvent = (
                 lambda _e, did=condition.disease_id: self.condition_chosen.emit(did))

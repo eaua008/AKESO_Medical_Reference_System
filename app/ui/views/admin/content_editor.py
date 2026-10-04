@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.models.admin import (
-    CATEGORIES, KIND_LABELS, MEDICINE_FACTS, PREVENTION_TIERS, SAFETY, SEVERITIES, URGENCIES, slug,
+    ARTICLE_CATEGORIES, ARTICLE_KINDS, CATEGORIES, KIND_LABELS, MEDICINE_FACTS, PREVENTION_TIERS, SAFETY, SEVERITIES, URGENCIES, slug,
 )
 from app.ui.views.account.account_widgets import button, field_block, icon_label, label, refresh_icons
 from app.ui.views.admin.admin_widgets import IconButton
@@ -314,13 +314,16 @@ class ContentEditor(QWidget):
         what = KIND_LABELS[kind].lower()
         head = QHBoxLayout()
         head.setSpacing(12)
-        icon = {"disease": "stethoscope", "symptom": "activity", "medicine": "pill"}[kind]
+        icon = {"disease": "stethoscope", "symptom": "activity", "medicine": "pill",
+                "article": "file-text"}[kind]
         head.addWidget(icon_label(icon, 26), 0, Qt.AlignmentFlag.AlignTop)
         titles = QVBoxLayout()
         titles.setSpacing(4)
         titles.addWidget(label(f"New {what}" if is_new else f"Edit {what}: {self._data.get('name', '')}",
                                "acTitle"))
         titles.addWidget(label(
+            "Published articles appear in Health Articles straight away. Archived articles "
+            "stay in the database but are hidden from users." if kind == "article" else
             "Saved changes reach every running copy of Akeso on its next sync. Archived "
             "entries stay in the database but are hidden from users.", "acSubtitle"))
         head.addLayout(titles, 1)
@@ -356,7 +359,8 @@ class ContentEditor(QWidget):
         box, column = _section("Identity")
         self.name = _line(d.get("name"), {"disease": "e.g. Dengue Fever",
                                           "symptom": "e.g. Fever",
-                                          "medicine": "e.g. Paracetamol"}[self.kind], 160)
+                                          "medicine": "e.g. Paracetamol",
+                                          "article": "The article's title"}[self.kind], 160)
         self.entry_id = _line(d.get("id"), "letters, numbers and underscores", 60)
         self.entry_id.setReadOnly(not self.is_new)
         self.entry_id.textEdited.connect(lambda _t: setattr(self, "_id_touched", True))
@@ -367,11 +371,14 @@ class ContentEditor(QWidget):
                                            else "IDs cannot change after creation.")))
         second = {"disease": ("Scientific name", "scientific_name"),
                   "symptom": ("Scientific / clinical term", "scientific_name"),
-                  "medicine": ("International generic name (INN)", "international_generic_name")}
+                  "medicine": ("International generic name (INN)", "international_generic_name"),
+                  "article": ("Author", "author_name")}
         caption, key = second[self.kind]
         self.second_name = _line(d.get(key), "", 200)
         self.published = QCheckBox("Published (visible to users)")
-        self.published.setChecked(d.get("is_published", True) is not False)
+        # Articles start as drafts; encyclopedia entries start published.
+        default_published = not (self.kind == "article" and self.is_new)
+        self.published.setChecked(d.get("is_published", default_published) is not False)
         column.addWidget(_pair(field_block(caption, self.second_name),
                                field_block("Visibility", self.published)))
         self._form.addWidget(box)
@@ -381,6 +388,16 @@ class ContentEditor(QWidget):
             self.entry_id.setText(slug(name, self.kind))
 
     def _build_references(self) -> None:
+        if self.kind == "article":
+            box, column = _section("References",
+                                   "Sources shown at the end of a written article.")
+            self.references = RowsTable(REFERENCE_COLUMNS, self._data.get("references") or [],
+                                        "Add reference", stretch=(1,))
+            column.addWidget(self.references)
+            self.source = _line("", "", 300)          # not used by articles
+            self.source.hide()
+            self._form.addWidget(box)
+            return
         box, column = _section("Clinical references",
                                "Sources shown at the end of the entry. Tick Textbook for the "
                                "main textbook (shown first).")
@@ -560,6 +577,69 @@ class ContentEditor(QWidget):
             column.addWidget(_pair(*widgets))
         self._form.addWidget(box)
 
+    # ------------------------------------------------------------- article
+
+    def _build_article(self) -> None:
+        d = self._data
+        box, column = _section("Article")
+        self.article_kind = _combo(ARTICLE_KINDS, d.get("kind") or "written")
+        self.category = QComboBox()
+        self.category.setObjectName("acInput")
+        self.category.setEditable(True)            # pick a topic or type a new one
+        self.category.addItems(ARTICLE_CATEGORIES)
+        self.category.setCurrentText(d.get("category") or "General")
+        column.addWidget(_pair(field_block("Type", self.article_kind),
+                               field_block("Topic", self.category,
+                                           "Pick one or type a new topic.")))
+        self.summary = _text(d.get("summary"), "One or two sentences shown on the card and "
+                             "at the top of the article", 70)
+        column.addWidget(field_block("Summary", self.summary))
+        self.reviewed = _line(d.get("reviewed_on") or "", "YYYY-MM-DD", 10)
+        column.addWidget(_pair(field_block("Last reviewed", self.reviewed,
+                                           "When the content was last checked."),
+                               QWidget()))
+        self._form.addWidget(box)
+
+        self._written_box, column = _section(
+            "Text", "Plain text. A blank line starts a new paragraph, \"## \" starts a "
+            "heading, and \"- \" starts a bullet point.")
+        self.body = _text(d.get("body"), "Write the article here", 320)
+        column.addWidget(self.body)
+        self._form.addWidget(self._written_box)
+
+        self._link_box, column = _section(
+            "Link", "Opens in the built-in reference browser. Use trusted sources "
+            "(WHO, DOH, MedlinePlus, CDC...).")
+        self.url = _line(d.get("url"), "https://...", 500)
+        self.source_name = _line(d.get("source_name"), "e.g. World Health Organization", 160)
+        column.addWidget(_pair(field_block("Address (URL)", self.url),
+                               field_block("Source", self.source_name)))
+        self._form.addWidget(self._link_box)
+
+        box, column = _section("Linked entries",
+                               "Diseases, symptoms and medicines this article covers. They "
+                               "list it under Related health articles.")
+        entries = ([("", "Choose an entry…")]
+                   + [(f"disease:{i}", f"Disease · {n}") for i, n in self._diseases if i]
+                   + [(f"symptom:{i}", f"Symptom · {n}") for i, n in self._symptoms if i]
+                   + [(f"medicine:{i}", f"Medicine · {n}") for i, n in self._medicines if i])
+        self.article_links = RowsTable(
+            [("entry", "Entry", "combo", entries)],
+            [{"entry": f"{l.get('kind')}:{l.get('ref_id')}"} for l in d.get("links") or []],
+            "Add linked entry")
+        column.addWidget(self.article_links)
+        self._form.addWidget(box)
+
+        self.article_kind.currentIndexChanged.connect(lambda _i: self._kind_changed())
+        self._kind_changed()
+
+    def _kind_changed(self) -> None:
+        written = self.article_kind.currentData() == "written"
+        self._written_box.setVisible(written)
+        # A link's source shows for both kinds (credit where a written piece draws from).
+        self.url.setEnabled(not written)
+        self._link_box.setVisible(True)
+
     # ------------------------------------------------------------ results
 
     def data(self) -> dict:
@@ -592,6 +672,23 @@ class ContentEditor(QWidget):
                     "symptoms": self.symptom_links.rows(),
                     "medicines": self.medicine_links.rows(),
                     "related": [r["id"] for r in self.related.rows() if r.get("id")]}
+        if self.kind == "article":
+            links = []
+            for row in self.article_links.rows():
+                kind, _sep, ref_id = (row.get("entry") or "").partition(":")
+                if kind and ref_id:
+                    links.append({"kind": kind, "ref_id": ref_id})
+            written = self.article_kind.currentData() == "written"
+            return {**common,
+                    "kind": self.article_kind.currentData(),
+                    "category": self.category.currentText().strip() or "General",
+                    "author_name": self.second_name.text().strip(),
+                    "summary": self.summary.toPlainText().strip(),
+                    "reviewed_on": self.reviewed.text().strip(),
+                    "body": self.body.toPlainText().strip() if written else "",
+                    "url": "" if written else self.url.text().strip(),
+                    "source_name": self.source_name.text().strip(),
+                    "links": links}
         if self.kind == "symptom":
             return {**common,
                     "scientific_name": self.second_name.text().strip(),

@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Body System Explorer</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0d0d13;
+               font-family: "DM Sans", "Segoe UI", sans-serif; }
+  #view { width: 100%; height: 100%; display: block; outline: none; cursor: grab; }
+  #view:active { cursor: grabbing; }
+  #tip { position: fixed; display: none; pointer-events: none; padding: 5px 9px;
+         border-radius: 7px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  #tip.dark { background: rgba(20,20,28,.92); color: #f3f4f6; border: 1px solid #2a2a38; }
+  #tip.light { background: rgba(255,255,255,.95); color: #17171f; border: 1px solid #e1e1e8; }
+  #status { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            color: #9ca3af; font-size: 13px; }
+  #credit { position: fixed; right: 10px; bottom: 8px; color: #8a8a98; font-size: 10px; }
+</style></head>
+<body>
+<canvas id="view" tabindex="0"></canvas>
+<div id="tip" class="dark"></div>
+<div id="status">Loading the 3D body…</div>
+<div id="credit">3D models: BodyParts3D, © The Database Center for Life Science (CC BY 4.0)</div>
+<script src="qwebchannel.js"></script>
+<script src="anatomy.bundle.js"></script>
+</body></html>

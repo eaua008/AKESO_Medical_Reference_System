@@ -46,7 +46,16 @@ class AdminService:
         return [ContentItem.from_row(kind, row) for row in self._repo.list_content(kind)]
 
     def all_content(self) -> dict[str, list[ContentItem]]:
-        return {kind: self.content(kind) for kind in KINDS}
+        result = {}
+        for kind in KINDS:
+            try:
+                result[kind] = self.content(kind)
+            except Exception:
+                if kind != "article":
+                    raise
+                # Migration 005 not run yet: the other sections still work.
+                result[kind] = []
+        return result
 
     def entry(self, kind: str, entry_id: str) -> dict:
         return self._repo.get_content(kind, entry_id)
@@ -77,6 +86,21 @@ class AdminService:
             return f"Another {kind} already uses the ID “{entry_id}”."
         if kind == "disease" and not (data.get("description") or "").strip():
             return "Write a clinical summary for the disease."
+        if kind == "article":
+            url = (data.get("url") or "").strip()
+            if url and not url.startswith(("http://", "https://")):
+                return "The link must start with http:// or https://."
+            if data.get("kind") == "external" and not url:
+                return "An external article needs its link."
+            if data.get("kind") == "written" and not (data.get("body") or "").strip():
+                return "Write the article text."
+            reviewed = (data.get("reviewed_on") or "").strip()
+            if reviewed:
+                from datetime import date
+                try:
+                    date.fromisoformat(reviewed)
+                except ValueError:
+                    return "Write the review date as YYYY-MM-DD, e.g. 2026-10-03."
         for ref in data.get("references") or []:
             if (ref.get("citation_text") or ref.get("url")) and not ref.get("source_name"):
                 return "Every reference needs a source name."

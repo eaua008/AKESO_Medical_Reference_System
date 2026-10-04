@@ -19,8 +19,14 @@
 //   SMTP_PASSWORD   a Google "app password" for that address, not the real one
 //   SMTP_FROM       Akeso <that same address>
 //   SCHOOL_EMAIL_SUFFIXES  optional, default ".edu.ph,.edu"
-// SUPABASE_URL, SUPABASE_ANON_KEY and SUPABASE_SERVICE_ROLE_KEY are
-// provided by Supabase automatically.
+// SUPABASE_URL and the project's keys are provided by Supabase
+// automatically (legacy or new-style, both work: see envKey).
+//
+// Deploy with "Verify JWT" OFF (Dashboard > Edge Functions > school-email
+// > Details, or: supabase functions deploy school-email --no-verify-jwt).
+// The built-in check only understands the legacy key format and answers
+// 401 before this code runs on projects using the new keys; this function
+// checks the signed-in user itself (auth.getUser below).
 // =====================================================================
 
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -32,9 +38,25 @@ const RESEND_AFTER_SECONDS = 60;
 const MAX_SENDS_PER_DAY = 5;
 const EMAIL_PATTERN = /^[^@\s]+@([a-z0-9-]+\.)+[a-z]{2,}$/i;
 
+// Projects on the new API keys get SUPABASE_PUBLISHABLE_KEYS /
+// SUPABASE_SECRET_KEYS (JSON, one entry per named key) instead of the
+// legacy SUPABASE_ANON_KEY / SUPABASE_SERVICE_ROLE_KEY. Accept either.
+function envKey(single: string, named: string): string {
+  const direct = Deno.env.get(single);
+  if (direct) return direct;
+  const raw = Deno.env.get(named);
+  if (raw) {
+    try {
+      const values = Object.values(JSON.parse(raw) as Record<string, string>);
+      if (values.length > 0) return String(values[0]);
+    } catch (_e) { /* not JSON: ignore */ }
+  }
+  return "";
+}
+
 const url = Deno.env.get("SUPABASE_URL")!;
-const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const anonKey = envKey("SUPABASE_ANON_KEY", "SUPABASE_PUBLISHABLE_KEYS");
+const serviceKey = envKey("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEYS");
 const suffixes = (Deno.env.get("SCHOOL_EMAIL_SUFFIXES") ?? ".edu.ph,.edu")
   .split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
 

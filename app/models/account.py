@@ -11,7 +11,7 @@ from typing import Optional
 # Bump when the Terms or Privacy Notice text changes (app/core/legal_text.py).
 # Everyone is asked to accept the new version at their next sign-in.
 TERMS_VERSION = "2026-09"
-PRIVACY_VERSION = "2026-09"
+PRIVACY_VERSION = "2026-10"      # 2026-10: the Study Notebook syncs to the account
 
 DELETION_GRACE_DAYS = 30
 
@@ -112,8 +112,14 @@ class Profile:
     year_level: Optional[int] = None
     interests: list[str] = field(default_factory=list)
     is_public: bool = False
-    show_school: bool = True
+    show_school: bool = False            # new accounts: hidden (migration 012)
     show_program: bool = True
+    # Clinical Exchange profile (migration 008)
+    visibility: str = "public"           # public | members | private (012 default)
+    show_photo: bool = False
+    show_stats: bool = True
+    show_activity: bool = True
+    show_last_active: bool = False
     track_study_activity: bool = True
     school_email_domain: Optional[str] = None
     school_email_verified_at: Optional[datetime] = None
@@ -125,9 +131,10 @@ class Profile:
     suspended_reason: str = ""
 
     # Columns the app may change (the database refuses the rest anyway).
-    EDITABLE = ("display_name", "handle", "bio", "avatar_path", "program", "school",
+    EDITABLE = ("display_name", "bio", "avatar_path", "program", "school",
                 "year_level", "interests", "is_public", "show_school", "show_program",
-                "track_study_activity")
+                "track_study_activity", "visibility", "show_photo", "show_stats",
+                "show_activity", "show_last_active")
 
     @classmethod
     def from_row(cls, row: dict) -> "Profile":
@@ -144,6 +151,11 @@ class Profile:
             is_public=bool(row.get("is_public")),
             show_school=row.get("show_school", True) is not False,
             show_program=row.get("show_program", True) is not False,
+            visibility=row.get("visibility") or ("public" if row.get("is_public") else "private"),
+            show_photo=bool(row.get("show_photo")),
+            show_stats=row.get("show_stats", True) is not False,
+            show_activity=row.get("show_activity", True) is not False,
+            show_last_active=row.get("show_last_active", True) is not False,
             track_study_activity=row.get("track_study_activity", True) is not False,
             school_email_domain=row.get("school_email_domain"),
             school_email_verified_at=parse_time(row.get("school_email_verified_at")),

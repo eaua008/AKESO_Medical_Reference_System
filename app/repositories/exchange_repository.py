@@ -45,6 +45,12 @@ class ExchangeRepository:
     def profile_card(self, handle: str) -> dict:
         return self._rpc("ex_profile_card", {"p_handle": handle})
 
+    def profile(self, handle: str) -> dict:
+        return self._rpc("ex_profile", {"p_handle": handle})
+
+    def follow_user(self, handle: str, on: bool) -> bool:
+        return bool(self._rpc("ex_follow_user", {"p_handle": handle, "p_on": on}))
+
     def mod_queue(self) -> list[dict]:
         return self._rpc("ex_mod_queue") or []
 
@@ -63,6 +69,10 @@ class ExchangeRepository:
     def reply(self, post_id: str, parent_id: Optional[str], body: str, anonymous: bool) -> str:
         return self._rpc("ex_reply", {"p_post": post_id, "p_parent": parent_id,
                                       "p_body": body, "p_anonymous": anonymous})
+
+    def option_comment(self, post_id: str, option_id: str, body: str, anonymous: bool) -> str:
+        return self._rpc("ex_option_comment", {"p_post": post_id, "p_option": option_id,
+                                               "p_body": body, "p_anonymous": anonymous})
 
     def edit_reply(self, reply_id: str, body: str) -> None:
         self._rpc("ex_edit_reply", {"p_id": reply_id, "p_body": body})

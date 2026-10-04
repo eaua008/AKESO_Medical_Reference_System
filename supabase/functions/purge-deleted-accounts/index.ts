@@ -8,8 +8,9 @@
 // service-role key (auth.admin.deleteUser). The app only ever has the
 // publishable key, so it can ask for deletion (request_account_deletion)
 // but can never carry it out. Deleting the auth user cascades to every
-// Akeso table (profiles, roles, devices, log, consents, activity), and
-// the profile photo is removed from storage here first.
+// Akeso table (profiles, roles, devices, log, consents, activity, the
+// synced Study Notebook), and the profile photo and notebook pictures are
+// removed from storage here first.
 //
 // Deploy with "Verify JWT" OFF: Supabase Cron calls it with a shared
 // secret instead of a user's sign-in token.
@@ -24,9 +25,25 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 const BATCH = 50;
 
+// Projects on the new API keys get SUPABASE_PUBLISHABLE_KEYS /
+// SUPABASE_SECRET_KEYS (JSON, one entry per named key) instead of the
+// legacy SUPABASE_ANON_KEY / SUPABASE_SERVICE_ROLE_KEY. Accept either.
+function envKey(single: string, named: string): string {
+  const direct = Deno.env.get(single);
+  if (direct) return direct;
+  const raw = Deno.env.get(named);
+  if (raw) {
+    try {
+      const values = Object.values(JSON.parse(raw) as Record<string, string>);
+      if (values.length > 0) return String(values[0]);
+    } catch (_e) { /* not JSON: ignore */ }
+  }
+  return "";
+}
+
 const admin = createClient(
   Deno.env.get("SUPABASE_URL")!,
-  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+  envKey("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEYS"),
   { auth: { persistSession: false } },
 );
 
@@ -66,9 +83,13 @@ Deno.serve(async (req) => {
     const id = row.id as string;
     try {
       // Photos first: storage objects are not removed by the cascade.
-      const { data: files } = await admin.storage.from("avatars").list(id);
-      if (files && files.length > 0) {
-        await admin.storage.from("avatars").remove(files.map((f) => `${id}/${f.name}`));
+      for (const bucket of ["avatars", "notebook-images"]) {
+        for (;;) {
+          const { data: files } = await admin.storage.from(bucket).list(id, { limit: 1000 });
+          if (!files || files.length === 0) break;
+          await admin.storage.from(bucket).remove(files.map((f) => `${id}/${f.name}`));
+          if (files.length < 1000) break;
+        }
       }
       const { error: delError } = await admin.auth.admin.deleteUser(id);
       if (delError) throw delError;
