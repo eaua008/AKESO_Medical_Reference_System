@@ -38,6 +38,8 @@ from app.core import icons
 from app.core.theme import Theme
 from app.models.medicine import LinkedCondition, MedicineMonograph
 from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain
+from app.ui.components.peer_discussions import PeerDiscussionList
+from app.ui.components.related_articles import RelatedArticlesList
 from app.ui.components.reference_cards import reference_grid
 from app.ui.views.compare_view import FlowLayout, WrapChip
 from app.ui.views.section_highlight import SectionHighlighter
@@ -77,7 +79,6 @@ class ConditionCard(QFrame):
         super().__init__()
         self.setObjectName("mdConditionCard")
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setToolTip("Open in the Disease Encyclopedia")
         self._id = condition.disease_id
 
         row = QHBoxLayout(self)
@@ -190,7 +191,7 @@ class MedicineMonographView(QWidget):
         self._bookmark.setCheckable(True)
         self._bookmark.setFixedWidth(40)
         self._bookmark.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._bookmark.setToolTip("Bookmark this entry (saved once Bookmarks is built)")
+        self._bookmark.setToolTip("Bookmark")
         self._bookmark.toggled.connect(self._on_bookmark_toggled)
         row.addWidget(self._bookmark)
         return bar
@@ -497,8 +498,12 @@ class MedicineMonographView(QWidget):
         present.clicked.connect(lambda: self.case_requested.emit(m.id))
         row.addWidget(present)
         layout.addLayout(row)
-        layout.addWidget(_label("No peer discussions are linked to this entry yet.",
-                                "mdEmptyCentre"))
+        # Filled with Clinical Exchange posts tagged with this medicine
+        # (DashboardShell._load_peer_posts).
+        self.peer = PeerDiscussionList("medicine", m.id)
+        layout.addWidget(self.peer)
+        self.related_articles = RelatedArticlesList("medicine", m.id)
+        layout.addWidget(self.related_articles)
 
         self._content.addStretch(1)
         self._fill_glance(m)
@@ -551,7 +556,6 @@ class MedicineMonographView(QWidget):
         for condition in m.conditions:
             chip = WrapChip(condition.name, "mdRelatedChip")
             chip.setCursor(Qt.CursorShape.PointingHandCursor)
-            chip.setToolTip("Open in the Disease Encyclopedia")
             chip.mousePressEvent = (
                 lambda _e, did=condition.disease_id: self.condition_chosen.emit(did))
             flow.addWidget(chip)

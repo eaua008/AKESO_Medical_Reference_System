@@ -24,6 +24,7 @@ class PostView(QWidget):
     reply_action = Signal(str, str)          # action, reply id
     reply_upvote = Signal(str, bool)
     reply_submitted = Signal(object, str, bool)   # parent id or None, body, anonymous
+    option_comment = Signal(str, str, bool)       # poll choice id, body, anonymous
     poll_vote = Signal(str)
     poll_suggest = Signal(object, str)
     poll_reveal = Signal()
@@ -37,6 +38,8 @@ class PostView(QWidget):
         self.checker: Optional[Callable[[str], Optional[str]]] = None
         self.diseases: list[tuple[str, str]] = []
         self._reply_widgets: dict[str, ReplyWidget] = {}
+        self._option_boxes: dict[str, ReplyBox] = {}
+        self._open_threads: set = set()           # choices whose comments are open
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
         self.scroll = QScrollArea()
@@ -80,13 +83,17 @@ class PostView(QWidget):
 
     def show_post(self, post: PostDetail, bookmarked: bool, keep_scroll: bool = False) -> None:
         position = self.scroll.verticalScrollBar().value() if keep_scroll else 0
+        if self.post is None or self.post.id != post.id:
+            self._open_threads = set()              # a different post: start closed
         self.post = post
         self.bookmarked = bookmarked
         clear_layout(self._content)
         self._reply_widgets.clear()
+        self._option_boxes.clear()
         self._content.addWidget(self._build_post(post))
         if post.poll is not None:
-            poll = PollWidget(post.poll, post.is_author, post.is_open, self.diseases)
+            poll = PollWidget(post.poll, post.is_author, post.is_open, self.diseases,
+                              thread_for=self._option_thread, open_threads=self._open_threads)
             poll.vote_requested.connect(self.poll_vote.emit)
             poll.suggest_requested.connect(self.poll_suggest.emit)
             poll.reveal_requested.connect(self.poll_reveal.emit)
@@ -104,10 +111,14 @@ class PostView(QWidget):
         body = card.body
         if post.status != "open":
             note = Banner()
-            note.show_message(STATUS_LABELS.get(post.status, post.status) + (
-                ". Only you and moderators can see it." if post.status == "hidden" else
-                ". No new replies or votes." if post.status == "locked" else "."),
-                "danger" if post.status != "locked" else "warn")
+            if post.status in ("hidden", "removed"):
+                detail = ". Only the author and admins can see it."
+            elif post.status == "locked":
+                detail = ". No new replies or votes."
+            else:
+                detail = "."
+            note.show_message(STATUS_LABELS.get(post.status, post.status) + detail,
+                              "danger" if post.status != "locked" else "warn")
             body.addWidget(note)
         top = QHBoxLayout()
         top.addWidget(pill(KIND_LABELS.get(post.kind, post.kind), "acPill"))
@@ -162,7 +173,6 @@ class PostView(QWidget):
             for tag in post.tags:
                 chip = tag_chip(tag)
                 if tag.kind != "topic":
-                    chip.setToolTip(f"Open {tag.label} in the encyclopedia")
                     chip.clicked.connect(lambda _c=False, t=tag: self.tag_opened.emit(t))
                 chips.append(chip)
             body.addWidget(flow(chips))
@@ -202,8 +212,42 @@ class PostView(QWidget):
         b.clicked.connect(lambda: self.post_action.emit(action))
         return b
 
+    def _option_thread(self, option_id: str) -> QWidget:
+        """The comments under one poll choice, and a box to add one."""
+        post = self.post
+        host = QFrame()
+        host.setObjectName("panel")              # transparent inside the choice row
+        column = QVBoxLayout(host)
+        column.setContentsMargins(0, 6, 0, 2)
+        column.setSpacing(6)
+        vote_label = post.poll.label_for(post.poll.my_option) if post.poll else ""
+        comments = sorted((r for r in post.replies if r.option_id == option_id),
+                          key=lambda r: r.created_at.timestamp() if r.created_at else 0)
+        for reply in comments:
+            widget = self._reply_widget(reply, False, post, vote_label)
+            for child in reply.children:
+                widget.add_child(self._reply_widget(child, True, post, vote_label))
+            column.addWidget(widget)
+        if not comments:
+            column.addWidget(label("No comments on this choice yet.", "acSmall"))
+        if post.is_open:
+            name = post.poll.label_for(option_id) if post.poll else "this choice"
+            box = ReplyBox(f"Comment on {name}: why it fits, or why not…", vote_label,
+                           compact=True, checker=self.checker)
+            set_text(box.send, "Comment")
+            box.submitted.connect(lambda body, anon, oid=option_id:
+                                  self.option_comment.emit(oid, body, anon))
+            self._option_boxes[option_id] = box
+            column.addWidget(box)
+        return host
+
+    def option_box(self, option_id: str) -> Optional[ReplyBox]:
+        return self._option_boxes.get(option_id)
+
     def _build_discussion(self, post: PostDetail) -> QFrame:
-        card = Card(f"Discussion ({post.reply_count})", "", "message-circle")
+        general = [r for r in post.replies if not r.option_id]
+        count = len(general) + sum(len(r.children) for r in general)
+        card = Card(f"Discussion ({count})", "", "message-circle")
         vote_label = post.poll.label_for(post.poll.my_option) if post.poll else ""
         if post.is_open:
             self.reply_box = ReplyBox(vote_label=vote_label, checker=self.checker)
@@ -215,9 +259,9 @@ class PostView(QWidget):
         else:
             self.reply_box = None
             card.body.addWidget(label("Replies are closed on this post.", "acMuted"))
-        if not post.replies:
+        if not general:
             card.body.addWidget(label("No replies yet. Start the discussion.", "acMuted"))
-        ordered = sorted(post.replies, key=lambda r: (not r.is_best, -r.score,
+        ordered = sorted(general, key=lambda r: (not r.is_best, -r.score,
                                                       r.created_at.timestamp() if r.created_at else 0))
         for reply in ordered:
             widget = self._reply_widget(reply, False, post, vote_label)

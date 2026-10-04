@@ -1,0 +1,22 @@
+{
+  "tips": [
+    {"text": "Aim for at least 400 grams of fruits and vegetables a day, about five portions, to lower your risk of diet-related diseases.",
+     "source": "World Health Organization: Healthy diet",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
+    {"text": "Keep salt below 5 grams a day, about one level teaspoon, counting the salt already in sauces, instant noodles and processed food.",
+     "source": "World Health Organization: Healthy diet",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
+    {"text": "Limit free sugars (added sugar, syrups, sweetened drinks and juices) to less than 10% of your daily energy intake.",
+     "source": "World Health Organization: Healthy diet",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
+    {"text": "Adults should get at least 150 minutes of moderate-intensity physical activity a week, and cut down on time spent sitting.",
+     "source": "World Health Organization: Physical activity",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity"},
+    {"text": "Cover, empty and clean water containers around your home every week, so dengue mosquitoes have nowhere to breed.",
+     "source": "World Health Organization: Dengue and severe dengue",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"},
+    {"text": "Dengue mosquitoes bite during the day: wear clothes that cover your arms and legs and use a repellent with DEET, picaridin or IR3535.",
+     "source": "World Health Organization: Dengue and severe dengue",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"}
+  ]
+}

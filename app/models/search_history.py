@@ -10,10 +10,12 @@ KIND_LABELS = {
     "symptom": "Symptom",
     "medicine": "Medicine",
     "protocol": "First aid",
+    "article": "Article",
     "module": "Module",
 }
 FILTERS = [("all", "All"), ("disease", "Diseases"), ("symptom", "Symptoms"),
-           ("medicine", "Medicines"), ("protocol", "First aid"), ("module", "Modules")]
+           ("medicine", "Medicines"), ("protocol", "First aid"), ("article", "Articles"),
+           ("module", "Modules")]
 
 
 def now_iso() -> str:

@@ -15,6 +15,7 @@ from app.models.account import ROLE_LABELS
 from app.models.exchange import (
     KIND_LABELS, STATUS_LABELS, TAG_KINDS, Author, FeedPost, Poll, Reply, Tag, time_ago,
 )
+from app.ui.components.avatar_cache import AvatarCache
 from app.ui.components.fluid import contain
 from app.ui.views.account.account_widgets import (
     button, icon_label, label, pill, repolish, set_text,
@@ -98,9 +99,14 @@ class SearchPicker(QComboBox):
         self.lineEdit().clear()
 
 
+AVATAR_SIZE = 24
+
+
 class AuthorLine(QWidget):
-    """ "Name · Nursing · Verified · Educator · 3h ago" ; the name opens the
-    profile card when the author has a public profile."""
+    """ "(photo) Name · Nursing · Verified · Educator · 3h ago" ; the name
+    opens the profile when the author has a public profile. The photo shows
+    when the author allows it (otherwise their initial); anonymous posts get
+    a plain "no face" icon instead."""
 
     profile_requested = Signal(str)        # handle
 
@@ -111,7 +117,15 @@ class AuthorLine(QWidget):
         row.setContentsMargins(0, 0, 0, 0)
         row.setSpacing(6)
         if author.anonymous and not author.is_me and author.name == "Anonymous student":
-            row.addWidget(icon_label("user-x", 14, Theme.token("TEXT_MUTED")))
+            face = icon_label("user-x", 14, Theme.token("TEXT_MUTED"))
+            face.setFixedSize(AVATAR_SIZE, AVATAR_SIZE)
+            face.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            row.addWidget(face)
+        else:
+            self.avatar = QLabel()
+            self.avatar.setObjectName("panel")
+            AvatarCache.apply(self.avatar, author.avatar_path, author.name, AVATAR_SIZE)
+            row.addWidget(self.avatar)
         if author.handle:
             name = QPushButton(author.name)
             name.setObjectName("exAuthorLink")
@@ -262,9 +276,17 @@ class PollWidget(QFrame):
     reveal_requested = Signal()
 
     def __init__(self, poll: Poll, is_author: bool, is_open: bool,
-                 diseases: list[tuple[str, str]]) -> None:
+                 diseases: list[tuple[str, str]], thread_for=None,
+                 open_threads: Optional[set] = None) -> None:
+        """thread_for(option_id) -> QWidget builds a choice's comment thread
+        (the post view supplies it); open_threads: choices whose thread was
+        open before a reload, so it stays open."""
         super().__init__()
         self.setObjectName("acCard")
+        self._thread_for = thread_for
+        self.open_threads: set = open_threads if open_threads is not None else set()
+        self._threads: dict[str, QWidget] = {}
+        self._comment_buttons: dict[str, QPushButton] = {}
         layout = QVBoxLayout(self)
         layout.setContentsMargins(18, 16, 18, 16)
         layout.setSpacing(10)
@@ -277,9 +299,18 @@ class PollWidget(QFrame):
                                  wrap=False))
         layout.addLayout(head)
 
-        closed = poll.revealed or not is_open
-        if poll.revealed:
+        # Results, the intended answer and "Why" are shown once you have
+        # voted (the server only sends them then); the author always sees them.
+        unlocked = is_author or poll.my_option is not None or poll.show_results
+        # Before the reveal a vote can be changed or taken back. After it, a
+        # student who has not voted gets one final vote, which unlocks the answer.
+        can_vote = is_open and not is_author and not (poll.revealed and poll.my_option)
+        closed = poll.revealed or not is_open          # no new suggestions
+        if poll.revealed and unlocked:
             note = "The author revealed the intended answer."
+        elif poll.revealed:
+            note = ("The author has revealed the intended answer. Vote to see it and how "
+                    "others voted. Your vote is final once you cast it.")
         elif is_author:
             note = "You wrote this case, so you don't vote. Reveal the answer when discussion settles."
         elif poll.my_option:
@@ -293,7 +324,7 @@ class PollWidget(QFrame):
             row = QFrame()
             row.setObjectName("exPollRow")
             mine = option.id == poll.my_option
-            answer = option.id == poll.revealed_option
+            answer = unlocked and option.id == poll.revealed_option
             row.setProperty("mine", "true" if mine else "false")
             row.setProperty("answer", "true" if answer else "false")
             inner = QVBoxLayout(row)
@@ -311,13 +342,22 @@ class PollWidget(QFrame):
             if option.votes is not None:
                 share = round(100 * option.votes / total)
                 line.addWidget(label(f"{share}% · {option.votes}", "exStat", wrap=False))
-            if not closed and not is_author:
+            if can_vote:
                 vote = small_button("Voted" if mine else "Vote", "", "exVote")
                 vote.setCheckable(True)
                 vote.setChecked(mine)
                 vote.clicked.connect(lambda _c=False, oid=option.id, m=mine:
                                      self.vote_requested.emit("" if m else oid))
                 line.addWidget(vote)
+            if thread_for is not None and (is_open or option.comments):
+                count = f" ({option.comments})" if option.comments else ""
+                talk = small_button(f"Comment{count}", "message-circle")
+                talk.setCheckable(True)
+                talk.setToolTip(f"Discuss “{option.label}”: why it fits or doesn't")
+                talk.clicked.connect(lambda _c=False, oid=option.id, box=inner:
+                                     self._toggle_thread(oid, box))
+                line.addWidget(talk)
+                self._comment_buttons[option.id] = talk
             inner.addLayout(line)
             if option.votes is not None:
                 bar = QProgressBar()
@@ -329,8 +369,10 @@ class PollWidget(QFrame):
                 bar.setValue(option.votes)
                 inner.addWidget(bar)
             layout.addWidget(row)
+            if option.id in self.open_threads and thread_for is not None:
+                self._toggle_thread(option.id, inner, force=True)
 
-        if poll.revealed and poll.explanation:
+        if poll.revealed and unlocked and poll.explanation:
             layout.addWidget(label("WHY", "acFieldLabel", wrap=False))
             layout.addWidget(label(poll.explanation, "exBody"))
 
@@ -346,6 +388,21 @@ class PollWidget(QFrame):
         if is_author and not poll.revealed and poll.options:
             layout.addWidget(button("Reveal the intended answer", "acPrimary", "sparkles",
                                     self.reveal_requested.emit), 0, Qt.AlignmentFlag.AlignLeft)
+
+    def _toggle_thread(self, option_id: str, box: QVBoxLayout, force: bool = False) -> None:
+        thread = self._threads.get(option_id)
+        if thread is None:
+            thread = self._thread_for(option_id)
+            self._threads[option_id] = thread
+            box.addWidget(thread)
+            show = True
+        else:
+            show = force or not thread.isVisible()
+        thread.setVisible(show)
+        (self.open_threads.add if show else self.open_threads.discard)(option_id)
+        button = self._comment_buttons.get(option_id)
+        if button is not None:
+            button.setChecked(show)
 
     def _suggest(self) -> None:
         disease_id, text = self.picker.chosen()

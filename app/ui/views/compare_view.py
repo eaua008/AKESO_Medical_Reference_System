@@ -29,7 +29,7 @@ from PySide6.QtWidgets import (
 from app.core import icons
 from app.core.theme import Theme
 from app.models.disease import Disease
-from app.services.comparison import Comparison, SharedSymptom
+from app.services.comparison import Comparison
 
 MAX_CONDITIONS = 3
 
@@ -543,6 +543,18 @@ class CompareView(QWidget):
             combo.setToolTip(combo.currentText())
 
         self.selection_changed.emit()
+
+    def preselect(self, disease_id: str) -> None:
+        """Put one condition in the first slot (from a disease page's
+        "Compare Condition"); the user picks what to compare it with."""
+        if not self._combos:
+            return
+        index = self._combos[0].findData(disease_id)
+        if index >= 0:
+            self._combos[0].setCurrentIndex(index)
+            for combo in self._combos[1:]:
+                if combo.currentData() == disease_id:
+                    combo.setCurrentIndex(0)
 
     def selected_ids(self) -> list[str]:
         """Chosen condition ids, deduplicated, in selector order.

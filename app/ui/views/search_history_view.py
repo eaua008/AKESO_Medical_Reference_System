@@ -6,7 +6,6 @@ it looks like the rest of the workspace without a new stylesheet.
 """
 
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QButtonGroup, QFrame, QHBoxLayout, QLabel, QLineEdit, QPushButton, QScrollArea,
     QVBoxLayout, QWidget,
@@ -30,7 +29,6 @@ class HistoryRow(QFrame):
         super().__init__()
         self.setObjectName("acRow")
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setToolTip(f"Open {entry.title}")
         self._entry = entry
 
         row = QHBoxLayout(self)
@@ -116,8 +114,12 @@ class SearchHistoryView(QWidget):
         self._empty_icon = icon_label("history", 28, Theme.token("TEXT_MUTED"))
         self._empty_title = label("", "acCardTitle")
         self._empty_text = label("", "acMuted")
-        for widget in (self._empty_icon, self._empty_title, self._empty_text):
-            self._empty.body.addWidget(widget, 0, Qt.AlignmentFlag.AlignHCenter)
+        # Only the icon is centred as a widget. The two labels take the full
+        # width and centre their text: a word-wrapped label given an
+        # alignment flag gets squeezed to a narrow column and is cut off.
+        self._empty.body.addWidget(self._empty_icon, 0, Qt.AlignmentFlag.AlignHCenter)
+        self._empty.body.addWidget(self._empty_title)
+        self._empty.body.addWidget(self._empty_text)
         self._empty_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._empty_text.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._page.addWidget(self._empty)

@@ -11,6 +11,7 @@ it reads exactly what the rest of the app reads, cache included.
 from typing import Callable, Optional
 
 from app.models.bookmark import (
+    ARTICLE,
     DISEASE,
     EXCHANGE,
     KIND_ORDER,
@@ -31,6 +32,7 @@ class BookmarkService:
             symptom_lookup: Optional[Callable[[str], object]] = None,
             medicine_lookup: Optional[Callable[[str], object]] = None,
             exchange_lookup: Optional[Callable[[str], Optional[dict]]] = None,
+            article_lookup: Optional[Callable[[str], object]] = None,
     ) -> None:
         # owner: the signed-in account. Two people sharing a machine keep
         # separate bookmarks, and signing out hides them.
@@ -41,6 +43,7 @@ class BookmarkService:
             SYMPTOM: symptom_lookup,
             MEDICINE: medicine_lookup,
             EXCHANGE: exchange_lookup,
+            ARTICLE: article_lookup,
         }
 
     # ------------------------------------------------------------- state
@@ -101,6 +104,15 @@ class BookmarkService:
                 subtitle="Clinical Exchange",
                 description=entry.get("excerpt", ""),
                 meta="Case discussion" if entry.get("kind") == "case" else "Question",
+            )
+        if bookmark.entity_type == ARTICLE:
+            # A Health Article (written, or a curated external link).
+            return BookmarkEntry(
+                bookmark=bookmark,
+                title=entry.title,
+                subtitle=entry.category,
+                description=entry.summary,
+                meta=entry.kind_label,
             )
         if bookmark.entity_type == DISEASE:
             return BookmarkEntry(

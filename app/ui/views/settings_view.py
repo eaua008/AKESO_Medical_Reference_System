@@ -5,12 +5,14 @@ applies it and saves it. Built from the Account page's pieces (#acCard,
 SwitchRow, #acChip...) so the two pages feel like one workspace.
 """
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QRectF, Qt, Signal
+from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtWidgets import (
     QButtonGroup, QComboBox, QFrame, QGridLayout, QHBoxLayout, QPushButton, QScrollArea,
     QVBoxLayout, QWidget,
 )
 
+from app.core.preferences import CARD_COLUMNS, UI_SCALES
 from app.ui.views.account.account_widgets import (
     Banner, Card, SwitchRow, button, divider, label, refresh_icons, repolish, set_text,
 )
@@ -23,8 +25,85 @@ SHORTCUTS = [
 ]
 
 
+def theme_preview(palette: dict, width: int = 150, height: int = 76) -> QPixmap:
+    """A tiny picture of Akeso in a palette: sidebar, a card, a button."""
+    ratio = 2
+    pix = QPixmap(width * ratio, height * ratio)
+    pix.setDevicePixelRatio(ratio)
+    pix.fill(Qt.GlobalColor.transparent)
+    p = QPainter(pix)
+    p.setRenderHint(QPainter.RenderHint.Antialiasing)
+    p.setPen(QColor(palette["BORDER"]))
+    p.setBrush(QColor(palette["BG"]))
+    p.drawRoundedRect(QRectF(0.5, 0.5, width - 1, height - 1), 8, 8)
+    p.setPen(Qt.PenStyle.NoPen)
+    p.setBrush(QColor(palette["SURFACE"]))                       # sidebar
+    p.drawRoundedRect(QRectF(5, 5, 22, height - 10), 5, 5)
+    p.setBrush(QColor(palette["BADGE_TEXT"]))
+    p.drawRoundedRect(QRectF(9, 11, 14, 5), 2, 2)                # active nav item
+    p.setBrush(QColor(palette["ICON_MUTED"]))
+    for y in (22, 31, 40):
+        p.drawRoundedRect(QRectF(10, y, 12, 3), 1.5, 1.5)
+    p.setBrush(QColor(palette["SURFACE_RAISED"]))                # a card
+    p.setPen(QColor(palette["BORDER"]))
+    p.drawRoundedRect(QRectF(33, 9, width - 40, height - 18), 6, 6)
+    p.setPen(Qt.PenStyle.NoPen)
+    p.setBrush(QColor(palette["TEXT"]))
+    p.drawRoundedRect(QRectF(41, 17, 56, 5), 2.5, 2.5)            # title
+    p.setBrush(QColor(palette["TEXT_MUTED"]))
+    p.drawRoundedRect(QRectF(41, 27, 80, 3), 1.5, 1.5)
+    p.drawRoundedRect(QRectF(41, 34, 64, 3), 1.5, 1.5)
+    p.setBrush(QColor(palette["PRIMARY"]))
+    p.drawRoundedRect(QRectF(41, height - 25, 38, 11), 5, 5)       # button
+    p.setBrush(QColor(palette["ACCENT_2"]))
+    p.drawEllipse(QRectF(width - 26, height - 24, 9, 9))           # second accent
+    p.setBrush(QColor(palette["BADGE_TEXT"]))
+    p.drawEllipse(QRectF(width - 38, height - 24, 9, 9))
+    p.end()
+    return pix
+
+
+class ThemeTile(QFrame):
+    """One colour theme in the gallery: preview, name, one-line description."""
+
+    clicked = Signal(str)
+
+    def __init__(self, theme_id: str, preset: dict, mode: str, selected: bool) -> None:
+        super().__init__()
+        from app.core.theme import Theme
+        self.setObjectName("themeTile")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setToolTip(preset.get("blurb", ""))
+        self._id = theme_id
+        p = Theme.palette_for(Theme.color_theme(), Theme.mode())     # the app's colours now
+        self.setStyleSheet(
+            f"#themeTile {{ background: {p['SURFACE_ALT']}; border-radius: 12px; "
+            f"border: {'2px solid ' + p['PRIMARY'] if selected else '1px solid ' + p['BORDER']}; }}"
+            f"#themeTile:hover {{ border-color: {p['PRIMARY_HOVER']}; }}")
+        column = QVBoxLayout(self)
+        column.setContentsMargins(8, 8, 8, 8)
+        column.setSpacing(6)
+        preview = label("", "panel", wrap=False)
+        preview.setPixmap(theme_preview(Theme.palette_for(theme_id, mode)))
+        preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        column.addWidget(preview)
+        name = QHBoxLayout()
+        name.setSpacing(6)
+        name.addWidget(label(preset.get("name", theme_id), "acRowTitle", wrap=False), 1)
+        if selected:
+            name.addWidget(label("✓ In use", "acOk", wrap=False))
+        column.addLayout(name)
+
+    def mouseReleaseEvent(self, event) -> None:  # noqa: N802
+        if (event.button() == Qt.MouseButton.LeftButton
+                and self.rect().contains(event.position().toPoint())):
+            self.clicked.emit(self._id)
+        super().mouseReleaseEvent(event)
+
+
 class SettingsView(QWidget):
     theme_chosen = Signal(str)             # "light" or "dark"
+    color_theme_chosen = Signal(str)       # "dracula", "nord"... (theme_presets.py)
     pin_toggled = Signal(bool)
     start_tab_chosen = Signal(str)
     history_saving_toggled = Signal(bool)
@@ -33,6 +112,9 @@ class SettingsView(QWidget):
     clear_cache_requested = Signal()
     read_terms_requested = Signal()
     read_privacy_requested = Signal()
+    scale_chosen = Signal(int)             # percent
+    columns_chosen = Signal(int)           # 0 = auto
+    restart_requested = Signal()
 
     def __init__(self) -> None:
         super().__init__()
@@ -64,12 +146,13 @@ class SettingsView(QWidget):
         grid.setVerticalSpacing(16)
         grid.setColumnStretch(0, 1)
         grid.setColumnStretch(1, 1)
-        grid.addWidget(self._appearance(), 0, 0)
-        grid.addWidget(self._navigation(), 0, 1)
-        grid.addWidget(self._search(), 1, 0)
-        grid.addWidget(self._offline(), 1, 1)
-        grid.addWidget(self._shortcuts(), 2, 0)
-        grid.addWidget(self._about(), 2, 1)
+        grid.addWidget(self._appearance(), 0, 0, 1, 2)
+        grid.addWidget(self._navigation(), 1, 0)
+        grid.addWidget(self._display(), 1, 1, 2, 1)
+        grid.addWidget(self._search(), 2, 0)
+        grid.addWidget(self._offline(), 3, 0)
+        grid.addWidget(self._shortcuts(), 3, 1)
+        grid.addWidget(self._about(), 4, 0)
         column.addLayout(grid)
         column.addStretch(1)
 
@@ -79,8 +162,8 @@ class SettingsView(QWidget):
     # -------------------------------------------------------------- cards
 
     def _appearance(self) -> Card:
-        card = Card("Appearance", "Light or dark. The sun / moon button at the top "
-                    "switches it too.", "layout-grid")
+        card = Card("Appearance", "A colour theme, in light or dark. The sun / moon button "
+                    "at the top switches light and dark within the theme.", "layout-grid")
         row = QHBoxLayout()
         row.setSpacing(8)
         self._theme_group = QButtonGroup(self)
@@ -97,8 +180,78 @@ class SettingsView(QWidget):
             row.addWidget(chip)
         row.addStretch(1)
         card.body.addLayout(row)
-        card.body.addWidget(label("Remembered the next time Akeso opens, on the sign-in "
-                                  "screen too.", "acSmall"))
+        card.body.addWidget(label("THEME", "acFieldLabel"))
+        self._theme_grid = QGridLayout()
+        self._theme_grid.setHorizontalSpacing(10)
+        self._theme_grid.setVerticalSpacing(10)
+        card.body.addLayout(self._theme_grid)
+        self._theme_tiles: dict[str, ThemeTile] = {}
+        card.body.addWidget(label("Both choices are remembered the next time Akeso opens, on "
+                                  "the sign-in screen too.", "acSmall"))
+        return card
+
+    def show_color_themes(self, current: str, mode: str) -> None:
+        """(Re)draw the theme tiles: previews follow the current light/dark."""
+        from app.core.theme_presets import ORDER, PRESETS
+        for tile in self._theme_tiles.values():
+            self._theme_grid.removeWidget(tile)
+            tile.deleteLater()
+        self._theme_tiles = {}
+        for i, theme_id in enumerate(ORDER):
+            tile = ThemeTile(theme_id, PRESETS[theme_id], mode, theme_id == current)
+            tile.clicked.connect(self.color_theme_chosen.emit)
+            self._theme_grid.addWidget(tile, i // 5, i % 5)
+            self._theme_tiles[theme_id] = tile
+        for column in range(5):
+            self._theme_grid.setColumnStretch(column, 1)
+
+    def _chip_row(self, options: list[tuple[int, str]], signal) -> tuple[QHBoxLayout, dict]:
+        row = QHBoxLayout()
+        row.setSpacing(6)
+        group = QButtonGroup(self)
+        group.setExclusive(True)
+        chips: dict[int, QPushButton] = {}
+        for value, text in options:
+            chip = QPushButton(text)
+            chip.setObjectName("acChip")
+            chip.setCheckable(True)
+            chip.setCursor(Qt.CursorShape.PointingHandCursor)
+            chip.clicked.connect(lambda _c=False, v=value: signal.emit(v))
+            group.addButton(chip)
+            chips[value] = chip
+            row.addWidget(chip)
+        row.addStretch(1)
+        return row, chips
+
+    def _display(self) -> Card:
+        card = Card("Display", "How big things are, and how many cards fit in a row.",
+                    "search")
+        card.body.addWidget(label("SIZE", "acFieldLabel"))
+        row, self._scale_chips = self._chip_row(
+            [(s, f"{s}%") for s in UI_SCALES], self.scale_chosen)
+        card.body.addLayout(row)
+        card.body.addWidget(label("Text, buttons, cards and the sidebar all scale together. "
+                                  "90% is the default; pick a bigger size if text is hard "
+                                  "to read.", "acSmall"))
+        self._restart_row = QWidget()
+        self._restart_row.setObjectName("panel")
+        rr = QHBoxLayout(self._restart_row)
+        rr.setContentsMargins(0, 2, 0, 0)
+        rr.setSpacing(10)
+        self._restart_note = label("", "acValue")
+        rr.addWidget(self._restart_note, 1)
+        rr.addWidget(button("Restart now", "acPrimary", "refresh-cw",
+                            self.restart_requested.emit))
+        self._restart_row.hide()
+        card.body.addWidget(self._restart_row)
+        card.body.addWidget(divider())
+        card.body.addWidget(label("CARDS PER ROW", "acFieldLabel"))
+        row, self._column_chips = self._chip_row(
+            [(c, "Auto" if c == 0 else str(c)) for c in CARD_COLUMNS], self.columns_chosen)
+        card.body.addLayout(row)
+        card.body.addWidget(label("In the Disease, Symptom and Medicine encyclopedias. Auto "
+                                  "fits as many as the window allows; fewer show when the "
+                                  "window is too narrow for your choice.", "acSmall"))
         return card
 
     def _navigation(self) -> Card:
@@ -204,6 +357,20 @@ class SettingsView(QWidget):
                                  if cache_bytes else "No reference data downloaded yet.")
         self.set_clear_pending(clear_pending)
         self._version.setText(f"Akeso {version}")
+
+    def show_display(self, scale: int, running_scale: int, columns: int) -> None:
+        """scale: saved choice; running_scale: what this session started with."""
+        chip = self._scale_chips.get(scale)
+        if chip is not None:
+            chip.setChecked(True)
+        chip = self._column_chips.get(columns)
+        if chip is not None:
+            chip.setChecked(True)
+        pending = scale != running_scale
+        self._restart_note.setText(f"Akeso is showing {running_scale}%. Restart to use "
+                                   f"{scale}% (you will sign in again). Or it applies the "
+                                   "next time you open Akeso." if pending else "")
+        self._restart_row.setVisible(pending)
 
     def set_clear_pending(self, pending: bool) -> None:
         self._clear_cache.setEnabled(not pending)

@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout
 
+from app.core.links import open_link
 from app.core.theme import Theme
 from app.ui.components.fluid import ResponsiveGrid
 
@@ -33,7 +34,9 @@ def link_label(url: str, text: str, object_name: str) -> QLabel:
         f' text-decoration:none;">{escape(text)} ↗</a>')
     label.setObjectName(object_name)
     label.setTextFormat(Qt.TextFormat.RichText)
-    label.setOpenExternalLinks(True)
+    # Opens in the built-in reference browser (app/core/links.py).
+    label.setOpenExternalLinks(False)
+    label.linkActivated.connect(lambda href, t=text: open_link(href, t))
     label.setCursor(Qt.CursorShape.PointingHandCursor)
     label.setToolTip(url)
     return label

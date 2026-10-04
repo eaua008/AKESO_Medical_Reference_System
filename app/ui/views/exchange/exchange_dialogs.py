@@ -482,11 +482,13 @@ class ComposerPanel(QWidget):
 class ReportDialog(AccountDialog):
     submitted = Signal(str, str)
 
-    def __init__(self, what: str, parent: Optional[QWidget] = None) -> None:
+    def __init__(self, what: str, parent: Optional[QWidget] = None,
+                 reasons: Optional[list] = None) -> None:
         super().__init__(f"Report this {what}", "Moderators (educators and admins) will "
-                         "review it. The author isn't told who reported.", "flag", parent)
+                         "review it. The " + ("person" if what == "profile" else "author")
+                         + " isn't told who reported.", "flag", parent)
         self._group = QButtonGroup(self)
-        for index, (key, text) in enumerate(REPORT_REASONS):
+        for index, (key, text) in enumerate(reasons or REPORT_REASONS):
             radio = QRadioButton(text)
             radio.setProperty("reason", key)
             radio.setChecked(index == 0)
@@ -509,8 +511,11 @@ class ModerateDialog(AccountDialog):
     def __init__(self, what: str, status: str, parent: Optional[QWidget] = None) -> None:
         super().__init__(f"Moderate this {what}", "The author is notified (without your name) "
                          "and the action is logged.", "shield-alert", parent)
-        actions = [("hide", "Hide (only the author and moderators can see it)"),
-                   ("remove", "Remove")]
+        actions = [("hide", "Hide (only the author and admins can see it)"),
+                   ("remove", "Remove (only the author and admins can see it)")]
+        if what == "profile":
+            actions = [("make_private", "Make the profile private"),
+                       ("clear_bio", "Clear the bio")]
         if what == "post":
             actions.insert(1, ("lock", "Lock (no new replies or votes)"))
         if status == "hidden":

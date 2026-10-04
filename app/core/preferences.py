@@ -28,6 +28,18 @@ START_TABS = (
 )
 
 
+# Display size, in percent of normal. Applied when Akeso starts (Qt scales
+# every widget, font and icon by it), so a change needs a restart.
+UI_SCALES = (80, 90, 100, 110, 125)
+# Encyclopedia cards per row; 0 means "as many as fit".
+CARD_COLUMNS = (0, 2, 3, 4, 5)
+
+
+def _theme_ids() -> set:
+    from app.core.theme_presets import PRESETS
+    return set(PRESETS)
+
+
 def default_preferences_path() -> Path:
     return default_cache_path().with_name("akeso_preferences.json")
 
@@ -37,6 +49,9 @@ class Preferences:
     theme: str = "dark"            # the app's built-in default (Theme._mode)
     sidebar_pinned: bool = False
     start_tab: str = "dashboard"
+    ui_scale: int = 90             # a little smaller than Qt's default
+    color_theme: str = "akeso"     # Settings > Appearance (app/core/theme_presets.py)
+    cards_per_row: int = 0
 
     def cleaned(self) -> "Preferences":
         """Replace anything unexpected (a hand-edited file) with the default."""
@@ -46,6 +61,11 @@ class Preferences:
             sidebar_pinned=bool(self.sidebar_pinned),
             start_tab=(self.start_tab if self.start_tab in dict(START_TABS)
                        else default.start_tab),
+            ui_scale=self.ui_scale if self.ui_scale in UI_SCALES else default.ui_scale,
+            cards_per_row=(self.cards_per_row if self.cards_per_row in CARD_COLUMNS
+                           else default.cards_per_row),
+            color_theme=(self.color_theme if self.color_theme in _theme_ids()
+                         else default.color_theme),
         )
 
 

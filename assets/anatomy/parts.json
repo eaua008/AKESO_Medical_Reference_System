@@ -1,0 +1,9122 @@
+{
+"FJ1282": {
+"fma": "FMA58082",
+"name": "anterior chamber of left eyeball",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1285": {
+"fma": "FMA58300",
+"name": "left choroid",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1286": {
+"fma": "FMA58300",
+"name": "left choroid",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1289": {
+"fma": "FMA58240",
+"name": "left cornea",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1294": {
+"fma": "FMA49051",
+"name": "left inferior oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1295": {
+"fma": "FMA49047",
+"name": "left inferior rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1297": {
+"fma": "FMA58237",
+"name": "left iris",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1304": {
+"fma": "FMA49055",
+"name": "left lateral rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1305": {
+"fma": "FMA58243",
+"name": "left lens",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1306": {
+"fma": "FMA49049",
+"name": "left levator palpebrae superioris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1308": {
+"fma": "FMA49057",
+"name": "left medial rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1317": {
+"fma": "FMA58272",
+"name": "left sclera",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1320": {
+"fma": "FMA58840",
+"name": "suspensory ligament of left lens",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1322": {
+"fma": "FMA49053",
+"name": "left superior oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1323": {
+"fma": "FMA49045",
+"name": "left superior rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1331": {
+"fma": "FMA58829",
+"name": "left vitreous body",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12515",
+"group": "left eyeball"
+},
+"FJ1336": {
+"fma": "FMA58299",
+"name": "right choroid",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1337": {
+"fma": "FMA58299",
+"name": "right choroid",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1340": {
+"fma": "FMA58239",
+"name": "right cornea",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1345": {
+"fma": "FMA49050",
+"name": "right inferior oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1346": {
+"fma": "FMA49046",
+"name": "right inferior rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1348": {
+"fma": "FMA58236",
+"name": "right iris",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1355": {
+"fma": "FMA49054",
+"name": "right lateral rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1356": {
+"fma": "FMA58242",
+"name": "right lens",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1357": {
+"fma": "FMA49048",
+"name": "right levator palpebrae superioris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1359": {
+"fma": "FMA49056",
+"name": "right medial rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1368": {
+"fma": "FMA58271",
+"name": "right sclera",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1371": {
+"fma": "FMA58839",
+"name": "suspensory ligament of right lens",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1373": {
+"fma": "FMA49052",
+"name": "right superior oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1374": {
+"fma": "FMA49044",
+"name": "right superior rectus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1382": {
+"fma": "FMA58828",
+"name": "right vitreous body",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA12514",
+"group": "right eyeball"
+},
+"FJ1383": {
+"fma": "FMA37717",
+"name": "first lumbrical of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1383M": {
+"fma": "FMA37718",
+"name": "first lumbrical of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1384": {
+"fma": "FMA37745",
+"name": "first plantar interosseous of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1384M": {
+"fma": "FMA37746",
+"name": "first plantar interosseous of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1385": {
+"fma": "FMA37719",
+"name": "second lumbrical of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1385M": {
+"fma": "FMA37720",
+"name": "second lumbrical of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1386": {
+"fma": "FMA37743",
+"name": "second plantar interosseous of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1386M": {
+"fma": "FMA37744",
+"name": "second plantar interosseous of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1387": {
+"fma": "FMA37485",
+"name": "third lumbrical of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1387M": {
+"fma": "FMA37486",
+"name": "third lumbrical of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1388": {
+"fma": "FMA37741",
+"name": "third plantar interosseous of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1388M": {
+"fma": "FMA37742",
+"name": "third plantar interosseous of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1389": {
+"fma": "FMA37483",
+"name": "fourth lumbrical of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1389M": {
+"fma": "FMA37484",
+"name": "fourth lumbrical of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1390": {
+"fma": "FMA37463",
+"name": "abductor digiti minimi of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1390M": {
+"fma": "FMA37464",
+"name": "abductor digiti minimi of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1391": {
+"fma": "FMA37471",
+"name": "flexor digiti minimi brevis of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1391M": {
+"fma": "FMA37472",
+"name": "flexor digiti minimi brevis of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1399": {
+"fma": "FMA86034",
+"name": "opponens digiti minimi of right foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1399M": {
+"fma": "FMA86035",
+"name": "opponens digiti minimi of left foot",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1400": {
+"fma": "FMA37459",
+"name": "right abductor hallucis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1400M": {
+"fma": "FMA37460",
+"name": "left abductor hallucis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1401": {
+"fma": "FMA22452",
+"name": "right adductor brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1401M": {
+"fma": "FMA22454",
+"name": "left adductor brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1402": {
+"fma": "FMA22456",
+"name": "right adductor longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1402M": {
+"fma": "FMA22457",
+"name": "left adductor longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1403": {
+"fma": "FMA22459",
+"name": "right adductor magnus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1403M": {
+"fma": "FMA22460",
+"name": "left adductor magnus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1404": {
+"fma": "FMA43886",
+"name": "right adductor minimus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1404M": {
+"fma": "FMA43887",
+"name": "left adductor minimus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1406": {
+"fma": "FMA22548",
+"name": "right extensor digitorum longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1406M": {
+"fma": "FMA22549",
+"name": "left extensor digitorum longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1407": {
+"fma": "FMA51144",
+"name": "right extensor hallucis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1407M": {
+"fma": "FMA51145",
+"name": "left extensor hallucis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1408": {
+"fma": "FMA22546",
+"name": "right extensor hallucis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1408M": {
+"fma": "FMA22547",
+"name": "left extensor hallucis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1409": {
+"fma": "FMA22554",
+"name": "right fibularis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1409M": {
+"fma": "FMA22555",
+"name": "left fibularis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1410": {
+"fma": "FMA22552",
+"name": "right fibularis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1410M": {
+"fma": "FMA22553",
+"name": "left fibularis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1411": {
+"fma": "FMA22550",
+"name": "right fibularis tertius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1411M": {
+"fma": "FMA22551",
+"name": "left fibularis tertius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1412": {
+"fma": "FMA37465",
+"name": "right flexor accessorius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1412M": {
+"fma": "FMA37466",
+"name": "left flexor accessorius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1413": {
+"fma": "FMA37461",
+"name": "right flexor digitorum brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1413M": {
+"fma": "FMA37462",
+"name": "left flexor digitorum brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1414": {
+"fma": "FMA65016",
+"name": "right flexor digitorum longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1414M": {
+"fma": "FMA65017",
+"name": "left flexor digitorum longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1415": {
+"fma": "FMA65014",
+"name": "right flexor hallucis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1415M": {
+"fma": "FMA65015",
+"name": "left flexor hallucis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1416": {
+"fma": "FMA22336",
+"name": "right gemellus inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1416M": {
+"fma": "FMA22337",
+"name": "left gemellus inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1417": {
+"fma": "FMA22334",
+"name": "right gemellus superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1417M": {
+"fma": "FMA22335",
+"name": "left gemellus superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1418": {
+"fma": "FMA22328",
+"name": "right gluteus maximus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1418M": {
+"fma": "FMA22329",
+"name": "left gluteus maximus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1419": {
+"fma": "FMA22330",
+"name": "right gluteus medius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1419M": {
+"fma": "FMA22331",
+"name": "left gluteus medius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1420": {
+"fma": "FMA22332",
+"name": "right gluteus minimus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1420M": {
+"fma": "FMA22333",
+"name": "left gluteus minimus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1421": {
+"fma": "FMA43883",
+"name": "right gracilis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1421M": {
+"fma": "FMA43884",
+"name": "left gracilis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1422": {
+"fma": "FMA22322",
+"name": "right iliacus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1422M": {
+"fma": "FMA22323",
+"name": "left iliacus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1425": {
+"fma": "FMA22326",
+"name": "right obturator externus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1425M": {
+"fma": "FMA22327",
+"name": "left obturator externus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1426": {
+"fma": "FMA22324",
+"name": "right obturator internus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1426M": {
+"fma": "FMA22325",
+"name": "left obturator internus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1427": {
+"fma": "FMA22450",
+"name": "right pectineus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1427M": {
+"fma": "FMA22451",
+"name": "left pectineus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1428": {
+"fma": "FMA22340",
+"name": "right piriformis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1428M": {
+"fma": "FMA22341",
+"name": "left piriformis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1429": {
+"fma": "FMA22560",
+"name": "right plantaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1429M": {
+"fma": "FMA22561",
+"name": "left plantaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1430": {
+"fma": "FMA22591",
+"name": "right popliteus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1430M": {
+"fma": "FMA22592",
+"name": "left popliteus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1431": {
+"fma": "FMA22342",
+"name": "right psoas major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1431M": {
+"fma": "FMA22343",
+"name": "left psoas major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1432": {
+"fma": "FMA22338",
+"name": "right quadratus femoris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1432M": {
+"fma": "FMA22339",
+"name": "left quadratus femoris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1434": {
+"fma": "FMA22354",
+"name": "right sartorius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1434M": {
+"fma": "FMA22355",
+"name": "left sartorius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1435": {
+"fma": "FMA22448",
+"name": "right semimembranosus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1435M": {
+"fma": "FMA22449",
+"name": "left semimembranosus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1436": {
+"fma": "FMA22358",
+"name": "right semitendinosus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1436M": {
+"fma": "FMA22359",
+"name": "left semitendinosus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1437": {
+"fma": "FMA22558",
+"name": "right soleus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1437M": {
+"fma": "FMA22559",
+"name": "left soleus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1438": {
+"fma": "FMA22425",
+"name": "right tensor fasciae latae",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1438M": {
+"fma": "FMA22426",
+"name": "left tensor fasciae latae",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1439": {
+"fma": "FMA22544",
+"name": "right tibialis anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1439M": {
+"fma": "FMA22545",
+"name": "left tibialis anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1440": {
+"fma": "FMA65018",
+"name": "right tibialis posterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1440M": {
+"fma": "FMA65019",
+"name": "left tibialis posterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1449M": {
+"fma": "FMA46444",
+"name": "left coccygeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1450": {
+"fma": "FMA9623",
+"name": "perineal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1450M": {
+"fma": "FMA9623",
+"name": "perineal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1451": {
+"fma": "FMA9756",
+"name": "external intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1451M": {
+"fma": "FMA9756",
+"name": "external intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1452": {
+"fma": "FMA13336",
+"name": "right external oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1452M": {
+"fma": "FMA13337",
+"name": "left external oblique",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1454": {
+"fma": "FMA9758",
+"name": "innermost intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1454M": {
+"fma": "FMA9758",
+"name": "innermost intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1455": {
+"fma": "FMA9757",
+"name": "internal intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1455M": {
+"fma": "FMA9757",
+"name": "internal intercostal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1456": {
+"fma": "FMA13375",
+"name": "right pectoralis minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1456M": {
+"fma": "FMA13376",
+"name": "left pectoralis minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1459": {
+"fma": "FMA13398",
+"name": "right serratus anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1459M": {
+"fma": "FMA13399",
+"name": "left serratus anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1460": {
+"fma": "FMA13412",
+"name": "right subclavius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1460M": {
+"fma": "FMA13411",
+"name": "left subclavius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1461": {
+"fma": "FMA9761",
+"name": "right transversus thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1461M": {
+"fma": "FMA9762",
+"name": "left transversus thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1466": {
+"fma": "FMA37396",
+"name": "abductor digiti minimi of right hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1466M": {
+"fma": "FMA37397",
+"name": "abductor digiti minimi of left hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1469": {
+"fma": "FMA37389",
+"name": "left flexor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1469M": {
+"fma": "FMA37388",
+"name": "right flexor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1470": {
+"fma": "FMA37398",
+"name": "flexor digiti minimi brevis of right hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1470M": {
+"fma": "FMA37399",
+"name": "flexor digiti minimi brevis of left hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1472": {
+"fma": "FMA38507",
+"name": "right extensor carpi ulnaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1472M": {
+"fma": "FMA38508",
+"name": "left extensor carpi ulnaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1475": {
+"fma": "FMA38470",
+"name": "right flexor digitorum superficialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1475M": {
+"fma": "FMA38471",
+"name": "left flexor digitorum superficialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1482": {
+"fma": "FMA37400",
+"name": "opponens digiti minimi of right hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1482M": {
+"fma": "FMA37401",
+"name": "opponens digiti minimi of left hand",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1483": {
+"fma": "FMA37386",
+"name": "right abductor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1483M": {
+"fma": "FMA37387",
+"name": "left abductor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1484": {
+"fma": "FMA38516",
+"name": "right abductor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1484M": {
+"fma": "FMA38517",
+"name": "left abductor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1485": {
+"fma": "FMA37705",
+"name": "right anconeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1485M": {
+"fma": "FMA37706",
+"name": "left anconeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1486": {
+"fma": "FMA37668",
+"name": "right brachialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1486M": {
+"fma": "FMA37669",
+"name": "left brachialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1487": {
+"fma": "FMA38486",
+"name": "right brachioradialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1487M": {
+"fma": "FMA38487",
+"name": "left brachioradialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1488": {
+"fma": "FMA37665",
+"name": "right coracobrachialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1488M": {
+"fma": "FMA37666",
+"name": "left coracobrachialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1489": {
+"fma": "FMA38498",
+"name": "right extensor carpi radialis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1489M": {
+"fma": "FMA38499",
+"name": "left extensor carpi radialis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1490": {
+"fma": "FMA38495",
+"name": "right extensor carpi radialis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1490M": {
+"fma": "FMA38496",
+"name": "left extensor carpi radialis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1491": {
+"fma": "FMA38504",
+"name": "right extensor digiti minimi",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1491M": {
+"fma": "FMA38505",
+"name": "left extensor digiti minimi",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1492": {
+"fma": "FMA38501",
+"name": "right extensor digitorum",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1492M": {
+"fma": "FMA38502",
+"name": "left extensor digitorum",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1493": {
+"fma": "FMA38525",
+"name": "right extensor indicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1493M": {
+"fma": "FMA38526",
+"name": "left extensor indicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1494": {
+"fma": "FMA38519",
+"name": "right extensor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1494M": {
+"fma": "FMA38520",
+"name": "left extensor pollicis brevis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1495": {
+"fma": "FMA38522",
+"name": "right extensor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1495M": {
+"fma": "FMA38523",
+"name": "left extensor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1496": {
+"fma": "FMA38460",
+"name": "right flexor carpi radialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1496M": {
+"fma": "FMA38461",
+"name": "left flexor carpi radialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1497": {
+"fma": "FMA38479",
+"name": "right flexor digitorum profundus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1497M": {
+"fma": "FMA38480",
+"name": "left flexor digitorum profundus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1498": {
+"fma": "FMA38482",
+"name": "right flexor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1498M": {
+"fma": "FMA38484",
+"name": "left flexor pollicis longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1499": {
+"fma": "FMA38470",
+"name": "right flexor digitorum superficialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1499M": {
+"fma": "FMA38471",
+"name": "left flexor digitorum superficialis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1500": {
+"fma": "FMA32547",
+"name": "right infraspinatus muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1500M": {
+"fma": "FMA32548",
+"name": "left infraspinatus muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1501": {
+"fma": "FMA37390",
+"name": "right opponens pollicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1501M": {
+"fma": "FMA37391",
+"name": "left opponens pollicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1502": {
+"fma": "FMA38463",
+"name": "right palmaris longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1502M": {
+"fma": "FMA38464",
+"name": "left palmaris longus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1503": {
+"fma": "FMA38454",
+"name": "right pronator quadratus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1503M": {
+"fma": "FMA38455",
+"name": "left pronator quadratus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1504": {
+"fma": "FMA13414",
+"name": "right subscapularis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1504M": {
+"fma": "FMA13415",
+"name": "left subscapularis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1505": {
+"fma": "FMA38513",
+"name": "right supinator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1505M": {
+"fma": "FMA38514",
+"name": "left supinator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1506": {
+"fma": "FMA32544",
+"name": "right supraspinatus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1506M": {
+"fma": "FMA32545",
+"name": "left supraspinatus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1507": {
+"fma": "FMA32551",
+"name": "right teres major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1507M": {
+"fma": "FMA32552",
+"name": "left teres major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1508": {
+"fma": "FMA32553",
+"name": "right teres minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1508M": {
+"fma": "FMA32554",
+"name": "left teres minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1517": {
+"fma": "FMA38507",
+"name": "right extensor carpi ulnaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1517M": {
+"fma": "FMA38508",
+"name": "left extensor carpi ulnaris",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1522": {
+"fma": "FMA23089",
+"name": "right lumbar rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1522M": {
+"fma": "FMA23090",
+"name": "left lumbar rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1524": {
+"fma": "FMA81752",
+"name": "right cervical rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1524M": {
+"fma": "FMA81753",
+"name": "left cervical rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1525": {
+"fma": "FMA23083",
+"name": "thoracic rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1525M": {
+"fma": "FMA23083",
+"name": "thoracic rotator",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1526": {
+"fma": "FMA22744",
+"name": "right iliocostalis cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1526M": {
+"fma": "FMA22745",
+"name": "left iliocostalis cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1527": {
+"fma": "FMA22740",
+"name": "right iliocostalis lumborum",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1527M": {
+"fma": "FMA22741",
+"name": "left iliocostalis lumborum",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1528": {
+"fma": "FMA22742",
+"name": "right iliocostalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1528M": {
+"fma": "FMA22743",
+"name": "left iliocostalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1532": {
+"fma": "FMA32540",
+"name": "right levator scapulae",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1532M": {
+"fma": "FMA32541",
+"name": "left levator scapulae",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1533": {
+"fma": "FMA22754",
+"name": "right longissimus capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1533M": {
+"fma": "FMA22756",
+"name": "left longissimus capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1534": {
+"fma": "FMA22757",
+"name": "right longissimus cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1534M": {
+"fma": "FMA22758",
+"name": "left longissimus cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1535": {
+"fma": "FMA22751",
+"name": "right longissimus thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1535M": {
+"fma": "FMA22753",
+"name": "left longissimus thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1536": {
+"fma": "FMA13381",
+"name": "right rhomboid major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1536M": {
+"fma": "FMA13382",
+"name": "left rhomboid major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1537": {
+"fma": "FMA13383",
+"name": "right rhomboid minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1537M": {
+"fma": "FMA13384",
+"name": "left rhomboid minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1538": {
+"fma": "FMA22876",
+"name": "right semispinalis capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1538M": {
+"fma": "FMA22877",
+"name": "left semispinalis capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1539": {
+"fma": "FMA22874",
+"name": "right semispinalis cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1539M": {
+"fma": "FMA22875",
+"name": "left semispinalis cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1540": {
+"fma": "FMA22872",
+"name": "right semispinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1540M": {
+"fma": "FMA22873",
+"name": "left semispinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1541": {
+"fma": "FMA13405",
+"name": "right serratus posterior inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1541M": {
+"fma": "FMA13406",
+"name": "left serratus posterior inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1542": {
+"fma": "FMA13403",
+"name": "right serratus posterior superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1542M": {
+"fma": "FMA13404",
+"name": "left serratus posterior superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1543": {
+"fma": "FMA77179",
+"name": "spinalis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1543M": {
+"fma": "FMA77179",
+"name": "spinalis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1544": {
+"fma": "FMA22779",
+"name": "right spinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1544M": {
+"fma": "FMA22780",
+"name": "left spinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1545": {
+"fma": "FMA22728",
+"name": "right splenius capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1545M": {
+"fma": "FMA22729",
+"name": "left splenius capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1546": {
+"fma": "FMA22726",
+"name": "right splenius cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1546M": {
+"fma": "FMA22727",
+"name": "left splenius cervicis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1547": {
+"fma": "FMA22850",
+"name": "lateral lumbar intertransversarius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1547M": {
+"fma": "FMA22850",
+"name": "lateral lumbar intertransversarius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1548": {
+"fma": "FMA22851",
+"name": "medial lumbar intertransversarius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1548M": {
+"fma": "FMA22851",
+"name": "medial lumbar intertransversarius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1551": {
+"fma": "FMA22890",
+"name": "right interspinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1551M": {
+"fma": "FMA22891",
+"name": "left interspinalis thoracis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1555": {
+"fma": "FMA46293",
+"name": "left digastric",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1556": {
+"fma": "FMA46292",
+"name": "right digastric",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1558": {
+"fma": "FMA45740",
+"name": "left platysma",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1559": {
+"fma": "FMA46327",
+"name": "left geniohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1560": {
+"fma": "FMA46293",
+"name": "left digastric",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1561": {
+"fma": "FMA46310",
+"name": "left longus capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1562": {
+"fma": "FMA46322",
+"name": "left mylohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1563": {
+"fma": "FMA32537",
+"name": "left obliquus capitis inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1564": {
+"fma": "FMA32535",
+"name": "left obliquus capitis superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1565": {
+"fma": "FMA13349",
+"name": "left omohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1566": {
+"fma": "FMA46314",
+"name": "left rectus capitis anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1567": {
+"fma": "FMA32531",
+"name": "left rectus capitis posterior major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1568": {
+"fma": "FMA32533",
+"name": "left rectus capitis posterior minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1569": {
+"fma": "FMA46318",
+"name": "left rectus capitis lateralis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1570": {
+"fma": "FMA13393",
+"name": "left scalenus anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1571": {
+"fma": "FMA13391",
+"name": "left scalenus medius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1572": {
+"fma": "FMA13389",
+"name": "left scalenus posterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1573": {
+"fma": "FMA13409",
+"name": "left sternocleidomastoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1574": {
+"fma": "FMA13347",
+"name": "left sternohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1575": {
+"fma": "FMA13351",
+"name": "left sternothyroid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1576": {
+"fma": "FMA45827",
+"name": "left stylohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1577": {
+"fma": "FMA13353",
+"name": "left thyrohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1578": {
+"fma": "FMA46293",
+"name": "left digastric",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1579": {
+"fma": "FMA46292",
+"name": "right digastric",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1580": {
+"fma": "FMA46326",
+"name": "right geniohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1582": {
+"fma": "FMA46309",
+"name": "right longus capitis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1583": {
+"fma": "FMA46321",
+"name": "right mylohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1584": {
+"fma": "FMA32536",
+"name": "right obliquus capitis inferior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1585": {
+"fma": "FMA32534",
+"name": "right obliquus capitis superior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1586": {
+"fma": "FMA13348",
+"name": "right omohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1587": {
+"fma": "FMA45739",
+"name": "right platysma",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1588": {
+"fma": "FMA46313",
+"name": "right rectus capitis anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1589": {
+"fma": "FMA32530",
+"name": "right rectus capitis posterior major",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1590": {
+"fma": "FMA32532",
+"name": "right rectus capitis posterior minor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1591": {
+"fma": "FMA46317",
+"name": "right rectus capitis lateralis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1592": {
+"fma": "FMA13392",
+"name": "right scalenus anterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1593": {
+"fma": "FMA13390",
+"name": "right scalenus medius",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1594": {
+"fma": "FMA13388",
+"name": "right scalenus posterior",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1595": {
+"fma": "FMA13408",
+"name": "right sternocleidomastoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1596": {
+"fma": "FMA13346",
+"name": "right sternohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1597": {
+"fma": "FMA13350",
+"name": "right sternothyroid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1598": {
+"fma": "FMA45826",
+"name": "right stylohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1599": {
+"fma": "FMA13352",
+"name": "right thyrohyoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ1730": {
+"fma": "FMA78454",
+"name": "third ventricle",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1731": {
+"fma": "FMA78469",
+"name": "fourth ventricle",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1732": {
+"fma": "FMA72670",
+"name": "left angular gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1733": {
+"fma": "FMA72669",
+"name": "right angular gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1738": {
+"fma": "FMA78467",
+"name": "cerebral aqueduct",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1739": {
+"fma": "FMA72718",
+"name": "left cingulate gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1740": {
+"fma": "FMA72717",
+"name": "right cingulate gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1743": {
+"fma": "FMA62032",
+"name": "habenula",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1744": {
+"fma": "FMA72658",
+"name": "left inferior frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1745": {
+"fma": "FMA72657",
+"name": "right inferior frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1746": {
+"fma": "FMA72688",
+"name": "left inferior temporal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1747": {
+"fma": "FMA72687",
+"name": "right inferior temporal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1748": {
+"fma": "FMA72978",
+"name": "left insula",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1749": {
+"fma": "FMA72977",
+"name": "right insula",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1750": {
+"fma": "FMA72907",
+"name": "left internal capsule",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1751": {
+"fma": "FMA72906",
+"name": "right internal capsule",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1758": {
+"fma": "FMA241998",
+"name": "cerebral white matter",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1759": {
+"fma": "FMA72714",
+"name": "left hippocampus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1760": {
+"fma": "FMA62008",
+"name": "hypothalamus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1762": {
+"fma": "FMA73435",
+"name": "left inferior colliculus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1767": {
+"fma": "FMA78450",
+"name": "left lateral ventricle",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1769": {
+"fma": "FMA61998",
+"name": "segment of hindbrain",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1770": {
+"fma": "FMA61815",
+"name": "cardinal segment of brain",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1775": {
+"fma": "FMA67942",
+"name": "segment of metencephalon",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1779": {
+"fma": "FMA73423",
+"name": "left superior colliculus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1780": {
+"fma": "FMA62327",
+"name": "tuber cinereum",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1781": {
+"fma": "FMA67944",
+"name": "cerebellum",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1783": {
+"fma": "FMA72690",
+"name": "left fusiform gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1784": {
+"fma": "FMA72689",
+"name": "right fusiform gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1785": {
+"fma": "FMA72706",
+"name": "left parahippocampal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1786": {
+"fma": "FMA72705",
+"name": "right parahippocampal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1787": {
+"fma": "FMA72656",
+"name": "left middle frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1788": {
+"fma": "FMA72655",
+"name": "right middle frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1789": {
+"fma": "FMA72686",
+"name": "left middle temporal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1790": {
+"fma": "FMA72685",
+"name": "right middle temporal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1791": {
+"fma": "FMA72976",
+"name": "left occipital lobe",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1792": {
+"fma": "FMA72975",
+"name": "right occipital lobe",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1795": {
+"fma": "FMA62033",
+"name": "pineal body",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1796": {
+"fma": "FMA13889",
+"name": "pituitary gland",
+"layer": "organ",
+"system": "endocrine",
+"group_fma": "",
+"group": ""
+},
+"FJ1797": {
+"fma": "FMA72666",
+"name": "left postcentral gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1798": {
+"fma": "FMA72665",
+"name": "right postcentral gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1800": {
+"fma": "FMA72662",
+"name": "left precentral gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1801": {
+"fma": "FMA72661",
+"name": "right precentral gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1806": {
+"fma": "FMA241998",
+"name": "cerebral white matter",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1807": {
+"fma": "FMA72713",
+"name": "right hippocampus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1808": {
+"fma": "FMA62008",
+"name": "hypothalamus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1810": {
+"fma": "FMA73434",
+"name": "right inferior colliculus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1814": {
+"fma": "FMA78449",
+"name": "right lateral ventricle",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1817": {
+"fma": "FMA61815",
+"name": "cardinal segment of brain",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1822": {
+"fma": "FMA67942",
+"name": "segment of metencephalon",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1826": {
+"fma": "FMA73422",
+"name": "right superior colliculus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1828": {
+"fma": "FMA62327",
+"name": "tuber cinereum",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1830": {
+"fma": "FMA67944",
+"name": "cerebellum",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1831": {
+"fma": "FMA61998",
+"name": "segment of hindbrain",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1833": {
+"fma": "FMA72654",
+"name": "left superior frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1834": {
+"fma": "FMA72653",
+"name": "right superior frontal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1835": {
+"fma": "FMA72672",
+"name": "left superior parietal lobule",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1836": {
+"fma": "FMA72671",
+"name": "right superior parietal lobule",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1841": {
+"fma": "FMA72668",
+"name": "left supramarginal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1842": {
+"fma": "FMA72667",
+"name": "right supramarginal gyrus",
+"layer": "organ",
+"system": "nervous",
+"group_fma": "FMA50801",
+"group": "brain"
+},
+"FJ1883": {
+"fma": "FMA71889",
+"name": "caudate lobe tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ1893": {
+"fma": "FMA15415",
+"name": "left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ1895": {
+"fma": "FMA7198",
+"name": "pancreas",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7198",
+"group": "pancreas"
+},
+"FJ1896": {
+"fma": "FMA10419",
+"name": "pancreatic duct",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7198",
+"group": "pancreas"
+},
+"FJ1913": {
+"fma": "FMA15414",
+"name": "right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ1914": {
+"fma": "FMA82706",
+"name": "caudate lobe branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ1916": {
+"fma": "FMA70447",
+"name": "caudate lobe branch of right hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2041": {
+"fma": "FMA8620",
+"name": "right anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2044": {
+"fma": "FMA8620",
+"name": "right anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2386": {
+"fma": "FMA70447",
+"name": "caudate lobe branch of right hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2404": {
+"fma": "FMA15415",
+"name": "left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2405": {
+"fma": "FMA15414",
+"name": "right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2409": {
+"fma": "FMA15745",
+"name": "hepatovenous segment vii",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2415": {
+"fma": "FMA14339",
+"name": "left hepatic vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2416": {
+"fma": "FMA14338",
+"name": "right hepatic vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2417": {
+"fma": "FMA7247",
+"name": "left anterior cusp of pulmonary valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2418": {
+"fma": "FMA7265",
+"name": "anterolateral head of lateral papillary muscle of left ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2419": {
+"fma": "FMA7260",
+"name": "anterior papillary muscle of right ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2420": {
+"fma": "FMA7242",
+"name": "anterior leaflet of mitral valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2421": {
+"fma": "FMA7238",
+"name": "anterior leaflet of tricuspid valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2422": {
+"fma": "FMA9466",
+"name": "cavity of left ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2423": {
+"fma": "FMA9291",
+"name": "cavity of right ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2424": {
+"fma": "FMA11359",
+"name": "cavity of right atrium",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2425": {
+"fma": "FMA9465",
+"name": "cavity of left atrium",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2426": {
+"fma": "FMA7254",
+"name": "left posterior cusp of aortic valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2427": {
+"fma": "FMA7250",
+"name": "posterior cusp of pulmonary valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2429": {
+"fma": "FMA7264",
+"name": "lateral papillary muscle of left ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2430": {
+"fma": "FMA7261",
+"name": "posterior papillary muscle of right ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2431": {
+"fma": "FMA7252",
+"name": "right posterior cusp of aortic valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2432": {
+"fma": "FMA7243",
+"name": "posterior leaflet of mitral valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2433": {
+"fma": "FMA7239",
+"name": "posterior leaflet of tricuspid valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2434": {
+"fma": "FMA7249",
+"name": "right anterior cusp of pulmonary valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2435": {
+"fma": "FMA7253",
+"name": "anterior cusp of aortic valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2436": {
+"fma": "FMA7240",
+"name": "septal leaflet of tricuspid valve",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2437": {
+"fma": "FMA7262",
+"name": "septal papillary muscle of right ventricle",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2438": {
+"fma": "FMA9531",
+"name": "wall of left atrium",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2439": {
+"fma": "FMA9457",
+"name": "wall of right atrium",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2440": {
+"fma": "FMA9615",
+"name": "cricoid cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2441": {
+"fma": "FMA68227",
+"name": "inferior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2442": {
+"fma": "FMA68230",
+"name": "left medial basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2443": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2444": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2445": {
+"fma": "FMA68232",
+"name": "left lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2446": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2447": {
+"fma": "FMA68225",
+"name": "left posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2448": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2449": {
+"fma": "FMA68215",
+"name": "lateral segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2451": {
+"fma": "FMA68214",
+"name": "medial segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2452": {
+"fma": "FMA68321",
+"name": "right anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2453": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2454": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2455": {
+"fma": "FMA68220",
+"name": "right lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2456": {
+"fma": "FMA68218",
+"name": "right medial basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2457": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2458": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2459": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2460": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2461": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2462": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2463": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2464": {
+"fma": "FMA68223",
+"name": "left apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2465": {
+"fma": "FMA68225",
+"name": "left posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2466": {
+"fma": "FMA68225",
+"name": "left posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2467": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2468": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2469": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2470": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2471": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2472": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2473": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2474": {
+"fma": "FMA68222",
+"name": "left anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2475": {
+"fma": "FMA68227",
+"name": "inferior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2476": {
+"fma": "FMA68226",
+"name": "superior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2477": {
+"fma": "FMA68226",
+"name": "superior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2478": {
+"fma": "FMA68226",
+"name": "superior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2479": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2480": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2481": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2482": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2483": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2484": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2485": {
+"fma": "FMA68228",
+"name": "left superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2486": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2487": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2488": {
+"fma": "FMA68218",
+"name": "right medial basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2489": {
+"fma": "FMA68221",
+"name": "right posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2490": {
+"fma": "FMA68220",
+"name": "right lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2491": {
+"fma": "FMA68220",
+"name": "right lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2492": {
+"fma": "FMA68220",
+"name": "right lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2493": {
+"fma": "FMA68321",
+"name": "right anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2494": {
+"fma": "FMA68321",
+"name": "right anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2495": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2496": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2497": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2498": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2499": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2500": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2501": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2502": {
+"fma": "FMA68216",
+"name": "right superior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2503": {
+"fma": "FMA68215",
+"name": "lateral segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2504": {
+"fma": "FMA68215",
+"name": "lateral segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2505": {
+"fma": "FMA68215",
+"name": "lateral segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2506": {
+"fma": "FMA68214",
+"name": "medial segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2507": {
+"fma": "FMA68214",
+"name": "medial segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2508": {
+"fma": "FMA68214",
+"name": "medial segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2509": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2510": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2511": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2512": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2513": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2514": {
+"fma": "FMA68212",
+"name": "right anterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2515": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2516": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2517": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2518": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2519": {
+"fma": "FMA68213",
+"name": "right posterior segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2520": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2521": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2522": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2523": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2524": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2525": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2526": {
+"fma": "FMA68211",
+"name": "right apical segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2527": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2528": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2529": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2530": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2531": {
+"fma": "FMA68233",
+"name": "left posterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2532": {
+"fma": "FMA68232",
+"name": "left lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2533": {
+"fma": "FMA68232",
+"name": "left lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2534": {
+"fma": "FMA68232",
+"name": "left lateral basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2535": {
+"fma": "FMA68231",
+"name": "left anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2536": {
+"fma": "FMA68231",
+"name": "left anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2537": {
+"fma": "FMA68230",
+"name": "left medial basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2538": {
+"fma": "FMA68231",
+"name": "left anterior basal segmental bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2540": {
+"fma": "FMA68226",
+"name": "superior lingular bronchial tree",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2541": {
+"fma": "FMA7394",
+"name": "trachea",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7394",
+"group": "trachea"
+},
+"FJ2542": {
+"fma": "FMA46444",
+"name": "left coccygeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2543": {
+"fma": "FMA9623",
+"name": "perineal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2547": {
+"fma": "FMA46443",
+"name": "right coccygeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2548": {
+"fma": "FMA9623",
+"name": "perineal muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2554": {
+"fma": "FMA59505",
+"name": "right major alar cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2555": {
+"fma": "FMA59506",
+"name": "left major alar cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2556": {
+"fma": "FMA59513",
+"name": "left lateral nasal cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2557": {
+"fma": "FMA59503",
+"name": "septal nasal cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2558": {
+"fma": "FMA59512",
+"name": "right lateral nasal cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2563": {
+"fma": "FMA7131",
+"name": "esophagus",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7131",
+"group": "esophagus"
+},
+"FJ2564": {
+"fma": "FMA7148",
+"name": "stomach",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7148",
+"group": "stomach"
+},
+"FJ2566": {
+"fma": "FMA14545",
+"name": "ascending colon",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2567": {
+"fma": "FMA14547",
+"name": "descending colon",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2568": {
+"fma": "FMA15044",
+"name": "taenia libera",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2569": {
+"fma": "FMA15042",
+"name": "taenia mesocolica",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2570": {
+"fma": "FMA15043",
+"name": "taenia omentalis",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2571": {
+"fma": "FMA14544",
+"name": "rectum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2572": {
+"fma": "FMA14546",
+"name": "transverse colon",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7201",
+"group": "large intestine"
+},
+"FJ2573": {
+"fma": "FMA7206",
+"name": "duodenum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2574": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2575": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2576": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2577": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2578": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2579": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2580": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2581": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2582": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2583": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2584": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2585": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2586": {
+"fma": "FMA14965",
+"name": "middle part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2587": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2588": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2589": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2590": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2591": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2592": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2593": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2594": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2595": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2596": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2597": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2598": {
+"fma": "FMA14966",
+"name": "distal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2599": {
+"fma": "FMA11338",
+"name": "ileocecal junction",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2600": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2601": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2602": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2603": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2604": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2605": {
+"fma": "FMA14964",
+"name": "proximal part of ileum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2606": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2607": {
+"fma": "FMA16982",
+"name": "middle part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2608": {
+"fma": "FMA16982",
+"name": "middle part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2609": {
+"fma": "FMA16982",
+"name": "middle part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2610": {
+"fma": "FMA16982",
+"name": "middle part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2611": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2612": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2613": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2614": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2615": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2616": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2617": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2618": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2619": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2620": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2621": {
+"fma": "FMA16983",
+"name": "distal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2622": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2623": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2624": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2625": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2626": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2627": {
+"fma": "FMA16981",
+"name": "proximal part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2628": {
+"fma": "FMA16982",
+"name": "middle part of jejunum",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7200",
+"group": "small intestine"
+},
+"FJ2629": {
+"fma": "FMA45732",
+"name": "parenchyma",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7198",
+"group": "pancreas"
+},
+"FJ2630": {
+"fma": "FMA63103",
+"name": "pancreatic duct tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7198",
+"group": "pancreas"
+},
+"FJ2631": {
+"fma": "FMA4677",
+"name": "trunk of branch of coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2632": {
+"fma": "FMA3872",
+"name": "first right anterior branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2633": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2634": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2635": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2636": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2637": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2638": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2639": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2640": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2641": {
+"fma": "FMA3876",
+"name": "third right anterior branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2642": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2643": {
+"fma": "FMA3868",
+"name": "conus branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2644": {
+"fma": "FMA3868",
+"name": "conus branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2645": {
+"fma": "FMA3872",
+"name": "first right anterior branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2646": {
+"fma": "FMA3874",
+"name": "second right anterior branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2647": {
+"fma": "FMA3876",
+"name": "third right anterior branch of anterior interventricular branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2648": {
+"fma": "FMA3860",
+"name": "diagonal branch of anterior descending branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2649": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2650": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2651": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2652": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2653": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2654": {
+"fma": "FMA3895",
+"name": "circumflex branch of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2655": {
+"fma": "FMA4706",
+"name": "coronary sinus",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2656": {
+"fma": "FMA4707",
+"name": "great cardiac vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2667": {
+"fma": "FMA3818",
+"name": "marginal branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2668": {
+"fma": "FMA3818",
+"name": "marginal branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2670": {
+"fma": "FMA3807",
+"name": "right conus artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2671": {
+"fma": "FMA3815",
+"name": "first anterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2672": {
+"fma": "FMA3818",
+"name": "marginal branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2673": {
+"fma": "FMA3815",
+"name": "first anterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2674": {
+"fma": "FMA3818",
+"name": "marginal branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2675": {
+"fma": "FMA3818",
+"name": "marginal branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2676": {
+"fma": "FMA3807",
+"name": "right conus artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2677": {
+"fma": "FMA3815",
+"name": "first anterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2692": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2693": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2694": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2695": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2696": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2697": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2698": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2699": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2700": {
+"fma": "FMA3840",
+"name": "posterior interventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2714": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2715": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2716": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2717": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2718": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2719": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2720": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2721": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2722": {
+"fma": "FMA3835",
+"name": "posterior ventricular branch of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2723": {
+"fma": "FMA3802",
+"name": "trunk of right coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2724": {
+"fma": "FMA4714",
+"name": "small cardiac vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2727": {
+"fma": "FMA4716",
+"name": "right marginal vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2728": {
+"fma": "FMA4716",
+"name": "right marginal vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2729": {
+"fma": "FMA4716",
+"name": "right marginal vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2731": {
+"fma": "FMA4714",
+"name": "small cardiac vein",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2737": {
+"fma": "FMA3855",
+"name": "trunk of left coronary artery",
+"layer": "organ",
+"system": "cardiovascular",
+"group_fma": "FMA7088",
+"group": "heart"
+},
+"FJ2738": {
+"fma": "FMA46702",
+"name": "left genioglossus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2739": {
+"fma": "FMA46704",
+"name": "left hyoglossus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2740": {
+"fma": "FMA46636",
+"name": "left inferior pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2741": {
+"fma": "FMA46729",
+"name": "left levator veli palatini",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2742": {
+"fma": "FMA46633",
+"name": "right middle pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2743": {
+"fma": "FMA46672",
+"name": "left palatopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2745": {
+"fma": "FMA46670",
+"name": "left salpingopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2746": {
+"fma": "FMA46668",
+"name": "left stylopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2747": {
+"fma": "FMA46632",
+"name": "left superior pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2748": {
+"fma": "FMA46732",
+"name": "left tensor veli palatini",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2750": {
+"fma": "FMA46698",
+"name": "right genioglossus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2751": {
+"fma": "FMA46703",
+"name": "right hyoglossus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2752": {
+"fma": "FMA46635",
+"name": "right inferior pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2753": {
+"fma": "FMA46728",
+"name": "right levator veli palatini",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2754": {
+"fma": "FMA46634",
+"name": "left middle pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2755": {
+"fma": "FMA46671",
+"name": "right palatopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2757": {
+"fma": "FMA46669",
+"name": "right salpingopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2758": {
+"fma": "FMA46667",
+"name": "right stylopharyngeus",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2759": {
+"fma": "FMA46631",
+"name": "right superior pharyngeal constrictor",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2760": {
+"fma": "FMA46731",
+"name": "right tensor veli palatini",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2762": {
+"fma": "FMA46733",
+"name": "uvular muscle",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2769": {
+"fma": "FMA9615",
+"name": "cricoid cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2772": {
+"fma": "FMA52749",
+"name": "hyoid bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ2773": {
+"fma": "FMA55118",
+"name": "left cuneiform cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2775": {
+"fma": "FMA55114",
+"name": "left arytenoid cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2776": {
+"fma": "FMA55116",
+"name": "left corniculate cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2778": {
+"fma": "FMA46581",
+"name": "left lateral crico-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2780": {
+"fma": "FMA46585",
+"name": "left oblique arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2782": {
+"fma": "FMA46578",
+"name": "left posterior crico-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2784": {
+"fma": "FMA46590",
+"name": "left thyro-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2785": {
+"fma": "FMA46590",
+"name": "left thyro-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2788": {
+"fma": "FMA46593",
+"name": "left vocalis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2792": {
+"fma": "FMA55113",
+"name": "right arytenoid cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2793": {
+"fma": "FMA55115",
+"name": "right corniculate cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2795": {
+"fma": "FMA55117",
+"name": "right cuneiform cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2796": {
+"fma": "FMA46580",
+"name": "right lateral crico-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2798": {
+"fma": "FMA46584",
+"name": "right oblique arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2800": {
+"fma": "FMA46577",
+"name": "right posterior crico-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2802": {
+"fma": "FMA46589",
+"name": "right thyro-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2803": {
+"fma": "FMA46589",
+"name": "right thyro-arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2806": {
+"fma": "FMA46592",
+"name": "right vocalis",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2808": {
+"fma": "FMA55099",
+"name": "thyroid cartilage",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2809": {
+"fma": "FMA46582",
+"name": "transverse arytenoid",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ2810": {
+"fma": "FMA7163",
+"name": "skin",
+"layer": "skin",
+"system": "integumentary",
+"group_fma": "",
+"group": ""
+},
+"FJ2816": {
+"fma": "FMA13365",
+"name": "caudate lobe of liver",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2817": {
+"fma": "FMA7202",
+"name": "gallbladder",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7202",
+"group": "gallbladder"
+},
+"FJ2818": {
+"fma": "FMA15739",
+"name": "hepatovenous segment ii",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2819": {
+"fma": "FMA15741",
+"name": "hepatovenous segment iii",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2820": {
+"fma": "FMA15742",
+"name": "hepatovenous segment iv",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2821": {
+"fma": "FMA15743",
+"name": "hepatovenous segment v",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2822": {
+"fma": "FMA15744",
+"name": "hepatovenous segment vi",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2823": {
+"fma": "FMA15746",
+"name": "hepatovenous segment viii",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2824": {
+"fma": "FMA15746",
+"name": "hepatovenous segment viii",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ2881": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2882": {
+"fma": "FMA8646",
+"name": "left lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2883": {
+"fma": "FMA8645",
+"name": "left anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2884": {
+"fma": "FMA8644",
+"name": "left medial basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2885": {
+"fma": "FMA8644",
+"name": "left medial basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2886": {
+"fma": "FMA8645",
+"name": "left anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2887": {
+"fma": "FMA8645",
+"name": "left anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2888": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2889": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2890": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2891": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2892": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2893": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2894": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2895": {
+"fma": "FMA8642",
+"name": "left superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2896": {
+"fma": "FMA8640",
+"name": "inferior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2897": {
+"fma": "FMA8640",
+"name": "inferior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2898": {
+"fma": "FMA8639",
+"name": "superior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2899": {
+"fma": "FMA8639",
+"name": "superior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2900": {
+"fma": "FMA8639",
+"name": "superior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2901": {
+"fma": "FMA8639",
+"name": "superior lingular artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2902": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2903": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2904": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2905": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2906": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2907": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2908": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2909": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2910": {
+"fma": "FMA13279",
+"name": "left anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2911": {
+"fma": "FMA8635",
+"name": "left posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2912": {
+"fma": "FMA8635",
+"name": "left posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2913": {
+"fma": "FMA8635",
+"name": "left posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2914": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2915": {
+"fma": "FMA8634",
+"name": "left apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2916": {
+"fma": "FMA8634",
+"name": "left apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2917": {
+"fma": "FMA8634",
+"name": "left apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2918": {
+"fma": "FMA8634",
+"name": "left apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2919": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2920": {
+"fma": "FMA8647",
+"name": "left posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2921": {
+"fma": "FMA8646",
+"name": "left lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2922": {
+"fma": "FMA8646",
+"name": "left lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2923": {
+"fma": "FMA8646",
+"name": "left lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2926": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2927": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2928": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2929": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2930": {
+"fma": "FMA8667",
+"name": "left anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2931": {
+"fma": "FMA8667",
+"name": "left anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2932": {
+"fma": "FMA8667",
+"name": "left anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2934": {
+"fma": "FMA8669",
+"name": "inferior lingular vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2935": {
+"fma": "FMA8669",
+"name": "inferior lingular vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2936": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2937": {
+"fma": "FMA8668",
+"name": "superior lingular vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2938": {
+"fma": "FMA8668",
+"name": "superior lingular vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2939": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2940": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2941": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2942": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2943": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2945": {
+"fma": "FMA9451",
+"name": "left posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2946": {
+"fma": "FMA9451",
+"name": "left posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2947": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2948": {
+"fma": "FMA9451",
+"name": "left posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2949": {
+"fma": "FMA9451",
+"name": "left posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2951": {
+"fma": "FMA9450",
+"name": "left lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2952": {
+"fma": "FMA9450",
+"name": "left lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2953": {
+"fma": "FMA9450",
+"name": "left lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2954": {
+"fma": "FMA9450",
+"name": "left lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2956": {
+"fma": "FMA8678",
+"name": "left anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2957": {
+"fma": "FMA8678",
+"name": "left anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2958": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2959": {
+"fma": "FMA8678",
+"name": "left anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2960": {
+"fma": "FMA8678",
+"name": "left anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2961": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2962": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2963": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2964": {
+"fma": "FMA9437",
+"name": "left apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2965": {
+"fma": "FMA9438",
+"name": "left posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7310",
+"group": "left lung"
+},
+"FJ2967": {
+"fma": "FMA68661",
+"name": "apical part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2968": {
+"fma": "FMA68669",
+"name": "apical part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2969": {
+"fma": "FMA68669",
+"name": "apical part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2970": {
+"fma": "FMA68672",
+"name": "posterior part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2971": {
+"fma": "FMA68672",
+"name": "posterior part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2972": {
+"fma": "FMA68672",
+"name": "posterior part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2973": {
+"fma": "FMA8702",
+"name": "upper lobar artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2974": {
+"fma": "FMA68676",
+"name": "posterior part of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2975": {
+"fma": "FMA68682",
+"name": "anterior branch of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2976": {
+"fma": "FMA68682",
+"name": "anterior branch of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2977": {
+"fma": "FMA68682",
+"name": "anterior branch of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2978": {
+"fma": "FMA68664",
+"name": "anterior part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2979": {
+"fma": "FMA68682",
+"name": "anterior branch of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2980": {
+"fma": "FMA68676",
+"name": "posterior part of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2981": {
+"fma": "FMA68676",
+"name": "posterior part of anterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2982": {
+"fma": "FMA68691",
+"name": "anterior branch of lateral segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2983": {
+"fma": "FMA68690",
+"name": "posterior branch of lateral segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2984": {
+"fma": "FMA68690",
+"name": "posterior branch of lateral segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2985": {
+"fma": "FMA68691",
+"name": "anterior branch of lateral segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2986": {
+"fma": "FMA68693",
+"name": "superior branch of medial segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2987": {
+"fma": "FMA68694",
+"name": "inferior branch of medial segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2988": {
+"fma": "FMA68694",
+"name": "inferior branch of medial segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2989": {
+"fma": "FMA68664",
+"name": "anterior part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2990": {
+"fma": "FMA68693",
+"name": "superior branch of medial segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2991": {
+"fma": "FMA68711",
+"name": "lateral branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2992": {
+"fma": "FMA68711",
+"name": "lateral branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2993": {
+"fma": "FMA68711",
+"name": "lateral branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2994": {
+"fma": "FMA68704",
+"name": "medial branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2995": {
+"fma": "FMA68704",
+"name": "medial branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2996": {
+"fma": "FMA68704",
+"name": "medial branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2997": {
+"fma": "FMA68708",
+"name": "superior branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2998": {
+"fma": "FMA68708",
+"name": "superior branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ2999": {
+"fma": "FMA68708",
+"name": "superior branch of superior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3000": {
+"fma": "FMA68664",
+"name": "anterior part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3001": {
+"fma": "FMA68721",
+"name": "lateral branch of anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3002": {
+"fma": "FMA68722",
+"name": "basal branch of anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3003": {
+"fma": "FMA68722",
+"name": "basal branch of anterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3004": {
+"fma": "FMA68727",
+"name": "subsegmental part of lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3005": {
+"fma": "FMA68727",
+"name": "subsegmental part of lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3006": {
+"fma": "FMA68727",
+"name": "subsegmental part of lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3007": {
+"fma": "FMA68727",
+"name": "subsegmental part of lateral basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3008": {
+"fma": "FMA68740",
+"name": "mediobasal branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3009": {
+"fma": "FMA68734",
+"name": "accessory subsuperior branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3010": {
+"fma": "FMA68734",
+"name": "accessory subsuperior branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3011": {
+"fma": "FMA68664",
+"name": "anterior part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3012": {
+"fma": "FMA68740",
+"name": "mediobasal branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3013": {
+"fma": "FMA68737",
+"name": "laterobasal branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3014": {
+"fma": "FMA68737",
+"name": "laterobasal branch of posterior basal segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3015": {
+"fma": "FMA68661",
+"name": "apical part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3016": {
+"fma": "FMA68661",
+"name": "apical part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3017": {
+"fma": "FMA68661",
+"name": "apical part of apical segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3018": {
+"fma": "FMA68669",
+"name": "apical part of posterior segmental artery",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3021": {
+"fma": "FMA8693",
+"name": "inferior part of anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3022": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3023": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3024": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3025": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3026": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3027": {
+"fma": "FMA8683",
+"name": "superior part of anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3028": {
+"fma": "FMA8662",
+"name": "right anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3029": {
+"fma": "FMA8662",
+"name": "right anterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3030": {
+"fma": "FMA68982",
+"name": "superior part of medial segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3031": {
+"fma": "FMA8648",
+"name": "trunk of pulmonary vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3032": {
+"fma": "FMA68983",
+"name": "inferior part of medial segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3033": {
+"fma": "FMA68983",
+"name": "inferior part of medial segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3034": {
+"fma": "FMA68945",
+"name": "anterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3035": {
+"fma": "FMA68945",
+"name": "anterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3036": {
+"fma": "FMA68945",
+"name": "anterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3037": {
+"fma": "FMA68944",
+"name": "posterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3038": {
+"fma": "FMA68944",
+"name": "posterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3039": {
+"fma": "FMA68944",
+"name": "posterior part of lateral segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3041": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3042": {
+"fma": "FMA68920",
+"name": "anterior part of apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3043": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3044": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3045": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3046": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3047": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3048": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3049": {
+"fma": "FMA8673",
+"name": "right anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3050": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3051": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3052": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3053": {
+"fma": "FMA68920",
+"name": "anterior part of apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3054": {
+"fma": "FMA9422",
+"name": "right medial basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3055": {
+"fma": "FMA9422",
+"name": "right medial basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3056": {
+"fma": "FMA8673",
+"name": "right anterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3057": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3058": {
+"fma": "FMA9428",
+"name": "right posterior basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3059": {
+"fma": "FMA9425",
+"name": "right lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3060": {
+"fma": "FMA9425",
+"name": "right lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3061": {
+"fma": "FMA9425",
+"name": "right lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3062": {
+"fma": "FMA9425",
+"name": "right lateral basal segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3063": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3064": {
+"fma": "FMA8681",
+"name": "apical part of right apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3065": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3066": {
+"fma": "FMA8670",
+"name": "right superior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3067": {
+"fma": "FMA8681",
+"name": "apical part of right apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3068": {
+"fma": "FMA8681",
+"name": "apical part of right apical segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3069": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3070": {
+"fma": "FMA8663",
+"name": "right posterior segmental vein",
+"layer": "organ",
+"system": "respiratory",
+"group_fma": "FMA7309",
+"group": "right lung"
+},
+"FJ3071": {
+"fma": "FMA71867",
+"name": "anterior superior tributary of right hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3072": {
+"fma": "FMA71868",
+"name": "anterior inferior tributary of right hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3073": {
+"fma": "FMA15420",
+"name": "anterior superior segmental branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3074": {
+"fma": "FMA15421",
+"name": "anterior inferior segmental branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3075": {
+"fma": "FMA70443",
+"name": "anterior inferior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3076": {
+"fma": "FMA70442",
+"name": "anterior superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3077": {
+"fma": "FMA70455",
+"name": "caudate lobe branch of left hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3081": {
+"fma": "FMA14772",
+"name": "hepatic artery proper",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3083": {
+"fma": "FMA15800",
+"name": "anterior inferior segmental tributary of middle hepatic vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3086": {
+"fma": "FMA15800",
+"name": "anterior inferior segmental tributary of middle hepatic vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3088": {
+"fma": "FMA71887",
+"name": "lateral superior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3089": {
+"fma": "FMA71888",
+"name": "lateral inferior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3090": {
+"fma": "FMA71887",
+"name": "lateral superior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3091": {
+"fma": "FMA70452",
+"name": "lateral superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3092": {
+"fma": "FMA70453",
+"name": "lateral inferior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3093": {
+"fma": "FMA70452",
+"name": "lateral superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3095": {
+"fma": "FMA70457",
+"name": "trunk of left hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3096": {
+"fma": "FMA14670",
+"name": "left hepatic duct",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3102": {
+"fma": "FMA82697",
+"name": "trunk of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3103": {
+"fma": "FMA71886",
+"name": "medial inferior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3104": {
+"fma": "FMA71885",
+"name": "medial superior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3105": {
+"fma": "FMA71885",
+"name": "medial superior tributary of left hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3106": {
+"fma": "FMA70450",
+"name": "medial inferior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3107": {
+"fma": "FMA70449",
+"name": "medial superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3108": {
+"fma": "FMA71870",
+"name": "posterior inferior tributary of right hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3109": {
+"fma": "FMA71869",
+"name": "posterior superior tributary of right hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3110": {
+"fma": "FMA71869",
+"name": "posterior superior tributary of right hepatic biliary tree",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3111": {
+"fma": "FMA15424",
+"name": "posterior inferior segmental branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3112": {
+"fma": "FMA15423",
+"name": "posterior superior segmental branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3113": {
+"fma": "FMA15423",
+"name": "posterior superior segmental branch of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3114": {
+"fma": "FMA70446",
+"name": "posterior inferior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3115": {
+"fma": "FMA70445",
+"name": "posterior superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3116": {
+"fma": "FMA70445",
+"name": "posterior superior segmental hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3117": {
+"fma": "FMA70456",
+"name": "trunk of right hepatic artery",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3122": {
+"fma": "FMA82695",
+"name": "trunk of right portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3123": {
+"fma": "FMA14669",
+"name": "right hepatic duct",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3124": {
+"fma": "FMA15425",
+"name": "caudate lobe branch of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3125": {
+"fma": "FMA15432",
+"name": "lateral inferior segmental branch of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3126": {
+"fma": "FMA15431",
+"name": "lateral superior segmental branch of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3127": {
+"fma": "FMA15428",
+"name": "medial superior segmental branch of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3128": {
+"fma": "FMA15429",
+"name": "medial inferior segmental branch of left portal vein",
+"layer": "organ",
+"system": "digestive",
+"group_fma": "FMA7197",
+"group": "liver"
+},
+"FJ3129": {
+"fma": "FMA15630",
+"name": "left adrenal gland",
+"layer": "organ",
+"system": "endocrine",
+"group_fma": "",
+"group": ""
+},
+"FJ3130": {
+"fma": "FMA15629",
+"name": "right adrenal gland",
+"layer": "organ",
+"system": "endocrine",
+"group_fma": "",
+"group": ""
+},
+"FJ3131": {
+"fma": "FMA13295",
+"name": "diaphragm",
+"layer": "muscle",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3145": {
+"fma": "FMA7205",
+"name": "left kidney",
+"layer": "organ",
+"system": "urinary",
+"group_fma": "FMA7205",
+"group": "left kidney"
+},
+"FJ3147": {
+"fma": "FMA7204",
+"name": "right kidney",
+"layer": "organ",
+"system": "urinary",
+"group_fma": "FMA7204",
+"group": "right kidney"
+},
+"FJ3149": {
+"fma": "FMA15900",
+"name": "urinary bladder",
+"layer": "organ",
+"system": "urinary",
+"group_fma": "FMA15900",
+"group": "urinary bladder"
+},
+"FJ3152": {
+"fma": "FMA16586",
+"name": "right hip bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3154": {
+"fma": "FMA10037",
+"name": "tenth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3155": {
+"fma": "FMA10059",
+"name": "eleventh thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3156": {
+"fma": "FMA10081",
+"name": "twelfth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3157": {
+"fma": "FMA13072",
+"name": "first lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3158": {
+"fma": "FMA9165",
+"name": "first thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3159": {
+"fma": "FMA13073",
+"name": "second lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3160": {
+"fma": "FMA9187",
+"name": "second thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3161": {
+"fma": "FMA12521",
+"name": "third cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3162": {
+"fma": "FMA13074",
+"name": "third lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3163": {
+"fma": "FMA9209",
+"name": "third thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3164": {
+"fma": "FMA12522",
+"name": "fourth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3165": {
+"fma": "FMA13075",
+"name": "fourth lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3166": {
+"fma": "FMA9248",
+"name": "fourth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3167": {
+"fma": "FMA12523",
+"name": "fifth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3168": {
+"fma": "FMA13076",
+"name": "fifth lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3169": {
+"fma": "FMA9922",
+"name": "fifth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3170": {
+"fma": "FMA12524",
+"name": "sixth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3171": {
+"fma": "FMA9945",
+"name": "sixth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3172": {
+"fma": "FMA12525",
+"name": "seventh cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3173": {
+"fma": "FMA9968",
+"name": "seventh thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3174": {
+"fma": "FMA9991",
+"name": "eighth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3175": {
+"fma": "FMA10014",
+"name": "ninth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3176": {
+"fma": "FMA12519",
+"name": "atlas",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3177": {
+"fma": "FMA12520",
+"name": "axis",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3179": {
+"fma": "FMA32653",
+"name": "distal phalanx of left second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3180": {
+"fma": "FMA32655",
+"name": "distal phalanx of left third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3181": {
+"fma": "FMA32657",
+"name": "distal phalanx of left fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3182": {
+"fma": "FMA32651",
+"name": "distal phalanx of left big toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3183": {
+"fma": "FMA23953",
+"name": "distal phalanx of left index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3184": {
+"fma": "FMA23959",
+"name": "distal phalanx of left little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3185": {
+"fma": "FMA32659",
+"name": "distal phalanx of left little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3186": {
+"fma": "FMA23955",
+"name": "distal phalanx of left middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3187": {
+"fma": "FMA23957",
+"name": "distal phalanx of left ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3188": {
+"fma": "FMA23951",
+"name": "distal phalanx of left thumb",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3189": {
+"fma": "FMA32652",
+"name": "distal phalanx of right second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3190": {
+"fma": "FMA32654",
+"name": "distal phalanx of right third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3191": {
+"fma": "FMA32656",
+"name": "distal phalanx of right fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3192": {
+"fma": "FMA32650",
+"name": "distal phalanx of right big toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3193": {
+"fma": "FMA24460",
+"name": "distal phalanx of right index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3194": {
+"fma": "FMA24463",
+"name": "distal phalanx of right little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3195": {
+"fma": "FMA32658",
+"name": "distal phalanx of right little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3196": {
+"fma": "FMA24461",
+"name": "distal phalanx of right middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3197": {
+"fma": "FMA24462",
+"name": "distal phalanx of right ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3198": {
+"fma": "FMA24459",
+"name": "distal phalanx of right thumb",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3199": {
+"fma": "FMA52740",
+"name": "ethmoid",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3200": {
+"fma": "FMA52734",
+"name": "frontal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3201": {
+"fma": "FMA52749",
+"name": "hyoid bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3202": {
+"fma": "FMA25058",
+"name": "intervertebral disk of axis",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3203": {
+"fma": "FMA13501",
+"name": "intervertebral disk of fourth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3204": {
+"fma": "FMA13502",
+"name": "intervertebral disk of fifth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3205": {
+"fma": "FMA13503",
+"name": "intervertebral disk of sixth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3206": {
+"fma": "FMA13504",
+"name": "intervertebral disk of seventh thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3207": {
+"fma": "FMA13505",
+"name": "intervertebral disk of eighth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3208": {
+"fma": "FMA13506",
+"name": "intervertebral disk of ninth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3209": {
+"fma": "FMA13507",
+"name": "intervertebral disk of tenth thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3210": {
+"fma": "FMA13508",
+"name": "intervertebral disk of eleventh thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3211": {
+"fma": "FMA25511",
+"name": "intervertebral symphysis",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3212": {
+"fma": "FMA16033",
+"name": "intervertebral disk of first lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3213": {
+"fma": "FMA13896",
+"name": "intervertebral disk of third cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3214": {
+"fma": "FMA16034",
+"name": "intervertebral disk of second lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3215": {
+"fma": "FMA16035",
+"name": "intervertebral disk of third lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3216": {
+"fma": "FMA16036",
+"name": "intervertebral disk of fourth lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3217": {
+"fma": "FMA16037",
+"name": "intervertebral disk of fifth lumbar vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3218": {
+"fma": "FMA13897",
+"name": "intervertebral disk of fourth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3219": {
+"fma": "FMA13898",
+"name": "intervertebral disk of fifth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3220": {
+"fma": "FMA13899",
+"name": "intervertebral disk of sixth cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3221": {
+"fma": "FMA13900",
+"name": "intervertebral disk of seventh cervical vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3222": {
+"fma": "FMA10458",
+"name": "intervertebral disk of first thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3223": {
+"fma": "FMA13495",
+"name": "intervertebral disk of second thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3224": {
+"fma": "FMA13500",
+"name": "intervertebral disk of third thoracic vertebra",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3225": {
+"fma": "FMA8472",
+"name": "left tenth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3226": {
+"fma": "FMA8532",
+"name": "left eleventh rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3227": {
+"fma": "FMA8534",
+"name": "left twelfth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3228": {
+"fma": "FMA7987",
+"name": "left first rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3229": {
+"fma": "FMA8012",
+"name": "left second rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3230": {
+"fma": "FMA8039",
+"name": "left third rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3231": {
+"fma": "FMA8148",
+"name": "left fourth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3232": {
+"fma": "FMA8093",
+"name": "left fifth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3233": {
+"fma": "FMA8202",
+"name": "left sixth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3234": {
+"fma": "FMA8256",
+"name": "left seventh rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3235": {
+"fma": "FMA8310",
+"name": "left eighth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3236": {
+"fma": "FMA8391",
+"name": "left ninth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3237": {
+"fma": "FMA13323",
+"name": "left clavicle",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3240": {
+"fma": "FMA24465",
+"name": "left first metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3241": {
+"fma": "FMA24508",
+"name": "left first metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3243": {
+"fma": "FMA24467",
+"name": "left second metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3244": {
+"fma": "FMA24510",
+"name": "left second metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3246": {
+"fma": "FMA24469",
+"name": "left third metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3247": {
+"fma": "FMA24512",
+"name": "left third metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3249": {
+"fma": "FMA24471",
+"name": "left fourth metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3250": {
+"fma": "FMA24514",
+"name": "left fourth metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3252": {
+"fma": "FMA24473",
+"name": "left fifth metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3253": {
+"fma": "FMA24516",
+"name": "left fifth metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3256": {
+"fma": "FMA24498",
+"name": "left calcaneus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3257": {
+"fma": "FMA24447",
+"name": "left capitate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3258": {
+"fma": "FMA24529",
+"name": "left cuboid bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3259": {
+"fma": "FMA24475",
+"name": "left femur",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3260": {
+"fma": "FMA24481",
+"name": "left fibula",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3261": {
+"fma": "FMA24449",
+"name": "left hamate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3262": {
+"fma": "FMA23131",
+"name": "left humerus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3263": {
+"fma": "FMA54738",
+"name": "left inferior nasal concha",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3264": {
+"fma": "FMA24524",
+"name": "left intermediate cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3265": {
+"fma": "FMA53646",
+"name": "left lacrimal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3266": {
+"fma": "FMA45098",
+"name": "sesamoid bone of left foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3267": {
+"fma": "FMA24526",
+"name": "left lateral cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3268": {
+"fma": "FMA24438",
+"name": "left lunate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3269": {
+"fma": "FMA53650",
+"name": "left maxilla",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3270": {
+"fma": "FMA45098",
+"name": "sesamoid bone of left foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3271": {
+"fma": "FMA24522",
+"name": "left medial cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3272": {
+"fma": "FMA53648",
+"name": "left nasal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3273": {
+"fma": "FMA53656",
+"name": "left palatine bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3274": {
+"fma": "FMA52789",
+"name": "left parietal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3275": {
+"fma": "FMA24487",
+"name": "left patella",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3276": {
+"fma": "FMA24442",
+"name": "left pisiform",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3277": {
+"fma": "FMA23465",
+"name": "left radius",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3278": {
+"fma": "FMA24436",
+"name": "left scaphoid",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3279": {
+"fma": "FMA13396",
+"name": "left scapula",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3280": {
+"fma": "FMA24483",
+"name": "left talus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3281": {
+"fma": "FMA52739",
+"name": "left temporal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3282": {
+"fma": "FMA24478",
+"name": "left tibia",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3283": {
+"fma": "FMA24444",
+"name": "left trapezium",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3284": {
+"fma": "FMA24445",
+"name": "left trapezoid",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3285": {
+"fma": "FMA24440",
+"name": "left triquetral",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3286": {
+"fma": "FMA23468",
+"name": "left ulna",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3287": {
+"fma": "FMA52893",
+"name": "left zygomatic bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3288": {
+"fma": "FMA16587",
+"name": "left hip bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3289": {
+"fma": "FMA52748",
+"name": "mandible",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3291": {
+"fma": "FMA23942",
+"name": "middle phalanx of left ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3292": {
+"fma": "FMA24457",
+"name": "middle phalanx of right ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3293": {
+"fma": "FMA32643",
+"name": "middle phalanx of left second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3294": {
+"fma": "FMA32645",
+"name": "middle phalanx of left third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3295": {
+"fma": "FMA32647",
+"name": "middle phalanx of left fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3296": {
+"fma": "FMA23938",
+"name": "middle phalanx of left index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3297": {
+"fma": "FMA23944",
+"name": "middle phalanx of left little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3298": {
+"fma": "FMA230988",
+"name": "middle phalanx of left little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3299": {
+"fma": "FMA23940",
+"name": "middle phalanx of left middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3300": {
+"fma": "FMA32642",
+"name": "middle phalanx of right second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3301": {
+"fma": "FMA32644",
+"name": "middle phalanx of right third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3302": {
+"fma": "FMA32646",
+"name": "middle phalanx of right fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3303": {
+"fma": "FMA24455",
+"name": "middle phalanx of right index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3304": {
+"fma": "FMA24458",
+"name": "middle phalanx of right little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3305": {
+"fma": "FMA230986",
+"name": "middle phalanx of right little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3306": {
+"fma": "FMA24456",
+"name": "middle phalanx of right middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3307": {
+"fma": "FMA24501",
+"name": "navicular bone of left foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3308": {
+"fma": "FMA24500",
+"name": "navicular bone of right foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3309": {
+"fma": "FMA52735",
+"name": "occipital bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3310": {
+"fma": "FMA43253",
+"name": "proximal phalanx of right big toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3311": {
+"fma": "FMA32637",
+"name": "proximal phalanx of left third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3312": {
+"fma": "FMA32639",
+"name": "proximal phalanx of left fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3313": {
+"fma": "FMA71915",
+"name": "proximal phalanx of left index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3314": {
+"fma": "FMA66791",
+"name": "proximal phalanx of left little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3315": {
+"fma": "FMA32641",
+"name": "proximal phalanx of left little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3316": {
+"fma": "FMA71908",
+"name": "proximal phalanx of left middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3317": {
+"fma": "FMA71916",
+"name": "proximal phalanx of left ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3318": {
+"fma": "FMA65470",
+"name": "proximal phalanx of left thumb",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3319": {
+"fma": "FMA32634",
+"name": "proximal phalanx of right second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3320": {
+"fma": "FMA32636",
+"name": "proximal phalanx of right third toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3321": {
+"fma": "FMA32638",
+"name": "proximal phalanx of right fourth toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3322": {
+"fma": "FMA24451",
+"name": "proximal phalanx of right index finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3323": {
+"fma": "FMA24454",
+"name": "proximal phalanx of right little finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3324": {
+"fma": "FMA32640",
+"name": "proximal phalanx of right little toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3325": {
+"fma": "FMA24452",
+"name": "proximal phalanx of right middle finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3326": {
+"fma": "FMA24453",
+"name": "proximal phalanx of right ring finger",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3327": {
+"fma": "FMA24450",
+"name": "proximal phalanx of right thumb",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3328": {
+"fma": "FMA32635",
+"name": "proximal phalanx of left second toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3329": {
+"fma": "FMA43254",
+"name": "proximal phalanx of left big toe",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3330": {
+"fma": "FMA8445",
+"name": "right tenth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3331": {
+"fma": "FMA8531",
+"name": "right eleventh rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3332": {
+"fma": "FMA8533",
+"name": "right twelfth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3334": {
+"fma": "FMA7857",
+"name": "right first rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3336": {
+"fma": "FMA7882",
+"name": "right second rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3338": {
+"fma": "FMA7909",
+"name": "right third rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3340": {
+"fma": "FMA7957",
+"name": "right fourth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3342": {
+"fma": "FMA8066",
+"name": "right fifth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3344": {
+"fma": "FMA8175",
+"name": "right sixth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3346": {
+"fma": "FMA8229",
+"name": "right seventh rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3347": {
+"fma": "FMA8283",
+"name": "right eighth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3348": {
+"fma": "FMA8364",
+"name": "right ninth rib",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA7480",
+"group": "rib cage"
+},
+"FJ3349": {
+"fma": "FMA23464",
+"name": "right radius",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3350": {
+"fma": "FMA24464",
+"name": "right first metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3351": {
+"fma": "FMA24507",
+"name": "right first metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3352": {
+"fma": "FMA24466",
+"name": "right second metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3353": {
+"fma": "FMA24509",
+"name": "right second metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3354": {
+"fma": "FMA24468",
+"name": "right third metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3355": {
+"fma": "FMA24511",
+"name": "right third metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3356": {
+"fma": "FMA24470",
+"name": "right fourth metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3357": {
+"fma": "FMA24513",
+"name": "right fourth metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3358": {
+"fma": "FMA24472",
+"name": "right fifth metacarpal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3359": {
+"fma": "FMA24515",
+"name": "right fifth metatarsal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3360": {
+"fma": "FMA24497",
+"name": "right calcaneus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3361": {
+"fma": "FMA24446",
+"name": "right capitate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3362": {
+"fma": "FMA13322",
+"name": "right clavicle",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3364": {
+"fma": "FMA24528",
+"name": "right cuboid bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3365": {
+"fma": "FMA24474",
+"name": "right femur",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3366": {
+"fma": "FMA24480",
+"name": "right fibula",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3367": {
+"fma": "FMA24448",
+"name": "right hamate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3368": {
+"fma": "FMA23130",
+"name": "right humerus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3369": {
+"fma": "FMA54737",
+"name": "right inferior nasal concha",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3370": {
+"fma": "FMA24523",
+"name": "right intermediate cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3371": {
+"fma": "FMA53645",
+"name": "right lacrimal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3372": {
+"fma": "FMA45097",
+"name": "sesamoid bone of right foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3373": {
+"fma": "FMA24525",
+"name": "right lateral cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3374": {
+"fma": "FMA24437",
+"name": "right lunate",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3375": {
+"fma": "FMA53649",
+"name": "right maxilla",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3376": {
+"fma": "FMA45097",
+"name": "sesamoid bone of right foot",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3377": {
+"fma": "FMA24521",
+"name": "right medial cuneiform bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3378": {
+"fma": "FMA53647",
+"name": "right nasal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3379": {
+"fma": "FMA53655",
+"name": "right palatine bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3380": {
+"fma": "FMA52788",
+"name": "right parietal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3381": {
+"fma": "FMA24486",
+"name": "right patella",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3382": {
+"fma": "FMA24441",
+"name": "right pisiform",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3383": {
+"fma": "FMA24435",
+"name": "right scaphoid",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3384": {
+"fma": "FMA13395",
+"name": "right scapula",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3385": {
+"fma": "FMA24482",
+"name": "right talus",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3386": {
+"fma": "FMA52738",
+"name": "right temporal bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3387": {
+"fma": "FMA24477",
+"name": "right tibia",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3388": {
+"fma": "FMA24443",
+"name": "right trapezium",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3389": {
+"fma": "FMA23725",
+"name": "right trapezoid",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3390": {
+"fma": "FMA24439",
+"name": "right triquetral",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3391": {
+"fma": "FMA23467",
+"name": "right ulna",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "",
+"group": ""
+},
+"FJ3392": {
+"fma": "FMA52892",
+"name": "right zygomatic bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3393": {
+"fma": "FMA16202",
+"name": "sacrum",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA13478",
+"group": "vertebral column"
+},
+"FJ3394": {
+"fma": "FMA52736",
+"name": "sphenoid bone",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+},
+"FJ3395": {
+"fma": "FMA9710",
+"name": "vomer",
+"layer": "bone",
+"system": "musculoskeletal",
+"group_fma": "FMA46565",
+"group": "skull"
+}
+}

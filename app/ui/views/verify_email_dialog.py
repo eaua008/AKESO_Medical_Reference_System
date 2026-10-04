@@ -26,7 +26,6 @@ from PySide6.QtWidgets import (
 )
 
 from app.core import icons
-from app.core.theme import Theme
 
 CODE_LENGTH = 6
 RESEND_COOLDOWN_SECONDS = 45
