@@ -1,0 +1,1201 @@
+{
+  "diseases": [
+    {
+      "id": "urinary_tract_infection",
+      "name": "Urinary Tract Infection (Cystitis / Pyelonephritis)",
+      "scientific_name": "Acute bacterial cystitis (lower UTI) / acute pyelonephritis (upper UTI)",
+      "body_system": "Urinary System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Lower-tract symptoms (dysuria, frequency, urgency, suprapubic discomfort) without fever correspond to SEE_DOCTOR_SOON. Fever, chills, flank pain or costovertebral angle tenderness, or vomiting suggest pyelonephritis (SEEK_URGENT_CARE), while hypotension, confusion or other signs of sepsis place the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Urinary tract infection (UTI) is bacterial infection of the urinary tract, ranging from infection of the bladder (cystitis, lower UTI) to infection of the renal pelvis and parenchyma (pyelonephritis, upper UTI). It is classified as uncomplicated when it occurs in patients without structural urinary tract abnormalities or significant comorbidity, and complicated otherwise (e.g., catheters, obstruction, diabetes, pregnancy, male sex in many classifications). Escherichia coli causes most community-acquired UTIs. UTI is one of the most common bacterial infections in adult women.",
+      "pathophysiology": "Most UTIs arise by ascending infection: uropathogens from the bowel flora colonize the periurethral area and ascend the urethra into the bladder. Uropathogenic E. coli adhere to uroepithelium via fimbriae (adhesins), which allows the organisms to resist clearance by urine flow. Invasion of the bladder mucosa provokes an acute inflammatory response with neutrophil recruitment, producing pyuria and irritative voiding symptoms. Ascent through the ureters to the renal pelvis and parenchyma produces pyelonephritis with systemic inflammation, and bacteria may enter the bloodstream (urosepsis). Host factors that impair urine flow or bladder emptying (obstruction, stones, catheters, incomplete voiding) increase susceptibility.",
+      "clinicopathologic_correlation": "Inflammation of the bladder and urethral mucosa explains dysuria, frequency, urgency and suprapubic discomfort, and mucosal injury accounts for hematuria. Neutrophil influx is detected as pyuria and leukocyte esterase, while nitrate reduction by Enterobacterales produces a positive nitrite test. Renal parenchymal infection causes flank pain and costovertebral angle tenderness, and the systemic cytokine response produces fever, chills, nausea and vomiting.",
+      "onset_progression": "Cystitis typically develops over hours to a day or two with dysuria and frequency. Pyelonephritis may follow cystitis symptoms or present directly with fever, flank pain and nausea over one to several days. With appropriate antibiotics, symptoms usually improve within about 48 hours; untreated or complicated upper-tract infection may progress to renal abscess, emphysematous pyelonephritis, acute kidney injury or sepsis.",
+      "follow_up_monitoring": "Clinical response is expected within about 48 hours of antibiotic therapy; persistence or worsening prompts urine culture review and reassessment for pyelonephritis, resistant organisms or complicating factors. Outpatient pyelonephritis is re-evaluated within 24-48 hours. Imaging (ultrasound or CT) is considered when there is no improvement, suspected obstruction or abscess. Recurrent UTI (commonly defined as 2 or more in 6 months or 3 or more in 12 months) prompts evaluation of risk factors and preventive strategies.",
+      "source_attribution": "StatPearls (Uncomplicated Urinary Tract Infections; Acute Pyelonephritis), NICE NG109, CDC Clinical Overview of UTIs, Harrison's Principles of Internal Medicine",
+      "tags": [
+        "infection",
+        "urology",
+        "E. coli",
+        "women's health",
+        "antimicrobial stewardship"
+      ],
+      "causes": [
+        "Escherichia coli (the majority of community-acquired cases)",
+        "Klebsiella species",
+        "Staphylococcus saprophyticus (young sexually active women)",
+        "Proteus mirabilis",
+        "Enterococcus species",
+        "Enterobacter and other gram-negative bacilli (more frequent in complicated or healthcare-associated UTI)"
+      ],
+      "risk_factors": [
+        "Female sex (shorter urethra)",
+        "Sexual intercourse; spermicide or diaphragm use",
+        "Urinary catheter use",
+        "Incomplete bladder emptying, urinary retention or obstruction (e.g., stones, prostatic enlargement)",
+        "Diabetes mellitus and immunocompromised states",
+        "Menopause (estrogen deficiency)",
+        "Pregnancy",
+        "Previous UTI"
+      ],
+      "recommended_tests": [
+        "Urine dipstick: leukocyte esterase and nitrite",
+        "Urinalysis with microscopy (pyuria, bacteriuria, hematuria)",
+        "Urine culture with susceptibility testing (pyelonephritis, men, pregnancy, recurrence, treatment failure or complicated UTI)",
+        "Complete blood count and serum creatinine in suspected pyelonephritis",
+        "Blood cultures when sepsis is suspected",
+        "Renal ultrasound or CT when obstruction, abscess or non-response is suspected",
+        "Pregnancy test in women of reproductive age"
+      ],
+      "treatments": [
+        "Acute uncomplicated cystitis in non-pregnant women: short-course nitrofurantoin (NICE: 3 days; StatPearls: 5-7 days), or trimethoprim-based therapy where local resistance is low; fosfomycin single dose or pivmecillinam are alternatives",
+        "Cystitis in men: 7-day antibiotic course (e.g., trimethoprim or nitrofurantoin per NICE), with urine culture; prostatitis considered",
+        "Pregnancy: nitrofurantoin for 7 days (avoided at term) or culture-guided beta-lactam; asymptomatic bacteriuria is also treated",
+        "Uncomplicated pyelonephritis managed as outpatient: fluoroquinolone for 7 days where community resistance is 10% or less, often after an initial parenteral dose of ceftriaxone; therapy adjusted to culture",
+        "Pyelonephritis with sepsis, persistent vomiting, pregnancy, immunocompromise, obstruction or treatment failure: hospital admission with parenteral antibiotics",
+        "Nitrofurantoin and fosfomycin are not used for pyelonephritis because of inadequate renal tissue levels",
+        "Analgesia with paracetamol (ibuprofen as an alternative where suitable)"
+      ],
+      "home_care": [
+        "Adequate oral fluid intake to avoid dehydration during infection",
+        "Simple analgesia for dysuria and suprapubic discomfort",
+        "Completion of the prescribed antibiotic course and clinical review if no improvement within 48 hours",
+        "Voiding after sexual intercourse is commonly advised in recurrent UTI"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Adequate fluid intake, post-coital voiding, avoidance of spermicides in women with recurrent infection, and minimizing unnecessary urinary catheter use."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early urine testing and prompt treatment of symptomatic infection; screening and treatment of asymptomatic bacteriuria in pregnancy to prevent pyelonephritis."
+        },
+        {
+          "tier": "tertiary",
+          "content": "For recurrent UTI: vaginal estrogen in postmenopausal women, cranberry products or D-mannose (modest evidence), and low-dose antibiotic prophylaxis in selected patients; correction of anatomical or functional abnormalities."
+        }
+      ],
+      "emergency_signs": [
+        "High fever with rigors",
+        "Flank pain with persistent vomiting or inability to keep fluids down",
+        "Hypotension, tachycardia or signs of sepsis",
+        "Confusion or altered mental status (particularly in older adults)",
+        "Markedly reduced urine output",
+        "UTI symptoms with fever in pregnancy"
+      ],
+      "differentials": [
+        {
+          "condition": "Vaginitis",
+          "distinguishing_feature": "Vaginal discharge, odor or itching with external dysuria; frequency and urgency are less prominent"
+        },
+        {
+          "condition": "Urethritis / sexually transmitted infection",
+          "distinguishing_feature": "Urethral or vaginal discharge, new sexual partner; pyuria with negative routine urine culture"
+        },
+        {
+          "condition": "Nephrolithiasis",
+          "distinguishing_feature": "Colicky flank-to-groin pain with hematuria, often without fever or pyuria unless infected"
+        },
+        {
+          "condition": "Acute prostatitis",
+          "distinguishing_feature": "Men with perineal or pelvic pain, obstructive voiding symptoms and a tender prostate"
+        },
+        {
+          "condition": "Overactive bladder / interstitial cystitis (bladder pain syndrome)",
+          "distinguishing_feature": "Chronic frequency, urgency or bladder pain with sterile urine and no pyuria"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_dysuria",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.9
+        },
+        {
+          "symptom_id": "sym_urinary_frequency",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_suprapubic_pain",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_flank_pain",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.4
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_nitrofurantoin",
+          "safety": "safe",
+          "note": "First-line for acute uncomplicated cystitis; not used for pyelonephritis (poor tissue levels) and avoided when eGFR is below 45 mL/min/1.73 m2 or at term in pregnancy."
+        },
+        {
+          "medicine_id": "med_ceftriaxone",
+          "safety": "safe",
+          "note": "Parenteral cephalosporin used as an initial dose or inpatient therapy for pyelonephritis."
+        },
+        {
+          "medicine_id": "med_ciprofloxacin",
+          "safety": "caution",
+          "note": "Option for pyelonephritis where local resistance is 10% or less; reserved rather than used first-line for cystitis because of resistance and serious adverse effects (tendon, nerve, CNS)."
+        },
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "caution",
+          "note": "High E. coli resistance limits empiric use; used only when the organism is known to be susceptible (e.g., pregnancy per NICE)."
+        },
+        {
+          "medicine_id": "med_coamoxiclav",
+          "safety": "caution",
+          "note": "Beta-lactam alternative generally reserved for culture-guided therapy; beta-lactams are less effective than first-line agents for empiric cystitis."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Recommended analgesic for UTI-related pain (NICE)."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "caution",
+          "note": "Alternative analgesic if suitable (NICE); NSAIDs carry renal risk in dehydration or pyelonephritis."
+        }
+      ],
+      "related": [
+        "type2_diabetes"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls: Uncomplicated Urinary Tract Infections",
+          "citation_text": "Bono MJ, Leslie SW. Uncomplicated Urinary Tract Infections. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2025 Feb 21.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470195/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls: Acute Pyelonephritis",
+          "citation_text": "Belyayeva M, Leslie SW, Rout P, Jeong JM. Acute Pyelonephritis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2024 Feb 28.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519537/",
+          "specialty": "Nephrology / Urology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NICE NG109",
+          "citation_text": "National Institute for Health and Care Excellence. Urinary tract infection (lower): antimicrobial prescribing. NICE guideline NG109. London: NICE; 2018.",
+          "url": "https://www.nice.org.uk/guidance/ng109/chapter/recommendations",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC: Clinical Overview of Urinary Tract Infections",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Urinary Tract Infections. CDC; 2026.",
+          "url": "https://www.cdc.gov/uti/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "peptic_ulcer_disease",
+      "name": "Peptic Ulcer Disease",
+      "scientific_name": "Peptic ulcer (gastric ulcer and duodenal ulcer)",
+      "body_system": "Digestive System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Uncomplicated dyspepsia or epigastric pain corresponds to SEE_DOCTOR_SOON, with alarm features (unintentional weight loss, progressive dysphagia, persistent vomiting, iron-deficiency anemia) warranting prompt endoscopic evaluation. Hematemesis, melena, syncope, tachycardia or sudden severe abdominal pain (possible bleeding or perforation) place the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Peptic ulcer disease (PUD) is a break in the gastric or duodenal mucosa that extends through the muscularis mucosae. The two dominant causes are Helicobacter pylori infection and nonsteroidal anti-inflammatory drug (NSAID) use, including low-dose aspirin. It typically presents with dull or burning epigastric pain, but may be silent until a complication such as bleeding or perforation occurs. Eradication of H. pylori and withdrawal of NSAIDs markedly reduce recurrence.",
+      "pathophysiology": "Ulcers result from an imbalance between aggressive factors (gastric acid, pepsin) and mucosal defenses (mucus-bicarbonate layer, prostaglandins, mucosal blood flow, epithelial renewal). H. pylori colonizes the gastric mucosa and causes chronic active gastritis; antral-predominant infection can increase gastrin and acid output and impair duodenal bicarbonate secretion, favoring duodenal ulcers. NSAIDs inhibit cyclooxygenase-1-dependent prostaglandin synthesis, reducing mucus, bicarbonate and mucosal blood flow, in addition to causing direct topical injury. Less common causes include acid hypersecretion (Zollinger-Ellison syndrome), other ulcerogenic drugs and severe physiological stress. Deep ulcers can erode vessels (bleeding), penetrate the full wall (perforation) or cause scarring and edema at the pylorus (gastric outlet obstruction).",
+      "clinicopathologic_correlation": "Acid contact with the ulcer base produces burning epigastric pain; duodenal ulcer pain classically occurs 2-3 hours after meals and at night, whereas gastric ulcer pain may be provoked by eating. Erosion into a submucosal artery produces hematemesis or melena and, with significant blood loss, dizziness and tachycardia, while chronic occult loss causes iron-deficiency anemia and fatigue. Full-thickness perforation releases gastric contents into the peritoneum, producing sudden severe generalized abdominal pain and peritonitis; pyloric scarring causes early satiety and vomiting.",
+      "onset_progression": "Symptoms are usually chronic or recurrent over weeks to months, often episodic with symptom-free intervals. NSAID-associated ulcers are frequently painless and may present first with bleeding. Without removal of the cause, ulcers tend to recur; complications (bleeding, perforation, obstruction) can occur abruptly at any stage.",
+      "follow_up_monitoring": "Confirmation of H. pylori eradication is recommended in all treated patients, using urea breath test, stool antigen or biopsy performed at least 4 weeks after completion of antibiotics and after proton pump inhibitors have been held for at least 2 weeks (ACG 2024). Symptoms, need for ongoing NSAID or antiplatelet therapy, and hemoglobin in bleeding ulcers are reviewed. Selected gastric ulcers undergo repeat endoscopy to document healing and exclude malignancy.",
+      "source_attribution": "StatPearls (Peptic Ulcer Disease), ACG Clinical Guideline on Treatment of H. pylori (2024), NIDDK, Sleisenger and Fordtran's Gastrointestinal and Liver Disease",
+      "tags": [
+        "gastroenterology",
+        "H. pylori",
+        "NSAID injury",
+        "upper GI bleeding",
+        "dyspepsia"
+      ],
+      "causes": [
+        "Helicobacter pylori infection (implicated in about 90% of duodenal and 70-90% of gastric ulcers per StatPearls)",
+        "NSAIDs, including low-dose aspirin",
+        "Other ulcerogenic medications (e.g., corticosteroids in combination with NSAIDs, bisphosphonates)",
+        "Gastric acid hypersecretion (Zollinger-Ellison syndrome)",
+        "Less common: Crohn disease, malignancy, viral infections, severe physiological stress"
+      ],
+      "risk_factors": [
+        "H. pylori infection",
+        "NSAID or aspirin use, especially high dose, older age or concomitant anticoagulant/antiplatelet/corticosteroid therapy",
+        "Cigarette smoking",
+        "Heavy alcohol use",
+        "Previous peptic ulcer or ulcer bleeding",
+        "Family history of peptic ulcer disease"
+      ],
+      "recommended_tests": [
+        "Upper endoscopy (EGD), the diagnostic gold standard, with biopsy of gastric ulcers to exclude malignancy",
+        "H. pylori testing: urea breath test, stool antigen, or endoscopic biopsy (rapid urease test/histology)",
+        "Complete blood count (anemia) and iron studies",
+        "Fasting serum gastrin when Zollinger-Ellison syndrome is suspected (multiple, refractory or atypically located ulcers)",
+        "Upright chest radiograph or CT abdomen when perforation is suspected"
+      ],
+      "treatments": [
+        "Proton pump inhibitor therapy to heal the ulcer and relieve symptoms",
+        "H. pylori eradication: optimized bismuth quadruple therapy (PPI, bismuth, tetracycline, metronidazole) for 14 days is the preferred first-line regimen per ACG 2024",
+        "Vonoprazan-amoxicillin dual therapy is an alternative first-line option (ACG 2024)",
+        "Clarithromycin-based triple therapy is used only when clarithromycin susceptibility has been demonstrated",
+        "Discontinuation of NSAIDs where possible; when continued NSAID or aspirin therapy is required, co-therapy with a PPI",
+        "Bleeding ulcer: resuscitation, endoscopic hemostasis and high-dose PPI therapy",
+        "Surgery or interventional radiology for perforation, uncontrolled bleeding or refractory gastric outlet obstruction"
+      ],
+      "home_care": [
+        "Smoking cessation and limitation of alcohol intake",
+        "Avoidance of over-the-counter NSAIDs; paracetamol is the usual alternative analgesic",
+        "Adherence to the full course of eradication therapy",
+        "Recognition of bleeding warning signs such as black stools or vomiting blood"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Avoidance of unnecessary NSAID use; PPI co-therapy for high-risk patients who require NSAIDs or low-dose aspirin; testing for and treating H. pylori in appropriate patients."
+        },
+        {
+          "tier": "secondary",
+          "content": "Endoscopic evaluation of dyspepsia with alarm features, and H. pylori test-and-treat in dyspeptic patients."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Confirmation of H. pylori eradication, long-term PPI co-therapy when antiplatelet or anticoagulant therapy must continue after ulcer bleeding, and follow-up endoscopy of selected gastric ulcers."
+        }
+      ],
+      "emergency_signs": [
+        "Vomiting blood or coffee-ground material",
+        "Black, tarry stools",
+        "Sudden, severe abdominal pain with a rigid abdomen",
+        "Dizziness, fainting, rapid pulse or low blood pressure",
+        "Persistent vomiting suggesting gastric outlet obstruction"
+      ],
+      "differentials": [
+        {
+          "condition": "Gastroesophageal reflux disease",
+          "distinguishing_feature": "Retrosternal heartburn and regurgitation, often postural; endoscopy shows esophagitis rather than ulcer"
+        },
+        {
+          "condition": "Gastritis / functional dyspepsia",
+          "distinguishing_feature": "Similar dyspepsia but no mucosal break on endoscopy"
+        },
+        {
+          "condition": "Gastric cancer",
+          "distinguishing_feature": "Older age, weight loss, anemia, early satiety; malignant histology on ulcer biopsy"
+        },
+        {
+          "condition": "Acute pancreatitis",
+          "distinguishing_feature": "Severe epigastric pain radiating to the back with elevated serum lipase or amylase"
+        },
+        {
+          "condition": "Acute coronary syndrome (inferior myocardial ischemia)",
+          "distinguishing_feature": "Epigastric discomfort with cardiovascular risk factors, ischemic ECG changes and elevated troponin"
+        },
+        {
+          "condition": "Biliary colic / cholecystitis",
+          "distinguishing_feature": "Right upper quadrant pain after fatty meals, Murphy sign and gallstones on ultrasound"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_epigastric_pain",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_heartburn",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_melena",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_hematemesis",
+          "typical_intensity": 8,
+          "is_primary": false,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_weight_loss",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_omeprazole",
+          "safety": "safe",
+          "note": "Proton pump inhibitor for ulcer healing, a component of H. pylori regimens, and prophylaxis with ongoing NSAID or aspirin use."
+        },
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "safe",
+          "note": "Component of H. pylori eradication regimens (e.g., vonoprazan-amoxicillin dual therapy)."
+        },
+        {
+          "medicine_id": "med_clarithromycin",
+          "safety": "caution",
+          "note": "ACG 2024 advises against clarithromycin triple therapy unless clarithromycin susceptibility has been demonstrated, because resistance sharply lowers eradication rates."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NSAIDs are the second leading cause of peptic ulcers and increase the risk of ulcer bleeding and perforation."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "avoid",
+          "note": "NSAID; impairs prostaglandin-mediated mucosal protection and increases ulcer and bleeding risk."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "caution",
+          "note": "Even low-dose aspirin causes ulcers and bleeding; when required for cardiovascular prevention it is generally continued with PPI co-therapy rather than stopped."
+        },
+        {
+          "medicine_id": "med_clopidogrel",
+          "safety": "caution",
+          "note": "Antiplatelet effect increases the risk and severity of ulcer bleeding."
+        },
+        {
+          "medicine_id": "med_warfarin",
+          "safety": "caution",
+          "note": "Anticoagulation increases the risk and severity of bleeding from peptic ulcers."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic corticosteroids are an ulcer risk factor, particularly when combined with NSAIDs."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Preferred analgesic alternative to NSAIDs in patients with peptic ulcer disease."
+        }
+      ],
+      "related": [
+        "acute_coronary_syndrome",
+        "acute_gastroenteritis"
+      ],
+      "references": [
+        {
+          "source_name": "Sleisenger and Fordtran's Gastrointestinal and Liver Disease",
+          "citation_text": "Feldman M, Friedman LS, Brandt LJ, eds. Sleisenger and Fordtran's Gastrointestinal and Liver Disease: Pathophysiology, Diagnosis, Management, 11th ed. Philadelphia: Elsevier; 2021.",
+          "url": "",
+          "specialty": "Gastroenterology",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls: Peptic Ulcer Disease",
+          "citation_text": "Malik TF, Gnanapandithan K, Singh K. Peptic Ulcer Disease. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2023 Jun 5.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK534792/",
+          "specialty": "Gastroenterology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "ACG Clinical Guideline: Treatment of Helicobacter pylori Infection (2024)",
+          "citation_text": "Chey WD, Howden CW, Moss SF, et al. ACG Clinical Guideline: Treatment of Helicobacter pylori Infection. Am J Gastroenterol. 2024;119:1730-1753. (URL is the ACG Evidence-Based GI summary of this guideline.)",
+          "url": "https://gi.org/journals-publications/ebgi/schoenfeld_sep2024/",
+          "specialty": "Gastroenterology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NIDDK: Symptoms & Causes of Peptic Ulcers",
+          "citation_text": "National Institute of Diabetes and Digestive and Kidney Diseases. Symptoms & Causes of Peptic Ulcers (Stomach or Duodenal Ulcers). NIDDK; last reviewed 2022 Sep.",
+          "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/peptic-ulcers-stomach-ulcers/symptoms-causes",
+          "specialty": "Gastroenterology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "hypertension",
+      "name": "Essential Hypertension",
+      "scientific_name": "Primary (essential) arterial hypertension",
+      "body_system": "Cardiovascular System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Elevated readings without symptoms correspond to SEE_DOCTOR_SOON for confirmation and management. Severe elevation (typically above 180/120 mm Hg) with symptoms of acute target-organ injury (chest pain, dyspnea, neurological deficit, confusion, visual disturbance) indicates a hypertensive emergency and places the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Essential (primary) hypertension is persistently elevated arterial blood pressure without an identifiable secondary cause, accounting for the large majority of hypertension cases. WHO and the 2020 Philippine guidelines define hypertension as office blood pressure of 140/90 mm Hg or higher on repeated measurement, while the ACC/AHA uses 130/80 mm Hg. Most cases are asymptomatic and detected incidentally, so symptom-based recognition is unreliable; headache, dizziness or blurred vision occur mainly with severe elevation. It is a major modifiable risk factor for stroke, coronary heart disease, heart failure and chronic kidney disease.",
+      "pathophysiology": "Essential hypertension is multifactorial, arising from interaction of genetic susceptibility with environmental factors such as high sodium intake, obesity and physical inactivity. Increased renal sodium retention expands intravascular volume, while inappropriate activity of the renin-angiotensin-aldosterone system promotes vasoconstriction and further sodium retention. Heightened sympathetic nervous system activity raises heart rate, cardiac output and vascular tone. Over time, vascular remodeling and endothelial dysfunction increase total peripheral resistance, which sustains the elevated pressure. Chronic pressure load causes target-organ damage including left ventricular hypertrophy, arteriolosclerosis, nephrosclerosis and retinopathy.",
+      "clinicopathologic_correlation": "Because the pressure rise is gradual and autoregulation adapts, most patients have no symptoms until target organs are damaged. Increased afterload leads to left ventricular hypertrophy (detected on ECG or echocardiography) and eventually heart failure, while arteriolar injury produces retinopathy, albuminuria and declining eGFR. Abrupt severe elevation can overwhelm cerebral autoregulation (encephalopathy with headache, confusion and visual disturbance) or precipitate acute pulmonary edema and myocardial ischemia.",
+      "onset_progression": "Typically develops gradually in mid to later adulthood, with prevalence rising steeply with age. It is a lifelong condition that is controlled rather than cured; untreated, it progressively damages the heart, brain, kidneys and retina over years, and acute hypertensive crises may occur at any stage.",
+      "follow_up_monitoring": "Diagnosis is confirmed by repeated office readings on separate occasions, ideally supplemented by home or ambulatory monitoring. After starting or changing therapy, blood pressure is reassessed at intervals (response to a regimen is typically judged over several weeks) until target is reached, then periodically. Electrolytes and creatinine/eGFR are checked after initiating RAAS blockers or diuretics, and target-organ status (urine albumin, ECG, lipids, glucose) is reviewed periodically.",
+      "source_attribution": "StatPearls (Essential Hypertension; Antihypertensive Medications; Hypertensive Crisis), WHO Hypertension fact sheet, 2020 Philippine Clinical Practice Guidelines for Hypertension, Harrison's Principles of Internal Medicine",
+      "tags": [
+        "cardiology",
+        "chronic disease",
+        "cardiovascular risk",
+        "silent killer",
+        "lifestyle"
+      ],
+      "causes": [
+        "Multifactorial: genetic predisposition combined with environmental and lifestyle factors (no single identifiable cause by definition)",
+        "High dietary sodium intake and salt sensitivity",
+        "Overweight and obesity",
+        "Physical inactivity",
+        "Excess alcohol intake"
+      ],
+      "risk_factors": [
+        "Increasing age",
+        "Family history of hypertension",
+        "Unhealthy diet high in salt and low in fruits and vegetables",
+        "Overweight or obesity",
+        "Physical inactivity",
+        "Tobacco use and excess alcohol",
+        "Diabetes mellitus and chronic kidney disease",
+        "Obstructive sleep apnea"
+      ],
+      "recommended_tests": [
+        "Repeated office blood pressure measurement on at least two separate occasions",
+        "Home or 24-hour ambulatory blood pressure monitoring (identifies white-coat and masked hypertension)",
+        "12-lead ECG (left ventricular hypertrophy, arrhythmia)",
+        "Serum electrolytes, creatinine and eGFR",
+        "Fasting glucose or HbA1c and lipid panel",
+        "Urinalysis and urine albumin-to-creatinine ratio",
+        "Fundoscopy for hypertensive retinopathy"
+      ],
+      "treatments": [
+        "Lifestyle modification for all patients: sodium restriction, DASH-type diet, weight reduction, regular aerobic exercise, limitation of alcohol and smoking cessation",
+        "First-line drug classes: ACE inhibitors, angiotensin receptor blockers, dihydropyridine calcium channel blockers and thiazide or thiazide-like diuretics",
+        "Initial two-drug combination (RAAS inhibitor plus calcium channel blocker or diuretic), preferably as a single-pill combination, when BP is well above target (Philippine 2020 CPG: above 150/90 mm Hg)",
+        "Philippine 2020 CPG target: below 130/80 mm Hg for most adults; below 140/90 mm Hg for adults aged 80 and older",
+        "Resistant hypertension: spironolactone is the preferred fourth-line agent",
+        "Beta-blockers reserved for compelling indications (heart failure with reduced ejection fraction, post-myocardial infarction, rate control in atrial fibrillation)",
+        "Hypertensive emergency: hospital management with controlled BP reduction (generally no more than 25% within the first hour)"
+      ],
+      "home_care": [
+        "Reduced salt intake and a diet rich in fruits, vegetables and low-fat dairy (DASH pattern)",
+        "At least 150 minutes per week of moderate-intensity physical activity",
+        "Weight reduction in overweight individuals",
+        "Smoking cessation and moderation of alcohol intake",
+        "Home blood pressure monitoring with a validated device",
+        "Long-term adherence to prescribed antihypertensive therapy"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Population-wide salt reduction, healthy diet, regular physical activity, healthy body weight, and avoidance of tobacco and harmful alcohol use."
+        },
+        {
+          "tier": "secondary",
+          "content": "Regular blood pressure screening of adults to detect the large proportion of people unaware of their hypertension, with confirmation by repeated or out-of-office readings."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Sustained BP control to target, management of coexisting cardiovascular risk factors (diabetes, dyslipidemia, smoking), and monitoring for target-organ damage to prevent stroke, heart failure and kidney disease."
+        }
+      ],
+      "emergency_signs": [
+        "Severe headache with markedly elevated blood pressure",
+        "Chest pain or pressure",
+        "Shortness of breath or breathlessness lying flat",
+        "Blurred vision or other visual disturbance",
+        "Confusion, drowsiness or seizures",
+        "One-sided weakness, facial droop or difficulty speaking"
+      ],
+      "differentials": [
+        {
+          "condition": "White-coat hypertension",
+          "distinguishing_feature": "Elevated office readings with normal home or ambulatory blood pressure"
+        },
+        {
+          "condition": "Secondary hypertension (e.g., primary aldosteronism, renovascular disease, pheochromocytoma, obstructive sleep apnea)",
+          "distinguishing_feature": "Young or abrupt onset, resistant hypertension, unprovoked hypokalemia, episodic symptoms or suggestive clinical features"
+        },
+        {
+          "condition": "Drug-induced hypertension",
+          "distinguishing_feature": "Temporal association with NSAIDs, corticosteroids, decongestants or other pressor agents"
+        },
+        {
+          "condition": "Transient elevation from pain or anxiety",
+          "distinguishing_feature": "Resolves when the provoking stimulus is removed; normal repeat readings"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_blurred_vision",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_chest_pain",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_amlodipine",
+          "safety": "safe",
+          "note": "First-line dihydropyridine calcium channel blocker; peripheral edema is the common adverse effect."
+        },
+        {
+          "medicine_id": "med_losartan",
+          "safety": "safe",
+          "note": "First-line ARB; monitor potassium and creatinine; contraindicated in pregnancy."
+        },
+        {
+          "medicine_id": "med_enalapril",
+          "safety": "safe",
+          "note": "First-line ACE inhibitor; cough, angioedema and hyperkalemia possible; contraindicated in pregnancy."
+        },
+        {
+          "medicine_id": "med_hydrochlorothiazide",
+          "safety": "safe",
+          "note": "First-line thiazide diuretic; may cause hypokalemia, hyperglycemia and hyperuricemia."
+        },
+        {
+          "medicine_id": "med_spironolactone",
+          "safety": "caution",
+          "note": "Preferred fourth-line agent for resistant hypertension; hyperkalemia risk, especially with ACE inhibitors/ARBs or reduced eGFR."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Not first-line for uncomplicated hypertension; used for compelling indications such as HFrEF, post-MI or atrial fibrillation rate control."
+        },
+        {
+          "medicine_id": "med_furosemide",
+          "safety": "caution",
+          "note": "Loop diuretic not first-line for hypertension alone; preferred when eGFR is below 30 or with volume overload/heart failure."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "caution",
+          "note": "NSAIDs can raise blood pressure, reduce antihypertensive efficacy and increase hyperkalemia risk with RAAS inhibitors."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "caution",
+          "note": "NSAID; same blood pressure and renal cautions as other NSAIDs."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic glucocorticoids cause sodium and fluid retention and can raise blood pressure."
+        }
+      ],
+      "related": [
+        "acute_coronary_syndrome",
+        "heart_failure",
+        "ischemic_stroke",
+        "type2_diabetes"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Cardiology / Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls: Essential Hypertension",
+          "citation_text": "Iqbal AM, Jamal SF. Essential Hypertension. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2023 Jul 20.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK539859/",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet: Hypertension",
+          "citation_text": "World Health Organization. Hypertension. Fact sheet; updated 2025 Sep 25.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+          "specialty": "Cardiology / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "2020 Philippine Clinical Practice Guidelines for the Management of Hypertension",
+          "citation_text": "Ona DID, Jimeno CA, Jasul GV, et al. Executive summary of the 2020 clinical practice guidelines for the management of hypertension in the Philippines. J Clin Hypertens (Greenwich). 2021;23:1637-1650. doi:10.1111/jch.14335",
+          "url": "https://pspme.com.ph/images/guidelines/J_Clinical_Hypertension-2021-Ona.pdf",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls: Antihypertensive Medications",
+          "citation_text": "Regalla DKR, Patel P. Antihypertensive Medications. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2026 May 26.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554579/",
+          "specialty": "Pharmacology / Cardiology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "type2_diabetes",
+      "name": "Type 2 Diabetes Mellitus",
+      "scientific_name": "Diabetes mellitus type 2",
+      "body_system": "Endocrine System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Symptomatic hyperglycemia (polyuria, polydipsia, weight loss) or abnormal screening glucose corresponds to SEE_DOCTOR_SOON. Confusion, drowsiness, severe dehydration, persistent vomiting, rapid breathing or very high glucose (possible hyperosmolar hyperglycemic state or ketoacidosis), or severe hypoglycemia on treatment place the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Type 2 diabetes mellitus is a chronic metabolic disorder of hyperglycemia caused by insulin resistance combined with progressive pancreatic beta-cell dysfunction. It is the most common form of diabetes (over 90% of cases) and is strongly associated with overweight, physical inactivity and family history. It often develops silently over years and may be diagnosed on screening or after complications appear. Long-term hyperglycemia damages small and large blood vessels, causing retinopathy, nephropathy, neuropathy and cardiovascular disease.",
+      "pathophysiology": "Insulin resistance in muscle, liver and adipose tissue reduces peripheral glucose uptake and fails to suppress hepatic glucose production. Beta cells initially compensate by increasing insulin secretion, but progressive beta-cell dysfunction and loss lead to relative insulin deficiency and overt hyperglycemia. Contributing mechanisms include adipose tissue inflammation and increased free fatty acids, reduced incretin (GLP-1) effect, dysregulated glucagon secretion and increased renal glucose reabsorption. Residual insulin secretion usually suppresses ketogenesis, so ketoacidosis is less common than in type 1 diabetes, but marked hyperglycemia can cause a hyperosmolar hyperglycemic state. Chronic hyperglycemia drives microvascular and macrovascular injury.",
+      "clinicopathologic_correlation": "When blood glucose exceeds the renal threshold, glycosuria causes osmotic diuresis (polyuria) and consequent dehydration and thirst (polydipsia). Loss of glucose calories and catabolism can produce weight loss and fatigue, and osmotic changes in the lens cause fluctuating blurred vision. Hyperglycemia impairs immune function and wound healing, increasing infections such as UTI and candidiasis. Severe hyperosmolality leads to confusion and reduced consciousness in the hyperosmolar hyperglycemic state.",
+      "onset_progression": "Insidious onset, typically in adulthood, often preceded by years of prediabetes; many patients are asymptomatic at diagnosis. The disease is progressive, with declining beta-cell function commonly requiring intensification of therapy over time. Microvascular and macrovascular complications accumulate with duration and degree of hyperglycemia.",
+      "follow_up_monitoring": "HbA1c every 3-6 months (at least twice yearly when at target, more often after therapy changes). Blood pressure at each visit; lipid profile periodically. Urine albumin-to-creatinine ratio and eGFR at least annually. Dilated retinal examination at diagnosis and periodically thereafter, and comprehensive foot examination at least annually. Self-monitoring of glucose is used especially with insulin or sulfonylurea therapy.",
+      "source_attribution": "StatPearls (Type 2 Diabetes), WHO Diabetes fact sheet, CDC Type 2 Diabetes, ADA Standards of Care in Diabetes 2026, Williams Textbook of Endocrinology",
+      "tags": [
+        "endocrinology",
+        "metabolic",
+        "chronic disease",
+        "insulin resistance",
+        "cardiovascular risk"
+      ],
+      "causes": [
+        "Insulin resistance (skeletal muscle, liver, adipose tissue)",
+        "Progressive pancreatic beta-cell dysfunction",
+        "Reduced incretin effect and dysregulated glucagon secretion",
+        "Genetic predisposition interacting with obesity and physical inactivity"
+      ],
+      "risk_factors": [
+        "Overweight or obesity, especially abdominal adiposity",
+        "Physical inactivity",
+        "Family history of type 2 diabetes",
+        "Age 45 years or older",
+        "Prediabetes (impaired fasting glucose or impaired glucose tolerance)",
+        "History of gestational diabetes",
+        "Hypertension or dyslipidemia",
+        "Polycystic ovary syndrome; Asian and certain other ethnic ancestries"
+      ],
+      "recommended_tests": [
+        "HbA1c (diagnostic at 6.5% or higher, 48 mmol/mol)",
+        "Fasting plasma glucose (diagnostic at 126 mg/dL or higher, 7.0 mmol/L)",
+        "75-g oral glucose tolerance test (2-hour value 200 mg/dL or higher, 11.1 mmol/L)",
+        "Random plasma glucose 200 mg/dL or higher with classic symptoms",
+        "Serum creatinine/eGFR and urine albumin-to-creatinine ratio",
+        "Lipid profile",
+        "Dilated retinal examination and foot examination (monofilament)",
+        "Serum or urine ketones and serum osmolality when DKA or hyperosmolar state is suspected"
+      ],
+      "treatments": [
+        "Lifestyle therapy (medical nutrition therapy, physical activity, weight management) as the foundation of care",
+        "Metformin as the usual initial pharmacological agent",
+        "SGLT2 inhibitors (and/or GLP-1 receptor agonists) for patients with established atherosclerotic cardiovascular disease, heart failure or chronic kidney disease, independent of HbA1c",
+        "Additional agents (sulfonylureas, DPP-4 inhibitors, pioglitazone, insulin) chosen by efficacy, hypoglycemia risk, weight effect, cost and comorbidities",
+        "Insulin when hyperglycemia is severe or symptomatic, or when catabolic features are present",
+        "Cardiovascular risk reduction: blood pressure control, statin therapy, and ACE inhibitor or ARB when albuminuria and hypertension coexist",
+        "Individualized glycemic targets (an HbA1c below 7% is appropriate for many non-pregnant adults), avoiding hypoglycemia"
+      ],
+      "home_care": [
+        "Healthy eating pattern with portion control and limitation of added sugars and refined carbohydrates",
+        "At least 150 minutes per week of moderate-intensity physical activity",
+        "Weight reduction in overweight individuals",
+        "Smoking cessation",
+        "Self-monitoring of blood glucose when indicated, and recognition of hypoglycemia symptoms",
+        "Daily foot inspection and appropriate footwear"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Maintenance of healthy weight, regular physical activity and healthy diet; structured lifestyle programs in people with prediabetes can prevent or delay type 2 diabetes."
+        },
+        {
+          "tier": "secondary",
+          "content": "Screening of at-risk adults (e.g., overweight adults with risk factors, adults 35 years or older) with HbA1c, fasting glucose or OGTT for early detection."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Glycemic, blood pressure and lipid control, and regular screening of eyes, kidneys and feet to prevent or slow retinopathy, nephropathy, neuropathy, amputation and cardiovascular events."
+        }
+      ],
+      "emergency_signs": [
+        "Confusion, drowsiness or reduced consciousness",
+        "Severe dehydration with extreme thirst and very high blood glucose",
+        "Persistent vomiting, abdominal pain or rapid deep breathing (possible ketoacidosis)",
+        "Symptoms of severe hypoglycemia (sweating, tremor, confusion, seizures) in patients on insulin or sulfonylureas",
+        "Chest pain or stroke symptoms",
+        "Rapidly spreading foot infection or gangrene"
+      ],
+      "differentials": [
+        {
+          "condition": "Type 1 diabetes / latent autoimmune diabetes in adults",
+          "distinguishing_feature": "Often leaner, prone to ketosis, positive islet autoantibodies and low C-peptide"
+        },
+        {
+          "condition": "Drug-induced hyperglycemia",
+          "distinguishing_feature": "Temporal relation to glucocorticoids, antipsychotics or other diabetogenic drugs"
+        },
+        {
+          "condition": "Endocrinopathies (Cushing syndrome, acromegaly, hyperthyroidism)",
+          "distinguishing_feature": "Accompanying hormonal features such as cushingoid habitus or acral growth"
+        },
+        {
+          "condition": "Pancreatogenic diabetes (chronic pancreatitis, cystic fibrosis, hemochromatosis)",
+          "distinguishing_feature": "History of pancreatic disease, steatorrhea or iron overload"
+        },
+        {
+          "condition": "Monogenic diabetes (MODY)",
+          "distinguishing_feature": "Young onset, strong autosomal dominant family history, often without obesity"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_polyuria",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_polydipsia",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_blurred_vision",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_weight_loss",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_metformin",
+          "safety": "safe",
+          "note": "Usual first-line agent; low hypoglycemia risk; contraindicated when eGFR is below 30 mL/min/1.73 m2."
+        },
+        {
+          "medicine_id": "med_dapagliflozin",
+          "safety": "safe",
+          "note": "SGLT2 inhibitor with cardiorenal benefit in heart failure and CKD; genital mycotic infection and euglycemic ketoacidosis are recognized risks."
+        },
+        {
+          "medicine_id": "med_gliclazide",
+          "safety": "caution",
+          "note": "Effective and inexpensive sulfonylurea but carries hypoglycemia risk, particularly in older adults, renal impairment or missed meals."
+        },
+        {
+          "medicine_id": "med_atorvastatin",
+          "safety": "safe",
+          "note": "Statin therapy is recommended for cardiovascular risk reduction in most adults with diabetes."
+        },
+        {
+          "medicine_id": "med_losartan",
+          "safety": "safe",
+          "note": "ARB preferred for hypertension with albuminuria in diabetes to slow kidney disease progression."
+        },
+        {
+          "medicine_id": "med_enalapril",
+          "safety": "safe",
+          "note": "ACE inhibitor preferred for hypertension with albuminuria in diabetes; not combined with an ARB."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic glucocorticoids raise blood glucose and can destabilize glycemic control."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Beta-blockers can mask adrenergic warning symptoms of hypoglycemia (e.g., tremor, palpitations)."
+        }
+      ],
+      "related": [
+        "hypertension",
+        "acute_coronary_syndrome",
+        "ischemic_stroke",
+        "heart_failure",
+        "urinary_tract_infection"
+      ],
+      "references": [
+        {
+          "source_name": "Williams Textbook of Endocrinology",
+          "citation_text": "Melmed S, Auchus RJ, Goldfine AB, Koenig RJ, Rosen CJ, eds. Williams Textbook of Endocrinology, 14th ed. Philadelphia: Elsevier; 2020.",
+          "url": "",
+          "specialty": "Endocrinology",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls: Type 2 Diabetes",
+          "citation_text": "Goyal R, Singhal M, Jialal I. Type 2 Diabetes. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2023 Jun 23.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK513253/",
+          "specialty": "Endocrinology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet: Diabetes",
+          "citation_text": "World Health Organization. Diabetes. Fact sheet; 2024 Nov 14.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+          "specialty": "Endocrinology / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC: Type 2 Diabetes",
+          "citation_text": "Centers for Disease Control and Prevention. Type 2 Diabetes. CDC; 2024 May 15.",
+          "url": "https://www.cdc.gov/diabetes/about/about-type-2-diabetes.html",
+          "specialty": "Endocrinology / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "ADA Standards of Care in Diabetes 2026",
+          "citation_text": "American Diabetes Association Professional Practice Committee. 9. Pharmacologic Approaches to Glycemic Treatment: Standards of Care in Diabetes-2026. Diabetes Care. 2026;49(Suppl 1):S183. doi:10.2337/dc26-S009",
+          "url": "",
+          "specialty": "Endocrinology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "asthma",
+      "name": "Bronchial Asthma",
+      "scientific_name": "Asthma bronchiale",
+      "body_system": "Respiratory System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Intermittent wheeze, cough or chest tightness responding to reliever therapy corresponds to SEE_DOCTOR_SOON for diagnosis and controller therapy. An exacerbation with inability to speak in full sentences, respiratory rate above 30/min, heart rate above 120/min, SpO2 below 90%, PEF 50% of predicted or less, drowsiness, confusion or a silent chest places the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Asthma is a chronic inflammatory disease of the airways characterized by variable, often reversible expiratory airflow limitation and bronchial hyperresponsiveness. It presents with episodic wheeze, shortness of breath, chest tightness and cough that vary over time and in intensity, often worse at night, with exercise or with viral infections. It affects all ages, cannot be cured, but is well controlled in most people with inhaled corticosteroid-containing treatment. Severe exacerbations can be fatal.",
+      "pathophysiology": "In type 2 (allergic/eosinophilic) asthma, allergen exposure in sensitized individuals triggers IgE-mediated mast cell degranulation with release of histamine, leukotrienes and other mediators, causing early-phase bronchoconstriction. Th2 lymphocytes produce IL-4, IL-5 and IL-13, which promote IgE synthesis, eosinophil recruitment and survival, and mucus hypersecretion, driving the late-phase inflammatory response. Airway hyperresponsiveness results from increased smooth muscle mass and contractility, mediator release and neural mechanisms, so that non-specific triggers (cold air, exercise, smoke) provoke bronchoconstriction. Chronic inflammation leads to airway remodeling with basement membrane thickening, smooth muscle hypertrophy and subepithelial fibrosis, which can cause fixed airflow obstruction. Non-type 2 (T2-low) phenotypes also exist, with neutrophilic or paucigranulocytic inflammation.",
+      "clinicopathologic_correlation": "Bronchial smooth muscle constriction, mucosal edema and mucus plugging narrow the airways, producing expiratory wheeze, dyspnea and chest tightness, with reduced FEV1 and FEV1/FVC on spirometry. Reversibility of this narrowing with a bronchodilator (an FEV1 increase of 12% or more and 200 mL or more) reflects its largely functional basis. Circadian variation in airway tone and inflammation explains nocturnal cough and symptoms. In severe exacerbations, airflow becomes so limited that breath sounds diminish (silent chest) and hypoxemia and hypercapnia produce drowsiness or confusion.",
+      "onset_progression": "Often begins in childhood but can start at any age, including adult-onset and occupational asthma. The course is variable, with periods of good control interrupted by exacerbations commonly triggered by viral respiratory infections, allergens, smoke, pollution or poor adherence to controller therapy. Poorly controlled long-standing asthma may progress to persistent airflow limitation due to remodeling.",
+      "follow_up_monitoring": "Review 1-3 months after starting treatment and then every 3-12 months, assessing symptom control, exacerbation risk factors, lung function (spirometry or PEF), inhaler technique, adherence and side effects (GINA). After an exacerbation, follow-up within 2-7 days for adults and adolescents. Every patient should have a written asthma action plan; treatment is stepped up or down according to control.",
+      "source_attribution": "GINA 2025 Summary Guide, StatPearls (Asthma; Pathophysiology of Asthma), WHO Asthma fact sheet, Harrison's Principles of Internal Medicine",
+      "tags": [
+        "pulmonology",
+        "chronic airway disease",
+        "allergy",
+        "inhaled therapy",
+        "bronchospasm"
+      ],
+      "causes": [
+        "Chronic airway inflammation with bronchial hyperresponsiveness arising from genetic predisposition and environmental exposures",
+        "Allergic sensitization (atopy) to aeroallergens such as house dust mite, pollen, animal dander and molds",
+        "Occupational sensitizers (occupational asthma)",
+        "Exacerbation triggers: viral respiratory infections, allergens, tobacco smoke, air pollution, cold air, exercise, and certain medicines (beta-blockers; NSAIDs/aspirin in susceptible individuals)"
+      ],
+      "risk_factors": [
+        "Family history of asthma or atopy",
+        "Personal allergic conditions (allergic rhinitis, eczema)",
+        "Early-life exposures: prematurity/low birth weight, maternal smoking, tobacco smoke and air pollution",
+        "Obesity",
+        "Occupational exposure to sensitizers or irritants",
+        "Viral respiratory infections in early childhood"
+      ],
+      "recommended_tests": [
+        "Spirometry with bronchodilator responsiveness testing (FEV1 increase of 12% or more and 200 mL or more in adults)",
+        "Peak expiratory flow variability monitoring",
+        "Bronchial challenge testing when spirometry is non-diagnostic",
+        "Fractional exhaled nitric oxide (FeNO) and blood eosinophil count for type 2 inflammation",
+        "Allergy testing (skin prick or specific IgE) to identify relevant triggers",
+        "Chest radiograph to exclude alternative diagnoses when atypical",
+        "Pulse oximetry and arterial blood gas in severe exacerbations"
+      ],
+      "treatments": [
+        "All adults and adolescents receive inhaled corticosteroid (ICS)-containing treatment; SABA-only treatment is not recommended (GINA)",
+        "GINA Track 1 (preferred): as-needed low-dose ICS-formoterol as reliever, with maintenance-and-reliever ICS-formoterol at higher steps",
+        "GINA Track 2 (alternative): daily maintenance ICS or ICS-LABA with as-needed SABA or ICS-SABA reliever",
+        "Step-up options for uncontrolled asthma: higher-dose ICS-LABA, add-on long-acting muscarinic antagonist, and phenotype-directed biologics (anti-IgE, anti-IL-5/5R, anti-IL-4R, anti-TSLP) for severe asthma",
+        "Acute exacerbation: repeated inhaled SABA (pMDI with spacer) or ICS-formoterol, controlled oxygen to target saturation, and oral prednisolone/prednisone 40-50 mg daily for 5-7 days in adults",
+        "Management of comorbidities (allergic rhinitis, obesity, GERD, obstructive sleep apnea)"
+      ],
+      "home_care": [
+        "Correct inhaler technique, checked at every opportunity, with use of a spacer for pMDIs where appropriate",
+        "Written asthma action plan for recognizing and responding to worsening symptoms",
+        "Avoidance of tobacco smoke and identified allergen or occupational triggers",
+        "Regular physical activity",
+        "Up-to-date respiratory vaccinations (influenza, COVID-19, pneumococcal and others per GINA)"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Avoidance of tobacco smoke exposure in pregnancy and early life, reduction of air pollution exposure, and control of occupational sensitizer exposure."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early objective diagnosis with spirometry in people with recurrent wheeze, cough or dyspnea, and early initiation of ICS-containing therapy."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Regular ICS-containing controller or anti-inflammatory reliever therapy, trigger avoidance, written action plans, vaccination and prompt treatment of exacerbations to prevent severe attacks and airway remodeling."
+        }
+      ],
+      "emergency_signs": [
+        "Breathlessness at rest or inability to speak in full sentences",
+        "Use of accessory muscles, respiratory rate above 30/min or heart rate above 120/min",
+        "Oxygen saturation below 90% or cyanosis",
+        "Drowsiness, confusion or exhaustion",
+        "Silent chest (inaudible breath sounds)",
+        "Poor or no response to repeated reliever doses"
+      ],
+      "differentials": [
+        {
+          "condition": "Chronic obstructive pulmonary disease",
+          "distinguishing_feature": "Older smoker or exposure history, progressive dyspnea and post-bronchodilator airflow limitation that is not fully reversible"
+        },
+        {
+          "condition": "Heart failure",
+          "distinguishing_feature": "Orthopnea, peripheral edema, basal crackles, elevated natriuretic peptides and cardiac dysfunction on echocardiography"
+        },
+        {
+          "condition": "Vocal cord dysfunction (inducible laryngeal obstruction)",
+          "distinguishing_feature": "Inspiratory stridor and throat tightness with normal lung function between episodes"
+        },
+        {
+          "condition": "Bronchiectasis",
+          "distinguishing_feature": "Chronic daily purulent sputum and recurrent chest infections; dilated airways on CT"
+        },
+        {
+          "condition": "Foreign body aspiration",
+          "distinguishing_feature": "Sudden onset after choking episode with localized, often unilateral wheeze"
+        },
+        {
+          "condition": "Community-acquired pneumonia",
+          "distinguishing_feature": "Fever, focal crackles and consolidation on chest radiograph"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_wheezing",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.9
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.4
+        },
+        {
+          "symptom_id": "sym_chest_tightness",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_productive_cough",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 2,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_budesonide_formoterol",
+          "safety": "safe",
+          "note": "GINA Track 1 preferred reliever (as-needed low-dose) and maintenance-and-reliever therapy; reduces severe exacerbations versus SABA-based regimens."
+        },
+        {
+          "medicine_id": "med_salbutamol",
+          "safety": "safe",
+          "note": "Short-acting reliever and first-line bronchodilator in acute exacerbations; SABA-only treatment without ICS is not recommended."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "safe",
+          "note": "Short oral course (40-50 mg daily for 5-7 days in adults) for exacerbations; repeated or long-term use carries significant systemic adverse effects."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Beta-blockers can cause asthma symptoms or exacerbations (GINA); beta-1 selective agents carry lower risk and are used only with a strong indication and close supervision."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "caution",
+          "note": "Can precipitate severe bronchospasm in aspirin/NSAID-exacerbated respiratory disease; previous reactions are asked about before prescribing."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "caution",
+          "note": "NSAID; avoided in patients with a history of NSAID-induced bronchospasm."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "caution",
+          "note": "NSAID; same precaution regarding NSAID-exacerbated respiratory disease."
+        }
+      ],
+      "related": [
+        "copd",
+        "heart_failure",
+        "community_acquired_pneumonia",
+        "influenza"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Pulmonology / Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "GINA 2025 Summary Guide",
+          "citation_text": "Global Initiative for Asthma. Summary Guide for Asthma Management and Prevention. GINA; 2025.",
+          "url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls: Asthma",
+          "citation_text": "Goldin J, Cataletto ME. Asthma. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2024 May 3.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430901/",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls: Pathophysiology of Asthma",
+          "citation_text": "Sinyor B, Concepcion Perez L. Pathophysiology of Asthma. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; updated 2023 Jun 24.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK551579/",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet: Asthma",
+          "citation_text": "World Health Organization. Asthma. Fact sheet; 2026 Apr 28.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/asthma",
+          "specialty": "Pulmonology / Public Health",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

@@ -85,6 +85,9 @@ PATHS = {
     "database": ('<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/>'
                  '<path d="M3 12A9 3 0 0 0 21 12"/>'),
     "check": '<path d="M20 6 9 17l-5-5"/>',
+    # Admin > Announcements
+    "megaphone": ('<path d="m3 11 18-5v12L3 14v-3z"/>'
+                  '<path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'),
     "x": '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
     "plus": '<path d="M5 12h14"/><path d="M12 5v14"/>',
     "clock": _CIRCLE + '<polyline points="12 6 12 12 16 14"/>',

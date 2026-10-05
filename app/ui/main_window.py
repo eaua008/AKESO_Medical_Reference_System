@@ -10,7 +10,7 @@ before anyone has signed in.
 
 from typing import Optional
 
-from PySide6.QtCore import QEventLoop, QTimer
+from PySide6.QtCore import QEventLoop, QSize, QTimer
 from PySide6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QVBoxLayout, QWidget
 
 from app.controllers.account_gate import AccountGate
@@ -27,6 +27,9 @@ from app.ui.views.auth_view import AuthView
 
 # Where a login lands when Settings has no (usable) choice saved.
 LANDING_TAB = "dashboard"
+# First-launch window size (shrunk to fit smaller screens). After that the
+# window reopens at whatever normal size the user left it.
+DEFAULT_SIZE = QSize(1480, 920)
 
 
 class MainWindow(QMainWindow):
@@ -35,7 +38,6 @@ class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Akeso")
-        self.resize(1480, 920)
 
         self._screens = QStackedWidget()
         # On Windows, Akeso's own title strip (logo + minimise / maximise /
@@ -55,6 +57,12 @@ class MainWindow(QMainWindow):
             # The header's logo, bigger, filling the strip + header height.
             self.brand_logo = window_frame.BrandLogo(frame, title_bar, self._screens)
 
+        # Same size and place as last time (or DEFAULT_SIZE, centred), and
+        # maximised again if it was maximised when Akeso closed.
+        prefs = PreferenceStore().load()
+        window_frame.place(self, prefs.window_rect, DEFAULT_SIZE)
+        self._open_maximized = prefs.window_maximized
+
         self.auth_view = AuthView()
         self._screens.addWidget(self.auth_view)
         self.shell: Optional[DashboardShell] = None
@@ -66,6 +74,8 @@ class MainWindow(QMainWindow):
         self._gate = AccountGate(self)
 
         self._load_stats()
+        # "Remember me" from last time: sign straight in once the window shows.
+        QTimer.singleShot(0, self._auth_controller.try_restore)
 
     # ------------------------------------------------------------- stats
 
@@ -183,8 +193,37 @@ class MainWindow(QMainWindow):
         if app_mode() != Theme.key():
             apply_app_stylesheet()
 
+    # ------------------------------------------------------------ window
+
+    def nativeEvent(self, event_type, message):  # noqa: N802
+        """Windows asks where the title bar, edges and maximise button are
+        (see window_frame.py); everything else goes to Qt as usual."""
+        handled = window_frame.native_event(self, event_type, message)
+        if handled is not None:
+            return handled
+        return super().nativeEvent(event_type, message)
+
+    def showEvent(self, event) -> None:  # noqa: N802
+        super().showEvent(event)
+        if self._open_maximized:
+            self._open_maximized = False
+            QTimer.singleShot(0, self._maximize_if_needed)
+
+    def _maximize_if_needed(self) -> None:
+        if not window_frame.is_maximized(self):
+            window_frame.toggle_maximized(self)
+
+    def _save_window(self) -> None:
+        rect = window_frame.floating_rect(self)
+        changes = {"window_maximized": window_frame.is_maximized(self)}
+        if rect is not None:
+            changes["window_rect"] = [rect.x(), rect.y(), rect.width(), rect.height()]
+        PreferenceStore().update(**changes)
+
     def closeEvent(self, event) -> None:  # noqa: N802
+        self._save_window()                           # reopen at this size next time
         # A Google sign-in in progress holds port 8123 on a background
         # thread. Release it, or the next launch cannot bind the port.
         self._auth_controller.cancel_google()
+        self._auth_controller.save_session_now()      # newest token for "Remember me"
         super().closeEvent(event)

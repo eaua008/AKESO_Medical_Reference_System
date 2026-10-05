@@ -6,6 +6,7 @@ the user clicked; it never loads anything itself.
 Layout ("clean + charts"):
 
     greeting, date, role, quick actions
+    announcements from the admins (only while any are live)
     daily health tip (only when tips exist in data/health_tips.json)
     Study activity: streak, 14-day chart, this week     | Finish your profile (until 100%)
     Explore by body system: tiles with disease counts
@@ -329,6 +330,10 @@ class DashboardView(QWidget):
         column.setSpacing(16)
 
         column.addWidget(self._build_hero())
+        # Live announcements from the admins (migration 015); hidden when none.
+        from app.ui.views.announcement_widgets import AnnouncementList
+        self.announcements = AnnouncementList()
+        column.addWidget(self.announcements)
         self.tip = self._build_tip()
         column.addWidget(self.tip)
 

@@ -1,0 +1,1292 @@
+{
+  "medicines": [
+    {
+      "id": "med_tenofovir",
+      "name": "Tenofovir Disoproxil Fumarate",
+      "generic_name": "Tenofovir disoproxil fumarate (TDF)",
+      "international_generic_name": "tenofovir disoproxil",
+      "trade_name": "Tenofo B",
+      "drug_class": "Antiviral (nucleotide reverse transcriptase inhibitor)",
+      "category": "Prescription",
+      "description": "Tenofovir disoproxil fumarate is an oral prodrug of tenofovir, an acyclic nucleotide (adenosine monophosphate) analogue. After intracellular phosphorylation to tenofovir diphosphate it competes with natural nucleotides and terminates DNA chain elongation, inhibiting HIV-1 reverse transcriptase and the hepatitis B virus polymerase. It is used with other antiretrovirals for HIV-1 treatment, as HIV pre-exposure prophylaxis with emtricitabine, and as a first-line agent for chronic hepatitis B because of its high barrier to resistance.",
+      "dosage_text": "Adults and pediatric patients weighing at least 35 kg (HIV-1 infection, in combination with other antiretrovirals; chronic hepatitis B): 300 mg orally once daily, with or without food. Renal impairment (adults): CrCl 30-49 mL/min, 300 mg every 48 hours; CrCl 10-29 mL/min, 300 mg every 72-96 hours; hemodialysis, 300 mg every 7 days or after a total of about 12 hours of dialysis; no dosing recommendation is available for CrCl < 10 mL/min without hemodialysis. Serum creatinine, estimated creatinine clearance, urine glucose and urine protein are assessed before and during therapy, with serum phosphorus in chronic kidney disease. Refer to current product labeling.",
+      "storage": "Store at room temperature as directed on the product labeling.",
+      "black_box_warning": "Severe acute exacerbation of hepatitis B: severe acute exacerbations of hepatitis B have been reported in HBV-infected patients who have discontinued anti-hepatitis B therapy, including tenofovir disoproxil fumarate. Hepatic function is monitored closely with clinical and laboratory follow-up for at least several months after discontinuation; resumption of anti-hepatitis B therapy may be warranted.",
+      "source_attribution": "VIREAD (tenofovir disoproxil fumarate) FDA label via DailyMed; StatPearls: Reverse Transcriptase Inhibitors; StatPearls: HIV and AIDS; StatPearls: Hepatitis B; Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Tenofo B"
+      ],
+      "brands_intl": [
+        "Viread"
+      ],
+      "indications": [
+        "HIV-1 infection in adults and pediatric patients 2 years and older weighing at least 10 kg, in combination with other antiretroviral agents",
+        "Chronic hepatitis B in adults and pediatric patients 2 years and older weighing at least 10 kg",
+        "HIV pre-exposure prophylaxis (PrEP), in combination with emtricitabine",
+        "HIV post-exposure prophylaxis as part of a combination regimen (e.g., with emtricitabine plus dolutegravir)",
+        "Reduction of mother-to-child transmission of hepatitis B in HBsAg- and/or HBeAg-positive pregnant women"
+      ],
+      "adverse": [
+        "Nausea, diarrhea, headache, asthenia, rash and depression (most common in HIV trials)",
+        "New-onset or worsening renal impairment, including acute renal failure and Fanconi syndrome (proximal tubulopathy)",
+        "Decreased bone mineral density and mineralization defects (osteomalacia associated with proximal tubulopathy)",
+        "Severe acute exacerbation of hepatitis B after discontinuation",
+        "Lactic acidosis and severe hepatomegaly with steatosis (reported with nucleoside analogues)",
+        "Immune reconstitution syndrome in HIV, including autoimmune disorders (e.g., Graves' disease)"
+      ],
+      "contraindications": [
+        "No contraindications are listed in the US label",
+        "Not used alone for HIV-1 treatment; used only in combination with other antiretroviral agents",
+        "HIV-1 antibody testing is required before starting for hepatitis B, because use as the only active agent in untreated HIV may select resistant HIV-1",
+        "Avoided with concurrent or recent use of nephrotoxic agents (e.g., high-dose or multiple NSAIDs)",
+        "No dosing recommendation for CrCl < 10 mL/min in patients not on hemodialysis"
+      ],
+      "interactions": [
+        "Nephrotoxic drugs and drugs eliminated by active tubular secretion (e.g., acyclovir, valacyclovir, ganciclovir, valganciclovir, cidofovir, aminoglycosides such as gentamicin): may raise tenofovir or co-drug concentrations and add renal toxicity.",
+        "NSAIDs (high-dose or multiple): acute renal failure has been reported after starting them in HIV-infected patients with renal risk factors; the combination is avoided.",
+        "Ritonavir-boosted protease inhibitors (atazanavir/ritonavir, lopinavir/ritonavir, darunavir/ritonavir): increase tenofovir concentrations; monitor for tenofovir-associated adverse reactions.",
+        "Ledipasvir/sofosbuvir, sofosbuvir/velpatasvir and sofosbuvir/velpatasvir/voxilaprevir: increase tenofovir exposure; monitor for tenofovir-associated adverse reactions, especially renal.",
+        "Didanosine: tenofovir increases didanosine concentrations; the combination requires dose modification and close monitoring."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Patel PH, Zulfiqar H. Reverse Transcriptase Inhibitors. [Updated 2023 Jun 25]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK551504.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK551504/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "VIREAD (tenofovir disoproxil fumarate) tablets and oral powder. Gilead Sciences. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=33fd6418-fbdc-42ca-a50d-ce2a476a5418",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Nguyen AD, Samandari T, Gulick PG. HIV and AIDS. [Updated 2026 Jan 14]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK534860.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK534860/",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in labeling.",
+          "guidance": "Standard dosing; renal function monitoring as for all patients.",
+          "source_attribution": "VIREAD FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in labeling.",
+          "guidance": "Label renal monitoring includes urine glucose; results are interpreted alongside the patient's glycemic status.",
+          "source_attribution": "VIREAD FDA label, Warnings (Renal impairment)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Antiretroviral Pregnancy Registry data show no increase in overall major birth defects with first-trimester TDF exposure (2.1%); TDF is used to reduce hepatitis B mother-to-child transmission.",
+          "guidance": "Continue or start when indicated; in HIV-1 infection breastfeeding is not recommended to avoid postnatal transmission.",
+          "source_attribution": "VIREAD FDA label, 8.1-8.2; StatPearls: Hepatitis B"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "VIREAD FDA label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI-bleeding precaution in labeling; note that high-dose or multiple NSAIDs are avoided with TDF for renal reasons.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "VIREAD FDA label, Warnings (Renal impairment)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Tenofovir is renally eliminated and nephrotoxic (acute renal failure, Fanconi syndrome); exposure rises as CrCl falls.",
+          "guidance": "Extend the dosing interval when CrCl < 50 mL/min (every 48 h at 30-49; every 72-96 h at 10-29; every 7 days on hemodialysis); no recommendation for CrCl < 10 mL/min without dialysis; monitor creatinine, urine protein/glucose and phosphorus; avoid nephrotoxic co-medication.",
+          "source_attribution": "VIREAD FDA label, Dosage (Table 3) and Warnings 5.2"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "No dose change is needed in hepatic impairment, but stopping therapy in hepatitis B can trigger severe acute hepatitis flares; lactic acidosis with hepatomegaly and steatosis is a class warning.",
+          "guidance": "Do not stop without a plan; monitor hepatic function closely for several months after discontinuation in HBV infection.",
+          "source_attribution": "VIREAD FDA label, Boxed warning and 8.x Hepatic impairment"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific contraindication; autoimmune disorders (e.g., Graves' disease, polymyositis, Guillain-Barre syndrome) have been reported during immune reconstitution in HIV.",
+          "guidance": "Standard dosing; watch for immune reconstitution phenomena after starting antiretroviral therapy.",
+          "source_attribution": "VIREAD FDA label, Warnings (Immune reconstitution syndrome)"
+        }
+      ]
+    },
+    {
+      "id": "med_entecavir",
+      "name": "Entecavir",
+      "generic_name": "Entecavir",
+      "international_generic_name": "entecavir",
+      "trade_name": "Entegard",
+      "drug_class": "Antiviral (nucleoside analogue, HBV polymerase inhibitor)",
+      "category": "Prescription",
+      "description": "Entecavir is a guanosine nucleoside analogue that is phosphorylated intracellularly to its active triphosphate, which competes with deoxyguanosine triphosphate and inhibits all three activities of the hepatitis B virus polymerase (base priming, reverse transcription of the negative strand and synthesis of the positive strand). It is a preferred first-line oral agent for chronic hepatitis B because of its potency and high barrier to resistance in nucleoside-naive patients.",
+      "dosage_text": "Adults (chronic hepatitis B): nucleoside-inhibitor-treatment-naive with compensated liver disease, 0.5 mg orally once daily; lamivudine-refractory or known lamivudine/telbivudine resistance, 1 mg once daily; decompensated liver disease, 1 mg once daily. Take on an empty stomach (at least 2 hours after a meal and 2 hours before the next meal). Renal impairment (usual 0.5 mg dose): CrCl 30 to < 50 mL/min, 0.25 mg once daily or 0.5 mg every 48 hours; CrCl 10 to < 30, 0.15 mg once daily or 0.5 mg every 72 hours; CrCl < 10, hemodialysis or CAPD, 0.05 mg once daily or 0.5 mg every 7 days (give after hemodialysis); the 1 mg regimens are adjusted proportionally. No dose adjustment for hepatic impairment. Refer to current product labeling.",
+      "storage": "Store tablets at 20-25 C (68-77 F), excursions permitted to 15-30 C, in a tightly closed container protected from light.",
+      "black_box_warning": "Severe acute exacerbations of hepatitis B have been reported in patients who discontinued anti-hepatitis B therapy, including entecavir; hepatic function is monitored closely for at least several months after discontinuation. Patients coinfected with HIV and HBV: entecavir is not recommended for HBV in coinfected patients not also receiving highly active antiretroviral therapy because of the risk of HIV-1 resistance. Lactic acidosis and severe hepatomegaly with steatosis, including fatal cases, have been reported with nucleoside analogues.",
+      "source_attribution": "BARACLUDE (entecavir) FDA label via DailyMed; StatPearls: Hepatitis B; Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Entegard"
+      ],
+      "brands_intl": [
+        "Baraclude"
+      ],
+      "indications": [
+        "Chronic hepatitis B in adults with evidence of active viral replication and either persistent aminotransferase elevation or histologically active disease",
+        "Chronic hepatitis B in pediatric patients 2 years and older (weight-based dosing)",
+        "Lamivudine-refractory chronic hepatitis B (higher 1 mg dose)",
+        "Chronic hepatitis B with decompensated liver disease (1 mg dose)",
+        "Acute hepatitis B when antiviral treatment is warranted (preferred with tenofovir because of a high resistance barrier)"
+      ],
+      "adverse": [
+        "Headache, fatigue, dizziness and nausea (most common, >= 3%)",
+        "Severe acute exacerbation of hepatitis B after discontinuation",
+        "Lactic acidosis and severe hepatomegaly with steatosis (nucleoside analogue class effect)",
+        "Selection of HIV-1 resistance when used in HIV/HBV coinfection without antiretroviral therapy"
+      ],
+      "contraindications": [
+        "No contraindications are listed in the US label",
+        "HIV/HBV coinfection in patients not receiving fully suppressive antiretroviral therapy (risk of HIV-1 resistance)",
+        "Treatment is suspended in any patient who develops clinical or laboratory findings suggestive of lactic acidosis or pronounced hepatotoxicity",
+        "Dose adjustment is required when CrCl < 50 mL/min"
+      ],
+      "interactions": [
+        "Drugs that reduce renal function: may increase serum concentrations of entecavir or of the co-administered drug (entecavir is mainly renally eliminated).",
+        "Drugs that compete for active tubular secretion: may increase serum concentrations of entecavir or of the co-administered drug; monitor for adverse reactions.",
+        "Cyclosporine or tacrolimus in liver transplant recipients: renal function must be carefully monitored before and during entecavir therapy.",
+        "Food: the label directs administration on an empty stomach (at least 2 hours after and 2 hours before a meal)."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Tripathi N, Mousa OY. Hepatitis B. [Updated 2023 Jul 9]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK555945.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK555945/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "BARACLUDE (entecavir) tablets and oral solution. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=046e61c9-9298-4b2e-b76e-b26b81fecd20",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BARACLUDE FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BARACLUDE FDA label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Human pregnancy exposures are too few for a risk assessment; animal studies showed no adverse effects at relevant exposures. Tenofovir has published evidence for reducing mother-to-child HBV transmission.",
+          "guidance": "Use when the benefit justifies the risk; tenofovir disoproxil is the agent with pregnancy data for HBV.",
+          "source_attribution": "BARACLUDE FDA label, 8.1; StatPearls: Hepatitis B"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BARACLUDE FDA label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI-bleeding precaution in labeling.",
+          "guidance": "Standard dosing on an empty stomach.",
+          "source_attribution": "BARACLUDE FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Entecavir is renally eliminated; exposure increases as creatinine clearance falls.",
+          "guidance": "Reduce the daily dose or extend the interval when CrCl < 50 mL/min per the label table; give after hemodialysis.",
+          "source_attribution": "BARACLUDE FDA label, Dosage (Table 2)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Indicated in chronic hepatitis B including decompensated disease (1 mg) with no hepatic dose adjustment, but lactic acidosis is a nucleoside-analogue warning and stopping therapy can cause severe hepatitis flares.",
+          "guidance": "Monitor hepatic function closely during and for several months after stopping; suspend if lactic acidosis or pronounced hepatotoxicity develops.",
+          "source_attribution": "BARACLUDE FDA label, Boxed warning and Warnings"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution in labeling.",
+          "guidance": "Standard dosing; in transplant recipients on cyclosporine or tacrolimus, monitor renal function.",
+          "source_attribution": "BARACLUDE FDA label, 8.8"
+        }
+      ]
+    },
+    {
+      "id": "med_tld",
+      "name": "Tenofovir + Lamivudine + Dolutegravir (TLD)",
+      "generic_name": "Tenofovir disoproxil fumarate 300 mg + lamivudine 300 mg + dolutegravir 50 mg",
+      "international_generic_name": "dolutegravir + lamivudine + tenofovir disoproxil",
+      "trade_name": "",
+      "drug_class": "Antiretroviral (NRTI + integrase inhibitor fixed-dose combination)",
+      "category": "Prescription",
+      "description": "TLD is a once-daily fixed-dose tablet combining two nucleos(t)ide reverse transcriptase inhibitors (tenofovir disoproxil fumarate and lamivudine), which terminate viral DNA chain synthesis, with dolutegravir, an integrase strand transfer inhibitor that blocks integration of HIV DNA into the host genome. WHO recommends dolutegravir-based therapy as the preferred first- and second-line HIV treatment in all populations, and tenofovir plus lamivudine also suppress hepatitis B virus. There is no US boxed warning for this WHO-prequalified combination itself, but the US label of its tenofovir disoproxil component carries a boxed warning for severe acute exacerbation of hepatitis B after discontinuation, which applies to people with HBV co-infection. In the Philippines it is the DOH's recommended first-line antiretroviral regimen, procured nationally for people living with HIV (Philippine News Agency, July 2026).",
+      "dosage_text": "Adults and adolescents weighing at least 30 kg: one tablet (dolutegravir 50 mg / lamivudine 300 mg / tenofovir disoproxil fumarate 300 mg) orally once daily, with or without food. With rifampicin, the dolutegravir dose is increased to 50 mg twice daily (an additional dolutegravir 50 mg tablet about 12 hours after TLD). Not recommended when CrCl < 50 mL/min (use separate components with dose adjustment). No dose adjustment for mild or moderate hepatic impairment; caution in severe hepatic impairment. Refer to current product labeling.",
+      "storage": "Store as directed on the product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "WHO Public Assessment Report (WHOPAR) product information for dolutegravir/lamivudine/tenofovir disoproxil 50/300/300 mg; WHO news release 22 July 2019 (dolutegravir preferred in all populations); TIVICAY (dolutegravir) FDA label via DailyMed; NIH Adult and Adolescent ARV Guidelines drug-interaction tables; StatPearls: HIV and AIDS; Goodman & Gilman's 14th ed; DOH via Philippine News Agency (2026)",
+      "brands_ph": [],
+      "brands_intl": [],
+      "indications": [
+        "HIV-1 infection in adults and adolescents weighing at least 30 kg (WHO-preferred first-line regimen)",
+        "Treatment-experienced adults and adolescents, as a dolutegravir-based regimen (WHO-preferred second-line option)",
+        "HIV treatment in pregnant women and women of childbearing potential (WHO recommends dolutegravir as preferred in all populations)",
+        "HIV/hepatitis B coinfection, where a tenofovir-containing regimen is preferred because tenofovir and lamivudine are active against HBV"
+      ],
+      "adverse": [
+        "Diarrhea, nausea and headache (most frequent)",
+        "Hypersensitivity reactions with rash and severe liver effects (dolutegravir); stop immediately if severe",
+        "Weight gain (integrase inhibitor class, greater than with protease inhibitors or NNRTIs)",
+        "Renal toxicity from tenofovir disoproxil: proximal tubulopathy (Fanconi syndrome), acute or chronic renal insufficiency",
+        "Decreased bone mineral density (tenofovir disoproxil)",
+        "Severe acute exacerbation of hepatitis B after discontinuation in coinfected patients",
+        "Lactic acidosis (rare) and immune reconstitution inflammatory syndrome"
+      ],
+      "contraindications": [
+        "Hypersensitivity to dolutegravir, lamivudine, tenofovir disoproxil fumarate or excipients",
+        "Co-administration with dofetilide (OCT2 substrate with a narrow therapeutic window)",
+        "Co-administration with fampridine (dalfampridine)",
+        "Creatinine clearance < 50 mL/min (fixed-dose combination not recommended)",
+        "Body weight below 30 kg (fixed-dose tablet not indicated)"
+      ],
+      "interactions": [
+        "Rifampicin: reduces dolutegravir exposure (about 54%); dolutegravir is given as 50 mg twice daily during co-administration.",
+        "Metformin: dolutegravir increases metformin exposure; metformin dose adjustment is considered when starting or stopping dolutegravir, with glycemic and adverse-effect monitoring.",
+        "Polyvalent cations (magnesium/aluminium antacids, laxatives, sucralfate, calcium or iron supplements, multivitamins): chelate dolutegravir and reduce its absorption; dolutegravir is given 2 hours before or 6 hours after them (calcium or iron may be taken together with dolutegravir with food).",
+        "Dofetilide and fampridine: contraindicated (dolutegravir inhibits OCT2 and raises their levels, risk of life-threatening toxicity).",
+        "Carbamazepine, phenytoin and St John's wort: reduce dolutegravir levels; co-administration is avoided per the dolutegravir label.",
+        "Ledipasvir/sofosbuvir: increases tenofovir exposure; monitor renal function.",
+        "Nephrotoxic drugs, including high-dose or multiple NSAIDs: additive renal risk with tenofovir disoproxil."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Nguyen AD, Samandari T, Gulick PG. HIV and AIDS. [Updated 2026 Jan 14]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK534860.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK534860/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Prequalification (WHOPAR product information)",
+          "citation_text": "World Health Organization Prequalification Unit. Dolutegravir/Lamivudine/Tenofovir disoproxil fumarate 50 mg/300 mg/300 mg tablets (HA729): Summary of Product Characteristics, WHOPAR part 4.",
+          "url": "https://extranet.who.int/prequal/sites/default/files/whopar_files/HA729part4v2.pdf",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "World Health Organization. WHO recommends dolutegravir as preferred HIV treatment option in all populations. News release, 22 July 2019.",
+          "url": "https://www.who.int/news/item/22-07-2019-who-recommends-dolutegravir-as-preferred-hiv-treatment-option-in-all-populations",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in the product information.",
+          "guidance": "Standard dosing; routine renal monitoring for the tenofovir component.",
+          "source_attribution": "WHOPAR SmPC (HA729)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Dolutegravir increases metformin exposure; integrase inhibitors are also associated with weight gain.",
+          "guidance": "When starting or stopping TLD in a patient on metformin, consider metformin dose adjustment and monitor glycemic control and metformin adverse effects.",
+          "source_attribution": "WHOPAR SmPC (HA729) Interactions; NIH ARV Guidelines INSTI interaction table; StatPearls: HIV and AIDS"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "WHO recommends dolutegravir as the preferred regimen in all populations, including pregnant women; the early neural tube defect signal was lower in larger studies, and a large US cohort did not find increased risk.",
+          "guidance": "The product information advises informing women in the first trimester of a possible small increased neural tube defect risk; dolutegravir may be used in the second and third trimester when benefit justifies risk.",
+          "source_attribution": "WHO news release 22 July 2019; WHOPAR SmPC (HA729) 4.6; StatPearls: HIV and AIDS"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in the product information.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "WHOPAR SmPC (HA729)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI-bleeding precaution in the product information; aluminium/magnesium antacids and sucralfate reduce dolutegravir absorption.",
+          "guidance": "Give TLD 2 hours before or 6 hours after polyvalent-cation antacids or sucralfate.",
+          "source_attribution": "WHOPAR SmPC (HA729); TIVICAY FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "avoid",
+          "summary": "The fixed-dose combination cannot be dose-adjusted; tenofovir disoproxil is nephrotoxic and lamivudine and tenofovir require interval or dose changes when CrCl falls.",
+          "guidance": "Not recommended if CrCl < 50 mL/min; use separate component formulations with appropriate adjustment. Interrupt if CrCl falls below 50 mL/min during therapy.",
+          "source_attribution": "WHOPAR SmPC (HA729) Posology and Warnings"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "No adjustment in mild or moderate hepatic impairment; no safety data in severe impairment. Stopping therapy in HBV coinfection can cause hepatitis flares; dolutegravir hypersensitivity can involve the liver.",
+          "guidance": "Use with caution in severe hepatic impairment; monitor closely for hepatitis exacerbation for at least 6 months after discontinuation in HBV coinfection.",
+          "source_attribution": "WHOPAR SmPC (HA729)"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific contraindication; autoimmune disorders (e.g., Graves' disease) have been reported during immune reconstitution after starting antiretroviral therapy.",
+          "guidance": "Standard dosing; watch for immune reconstitution phenomena.",
+          "source_attribution": "VIREAD (tenofovir disoproxil) FDA label, Warnings (Immune reconstitution syndrome)"
+        }
+      ]
+    },
+    {
+      "id": "med_cotrimoxazole",
+      "name": "Co-trimoxazole (Sulfamethoxazole + Trimethoprim)",
+      "generic_name": "Sulfamethoxazole + Trimethoprim (co-trimoxazole)",
+      "international_generic_name": "sulfamethoxazole + trimethoprim",
+      "trade_name": "Combizole",
+      "drug_class": "Antibiotic (sulfonamide + dihydrofolate reductase inhibitor)",
+      "category": "Prescription",
+      "description": "Co-trimoxazole combines sulfamethoxazole, which inhibits dihydropteroate synthase and blocks bacterial use of para-aminobenzoic acid, with trimethoprim, which inhibits dihydrofolate reductase. Sequential blockade of folate synthesis gives a synergistic, often bactericidal effect. It is used for urinary tract infections, shigellosis, traveler's diarrhea, exacerbations of chronic bronchitis, and for treatment and prophylaxis of Pneumocystis jirovecii pneumonia and toxoplasmosis.",
+      "dosage_text": "Adults (sulfamethoxazole/trimethoprim): urinary tract infection, 800/160 mg (one double-strength tablet or two single-strength tablets) every 12 hours for 10-14 days; shigellosis, 800/160 mg every 12 hours for 5 days; traveler's diarrhea, 800/160 mg every 12 hours for 5 days; acute exacerbation of chronic bronchitis, 800/160 mg every 12 hours for 10-14 days; Pneumocystis jirovecii pneumonia treatment, 75-100 mg/kg/day sulfamethoxazole plus 15-20 mg/kg/day trimethoprim in divided doses every 6 hours for 14-21 days; P. jirovecii prophylaxis, one double-strength tablet daily. Renal impairment: CrCl > 30 mL/min usual regimen; 15-30 mL/min half the usual regimen; < 15 mL/min not recommended. Maintain adequate fluid intake to prevent crystalluria. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F) in a tight, light-resistant container.",
+      "black_box_warning": "",
+      "source_attribution": "BACTRIM / BACTRIM DS FDA label via DailyMed; StatPearls: Trimethoprim-Sulfamethoxazole; Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Combizole",
+        "Globaxol"
+      ],
+      "brands_intl": [
+        "Bactrim",
+        "Septrin"
+      ],
+      "indications": [
+        "Urinary tract infections due to susceptible organisms",
+        "Shigellosis (enteritis due to susceptible Shigella)",
+        "Pneumocystis jirovecii pneumonia: treatment and prophylaxis",
+        "Traveler's diarrhea due to susceptible enterotoxigenic E. coli",
+        "Acute exacerbation of chronic bronchitis",
+        "Acute otitis media in children (susceptible strains)",
+        "Toxoplasmosis: treatment and prophylaxis"
+      ],
+      "adverse": [
+        "Nausea, vomiting, anorexia, rash and photosensitivity (most common)",
+        "Severe cutaneous adverse reactions (Stevens-Johnson syndrome, toxic epidermal necrolysis), sometimes fatal",
+        "Hyperkalemia (trimethoprim, especially at high dose, in renal insufficiency or with potassium-raising drugs)",
+        "Hematologic toxicity: agranulocytosis, thrombocytopenia, anemias and myelosuppression; hemolysis in G6PD deficiency",
+        "Fulminant hepatic necrosis (rare, can be fatal)",
+        "Hypoglycemia (rare, including in non-diabetic patients; more likely with renal dysfunction or high doses)",
+        "Crystalluria, interstitial nephritis and acute kidney injury",
+        "Clostridioides difficile-associated diarrhea; higher adverse-reaction rates in patients with AIDS"
+      ],
+      "contraindications": [
+        "Hypersensitivity to trimethoprim or sulfonamides",
+        "History of drug-induced immune thrombocytopenia with trimethoprim and/or sulfonamides",
+        "Megaloblastic anemia due to folate deficiency",
+        "Infants younger than 2 months",
+        "Marked hepatic damage",
+        "Severe renal insufficiency when renal function cannot be monitored",
+        "Concomitant dofetilide"
+      ],
+      "interactions": [
+        "Methotrexate: additive antifolate effect increases methotrexate toxicity; the label advises avoiding concurrent use.",
+        "Warfarin: potentiated anticoagulant effect; monitor prothrombin time/INR.",
+        "ACE inhibitors, ARBs and spironolactone: additive hyperkalemia risk; the label advises avoiding concurrent ACE inhibitor use, and potassium is monitored.",
+        "Sulfonylureas: potentiated hypoglycemic effect; monitor blood glucose.",
+        "Phenytoin: prolonged phenytoin half-life; monitor phenytoin levels.",
+        "Digoxin: increased digoxin levels; monitor digoxin concentrations.",
+        "Dofetilide: concomitant use is contraindicated.",
+        "Cyclosporine: the label advises avoiding concurrent use."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Kemnic TR, Coleman M. Trimethoprim Sulfamethoxazole. [Updated 2022 Nov 28]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK513232.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK513232/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "BACTRIM DS / BACTRIM (sulfamethoxazole and trimethoprim) tablets. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "Trimethoprim causes dose-related hyperkalemia; risk is greater with ACE inhibitors, ARBs or potassium-sparing diuretics commonly used in hypertension.",
+          "guidance": "Check potassium and renal function during therapy, particularly with RAAS blockers or spironolactone; the label advises avoiding concurrent ACE inhibitor use.",
+          "source_attribution": "BACTRIM FDA label, Warnings (Hyperkalemia) and Drug Interactions; StatPearls: Trimethoprim-Sulfamethoxazole"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Potentiates sulfonylureas and can rarely cause hypoglycemia, especially with renal dysfunction or high doses.",
+          "guidance": "Monitor blood glucose in patients on sulfonylureas or other oral hypoglycemics.",
+          "source_attribution": "BACTRIM FDA label, Warnings (Hypoglycemia) and Drug Interactions"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Folate antagonism; early-pregnancy exposure has been associated with neural tube defects, cardiovascular malformations and oral clefts. Sulfonamides can displace bilirubin (kernicterus risk in vulnerable infants).",
+          "guidance": "Use during pregnancy only if the potential benefit justifies the potential risk to the fetus.",
+          "source_attribution": "BACTRIM FDA label, Pregnancy and Nursing mothers; StatPearls: Trimethoprim-Sulfamethoxazole"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "caution",
+          "summary": "The label lists severe allergies and bronchial asthma among conditions in which use is to be avoided because of hypersensitivity risk.",
+          "guidance": "Consider alternatives in severe allergy or asthma; if used, monitor for hypersensitivity reactions.",
+          "source_attribution": "BACTRIM FDA label, Precautions (General)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI-bleeding precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BACTRIM FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Both components are renally cleared; renal impairment increases the risk of hyperkalemia, crystalluria, hypoglycemia and further kidney injury.",
+          "guidance": "Usual dose if CrCl > 30 mL/min; half the usual regimen at 15-30 mL/min; not recommended below 15 mL/min. Monitor renal function and potassium; contraindicated in severe renal insufficiency when renal function cannot be monitored.",
+          "source_attribution": "BACTRIM FDA label, Dosage (Renal impairment) and Contraindications"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "avoid",
+          "summary": "Contraindicated in marked hepatic damage; fulminant hepatic necrosis has occurred with sulfamethoxazole-trimethoprim.",
+          "guidance": "Avoid in significant hepatic impairment; discontinue at the first sign of hepatotoxicity.",
+          "source_attribution": "BACTRIM FDA label, Contraindications and Warnings"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Concurrent methotrexate (used in rheumatoid arthritis and other autoimmune diseases) increases the risk of marrow suppression; immunosuppressed and AIDS patients have higher adverse-reaction rates.",
+          "guidance": "Avoid co-prescription with methotrexate; monitor CBC in immunosuppressed patients.",
+          "source_attribution": "BACTRIM FDA label, Drug Interactions and Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_praziquantel",
+      "name": "Praziquantel",
+      "generic_name": "Praziquantel",
+      "international_generic_name": "praziquantel",
+      "trade_name": "",
+      "drug_class": "Anthelmintic (pyrazinoisoquinoline)",
+      "category": "Prescription",
+      "description": "Praziquantel is a synthetic pyrazinoisoquinoline anthelmintic that increases the permeability of the helminth tegument to calcium, producing rapid muscle contraction, spastic paralysis and tegumental damage that exposes the parasite to host defenses. It is the drug of choice for all Schistosoma species, including S. japonicum endemic in the Philippines, and for the liver flukes Clonorchis and Opisthorchis, and is also active against tapeworms and cysticercosis.",
+      "dosage_text": "Adults and children 1 year and older: schistosomiasis, 20 mg/kg three times in one day, doses 4-6 hours apart (60 mg/kg/day; StatPearls cites 40 mg/kg/day for S. mansoni, S. haematobium and S. intercalatum and 60 mg/kg/day for S. japonicum and S. mekongi); clonorchiasis/opisthorchiasis, 25 mg/kg three times in one day, 4-6 hours apart. Taeniasis (off-label): 5-10 mg/kg as a single dose. Strong CYP3A inducers such as rifampicin are stopped 2-4 weeks before praziquantel and may be restarted 1 day after completing treatment. No renal dose adjustment. Driving or operating machinery is avoided on the day of treatment and the following day. Refer to current product labeling.",
+      "storage": "Store below 30 C (86 F).",
+      "black_box_warning": "",
+      "source_attribution": "BILTRICIDE (praziquantel) FDA label via DailyMed; StatPearls: Antiparasitic Drugs; Philippine News Agency report on the DOH schistosomiasis program; Goodman & Gilman's 14th ed.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Biltricide"
+      ],
+      "indications": [
+        "Schistosomiasis due to all Schistosoma species, including S. japonicum (endemic in parts of the Philippines)",
+        "Clonorchiasis and opisthorchiasis (liver flukes)",
+        "Mass drug administration in schistosomiasis-endemic areas under the DOH Schistosomiasis Control Program (free of charge)",
+        "Tapeworm infections (Taenia saginata, T. solium, Diphyllobothrium latum, Hymenolepis nana) (off-label)",
+        "Neurocysticercosis, with corticosteroid cover (off-label)",
+        "Paragonimiasis (Paragonimus westermani) (off-label)"
+      ],
+      "adverse": [
+        "Malaise, headache, dizziness and drowsiness",
+        "Abdominal discomfort with or without nausea",
+        "Fever and urticaria",
+        "Arthralgia, myalgia and skin rash",
+        "CNS reactions in neurocysticercosis from parasite destruction (seizures, raised intracranial pressure, meningismus)",
+        "Cardiac arrhythmias (bradycardia, ventricular fibrillation, AV block) (rare)"
+      ],
+      "contraindications": [
+        "Hypersensitivity to praziquantel",
+        "Ocular cysticercosis (parasite destruction in the eye can cause irreparable damage)",
+        "Concomitant strong CYP3A inducers such as rifampicin",
+        "Cerebral cysticercosis associated with schistosomiasis or fluke infection requires hospitalization for the duration of treatment"
+      ],
+      "interactions": [
+        "Rifampicin (strong CYP3A inducer): markedly lowers praziquantel levels and may cause treatment failure; contraindicated. If treatment cannot wait, rifampicin is stopped 2-4 weeks before praziquantel and restarted 1 day after completion.",
+        "Moderate CYP3A inducers (e.g., efavirenz): reduce praziquantel exposure; co-administration is avoided.",
+        "CYP3A inhibitors (e.g., cimetidine, ketoconazole, itraconazole, erythromycin, ritonavir): increase praziquantel concentrations; monitor for adverse reactions.",
+        "Grapefruit juice: increases praziquantel Cmax about 1.6-fold and AUC about 1.9-fold."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Campbell S, Soman-Faulkner K. Antiparasitic Drugs. [Updated 2023 May 29]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK544251.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK544251/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "BILTRICIDE (praziquantel) tablets, film coated. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=34ce1cdd-648e-4f1e-8512-bf3d4cc22eb9",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BILTRICIDE FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BILTRICIDE FDA label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Published studies have not identified an association with major birth defects, miscarriage or adverse maternal or fetal outcomes, and randomized trials in pregnant women with schistosomiasis have been reported; older reviews advised avoiding use in pregnancy.",
+          "guidance": "Use when treatment is indicated after weighing benefit and risk; praziquantel is present in human milk at low concentrations.",
+          "source_attribution": "BILTRICIDE FDA label, 8.1-8.2; StatPearls: Antiparasitic Drugs"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BILTRICIDE FDA label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "Abdominal discomfort is common, but there is no GI-bleeding precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BILTRICIDE FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "No dosage adjustment is necessary in renal impairment.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "BILTRICIDE FDA label, 8.7"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Hepatic impairment produces higher and sustained plasma concentrations; patients with hepatosplenic schistosomiasis often have moderate or severe impairment.",
+          "guidance": "Give the recommended dose to patients with Child-Pugh B or C impairment with monitoring for adverse reactions.",
+          "source_attribution": "BILTRICIDE FDA label, 8.6"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution in labeling.",
+          "guidance": "Standard dosing; check co-medications for CYP3A inducers or inhibitors.",
+          "source_attribution": "BILTRICIDE FDA label"
+        }
+      ]
+    },
+    {
+      "id": "med_aciclovir",
+      "name": "Aciclovir",
+      "generic_name": "Aciclovir (acyclovir)",
+      "international_generic_name": "aciclovir",
+      "trade_name": "Zovirax",
+      "drug_class": "Antiviral (nucleoside analogue, herpesvirus DNA polymerase inhibitor)",
+      "category": "Prescription",
+      "description": "Aciclovir is a synthetic purine (guanosine) nucleoside analogue that is phosphorylated by viral and host cellular enzymes to aciclovir triphosphate, which inhibits herpesvirus DNA polymerase and terminates viral DNA chain elongation. Its selectivity for infected cells makes it active against herpes simplex virus types 1 and 2 and varicella-zoster virus. It is used for genital and mucocutaneous herpes, herpes zoster, varicella and, intravenously, herpes simplex encephalitis.",
+      "dosage_text": "Adults (oral): initial genital herpes, 200 mg every 4 hours five times daily for 10 days; chronic suppression of recurrent genital herpes, 400 mg twice daily for up to 12 months; herpes zoster, 800 mg every 4 hours five times daily for 7-10 days; varicella, 800 mg four times daily for 5 days. HSV encephalitis (IV): 10 mg/kg every 8 hours for 21 days, dosed on ideal body weight. Renal impairment (oral): 800 mg regimen, CrCl 10-25 mL/min/1.73 m2 every 8 hours and 0-10 every 12 hours; 200 mg regimen, CrCl 0-10 every 12 hours; 400 mg twice-daily regimen, CrCl 0-10, 200 mg every 12 hours. Adequate hydration is maintained. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F); excursions permitted to 15-30 C. Protect from moisture.",
+      "black_box_warning": "",
+      "source_attribution": "Acyclovir tablets FDA label (Apotex) via DailyMed; StatPearls: Acyclovir; VIREAD FDA label (drugs affecting renal function); Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Zovirax",
+        "Herpex"
+      ],
+      "brands_intl": [
+        "Zovirax"
+      ],
+      "indications": [
+        "Genital herpes: treatment of initial episodes and management of recurrent episodes, including chronic suppression",
+        "Herpes zoster (shingles), acute treatment",
+        "Varicella (chickenpox)",
+        "Herpes simplex encephalitis (intravenous, first-line)",
+        "Mucocutaneous herpes simplex infections"
+      ],
+      "adverse": [
+        "Nausea, vomiting and diarrhea",
+        "Malaise and headache",
+        "Acute kidney injury from crystal nephropathy (mainly high-dose IV therapy, dehydration or pre-existing renal impairment)",
+        "Neurotoxicity: agitation, confusion, hallucinations, somnolence, seizures, encephalopathy (elderly and renal impairment)",
+        "Thrombotic thrombocytopenic purpura / hemolytic uremic syndrome in immunocompromised patients (can be fatal)",
+        "Severe cutaneous adverse reactions (SJS, TEN, DRESS, AGEP, erythema multiforme)",
+        "Phlebitis at IV infusion sites"
+      ],
+      "contraindications": [
+        "Hypersensitivity to aciclovir or valaciclovir",
+        "Renal impairment without dose adjustment (risk of accumulation, renal failure and neurotoxicity)",
+        "Dehydration or inadequate hydration during therapy (precaution; crystal nephropathy risk)",
+        "Concomitant nephrotoxic drugs without renal monitoring (precaution)"
+      ],
+      "interactions": [
+        "Probenecid: increases aciclovir half-life and AUC and reduces renal clearance.",
+        "Vancomycin and other nephrotoxic drugs: significantly increase the risk of aciclovir-associated nephrotoxicity.",
+        "Tenofovir disoproxil: both are renally eliminated by tubular secretion; co-administration can increase concentrations of either drug and add renal toxicity.",
+        "Valaciclovir: prodrug of aciclovir; combined use duplicates exposure and cross-hypersensitivity applies."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Taylor M, Gerriets V. Acyclovir. [Updated 2023 May 7]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK542180.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK542180/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "ACYCLOVIR tablets, USP 400 mg and 800 mg. Apotex Corp. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=7fdeb609-24c4-5024-52c3-6a32bc7f3fcc",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "Acyclovir FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in labeling.",
+          "guidance": "Standard dosing; adjust for any diabetic kidney disease.",
+          "source_attribution": "Acyclovir FDA label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Aciclovir crosses the placenta; registry data from first-trimester exposures showed birth-defect rates similar to the general population, but data are limited.",
+          "guidance": "Use during pregnancy only if the potential benefit justifies the potential risk; compatible with breastfeeding per StatPearls.",
+          "source_attribution": "Acyclovir FDA label, Pregnancy; StatPearls: Acyclovir"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "Acyclovir FDA label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI-bleeding precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "Acyclovir FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Renal impairment can increase the half-life of aciclovir up to about 10-fold; renal failure (sometimes fatal) and neurotoxicity are more likely.",
+          "guidance": "Reduce frequency per the label table based on CrCl; maintain hydration; monitor renal function and mental status, especially with IV therapy.",
+          "source_attribution": "Acyclovir FDA label, Dosage (Renal impairment) and Warnings; StatPearls: Acyclovir"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "safe",
+          "summary": "Aciclovir is eliminated mainly by the kidneys; the label focuses dose adjustment on renal function.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "Acyclovir FDA label; StatPearls: Acyclovir"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "TTP/HUS, which can be fatal, has occurred in immunocompromised patients receiving aciclovir.",
+          "guidance": "Monitor blood counts and renal function in immunosuppressed patients.",
+          "source_attribution": "Acyclovir FDA label, Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_rabies_vaccine",
+      "name": "Rabies Vaccine (PVRV / PCECV)",
+      "generic_name": "Rabies vaccine, inactivated: purified Vero cell (PVRV) or purified chick embryo cell (PCECV)",
+      "international_generic_name": "rabies vaccine",
+      "trade_name": "Verorab",
+      "drug_class": "Vaccine (inactivated rabies)",
+      "category": "Prescription",
+      "description": "Cell-culture rabies vaccines contain inactivated rabies virus grown in Vero cells (PVRV) or chick embryo cells (PCECV). They induce virus-neutralizing antibodies, which take time to develop, so post-exposure prophylaxis combines immediate wound washing, a vaccine course and, for category III exposures, rabies immunoglobulin to cover the gap. Because clinical rabies is almost always fatal, post-exposure prophylaxis has no contraindication.",
+      "dosage_text": "Post-exposure prophylaxis (category II: vaccine; category III: vaccine plus rabies immunoglobulin), previously unvaccinated persons. WHO regimens: intradermal 1-week, 2-site regimen, 0.1 mL at 2 sites on days 0, 3 and 7; intramuscular 2-week (Essen) regimen, 1 dose on days 0, 3, 7 and between day 14 and 28; intramuscular 3-week (Zagreb) regimen, 2 doses on day 0 and 1 dose on days 7 and 21. US labeling (PCECV, 1 mL IM in the deltoid, never gluteal): days 0, 3, 7, 14 and 28 with HRIG; CDC uses 4 doses (days 0, 3, 7, 14) in immunocompetent persons and a fifth dose on day 28 in immunocompromised persons. Previously vaccinated persons: WHO 1-site ID on days 0 and 3 or 4-site ID on day 0; US label 1 mL IM on days 0 and 3; no immunoglobulin. Once started, PEP is not interrupted for local or mild systemic reactions. In the Philippines, PEP is delivered through DOH-certified Animal Bite Treatment Centers and covered by the PhilHealth Animal Bite Package. Refer to current product labeling.",
+      "storage": "Store at 2-8 C (36-46 F), protected from light; do not freeze; use immediately after reconstitution.",
+      "black_box_warning": "",
+      "source_attribution": "WHO position paper on rabies vaccines and immunoglobulins (2018) and WHO PEP recommendations page; WHO rabies fact sheet; RABAVERT (PCECV) FDA label via DailyMed; StatPearls: Rabies; PhilHealth Circular No. 015 s. 2012 (Animal Bite Package); Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Verorab"
+      ],
+      "brands_intl": [
+        "Verorab",
+        "RabAvert"
+      ],
+      "indications": [
+        "Post-exposure prophylaxis after category II exposure (nibbling of uncovered skin, minor scratches or abrasions without bleeding)",
+        "Post-exposure prophylaxis after category III exposure (transdermal bites or scratches, mucous membrane or broken-skin contamination with saliva), together with rabies immunoglobulin",
+        "Post-exposure booster series in previously vaccinated persons (no immunoglobulin required)",
+        "Pre-exposure prophylaxis (primary series and boosters) for persons at increased risk of exposure"
+      ],
+      "adverse": [
+        "Injection-site erythema, induration and pain",
+        "Flu-like symptoms: fatigue, fever, headache, myalgia, malaise",
+        "Arthralgia, dizziness, lymphadenopathy, nausea and rash",
+        "Hypersensitivity reactions including anaphylaxis (rare)",
+        "Neurologic events temporally associated with vaccination (rare): Guillain-Barre syndrome, encephalitis, transient paralysis, myelitis, retrobulbar neuritis"
+      ],
+      "contraindications": [
+        "Post-exposure prophylaxis: no contraindication, including pregnancy, because rabies is nearly always fatal",
+        "Pre-exposure vaccination: history of anaphylaxis to the vaccine or any component",
+        "PCECV contains egg (chicken) protein, gelatin and trace antibiotics such as neomycin; in severe allergy an alternative vaccine is used if available, with epinephrine at hand",
+        "Not injected into the gluteal region (lower antibody titers) or intravascularly"
+      ],
+      "interactions": [
+        "Corticosteroids, other immunosuppressive agents, antimalarials and radiation therapy: may impair the antibody response; serum neutralizing antibody is checked (e.g., on day 14) when PEP is given during such therapy.",
+        "Chloroquine or hydroxychloroquine: pre-exposure vaccination is completed before starting these drugs whenever possible.",
+        "Rabies immunoglobulin: never mixed in the same syringe or injected at the same anatomical site as the vaccine.",
+        "Rabies immunoglobulin above the recommended dose, or repeated doses: can suppress active antibody production to the vaccine."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Koury R, Warrington SJ. Rabies. [Updated 2025 Mar 28]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK448076.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448076/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "RABAVERT (rabies vaccine, purified chick embryo cell culture) kit. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=84b7a672-eeb1-4527-84ac-68196b156be2",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO position paper (summary)",
+          "citation_text": "World Health Organization. Rabies vaccines and immunoglobulins: WHO position, April 2018 (summary).",
+          "url": "https://cdn.who.int/media/docs/default-source/immunization/position_paper_documents/rabies/pp-rabies-summary-2018.pdf",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution.",
+          "guidance": "Standard PEP schedule.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution.",
+          "guidance": "Standard PEP schedule.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Pregnancy is not a contraindication to post-exposure prophylaxis; limited data show no increase in fetal anomalies.",
+          "guidance": "Give full PEP when indicated; the label reserves pre-exposure vaccination in pregnancy for clear need.",
+          "source_attribution": "RABAVERT FDA label, Contraindications and Pregnancy; StatPearls: Rabies"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution.",
+          "guidance": "Standard PEP schedule; epinephrine available as for all vaccinations.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI precaution.",
+          "guidance": "Standard PEP schedule.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "No renal-specific precaution.",
+          "guidance": "Standard PEP schedule.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "safe",
+          "summary": "No hepatic-specific precaution.",
+          "guidance": "Standard PEP schedule.",
+          "source_attribution": "RABAVERT FDA label"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Corticosteroids and other immunosuppressive agents can impair the immune response to the vaccine.",
+          "guidance": "Do not withhold PEP; immunocompromised persons receive the fuller schedule (e.g., a fifth dose on day 28 per CDC) and immunoglobulin, and serologic testing is recommended to confirm an adequate antibody response.",
+          "source_attribution": "RABAVERT FDA label, Drug Interactions; StatPearls: Rabies"
+        }
+      ]
+    },
+    {
+      "id": "med_rabies_immunoglobulin",
+      "name": "Rabies Immunoglobulin (HRIG / ERIG)",
+      "generic_name": "Rabies immunoglobulin: human (HRIG) or purified equine (ERIG)",
+      "international_generic_name": "rabies immunoglobulin",
+      "trade_name": "",
+      "drug_class": "Passive immunization (immunoglobulin)",
+      "category": "Prescription",
+      "description": "Rabies immunoglobulin provides ready-made rabies virus-neutralizing antibodies, prepared from the plasma of immunized human donors (HRIG) or from hyperimmunized horses as purified equine immunoglobulin or F(ab')2 fragments (ERIG). Infiltrated into and around the wound, it neutralizes virus at the inoculation site before vaccine-induced antibodies appear. It is used with rabies vaccine for category III exposures in persons not previously vaccinated.",
+      "dosage_text": "Single dose at the start of post-exposure prophylaxis, preferably with the first vaccine dose and not beyond day 7 after the first vaccine dose. HRIG: 20 IU/kg body weight (all ages). ERIG: 40 IU/kg body weight. As much of the dose as anatomically feasible is infiltrated into and around the wound(s); WHO advises wound infiltration rather than injecting the remainder at a distant site, while US HRIG labeling gives any remainder intramuscularly at a site distant from vaccine administration. Never given in the same syringe or at the same site as vaccine, and not repeated. WHO considers skin testing before modern ERIG unnecessary. Not given to persons who were previously vaccinated. Refer to current product labeling.",
+      "storage": "Store at 2-8 C (36-46 F); do not freeze. HyperRAB may be kept at room temperature up to 25 C for up to 6 months within its expiry.",
+      "black_box_warning": "",
+      "source_attribution": "WHO position paper on rabies vaccines and immunoglobulins (2018); HYPERRAB (rabies immune globulin, human) FDA label via DailyMed; RABAVERT FDA label; StatPearls: Rabies; Goodman & Gilman's 14th ed.",
+      "brands_ph": [],
+      "brands_intl": [
+        "HyperRAB"
+      ],
+      "indications": [
+        "Category III rabies exposures (single or multiple transdermal bites or scratches, contamination of mucous membranes or broken skin with saliva) in previously unvaccinated persons, together with rabies vaccine",
+        "Wound infiltration at the start of post-exposure prophylaxis, up to day 7 after the first vaccine dose",
+        "Post-exposure prophylaxis in immunocompromised persons, who receive both vaccine and immunoglobulin even after prior vaccination",
+        "Post-exposure prophylaxis for all ages, including children and pregnant women"
+      ],
+      "adverse": [
+        "Injection-site pain and nodules",
+        "Headache, abdominal pain, diarrhea, flatulence, nasal congestion, oropharyngeal pain (HRIG, > 5%)",
+        "Hypersensitivity reactions including anaphylaxis; greater risk in IgA deficiency (HRIG)",
+        "ERIG: adverse reactions in about 0.8-6% of recipients, mostly minor but more frequent than with HRIG",
+        "Theoretical risk of transmission of infectious agents from human plasma (HRIG)"
+      ],
+      "contraindications": [
+        "No contraindications are listed in the HyperRAB label",
+        "Not indicated for persons previously vaccinated with a complete pre- or post-exposure series",
+        "Not administered later than day 7 after the first vaccine dose, or as repeated doses",
+        "Hypersensitivity to human immunoglobulins or IgA deficiency (precaution; epinephrine must be available)"
+      ],
+      "interactions": [
+        "Rabies vaccine: never administered in the same syringe or at the same anatomical site as the vaccine.",
+        "Rabies vaccine (repeat or excess immunoglobulin): repeating the dose after vaccine initiation or exceeding the recommended dose may suppress the active antibody response.",
+        "Live attenuated virus vaccines (e.g., measles, mumps, rubella): antibodies may interfere with the response; these vaccines are deferred for about 4 months after HRIG.",
+        "Corticosteroids and other immunosuppressants: may blunt the vaccine response that the immunoglobulin is bridging; serology is used to confirm response in immunosuppressed persons."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Koury R, Warrington SJ. Rabies. [Updated 2025 Mar 28]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK448076.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448076/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "HYPERRAB (rabies immune globulin, human) injection, solution. Grifols. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f82880b8-998c-4659-8f20-6dcc81f258e9",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO position paper (summary)",
+          "citation_text": "World Health Organization. Rabies vaccines and immunoglobulins: WHO position, April 2018 (summary).",
+          "url": "https://cdn.who.int/media/docs/default-source/immunization/position_paper_documents/rabies/pp-rabies-summary-2018.pdf",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "HYPERRAB FDA label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "HYPERRAB FDA label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Human pregnancy data are lacking for HRIG, but post-exposure prophylaxis is not contraindicated in pregnancy because rabies is nearly always fatal.",
+          "guidance": "Give when a category III exposure calls for it; the label advises use only if clearly needed.",
+          "source_attribution": "HYPERRAB FDA label, 8.1; RABAVERT FDA label, Contraindications"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution; hypersensitivity reactions can occur with any immunoglobulin.",
+          "guidance": "Observe after administration with epinephrine available.",
+          "source_attribution": "HYPERRAB FDA label, Warnings"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI precaution.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "HYPERRAB FDA label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "No renal-specific precaution in labeling.",
+          "guidance": "Standard weight-based dose.",
+          "source_attribution": "HYPERRAB FDA label"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "safe",
+          "summary": "No hepatic-specific precaution in labeling.",
+          "guidance": "Standard weight-based dose.",
+          "source_attribution": "HYPERRAB FDA label"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution; immunosuppressed persons need immunoglobulin plus vaccine even with prior vaccination.",
+          "guidance": "Give with vaccine for category III exposures; confirm vaccine response serologically if immunosuppressed.",
+          "source_attribution": "StatPearls: Rabies; HYPERRAB FDA label"
+        }
+      ]
+    },
+    {
+      "id": "med_cetirizine",
+      "name": "Cetirizine",
+      "generic_name": "Cetirizine hydrochloride",
+      "international_generic_name": "cetirizine",
+      "trade_name": "Virlix",
+      "drug_class": "Antihistamine (second-generation H1 antagonist)",
+      "category": "OTC",
+      "description": "Cetirizine, derived from hydroxyzine, is a fast-acting, highly selective peripheral histamine H1-receptor antagonist. It crosses the blood-brain barrier only minimally, so it causes less sedation than first-generation antihistamines, and it also reduces neutrophil and eosinophil infiltration. It is used for seasonal and perennial allergic rhinitis and chronic urticaria.",
+      "dosage_text": "Adults and children 12 years and older: 5-10 mg orally once daily depending on symptom severity; OTC labeling directs one 10 mg tablet once daily, not more than one in 24 hours, for ages 6-64, with adults 65 years and older asking a doctor. Renal impairment (CrCl 11-31 mL/min) or hepatic impairment: 5 mg once daily. May be taken with or without food. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F).",
+      "black_box_warning": "",
+      "source_attribution": "ZYRTEC ALLERGY (cetirizine HCl) OTC Drug Facts label via DailyMed; StatPearls: Cetirizine; Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "Virlix"
+      ],
+      "brands_intl": [
+        "Zyrtec"
+      ],
+      "indications": [
+        "Seasonal allergic rhinitis (sneezing, rhinorrhea, itchy nose or throat, itchy watery eyes)",
+        "Perennial allergic rhinitis",
+        "Chronic (idiopathic) urticaria",
+        "Allergic conjunctivitis (ophthalmic formulation)",
+        "Acute urticaria (IV formulation, ages 12 and older)"
+      ],
+      "adverse": [
+        "Somnolence (dose-related) and fatigue",
+        "Dry mouth",
+        "Pharyngitis",
+        "Dizziness",
+        "Headache (more common in children)"
+      ],
+      "contraindications": [
+        "Hypersensitivity to cetirizine or hydroxyzine",
+        "Breastfeeding: OTC labeling does not recommend use",
+        "Liver or kidney disease: OTC labeling requires a doctor to determine the dose",
+        "Children under 6 years: OTC labeling requires a doctor's advice"
+      ],
+      "interactions": [
+        "Alcohol: increases drowsiness; avoided during use.",
+        "Sedatives, tranquilizers and other CNS depressants: additive sedation.",
+        "Pitolisant: antihistamines may reduce pitolisant efficacy; combination avoided.",
+        "P-glycoprotein inhibitors (e.g., verapamil): may increase cetirizine CNS penetration and sedation."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Naqvi A, Patel P, Gerriets V. Cetirizine. [Updated 2024 May 6]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK549776.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK549776/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (FDA label)",
+          "citation_text": "ZYRTEC ALLERGY (cetirizine hydrochloride) tablet, film coated - Drug Facts label. Kenvue Brands. DailyMed, U.S. National Library of Medicine.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b165db38-b302-4220-8627-77cb07bb078c",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution in the Drug Facts label (unlike decongestant combinations).",
+          "guidance": "Standard dosing; check that combination products do not contain a decongestant.",
+          "source_attribution": "ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Former FDA category B; ACOG-ACAAI recommend cetirizine for pregnant women who need an antihistamine.",
+          "guidance": "Use when needed after consulting a health professional (per OTC label); OTC labeling does not recommend use while breastfeeding.",
+          "source_attribution": "StatPearls: Cetirizine; ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "ZYRTEC ALLERGY Drug Facts label; StatPearls: Cetirizine"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Dose reduction is recommended in moderate-to-severe renal impairment.",
+          "guidance": "5 mg once daily when CrCl is 11-31 mL/min; OTC label directs patients with kidney disease to ask a doctor.",
+          "source_attribution": "StatPearls: Cetirizine; ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Dose reduction is recommended in hepatic impairment.",
+          "guidance": "5 mg once daily in hepatic impairment; OTC label directs patients with liver disease to ask a doctor.",
+          "source_attribution": "StatPearls: Cetirizine; ZYRTEC ALLERGY Drug Facts label"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution in labeling.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "ZYRTEC ALLERGY Drug Facts label"
+        }
+      ]
+    },
+    {
+      "id": "med_zinc_sulfate",
+      "name": "Zinc Sulfate",
+      "generic_name": "Zinc sulfate (monohydrate)",
+      "international_generic_name": "zinc sulfate",
+      "trade_name": "E-Zinc",
+      "drug_class": "Mineral supplement (zinc)",
+      "category": "OTC",
+      "description": "Zinc is an essential trace element that serves as a cofactor for many enzymes and transcription factors involved in immunity, epithelial repair and growth. In acute diarrhea it inhibits several intracellular pathways of intestinal ion secretion (cAMP, calcium and nitric oxide) and supports mucosal recovery; WHO and UNICEF have recommended zinc with oral rehydration salts for all childhood diarrhea episodes since 2004. It is also used to correct zinc deficiency and, as zinc salts, in Wilson disease.",
+      "dosage_text": "Acute or persistent diarrhea in children up to 5 years (WHO-prequalified zinc sulfate product): under 6 months, 10 mg elemental zinc once daily; 6 months to 5 years, 20 mg elemental zinc once daily; for 10-14 days together with reduced-osmolarity ORS, continued even after diarrhea stops. Adults: recommended dietary allowance 11 mg/day (men) and 8 mg/day (women), 11 mg/day in pregnancy and 12 mg/day in lactation; tolerable upper intake level 40 mg/day of elemental zinc. Doses are expressed as elemental zinc, which differs from the zinc sulfate salt weight. Refer to current product labeling.",
+      "storage": "Store below 30 C, protected from light and moisture (WHO-prequalified dispersible tablets); follow the label of the specific product.",
+      "black_box_warning": "",
+      "source_attribution": "WHO-prequalified zinc sulfate 20 mg dispersible tablets SmPC (WHOPAR DI005); NIH Office of Dietary Supplements Zinc fact sheet for health professionals; StatPearls: Zinc; WHO e-Library of Evidence for Nutrition Actions (zinc for diarrhoea); Goodman & Gilman's 14th ed.",
+      "brands_ph": [
+        "E-Zinc",
+        "Zinlum"
+      ],
+      "brands_intl": [],
+      "indications": [
+        "Acute diarrhea in children, together with reduced-osmolarity oral rehydration salts (WHO/UNICEF)",
+        "Persistent diarrhea in children under 5 years",
+        "Zinc deficiency (e.g., malabsorption, inflammatory bowel disease, alcohol use disorder)",
+        "Wilson disease (zinc salts reduce intestinal copper absorption)",
+        "Common cold symptom reduction"
+      ],
+      "adverse": [
+        "Vomiting (very common in children, about 14%) and regurgitation",
+        "Nausea, epigastric pain, abdominal pain and dyspepsia",
+        "Copper deficiency with prolonged high intake (about 50 mg/day or more for weeks), with reduced immune function and lower HDL cholesterol",
+        "Loss of smell with intranasal zinc products",
+        "Overdose: GI irritation or ulceration and acute renal injury"
+      ],
+      "contraindications": [
+        "Hypersensitivity to zinc sulfate or excipients",
+        "Supplementation above 40 mg/day in well-nourished pregnant or lactating women",
+        "Phenylketonuria with aspartame-containing dispersible tablets (phenylalanine source)",
+        "Intranasal zinc products (anosmia)"
+      ],
+      "interactions": [
+        "Quinolone antibiotics (e.g., ciprofloxacin): zinc reduces antibiotic absorption; give the antibiotic at least 2 hours before or 4-6 hours after zinc.",
+        "Tetracyclines: reduced absorption; separate doses (WHO product information: 3-hour interval, doxycycline excepted).",
+        "Penicillamine: zinc reduces its absorption and effect; separate doses.",
+        "Thiazide diuretics: increase urinary zinc excretion and lower serum zinc.",
+        "Dolutegravir and other integrase inhibitors: zinc is a polyvalent cation that can bind dolutegravir and reduce its absorption; dolutegravir labeling advises dosing 2 hours before or 6 hours after polyvalent-cation products.",
+        "Cephalexin and ceftibuten: reduced absorption; separate doses by about 3 hours (WHO product information)."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. New York: McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Rabinovich D, Smadi Y. Zinc. [Updated 2023 May 1]. StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; NCBI Bookshelf NBK547698.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK547698/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Prequalification (WHOPAR product information)",
+          "citation_text": "World Health Organization Prequalification Unit. Zinc (as sulfate monohydrate) 20 mg dispersible tablets (DI005): Summary of Product Characteristics, WHOPAR part 4.",
+          "url": "https://extranet.who.int/prequal/sites/default/files/whopar_files/DI005part4_2.pdf",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NIH Office of Dietary Supplements",
+          "citation_text": "Office of Dietary Supplements, National Institutes of Health. Zinc: Fact Sheet for Health Professionals.",
+          "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No hypertension-specific precaution; thiazide diuretics increase urinary zinc loss.",
+          "guidance": "Standard dosing within the upper intake level.",
+          "source_attribution": "NIH ODS Zinc fact sheet"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific precaution in product information.",
+          "guidance": "Standard dosing within the upper intake level.",
+          "source_attribution": "WHOPAR SmPC (DI005)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Requirement rises to 11 mg/day in pregnancy; pregnancy data for therapeutic courses are sparse and use may be considered if necessary.",
+          "guidance": "Keep intake at or below 40 mg/day elemental zinc in well-nourished pregnant or lactating women.",
+          "source_attribution": "StatPearls: Zinc; WHOPAR SmPC (DI005) 4.6"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No asthma-specific precaution.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "WHOPAR SmPC (DI005)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "caution",
+          "summary": "Zinc salts commonly cause nausea, vomiting, epigastric pain and dyspepsia; overdose causes GI irritation and ulceration.",
+          "guidance": "Use the recommended dose and duration; avoid excess dosing.",
+          "source_attribution": "WHOPAR SmPC (DI005) Undesirable effects and Overdose; StatPearls: Zinc"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "No renal dose guidance in the product information; overdose can cause acute renal injury.",
+          "guidance": "Avoid exceeding recommended doses; use therapeutic courses only as indicated.",
+          "source_attribution": "WHOPAR SmPC (DI005) Overdose"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "safe",
+          "summary": "No hepatic-specific precaution in product information; zinc salts are used in Wilson disease.",
+          "guidance": "Standard dosing within the upper intake level.",
+          "source_attribution": "StatPearls: Zinc; WHOPAR SmPC (DI005)"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution; zinc reduces the absorption of penicillamine used in rheumatoid arthritis.",
+          "guidance": "Separate zinc from penicillamine doses.",
+          "source_attribution": "NIH ODS Zinc fact sheet"
+        }
+      ]
+    }
+  ]
+}

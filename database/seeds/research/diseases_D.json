@@ -1,0 +1,1178 @@
+{
+  "diseases": [
+    {
+      "id": "copd",
+      "name": "Chronic Obstructive Pulmonary Disease",
+      "scientific_name": "Chronic obstructive pulmonary disease (emphysema and chronic bronchitis phenotypes)",
+      "body_system": "Respiratory System",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Stable disease with progressive exertional dyspnea and chronic cough warrants scheduled evaluation with spirometry. An acute exacerbation with dyspnea at rest, cyanosis, falling oxygen saturation, confusion or drowsiness (possible hypercapnia), or use of accessory muscles is reference EMERGENCY.",
+      "contagious": false,
+      "description": "COPD is a common, preventable and treatable lung disease characterized by persistent and usually progressive airflow limitation caused by small airway disease (obstructive bronchiolitis) and emphysema. It presents with chronic dyspnea, cough and sputum and is punctuated by acute exacerbations. WHO ranks COPD as the third leading cause of death worldwide, with most deaths in low- and middle-income countries where household air pollution from biomass fuel is an important cause alongside tobacco smoking.",
+      "pathophysiology": "Chronic inhalation of noxious particles and gases (mainly tobacco smoke, biomass fuel smoke and occupational dusts) triggers a dysregulated inflammatory response with recruitment of neutrophils, macrophages and lymphocytes. These cells release proteases and cytokines that destroy alveolar walls (emphysema) and cause inflammation, fibrosis and mucus plugging of small airways (chronic bronchiolitis). Loss of elastic recoil and airway narrowing produce expiratory airflow limitation, air trapping and dynamic hyperinflation. Ventilation-perfusion mismatch impairs gas exchange, leading to hypoxemia and, in advanced disease, hypercapnia. Chronic hypoxic pulmonary vasoconstriction can cause pulmonary hypertension and right heart failure (cor pulmonale). Alpha-1 antitrypsin deficiency is an inherited host factor that increases protease-mediated lung destruction.",
+      "clinicopathologic_correlation": "Expiratory airflow limitation and air trapping explain exertional dyspnea, wheeze, prolonged expiration and the barrel-shaped, hyperresonant chest with diminished breath sounds. Mucus gland hypertrophy and goblet cell hyperplasia account for chronic productive cough. Chronic hypoxemia can produce secondary polycythemia and, via pulmonary hypertension, peripheral edema from right heart failure.",
+      "onset_progression": "Insidious onset, usually after age 40 with a long exposure history; breathlessness typically develops gradually and is initially noticed only on exertion. The course is chronic and progressive, with episodic acute exacerbations (often triggered by respiratory infections) that accelerate decline and carry significant mortality.",
+      "follow_up_monitoring": "Periodic review of symptom burden (e.g., mMRC or CAT scores), exacerbation frequency, inhaler technique and adherence, smoking status, and oxygen saturation. Spirometry is repeated periodically to track decline; blood eosinophil count informs inhaled corticosteroid decisions. Arterial blood gases are assessed when long-term oxygen is considered (PaO2 at or below 55 mmHg or SpO2 at or below 88%). Early review follows any hospitalized exacerbation.",
+      "source_attribution": "StatPearls: Chronic Obstructive Pulmonary Disease (Kanchustambham & Brown, 2026); WHO COPD fact sheet (2026); GOLD Global Strategy report; NICE NG114; Cochrane review CD003566; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "obstructive lung disease",
+        "smoking-related",
+        "emphysema",
+        "chronic bronchitis",
+        "spirometry",
+        "chronic disease"
+      ],
+      "causes": [
+        "Tobacco smoking (the leading cause in high-income countries)",
+        "Household air pollution from burning biomass fuel (wood, charcoal, crop waste) for cooking and heating",
+        "Occupational exposure to dusts, fumes and chemicals (e.g., silica, cadmium)",
+        "Alpha-1 antitrypsin deficiency (genetic)",
+        "Abnormal lung development (poor growth in utero, prematurity, childhood respiratory infections)"
+      ],
+      "risk_factors": [
+        "Cumulative pack-years of cigarette smoking",
+        "Long-term exposure to indoor biomass smoke",
+        "Outdoor air pollution",
+        "History of asthma or airway hyperresponsiveness",
+        "Recurrent or severe childhood lower respiratory infections",
+        "Prior pulmonary tuberculosis",
+        "Age over 40 years"
+      ],
+      "recommended_tests": [
+        "Post-bronchodilator spirometry (FEV1/FVC below 0.70 confirms persistent airflow limitation; FEV1 % predicted grades severity GOLD 1-4)",
+        "Pulse oximetry and arterial blood gas analysis (hypoxemia, hypercapnia)",
+        "Chest radiograph (hyperinflation; exclusion of pneumonia, pneumothorax, lung cancer)",
+        "Complete blood count including blood eosinophil count (polycythemia, eosinophils guide ICS use)",
+        "Alpha-1 antitrypsin level",
+        "High-resolution chest CT in selected cases (emphysema distribution, bronchiectasis, lung cancer screening)"
+      ],
+      "treatments": [
+        "Smoking cessation (pharmacotherapy plus counseling) is the single most effective intervention to slow disease progression",
+        "Short-acting bronchodilators (SABA or SAMA) as needed for symptom relief",
+        "Long-acting bronchodilators (LABA, LAMA, or LABA+LAMA dual therapy) as maintenance for persistent symptoms",
+        "Inhaled corticosteroid added to long-acting bronchodilators for patients with exacerbations and raised blood eosinophils (e.g., 300 cells/uL or more); triple therapy (ICS/LABA/LAMA) for persistent exacerbations",
+        "Exacerbations: intensified short-acting bronchodilators, a short course of systemic corticosteroid (e.g., prednisone 40 mg for 5 days), and antibiotics when sputum becomes purulent or increases in volume",
+        "Controlled oxygen targeting SpO2 88-92% and noninvasive ventilation for acute hypercapnic respiratory failure",
+        "Long-term oxygen therapy for chronic resting hypoxemia; prophylactic azithromycin or roflumilast in selected frequent exacerbators",
+        "Pulmonary rehabilitation and vaccination (influenza, pneumococcal, COVID-19, RSV, Tdap)"
+      ],
+      "home_care": [
+        "Complete avoidance of tobacco smoke and reduction of indoor biomass smoke exposure (cleaner fuels, ventilation) are central supportive measures",
+        "Regular physical activity and structured exercise training as part of pulmonary rehabilitation improve dyspnea and exercise capacity",
+        "Correct inhaler technique and adherence to maintenance inhalers are associated with fewer exacerbations",
+        "Breathing techniques (e.g., pursed-lip breathing) are used to ease breathlessness",
+        "Adequate nutrition is emphasized because weight loss and muscle wasting worsen prognosis",
+        "A written action plan for recognizing and responding early to exacerbations is part of self-management education"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Tobacco control, prevention of smoking initiation, clean household fuels and ventilation, occupational dust and fume controls, and reduction of ambient air pollution."
+        },
+        {
+          "tier": "secondary",
+          "content": "Spirometry in adults over 35-40 with risk exposures and chronic respiratory symptoms to detect airflow limitation early, followed by smoking cessation."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Vaccination, optimized inhaled therapy, pulmonary rehabilitation, long-term oxygen when indicated, and early treatment of exacerbations to reduce hospitalization and mortality."
+        }
+      ],
+      "emergency_signs": [
+        "Severe breathlessness at rest or inability to speak in full sentences",
+        "Cyanosis (bluish lips or fingertips) or oxygen saturation falling below the usual baseline",
+        "Confusion, drowsiness or reduced consciousness (possible hypercapnia)",
+        "Use of accessory muscles or paradoxical breathing",
+        "New or worsening peripheral edema or chest pain",
+        "Poor response to usual rescue bronchodilator"
+      ],
+      "differentials": [
+        {
+          "condition": "Bronchial asthma",
+          "distinguishing_feature": "Earlier onset, variable symptoms, marked bronchodilator reversibility and often atopy; airflow limitation is largely reversible between episodes."
+        },
+        {
+          "condition": "Heart failure",
+          "distinguishing_feature": "Orthopnea, paroxysmal nocturnal dyspnea, basal crackles, raised natriuretic peptides and reduced or abnormal ventricular function on echocardiography; spirometry usually shows restriction rather than obstruction."
+        },
+        {
+          "condition": "Bronchiectasis",
+          "distinguishing_feature": "Large volumes of purulent sputum, recurrent infections and dilated, thickened bronchi on high-resolution CT."
+        },
+        {
+          "condition": "Pulmonary tuberculosis",
+          "distinguishing_feature": "Fever, night sweats, weight loss, hemoptysis, upper-lobe infiltrates or cavitation, and positive sputum microbiology."
+        },
+        {
+          "condition": "Interstitial lung disease",
+          "distinguishing_feature": "Fine inspiratory crackles, restrictive spirometry with reduced diffusing capacity, and reticular or fibrotic changes on CT."
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_productive_cough",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.4
+        },
+        {
+          "symptom_id": "sym_wheezing",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_chest_tightness",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_weight_loss",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_edema",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_salbutamol",
+          "safety": "safe",
+          "note": "Short-acting beta-2 agonist used as needed for symptom relief and intensified during exacerbations."
+        },
+        {
+          "medicine_id": "med_budesonide_formoterol",
+          "safety": "caution",
+          "note": "ICS/LABA reserved for patients with exacerbations and raised blood eosinophils; inhaled corticosteroids increase pneumonia risk in COPD."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Short course (about 40 mg for 5 days) for exacerbations; long-term systemic corticosteroid maintenance is not used due to adverse effects."
+        },
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "safe",
+          "note": "NICE first-choice oral antibiotic for exacerbations with increased sputum purulence or volume."
+        },
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "NICE first-choice oral alternative for exacerbations requiring antibiotics."
+        },
+        {
+          "medicine_id": "med_clarithromycin",
+          "safety": "safe",
+          "note": "NICE first-choice macrolide option for exacerbations requiring antibiotics; check for interacting drugs."
+        },
+        {
+          "medicine_id": "med_coamoxiclav",
+          "safety": "safe",
+          "note": "NICE second-line option when first-choice therapy fails or treatment-failure risk is higher."
+        },
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "caution",
+          "note": "Long-term prophylaxis reduces exacerbations in selected frequent exacerbators; QT prolongation, hearing loss and resistance are concerns."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Cardioselective beta-blocker; Cochrane review found no worsening of FEV1 or symptoms, so it should not be withheld when a cardiac indication exists."
+        }
+      ],
+      "related": [
+        "asthma",
+        "heart_failure",
+        "community_acquired_pneumonia",
+        "tuberculosis"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Kanchustambham V, Brown BD. Chronic Obstructive Pulmonary Disease (COPD). In: StatPearls. Treasure Island (FL): StatPearls Publishing; updated 2026 Apr 15.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK559281/",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "World Health Organization. Chronic obstructive pulmonary disease (COPD). Fact sheet, 10 June 2026.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Global Initiative for Chronic Obstructive Lung Disease (GOLD)",
+          "citation_text": "Global Initiative for Chronic Obstructive Lung Disease. Global Strategy for the Diagnosis, Management, and Prevention of Chronic Obstructive Pulmonary Disease: 2025 Report.",
+          "url": "https://goldcopd.org/2025-gold-report/",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NICE",
+          "citation_text": "National Institute for Health and Care Excellence. Chronic obstructive pulmonary disease (acute exacerbation): antimicrobial prescribing. NICE guideline NG114; 2018.",
+          "url": "https://www.nice.org.uk/guidance/ng114/chapter/summary-of-the-evidence",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "acute_coronary_syndrome",
+      "name": "Acute Coronary Syndrome (incl. Myocardial Infarction)",
+      "scientific_name": "Acute coronary syndrome (ST-elevation myocardial infarction, non-ST-elevation myocardial infarction, unstable angina)",
+      "body_system": "Cardiovascular System",
+      "severity": "Critical",
+      "urgency": "EMERGENCY",
+      "urgency_criteria": "Any suspected acute coronary syndrome is reference EMERGENCY: substernal chest pressure lasting 10 minutes or more, especially with radiation to the arm, jaw or neck, diaphoresis, dyspnea, nausea or lightheadedness, requires an ECG within 10 minutes of first medical contact. Atypical presentations (isolated dyspnea, epigastric pain, fatigue) in women, older adults and people with diabetes carry the same urgency.",
+      "contagious": false,
+      "description": "Acute coronary syndrome (ACS) is the spectrum of acute myocardial ischemia comprising ST-elevation myocardial infarction (STEMI), non-ST-elevation myocardial infarction (NSTEMI) and unstable angina. NSTEMI is distinguished from unstable angina by elevated cardiac troponin indicating myocardial necrosis. Ischemic heart disease caused about 9 million deaths worldwide in 2021, roughly 13% of all deaths, and rapid reperfusion is the key determinant of outcome in STEMI.",
+      "pathophysiology": "Most ACS (type 1 MI) results from rupture or erosion of an atherosclerotic coronary plaque, which exposes thrombogenic material and triggers platelet aggregation and thrombus formation. Complete, persistent occlusion of an epicardial artery produces transmural ischemia and ST elevation (STEMI), whereas partial or intermittent occlusion causes subendocardial ischemia (NSTEMI or unstable angina). Ischemia progresses from reversible dysfunction to myocyte necrosis within minutes to hours, spreading from subendocardium to epicardium. Type 2 MI reflects oxygen supply-demand mismatch (e.g., tachyarrhythmia, anemia, hypotension) without plaque rupture. Non-atherosclerotic causes include coronary vasospasm, spontaneous coronary artery dissection and coronary embolism.",
+      "clinicopathologic_correlation": "Myocardial ischemia stimulates cardiac visceral afferents, producing poorly localized substernal pressure referred to the arm, jaw or neck. Sympathetic activation causes diaphoresis, pallor and tachycardia, and vagal stimulation (notably in inferior infarction) causes nausea and bradycardia. Ischemic left ventricular dysfunction raises filling pressures and causes dyspnea and pulmonary crackles; necrosis releases troponin, and electrical instability produces arrhythmias.",
+      "onset_progression": "Sudden onset of chest discomfort, often at rest or with minimal exertion, lasting 10 minutes or more and not relieved by rest; it may follow a period of crescendo angina. Without reperfusion, infarct size increases over hours, and early complications include ventricular arrhythmias, heart failure, cardiogenic shock and, later, mechanical complications.",
+      "follow_up_monitoring": "Continuous ECG monitoring for arrhythmias and serial high-sensitivity troponin in the acute phase; echocardiography to assess left ventricular ejection fraction and mechanical complications. After discharge, monitoring covers adherence to dual antiplatelet therapy and bleeding, lipid panel reassessment weeks after statin initiation, blood pressure, glycemic control, renal function and potassium on RAAS inhibitors, and participation in cardiac rehabilitation.",
+      "source_attribution": "StatPearls: Acute Coronary Syndrome (Jain et al., 2026); 2025 ACC/AHA/ACEP/NAEMSP/SCAI ACS Guideline (Circulation 2025); WHO Heart attack fact sheet (2026); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "myocardial infarction",
+        "STEMI",
+        "NSTEMI",
+        "unstable angina",
+        "atherosclerosis",
+        "cardiac emergency"
+      ],
+      "causes": [
+        "Atherosclerotic plaque rupture or erosion with superimposed coronary thrombosis (type 1 MI)",
+        "Myocardial oxygen supply-demand mismatch, e.g., tachyarrhythmia, severe anemia, hypotension (type 2 MI)",
+        "Coronary artery vasospasm",
+        "Spontaneous coronary artery dissection",
+        "Coronary embolism"
+      ],
+      "risk_factors": [
+        "Dyslipidemia",
+        "Cigarette smoking",
+        "Hypertension",
+        "Diabetes mellitus",
+        "Abdominal obesity",
+        "Physical inactivity and low fruit and vegetable intake",
+        "Psychosocial stress",
+        "Male sex, older age and family history of premature coronary disease"
+      ],
+      "recommended_tests": [
+        "12-lead ECG within 10 minutes of first medical contact (ST elevation of 1 mm or more in 2 or more contiguous leads defines STEMI), repeated serially",
+        "High-sensitivity cardiac troponin with rise and/or fall above the 99th percentile",
+        "Risk stratification scores (HEART, TIMI, GRACE)",
+        "Transthoracic echocardiography (regional wall motion, LVEF, mechanical complications)",
+        "Coronary angiography (diagnostic and for PCI)",
+        "Complete blood count, electrolytes, renal function, lipid profile and glucose/HbA1c"
+      ],
+      "treatments": [
+        "Aspirin 162-325 mg chewed at presentation, then low-dose maintenance",
+        "Dual antiplatelet therapy with a P2Y12 inhibitor, typically for 12 months in standard-risk patients",
+        "Parenteral anticoagulation (e.g., unfractionated heparin) during the acute phase and PCI",
+        "STEMI: primary PCI with first medical contact-to-device time of 90 minutes or less; fibrinolysis within 30 minutes of arrival when PCI cannot be performed within 120 minutes",
+        "NSTEMI/unstable angina: invasive strategy for intermediate- and high-risk patients guided by risk scores",
+        "Sublingual nitroglycerin for ongoing ischemic pain unless hypotension, right ventricular infarction or recent phosphodiesterase-5 inhibitor use",
+        "Oral beta-blocker within 24 hours in hemodynamically stable patients without heart failure or shock; high-intensity statin for all",
+        "ACE inhibitor (or ARB) particularly with reduced LVEF, hypertension, diabetes or chronic kidney disease; cardiac rehabilitation referral"
+      ],
+      "home_care": [
+        "Complete smoking cessation is associated with a substantial reduction in recurrent coronary events",
+        "Structured cardiac rehabilitation with progressive supervised exercise is part of recovery",
+        "Heart-healthy diet rich in fruits and vegetables with limited saturated fat and sodium",
+        "Weight reduction and blood pressure, glucose and lipid control to targets",
+        "Limiting alcohol intake and managing psychosocial stress"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Population measures against tobacco use, unhealthy diet, physical inactivity and harmful alcohol use; detection and treatment of hypertension, diabetes and dyslipidemia."
+        },
+        {
+          "tier": "secondary",
+          "content": "Rapid recognition of ischemic symptoms, early ECG and troponin testing, and timely reperfusion to limit infarct size."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Long-term antiplatelet therapy, high-intensity statin, beta-blocker and RAAS inhibition where indicated, cardiac rehabilitation and risk-factor control to prevent reinfarction, heart failure and death."
+        }
+      ],
+      "emergency_signs": [
+        "Chest pressure or pain lasting more than a few minutes or recurring, especially radiating to arm, jaw, neck or back",
+        "Chest discomfort with cold sweats, breathlessness, nausea or lightheadedness",
+        "Fainting or near-fainting",
+        "Hypotension, cold clammy skin or confusion suggesting cardiogenic shock",
+        "Sudden severe breathlessness or pulmonary edema",
+        "Palpitations with collapse (possible ventricular arrhythmia)"
+      ],
+      "differentials": [
+        {
+          "condition": "Aortic dissection",
+          "distinguishing_feature": "Abrupt tearing pain radiating to the back, pulse or blood pressure differential between arms, widened mediastinum; confirmed by CT angiography."
+        },
+        {
+          "condition": "Pulmonary embolism",
+          "distinguishing_feature": "Pleuritic pain, dyspnea and tachycardia with DVT risk factors; hypoxemia and filling defects on CT pulmonary angiography."
+        },
+        {
+          "condition": "Acute pericarditis",
+          "distinguishing_feature": "Sharp pain relieved by sitting forward, pericardial friction rub, diffuse concave ST elevation with PR depression."
+        },
+        {
+          "condition": "Gastroesophageal reflux disease / peptic ulcer disease",
+          "distinguishing_feature": "Burning pain related to meals or lying down, relieved by antacids, with normal ECG and troponin."
+        },
+        {
+          "condition": "Costochondritis",
+          "distinguishing_feature": "Pain reproducible by palpation of costochondral junctions, normal ECG and troponin."
+        },
+        {
+          "condition": "Takotsubo cardiomyopathy",
+          "distinguishing_feature": "Often follows emotional or physical stress; apical ballooning without obstructive coronary disease on angiography."
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_chest_pain",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_diaphoresis",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_epigastric_pain",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_palpitations",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "safe",
+          "note": "Loading dose chewed at presentation then long-term low-dose therapy; cornerstone antiplatelet agent in all ACS."
+        },
+        {
+          "medicine_id": "med_clopidogrel",
+          "safety": "safe",
+          "note": "P2Y12 inhibitor for dual antiplatelet therapy; ticagrelor or prasugrel are generally preferred with PCI, clopidogrel with fibrinolysis or high bleeding risk."
+        },
+        {
+          "medicine_id": "med_atorvastatin",
+          "safety": "safe",
+          "note": "High-intensity statin (e.g., 80 mg) started early in all ACS patients without contraindication."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Oral beta-blocker within 24 hours if stable; avoided in heart failure signs, low-output state, cardiogenic shock risk or bradycardia/heart block."
+        },
+        {
+          "medicine_id": "med_enalapril",
+          "safety": "caution",
+          "note": "ACE inhibitor indicated especially with LVEF 40% or less, hypertension, diabetes or CKD; monitor for hypotension, renal function and potassium."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NSAID boxed warning for MI and stroke risk; label advises avoiding use after recent MI and contraindicates use around CABG."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "avoid",
+          "note": "NSAID class carries the same boxed warning for serious cardiovascular thrombotic events."
+        },
+        {
+          "medicine_id": "med_sumatriptan",
+          "safety": "avoid",
+          "note": "Triptans are contraindicated in ischemic coronary artery disease, prior MI or coronary vasospasm (FDA label)."
+        }
+      ],
+      "related": [
+        "heart_failure",
+        "hypertension",
+        "type2_diabetes",
+        "ischemic_stroke",
+        "peptic_ulcer_disease"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Jain, Singh, Shah, Grossman. Acute Coronary Syndrome. In: StatPearls. Treasure Island (FL): StatPearls Publishing; updated 2026 Jul 5.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459157/",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "ACC/AHA Joint Committee on Clinical Practice Guidelines",
+          "citation_text": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines. Circulation. 2025;151(13):e771-e862. doi:10.1161/CIR.0000000000001309",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40014670/",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "World Health Organization. Heart attack. Fact sheet, updated 10 September 2026.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/heart-attack",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "heart_failure",
+      "name": "Heart Failure",
+      "scientific_name": "Heart failure (HFrEF, HFmrEF, HFpEF; congestive heart failure)",
+      "body_system": "Cardiovascular System",
+      "severity": "Severe",
+      "urgency": "SEEK_URGENT_CARE",
+      "urgency_criteria": "New or worsening dyspnea, orthopnea, edema or rapid weight gain warrants urgent evaluation. Breathlessness at rest, pink frothy sputum, hypoxemia, chest pain, syncope, hypotension or signs of poor perfusion (cold extremities, confusion, oliguria) indicate acute decompensation or cardiogenic shock and are reference EMERGENCY.",
+      "contagious": false,
+      "description": "Heart failure is a complex clinical syndrome resulting from any structural or functional impairment of ventricular filling or ejection of blood. It is classified by left ventricular ejection fraction into HF with reduced (40% or less), mildly reduced (41-49%) and preserved (50% or more) ejection fraction, and staged A to D by the ACC/AHA. It affects roughly 26 million people worldwide and carries high rates of hospitalization and mortality.",
+      "pathophysiology": "An initial myocardial insult (ischemia, pressure or volume overload, cardiomyopathy) reduces cardiac output or raises filling pressures. Compensatory activation of the sympathetic nervous system and renin-angiotensin-aldosterone system initially maintains perfusion but, when sustained, causes sodium and water retention, vasoconstriction, myocyte hypertrophy, apoptosis, fibrosis and progressive ventricular remodeling. Natriuretic peptide counter-regulation becomes insufficient. Elevated left-sided filling pressures cause pulmonary congestion, while right-sided failure produces systemic venous congestion, and reduced renal perfusion contributes to cardiorenal dysfunction. Guideline-directed therapies act by blocking these neurohormonal pathways.",
+      "clinicopathologic_correlation": "Raised pulmonary venous pressure causes exertional dyspnea, orthopnea, paroxysmal nocturnal dyspnea and basal crackles. Systemic venous congestion produces jugular venous distension, hepatojugular reflux, hepatic congestion, anorexia and dependent edema. Reduced forward output and neurohormonal activation cause fatigue, tachycardia, cool extremities and diaphoresis, and an S3 gallop reflects rapid ventricular filling into a noncompliant, volume-overloaded ventricle.",
+      "onset_progression": "Chronic heart failure typically develops gradually with progressive exertional intolerance, punctuated by episodes of acute decompensation (often triggered by ischemia, arrhythmia, infection, uncontrolled hypertension, nonadherence or sodium-retaining drugs). Acute de novo heart failure can follow myocardial infarction or myocarditis. The course is generally progressive, with 5-year mortality around 40% after diagnosis.",
+      "follow_up_monitoring": "Symptoms and NYHA class, daily body weight, blood pressure, heart rate and volume status at each visit. Serum electrolytes (especially potassium) and renal function after starting or up-titrating ACE inhibitor/ARB/ARNI, MRA, SGLT2 inhibitor or diuretics. Natriuretic peptides for prognosis and assessment; repeat echocardiography after optimization of guideline-directed therapy to reassess LVEF and eligibility for ICD or CRT. Early follow-up (within about 1-2 weeks) after a hospitalization.",
+      "source_attribution": "StatPearls: Heart Failure (Congestive Heart Failure) (Shams, Malik, Chhabra, 2025); 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "HFrEF",
+        "HFpEF",
+        "congestion",
+        "cardiomyopathy",
+        "GDMT",
+        "chronic disease"
+      ],
+      "causes": [
+        "Ischemic heart disease and prior myocardial infarction (most common)",
+        "Hypertension",
+        "Valvular heart disease",
+        "Cardiomyopathies (dilated, hypertrophic, restrictive) including genetic forms",
+        "Myocarditis and inflammatory heart disease",
+        "Persistent tachyarrhythmias (tachycardia-induced cardiomyopathy)",
+        "Cardiotoxic drugs (e.g., certain chemotherapies) and excess alcohol"
+      ],
+      "risk_factors": [
+        "Hypertension",
+        "Coronary artery disease",
+        "Diabetes mellitus and metabolic syndrome",
+        "Obesity",
+        "Atrial fibrillation",
+        "Chronic kidney disease",
+        "Family history of cardiomyopathy",
+        "Older age"
+      ],
+      "recommended_tests": [
+        "Transthoracic echocardiography (initial imaging test; LVEF, chamber size, wall motion, valves, filling pressures)",
+        "BNP or NT-proBNP (differentiates cardiac from noncardiac dyspnea; falsely low in obesity, raised in renal dysfunction and atrial fibrillation)",
+        "12-lead ECG (prior infarction, arrhythmia, conduction delay)",
+        "Chest radiograph (cardiomegaly, pulmonary edema, Kerley B lines, pleural effusion)",
+        "Complete blood count, electrolytes, renal and liver function, glucose, lipids, thyroid function",
+        "Coronary angiography or stress imaging to assess ischemic etiology; cardiac MRI for infiltrative or inflammatory disease"
+      ],
+      "treatments": [
+        "HFrEF: combination guideline-directed medical therapy with ARNI (preferred) or ACE inhibitor/ARB, evidence-based beta-blocker (carvedilol, bisoprolol or metoprolol succinate), mineralocorticoid receptor antagonist and SGLT2 inhibitor",
+        "Loop diuretics for relief of congestion, with a thiazide added for diuretic resistance",
+        "SGLT2 inhibitors also reduce HF hospitalization in HFmrEF and HFpEF",
+        "Hydralazine-isosorbide dinitrate for self-identified African American patients or RAAS-inhibitor intolerance; ivabradine or vericiguat in selected patients",
+        "ICD for primary prevention with LVEF 35% or less despite therapy, and cardiac resynchronization for LBBB with wide QRS",
+        "Treatment of underlying causes (revascularization, valve intervention, rate or rhythm control of atrial fibrillation)",
+        "Advanced HF (stage D): inotropes, mechanical circulatory support, transplantation or palliative care",
+        "Avoidance of drugs that worsen HF: NSAIDs, non-dihydropyridine calcium channel blockers (in HFrEF) and thiazolidinediones"
+      ],
+      "home_care": [
+        "Daily weight monitoring is used to detect fluid retention early",
+        "Sodium restriction is part of standard dietary counseling",
+        "Regular exercise training or cardiac rehabilitation improves functional capacity",
+        "Adherence to guideline-directed medications is linked to fewer hospitalizations",
+        "Avoidance of over-the-counter NSAIDs, which cause sodium and fluid retention",
+        "Limiting alcohol and smoking cessation"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Control of hypertension, diabetes, obesity and coronary risk factors in at-risk (stage A) individuals; SGLT2 inhibitors in type 2 diabetes with cardiovascular risk; avoidance or monitoring of cardiotoxins."
+        },
+        {
+          "tier": "secondary",
+          "content": "ACE inhibitor and beta-blocker in asymptomatic LV dysfunction (stage B), statin and beta-blocker after MI, and ICD when LVEF is 30% or less, to prevent progression to symptomatic HF."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Full guideline-directed medical therapy, device therapy, patient education and early post-discharge follow-up to reduce readmission and mortality."
+        }
+      ],
+      "emergency_signs": [
+        "Severe breathlessness at rest or inability to lie flat",
+        "Pink, frothy sputum (acute pulmonary edema)",
+        "Chest pain",
+        "Fainting, very low blood pressure, cold clammy extremities or new confusion",
+        "Rapid or irregular heartbeat with worsening symptoms",
+        "Markedly reduced urine output"
+      ],
+      "differentials": [
+        {
+          "condition": "Chronic obstructive pulmonary disease",
+          "distinguishing_feature": "Smoking or biomass exposure history, obstructive spirometry, hyperinflation on chest radiograph; natriuretic peptides not markedly raised."
+        },
+        {
+          "condition": "Acute coronary syndrome",
+          "distinguishing_feature": "Ischemic chest pain with dynamic ECG changes and rising troponin; may precipitate acute HF."
+        },
+        {
+          "condition": "Pulmonary embolism",
+          "distinguishing_feature": "Sudden dyspnea, pleuritic pain, tachycardia and hypoxemia with clear lung fields; filling defects on CT pulmonary angiography."
+        },
+        {
+          "condition": "Nephrotic syndrome or renal failure",
+          "distinguishing_feature": "Heavy proteinuria and hypoalbuminemia or markedly raised creatinine with normal cardiac function."
+        },
+        {
+          "condition": "Liver cirrhosis",
+          "distinguishing_feature": "Ascites, jaundice, stigmata of chronic liver disease and low albumin without jugular venous distension."
+        },
+        {
+          "condition": "Community-acquired pneumonia",
+          "distinguishing_feature": "Fever, productive cough and focal consolidation on chest radiograph."
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_orthopnea",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_edema",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_palpitations",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_furosemide",
+          "safety": "safe",
+          "note": "Loop diuretic for relief of congestion; monitor electrolytes, renal function and volume status."
+        },
+        {
+          "medicine_id": "med_dapagliflozin",
+          "safety": "safe",
+          "note": "SGLT2 inhibitor reduces mortality and HF hospitalization in HFrEF regardless of diabetes status, and hospitalization in HFmrEF/HFpEF."
+        },
+        {
+          "medicine_id": "med_enalapril",
+          "safety": "safe",
+          "note": "ACE inhibitor reduces mortality in HFrEF when ARNI is not feasible; monitor potassium, creatinine and for angioedema."
+        },
+        {
+          "medicine_id": "med_losartan",
+          "safety": "safe",
+          "note": "ARB used in HFrEF when ACE inhibitors are not tolerated (e.g., cough); monitor potassium and renal function."
+        },
+        {
+          "medicine_id": "med_spironolactone",
+          "safety": "caution",
+          "note": "MRA reduces mortality in NYHA II-IV HFrEF; used only with eGFR above 30 and potassium below 5.0 because of hyperkalemia risk."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "caution",
+          "note": "Only the sustained-release succinate form is evidence-based in HFrEF; started low and titrated when euvolemic, not in acute decompensation or shock."
+        },
+        {
+          "medicine_id": "med_hydrochlorothiazide",
+          "safety": "caution",
+          "note": "Thiazide added to loop diuretic for diuretic resistance; risk of hyponatremia, hypokalemia and renal dysfunction."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NSAIDs cause sodium and fluid retention and about a two-fold increase in HF hospitalization; listed among drugs to avoid in HF."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "avoid",
+          "note": "NSAID class effect: fluid retention and worsening of heart failure."
+        }
+      ],
+      "related": [
+        "acute_coronary_syndrome",
+        "hypertension",
+        "copd",
+        "type2_diabetes",
+        "community_acquired_pneumonia"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Shams P, Malik A, Chhabra L. Heart Failure (Congestive Heart Failure). In: StatPearls. Treasure Island (FL): StatPearls Publishing; updated 2025 Feb 26.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430873/",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "AHA/ACC/HFSA",
+          "citation_text": "Heidenreich PA, Bozkurt B, Aguilar D, et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines. Circulation. 2022. doi:10.1161/CIR.0000000000001063",
+          "url": "https://hfsa.org/hfguidelines2022",
+          "specialty": "Cardiology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "ischemic_stroke",
+      "name": "Acute Ischemic Stroke",
+      "scientific_name": "Cerebral infarction (acute ischemic stroke)",
+      "body_system": "Nervous System",
+      "severity": "Critical",
+      "urgency": "EMERGENCY",
+      "urgency_criteria": "Any sudden focal neurological deficit (facial droop, arm or leg weakness, speech disturbance, vision loss, imbalance) is reference EMERGENCY because thrombolysis and thrombectomy are time-dependent; the time last known well determines eligibility. Transient deficits that resolve (possible TIA) carry the same urgency because of high early stroke risk.",
+      "contagious": false,
+      "description": "Acute ischemic stroke is the sudden onset of a focal neurological deficit in a vascular territory of the brain, retina or spinal cord caused by arterial occlusion and infarction. It accounts for the majority of strokes and is a leading cause of death and long-term disability. Outcomes depend on how quickly blood flow is restored, summarized by the principle that time is brain.",
+      "pathophysiology": "Occlusion of a cerebral artery by in-situ thrombosis on atherosclerotic plaque, embolism from the heart or a proximal artery, or small penetrating-artery disease abruptly reduces regional cerebral blood flow. Where flow falls below roughly 10-12 mL/100 g/min, energy failure causes rapid irreversible necrosis (the infarct core). Surrounding hypoperfused but still viable tissue (the ischemic penumbra) can be salvaged by timely reperfusion. Energy failure triggers excitotoxic glutamate release, calcium influx, free-radical injury and cytotoxic edema. The TOAST classification divides causes into large-artery atherosclerosis, cardioembolism, small-vessel (lacunar) occlusion, and other or undetermined etiology.",
+      "clinicopathologic_correlation": "Deficits map to the affected vascular territory: middle cerebral artery infarction causes contralateral face and arm weakness and sensory loss with aphasia (dominant hemisphere) or neglect (nondominant). Posterior circulation infarction causes vertigo, ataxia, diplopia, visual field loss and crossed signs, while lacunar infarcts produce pure motor or pure sensory syndromes without cortical signs. Cerebral edema peaking at 3-5 days can cause deterioration in consciousness.",
+      "onset_progression": "Sudden onset, often maximal at onset or evolving over minutes to hours; symptoms may be noticed on waking. Neurological status can fluctuate or worsen in the first days from infarct extension, hemorrhagic transformation or edema, followed by variable recovery over weeks to months with rehabilitation.",
+      "follow_up_monitoring": "Serial NIHSS neurological assessments, blood pressure (at or below 180/105 mmHg for 24 hours after thrombolysis), glucose (140-180 mg/dL), temperature and swallow screening in the acute phase; follow-up brain imaging after reperfusion therapy. Long-term follow-up covers blood pressure, lipid and glucose control, adherence to antithrombotic therapy, cardiac rhythm monitoring for occult atrial fibrillation, screening for post-stroke depression, and rehabilitation progress.",
+      "source_attribution": "StatPearls: Ischemic Stroke (Lui, Khan Suheb, Patti, 2026); 2026 AHA/ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "stroke",
+        "cerebrovascular",
+        "thrombolysis",
+        "thrombectomy",
+        "time-critical",
+        "neurological emergency"
+      ],
+      "causes": [
+        "Large-artery atherosclerosis with thrombosis or artery-to-artery embolism (e.g., carotid stenosis)",
+        "Cardioembolism, most commonly from atrial fibrillation; also recent MI, LV thrombus, prosthetic valves",
+        "Small-vessel (lacunar) occlusion from lipohyalinosis of penetrating arteries",
+        "Other determined causes such as arterial dissection, hypercoagulable states and vasculitis"
+      ],
+      "risk_factors": [
+        "Hypertension",
+        "Atrial fibrillation",
+        "Diabetes mellitus",
+        "Cigarette smoking",
+        "Dyslipidemia",
+        "Prior stroke or transient ischemic attack",
+        "Older age",
+        "Coronary and peripheral artery disease"
+      ],
+      "recommended_tests": [
+        "Non-contrast CT head as soon as possible after arrival to exclude hemorrhage",
+        "Point-of-care blood glucose (hypoglycemia is a key stroke mimic)",
+        "CT angiography with or without perfusion imaging to identify large-vessel occlusion and thrombectomy eligibility",
+        "MRI with diffusion-weighted imaging (positive within minutes of infarction)",
+        "12-lead ECG, troponin, complete blood count, electrolytes, renal function and coagulation studies",
+        "Cardiac rhythm monitoring and echocardiography, carotid imaging and lipid profile for etiologic work-up"
+      ],
+      "treatments": [
+        "IV thrombolysis with alteplase or tenecteplase within 4.5 hours of last known well for disabling deficits regardless of NIHSS score; selected patients up to 9 hours with advanced imaging",
+        "Mechanical thrombectomy for large-vessel occlusion, within 6 hours and up to 24 hours in selected patients on imaging criteria, including some with large cores and basilar occlusion",
+        "Blood pressure lowered to below 185/110 mmHg before and kept at or below 180/105 mmHg for 24 hours after thrombolysis; intensive lowering below 140 mmHg systolic is not recommended",
+        "Aspirin within 24-48 hours of onset (generally deferred 24 hours after thrombolysis); short-term dual antiplatelet therapy for minor non-disabling stroke",
+        "High-intensity statin; anticoagulation for atrial fibrillation typically started within days depending on infarct size",
+        "Glucose kept 140-180 mg/dL, treatment of fever, swallow screening, DVT prophylaxis with intermittent pneumatic compression",
+        "Stroke unit care with early multidisciplinary rehabilitation"
+      ],
+      "home_care": [
+        "Long-term rehabilitation (physiotherapy, occupational and speech therapy) supports functional recovery",
+        "Blood pressure control, smoking cessation and diabetes management are core secondary-prevention measures",
+        "Dietary modification, regular physical activity as tolerated and limited alcohol",
+        "Swallowing strategies and positioning reduce aspiration risk in dysphagia",
+        "Caregiver education on recognizing recurrent stroke symptoms (BE-FAST: balance, eyes, face, arm, speech, time)"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Control of hypertension, diabetes and dyslipidemia, smoking cessation, physical activity, and anticoagulation for atrial fibrillation according to stroke risk."
+        },
+        {
+          "tier": "secondary",
+          "content": "Rapid public recognition of stroke symptoms and emergency transport to stroke-capable centers enabling thrombolysis or thrombectomy; urgent evaluation of transient ischemic attack."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Antiplatelet or anticoagulant therapy by etiology, high-intensity statin, blood pressure control, carotid revascularization when indicated, rehabilitation and prevention of complications (aspiration, DVT, depression)."
+        }
+      ],
+      "emergency_signs": [
+        "Sudden facial droop or asymmetric smile",
+        "Sudden weakness or numbness of an arm or leg, especially on one side",
+        "Sudden slurred speech, inability to speak or understand speech",
+        "Sudden loss of vision in one or both eyes or double vision",
+        "Sudden loss of balance, severe vertigo or incoordination",
+        "Decreasing level of consciousness"
+      ],
+      "differentials": [
+        {
+          "condition": "Intracerebral hemorrhage",
+          "distinguishing_feature": "Often severe headache, vomiting and rapidly reduced consciousness; hyperdense blood on non-contrast CT."
+        },
+        {
+          "condition": "Hypoglycemia",
+          "distinguishing_feature": "Low fingerstick glucose with deficits that resolve after glucose correction."
+        },
+        {
+          "condition": "Migraine with aura (complicated migraine)",
+          "distinguishing_feature": "Gradually spreading positive symptoms (scintillations, tingling) over 5 minutes or more, followed by headache, with full reversal; history of similar attacks."
+        },
+        {
+          "condition": "Seizure with postictal (Todd) paralysis",
+          "distinguishing_feature": "Witnessed seizure activity and transient postictal weakness that resolves within hours."
+        },
+        {
+          "condition": "Brain tumor",
+          "distinguishing_feature": "Subacute progressive deficits, often with headache, and a mass lesion on imaging."
+        },
+        {
+          "condition": "Sepsis or metabolic encephalopathy",
+          "distinguishing_feature": "Global confusion without a consistent focal vascular pattern, with fever or metabolic derangement."
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_hemiparesis",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_facial_droop",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_speech_difficulty",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.9
+        },
+        {
+          "symptom_id": "sym_blurred_vision",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "safe",
+          "note": "Started within 24-48 hours of onset after hemorrhage is excluded; usually deferred for 24 hours after IV thrombolysis."
+        },
+        {
+          "medicine_id": "med_clopidogrel",
+          "safety": "safe",
+          "note": "Short-term dual antiplatelet therapy with aspirin is preferred over thrombolysis for minor non-disabling ischemic stroke."
+        },
+        {
+          "medicine_id": "med_atorvastatin",
+          "safety": "safe",
+          "note": "High-intensity statin (e.g., 80 mg daily) for secondary prevention of atherosclerotic stroke."
+        },
+        {
+          "medicine_id": "med_warfarin",
+          "safety": "caution",
+          "note": "Anticoagulation for cardioembolic stroke with atrial fibrillation; timing depends on infarct size and hemorrhage risk, and DOACs are generally preferred in nonvalvular AF."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Antipyretic used to treat fever, since hyperthermia worsens outcome after stroke."
+        },
+        {
+          "medicine_id": "med_losartan",
+          "safety": "caution",
+          "note": "Used for long-term blood pressure control in secondary prevention; aggressive acute-phase lowering is avoided."
+        },
+        {
+          "medicine_id": "med_sumatriptan",
+          "safety": "avoid",
+          "note": "Triptans are contraindicated with a history of stroke or TIA (FDA label)."
+        }
+      ],
+      "related": [
+        "hypertension",
+        "type2_diabetes",
+        "acute_coronary_syndrome",
+        "migraine",
+        "heart_failure"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Lui F, Khan Suheb MZ, Patti L. Ischemic Stroke. In: StatPearls. Treasure Island (FL): StatPearls Publishing; updated 2026 Jun 17.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+          "specialty": "Neurology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "American Heart Association / American Stroke Association",
+          "citation_text": "2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: A Guideline From the American Heart Association/American Stroke Association. Stroke. 2026. doi:10.1161/STR.0000000000000513 (Top Things to Know summary).",
+          "url": "https://professional.heart.org/en/science-news/2026-guideline-for-the-early-management-of-patients-with-acute-ischemic-stroke/top-things-to-know",
+          "specialty": "Neurology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "migraine",
+      "name": "Migraine",
+      "scientific_name": "Migraine (with or without aura)",
+      "body_system": "Nervous System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Recurrent headaches fitting the typical migraine pattern warrant scheduled evaluation for diagnosis and management. Red flags make the presentation reference EMERGENCY: sudden thunderclap or worst-ever headache, new focal deficits or aura lasting more than 60 minutes, fever with neck stiffness, confusion, new headache after age 50 or in immunosuppression, or an attack persisting beyond 72 hours.",
+      "contagious": false,
+      "description": "Migraine is a common, genetically influenced primary headache disorder characterized by recurrent attacks of moderate-to-severe, often unilateral, pulsating headache lasting 4-72 hours, accompanied by nausea and/or photophobia and phonophobia. About a quarter of patients experience transient focal neurological aura. Migraine affects women more than men and is among the leading causes of disability worldwide.",
+      "pathophysiology": "Migraine reflects a hyperexcitable brain with abnormal sensory processing. Aura is attributed to cortical spreading depression, a slowly propagating wave of neuronal and glial depolarization followed by suppressed activity. Activation of the trigeminovascular system releases vasoactive neuropeptides, principally calcitonin gene-related peptide (CGRP), substance P and serotonin-related mediators, producing neurogenic inflammation of meningeal vessels. Peripheral and then central sensitization of trigeminal pathways amplify pain and cause allodynia. Hypothalamic and brainstem involvement is thought to underlie the premonitory phase.",
+      "clinicopathologic_correlation": "Spreading depression over the occipital cortex produces the characteristic visual aura that expands over minutes. Sensitized trigeminovascular afferents explain pulsating pain worsened by routine physical activity, while central sensitization produces photophobia, phonophobia and cutaneous allodynia. Brainstem and hypothalamic activation account for nausea, vomiting, yawning and mood change.",
+      "onset_progression": "Usually begins in adolescence or early adulthood, with peak prevalence in the fourth decade. Attacks may progress through prodrome (hours to 1-2 days), aura (5-60 minutes), headache (4-72 hours untreated) and postdrome. Frequency varies; episodic migraine can transform into chronic migraine, and frequent use of acute medication can lead to medication-overuse headache.",
+      "follow_up_monitoring": "Headache diary recording attack frequency, severity, triggers, disability and acute-medication days per month. Monitoring for medication overuse (triptans on 10 or more days per month, simple analgesics on 15 or more days per month). Response to preventive therapy is typically assessed after a trial of about 2-3 months; blood pressure and heart rate are monitored on beta-blocker prophylaxis.",
+      "source_attribution": "StatPearls: Migraine Headache (Pescador Ruschel & De Jesus, 2024); StatPearls: Migraine Medications (Lew & Punnapuzha, 2023); ICHD-3 (International Headache Society); WHO Migraine and other headache disorders fact sheet (2025); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "primary headache",
+        "aura",
+        "CGRP",
+        "triptans",
+        "neurological disability"
+      ],
+      "causes": [
+        "Genetically influenced primary neurological disorder (no structural cause)",
+        "Attack triggers: psychological stress",
+        "Hormonal changes, particularly menstruation",
+        "Skipped meals or fasting",
+        "Sleep disruption (too little or too much sleep)",
+        "Weather changes, strong odors, bright light and alcohol"
+      ],
+      "risk_factors": [
+        "Female sex",
+        "Family history of migraine",
+        "Age between adolescence and midlife",
+        "Frequent use of acute headache medication (risk of chronification)",
+        "Menstrual association (menstrually related attacks)"
+      ],
+      "recommended_tests": [
+        "Clinical diagnosis using ICHD-3 criteria (5 or more attacks for migraine without aura; 2 or more for migraine with aura)",
+        "Complete neurological examination, fundoscopy and blood pressure measurement",
+        "Neuroimaging (MRI or CT) only when red flags are present: thunderclap onset, abnormal examination, atypical or changing pattern, new onset after 50, immunosuppression",
+        "Headache diary to document frequency and medication use"
+      ],
+      "treatments": [
+        "Acute mild-to-moderate attacks: NSAIDs (e.g., ibuprofen 400-600 mg, naproxen, high-dose aspirin) or paracetamol",
+        "Moderate-to-severe attacks or NSAID failure: triptans (e.g., sumatriptan), which work best when taken early in the headache phase",
+        "Antiemetics (metoclopramide or prochlorperazine) for nausea and vomiting",
+        "Gepants (rimegepant, ubrogepant) or other options when triptans are ineffective or contraindicated",
+        "Prophylaxis for frequent or disabling attacks: beta-blockers (propranolol, metoprolol), topiramate, valproate, amitriptyline, venlafaxine, flunarizine or verapamil",
+        "CGRP monoclonal antibodies (erenumab, fremanezumab, galcanezumab) and onabotulinumtoxinA for chronic migraine",
+        "Limitation of acute medication days to prevent medication-overuse headache"
+      ],
+      "home_care": [
+        "Rest in a quiet, dark room during attacks is commonly used to reduce sensory stimulation",
+        "Regular sleep schedule, regular meals and adequate hydration are standard lifestyle measures",
+        "Identifying and avoiding personal triggers with the help of a headache diary",
+        "Regular aerobic exercise and stress-management techniques as adjunctive prevention",
+        "Limiting caffeine and alcohol when these act as triggers"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "No proven primary prevention of the disorder itself; attack prevention focuses on trigger management, regular sleep and meals, and stress reduction."
+        },
+        {
+          "tier": "secondary",
+          "content": "Accurate early diagnosis with ICHD-3 criteria and prompt effective acute treatment to reduce disability and prevent progression."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Preventive medication for frequent or disabling migraine and avoidance of acute medication overuse to prevent chronic migraine and medication-overuse headache."
+        }
+      ],
+      "emergency_signs": [
+        "Sudden, explosive (thunderclap) or worst-ever headache",
+        "Headache with fever and neck stiffness",
+        "New weakness, numbness, speech disturbance or aura lasting more than 60 minutes",
+        "Headache with confusion, seizure or reduced consciousness",
+        "Attack lasting more than 72 hours (status migrainosus)",
+        "New headache pattern after age 50"
+      ],
+      "differentials": [
+        {
+          "condition": "Tension-type headache",
+          "distinguishing_feature": "Bilateral pressing or band-like pain of mild-to-moderate intensity, not aggravated by routine activity, without nausea."
+        },
+        {
+          "condition": "Cluster headache",
+          "distinguishing_feature": "Strictly unilateral severe orbital pain lasting 15-180 minutes with ipsilateral tearing, nasal congestion and restlessness; more common in men."
+        },
+        {
+          "condition": "Subarachnoid hemorrhage (ruptured aneurysm)",
+          "distinguishing_feature": "Thunderclap onset reaching maximum within a minute, often with neck stiffness or reduced consciousness."
+        },
+        {
+          "condition": "Acute ischemic stroke or TIA",
+          "distinguishing_feature": "Sudden negative symptoms (weakness, visual loss) without gradual spread, in a vascular territory, often in older patients with vascular risk factors."
+        },
+        {
+          "condition": "Meningitis",
+          "distinguishing_feature": "Fever, neck stiffness and altered mental status with abnormal cerebrospinal fluid."
+        },
+        {
+          "condition": "Giant cell (temporal) arteritis",
+          "distinguishing_feature": "New headache after 50 with scalp tenderness, jaw claudication and raised ESR/CRP."
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_photophobia",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.7
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_visual_aura",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_blurred_vision",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_sumatriptan",
+          "safety": "safe",
+          "note": "Indicated for acute migraine with or without aura; contraindicated in ischemic heart disease, stroke/TIA, hemiplegic or basilar migraine and uncontrolled hypertension."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "safe",
+          "note": "First-line NSAID for acute attacks (400-600 mg); use on 15 or more days per month risks medication-overuse headache."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Acute treatment option for mild-to-moderate attacks, including when NSAIDs are unsuitable; overuse risks medication-overuse headache."
+        },
+        {
+          "medicine_id": "med_metoprolol",
+          "safety": "safe",
+          "note": "Beta-blocker used for migraine prophylaxis in frequent or disabling migraine."
+        }
+      ],
+      "related": [
+        "ischemic_stroke",
+        "hypertension"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Pescador Ruschel MA, De Jesus O. Migraine Headache. In: StatPearls. Treasure Island (FL): StatPearls Publishing; updated 2024 Jul 5.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK560787/",
+          "specialty": "Neurology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "International Headache Society (ICHD-3)",
+          "citation_text": "Headache Classification Committee of the International Headache Society. The International Classification of Headache Disorders, 3rd edition (ICHD-3): 1.1 Migraine without aura.",
+          "url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
+          "specialty": "Neurology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "World Health Organization. Migraine and other headache disorders. Fact sheet, 24 October 2025.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+          "specialty": "Neurology",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

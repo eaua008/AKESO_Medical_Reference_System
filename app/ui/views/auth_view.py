@@ -731,8 +731,8 @@ class AuthView(QWidget):
 
         layout = QHBoxLayout(bar)
         label = QLabel(
-            f"Akeso Academic Reference Platform v{APP_VERSION}  \u2022  Clinical "
-            "Weighted Symptom Correlation & Health Reference"
+            f"Akeso Academic Reference Platform v{APP_VERSION}  \u2022  Created by "
+            "Eijkim Maulit | @eaua008  \u2022  Map\u00faa Malayan Colleges Mindanao"
         )
         label.setObjectName("footerLabel")
         layout.addWidget(label, 0, Qt.AlignmentFlag.AlignCenter)

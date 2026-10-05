@@ -105,6 +105,8 @@ NAV_SECTIONS = [
              "roles": ["admin"], "accent": "admin"},
             {"id": "admin-content", "label": "Content Management", "icon": "database",
              "roles": ["admin"], "accent": "admin"},
+            {"id": "admin-announcements", "label": "Announcements", "icon": "megaphone",
+             "roles": ["admin"], "accent": "admin"},
         ],
     },
 ]
@@ -192,6 +194,30 @@ class NavButton(QPushButton):
         self.setChecked(active)
         if changed:
             self.refresh_icon()
+
+    def set_dot(self, on: bool) -> None:
+        """A small green dot on the icon (Settings: an update is ready)."""
+        if on != getattr(self, "_dot", False):
+            self._dot = on
+            self.update()
+
+    def paintEvent(self, event) -> None:  # noqa: N802
+        super().paintEvent(event)
+        if not getattr(self, "_dot", False):
+            return
+        from PySide6.QtGui import QColor, QPainter, QPen
+        p = QPainter(self)
+        p.setRenderHint(QPainter.RenderHint.Antialiasing)
+        p.setPen(QPen(QColor(Theme.token("SURFACE")), 1.5))
+        p.setBrush(QColor(Theme.token("SUCCESS")))
+        if self.property("collapsed"):
+            # Icons only: on the top-right corner of the centred icon.
+            x, y = (self.width() - 17) // 2 + 13, (self.height() - 17) // 2 - 2
+        else:
+            # Full row: at the end of the row, like a notification badge.
+            x, y = self.width() - 22, (self.height() - 8) // 2
+        p.drawEllipse(x, y, 8, 8)
+        p.end()
 
     def set_expanded(self, expanded: bool) -> None:
         # Blank the text rather than let it clip — half-drawn glyphs read as
@@ -466,6 +492,11 @@ class AkesoSidebarNav(QFrame):
         for tid, button in self.nav_buttons.items():
             button.set_active(tid == tab_id)
         self.tabChanged.emit(tab_id)
+
+    def set_dot(self, tab_id: str, on: bool) -> None:
+        button = self.nav_buttons.get(tab_id)
+        if button is not None:
+            button.set_dot(on)
 
     def refresh_theme(self) -> None:
         """Redraw icons after a palette switch — they are baked pixmaps."""

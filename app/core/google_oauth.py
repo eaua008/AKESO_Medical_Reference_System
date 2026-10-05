@@ -138,6 +138,7 @@ class OAuthCallbackListener(QThread):
     # Seconds left before the backstop timeout. Emitted once per poll so the
     # button can show a live countdown next to Cancel.
     tick = Signal(int)
+    server_error = Signal(str)     # the redirect carried an error instead of a code
 
     def run(self) -> None:
         _CallbackHandler.result_code = None
@@ -175,7 +176,9 @@ class OAuthCallbackListener(QThread):
         if _CallbackHandler.result_code:
             self.code_received.emit(_CallbackHandler.result_code)
         elif _CallbackHandler.result_error:
-            self.failed.emit(_CallbackHandler.result_error)
+            # From Supabase (e.g. "User is banned"): raw server text, so the
+            # controller decides what to show rather than showing it as-is.
+            self.server_error.emit(_CallbackHandler.result_error)
         elif self.isInterruptionRequested():
             self.failed.emit("Google sign-in was cancelled.")
         else:
