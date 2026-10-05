@@ -55,7 +55,7 @@ MEDICINE_FACTS = [
 
 KINDS = ("disease", "symptom", "medicine", "article")
 KIND_LABELS = {"disease": "Disease", "symptom": "Symptom", "medicine": "Medicine",
-               "article": "Article", "user": "Account"}
+               "article": "Article", "user": "Account", "announcement": "Announcement"}
 # New ids follow the seed data: diseases plain, symptoms sym_..., medicines med_...
 ID_PREFIX = {"disease": "", "symptom": "sym_", "medicine": "med_", "article": "art_"}
 # Health Articles (migration 005)
@@ -69,6 +69,8 @@ ACTION_LABELS = {
     "create": "Created", "update": "Edited", "archive": "Archived", "restore": "Restored",
     "role": "Changed role", "suspend": "Suspended", "reactivate": "Reactivated",
     "delete_user": "Deleted account",
+    "announce": "Announced", "announce_edit": "Edited announcement",
+    "announce_end": "Ended announcement",
 }
 
 

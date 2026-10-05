@@ -1,7 +1,12 @@
+# Akeso
+
+**Created by Eijkim Maulit | @eaua008**, a student of Mapúa Malayan
+Colleges Mindanao, during his second year.
+
 # Third-party notices
 
-Akeso is a student project (Mapúa Malayan Colleges Mindanao). It includes
-or uses the following third-party works. Each stays under its own licence.
+Akeso includes or uses the following third-party works. Each stays under
+its own licence.
 
 ## 3D anatomy models — BodyParts3D
 BodyParts3D, © The Database Center for Life Science, licensed under

@@ -52,6 +52,10 @@ class Preferences:
     ui_scale: int = 90             # a little smaller than Qt's default
     color_theme: str = "akeso"     # Settings > Appearance (app/core/theme_presets.py)
     cards_per_row: int = 0
+    # The window's normal ("restore down") size and place, [x, y, w, h] in
+    # screen pixels, and whether it was maximised when Akeso closed.
+    window_rect: Optional[list] = None
+    window_maximized: bool = False
 
     def cleaned(self) -> "Preferences":
         """Replace anything unexpected (a hand-edited file) with the default."""
@@ -66,7 +70,21 @@ class Preferences:
                            else default.cards_per_row),
             color_theme=(self.color_theme if self.color_theme in _theme_ids()
                          else default.color_theme),
+            window_rect=_clean_rect(self.window_rect),
+            window_maximized=bool(self.window_maximized),
         )
+
+
+def _clean_rect(value) -> Optional[list]:
+    """[x, y, w, h] of whole numbers and a usable size, or None."""
+    if not isinstance(value, (list, tuple)) or len(value) != 4:
+        return None
+    if not all(isinstance(n, int) and not isinstance(n, bool) for n in value):
+        return None
+    x, y, w, h = value
+    if w < 600 or h < 400 or w > 20000 or h > 20000:
+        return None
+    return [x, y, w, h]
 
 
 class PreferenceStore:

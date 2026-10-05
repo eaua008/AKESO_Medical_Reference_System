@@ -260,6 +260,14 @@ class DashboardShell(QWidget):
         self.sidebar.tabChanged.connect(self.show_tab)
         self.sidebar.pinChanged.connect(lambda on: self._prefs.update(sidebar_pinned=on))
 
+        # Updates: a green dot on Settings when a newer Akeso is out. The
+        # check runs a few seconds after sign-in, off the UI thread.
+        from app.controllers.update_controller import UpdateManager
+        self._updates = UpdateManager.instance()
+        self._updates.changed.connect(self._on_update_state)
+        self._on_update_state()
+        QTimer.singleShot(4000, lambda: self._updates.check(quiet=True))
+
         # Ctrl+K from anywhere in the window. WindowShortcut scopes it to this
         # window, so it cannot fire while a dialog elsewhere has focus.
         self._search_shortcut = QShortcut(QKeySequence("Ctrl+K"), self)
@@ -758,6 +766,14 @@ class DashboardShell(QWidget):
             self.notifications_controller.unread_changed.connect(
                 self.dashboard_view.set_unread)
 
+        # Announcements from the admins: pop up once, then listed on the
+        # dashboard while live (migration 015).
+        from app.controllers.announcement_controller import AnnouncementController
+        from app.repositories.announcement_repository import AnnouncementRepository
+        self.announcement_controller = AnnouncementController(
+            AnnouncementRepository(account.session), self.dashboard_view.announcements)
+        self.announcement_controller.start()
+
     def _register_notebook_sync(self, account: AccountContext) -> None:
         """The Study Notebook's cloud copy (migration 011): the same notes on
         every computer the account signs in on. See notebook_sync.py."""
@@ -854,6 +870,15 @@ class DashboardShell(QWidget):
         self.admin_controller.attach_sheet(self.add_sheet("admin-content"))
         self.admin_controller.content_changed.connect(self._content_edited)
 
+        # Announcements (migration 015): pop-ups on everyone's dashboard.
+        from app.controllers.announcement_admin_controller import AnnouncementAdminController
+        from app.repositories.announcement_repository import AnnouncementRepository
+        from app.ui.views.admin.announcements_view import AnnouncementsAdminView
+        self.admin_announcements_view = AnnouncementsAdminView()
+        self.announcement_admin_controller = AnnouncementAdminController(
+            self.admin_announcements_view, AnnouncementRepository(account.session))
+        self.register_view("admin-announcements", self.admin_announcements_view)
+
     def _content_edited(self, kind: str) -> None:
         """An admin saved an entry: refresh the encyclopedias on this computer
         now (other computers pick it up at their next sync)."""
@@ -882,6 +907,12 @@ class DashboardShell(QWidget):
         self.header.set_identity(name, caption, avatar)
         self.dashboard_controller.set_name((name or "").split(" ")[0])
         self.identity_changed.emit(name)
+
+    def _on_update_state(self) -> None:
+        try:
+            self.sidebar.set_dot("settings", self._updates.available)
+        except RuntimeError:
+            pass                        # this dashboard was closed (signed out)
 
     def shutdown(self) -> None:
         """Called by MainWindow just before signing out."""
@@ -995,6 +1026,8 @@ class DashboardShell(QWidget):
             if self.account_controller is not None:
                 self.account_controller.flush_activity()   # so "this week" is current
             self.dashboard_controller.refresh()
+            if getattr(self, "announcement_controller", None) is not None:
+                self.announcement_controller.dashboard_shown()
         elif tab_id == "notebook" and hasattr(self, "notebook_controller"):
             self.notebook_controller.refresh_if_stale()
         elif tab_id == "drug-checker" and hasattr(self, "interaction_controller"):
@@ -1013,6 +1046,9 @@ class DashboardShell(QWidget):
             self.admin_controller.users_shown()
         elif tab_id == "admin-content" and self.admin_controller is not None:
             self.admin_controller.content_shown()
+        elif tab_id == "admin-announcements" and \
+                getattr(self, "announcement_admin_controller", None) is not None:
+            self.announcement_admin_controller.shown()
 
         # select_tab emits tabChanged, which is wired back to this method.
         # Blocking signals moves the highlight without the echo loop.

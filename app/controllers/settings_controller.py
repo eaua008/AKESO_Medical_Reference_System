@@ -12,6 +12,7 @@ from PySide6.QtCore import QObject, QProcess
 from PySide6.QtWidgets import QApplication
 
 from app.controllers.search_history_controller import SearchHistoryController
+from app.controllers.update_controller import UpdateManager
 from app.core.device_identity import APP_VERSION
 from app.core.preferences import PreferenceStore
 from app.core.theme import Theme
@@ -61,6 +62,15 @@ class SettingsController(QObject):
         view.columns_chosen.connect(self._columns)
         view.restart_requested.connect(self._restart)
 
+        # Updates (update_controller.py): the shared manager keeps the state,
+        # this page shows it.
+        self._updates = UpdateManager.instance()
+        self._updates.changed.connect(self._show_update)
+        view.check_updates_requested.connect(lambda: self._updates.check())
+        view.install_update_requested.connect(self._install_update)
+        view.open_releases_requested.connect(self._open_releases)
+        self._show_update()
+
     def refresh(self) -> None:
         prefs = self._prefs.load()
         self._view.show_state(
@@ -77,6 +87,36 @@ class SettingsController(QObject):
         self._view.show_color_themes(Theme.color_theme(), Theme.mode())
 
     # ------------------------------------------------------------- private
+
+    def _show_update(self) -> None:
+        u = self._updates
+        release = u.release
+        self._view.show_update(
+            state=u.state, current=u.current_version,
+            latest=release.version if release else "", notes=release.notes if release else "",
+            message=u.message, done=u.progress[0], total=u.progress[1],
+            can_install=u.can_install)
+
+    def _install_update(self) -> None:
+        release = self._updates.release
+        if release is None:
+            return
+        size = release.size / 1048576
+        dialog = ConfirmDialog(
+            f"Update to Akeso {release.version}?",
+            f"Akeso downloads the update ({size:.0f} MB), checks that it is genuine, then "
+            "closes, installs it and opens again. Your notes, settings and saved sign-in "
+            "are kept.\n\nUnsaved work in an open note is saved first.",
+            "Update now", "download", parent=self._view)
+        if dialog.exec() == ConfirmDialog.DialogCode.Accepted:
+            self._updates.install()
+
+    @staticmethod
+    def _open_releases() -> None:
+        from PySide6.QtCore import QUrl
+        from PySide6.QtGui import QDesktopServices
+        from app.services.updater import RELEASES_PAGE
+        QDesktopServices.openUrl(QUrl(RELEASES_PAGE))
 
     def _theme(self, mode: str) -> None:
         if mode != Theme.mode():

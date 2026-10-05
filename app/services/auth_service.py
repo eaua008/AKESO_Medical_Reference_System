@@ -136,6 +136,17 @@ class AuthService:
 
     # ------------------------------------------------------------ session
 
+    def refresh_token(self):
+        return self._repository.refresh_token()
+
+    def restore_session(self, refresh_token: str) -> User:
+        user = self._repository.restore(refresh_token)
+        self._current_user = user
+        return user
+
+    def on_session_change(self, callback) -> None:
+        self._repository.on_session_change(callback)
+
     def session_client(self):
         """The Supabase client holding the signed-in session."""
         return self._repository.client

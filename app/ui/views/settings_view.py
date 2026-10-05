@@ -8,14 +8,19 @@ SwitchRow, #acChip...) so the two pages feel like one workspace.
 from PySide6.QtCore import QRectF, Qt, Signal
 from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtWidgets import (
-    QButtonGroup, QComboBox, QFrame, QGridLayout, QHBoxLayout, QPushButton, QScrollArea,
-    QVBoxLayout, QWidget,
+    QButtonGroup, QComboBox, QFrame, QGridLayout, QHBoxLayout, QProgressBar, QPushButton,
+    QScrollArea, QVBoxLayout, QWidget,
 )
 
 from app.core.preferences import CARD_COLUMNS, UI_SCALES
 from app.ui.views.account.account_widgets import (
     Banner, Card, SwitchRow, button, divider, label, refresh_icons, repolish, set_text,
 )
+
+# The maker's credit (also on the sign-in screen and in THIRD_PARTY_NOTICES.md).
+CREDIT_NAME = "Eijkim Maulit  |  @eaua008"
+CREDIT_LINE = ("A student of Mapúa Malayan Colleges Mindanao, who built Akeso during "
+               "his second year.")
 
 SHORTCUTS = [
     ("Ctrl + K", "Jump to the search bar"),
@@ -115,6 +120,9 @@ class SettingsView(QWidget):
     scale_chosen = Signal(int)             # percent
     columns_chosen = Signal(int)           # 0 = auto
     restart_requested = Signal()
+    check_updates_requested = Signal()
+    install_update_requested = Signal()
+    open_releases_requested = Signal()
 
     def __init__(self) -> None:
         super().__init__()
@@ -153,6 +161,7 @@ class SettingsView(QWidget):
         grid.addWidget(self._offline(), 3, 0)
         grid.addWidget(self._shortcuts(), 3, 1)
         grid.addWidget(self._about(), 4, 0)
+        grid.addWidget(self._updates(), 4, 1)
         column.addLayout(grid)
         column.addStretch(1)
 
@@ -322,6 +331,10 @@ class SettingsView(QWidget):
         card.body.addWidget(self._version)
         card.body.addWidget(label("A study reference for students. Results are educational, "
                                   "not a diagnosis or medical advice.", "acSmall"))
+        card.body.addWidget(divider())
+        card.body.addWidget(label("CREATED BY", "acFieldLabel"))
+        card.body.addWidget(label(CREDIT_NAME, "acValue"))
+        card.body.addWidget(label(CREDIT_LINE, "acSmall"))
         row = QHBoxLayout()
         row.setSpacing(8)
         row.addWidget(button("Read Terms", "acGhost", on_click=self.read_terms_requested.emit))
@@ -330,6 +343,82 @@ class SettingsView(QWidget):
         row.addStretch(1)
         card.body.addLayout(row)
         return card
+
+    def _updates(self) -> Card:
+        card = Card("Updates", "New versions of Akeso, installed in one click.",
+                    "refresh-cw")
+        self._update_status = label("", "acValue")
+        card.body.addWidget(self._update_status)
+        self._update_notes = label("", "acSmall")
+        self._update_notes.hide()
+        card.body.addWidget(self._update_notes)
+        self._update_bar = QProgressBar()
+        self._update_bar.setTextVisible(False)
+        self._update_bar.setFixedHeight(6)
+        self._update_bar.hide()
+        card.body.addWidget(self._update_bar)
+        row = QHBoxLayout()
+        row.setSpacing(8)
+        self._install_update = button("Update now", "acPrimary", "download",
+                                      self.install_update_requested.emit)
+        self._install_update.hide()
+        row.addWidget(self._install_update)
+        self._check_updates = button("Check for updates", "acGhost", "refresh-cw",
+                                     self.check_updates_requested.emit)
+        row.addWidget(self._check_updates)
+        row.addStretch(1)
+        card.body.addLayout(row)
+        self._releases_link = button("See all releases", "acGhost", "external-link",
+                                     self.open_releases_requested.emit)
+        card.body.addWidget(self._releases_link, 0, Qt.AlignmentFlag.AlignLeft)
+        card.body.addWidget(label("Your notes, settings and saved sign-in are kept. Akeso "
+                                  "closes, updates and opens again by itself.", "acSmall"))
+        return card
+
+    def show_update(self, *, state: str, current: str, latest: str, notes: str,
+                    message: str, done: int, total: int, can_install: bool) -> None:
+        """state: idle | checking | current | available | downloading |
+        installing | error (see update_controller.py)."""
+        texts = {
+            "idle": f"Akeso {current}.",
+            "checking": "Checking for updates\u2026",
+            "current": f"Akeso {current} is the latest version.",
+            "available": f"Akeso {latest} is available. You have {current}.",
+            "downloading": f"Downloading Akeso {latest}\u2026",
+            "installing": f"Installing Akeso {latest}. Akeso will open again in a moment.",
+            "error": message or "Something went wrong.",
+        }
+        self._update_status.setText(texts.get(state, ""))
+        self._update_status.setObjectName("acError" if state == "error" else "acValue")
+        repolish(self._update_status)
+        show_notes = bool(latest) and state in ("available", "downloading") and bool(notes)
+        self._update_notes.setText(notes[:600] + ("\u2026" if len(notes) > 600 else ""))
+        self._update_notes.setVisible(show_notes)
+        busy = state in ("downloading", "installing")
+        self._update_bar.setVisible(busy)
+        if state == "downloading" and total:
+            self._update_bar.setRange(0, 1000)
+            self._update_bar.setValue(int(done * 1000 / total))
+            self._update_status.setText(
+                f"Downloading Akeso {latest}\u2026  {done / 1048576:.0f} of "
+                f"{total / 1048576:.0f} MB")
+        elif busy:
+            self._update_bar.setRange(0, 0)               # moving bar
+        offer = bool(latest) and state in ("available", "error") and can_install
+        self._install_update.setVisible(offer)
+        if offer:
+            set_text(self._install_update, f"Update to {latest}")
+            self._paint_update_button()
+        self._check_updates.setEnabled(state not in ("checking", "downloading", "installing"))
+        self._check_updates.setVisible(not busy)
+
+    def _paint_update_button(self) -> None:
+        """The green "there is an update" button."""
+        from app.core.theme import Theme
+        green = Theme.token("SUCCESS")
+        self._install_update.setStyleSheet(
+            f"QPushButton {{ background-color: {green}; color: #FFFFFF; border: none; }}"
+            f"QPushButton:hover {{ background-color: {green}; border: 1px solid #FFFFFF; }}")
 
     # ---------------------------------------------------------------- api
 
@@ -380,3 +469,5 @@ class SettingsView(QWidget):
     def refresh_theme(self) -> None:
         refresh_icons(self)
         repolish(self)
+        if self._install_update.isVisible():
+            self._paint_update_button()
