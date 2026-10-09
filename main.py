@@ -57,9 +57,13 @@ def main() -> None:
 
     # Display size (Settings > Display). Qt reads this once, before the
     # application exists, and scales everything by it. A QT_SCALE_FACTOR
-    # already set outside Akeso (for testing, say) wins.
-    if prefs.ui_scale != 100 and "QT_SCALE_FACTOR" not in os.environ:
-        os.environ["QT_SCALE_FACTOR"] = f"{prefs.ui_scale / 100:g}"
+    # already set outside Akeso (for testing, say) wins. Never smaller than
+    # the screen allows: the built-in browser engine (3D body, reference
+    # pages) breaks below 100% in the end (see display_scale.py).
+    from app.core.display_scale import qt_scale_factor
+    factor = qt_scale_factor(prefs.ui_scale)
+    if factor != 1 and "QT_SCALE_FACTOR" not in os.environ:
+        os.environ["QT_SCALE_FACTOR"] = f"{factor:g}"
     # Cards per row in the encyclopedias (Settings > Display).
     from app.ui.components.fluid import ResponsiveGrid
     ResponsiveGrid.set_user_columns(prefs.cards_per_row)

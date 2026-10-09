@@ -15,10 +15,12 @@ from PySide6.QtWidgets import (
     QTextBrowser, QVBoxLayout, QWidget,
 )
 
-from app.core.legal_text import PRIVACY_HTML, PRIVACY_TITLE, TERMS_HTML, TERMS_TITLE
+from app.core.legal_text import PRIVACY_TITLE, STYLE as LEGAL_STYLE, TERMS_TITLE
+from app.core.legal_text import document as legal_document
 from app.core.theme import Theme
 from app.models.account import DELETION_GRACE_DAYS, MfaEnrollment, friendly_time
 from app.services.security_service import PASSWORD_RULES
+from app.ui.components.sheet_dialog import SheetDialog
 from app.ui.theme_scope import app_mode, stylesheet
 from app.ui.views.account.account_widgets import (
     button, field_block, icon_label, label, refresh_icons, repolish, set_text,
@@ -33,66 +35,38 @@ def match_theme(window: QWidget) -> None:
         window.setStyleSheet(stylesheet(Theme.key()))
 
 
-class AccountDialog(QDialog):
-    """Common frame: icon, title, message, body, error line, buttons."""
+class AccountDialog(SheetDialog):
+    """Common frame: icon, title, message, body, error line, buttons.
+
+    Shown as a sheet over the module (app/ui/components/sheet_dialog.py):
+    the title in the sheet's bar, the message, body and error line in its
+    centred column, the buttons in its footer."""
 
     def __init__(self, title: str, message: str = "", icon: str = "",
                  parent: Optional[QWidget] = None, width: int = 440,
                  danger: bool = False) -> None:
-        super().__init__(parent)
-        self.setWindowTitle(title)
-        self.setModal(True)
+        super().__init__(parent, title, "", icon, width, danger)
         self.setObjectName("acDialog")
         match_theme(self)
-
-        root = QVBoxLayout(self)
-        # Never smaller than the content: without this Qt may squeeze the
-        # dialog and let the QR code or the text box overlap their neighbours.
-        root.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
-        root.setContentsMargins(24, 22, 24, 20)
-        root.setSpacing(12)
-        head = QHBoxLayout()
-        head.setSpacing(10)
-        if icon:
-            head.addWidget(icon_label(icon, 22, Theme.token("DANGER") if danger else None),
-                           0, Qt.AlignmentFlag.AlignTop)
-        head.addWidget(label(title, "acDangerTitle" if danger else "acCardTitle"), 1)
-        root.addLayout(head)
         if message:
             self.message = label(message, "acMuted")
-            root.addWidget(self.message)
+            self.column.addWidget(self.message)
         self.body = QVBoxLayout()
         self.body.setSpacing(10)
-        root.addLayout(self.body)
+        self.column.addLayout(self.body)
         self.error = label("", "acError")
         self.error.hide()
-        root.addWidget(self.error)
-        self.buttons = QHBoxLayout()
-        self.buttons.setSpacing(8)
-        self.buttons.addStretch(1)
-        root.addLayout(self.buttons)
-        # The dialog's width. (A size constraint on the layout overrides
-        # setMinimumWidth, so an invisible strut sets it instead.)
-        strut = QWidget()
-        strut.setObjectName("panel")
-        strut.setFixedSize(width - 48, 0)
-        root.addWidget(strut)
+        self.column.addWidget(self.error)
+        self.column.addStretch(1)
+        self.buttons = self.footer
         self._busy_widgets: list[QWidget] = []
-
-    def showEvent(self, event) -> None:  # noqa: N802
-        # Wrapped text is taller the narrower the dialog is, and a plain
-        # minimum size does not account for that. Make room for all of it.
-        super().showEvent(event)
-        layout = self.layout()
-        if layout is not None and layout.hasHeightForWidth():
-            need = layout.totalHeightForWidth(self.width())
-            if need > self.height():
-                self.setMinimumHeight(need)
-                self.resize(self.width(), need)
 
     def add_button(self, text: str, name: str = "acGhost", icon: str = "",
                    on_click=None, default: bool = False) -> QPushButton:
         widget = button(text, name, icon, on_click)
+        if getattr(self, "_paper", False) and name == "acGhost":
+            from app.ui.components.sheet_dialog import PAPER_GHOST
+            widget.setStyleSheet(PAPER_GHOST)          # a light button on the white page
         if default:
             widget.setDefault(True)
         self.buttons.addWidget(widget)
@@ -260,6 +234,7 @@ class TwoFactorSetupDialog(AccountDialog):
 
 
 class CodeDialog(AccountDialog):
+    compact = True
     """Ask for a current authenticator code (sign-in, or turning 2FA off)."""
 
     submitted = Signal(str)
@@ -385,34 +360,66 @@ class DeleteAccountDialog(AccountDialog):
 
 # ------------------------------------------------------------------- legal
 
+LEGAL_TEXT_WIDTH = 860         # px: where the Terms / Privacy lines wrap
+
+
 class LegalDialog(AccountDialog):
     """Read the Terms or the Privacy Notice; or, with accept=True, both,
-    with Accept and Sign out (the sign-in consent step)."""
+    with Accept and Sign out (the sign-in consent step).
+
+    Shown as a white document page under the sheet's title bar: title,
+    version and effective date, a clickable table of contents and numbered
+    sections (app/core/legal_text.py)."""
 
     accepted_documents = Signal()
     sign_out = Signal()
 
     def __init__(self, which: str = "terms", accept: bool = False,
                  version: str = "", parent: Optional[QWidget] = None) -> None:
+        from app.models.account import PRIVACY_VERSION, TERMS_VERSION
         if accept:
-            title = "Please review and accept"
-            message = (f"Akeso's Terms of Use and Privacy Notice (version {version}). "
-                       "You'll be asked again only if they change.")
-            html = f"<h2>{TERMS_TITLE}</h2>{TERMS_HTML}<hr><h2>{PRIVACY_TITLE}</h2>{PRIVACY_HTML}"
+            kind, title = "both", "Terms of Use and Privacy Notice"
         elif which == "privacy":
-            title, message, html = PRIVACY_TITLE, "", PRIVACY_HTML
+            kind, title = "privacy", PRIVACY_TITLE
         else:
-            title, message, html = TERMS_TITLE, "", TERMS_HTML
-        super().__init__(title, message, "file-text", parent, width=560)
-        text = QTextBrowser()
-        text.setObjectName("acLegal")
-        text.setOpenExternalLinks(False)
-        text.setHtml(html)
-        text.setMinimumHeight(360)
-        self.body.addWidget(text)
+            kind, title = "terms", TERMS_TITLE
+        super().__init__(title, "", "file-text", parent, width=900)
         if accept:
-            self._agree = QCheckBox("I have read and accept both documents.")
-            self.body.addWidget(self._agree)
+            self.set_title(title, "Please read both documents. You'll be asked again only "
+                                  "if they change.")
+        self.make_paper()
+        text = QTextBrowser()
+        text.setFrameShape(QTextBrowser.Shape.NoFrame)
+        from app.ui.components.sheet_dialog import PAPER_SCROLLBAR
+        text.setStyleSheet("QTextBrowser { background: #FFFFFF; border: none; }"
+                           + PAPER_SCROLLBAR)
+        text.setOpenLinks(False)                 # contents links scroll; others open outside
+        text.anchorClicked.connect(lambda url: self._follow(text, url))
+        text.document().setDocumentMargin(0)
+        text.document().setDefaultStyleSheet(LEGAL_STYLE)
+        text.setHtml(legal_document(kind, TERMS_VERSION, PRIVACY_VERSION))
+        text.setMinimumHeight(360)
+        # The page spans the whole sheet, so its scrollbar sits at the sheet's
+        # right edge (not floating mid-page); the lines themselves wrap at a
+        # comfortable reading width on the left, under the title.
+        text.setLineWrapMode(QTextBrowser.LineWrapMode.FixedPixelWidth)
+        text.setLineWrapColumnOrWidth(LEGAL_TEXT_WIDTH)
+        self.content.setMaximumWidth(16777215)
+        margins = self._holder.layout().contentsMargins()
+        self._holder.layout().setContentsMargins(margins.left(), margins.top(), 0, 0)
+        self.text = text
+        self.body.addWidget(text, 1)
+        # The document fills the sheet's height instead of a fixed box.
+        self.column.takeAt(self.column.count() - 1)        # the closing stretch
+        self.column.setStretchFactor(self.body, 1)
+        if accept:
+            self._agree = QCheckBox("I have read and accept the Terms of Use and the "
+                                    "Privacy Notice.")
+
+            self._agree.setStyleSheet("QCheckBox { color: #111827; font-size: 14px; "
+                                      "background: transparent; }")
+            # In the footer, beside the buttons it unlocks.
+            self.footer.insertWidget(0, self._agree)
             self.add_button("Sign out", on_click=self.sign_out.emit)
             go = self.add_button("Accept and continue", "acPrimary", "check",
                                  self._accept, default=True)
@@ -421,12 +428,21 @@ class LegalDialog(AccountDialog):
         else:
             self.add_button("Close", "acPrimary", on_click=self.accept, default=True)
 
+    @staticmethod
+    def _follow(text: QTextBrowser, url) -> None:
+        if url.scheme() in ("http", "https", "mailto"):
+            from PySide6.QtGui import QDesktopServices
+            QDesktopServices.openUrl(url)
+        elif url.fragment():
+            text.scrollToAnchor(url.fragment())
+
     def _accept(self) -> None:
         self.set_busy(True)
         self.accepted_documents.emit()
 
 
 class DeletionPendingDialog(AccountDialog):
+    compact = True
     keep = Signal()
     leave = Signal()
 
@@ -444,12 +460,24 @@ class DeletionPendingDialog(AccountDialog):
 
 
 class ConfirmDialog(AccountDialog):
+    compact = True
     def __init__(self, title: str, message: str, action: str, icon: str = "circle-alert",
                  danger: bool = False, parent: Optional[QWidget] = None) -> None:
         super().__init__(title, message, icon, parent, danger=danger)
         self.add_button("Cancel", on_click=self.reject)
         self.add_button(action, "acDanger" if danger else "acPrimary", "", self.accept,
                         default=True)
+
+
+class NoticeDialog(AccountDialog):
+    """Something to read and acknowledge: one OK button."""
+
+    compact = True
+
+    def __init__(self, title: str, message: str, icon: str = "info", danger: bool = False,
+                 parent: Optional[QWidget] = None) -> None:
+        super().__init__(title, message, icon, parent, danger=danger)
+        self.add_button("OK", "acPrimary", "", self.accept, default=True)
 
 
 def refresh_dialog_icons(dialog: QWidget) -> None:

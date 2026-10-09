@@ -10,8 +10,8 @@ from typing import Optional
 
 # Bump when the Terms or Privacy Notice text changes (app/core/legal_text.py).
 # Everyone is asked to accept the new version at their next sign-in.
-TERMS_VERSION = "2026-09"
-PRIVACY_VERSION = "2026-10"      # 2026-10: the Study Notebook syncs to the account
+TERMS_VERSION = "2026-10"       # 2026-10: rewritten (numbered sections, Clinical Exchange, updates)
+PRIVACY_VERSION = "2026-10.2"    # 2026-10: notebook sync; 2026-10.2: rewritten (data table, providers, retention)
 
 DELETION_GRACE_DAYS = 30
 

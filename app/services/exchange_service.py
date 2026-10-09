@@ -380,6 +380,9 @@ class NotificationService:
     def clear_read(self) -> None:
         self._repo.clear_read()
 
+    def delete(self, ids: list[int]) -> None:
+        self._repo.delete_notifications(ids)
+
 
 def draft_json(draft: Draft) -> dict:
     """For debugging and tests."""

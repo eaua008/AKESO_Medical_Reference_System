@@ -29,6 +29,26 @@ for fj in files("FMA5022"):                        # muscle organ
     if fj not in layer: layer[fj] = "muscle"; system[fj] = "musculoskeletal"
 for fj in files("FMA7163"):
     layer[fj] = "skin"; system[fj] = "integumentary"
+# Blood vessels: every artery and vein, including the ones that used to sit
+# inside the heart, lung and liver models (they move to this layer so they
+# can be shown, hidden and coloured as vessels). vtype drives the default
+# colour: arteries red, veins blue, and the conventional exceptions
+# (pulmonary arteries carry deoxygenated blood, pulmonary veins oxygenated).
+vtype = {}
+# "artery"/"vein" miss the big trunks (aorta, venae cavae), which FMA files
+# as segments of the arterial / venous tree, so both are included.
+for fj in files("FMA50720", "FMA86187"): vtype[fj] = "artery"
+for fj in files("FMA50723", "FMA86188"): vtype[fj] = "vein"
+for fj in files("FMA8612"): vtype[fj] = "pulmonary_artery"     # pulmonary trunk
+for fj in files("FMA66326"): vtype[fj] = "pulmonary_artery"
+for fj in files("FMA66643"): vtype[fj] = "pulmonary_vein"
+for fj in files("FMA66645"): vtype[fj] = "portal_vein"
+for fj in vtype:
+    layer[fj] = "vessel"; system[fj] = "cardiovascular"
+# Nerves: what BodyParts3D models (the spinal cord and the nerves of the
+# eye and orbit: optic, oculomotor, trochlear, ophthalmic branches).
+for fj in files("FMA65132", "FMA5865", "FMA5913", "FMA7647", "FMA78497"):
+    layer[fj] = "nerve"; system[fj] = "nervous"
 layer = {k: v for k, v in layer.items() if os.path.exists(D + k + ".obj")}
 # the most specific concept containing each file is its name
 best = {}
@@ -47,7 +67,11 @@ for g in GROUPS:
 parts = {fj: {"fma": best[fj], "name": names[best[fj]], "layer": layer[fj], "system": system[fj],
               "group_fma": group.get(fj, ""), "group": names.get(group.get(fj, ""), "")}
          for fj in sorted(layer)}
+for fj, kind in vtype.items():
+    if fj in parts:
+        parts[fj]["vtype"] = kind
+        parts[fj]["group_fma"] = parts[fj]["group"] = ""     # a vessel is its own group
 json.dump(parts, open("/var/tmp/anat/build/parts.json", "w"), indent=0)
 c = collections.Counter(p["layer"] for p in parts.values()); print(c, len(parts))
 for fj in list(parts)[:3]: print(fj, parts[fj])
-print([ (p["name"]) for p in parts.values() if p["layer"]=="organ"][:15])
+print(collections.Counter(p.get("vtype") for p in parts.values() if p["layer"] == "vessel"))

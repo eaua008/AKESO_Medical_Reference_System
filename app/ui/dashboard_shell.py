@@ -171,6 +171,7 @@ class DashboardShell(QWidget):
         self.notebook_sync = None              # NotebookSyncController, once signed in
         self.exchange_controller: Optional[ExchangeController] = None
         self.notifications_controller: Optional[NotificationsController] = None
+        self._unread: dict[str, int] = {}          # bell badge, by source
         self.admin_controller: Optional[AdminController] = None
         self._exchange_service: Optional[ExchangeService] = None
         # The built-in reference browser, made on the first link click.
@@ -773,6 +774,29 @@ class DashboardShell(QWidget):
         self.announcement_controller = AnnouncementController(
             AnnouncementRepository(account.session), self.dashboard_view.announcements)
         self.announcement_controller.start()
+        # They also count on the bell's red badge and are listed first in
+        # Notifications; only Critical ones open by themselves.
+        ann = self.announcement_controller
+        ann.unread_changed.connect(lambda n: self._set_unread("announcements", n))
+        if self.notifications_controller is not None:
+            view = self.notifications_view
+            ann.items_changed.connect(view.show_announcements)
+            view.announcement_requested.connect(ann.open)
+            view.mark_all_requested.connect(ann.mark_all_read)
+            view.announcement_delete_requested.connect(ann.hide)
+            view.clear_requested.connect(ann.clear_read)
+            # The bell's regular check also looks for new announcements.
+            self.notifications_controller.unread_changed.connect(
+                lambda _n: ann.refresh_if_stale())
+
+    def _set_unread(self, source: str, count: int) -> None:
+        """The bell's badge: Clinical Exchange notifications + unread
+        announcements."""
+        self._unread[source] = max(0, int(count or 0))
+        try:
+            self.header.set_unread(sum(self._unread.values()))
+        except RuntimeError:
+            pass                                # this dashboard was closed
 
     def _register_notebook_sync(self, account: AccountContext) -> None:
         """The Study Notebook's cloud copy (migration 011): the same notes on
@@ -853,7 +877,8 @@ class DashboardShell(QWidget):
         self.notifications_controller = NotificationsController(
             self.notifications_view, NotificationService(repository))
         self.register_view("notifications", self.notifications_view)
-        self.notifications_controller.unread_changed.connect(self.header.set_unread)
+        self.notifications_controller.unread_changed.connect(
+            lambda n: self._set_unread("exchange", n))
         self.notifications_controller.open_post.connect(self._open_exchange_post)
         ex.notifications_changed.connect(self.notifications_controller.check_count)
 
@@ -1036,6 +1061,8 @@ class DashboardShell(QWidget):
             self.exchange_controller.on_shown()
         elif tab_id == "notifications" and self.notifications_controller is not None:
             self.notifications_controller.reload()
+            if getattr(self, "announcement_controller", None) is not None:
+                self.announcement_controller.refresh_if_stale()
         elif tab_id == "articles" and hasattr(self, "articles_controller"):
             self.articles_controller.refresh()
         elif tab_id == "history":

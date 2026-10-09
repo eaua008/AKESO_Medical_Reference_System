@@ -14,6 +14,7 @@ from PySide6.QtWidgets import QApplication
 from app.controllers.search_history_controller import SearchHistoryController
 from app.controllers.update_controller import UpdateManager
 from app.core.device_identity import APP_VERSION
+from app.core.display_scale import effective_percent, smallest_percent
 from app.core.preferences import PreferenceStore
 from app.core.theme import Theme
 from app.repositories.local_account_data import LocalAccountData
@@ -83,7 +84,7 @@ class SettingsController(QObject):
             clear_pending=LocalAccountData.cache_clear_pending(),
             version=APP_VERSION,
         )
-        self._view.show_display(prefs.ui_scale, running_scale(), prefs.cards_per_row)
+        self._show_display(prefs)
         self._view.show_color_themes(Theme.color_theme(), Theme.mode())
 
     # ------------------------------------------------------------- private
@@ -124,7 +125,11 @@ class SettingsController(QObject):
 
     def _scale(self, percent: int) -> None:
         prefs = self._prefs.update(ui_scale=percent)
-        self._view.show_display(prefs.ui_scale, running_scale(), prefs.cards_per_row)
+        self._show_display(prefs)
+
+    def _show_display(self, prefs) -> None:
+        self._view.show_display(prefs.ui_scale, running_scale(), prefs.cards_per_row,
+                                effective_percent(prefs.ui_scale), min(100, smallest_percent()))
 
     def _columns(self, columns: int) -> None:
         prefs = self._prefs.update(cards_per_row=columns)

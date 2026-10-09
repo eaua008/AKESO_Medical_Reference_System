@@ -131,3 +131,7 @@ class ExchangeRepository:
 
     def clear_read(self) -> None:
         self._rpc("notif_clear")
+
+    def delete_notifications(self, ids: list[int]) -> None:
+        """Migration 016."""
+        self._rpc("notif_delete", {"p_ids": ids})

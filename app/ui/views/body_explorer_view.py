@@ -1,7 +1,8 @@
 """Body System Explorer: a 3D body you can peel layer by layer.
 
 Left: the 3D view (assets/anatomy/anatomy.html in the built-in browser
-engine, three.js). Right: regions, the layer slider, and what you clicked:
+engine, three.js). Right: regions, the layer slider, the blood vessel and
+nerve switches (colour coded, recolourable), and what you clicked:
 its name and body system, then the diseases, symptoms, articles and peer
 discussions for that body system.
 
@@ -16,10 +17,13 @@ import json
 from typing import Optional
 
 from PySide6.QtCore import QObject, Qt, QUrl, Signal, Slot
+from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
-    QButtonGroup, QFrame, QHBoxLayout, QPushButton, QScrollArea, QSlider, QVBoxLayout, QWidget,
+    QButtonGroup, QFrame, QHBoxLayout, QMenu, QPushButton, QScrollArea, QSlider, QVBoxLayout,
+    QWidget,
 )
 
+from app.core.anatomy_colours import AnatomyColourStore
 from app.core.theme import Theme
 from app.ui.views.account.account_widgets import (
     Card, button, icon_label, label, pill, refresh_icons, repolish,
@@ -28,7 +32,23 @@ from app.ui.views.account.account_widgets import (
 REGIONS = [("body", "Whole body"), ("head", "Head"), ("chest", "Chest"),
            ("abdomen", "Abdomen"), ("arms", "Arms"), ("legs", "Legs")]
 LAYER_NAMES = ["Skin", "Muscle", "Bone", "Organs"]
-LAYER_LABELS = {"skin": "Skin", "muscle": "Muscle", "bone": "Bone", "organ": "Organ"}
+LAYER_LABELS = {"skin": "Skin", "muscle": "Muscle", "bone": "Bone", "organ": "Organ",
+                "vessel": "Blood vessel", "nerve": "Nerve"}
+# Switched on separately from the slider (the page loads them on first use).
+EXTRAS = [("vessel", "Blood vessels"), ("nerve", "Nerves")]
+# Colour-coded kinds, with the textbook colours (must match anatomy.js).
+KINDS = [("artery", "Arteries", "#d63031"), ("vein", "Veins", "#2e6bd9"),
+         ("pulmonary_artery", "Pulmonary arteries", "#2e6bd9"),
+         ("pulmonary_vein", "Pulmonary veins", "#d63031"),
+         ("portal_vein", "Portal veins", "#8e44ad"), ("nerve", "Nerves", "#f1c40f")]
+KIND_DEFAULTS = {key: colour for key, _, colour in KINDS}
+KIND_LABELS = {"artery": "Artery", "vein": "Vein", "pulmonary_artery": "Pulmonary artery",
+               "pulmonary_vein": "Pulmonary vein", "portal_vein": "Portal vein",
+               "nerve": "Nerve"}
+PALETTE = [("#d63031", "Red"), ("#2e6bd9", "Blue"), ("#8e44ad", "Purple"),
+           ("#27ae60", "Green"), ("#e67e22", "Orange"), ("#f1c40f", "Yellow"),
+           ("#e84393", "Pink"), ("#00a8a8", "Teal"), ("#8d5524", "Brown"),
+           ("#ecf0f1", "White")]
 # Browse without clicking the model (and the fallback when 3D is unavailable).
 SYSTEMS = [("nervous", "Nervous"), ("cardiovascular", "Cardiovascular"),
            ("respiratory", "Respiratory"), ("digestive", "Digestive"), ("urinary", "Urinary"),
@@ -46,6 +66,8 @@ GUIDE = [
     ("See-through", "See-through button or T (Shift + T for the group). Again makes it solid."),
     ("Only this", "Only this button or O (Shift + O for the group)."),
     ("Reset", "Show all, or R. Esc clears the selection."),
+    ("Vessels", "Blood vessels / Nerves switches under Layers. Peel to Bone to see them."),
+    ("Colours", "Click a vessel, then a colour. Vessel colours recolours a whole kind."),
     ("Systems", "Body-system chips list conditions without using the model."),
 ]
 
@@ -58,6 +80,19 @@ class _Bridge(QObject):
     region_moved = Signal(str)
     no_webgl = Signal()
     visibility = Signal(dict)
+    extra_loaded = Signal(str)
+    colours = Signal(dict)
+
+    @Slot(str)
+    def extraLoaded(self, name: str) -> None:  # noqa: N802
+        self.extra_loaded.emit(name)
+
+    @Slot(str)
+    def coloursChanged(self, payload: str) -> None:  # noqa: N802
+        try:
+            self.colours.emit(json.loads(payload))
+        except ValueError:
+            pass
 
     @Slot()
     def webglFailed(self) -> None:  # noqa: N802
@@ -125,6 +160,11 @@ class BodyExplorerView(QWidget):
         self.web = None
         self._ready = False
         self._layer = 0.0
+        self._extras = {"vessel": False, "nerve": False}
+        self._colour_store = AnatomyColourStore()
+        self._colours = self._colour_store.load()       # {"kinds": {}, "custom": {}}
+        self._part: Optional[dict] = None
+        self._swatches: Optional[QButtonGroup] = None
         row = QHBoxLayout(self)
         row.setContentsMargins(0, 0, 0, 0)
         row.setSpacing(0)
@@ -211,8 +251,29 @@ class BodyExplorerView(QWidget):
         layers.body.addLayout(ticks)
         self.layer_now = label("Showing: Skin", "acValue")
         layers.body.addWidget(self.layer_now)
+        layers.body.addWidget(label("ALSO SHOW", "acFieldLabel"))
+        extras = QHBoxLayout()
+        extras.setSpacing(6)
+        self.extra_buttons: dict[str, QPushButton] = {}
+        for key, text in EXTRAS:
+            chip = QPushButton(text)
+            chip.setObjectName("acChip")
+            chip.setCheckable(True)
+            chip.setCursor(Qt.CursorShape.PointingHandCursor)
+            chip.toggled.connect(lambda on, k=key: self._set_extra(k, on))
+            self.extra_buttons[key] = chip
+            extras.addWidget(chip)
+        extras.addStretch(1)
+        layers.body.addLayout(extras)
+        self.extra_note = label("", "acSmall")
+        self.extra_note.hide()
+        layers.body.addWidget(self.extra_note)
         self._side.addWidget(layers)
         self.layers_card = layers
+        self.colours_card = self._build_colours()
+        self.colours_card.hide()
+        self._side.addWidget(self.colours_card)
+
 
         systems = Card("Browse by body system", "", "activity")
         from app.ui.views.compare_view import FlowLayout
@@ -261,6 +322,135 @@ class BodyExplorerView(QWidget):
         self.layer_now.setText(f"Showing: {LAYER_NAMES[index]}")
         self._js(f"akeso.setLayer({self._layer:.2f})")
 
+    # ------------------------------------------------------ vessels, nerves
+
+    def _set_extra(self, key: str, on: bool) -> None:
+        self._extras[key] = on
+        if on and self.slider.value() < 200:
+            # They sit under the skin and muscle: peel to Bone so they show.
+            self.slider.setValue(200)
+        self._js(f"akeso.setExtra({json.dumps(key)}, {'true' if on else 'false'})")
+        if on and self._ready:
+            self.extra_note.setText("Loading… the first time takes a few seconds.")
+            self.extra_note.show()
+        self.colours_card.setVisible(any(self._extras.values()))
+        self._update_legend()
+
+    def _extra_loaded(self, _name: str) -> None:
+        self.extra_note.hide()
+
+    def _build_colours(self) -> Card:
+        card = Card("Vessel colours", "Arteries red, veins blue. The lung arteries carry "
+                    "oxygen-poor blood, so they are blue (and the lung veins red). Click a "
+                    "colour to change a whole kind.", "palette")
+        self._legend: dict[str, tuple] = {}
+        for key, text, _default in KINDS:
+            line = QHBoxLayout()
+            line.setSpacing(8)
+            chip = QPushButton()
+            chip.setFixedSize(30, 20)
+            chip.setCursor(Qt.CursorShape.PointingHandCursor)
+            chip.setToolTip(f"Change the colour of all {text.lower()}")
+            menu = QMenu(chip)
+            for hex_, name in PALETTE:
+                action = menu.addAction(self._dot(hex_), name)
+                action.triggered.connect(
+                    lambda _c=False, k=key, h=hex_: self._js(
+                        f"akeso.setKindColor({json.dumps(k)}, {json.dumps(h)})"))
+            menu.addSeparator()
+            menu.addAction("Default colour").triggered.connect(
+                lambda _c=False, k=key: self._js(
+                    f"akeso.setKindColor({json.dumps(k)}, {json.dumps(KIND_DEFAULTS[k])})"))
+            chip.setMenu(menu)
+            name = label(text, "acRowTitle")
+            line.addWidget(chip)
+            line.addWidget(name, 1)
+            self._legend[key] = (chip, name)
+            card.body.addLayout(line)
+        card.body.addWidget(button("Reset all colours", "acGhost", "rotate-ccw",
+                                   lambda: self._js("akeso.resetAllColors()")),
+                            0, Qt.AlignmentFlag.AlignLeft)
+        self._update_legend()
+        return card
+
+    @staticmethod
+    def _dot(hex_: str) -> QIcon:
+        pixmap = QPixmap(14, 14)
+        pixmap.fill(QColor(hex_))
+        return QIcon(pixmap)
+
+    @staticmethod
+    def _swatch_style(hex_: str) -> str:
+        ring = Theme.token("TEXT") if Theme.token("TEXT") else "#ffffff"
+        return (f"QPushButton {{ background-color: {hex_}; border: 2px solid transparent; "
+                f"border-radius: 6px; }} QPushButton:hover {{ border-color: {ring}; }} "
+                f"QPushButton:checked {{ border: 3px solid {ring}; }} "
+                "QPushButton::menu-indicator { width: 0px; }")
+
+    def _kind_colour(self, kind: str) -> str:
+        return self._colours["kinds"].get(kind) or KIND_DEFAULTS.get(kind, "#cccccc")
+
+    def _update_legend(self) -> None:
+        """Swatch colours, and only the kinds whose layer is switched on."""
+        for key, (chip, text) in getattr(self, "_legend", {}).items():
+            chip.setStyleSheet(self._swatch_style(self._kind_colour(key)))
+            show = self._extras["nerve" if key == "nerve" else "vessel"]
+            chip.setVisible(show)
+            text.setVisible(show)
+
+    def _colours_changed(self, colours: dict) -> None:
+        """The page changed a colour: remember it, refresh the swatches."""
+        self._colours = {"kinds": dict(colours.get("kinds") or {}),
+                         "custom": dict(colours.get("custom") or {})}
+        self._colour_store.save(self._colours)
+        self._update_legend()
+        self._mark_swatch()
+
+    def _part_colour(self, part: dict) -> Optional[str]:
+        kind = part.get("kind")
+        if not kind:
+            return None
+        return self._colours["custom"].get(part.get("id", "")) or self._kind_colour(kind)
+
+    def _mark_swatch(self) -> None:
+        if self._swatches is None or not self._part:
+            return
+        current = (self._part_colour(self._part) or "").lower()
+        for b in self._swatches.buttons():
+            b.setChecked(b.property("hex") == current)
+
+    def _colour_picker(self, part: dict) -> QVBoxLayout:
+        """A row of colours for the selected vessel or nerve, plus Reset."""
+        box = QVBoxLayout()
+        box.setSpacing(4)
+        box.addWidget(label("COLOUR", "acFieldLabel"))
+        from app.ui.views.compare_view import FlowLayout
+        host = QWidget()
+        host.setObjectName("panel")
+        flow = FlowLayout(6, 6)
+        host.setLayout(flow)
+        self._swatches = QButtonGroup(host)
+        self._swatches.setExclusive(False)          # checks are set from the page's state
+        pid = json.dumps(part["id"])
+        for hex_, name in PALETTE:
+            b = QPushButton()
+            b.setCheckable(True)
+            b.setFixedSize(24, 24)
+            b.setCursor(Qt.CursorShape.PointingHandCursor)
+            b.setToolTip(name)
+            b.setProperty("hex", hex_)
+            b.setStyleSheet(self._swatch_style(hex_))
+            b.clicked.connect(lambda _c=False, h=hex_: self._js(
+                f"akeso.setColor({pid}, false, {json.dumps(h)})"))
+            self._swatches.addButton(b)
+            flow.addWidget(b)
+        box.addWidget(host)
+        reset = button("Back to the default colour", "acLink",
+                       on_click=lambda: self._js(f"akeso.resetColor({pid}, false)"))
+        box.addWidget(reset, 0, Qt.AlignmentFlag.AlignLeft)
+        self._mark_swatch()
+        return box
+
     def _clear(self, layout) -> None:
         while layout.count():
             item = layout.takeAt(0)
@@ -282,6 +472,8 @@ class BodyExplorerView(QWidget):
                   symptoms=(), articles=(), discussions: Optional[QWidget] = None) -> None:
         self._clear(self._part_body)
         self._clear(self._lists)
+        self._part = part
+        self._swatches = None
         if not part:
             self._part_body.addWidget(label(
                 "Nothing selected yet. Zoom into a region, then click any bone, muscle or "
@@ -296,7 +488,9 @@ class BodyExplorerView(QWidget):
         chips = QHBoxLayout()
         chips.setSpacing(6)
         if not browsing:
-            chips.addWidget(pill(LAYER_LABELS.get(part.get("layer"), "Part"), "acPill"))
+            kind = part.get("kind")
+            chips.addWidget(pill(KIND_LABELS.get(kind) or LAYER_LABELS.get(part.get("layer"),
+                                                                           "Part"), "acPill"))
         if system_label and not browsing:
             chips.addWidget(pill(system_label, "acPillGood"))
         if browsing:
@@ -306,6 +500,8 @@ class BodyExplorerView(QWidget):
         if part.get("fma"):
             self._part_body.addWidget(label(f"Anatomy ID: {part['fma']} (Foundational Model "
                                             "of Anatomy)", "acSmall"))
+        if part.get("id") and not browsing and part.get("kind"):
+            self._part_body.addLayout(self._colour_picker(part))
         if part.get("id") and not browsing:
             self._part_body.addLayout(self._actions(part["id"], False, "This part"))
             group = part.get("group") or ""
@@ -435,7 +631,7 @@ class BodyExplorerView(QWidget):
         anatomy_scheme.install(profile)
         self.web = QWebEngineView(self._stage)
         page = QWebEnginePage(profile, self.web)
-        page.javaScriptConsoleMessage = lambda *a: None        # quiet terminal
+        page.javaScriptConsoleMessage = self._console          # only errors, in the terminal
         self.web.setPage(page)
         page.settings().setAttribute(QWebEngineSettings.WebAttribute.WebGLEnabled, True)
         self.bridge = _Bridge(self)
@@ -444,6 +640,8 @@ class BodyExplorerView(QWidget):
         self.bridge.region_moved.connect(self._region_moved)
         self.bridge.no_webgl.connect(self._no_webgl)
         self.bridge.visibility.connect(self._visibility)
+        self.bridge.extra_loaded.connect(self._extra_loaded)
+        self.bridge.colours.connect(self._colours_changed)
         self.channel = QWebChannel(page)
         self.channel.registerObject("bridge", self.bridge)
         page.setWebChannel(self.channel)
@@ -453,15 +651,30 @@ class BodyExplorerView(QWidget):
         self._placeholder.hide()
         self._stage_layout.addWidget(self.web)
 
+    @staticmethod
+    def _console(level, message, line, source) -> None:
+        """Errors from the 3D page go to the terminal (and the crash log of the
+        packaged app), so "the vessels don't load" can be traced. Ordinary
+        page messages stay quiet."""
+        from PySide6.QtWebEngineCore import QWebEnginePage
+        if level == QWebEnginePage.JavaScriptConsoleMessageLevel.ErrorMessageLevel:
+            import sys
+            print(f"[3D body] {message} ({source.rsplit('/', 1)[-1]}:{line})", file=sys.stderr)
+
     def _page_ready(self) -> None:
         self._ready = True
         self._apply_theme()
+        self._js(f"akeso.setColors({json.dumps(self._colours)})")
         if self._layer:
             self._js(f"akeso.setLayer({self._layer:.2f})")
+        for key, on in self._extras.items():
+            if on:                       # switched on before the page was ready
+                self._js(f"akeso.setExtra({json.dumps(key)}, true)")
 
     def _no_webgl(self) -> None:
         """3D can't run here: say so and keep browsing by body system."""
         self.layers_card.setEnabled(False)
+        self.colours_card.hide()
         for chip in self.region_buttons.values():
             chip.setEnabled(False)
 
@@ -482,4 +695,6 @@ class BodyExplorerView(QWidget):
     def refresh_theme(self) -> None:
         refresh_icons(self)
         repolish(self)
+        self._update_legend()
+        self._mark_swatch()
         self._apply_theme()
