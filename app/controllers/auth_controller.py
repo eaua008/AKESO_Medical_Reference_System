@@ -14,12 +14,26 @@ from typing import Optional
 from PySide6.QtCore import QObject, QUrl, Signal
 from PySide6.QtGui import QDesktopServices
 
+from app.core import session_vault
 from app.core.background import wait_for
 from app.core.google_oauth import REDIRECT_URL, OAuthCallbackListener
-from app.repositories.auth_repository import AuthError, PendingVerification
+from app.repositories.auth_repository import (
+    AccountSuspended, AuthError, PendingVerification, auth_error_from_text,
+)
 from app.services.auth_service import AuthService
 from app.ui.views.auth_view import AuthView
 from app.ui.views.verify_email_dialog import VerifyEmailDialog
+
+
+def show_suspended(parent, reason: str = "") -> None:
+    """The "Account suspended" pop-up (also used by account_gate.py)."""
+    from app.ui.views.account.account_dialogs import ConfirmDialog
+    message = "An administrator has suspended this account."
+    if reason:
+        message += f"\n\nReason: {reason}"
+    message += "\n\nContact your Akeso administrator if you think this is a mistake."
+    ConfirmDialog("Account suspended", message, "OK", "shield-alert",
+                  danger=True, parent=parent).exec()
 
 # Pause after a cancelled or failed Google sign-in before the button works
 # again. Long enough to absorb an accidental double-click, short enough not
@@ -49,6 +63,10 @@ class AuthController(QObject):
         # responsive meanwhile (wait_for), so a second click must be ignored.
         self._working = False
 
+        # "Remember me": keep the sign-in for the next launch (session_vault).
+        self._remembering = False
+        self._service.on_session_change(self._session_changed)
+
         view.login_requested.connect(self._handle_login)
         view.signup_requested.connect(self._handle_signup)
         view.google_requested.connect(self._handle_google)
@@ -71,10 +89,10 @@ class AuthController(QObject):
             self._open_verification(resend=True)
             return
         except AuthError as exc:
-            self._view.show_error(str(exc))
+            self._show_auth_error(exc)
         else:
             self._working = False
-            self.authenticated.emit(user)
+            self._signed_in(user)
         finally:
             self._working = False
             self._view.set_busy(False)
@@ -110,7 +128,7 @@ class AuthController(QObject):
         else:
             # Only reached if "Confirm email" is switched off in Supabase.
             self._working = False
-            self.authenticated.emit(user)
+            self._signed_in(user)
         finally:
             self._working = False
             self._view.set_busy(False)
@@ -147,6 +165,7 @@ class AuthController(QObject):
         self._listener = OAuthCallbackListener()
         self._listener.code_received.connect(self._on_google_code)
         self._listener.failed.connect(self._on_google_failed)
+        self._listener.server_error.connect(self._on_google_server_error)
         self._listener.tick.connect(self._view.set_google_countdown)
         self._listener.finished.connect(self._on_google_finished)
         self._listener.start()
@@ -175,13 +194,13 @@ class AuthController(QObject):
             user = wait_for(lambda: self._service.complete_google_sign_in(code))
         except AuthError as exc:
             self._view.set_signing_in(None)
-            self._view.show_error(str(exc))
+            self._show_auth_error(exc)
             self._view.start_google_cooldown(GOOGLE_COOLDOWN_SECONDS)
             return
         finally:
             self._working = False
         self._google_succeeded = True
-        self.authenticated.emit(user)
+        self._signed_in(user)
 
     def _on_google_failed(self, message: str) -> None:
         # A cancel the user asked for is not an error, so it gets no red
@@ -189,6 +208,19 @@ class AuthController(QObject):
         if self._google_cancelled:
             return
         self._view.show_error(message)
+
+    def _on_google_server_error(self, raw: str) -> None:
+        """Supabase sent the browser back with an error (a suspended
+        account lands here). Never show its text as-is."""
+        self._show_auth_error(auth_error_from_text(raw))
+
+    def _show_auth_error(self, exc: AuthError) -> None:
+        """A suspension gets a pop-up; everything else the red line."""
+        if isinstance(exc, AccountSuspended):
+            self._view.clear_error()
+            show_suspended(self._view.window())
+        else:
+            self._view.show_error(str(exc))
 
     def _on_google_finished(self) -> None:
         self._listener = None
@@ -253,7 +285,7 @@ class AuthController(QObject):
 
         self._dialog.accept()
         self._dialog = None
-        self.authenticated.emit(user)
+        self._signed_in(user)
 
     def _handle_resend(self) -> None:
         if not self._dialog:
@@ -263,6 +295,53 @@ class AuthController(QObject):
             self._dialog.show_info("A new code is on its way.")
         except AuthError as exc:
             self._dialog.show_error(str(exc))
+
+    # -------------------------------------------------------- remember me
+
+    def _signed_in(self, user) -> None:
+        """Every way in (password, Google, a new account) ends here."""
+        if self._view.remember_me():
+            self._remembering = True
+            session_vault.save(self._service.refresh_token() or "")
+        else:
+            self._remembering = False
+            session_vault.clear()
+        self.authenticated.emit(user)
+
+    def _session_changed(self, event: str, refresh_token) -> None:
+        # Refresh tokens rotate (about hourly while Akeso is open): keep the
+        # saved one current, or the next launch would hold a used-up token.
+        if self._remembering and refresh_token and "SIGNED_OUT" not in event:
+            session_vault.save(refresh_token)
+
+    def try_restore(self) -> bool:
+        """At start-up: sign straight in with a remembered session.
+        Returns False (and shows the sign-in screen) if there is none or it
+        no longer works (signed out elsewhere, suspended, expired)."""
+        token = session_vault.load()
+        if not token:
+            return False
+        self._view.set_signing_in("Signing you in\u2026")
+        self._working = True
+        try:
+            user = wait_for(lambda: self._service.restore_session(token))
+        except AuthError as exc:
+            session_vault.clear()
+            self._view.set_signing_in(None)
+            if isinstance(exc, AccountSuspended):
+                show_suspended(self._view.window())
+            return False
+        finally:
+            self._working = False
+        self._remembering = True
+        session_vault.save(self._service.refresh_token() or token)
+        self.authenticated.emit(user)
+        return True
+
+    def save_session_now(self) -> None:
+        """Closing Akeso: store the newest refresh token."""
+        if self._remembering:
+            session_vault.save(self._service.refresh_token() or "")
 
     # ------------------------------------------------------------ session
 
@@ -283,6 +362,8 @@ class AuthController(QObject):
         email in the field tells the next person who was here.
         """
         self.cancel_google()
+        self._remembering = False
+        session_vault.clear()               # signing out forgets this computer
         try:
             self._service.log_out()
         except AuthError:

@@ -1,8 +1,12 @@
-"""Account > Profile: photo, name, handle, academic details, visibility."""
+"""Account > Profile: photo, name, handle, academic details, visibility.
+
+The @handle is given automatically from the display name when the account
+is created (migration 009) and can't be changed, so it is shown read-only.
+"""
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, QTimer, Signal
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (
     QComboBox, QFileDialog, QHBoxLayout, QLabel, QLineEdit, QPlainTextEdit, QVBoxLayout,
@@ -12,20 +16,18 @@ from PySide6.QtWidgets import (
 from app.models.account import (
     INTEREST_OPTIONS, MAX_INTERESTS, PROGRAMS, YEAR_LEVELS, Profile, friendly_time,
 )
+from app.models.exchange import VISIBILITY_LABELS
 from app.ui.components.fluid import ResponsiveGrid
 from app.ui.views.account.account_widgets import (
     Card, ChipGroup, SwitchRow, button, field_block, label, pill, set_text,
 )
 
-HANDLE_CHECK_DELAY_MS = 450
-
-
 class ProfileTab(QWidget):
     save_requested = Signal(dict)
     photo_chosen = Signal(str)
     photo_remove_requested = Signal()
-    handle_check_requested = Signal(str)
     verify_school_requested = Signal()
+    preview_requested = Signal(str)          # handle: open my profile as others see it
 
     def __init__(self) -> None:
         super().__init__()
@@ -42,11 +44,6 @@ class ProfileTab(QWidget):
                              self._build_badge(), self._build_visibility()])
         root.addWidget(self.grid)
         root.addWidget(self._build_save_bar())
-
-        self._handle_timer = QTimer(self)
-        self._handle_timer.setSingleShot(True)
-        self._handle_timer.setInterval(HANDLE_CHECK_DELAY_MS)
-        self._handle_timer.timeout.connect(self._check_handle)
 
     # -------------------------------------------------------------- cards
 
@@ -78,14 +75,12 @@ class ProfileTab(QWidget):
 
         self.handle = QLineEdit()
         self.handle.setObjectName("acInput")
-        self.handle.setMaxLength(21)
-        self.handle.setPlaceholderText("@yourname")
-        self.handle.textEdited.connect(self._handle_edited)
-        self._handle_status = label("", "acSmall")
-        self._handle_status.hide()
+        self.handle.setReadOnly(True)
+        self.handle.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.handle.setPlaceholderText("Being assigned…")
         card.body.addWidget(field_block("Handle", self.handle,
-                                        "3–20 lowercase letters, numbers or underscores."))
-        card.body.addWidget(self._handle_status)
+                                        "Given automatically from your name. Others use it "
+                                        "to open your profile."))
 
         self.bio = QPlainTextEdit()
         self.bio.setObjectName("acInput")
@@ -111,7 +106,7 @@ class ProfileTab(QWidget):
         self.school = QLineEdit()
         self.school.setObjectName("acInput")
         self.school.setMaxLength(120)
-        self.school.setPlaceholderText("e.g. University of Mindanao")
+        self.school.setPlaceholderText("e.g. Mapúa Malayan Colleges Mindanao")
         self.school.textEdited.connect(self._changed)
         card.body.addWidget(field_block("School", self.school))
 
@@ -148,19 +143,45 @@ class ProfileTab(QWidget):
         return card
 
     def _build_visibility(self) -> Card:
-        card = Card("Visibility", "What other students can see once Clinical Exchange "
-                    "shows profiles.", "eye")
-        self.public = SwitchRow("Public profile", "Others can find you by your @handle.")
-        self.show_school = SwitchRow("Show my school", "Hidden when off, even on a public "
-                                     "profile.")
+        card = Card("Clinical Exchange profile", "Who can open your profile from your name "
+                    "on posts, and what they see. Anonymous posts never appear on it.", "eye")
+        card.body.addWidget(label("WHO CAN SEE MY PROFILE", "acFieldLabel"))
+        self.visibility = QComboBox()
+        self.visibility.setObjectName("acInput")
+        for key in ("public", "members", "private"):
+            self.visibility.addItem(VISIBILITY_LABELS[key], key)
+        self.visibility.currentIndexChanged.connect(self._changed)
+        card.body.addWidget(self.visibility)
+        self.show_photo = SwitchRow("Show my photo", "Off: others see your initial instead.")
+        self.show_school = SwitchRow("Show my school", "Hidden when off.")
         self.show_program = SwitchRow("Show my program and year", "Hidden when off.")
-        for row in (self.public, self.show_school, self.show_program):
+        self.show_stats = SwitchRow("Show my stats and badges",
+                                    "Posts, replies, best answers, poll accuracy.")
+        self.show_activity = SwitchRow("Show my posts and replies",
+                                       "Your recent public posts, replies and topics.")
+        self.show_last_active = SwitchRow("Show when I was last active", "e.g. “Active 2d ago”.")
+        for row in (self.show_photo, self.show_school, self.show_program, self.show_stats,
+                    self.show_activity, self.show_last_active):
             row.toggled.connect(self._changed)
             card.body.addWidget(row)
         self._preview = label("", "acSmall")
         card.body.addWidget(self._preview)
+        self._preview_button = button("Preview my profile", "acGhost", "eye",
+                                      self._emit_preview)
+        card.body.addWidget(self._preview_button, 0, Qt.AlignmentFlag.AlignLeft)
         card.body.addStretch(1)
         return card
+
+    def _emit_preview(self) -> None:
+        handle = (self._profile.handle if self._profile else "") or ""
+        if not handle:
+            self._preview.setText("Your handle is still being set up. Reopen Account "
+                                  "Settings in a moment.")
+            return
+        if self._dirty:
+            self._preview.setText("Save your changes first to preview them.")
+            return
+        self.preview_requested.emit(handle)
 
     def _build_save_bar(self) -> QWidget:
         bar = QWidget()
@@ -192,13 +213,16 @@ class ProfileTab(QWidget):
         self.school.setText(profile.school or "")
         self.year.setCurrentIndex(max(0, self.year.findData(profile.year_level)))
         self.interests.set_options(INTEREST_OPTIONS, profile.interests)
-        self.public.set_checked(profile.is_public)
+        self.visibility.setCurrentIndex(max(0, self.visibility.findData(profile.visibility)))
+        self.show_photo.set_checked(profile.show_photo)
         self.show_school.set_checked(profile.show_school)
         self.show_program.set_checked(profile.show_program)
+        self.show_stats.set_checked(profile.show_stats)
+        self.show_activity.set_checked(profile.show_activity)
+        self.show_last_active.set_checked(profile.show_last_active)
         self._loading = False
         self.set_photo(photo, bool(profile.avatar_path))
         self._show_badge(profile)
-        self._handle_status.hide()
         self._bio_count.setText(f"{len(profile.bio)} / 280")
         self._update_preview()
         self._set_dirty(False)
@@ -225,15 +249,18 @@ class ProfileTab(QWidget):
     def changes(self) -> dict:
         return {
             "display_name": self.name.text(),
-            "handle": self.handle.text().strip().lstrip("@").lower() or None,
             "bio": self.bio.toPlainText(),
             "program": self.program.currentData(),
             "school": self.school.text(),
             "year_level": self.year.currentData(),
             "interests": self.interests.selected(),
-            "is_public": self.public.switch.isChecked(),
+            "visibility": self.visibility.currentData(),
+            "show_photo": self.show_photo.switch.isChecked(),
             "show_school": self.show_school.switch.isChecked(),
             "show_program": self.show_program.switch.isChecked(),
+            "show_stats": self.show_stats.switch.isChecked(),
+            "show_activity": self.show_activity.switch.isChecked(),
+            "show_last_active": self.show_last_active.switch.isChecked(),
         }
 
     def set_busy(self, busy: bool, message: str = "") -> None:
@@ -257,21 +284,6 @@ class ProfileTab(QWidget):
         self._status.style().unpolish(self._status)
         self._status.style().polish(self._status)
 
-    def show_handle_status(self, handle: str, available: bool) -> None:
-        current = self.handle.text().strip().lstrip("@").lower()
-        if handle != current:
-            return      # an older answer; the user has typed more since
-        mine = self._profile is not None and (self._profile.handle or "") == handle
-        if mine:
-            self._handle_status.hide()
-            return
-        self._handle_status.setObjectName("acOk" if available else "acError")
-        self._handle_status.setText(f"@{handle} is available." if available
-                                    else f"@{handle} is taken or not allowed.")
-        self._handle_status.show()
-        self._handle_status.style().unpolish(self._handle_status)
-        self._handle_status.style().polish(self._handle_status)
-
     # ------------------------------------------------------------- events
 
     def _pick_photo(self) -> None:
@@ -279,16 +291,6 @@ class ProfileTab(QWidget):
             self, "Choose a profile photo", "", "Images (*.png *.jpg *.jpeg)")
         if path:
             self.photo_chosen.emit(path)
-
-    def _handle_edited(self, _text: str) -> None:
-        self._changed()
-        self._handle_status.hide()
-        self._handle_timer.start()
-
-    def _check_handle(self) -> None:
-        handle = self.handle.text().strip().lstrip("@").lower()
-        if handle and (self._profile is None or handle != (self._profile.handle or "")):
-            self.handle_check_requested.emit(handle)
 
     def _bio_changed(self) -> None:
         text = self.bio.toPlainText()
@@ -328,14 +330,17 @@ class ProfileTab(QWidget):
 
     def _update_preview(self) -> None:
         c = self.changes()
-        if not c["is_public"]:
-            self._preview.setText("Private: only you can see your profile.")
+        if c["visibility"] == "private":
+            self._preview.setText("Private: others see your name only, and can't open your "
+                                  "profile.")
             return
         parts = [c["display_name"] or "Your name"]
-        if c["handle"]:
-            parts.append(f"@{c['handle']}")
+        if self._profile is not None and self._profile.handle:
+            parts.append(f"@{self._profile.handle}")
         if c["show_program"] and c["program"]:
             parts.append(self.program.currentText())
         if c["show_school"] and c["school"]:
             parts.append(c["school"])
-        self._preview.setText("Others will see: " + " · ".join(parts))
+        who = ("Everyone signed in" if c["visibility"] == "public"
+               else "Verified students and educators")
+        self._preview.setText(f"{who} will see: " + " · ".join(parts))

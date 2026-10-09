@@ -603,6 +603,13 @@ class NotebookController(QObject):
         self._dirty.add(self.items.active_id)
         self._save_timer.start()
 
+    def save_now(self) -> None:
+        """Write every unsaved edit to the notebook file now (before a cloud
+        sync), without stopping the autosave."""
+        self.pages.save_all()
+        for item_id in list(self._dirty):
+            self._flush(item_id)
+
     def shutdown(self) -> None:
         """Save anything still waiting (called when the app closes)."""
         self.pages.save_all()

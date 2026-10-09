@@ -28,6 +28,19 @@ REPORT_REASONS = [
     ("off_topic", "Off topic"),
     ("other", "Something else"),
 ]
+# Reasons offered when reporting a profile (migration 008).
+PROFILE_REPORT_REASONS = [
+    ("impersonation", "Pretending to be someone else"),
+    ("harassment", "Rude, harassing or hateful bio"),
+    ("spam", "Spam or advertising"),
+    ("patient_data", "Bio contains real patient information"),
+    ("other", "Something else"),
+]
+VISIBILITY_LABELS = {
+    "public": "Public: everyone signed in",
+    "members": "Members only: verified students and educators",
+    "private": "Private: only you (others see your name only)",
+}
 
 SETTINGS = ["Outpatient clinic", "Emergency department", "Inpatient ward", "Community"]
 
@@ -41,6 +54,7 @@ NOTIFICATION_KINDS = {
     "reveal": ("sparkles", "Answer revealed"),
     "moderation": ("shield-alert", "Moderation"),
     "mention": ("at-sign", "Mention"),
+    "new_post": ("user-check", "Someone you follow posted"),
 }
 
 
@@ -67,6 +81,7 @@ class Author:
     verified_domain: Optional[str] = None
     role: Optional[str] = None
     is_me: bool = False
+    avatar_path: Optional[str] = None     # only when the viewer may see it (013)
 
     @classmethod
     def from_json(cls, data: Optional[dict]) -> "Author":
@@ -74,7 +89,8 @@ class Author:
         return cls(name=data.get("name") or "Akeso student",
                    anonymous=bool(data.get("anonymous")), handle=data.get("handle"),
                    program=data.get("program"), verified_domain=data.get("verified_domain"),
-                   role=data.get("role"), is_me=bool(data.get("is_me")))
+                   role=data.get("role"), is_me=bool(data.get("is_me")),
+                   avatar_path=data.get("avatar_path") or None)
 
     @property
     def program_label(self) -> str:
@@ -143,13 +159,15 @@ class PollOption:
     disease_id: Optional[str]
     by_author: bool
     votes: Optional[int]          # None while results are hidden
+    comments: int = 0             # comments written about this choice (migration 007)
 
     @classmethod
     def from_json(cls, d: dict) -> "PollOption":
         votes = d.get("votes")
         return cls(id=d["id"], label=d.get("label", ""), disease_id=d.get("disease_id"),
                    by_author=bool(d.get("by_author")),
-                   votes=None if votes is None else int(votes))
+                   votes=None if votes is None else int(votes),
+                   comments=int(d.get("comments") or 0))
 
 
 @dataclass
@@ -160,6 +178,9 @@ class Poll:
     revealed_option: Optional[str]
     explanation: Optional[str]
     total: Optional[int]
+    # The author revealed the answer. Since migration 006 the answer itself
+    # (revealed_option) only arrives once you have voted, so this is separate.
+    is_revealed: bool = False
 
     @classmethod
     def from_json(cls, d: Optional[dict]) -> Optional["Poll"]:
@@ -169,11 +190,12 @@ class Poll:
         return cls(options=[PollOption.from_json(o) for o in d.get("options") or []],
                    my_option=d.get("my_option"), show_results=bool(d.get("show_results")),
                    revealed_option=d.get("revealed_option"), explanation=d.get("explanation"),
-                   total=None if total is None else int(total))
+                   total=None if total is None else int(total),
+                   is_revealed=bool(d.get("revealed")) or d.get("revealed_option") is not None)
 
     @property
     def revealed(self) -> bool:
-        return self.revealed_option is not None
+        return self.is_revealed
 
     def label_for(self, option_id: Optional[str]) -> str:
         return next((o.label for o in self.options if o.id == option_id), "")
@@ -196,6 +218,7 @@ class Reply:
     current_label: Optional[str]    # their poll vote now
     is_mine: bool
     children: list["Reply"] = field(default_factory=list)
+    option_id: Optional[str] = None     # a comment on this poll choice (migration 007)
 
     @classmethod
     def from_json(cls, d: dict) -> "Reply":
@@ -205,7 +228,7 @@ class Reply:
                    edited_at=parse_time(d.get("edited_at")), voted=bool(d.get("voted")),
                    is_best=bool(d.get("is_best")), verified=bool(d.get("verified")),
                    voted_label=d.get("voted_label"), current_label=d.get("current_label"),
-                   is_mine=bool(d.get("is_mine")))
+                   is_mine=bool(d.get("is_mine")), option_id=d.get("option_id"))
 
 
 @dataclass
@@ -311,6 +334,7 @@ class ModItem:
     status: str
     author: Author
     first_reported: Optional[datetime]
+    handle: str = ""                 # reported profiles (migration 008)
 
     @classmethod
     def from_json(cls, d: dict) -> "ModItem":
@@ -319,7 +343,8 @@ class ModItem:
                    notes=[n for n in d.get("notes") or [] if n], post_id=d.get("post_id"),
                    title=d.get("title") or "", excerpt=d.get("excerpt") or "",
                    status=d.get("status") or "open", author=Author.from_json(d.get("author")),
-                   first_reported=parse_time(d.get("first_reported")))
+                   first_reported=parse_time(d.get("first_reported")),
+                   handle=d.get("handle") or "")
 
 
 @dataclass
@@ -370,3 +395,86 @@ class Draft:
     tags: list[Tag] = field(default_factory=list)
     poll_options: list[dict] = field(default_factory=list)   # {"disease_id", "label"}
     attached_from: str = ""     # notebook item title, shown in the composer
+
+
+@dataclass
+class ProfileActivity:
+    """One line in a profile's Posts or Replies list."""
+    id: str
+    post_id: str
+    title: str
+    excerpt: str
+    kind: str
+    created_at: Optional[datetime]
+    score: int
+    reply_count: int = 0
+    is_best: bool = False
+    verified: bool = False
+
+
+@dataclass
+class MemberProfile:
+    """A Clinical Exchange member's profile page (ex_profile, migration 008).
+
+    Sections the owner chose to hide arrive empty; `shows` says which ones
+    are visible so the page can say "kept private" instead of "none"."""
+    id: str
+    handle: str
+    display_name: str
+    bio: str
+    interests: list[str]
+    role: Optional[str]
+    program: Optional[str]
+    year_level: Optional[int]
+    school: Optional[str]
+    verified_domain: Optional[str]
+    avatar_path: Optional[str]
+    member_since: Optional[datetime]
+    last_active: Optional[datetime]
+    visibility: str
+    is_me: bool
+    can_moderate: bool
+    following: bool
+    followers: int
+    shows: dict
+    stats: Optional[dict]
+    badges: list[dict]
+    topics: list[Tag]
+    posts: list[ProfileActivity]
+    replies: list[ProfileActivity]
+
+    @property
+    def poll_accuracy(self) -> Optional[tuple[int, int]]:
+        if not self.stats or not self.stats.get("poll_total"):
+            return None
+        return int(self.stats.get("poll_correct") or 0), int(self.stats["poll_total"])
+
+    @classmethod
+    def from_json(cls, d: dict) -> "MemberProfile":
+        posts = [ProfileActivity(id=p["id"], post_id=p["id"], title=p.get("title") or "",
+                                 excerpt="", kind=p.get("kind") or QUESTION,
+                                 created_at=parse_time(p.get("created_at")),
+                                 score=int(p.get("score") or 0),
+                                 reply_count=int(p.get("reply_count") or 0))
+                 for p in d.get("recent_posts") or []]
+        replies = [ProfileActivity(id=r["id"], post_id=r.get("post_id") or "",
+                                   title=r.get("post_title") or "", excerpt=r.get("excerpt") or "",
+                                   kind="reply", created_at=parse_time(r.get("created_at")),
+                                   score=int(r.get("score") or 0), is_best=bool(r.get("is_best")),
+                                   verified=bool(r.get("verified")))
+                   for r in d.get("recent_replies") or []]
+        return cls(id=d.get("id") or "", handle=d.get("handle") or "",
+                   display_name=d.get("display_name") or "",
+                   bio=d.get("bio") or "", interests=list(d.get("interests") or []),
+                   role=d.get("role"), program=d.get("program"), year_level=d.get("year_level"),
+                   school=d.get("school"), verified_domain=d.get("verified_domain"),
+                   avatar_path=d.get("avatar_path"),
+                   member_since=parse_time(d.get("member_since")),
+                   last_active=parse_time(d.get("last_active")),
+                   visibility=d.get("visibility") or "private", is_me=bool(d.get("is_me")),
+                   can_moderate=bool(d.get("can_moderate")), following=bool(d.get("following")),
+                   followers=int(d.get("followers") or 0), shows=dict(d.get("shows") or {}),
+                   stats=d.get("stats"), badges=list(d.get("badges") or []),
+                   topics=[Tag(t.get("kind", "topic"), t.get("id", ""), t.get("label", ""))
+                           for t in d.get("topics") or []],
+                   posts=posts, replies=replies)

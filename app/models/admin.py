@@ -53,16 +53,24 @@ MEDICINE_FACTS = [
     ("interaction", "Interactions"),
 ]
 
-KINDS = ("disease", "symptom", "medicine")
+KINDS = ("disease", "symptom", "medicine", "article")
 KIND_LABELS = {"disease": "Disease", "symptom": "Symptom", "medicine": "Medicine",
-               "user": "Account"}
+               "article": "Article", "user": "Account", "announcement": "Announcement"}
 # New ids follow the seed data: diseases plain, symptoms sym_..., medicines med_...
-ID_PREFIX = {"disease": "", "symptom": "sym_", "medicine": "med_"}
+ID_PREFIX = {"disease": "", "symptom": "sym_", "medicine": "med_", "article": "art_"}
+# Health Articles (migration 005)
+ARTICLE_KINDS = [("written", "Akeso article (written here)"),
+                 ("external", "External link (curated source)")]
+ARTICLE_CATEGORIES = ["General", "Infectious disease", "Nutrition", "Mental health",
+                      "Maternal & child health", "First aid", "Medicines", "Prevention",
+                      "Chronic disease"]
 
 ACTION_LABELS = {
     "create": "Created", "update": "Edited", "archive": "Archived", "restore": "Restored",
     "role": "Changed role", "suspend": "Suspended", "reactivate": "Reactivated",
     "delete_user": "Deleted account",
+    "announce": "Announced", "announce_edit": "Edited announcement",
+    "announce_end": "Ended announcement",
 }
 
 
@@ -214,6 +222,11 @@ class ContentItem:
                        severity=row.get("severity") or "", urgency=row.get("urgency"),
                        count=int(row.get("symptom_count") or 0),
                        primary_count=int(row.get("primary_count") or 0))
+        if kind == "article":
+            return cls(**common, subtitle=row.get("source_name") or "",
+                       category=row.get("kind") or "written",
+                       drug_class=row.get("category") or "General",
+                       count=int(row.get("link_count") or 0))
         if kind == "symptom":
             return cls(**common, subtitle=row.get("scientific_name") or "",
                        body_system_id=row.get("body_system_id"),

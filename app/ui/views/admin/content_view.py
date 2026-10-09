@@ -22,6 +22,7 @@ AUDIT = "audit"
 SECTIONS = [("disease", "Diseases", "stethoscope", "primary"),
             ("symptom", "Symptoms", "activity", "danger"),
             ("medicine", "Medicines", "pill", "good"),
+            ("article", "Articles", "file-text", "primary"),
             (AUDIT, "Audit Trail", "history", "amber")]
 SEVERITY_TONES = {"Mild": "", "Moderate": "", "Severe": "amber", "Critical": "danger"}
 ACTION_TONES = {"create": "good", "update": "", "archive": "muted", "restore": "teal",
@@ -35,6 +36,8 @@ COLUMNS = {
                  "Status", "Last updated", "Actions"], [0]),
     "medicine": (["Medicine", "Drug class", "Category", "Linked diseases",
                   "Status", "Last updated", "Actions"], [0, 1]),
+    "article": (["Article", "Type", "Topic", "Linked entries",
+                 "Status", "Last updated", "Actions"], [0]),
     AUDIT: (["When", "Who", "Action", "Target", "Details"], [3, 4]),
 }
 
@@ -84,7 +87,8 @@ class ContentManagementView(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.setObjectName("panel")
-        self._items: dict[str, list[ContentItem]] = {"disease": [], "symptom": [], "medicine": []}
+        self._items: dict[str, list[ContentItem]] = {"disease": [], "symptom": [], "medicine": [],
+                                                     "article": []}
         self._audit: list[AuditEntry] = []
         self._systems: list[tuple[str, str]] = []
         self._section = "disease"
@@ -237,6 +241,7 @@ class ContentManagementView(QWidget):
             "disease": "Search diseases by name, scientific term or ID…",
             "symptom": "Search symptoms by name, clinical term or ID…",
             "medicine": "Search medicines by name, generic name, class or ID…",
+            "article": "Search articles by title, topic, source or ID…",
             AUDIT: "Search the audit trail by person, action or entry…"}[kind])
         self._fill_filters()
         self._render()
@@ -261,6 +266,10 @@ class ContentManagementView(QWidget):
             for value, text in CATEGORIES:
                 self.second.addItem(text, value)
             self.second.addItem("Black box warning", "blackbox")
+        elif kind == "article":
+            self.second.addItem("All types", "")
+            self.second.addItem("Akeso articles", "written")
+            self.second.addItem("External links", "external")
         for combo in (self.system, self.second):
             combo.blockSignals(False)
 
@@ -285,6 +294,8 @@ class ContentManagementView(QWidget):
                 if kind == "disease" and item.severity != second:
                     continue
                 if kind == "symptom" and second == "red" and not item.is_red_flag:
+                    continue
+                if kind == "article" and item.category != second:
                     continue
                 if kind == "medicine":
                     if second == "blackbox" and not item.black_box:
@@ -349,6 +360,14 @@ class ContentManagementView(QWidget):
                     pill_cell(item.body_system or "General", "muted", name="adChip"),
                     pills_cell(weight),
                     text_cell(f"{item.count} disease{'s' if item.count != 1 else ''}"),
+                    status, updated, actions]
+        if item.kind == "article":
+            written = item.category == "written"
+            return [title_cell(item.name, item.subtitle or item.id),
+                    pill_cell("Akeso article" if written else "External link",
+                              "good" if written else "blue"),
+                    pill_cell(item.drug_class or "General", "muted", name="adChip"),
+                    text_cell(f"{item.count} entr{'y' if item.count == 1 else 'ies'}"),
                     status, updated, actions]
         category = [("Rx" if item.category == "Prescription" else "OTC",
                      "blue" if item.category == "Prescription" else "teal")]

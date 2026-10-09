@@ -401,6 +401,7 @@ class DiseaseEncyclopediaView(QWidget):
         # Up to three columns, fewer when the window is narrow: a fixed three
         # columns of 330 px cards forced the page wider than small screens.
         self._grid_host = ResponsiveGrid(CARD_MIN_WIDTH, CARD_COLUMNS, spacing=18)
+        self._grid_host.follow_user_columns()        # Settings > Display > Cards per row
 
         self._empty_label = QLabel("No conditions match those filters.")
         self._empty_label.setObjectName("cardSubtitle")

@@ -1,0 +1,857 @@
+{
+ "pairs": [
+  {
+   "a": "med_warfarin",
+   "b": "med_aspirin",
+   "severity": "avoid",
+   "description": "Aspirin inhibits platelet aggregation and irritates the gastric mucosa, adding a pharmacodynamic bleeding effect to warfarin anticoagulation; salicylates can also increase free warfarin.",
+   "clinical_significance": "Combined anticoagulant and antiplatelet effect is associated with a substantially higher risk of major and gastrointestinal bleeding.",
+   "recommendation": "Combination generally avoided unless a specific indication exists (e.g., certain mechanical valves or recent coronary stenting); if used, monitor closely for bleeding and consider gastroprotection.",
+   "source_attribution": "Warfarin sodium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_ibuprofen",
+   "severity": "avoid",
+   "description": "NSAIDs inhibit platelet function and injure the GI mucosa; the effects of warfarin and NSAIDs on GI bleeding are synergistic.",
+   "clinical_significance": "Users of both drugs have a risk of serious GI bleeding higher than users of either drug alone.",
+   "recommendation": "Avoid combination; paracetamol is the usual analgesic alternative. If unavoidable, use lowest dose for shortest time and monitor for bleeding.",
+   "source_attribution": "Ibuprofen tablets, FDA label (DailyMed), Drug Interactions / Warnings",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=888a5dbc-9464-e272-e053-2a95a90ad687"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_mefenamic_acid",
+   "severity": "avoid",
+   "description": "Mefenamic acid, like other NSAIDs, impairs platelet function and damages the GI mucosa, adding to warfarin's anticoagulant effect.",
+   "clinical_significance": "Synergistic increase in risk of serious gastrointestinal bleeding.",
+   "recommendation": "Avoid combination; if unavoidable, monitor INR and for signs of bleeding (label: monitor patients using mefenamic acid with anticoagulants such as warfarin).",
+   "source_attribution": "Mefenamic acid capsules, FDA label (DailyMed), Section 7.1 (Table 1)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=4b0788cd-bdca-4fa5-9eba-01a270613aab"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_clopidogrel",
+   "severity": "avoid",
+   "description": "Clopidogrel inhibits P2Y12-mediated platelet aggregation; combined with warfarin there are independent effects on hemostasis.",
+   "clinical_significance": "Coadministration increases the risk of bleeding.",
+   "recommendation": "Avoid unless specifically indicated (e.g., limited-duration therapy after coronary stenting in atrial fibrillation); if used, monitor closely for bleeding.",
+   "source_attribution": "PLAVIX (clopidogrel), FDA label (DailyMed), Sections 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_ciprofloxacin",
+   "severity": "caution",
+   "description": "Ciprofloxacin inhibits CYP1A2 and CYP3A4, reducing metabolism of warfarin (R-enantiomer) and increasing its anticoagulant effect.",
+   "clinical_significance": "INR elevation and bleeding may occur during and shortly after the antibiotic course.",
+   "recommendation": "Monitor prothrombin time/INR frequently during and shortly after coadministration; adjust warfarin dose as needed.",
+   "source_attribution": "Ciprofloxacin tablets, FDA label (DailyMed), Boxed Warning, Section 5 and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5f4e80a1-0225-63dd-e053-2991aa0aa7fb"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_clarithromycin",
+   "severity": "caution",
+   "description": "Clarithromycin is a strong CYP3A4 inhibitor (listed in the warfarin label), reducing warfarin clearance.",
+   "clinical_significance": "Risk of serious hemorrhage and significant elevations in INR and prothrombin time.",
+   "recommendation": "Monitor INR frequently when starting or stopping clarithromycin; consider an alternative antibiotic.",
+   "source_attribution": "Clarithromycin tablets, FDA label (DailyMed), Warnings and Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b98b02bb-2609-49a0-b29f-e5911aa0cbc1"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_rifampicin",
+   "severity": "avoid",
+   "description": "Rifampicin strongly induces CYP2C9, CYP1A2 and CYP3A4, markedly increasing warfarin metabolism and reducing its anticoagulant effect.",
+   "clinical_significance": "Loss of anticoagulation (sub-therapeutic INR) with risk of thrombosis; large warfarin dose increases may be required, with over-anticoagulation after rifampicin is stopped.",
+   "recommendation": "Avoid if possible; if unavoidable, perform prothrombin time/INR daily or as frequently as necessary and adjust warfarin dose, including after rifampicin is stopped.",
+   "source_attribution": "RIFADIN (rifampin), FDA label (DailyMed), Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=036ab68e-5085-4edc-bd83-784b43d64eab&type=display"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "caution",
+   "description": "Ritonavir can alter warfarin concentrations in either direction (inhibition of CYP3A4 and induction of CYP2C9/CYP1A2).",
+   "clinical_significance": "Unpredictable change in INR during and after the 5-day course.",
+   "recommendation": "Closely monitor INR if coadministration with warfarin is necessary.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_omeprazole",
+   "severity": "caution",
+   "description": "Omeprazole may alter warfarin metabolism (CYP2C19 inhibition affecting R-warfarin).",
+   "clinical_significance": "Increased INR and prothrombin time have been reported in patients receiving PPIs, including omeprazole, with warfarin.",
+   "recommendation": "Monitor INR when omeprazole is started or stopped.",
+   "source_attribution": "Omeprazole delayed-release capsules, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=5aba19da-663f-4901-94e2-f438dba4841f&type=display"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Prednisone is listed as a CYP3A4 inducer in the warfarin label; corticosteroids may also alter warfarin response and increase GI bleeding risk.",
+   "clinical_significance": "Variable change in INR with added GI ulceration risk.",
+   "recommendation": "Monitor INR when starting, changing dose of, or stopping prednisone.",
+   "source_attribution": "Warfarin sodium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "a": "med_clopidogrel",
+   "b": "med_omeprazole",
+   "severity": "avoid",
+   "description": "Omeprazole inhibits CYP2C19, reducing conversion of clopidogrel to its active metabolite.",
+   "clinical_significance": "Significantly reduced antiplatelet activity of clopidogrel, even when doses are given 12 hours apart.",
+   "recommendation": "Avoid concomitant use; if a PPI is needed, consider one with less CYP2C19 inhibition (e.g., pantoprazole).",
+   "source_attribution": "PLAVIX (clopidogrel), FDA label (DailyMed), Sections 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "a": "med_clopidogrel",
+   "b": "med_aspirin",
+   "severity": "caution",
+   "description": "Additive antiplatelet effect (P2Y12 inhibition plus COX-1 inhibition) used deliberately as dual antiplatelet therapy.",
+   "clinical_significance": "Recognised combination after acute coronary syndrome or stenting, but bleeding risk is increased compared with either drug alone.",
+   "recommendation": "Use for a defined indication and duration; monitor for bleeding and consider gastroprotection in high GI-risk patients.",
+   "source_attribution": "PLAVIX (clopidogrel), FDA label (DailyMed), Sections 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "a": "med_clopidogrel",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAID-induced mucosal injury and platelet inhibition add to clopidogrel's antiplatelet effect.",
+   "clinical_significance": "Coadministration increases the risk of gastrointestinal bleeding.",
+   "recommendation": "Avoid regular NSAID use where possible; monitor for GI bleeding.",
+   "source_attribution": "PLAVIX (clopidogrel), FDA label (DailyMed), Sections 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "a": "med_clopidogrel",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "avoid",
+   "description": "Ritonavir reduces formation of clopidogrel's active metabolite.",
+   "clinical_significance": "Reduced antiplatelet effect, with risk of stent thrombosis or recurrent ischemic events.",
+   "recommendation": "Avoid concomitant use with nirmatrelvir/ritonavir.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_clopidogrel",
+   "b": "med_rifampicin",
+   "severity": "avoid",
+   "description": "Rifampicin strongly induces CYP2C19, increasing clopidogrel active metabolite levels and platelet inhibition.",
+   "clinical_significance": "May potentiate the risk of bleeding.",
+   "recommendation": "As a precaution, avoid concomitant use of strong CYP2C19 inducers such as rifampicin.",
+   "source_attribution": "PLAVIX (clopidogrel), FDA label (DailyMed), Sections 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "a": "med_atorvastatin",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "caution",
+   "description": "Ritonavir strongly inhibits CYP3A4, increasing atorvastatin exposure.",
+   "clinical_significance": "Increased risk of statin-related myopathy/rhabdomyolysis.",
+   "recommendation": "Consider temporary discontinuation of atorvastatin during nirmatrelvir/ritonavir treatment.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_amlodipine",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "caution",
+   "description": "CYP3A4 inhibition by ritonavir increases amlodipine concentrations.",
+   "clinical_significance": "Risk of hypotension, dizziness and peripheral edema.",
+   "recommendation": "A dose decrease may be needed; monitor blood pressure.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "avoid",
+   "description": "Rifampicin, a strong CYP3A4 inducer, markedly lowers nirmatrelvir and ritonavir concentrations.",
+   "clinical_significance": "Potential loss of virologic response and possible resistance.",
+   "recommendation": "Coadministration is contraindicated.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_clarithromycin",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "caution",
+   "description": "Ritonavir increases clarithromycin concentrations (CYP3A4 inhibition); clarithromycin also inhibits CYP3A4.",
+   "clinical_significance": "Increased clarithromycin exposure, including QT-related and GI adverse effects, particularly with renal impairment.",
+   "recommendation": "Refer to clarithromycin prescribing information for dose adjustment (reduction in renal impairment); consider an alternative antibiotic.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_budesonide_formoterol",
+   "b": "med_nirmatrelvir_ritonavir",
+   "severity": "caution",
+   "description": "Ritonavir inhibits CYP3A4, increasing systemic exposure to budesonide.",
+   "clinical_significance": "Risk of Cushing's syndrome and adrenal suppression with corticosteroids whose exposure is significantly increased by strong CYP3A inhibitors (low with a short course).",
+   "recommendation": "Monitor; alternative inhaled corticosteroids (e.g., beclomethasone) may be considered, particularly for prolonged coadministration.",
+   "source_attribution": "PAXLOVID (nirmatrelvir; ritonavir), FDA label (DailyMed), Sections 4 and 7 (Table 2)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_artemether_lumefantrine",
+   "severity": "avoid",
+   "description": "Rifampicin, a strong CYP3A4 inducer, decreases artemether and/or lumefantrine concentrations.",
+   "clinical_significance": "Loss of antimalarial efficacy.",
+   "recommendation": "Coadministration is contraindicated.",
+   "source_attribution": "COARTEM (artemether/lumefantrine), FDA label (DailyMed), Sections 4, 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7866ec19-dfac-47d4-a53f-511a12643cbf"
+  },
+  {
+   "a": "med_azithromycin",
+   "b": "med_artemether_lumefantrine",
+   "severity": "caution",
+   "description": "Additive QT-interval prolongation (lumefantrine and macrolide antibiotics).",
+   "clinical_significance": "Risk of QT prolongation and ventricular arrhythmia.",
+   "recommendation": "Use with caution; consider ECG monitoring and correct electrolytes.",
+   "source_attribution": "COARTEM (artemether/lumefantrine), FDA label (DailyMed), Sections 4, 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7866ec19-dfac-47d4-a53f-511a12643cbf"
+  },
+  {
+   "a": "med_ciprofloxacin",
+   "b": "med_artemether_lumefantrine",
+   "severity": "caution",
+   "description": "Additive QT-interval prolongation (lumefantrine and fluoroquinolone antibiotics).",
+   "clinical_significance": "Risk of QT prolongation and ventricular arrhythmia.",
+   "recommendation": "Use with caution; consider ECG monitoring and correct electrolytes.",
+   "source_attribution": "COARTEM (artemether/lumefantrine), FDA label (DailyMed), Sections 4, 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7866ec19-dfac-47d4-a53f-511a12643cbf"
+  },
+  {
+   "a": "med_clarithromycin",
+   "b": "med_artemether_lumefantrine",
+   "severity": "avoid",
+   "description": "Clarithromycin inhibits CYP3A4, increasing artemether/lumefantrine concentrations, and independently prolongs the QT interval.",
+   "clinical_significance": "Pharmacokinetic and pharmacodynamic potentiation of QT prolongation.",
+   "recommendation": "Avoid combination where possible; if unavoidable, use with caution and ECG monitoring.",
+   "source_attribution": "COARTEM (artemether/lumefantrine), FDA label (DailyMed), Sections 4, 5 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7866ec19-dfac-47d4-a53f-511a12643cbf"
+  },
+  {
+   "a": "med_atorvastatin",
+   "b": "med_clarithromycin",
+   "severity": "caution",
+   "description": "Clarithromycin inhibits CYP3A4, increasing atorvastatin exposure.",
+   "clinical_significance": "Increased risk of myopathy/rhabdomyolysis.",
+   "recommendation": "Do not exceed atorvastatin 20 mg daily during coadministration, or withhold the statin for the antibiotic course.",
+   "source_attribution": "Atorvastatin calcium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=803b7d6f-faea-4a13-a141-f2c44d7fca72"
+  },
+  {
+   "a": "med_amlodipine",
+   "b": "med_clarithromycin",
+   "severity": "caution",
+   "description": "Clarithromycin inhibits CYP3A4 metabolism of amlodipine.",
+   "clinical_significance": "Hypotension and acute kidney injury have been reported with CYP3A4-metabolised calcium channel blockers.",
+   "recommendation": "Monitor for hypotension and renal function; consider azithromycin as an alternative macrolide.",
+   "source_attribution": "Clarithromycin tablets, FDA label (DailyMed), Warnings and Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b98b02bb-2609-49a0-b29f-e5911aa0cbc1"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_atorvastatin",
+   "severity": "caution",
+   "description": "Rifampicin induces CYP3A4 and inhibits the hepatic uptake transporter OATP1B1 (dual mechanism).",
+   "clinical_significance": "Delayed administration of atorvastatin after rifampicin is associated with a significant reduction in atorvastatin concentrations.",
+   "recommendation": "Administer atorvastatin and rifampicin simultaneously; monitor lipid response.",
+   "source_attribution": "Atorvastatin calcium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=803b7d6f-faea-4a13-a141-f2c44d7fca72"
+  },
+  {
+   "a": "med_losartan",
+   "b": "med_enalapril",
+   "severity": "avoid",
+   "description": "Dual blockade of the renin-angiotensin system (ARB plus ACE inhibitor).",
+   "clinical_significance": "Increased risks of hypotension, syncope, hyperkalemia and changes in renal function, including acute renal failure, without added benefit in most patients.",
+   "recommendation": "Avoid combined use of an ARB and an ACE inhibitor.",
+   "source_attribution": "Losartan potassium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1dadbe02-289c-4312-9e65-40f3314dcc31"
+  },
+  {
+   "a": "med_losartan",
+   "b": "med_spironolactone",
+   "severity": "caution",
+   "description": "Both drugs raise serum potassium (reduced aldosterone effect).",
+   "clinical_significance": "Risk of severe hyperkalemia, increased with impaired renal function.",
+   "recommendation": "Monitor serum potassium within 1 week of initiation or titration and regularly thereafter; used together in heart failure with monitoring.",
+   "source_attribution": "ALDACTONE (spironolactone), FDA label, Sections 5.1 and 7.1",
+   "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/012151s080lbl.pdf"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_azithromycin",
+   "severity": "caution",
+   "description": "Postmarketing reports suggest azithromycin may potentiate the effect of warfarin; infection and reduced vitamin K intake can also raise INR.",
+   "clinical_significance": "Possible INR elevation and bleeding during the antibiotic course.",
+   "recommendation": "Carefully monitor prothrombin time/INR during coadministration.",
+   "source_attribution": "ZITHROMAX (azithromycin), FDA label (DailyMed), Sections 5.4 and 7.2",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=db52b91e-79f7-4cc1-9564-f2eee8e31c45"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_amoxicillin",
+   "severity": "caution",
+   "description": "Antibiotics may raise INR (altered gut flora vitamin K production, acute illness); INR changes are reported when antibiotic courses are started or stopped.",
+   "clinical_significance": "Possible INR elevation and bleeding.",
+   "recommendation": "Closely monitor INR when starting or stopping any antibiotic.",
+   "source_attribution": "Warfarin sodium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_coamoxiclav",
+   "severity": "caution",
+   "description": "Antibiotics may raise INR (altered gut flora vitamin K production, acute illness); INR changes are reported when antibiotic courses are started or stopped.",
+   "clinical_significance": "Possible INR elevation and bleeding.",
+   "recommendation": "Closely monitor INR when starting or stopping any antibiotic.",
+   "source_attribution": "Warfarin sodium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_doxycycline",
+   "severity": "caution",
+   "description": "Antibiotics, including tetracyclines, may enhance warfarin effect (altered vitamin K-producing gut flora, acute illness); INR changes are reported when antibiotic courses are started or stopped.",
+   "clinical_significance": "Possible INR elevation and bleeding.",
+   "recommendation": "Closely monitor INR when starting or stopping any antibiotic; warfarin dose reduction may be needed.",
+   "source_attribution": "Warfarin sodium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "a": "med_warfarin",
+   "b": "med_paracetamol",
+   "severity": "caution",
+   "description": "Regular paracetamol use (rather than occasional doses) has been associated with a rise in INR; mechanism not fully established.",
+   "clinical_significance": "Sustained daily paracetamol may increase INR and bleeding risk, although it remains the preferred analgesic over NSAIDs in anticoagulated patients.",
+   "recommendation": "Occasional use acceptable; monitor INR if paracetamol is taken regularly for several days or the dose is changed.",
+   "source_attribution": "Acetaminophen 500 mg tablets, OTC Drug Facts label (DailyMed), Warnings",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2651bf11-4d66-43ba-e054-00144ff88e88"
+  },
+  {
+   "a": "med_aspirin",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "Ibuprofen competitively blocks access of low-dose aspirin to platelet COX-1, which can reduce aspirin's irreversible antiplatelet effect; both also injure the GI mucosa.",
+   "clinical_significance": "Possible loss of cardioprotective benefit of aspirin and increased GI bleeding risk.",
+   "recommendation": "Concomitant use not generally recommended; if occasional ibuprofen is needed, separate dosing from immediate-release aspirin and prefer paracetamol for regular analgesia.",
+   "source_attribution": "Advil Dual Action with Acetaminophen (ibuprofen/acetaminophen), OTC Drug Facts label (DailyMed)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f5ea858e-76d9-4777-b3dc-5d614f66d485"
+  },
+  {
+   "a": "med_ibuprofen",
+   "b": "med_mefenamic_acid",
+   "severity": "avoid",
+   "description": "Duplicate NSAID therapy with additive COX inhibition.",
+   "clinical_significance": "Increased GI ulceration/bleeding and renal toxicity without added analgesic benefit.",
+   "recommendation": "Concomitant use of two NSAIDs is not recommended; use one NSAID at a time.",
+   "source_attribution": "Mefenamic acid capsules, FDA label (DailyMed), Section 7.1 (Table 1)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=4b0788cd-bdca-4fa5-9eba-01a270613aab"
+  },
+  {
+   "a": "med_ibuprofen",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Additive injury to the gastric mucosa (corticosteroid impairs mucosal healing; NSAID inhibits protective prostaglandins).",
+   "clinical_significance": "Concomitant oral corticosteroid use is a recognised risk factor for NSAID-associated GI bleeding.",
+   "recommendation": "Use lowest effective NSAID dose for shortest time; consider gastroprotection (e.g., a PPI) and monitor for GI bleeding.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_mefenamic_acid",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Additive injury to the gastric mucosa (corticosteroid plus NSAID).",
+   "clinical_significance": "Increased risk of GI ulceration and bleeding.",
+   "recommendation": "Use lowest effective NSAID dose for shortest time; consider gastroprotection and monitor for GI bleeding.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_aspirin",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Additive GI mucosal injury; corticosteroids increase salicylate clearance.",
+   "clinical_significance": "Increased GI adverse effects; salicylate levels may fall during steroid therapy and rise (toxicity risk) on steroid withdrawal (mainly relevant to higher aspirin doses).",
+   "recommendation": "Monitor for GI bleeding; consider gastroprotection in high-risk patients.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_enalapril",
+   "b": "med_spironolactone",
+   "severity": "caution",
+   "description": "ACE inhibition lowers aldosterone while spironolactone blocks mineralocorticoid receptors; both retain potassium.",
+   "clinical_significance": "Significant increases in serum potassium, especially with renal impairment.",
+   "recommendation": "Monitor serum potassium and renal function within 1 week of initiation or titration and regularly thereafter; used together in heart failure with monitoring.",
+   "source_attribution": "Enalapril maleate tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1044ee11-1d9c-5435-e054-00144ff88e88"
+  },
+  {
+   "a": "med_losartan",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAIDs inhibit renal prostaglandins, opposing ARB effects on blood pressure and reducing glomerular perfusion.",
+   "clinical_significance": "Attenuated antihypertensive effect; deterioration of renal function, including acute renal failure, in elderly, volume-depleted or renally impaired patients.",
+   "recommendation": "Avoid regular NSAID use where possible; if used, monitor blood pressure and renal function.",
+   "source_attribution": "Losartan potassium tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1dadbe02-289c-4312-9e65-40f3314dcc31"
+  },
+  {
+   "a": "med_enalapril",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAIDs inhibit renal prostaglandins, opposing ACE inhibitor effects on blood pressure and glomerular perfusion.",
+   "clinical_significance": "Diminished antihypertensive effect; deterioration of renal function, including possible acute renal failure, particularly in elderly or volume-depleted patients.",
+   "recommendation": "Avoid regular NSAID use where possible; if used, monitor blood pressure and renal function.",
+   "source_attribution": "Enalapril maleate tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1044ee11-1d9c-5435-e054-00144ff88e88"
+  },
+  {
+   "a": "med_furosemide",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAIDs inhibit renal prostaglandin synthesis, reducing the natriuretic and antihypertensive effects of loop diuretics.",
+   "clinical_significance": "Reduced diuretic response (relevant in heart failure) and risk of renal failure.",
+   "recommendation": "Observe closely for reduced diuretic effect and signs of renal failure.",
+   "source_attribution": "Ibuprofen tablets, FDA label (DailyMed), Drug Interactions / Warnings",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=888a5dbc-9464-e272-e053-2a95a90ad687"
+  },
+  {
+   "a": "med_hydrochlorothiazide",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAIDs reduce the diuretic, natriuretic and antihypertensive effects of thiazides via prostaglandin inhibition.",
+   "clinical_significance": "Reduced blood pressure control and risk of renal impairment.",
+   "recommendation": "Monitor blood pressure and renal function; prefer paracetamol for regular analgesia.",
+   "source_attribution": "HYZAAR (losartan/hydrochlorothiazide), FDA label (DailyMed), Indications and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4116ccde-2e23-45f4-b12f-6337df877744"
+  },
+  {
+   "a": "med_spironolactone",
+   "b": "med_ibuprofen",
+   "severity": "caution",
+   "description": "NSAIDs reduce renal potassium excretion and renal perfusion; spironolactone retains potassium.",
+   "clinical_significance": "Severe hyperkalemia and reduced renal function may occur.",
+   "recommendation": "Avoid regular NSAID use where possible; monitor serum potassium and renal function.",
+   "source_attribution": "ALDACTONE (spironolactone), FDA label, Sections 5.1 and 7.1",
+   "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/012151s080lbl.pdf"
+  },
+  {
+   "a": "med_enalapril",
+   "b": "med_furosemide",
+   "severity": "caution",
+   "description": "Diuretic-induced volume and sodium depletion activates the renin-angiotensin system, so ACE inhibitor initiation causes a larger fall in blood pressure.",
+   "clinical_significance": "Excessive first-dose hypotension; combination may also cause deterioration of renal function.",
+   "recommendation": "Start enalapril at a low dose (consider reducing or pausing the diuretic beforehand) and monitor blood pressure and renal function.",
+   "source_attribution": "Enalapril maleate tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1044ee11-1d9c-5435-e054-00144ff88e88"
+  },
+  {
+   "a": "med_furosemide",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Both drugs increase urinary potassium loss.",
+   "clinical_significance": "Additive hypokalemia, with risk of arrhythmia.",
+   "recommendation": "Monitor serum potassium; potassium supplementation may be needed.",
+   "source_attribution": "LASIX (furosemide), FDA label (DailyMed), Precautions / Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2c9b4d8f-0770-482d-a9e6-9c616a440b1a"
+  },
+  {
+   "a": "med_hydrochlorothiazide",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Corticosteroids intensify thiazide-induced electrolyte depletion.",
+   "clinical_significance": "Additive hypokalemia; corticosteroids may also raise blood glucose.",
+   "recommendation": "Monitor serum potassium.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_salbutamol",
+   "b": "med_furosemide",
+   "severity": "caution",
+   "description": "Beta-2 agonists shift potassium into cells; loop diuretics increase potassium loss.",
+   "clinical_significance": "ECG changes and/or hypokalemia from non-potassium-sparing diuretics can be acutely worsened, especially when beta-agonist doses are exceeded.",
+   "recommendation": "Use with caution; monitor serum potassium, particularly with high or frequent salbutamol doses.",
+   "source_attribution": "Albuterol sulfate HFA inhalation aerosol, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7bb5b6dd-9105-4ee7-b205-ed79cf4b371b"
+  },
+  {
+   "a": "med_metoprolol",
+   "b": "med_salbutamol",
+   "severity": "caution",
+   "description": "Beta-blockers antagonise the bronchodilator effect of beta-2 agonists; metoprolol is beta-1 selective, but selectivity is dose-dependent.",
+   "clinical_significance": "Reduced salbutamol response and possible bronchospasm in patients with asthma.",
+   "recommendation": "Beta-blockers are generally avoided in asthma; a cardioselective agent such as metoprolol may be used with caution when there is a compelling indication.",
+   "source_attribution": "Albuterol sulfate HFA inhalation aerosol, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7bb5b6dd-9105-4ee7-b205-ed79cf4b371b"
+  },
+  {
+   "a": "med_metoprolol",
+   "b": "med_budesonide_formoterol",
+   "severity": "caution",
+   "description": "Beta-blockers antagonise the bronchodilator effect of formoterol.",
+   "clinical_significance": "Reduced bronchodilator response and possible severe bronchospasm in patients with asthma.",
+   "recommendation": "Patients with asthma should not normally be treated with beta-blockers; if required, use a cardioselective agent with caution.",
+   "source_attribution": "SYMBICORT (budesonide/formoterol), FDA label (DailyMed), Sections 5.9 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a645756c-c692-4bc6-a858-7e7e249561bd&type=display"
+  },
+  {
+   "a": "med_budesonide_formoterol",
+   "b": "med_clarithromycin",
+   "severity": "caution",
+   "description": "Clarithromycin, a strong CYP3A4 inhibitor, may inhibit budesonide metabolism and increase its systemic exposure.",
+   "clinical_significance": "Increased systemic corticosteroid effects (e.g., adrenal suppression), mainly with prolonged coadministration.",
+   "recommendation": "Exercise caution; usually acceptable for a short antibiotic course.",
+   "source_attribution": "SYMBICORT (budesonide/formoterol), FDA label (DailyMed), Sections 5.9 and 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a645756c-c692-4bc6-a858-7e7e249561bd&type=display"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_gliclazide",
+   "severity": "caution",
+   "description": "Rifampicin induces CYP2C9 and other enzymes that metabolise sulfonylureas (label names glyburide and glipizide; gliclazide is a CYP2C9 substrate).",
+   "clinical_significance": "Reduced sulfonylurea exposure; rifampicin may worsen glucose control.",
+   "recommendation": "Monitor blood glucose during and after rifampicin therapy; adjust sulfonylurea dose.",
+   "source_attribution": "RIFADIN (rifampin), FDA label (DailyMed), Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=036ab68e-5085-4edc-bd83-784b43d64eab&type=display"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_amlodipine",
+   "severity": "caution",
+   "description": "Rifampicin strongly induces CYP3A4; the label lists decreased exposure of CYP3A4-metabolised calcium channel blockers (e.g., nifedipine), and amlodipine is a CYP3A4 substrate.",
+   "clinical_significance": "Reduced antihypertensive effect.",
+   "recommendation": "Monitor blood pressure; dose adjustment or an alternative agent may be needed.",
+   "source_attribution": "RIFADIN (rifampin), FDA label (DailyMed), Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=036ab68e-5085-4edc-bd83-784b43d64eab&type=display"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Rifampicin induces CYP3A4, enhancing metabolism of prednisolone (the active metabolite of prednisone).",
+   "clinical_significance": "Reduced corticosteroid effect.",
+   "recommendation": "Corticosteroid dose increase may be needed during rifampicin therapy; monitor clinical response.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_clarithromycin",
+   "severity": "caution",
+   "description": "Rifampicin induces CYP3A4, decreasing clarithromycin exposure.",
+   "clinical_significance": "Reduced clarithromycin concentrations and possible loss of antibacterial efficacy.",
+   "recommendation": "Avoid if possible or monitor clinical response; consider an alternative antibiotic.",
+   "source_attribution": "RIFADIN (rifampin), FDA label (DailyMed), Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=036ab68e-5085-4edc-bd83-784b43d64eab&type=display"
+  },
+  {
+   "a": "med_rifampicin",
+   "b": "med_isoniazid",
+   "severity": "caution",
+   "description": "Both drugs are hepatotoxic; given together, the potential for hepatotoxicity is increased. The combination is used together by design in standard tuberculosis regimens.",
+   "clinical_significance": "Recognised first-line tuberculosis combination, with increased risk of drug-induced liver injury.",
+   "recommendation": "Monitor for symptoms of hepatitis and check liver function tests (baseline and periodically in at-risk patients).",
+   "source_attribution": "RIFADIN (rifampin), FDA label (DailyMed), Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=036ab68e-5085-4edc-bd83-784b43d64eab&type=display"
+  },
+  {
+   "a": "med_isoniazid",
+   "b": "med_paracetamol",
+   "severity": "caution",
+   "description": "Isoniazid induces CYP2E1, which may increase conversion of paracetamol to its hepatotoxic metabolite (NAPQI).",
+   "clinical_significance": "Severe paracetamol toxicity has been reported in a patient receiving isoniazid; additive hepatotoxicity.",
+   "recommendation": "Keep paracetamol within recommended dose limits and avoid prolonged high-dose use; monitor liver function.",
+   "source_attribution": "Isoniazid tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1169212a-8192-5337-e054-00144ff88e88"
+  },
+  {
+   "a": "med_azithromycin",
+   "b": "med_ciprofloxacin",
+   "severity": "caution",
+   "description": "Additive QT-interval prolongation (macrolide plus fluoroquinolone).",
+   "clinical_significance": "Increased risk of QT prolongation and torsades de pointes, particularly in elderly patients or with electrolyte disturbance.",
+   "recommendation": "Avoid combination where possible; if necessary, correct electrolytes and consider ECG monitoring.",
+   "source_attribution": "Ciprofloxacin tablets, FDA label (DailyMed), Boxed Warning, Section 5 and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5f4e80a1-0225-63dd-e053-2991aa0aa7fb"
+  },
+  {
+   "a": "med_ciprofloxacin",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Fluoroquinolone tendinopathy risk is increased by concomitant corticosteroids.",
+   "clinical_significance": "Increased risk of tendinitis and tendon rupture (boxed warning), especially in patients over 60 years.",
+   "recommendation": "Avoid combination where possible; discontinue ciprofloxacin at first sign of tendon pain or inflammation.",
+   "source_attribution": "Ciprofloxacin tablets, FDA label (DailyMed), Boxed Warning, Section 5 and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5f4e80a1-0225-63dd-e053-2991aa0aa7fb"
+  },
+  {
+   "a": "med_ciprofloxacin",
+   "b": "med_gliclazide",
+   "severity": "caution",
+   "description": "Fluoroquinolones cause dysglycemia; hypoglycemia has been reported with sulfonylureas.",
+   "clinical_significance": "Hypoglycemia, sometimes severe.",
+   "recommendation": "Monitor blood glucose closely during coadministration.",
+   "source_attribution": "Ciprofloxacin tablets, FDA label (DailyMed), Boxed Warning, Section 5 and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5f4e80a1-0225-63dd-e053-2991aa0aa7fb"
+  },
+  {
+   "a": "med_clarithromycin",
+   "b": "med_gliclazide",
+   "severity": "caution",
+   "description": "Clarithromycin coadministered with oral hypoglycemic agents can cause significant hypoglycemia.",
+   "clinical_significance": "Risk of significant hypoglycemia.",
+   "recommendation": "Monitor blood glucose carefully during the antibiotic course.",
+   "source_attribution": "Clarithromycin tablets, FDA label (DailyMed), Warnings and Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b98b02bb-2609-49a0-b29f-e5911aa0cbc1"
+  },
+  {
+   "a": "med_metformin",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Corticosteroids raise blood glucose (increased gluconeogenesis, insulin resistance).",
+   "clinical_significance": "Loss of glycemic control.",
+   "recommendation": "Monitor blood glucose; antidiabetic dose adjustment may be required during and after corticosteroid therapy.",
+   "source_attribution": "Metformin hydrochloride tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4d3dbf6f-1c8a-4daa-8343-8cd8f64a65cd"
+  },
+  {
+   "a": "med_gliclazide",
+   "b": "med_prednisone",
+   "severity": "caution",
+   "description": "Corticosteroids raise blood glucose, opposing sulfonylurea effect.",
+   "clinical_significance": "Loss of glycemic control during steroid therapy; hypoglycemia risk when steroid is tapered if sulfonylurea dose was increased.",
+   "recommendation": "Monitor blood glucose; adjust sulfonylurea dose during and after corticosteroid therapy.",
+   "source_attribution": "Prednisone tablets, FDA label (DailyMed), Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "a": "med_dapagliflozin",
+   "b": "med_furosemide",
+   "severity": "caution",
+   "description": "Additive osmotic diuresis and natriuresis.",
+   "clinical_significance": "Increased risk of volume depletion and hypotension, especially in elderly patients or those with eGFR below 60.",
+   "recommendation": "Assess volume status before starting; consider reducing the loop diuretic dose and monitor for hypotension and renal function.",
+   "source_attribution": "FARXIGA (dapagliflozin), FDA label (DailyMed), Sections 5.2 and 5.4",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72ad22ae-efe6-4cd6-a302-98aaee423d69"
+  },
+  {
+   "a": "med_losartan",
+   "b": "med_hydrochlorothiazide",
+   "severity": "safe",
+   "description": "Complementary antihypertensive mechanisms; available as a fixed-dose combination. Losartan also attenuates thiazide-induced hyperuricemia.",
+   "clinical_significance": "Recognised combination for hypertension.",
+   "recommendation": "Compatible combination; monitor blood pressure, electrolytes and renal function as usual.",
+   "source_attribution": "HYZAAR (losartan/hydrochlorothiazide), FDA label (DailyMed), Indications and Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4116ccde-2e23-45f4-b12f-6337df877744"
+  },
+  {
+   "a": "med_amlodipine",
+   "b": "med_losartan",
+   "severity": "safe",
+   "description": "Complementary antihypertensive mechanisms (calcium channel blockade plus angiotensin receptor blockade); no significant pharmacokinetic interaction.",
+   "clinical_significance": "Recommended dual combination for hypertension (CCB plus ARB).",
+   "recommendation": "Compatible combination; monitor blood pressure.",
+   "source_attribution": "2020 International Society of Hypertension Global Hypertension Practice Guidelines (Hypertension 2020;75:1334-57), Drug treatment",
+   "url": "https://www.ahajournals.org/doi/10.1161/HYPERTENSIONAHA.120.15026"
+  },
+  {
+   "a": "med_metformin",
+   "b": "med_gliclazide",
+   "severity": "safe",
+   "description": "Complementary glucose-lowering mechanisms (reduced hepatic glucose output plus insulin secretion).",
+   "clinical_significance": "Recognised combination for type 2 diabetes; adding a sulfonylurea increases hypoglycemia risk.",
+   "recommendation": "Compatible combination; monitor for hypoglycemia and consider lower sulfonylurea dose.",
+   "source_attribution": "Metformin hydrochloride tablets, FDA label (DailyMed), Section 7 Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4d3dbf6f-1c8a-4daa-8343-8cd8f64a65cd"
+  },
+  {
+   "a": "med_paracetamol",
+   "b": "med_ibuprofen",
+   "severity": "safe",
+   "description": "Different analgesic mechanisms; available together as a fixed-dose OTC combination.",
+   "clinical_significance": "Recognised combination for short-term pain relief.",
+   "recommendation": "Compatible combination; keep total daily paracetamol and ibuprofen within recommended limits and avoid other paracetamol-containing products.",
+   "source_attribution": "Advil Dual Action with Acetaminophen (ibuprofen/acetaminophen), OTC Drug Facts label (DailyMed)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f5ea858e-76d9-4777-b3dc-5d614f66d485"
+  },
+  {
+   "a": "med_metformin",
+   "b": "med_dapagliflozin",
+   "severity": "safe",
+   "description": "Complementary glucose-lowering mechanisms; available as a fixed-dose combination.",
+   "clinical_significance": "Recognised combination for type 2 diabetes.",
+   "recommendation": "Compatible combination; monitor renal function and volume status.",
+   "source_attribution": "XIGDUO XR (dapagliflozin/metformin ER), FDA label (DailyMed), Indications",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ac8a0f7b-9f69-4495-abbc-3a47cd75a859"
+  },
+  {
+   "a": "med_metoprolol",
+   "b": "med_amlodipine",
+   "severity": "safe",
+   "description": "Dihydropyridine calcium channel blocker plus beta-blocker; amlodipine does not add to the AV-nodal effects of beta-blockade (unlike verapamil or diltiazem).",
+   "clinical_significance": "Recognised combination in hypertension and angina; additive blood-pressure lowering.",
+   "recommendation": "Compatible combination; monitor blood pressure and heart rate.",
+   "source_attribution": "Standard co-prescription in hypertension and angina practice (dihydropyridine CCB with a beta-blocker)",
+   "url": ""
+  }
+ ],
+ "rules": [
+  {
+   "id": "triple_whammy",
+   "name": "Triple whammy (RAAS blocker + diuretic + NSAID)",
+   "severity": "avoid",
+   "description": "An ACE inhibitor or ARB (reduced efferent arteriolar tone), a diuretic (volume depletion) and an NSAID (afferent vasoconstriction from prostaglandin inhibition) together impair renal autoregulation.",
+   "clinical_significance": "Associated with acute kidney injury, particularly in elderly, volume-depleted or renally impaired patients; the losartan and enalapril labels warn that NSAIDs may cause renal deterioration including acute renal failure in patients on diuretic therapy.",
+   "recommendation": "Avoid adding an NSAID to a RAAS blocker plus diuretic; use paracetamol for analgesia. If unavoidable, use briefly with monitoring of renal function and potassium.",
+   "required_condition_id": "",
+   "members": [
+    "RAAS blocker",
+    "diuretic",
+    "NSAID"
+   ],
+   "source_attribution": "Losartan potassium tablets FDA label Section 7.3; Enalapril maleate FDA label, Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1dadbe02-289c-4312-9e65-40f3314dcc31"
+  },
+  {
+   "id": "raas_k_sparing_ckd",
+   "name": "RAAS blocker + potassium-sparing diuretic in chronic kidney disease",
+   "severity": "caution",
+   "description": "ACE inhibitors/ARBs and spironolactone both reduce renal potassium excretion; impaired renal function further limits potassium elimination.",
+   "clinical_significance": "Markedly increased risk of severe hyperkalemia; the spironolactone label states patients with renal impairment are at increased risk and ACE inhibitors/ARBs further increase it.",
+   "recommendation": "Combination is used in heart failure only with close monitoring: check potassium within 1 week of initiation or titration and regularly thereafter; at eGFR 30-50 mL/min/1.73 m2 consider starting spironolactone at 25 mg every other day. Generally avoided when serum potassium exceeds 5.0 mmol/L or eGFR is severely reduced.",
+   "required_condition_id": "renal_impairment",
+   "members": [
+    "RAAS blocker",
+    "Potassium-sparing"
+   ],
+   "source_attribution": "ALDACTONE (spironolactone) FDA label, Sections 2.2, 5.1, 7.1 and 8.6",
+   "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/012151s080lbl.pdf"
+  },
+  {
+   "id": "anticoagulant_antiplatelet_nsaid",
+   "name": "Anticoagulant + antiplatelet + NSAID",
+   "severity": "avoid",
+   "description": "Warfarin anticoagulation combined with platelet inhibition and NSAID-related platelet dysfunction and GI mucosal injury.",
+   "clinical_significance": "Very high risk of major and gastrointestinal bleeding; the warfarin and NSAID labels describe synergistic bleeding risk.",
+   "recommendation": "Avoid NSAIDs in patients on combined anticoagulant and antiplatelet therapy; use paracetamol for analgesia and consider gastroprotection.",
+   "required_condition_id": "",
+   "members": [
+    "Anticoagulant",
+    "Antiplatelet",
+    "NSAID"
+   ],
+   "source_attribution": "Warfarin sodium FDA label Section 7; PLAVIX FDA label Sections 7.4-7.5; Ibuprofen FDA label Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0cbce382-9c88-4f58-ae0f-532a841e8f95"
+  },
+  {
+   "id": "dual_antiplatelet_nsaid",
+   "name": "Dual antiplatelet therapy + NSAID",
+   "severity": "avoid",
+   "description": "Aspirin plus clopidogrel (two distinct antiplatelet agents) combined with an NSAID adds GI mucosal injury and further platelet inhibition; ibuprofen may also blunt aspirin's antiplatelet effect.",
+   "clinical_significance": "Increased risk of gastrointestinal bleeding in patients on dual antiplatelet therapy (typically after acute coronary syndrome or stenting) and possible loss of aspirin cardioprotection.",
+   "recommendation": "Avoid NSAIDs during dual antiplatelet therapy; use paracetamol for analgesia and ensure gastroprotection where indicated.",
+   "required_condition_id": "",
+   "members": [
+    "Antiplatelet",
+    "Antiplatelet",
+    "NSAID"
+   ],
+   "source_attribution": "PLAVIX FDA label Section 7.4; Advil Dual Action OTC Drug Facts (aspirin warning)",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "id": "steroid_nsaid_ulcer",
+   "name": "Systemic corticosteroid + NSAID with peptic ulcer disease",
+   "severity": "avoid",
+   "description": "Systemic glucocorticoids and NSAIDs have additive injurious effects on the gastric mucosa.",
+   "clinical_significance": "High risk of ulcer complications and GI bleeding in patients with peptic ulcer or previous GI bleed; oral corticosteroid use is a recognised risk factor for NSAID-associated GI bleeding.",
+   "recommendation": "Avoid NSAIDs in patients with peptic ulcer who are taking systemic corticosteroids; use paracetamol and provide PPI gastroprotection if a steroid is required.",
+   "required_condition_id": "peptic_ulcer",
+   "members": [
+    "systemic glucocorticoid",
+    "NSAID"
+   ],
+   "source_attribution": "Prednisone tablets FDA label, Precautions - Drug Interactions; Ibuprofen FDA label, GI bleeding warning",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  },
+  {
+   "id": "nsaid_raas_ckd",
+   "name": "NSAID + RAAS blocker in chronic kidney disease",
+   "severity": "avoid",
+   "description": "NSAID-induced afferent arteriolar vasoconstriction combined with ACE inhibitor/ARB efferent vasodilation reduces glomerular filtration in kidneys dependent on prostaglandins.",
+   "clinical_significance": "Deterioration of renal function, including possible acute renal failure, and hyperkalemia in patients with compromised renal function.",
+   "recommendation": "Avoid NSAIDs in patients with chronic kidney disease taking an ACE inhibitor or ARB; if unavoidable, use briefly with monitoring of renal function and potassium.",
+   "required_condition_id": "renal_impairment",
+   "members": [
+    "RAAS blocker",
+    "NSAID"
+   ],
+   "source_attribution": "Losartan potassium tablets FDA label Sections 5.3 and 7.3; Enalapril maleate FDA label, Precautions - Drug Interactions",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1dadbe02-289c-4312-9e65-40f3314dcc31"
+  },
+  {
+   "id": "raas_k_sparing_nsaid",
+   "name": "RAAS blocker + potassium-sparing diuretic + NSAID",
+   "severity": "avoid",
+   "description": "Three potassium-retaining drugs (ACE inhibitor/ARB, spironolactone and NSAID) combined with NSAID-related reduction in renal perfusion.",
+   "clinical_significance": "Risk of severe hyperkalemia and acute kidney injury; the spironolactone label lists ACE inhibitors, ARBs and NSAIDs as drugs that increase potassium.",
+   "recommendation": "Avoid NSAIDs in patients taking a RAAS blocker with spironolactone; use paracetamol. If unavoidable, monitor potassium and renal function closely.",
+   "required_condition_id": "",
+   "members": [
+    "RAAS blocker",
+    "Potassium-sparing",
+    "NSAID"
+   ],
+   "source_attribution": "ALDACTONE (spironolactone) FDA label, Sections 5.1 and 7.1",
+   "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/012151s080lbl.pdf"
+  },
+  {
+   "id": "triple_antithrombotic",
+   "name": "Triple antithrombotic therapy (anticoagulant + two antiplatelets)",
+   "severity": "avoid",
+   "description": "Warfarin combined with aspirin and clopidogrel produces independent, additive effects on coagulation and platelet function.",
+   "clinical_significance": "Highest bleeding-risk antithrombotic combination; reserved for limited periods in specific situations (e.g., atrial fibrillation after coronary stenting).",
+   "recommendation": "Avoid outside a specialist-defined indication; if used, keep duration as short as possible, use gastroprotection and monitor INR and bleeding closely.",
+   "required_condition_id": "",
+   "members": [
+    "Anticoagulant",
+    "Antiplatelet",
+    "Antiplatelet"
+   ],
+   "source_attribution": "PLAVIX FDA label Section 7.5; Warfarin sodium FDA label Section 7",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=de8b0b67-eb25-4684-83b5-7ad785314227"
+  },
+  {
+   "id": "hypokalemia_steroid_loop_beta_agonist",
+   "name": "Systemic corticosteroid + loop diuretic + beta-2 agonist (hypokalemia)",
+   "severity": "caution",
+   "description": "Corticosteroids and loop diuretics increase urinary potassium loss, while beta-2 agonists shift potassium into cells.",
+   "clinical_significance": "Additive hypokalemia with risk of ECG changes and arrhythmia, e.g., during treatment of an acute asthma or COPD exacerbation in a patient with heart failure.",
+   "recommendation": "Monitor serum potassium (and ECG where indicated); replace potassium as required.",
+   "required_condition_id": "",
+   "members": [
+    "systemic glucocorticoid",
+    "Loop diuretic",
+    "beta-2 agonist"
+   ],
+   "source_attribution": "Prednisone tablets FDA label (potassium-depleting agents); LASIX FDA label (hypokalemia with corticosteroids); Albuterol HFA FDA label Section 7.2",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf"
+  }
+ ]
+}

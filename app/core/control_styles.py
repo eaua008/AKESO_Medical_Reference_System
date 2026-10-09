@@ -75,4 +75,29 @@ def control_rules(p: dict) -> str:
         }}
         QAbstractSpinBox::up-arrow:hover {{ image: url("{up_on}"); }}
         QAbstractSpinBox::down-arrow:hover {{ image: url("{down_on}"); }}
+
+        /* sliders (e.g. the Body System Explorer's layers) follow the theme */
+        QSlider {{ background: transparent; }}
+        QSlider::groove:horizontal {{
+            height: 4px;
+            border-radius: 2px;
+            background: {p['BORDER']};
+        }}
+        QSlider::sub-page:horizontal {{
+            height: 4px;
+            border-radius: 2px;
+            background: {p['PRIMARY']};
+        }}
+        QSlider::handle:horizontal {{
+            width: 16px;
+            height: 16px;
+            margin: -6px 0;
+            border-radius: 8px;
+            background: {p['PRIMARY']};
+            border: 2px solid {p['SURFACE']};
+        }}
+        QSlider::handle:horizontal:hover {{ background: {p['PRIMARY_HOVER']}; }}
+        QSlider::handle:horizontal:disabled, QSlider::sub-page:horizontal:disabled {{
+            background: {p['ICON_MUTED']};
+        }}
     """

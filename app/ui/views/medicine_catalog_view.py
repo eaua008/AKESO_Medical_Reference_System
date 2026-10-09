@@ -203,6 +203,7 @@ class CardGrid(ResponsiveGrid):
 
     def __init__(self) -> None:
         super().__init__(CARD_MIN_WIDTH, MAX_COLUMNS, spacing=16)
+        self.follow_user_columns()                   # Settings > Display > Cards per row
 
 
 class MedicineCatalogView(QWidget):

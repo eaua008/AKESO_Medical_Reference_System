@@ -12,15 +12,17 @@ from datetime import datetime, timezone
 # What can be bookmarked. The value is what is stored in the database.
 DISEASE, SYMPTOM, MEDICINE = "disease", "symptom", "medicine"
 EXCHANGE = "exchange"        # a Clinical Exchange post
+ARTICLE = "article"          # a Health Article (migration 005)
 
 KIND_LABELS = {
     DISEASE: "Condition",
     SYMPTOM: "Symptom",
     MEDICINE: "Medicine",
     EXCHANGE: "Case",
+    ARTICLE: "Article",
 }
 # Which tab each kind belongs to, and the order the tabs appear in.
-KIND_ORDER = (DISEASE, SYMPTOM, MEDICINE, EXCHANGE)
+KIND_ORDER = (DISEASE, SYMPTOM, MEDICINE, EXCHANGE, ARTICLE)
 
 
 def now_iso() -> str:

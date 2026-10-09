@@ -19,6 +19,7 @@ Three tools, used by the Disease, Symptom and Medicine pages:
                     too wide) width, so it cannot feed back into itself.
 """
 
+import weakref
 from typing import Optional
 
 from PySide6.QtCore import QEvent, QObject, QPoint, QSize, Qt
@@ -161,9 +162,24 @@ class ResponsiveGrid(QWidget):
     further (the Symptom list reached 1,258 px wider than the screen).
     """
 
+    # Settings > Display > "Cards per row" for the encyclopedia grids
+    # (0 = as many as fit). Only grids that call follow_user_columns() obey it.
+    user_columns = 0
+    USER_MIN_CARD = 250             # how narrow a card may get when the user asks for more
+    _followers: "weakref.WeakSet[ResponsiveGrid]" = weakref.WeakSet()
+
+    @classmethod
+    def set_user_columns(cls, columns: int) -> None:
+        cls.user_columns = max(0, int(columns or 0))
+        for grid in list(cls._followers):
+            grid._apply_user_columns()
+
     def __init__(self, min_card_width: int, max_columns: int = 3, spacing: int = 16,
                  parent: Optional[QWidget] = None, steps: tuple[int, ...] = ()) -> None:
         super().__init__(parent)
+        self._follows_user = False
+        self._base_min_card = min_card_width
+        self._base_max_columns = max_columns
         # Optional allowed column counts, e.g. (8, 4, 2): 8 parts reflow as
         # 4 + 4 or 2 x 4 rather than an uneven 6 + 2.
         self._steps = tuple(sorted(steps, reverse=True))
@@ -189,6 +205,38 @@ class ResponsiveGrid(QWidget):
     def viewport(self) -> Optional[QWidget]:
         return self._viewport
 
+    def follow_user_columns(self) -> None:
+        """Let Settings > Display > "Cards per row" decide the columns."""
+        self._follows_user = True
+        ResponsiveGrid._followers.add(self)
+        self._apply_user_columns()
+
+    def _apply_user_columns(self) -> None:
+        wanted = ResponsiveGrid.user_columns
+        if wanted:
+            # Up to that many; fewer when the window is too narrow for them.
+            self._max_columns = wanted
+            self._min_card = min(self._base_min_card, self.USER_MIN_CARD)
+        else:
+            self._max_columns = self._base_max_columns
+            self._min_card = self._base_min_card
+        for card in self._cards:
+            self._fit_card(card)
+        self._need = None
+        self._columns = 0
+        self._relayout()
+
+    def _fit_card(self, card: QWidget) -> None:
+        """Cards fix their own minimum width; relax it while the user asks
+        for more per row, and restore it on "Auto"."""
+        if not self._follows_user:
+            return
+        base = card.property("akesoBaseMinWidth")
+        if base is None:
+            base = card.minimumWidth()
+            card.setProperty("akesoBaseMinWidth", base)
+        card.setMinimumWidth(min(base, self._min_card) if ResponsiveGrid.user_columns else base)
+
     def watch(self, viewport: QWidget) -> None:
         """Follow this scroll viewport's width (call once after building)."""
         self._viewport = viewport
@@ -208,6 +256,8 @@ class ResponsiveGrid(QWidget):
             card.hide()
             card.deleteLater()
         self._cards = list(cards)
+        for card in self._cards:
+            self._fit_card(card)
         self._fixed_columns = columns
         self._columns = 0
         self._need = None
@@ -274,7 +324,7 @@ class ResponsiveGrid(QWidget):
             row, column = divmod(index, columns)
             self._grid.addWidget(card, row, column)
             card.show()
-        for column in range(max(self._max_columns, columns)):
+        for column in range(max(self._max_columns, columns, 8)):
             self._grid.setColumnStretch(column, 1 if column < columns else 0)
 
 

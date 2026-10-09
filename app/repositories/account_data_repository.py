@@ -59,8 +59,16 @@ class AccountDataRepository:
                 result = self._s.invoke("school-email", body)
             except Exception as exc:  # noqa: BLE001
                 text = getattr(exc, "message", None) or str(exc)
-                if "404" in text or "not found" in text.lower() and "function" in text.lower():
-                    raise AccountError("The school-email Edge Function is not deployed yet.") from exc
+                low = text.lower()
+                if "404" in text or ("not found" in low and "function" in low):
+                    raise AccountError("The school-email Edge Function is not deployed yet "
+                                       "(Supabase > Edge Functions).") from exc
+                if "invalid jwt" in low or "an error occurred while requesting" in low:
+                    # The platform's own JWT check refused it before the
+                    # function ran (it does not understand the new API keys).
+                    raise AccountError("School email check was refused by Supabase. In Edge "
+                                       "Functions > school-email, turn off \"Verify JWT\" "
+                                       "and try again.") from exc
                 raise AccountError(text if len(text) < 160 else friendly(exc)) from exc
             if not isinstance(result, dict):
                 raise AccountError("Unexpected reply from the verification service.")

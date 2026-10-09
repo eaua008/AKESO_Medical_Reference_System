@@ -16,7 +16,9 @@ from typing import Optional
 
 from app.models.emergency import EmergencyGuide, EmergencyProtocol, Hotline
 
-DEFAULT_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "emergency_ph.json"
+from app.core.paths import resource
+
+DEFAULT_DATA_PATH = resource("data", "emergency_ph.json")
 
 class EmergencyDataError(Exception):
     """The bundled file is missing or malformed."""

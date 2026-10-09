@@ -9,7 +9,6 @@ student can go and read.
 from typing import Optional
 
 from PySide6.QtCore import QObject, Signal
-from PySide6.QtWidgets import QMessageBox
 
 from app.models.notebook import SYMPTOM_CASE
 from app.services.case_reference import (
@@ -135,8 +134,9 @@ class SymptomCheckerController(QObject):
         except Exception as error:          # never fail silently
             import traceback
             traceback.print_exc()
-            QMessageBox.warning(self._view, "Save to Notebook",
-                                f"The case could not be saved:\n{error}")
+            from app.ui.views.account.account_dialogs import NoticeDialog
+            NoticeDialog("Save to Notebook", f"The case could not be saved: {error}",
+                         "triangle-alert", danger=True, parent=self._view).exec()
 
     def _open_save_dialog(self, data) -> None:
         result = self._view.last_result or self._engine.evaluate(data)

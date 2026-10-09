@@ -1,0 +1,697 @@
+{
+  "diseases": [
+    {
+      "id": "rabies",
+      "name": "Rabies",
+      "scientific_name": "Rabies virus (genus Lyssavirus, family Rhabdoviridae) encephalomyelitis",
+      "body_system": "Nervous System",
+      "severity": "Critical",
+      "urgency": "EMERGENCY",
+      "urgency_criteria": "Any bite, scratch or saliva contact from a dog, cat or other potentially rabid mammal is a time-critical exposure: wound washing and post-exposure prophylaxis (PEP) assessment at an Animal Bite Treatment Center or emergency department are indicated the same day, because PEP is nearly 100% effective only when given before the virus reaches the central nervous system. Once neurological signs (hydrophobia, aerophobia, hypersalivation, agitation, paralysis) appear, rabies is almost universally fatal and the presentation is in the EMERGENCY tier for palliative and supportive care.",
+      "contagious": false,
+      "description": "Rabies is an acute, progressive viral encephalomyelitis caused by rabies virus and related lyssaviruses, transmitted in the saliva of infected mammals through bites, scratches or contact with mucous membranes or broken skin. Dogs account for up to 99% of human cases worldwide, and about 40% of cases occur in children under 15. Once symptoms appear the disease is almost universally fatal, but it is preventable with prompt post-exposure prophylaxis. In the Philippines rabies causes the deaths of at least 200 Filipinos each year, and PEP is delivered through a network of government Animal Bite Treatment Centers under the National Rabies Prevention and Control Program.",
+      "pathophysiology": "After inoculation the virus multiplies locally in muscle and enters peripheral nerves at the neuromuscular junction via nicotinic acetylcholine receptors. It travels centripetally by retrograde axoplasmic flow to the dorsal root ganglia and spinal cord and then to the brain, where replication increases exponentially in the setting of an inadequate interferon response. The virus then spreads centrifugally along nerves to peripheral tissues, including the salivary glands, where it is shed in saliva. Progressive inflammation of the brain and spinal cord produces the neurological syndrome and death.",
+      "clinicopathologic_correlation": "Involvement of the dorsal root ganglion supplying the bite site explains early pain and paresthesia at a healed wound. Brainstem involvement produces violent pharyngeal muscle spasms triggered by attempts to swallow water or by air currents (hydrophobia, aerophobia). Viral spread to the salivary glands combined with inability to swallow produces hypersalivation and drooling. Limbic and cortical encephalitis produce anxiety, agitation, hallucinations and delirium, while autonomic involvement causes autonomic instability. In paralytic rabies, ascending flaccid paralysis begins in the exposed limb.",
+      "onset_progression": "The incubation period is typically 2-3 months but ranges from about one week to one year. A prodrome of fever, malaise, myalgia, headache and pain, tingling or burning at the wound site is followed by the neurological phase. About 80% of patients develop furious (encephalitic) rabies with hyperactivity, agitation, hallucinations and hydrophobia; about 20% develop paralytic rabies with ascending paralysis starting in the exposed limb. Coma develops within about 10 days of neurological onset, and death typically follows within 2-3 days of coma, usually from cardiorespiratory arrest.",
+      "follow_up_monitoring": "For exposed persons, the WHO exposure category is documented, the full vaccine schedule is completed on the scheduled days, and rabies immunoglobulin is given within 7 days of the first vaccine dose when indicated. Immunocompromised patients receive an additional vaccine dose. Previously vaccinated persons receive a shortened booster course without immunoglobulin. Patients with clinical rabies receive comprehensive palliative care, with sedation, analgesia, hydration and management of secretions.",
+      "source_attribution": "StatPearls: Rabies (Swinkels, Koury, Warrington; updated 2025); WHO fact sheet Rabies; DOH Philippines Rabies Prevention and Control Program; Amparo et al., PLOS ONE 2018 (Animal Bite Treatment Centers); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "zoonosis",
+        "dog bite",
+        "viral encephalitis",
+        "post-exposure prophylaxis",
+        "vaccine-preventable"
+      ],
+      "causes": [
+        "Infection with rabies virus or related lyssaviruses (family Rhabdoviridae), neurotropic RNA viruses",
+        "Transmission through saliva of an infected mammal by bites or scratches; dogs account for up to 99% of human cases",
+        "Contamination of mucous membranes or broken skin with saliva from an infected animal (for example, licks on broken skin)",
+        "Direct contact with bats (WHO category III exposure)"
+      ],
+      "risk_factors": [
+        "Bite or scratch from an unvaccinated or stray dog in a rabies-endemic area such as the Philippines",
+        "Childhood: about 40% of human rabies cases occur in children under 15 years",
+        "Delayed, incomplete or absent post-exposure prophylaxis after a category II or III exposure",
+        "Omission of rabies immunoglobulin after a category III exposure, or inadequate wound infiltration",
+        "Occupations with high exposure risk (veterinarians, animal handlers, laboratory staff) without pre-exposure prophylaxis",
+        "Residence in remote endemic areas with limited access to rabies biologicals"
+      ],
+      "recommended_tests": [
+        "Saliva RT-PCR for rabies virus RNA (part of the CDC antemortem specimen set)",
+        "Nuchal skin biopsy containing hair follicles, tested by direct fluorescent antibody (DFA) and RT-PCR",
+        "Cerebrospinal fluid for rabies virus neutralizing antibodies (RFFIT) and indirect fluorescent antibody testing",
+        "Serum rabies virus neutralizing antibodies (interpreted with vaccination history)",
+        "Postmortem confirmation by DFA or RT-PCR on brainstem and cerebellum tissue",
+        "Clinical classification of the exposure by WHO category (I, II or III); no test detects rabies infection before clinical onset"
+      ],
+      "treatments": [
+        "Wound management after exposure: thorough washing with soap and water for at least 15 minutes as soon as possible, followed by virucidal irrigation if available",
+        "Rabies vaccine for WHO category II and III exposures; CDC intramuscular schedule on days 0, 3, 7 and 14 (plus day 28 if immunocompromised); WHO dose-sparing intradermal regimens are used widely, including at Philippine Animal Bite Treatment Centers",
+        "Rabies immunoglobulin (human 20 IU/kg or equine 40 IU/kg) or rabies monoclonal antibodies for category III exposures (and for immunocompromised patients with category II exposures), infiltrated into and around the wound, given no later than 7 days after the first vaccine dose",
+        "Previously vaccinated persons: two vaccine doses (days 0 and 3) without rabies immunoglobulin, unless immunocompromised",
+        "Clinical rabies: no proven curative therapy; vaccine and immunoglobulin have no role once symptoms begin. Management is supportive and palliative (sedation for agitation, anticholinergics for secretions, opioid analgesia, intravenous fluids, antipyretics)"
+      ],
+      "home_care": [
+        "Immediate washing of any bite or scratch with soap and running water for at least 15 minutes, before travel to an Animal Bite Treatment Center",
+        "Same-day presentation to an Animal Bite Treatment Center or emergency department for PEP assessment after any animal bite or scratch",
+        "Completion of every scheduled vaccine dose on the assigned days, with the vaccination card kept for future exposures"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Mass dog vaccination, including puppies, is the most cost-effective strategy for preventing human rabies because it stops transmission at its source (WHO). The DOH program targets elimination of human rabies by 2027 and a rabies-free Philippines by 2030."
+        },
+        {
+          "tier": "primary",
+          "content": "Public education on dog behaviour and bite prevention, what to do after a bite or scratch, and responsible pet ownership."
+        },
+        {
+          "tier": "primary",
+          "content": "Pre-exposure prophylaxis with rabies vaccine for people at high occupational risk and for those living in remote endemic areas with limited access to PEP."
+        },
+        {
+          "tier": "secondary",
+          "content": "Post-exposure prophylaxis by WHO category: category I (touching or feeding animals, licks on intact skin) needs wound washing only; category II (nibbling of uncovered skin, minor scratches or abrasions without bleeding) needs wound washing and immediate vaccination; category III (transdermal bites or scratches, saliva contact with mucous membranes or broken skin, direct bat contact) needs wound washing, vaccination and rabies immunoglobulin or monoclonal antibodies."
+        },
+        {
+          "tier": "secondary",
+          "content": "PEP delivered through government Animal Bite Treatment Centers run by the DOH and local government units under the Anti-Rabies Act of 2007 (RA 9482), with PhilHealth coverage for category II and III exposures."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Once symptoms emerge, WHO recommends comprehensive and compassionate palliative care, including sedation, analgesia, hydration and management of secretions."
+        }
+      ],
+      "emergency_signs": [
+        "Any transdermal bite or scratch, or saliva contact with mucous membranes or broken skin, from a dog, cat, bat or other mammal",
+        "Pain, tingling or burning at a previous bite site, especially after a missed or incomplete PEP course",
+        "Painful throat spasms when trying to drink water or when air blows on the face (hydrophobia, aerophobia)",
+        "Excessive salivation and drooling with difficulty swallowing",
+        "Agitation, hallucinations, confusion or bizarre behaviour following an animal exposure",
+        "Progressive weakness or paralysis beginning in the bitten limb",
+        "Seizures, reduced consciousness or coma"
+      ],
+      "differentials": [
+        {
+          "condition": "Tetanus",
+          "distinguishing_feature": "Trismus and generalized muscle rigidity with spasms and preserved consciousness; no hydrophobia or encephalopathy"
+        },
+        {
+          "condition": "Guillain-Barre syndrome",
+          "distinguishing_feature": "Ascending symmetric weakness with areflexia and CSF albuminocytologic dissociation; mimics paralytic rabies but without bite-site paresthesia or progression to encephalitis"
+        },
+        {
+          "condition": "Other viral encephalitis (e.g., Japanese encephalitis, herpes simplex encephalitis)",
+          "distinguishing_feature": "No animal exposure history and no hydrophobia or aerophobia; different viral testing and imaging findings"
+        },
+        {
+          "condition": "Acute psychosis or delirium",
+          "distinguishing_feature": "No fever, hypersalivation, pharyngeal spasms or progressive neurological deficits"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_bite_site_paresthesia",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_hydrophobia",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_hypersalivation",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_agitation",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 8,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_rabies_vaccine",
+          "safety": "safe",
+          "note": "Core of PEP for WHO category II and III exposures and of pre-exposure prophylaxis; no role once clinical rabies has developed (StatPearls)."
+        },
+        {
+          "medicine_id": "med_rabies_immunoglobulin",
+          "safety": "safe",
+          "note": "Indicated for category III exposures (and immunocompromised patients with category II); infiltrated into and around the wound within 7 days of the first vaccine dose. Not given to previously vaccinated persons."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Antipyretic and analgesic used in supportive and palliative care of clinical rabies (often rectal when swallowing is impaired)."
+        }
+      ],
+      "related": [
+        "leptospirosis",
+        "malaria",
+        "typhoid_fever"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Rabies",
+          "citation_text": "Swinkels HM, Koury R, Warrington SJ. Rabies. [Updated 2025 Mar 28]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448076/",
+          "specialty": "Infectious Disease / Emergency Medicine",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Rabies",
+          "citation_text": "World Health Organization. Rabies. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/rabies",
+          "specialty": "Public Health / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DOH Philippines - Rabies Prevention and Control Program",
+          "citation_text": "Department of Health, Republic of the Philippines. Rabies Prevention and Control Program. Manila: DOH.",
+          "url": "https://doh.gov.ph/uhc/health-programs/rabies-prevention-and-control-program/",
+          "specialty": "Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "PLOS ONE - Animal Bite Treatment Centers in the Philippines",
+          "citation_text": "Amparo ACB, Jayme SI, Roces MCR, et al. The evaluation of operating Animal Bite Treatment Centers in the Philippines from a health provider perspective. PLoS One. 2018;13(7):e0199186.",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0199186",
+          "specialty": "Public Health",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "schistosomiasis",
+      "name": "Schistosomiasis (Schistosoma japonicum)",
+      "scientific_name": "Schistosomiasis japonica (intestinal and hepatosplenic schistosomiasis due to Schistosoma japonicum)",
+      "body_system": "Digestive System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Chronic abdominal pain, diarrhea or blood in the stool in a person with freshwater exposure in an endemic area warrants non-urgent clinical review with stool examination. Vomiting blood, black or bloody stools with dizziness (possible variceal bleeding from portal hypertension), rapidly increasing abdominal distension, or new seizures or focal neurological deficits place the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Schistosomiasis japonica is a chronic parasitic disease caused by the blood fluke Schistosoma japonicum, acquired when larval cercariae released by infected freshwater snails penetrate the skin during contact with infested water. S. japonicum occurs in China, Indonesia and the Philippines, where 28 of 81 provinces are endemic, mainly in Eastern Visayas (Samar and Leyte), Mindanao and parts of Luzon such as Oriental Mindoro and Sorsogon. The DOH Schistosomiasis Control and Elimination Program estimates about 12.4 million Filipinos at risk. Disease results mainly from the host reaction to eggs, producing intestinal symptoms and, in advanced cases, liver fibrosis with portal hypertension. In Davao del Norte and Davao de Oro, surveys in 2024 found low prevalence (about 0.8% in school-aged children and 0.4% in adults), consistent with good morbidity control under mass drug administration rather than elimination.",
+      "pathophysiology": "In endemic areas the snail Oncomelania hupensis quadrasi releases cercariae that penetrate human skin in freshwater. The larvae (schistosomula) migrate through the circulation, mature in the portal venous system and pair, and S. japonicum adults reside in the mesenteric veins, where females release eggs. Many eggs cross the intestinal wall and are passed in stool, but a large proportion are swept to the liver or remain trapped in tissues. Trapped eggs provoke granulomatous inflammation; in the liver this leads to periportal fibrosis and presinusoidal portal hypertension, with splenomegaly, collateral veins and ascites. S. japonicum is zoonotic, with carabao, cattle, dogs, pigs and rats among the many mammalian reservoir hosts that sustain transmission.",
+      "clinicopathologic_correlation": "Egg-induced inflammation of the intestinal wall causes abdominal pain, diarrhea and blood in the stool. Periportal fibrosis with presinusoidal portal hypertension produces hepatosplenomegaly, ascites and portosystemic collaterals, which can bleed. Chronic blood loss and inflammation contribute to anemia, and in children to stunting and reduced learning ability. Acute schistosomiasis (Katayama syndrome), an immune reaction around the time of early egg laying, produces fever, rash, headache, myalgia, respiratory symptoms and eosinophilia. Ectopic egg deposition in the brain or spinal cord rarely causes granulomatous central nervous system lesions.",
+      "onset_progression": "Acute schistosomiasis (Katayama syndrome) may appear about 14-84 days after exposure, usually in previously unexposed persons. Chronic infection develops over months to years with intermittent abdominal pain, diarrhea and blood in the stool. With heavy or prolonged infection, hepatosplenic disease with liver fibrosis, portal hypertension and ascites develops over years. Reinfection is common where water contact continues, so disease often reflects cumulative exposure.",
+      "follow_up_monitoring": "Repeat stool examination about 1-2 months after praziquantel to confirm cure, with retreatment if eggs persist. Abdominal ultrasound assesses periportal fibrosis, hepatomegaly and splenomegaly in chronic disease. Patients with portal hypertension are followed for signs of variceal bleeding and ascites. In endemic communities, repeated treatment through mass drug administration is often required because of reinfection.",
+      "source_attribution": "WHO fact sheet Schistosomiasis; CDC Clinical Overview of Schistosomiasis and Clinical Care of Schistosomiasis; Tabilin et al., Trop Med Infect Dis 2025 (Schistosomiasis in the Philippines); Belizario et al., Parasitol Int 2024 (Davao de Oro and Davao del Norte); DOH Philippines Schistosomiasis Control and Elimination Program; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "parasitic",
+        "blood fluke",
+        "neglected tropical disease",
+        "freshwater exposure",
+        "zoonosis",
+        "portal hypertension"
+      ],
+      "causes": [
+        "Infection with the trematode Schistosoma japonicum (blood fluke)",
+        "Skin penetration by cercariae released from infected Oncomelania hupensis quadrasi snails during contact with infested freshwater",
+        "Environmental contamination with eggs in human and animal feces, sustaining the snail-human cycle",
+        "Zoonotic reservoir hosts (carabao, cattle, dogs, pigs, rats) that maintain transmission"
+      ],
+      "risk_factors": [
+        "Residence in an endemic province in the Philippines (for example, Samar, Leyte, Oriental Mindoro, Sorsogon, and in Mindanao including Davao del Norte and Davao de Oro)",
+        "Routine agricultural, domestic, occupational or recreational contact with infested freshwater (rice fields, streams, irrigation canals)",
+        "School-aged children who swim or fish in infested water",
+        "Inadequate sanitation and hygiene, with open defecation near water sources",
+        "Close contact with infected animal reservoir hosts such as carabao near snail habitats",
+        "Missed rounds of mass drug administration in endemic communities"
+      ],
+      "recommended_tests": [
+        "Stool microscopy for S. japonicum eggs by the Kato-Katz technique (the primary diagnostic method used in the Philippines); multiple samples improve sensitivity",
+        "CBC with differential (eosinophilia, particularly in acute schistosomiasis; anemia in chronic disease)",
+        "Schistosome serology or circulating antigen detection when stool microscopy is negative but suspicion remains",
+        "Molecular testing (PCR) of stool or serum where available; more sensitive than Kato-Katz in light infections",
+        "Abdominal ultrasound for periportal fibrosis, hepatomegaly and splenomegaly",
+        "Repeat stool examination 1-2 months after treatment to confirm cure"
+      ],
+      "treatments": [
+        "Praziquantel is the treatment of choice; for S. japonicum the CDC regimen is 60 mg/kg per day orally in three divided doses for one day",
+        "In travelers, treatment is timed at least 6-8 weeks after the last freshwater exposure, when adult worms are mature and most susceptible",
+        "Repeat treatment after 2-4 weeks may be needed in lightly infected patients with persistent eggs",
+        "Praziquantel can be given to children from about 2 years of age, and WHO supports its use in pregnancy and lactation in mass drug administration settings",
+        "Management of complications of portal hypertension (variceal bleeding, ascites) follows standard hepatology and gastroenterology care"
+      ],
+      "home_care": [
+        "Completion of the full praziquantel dose on the treatment day, taken with food",
+        "Avoidance of wading, bathing, swimming or washing in streams, ponds and rice fields in endemic areas",
+        "Use of sanitary toilets so that feces do not reach water sources",
+        "Return for follow-up stool examination after treatment"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Access to safe water, improved sanitation (toilets) and hygiene education to interrupt contamination of freshwater with eggs (WHO WASH strategy)."
+        },
+        {
+          "tier": "primary",
+          "content": "One Health snail control (habitat modification such as weed clearance, and molluscicides) together with management of infected animal reservoir hosts such as carabao."
+        },
+        {
+          "tier": "primary",
+          "content": "Avoiding contact with infested freshwater in endemic areas, especially for school-aged children who swim or fish."
+        },
+        {
+          "tier": "secondary",
+          "content": "Large-scale preventive chemotherapy (mass drug administration) with praziquantel for preschool-aged children, school-aged children and at-risk adults in endemic areas, repeated yearly in high-transmission areas; in the Philippines, control under the DOH Schistosomiasis Control and Elimination Program has centered on preventive chemotherapy with praziquantel."
+        },
+        {
+          "tier": "secondary",
+          "content": "Stool surveillance (Kato-Katz) in endemic barangays to detect and treat infected persons before hepatosplenic disease develops."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Treatment reverses anemia, stunting and reduced learning ability in children; ultrasound follow-up and management of portal hypertension complications limit morbidity in advanced disease."
+        }
+      ],
+      "emergency_signs": [
+        "Vomiting blood (possible bleeding esophageal varices)",
+        "Black, tarry or large-volume bloody stools, especially with dizziness or fainting",
+        "Rapidly increasing abdominal distension from ascites",
+        "Seizures, severe headache or new focal weakness (possible CNS egg deposition)",
+        "High fever with rash, cough and marked eosinophilia after recent freshwater exposure (acute schistosomiasis)"
+      ],
+      "differentials": [
+        {
+          "condition": "Amoebic colitis (Entamoeba histolytica)",
+          "distinguishing_feature": "Trophozoites or cysts rather than schistosome eggs on stool examination; liver abscess rather than periportal fibrosis"
+        },
+        {
+          "condition": "Chronic hepatitis B or other causes of cirrhosis",
+          "distinguishing_feature": "Hepatocellular dysfunction and cirrhotic nodular liver, with viral markers; schistosomal periportal fibrosis causes presinusoidal portal hypertension with relatively preserved liver function"
+        },
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "May resemble acute schistosomiasis with fever and hepatosplenomegaly, but shows positive blood culture and lacks eosinophilia"
+        },
+        {
+          "condition": "Colorectal neoplasia or inflammatory bowel disease",
+          "distinguishing_feature": "Blood in stool without freshwater exposure or schistosome eggs; diagnosed by colonoscopy and biopsy"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_bloody_stool",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_abdominal_swelling",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_hematemesis",
+          "typical_intensity": 8,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_constipation",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_praziquantel",
+          "safety": "safe",
+          "note": "Drug of choice for all major Schistosoma species; S. japonicum 60 mg/kg/day in three divided doses for one day (CDC). Used in DOH mass drug administration."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "caution",
+          "note": "Symptomatic relief of fever and pain (e.g., acute schistosomiasis); keep within maximum daily dose in patients with advanced liver disease."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "caution",
+          "note": "NSAIDs increase gastrointestinal bleeding risk, a concern in hepatosplenic schistosomiasis with portal hypertension and varices; paracetamol is generally preferred."
+        }
+      ],
+      "related": [
+        "hepatitis_b",
+        "acute_gastroenteritis",
+        "typhoid_fever",
+        "malaria",
+        "peptic_ulcer_disease"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "WHO Fact Sheet - Schistosomiasis",
+          "citation_text": "World Health Organization. Schistosomiasis. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/schistosomiasis",
+          "specialty": "Public Health / Tropical Medicine",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Overview of Schistosomiasis",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Schistosomiasis. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/schistosomiasis/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease / Parasitology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Care of Schistosomiasis",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Care of Schistosomiasis. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/schistosomiasis/hcp/treatment/index.html",
+          "specialty": "Infectious Disease / Parasitology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Tropical Medicine and Infectious Disease - Schistosomiasis in the Philippines",
+          "citation_text": "Tabilin EJ, Gray DJ, Jiz MA, et al. Schistosomiasis in the Philippines: A Comprehensive Review of Epidemiology and Current Control. Trop Med Infect Dis. 2025;10(2):29.",
+          "url": "https://www.mdpi.com/2414-6366/10/2/29",
+          "specialty": "Tropical Medicine / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Parasitology International - Schistosomiasis in Davao de Oro and Davao del Norte",
+          "citation_text": "Belizario VY Jr, et al. Low schistosomiasis and soil-transmitted helminthiasis prevalence and intensities in selected communities in Davao de Oro and Davao del Norte, the Philippines: a setting for interruption of transmission? Parasitol Int. 2024;102.",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S1383576924000527",
+          "specialty": "Parasitology / Public Health",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "pertussis",
+      "name": "Pertussis (Whooping Cough)",
+      "scientific_name": "Bordetella pertussis infection",
+      "body_system": "Respiratory System",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Coughing fits, an inspiratory whoop or vomiting after coughing, especially with a pertussis contact or incomplete vaccination, warrant prompt clinical review for testing and early antibiotics. Infants under 6 months, and any patient with apnea, cyanosis, severe hypoxia, respiratory distress, poor feeding, seizures or pneumonia, are in the EMERGENCY tier and usually require hospitalization.",
+      "contagious": true,
+      "description": "Pertussis (whooping cough) is a highly contagious respiratory infection caused by the gram-negative coccobacillus Bordetella pertussis, spread by respiratory droplets with humans as the only reservoir. It is characterized by prolonged paroxysmal coughing with an inspiratory whoop and post-tussive vomiting. Young infants have the highest risk of severe disease, apnea and death. The Philippines experienced a pertussis surge in 2024: DOH data for January 1 to March 16, 2024 recorded 568 cases and 40 deaths, with 62.7% of cases in infants below six months and 67.6% of all cases unvaccinated or of unknown vaccination status.",
+      "pathophysiology": "B. pertussis attaches to ciliated respiratory epithelium using adhesins such as filamentous hemagglutinin and pertactin. Tracheal cytotoxin damages ciliated cells and impairs mucociliary clearance, while pertussis toxin disrupts immune signaling and causes lymphocytosis. The organism remains on the respiratory mucosa rather than invading the bloodstream, and the toxin-mediated damage and impaired clearance produce the prolonged, paroxysmal cough. Marked leukocytosis is associated with pulmonary hypertension in severe infant disease.",
+      "clinicopathologic_correlation": "Loss of ciliary clearance and airway irritation produce clusters of rapid coughs without time to inhale, followed by a forced inspiration against a narrowed glottis (the whoop) and often vomiting. Young infants may not generate a whoop and instead present with apnea and cyanosis. Pertussis toxin-driven lymphocytosis and hyperleukocytosis contribute to pulmonary hypertension. Forceful coughing can cause rib fractures, subconjunctival hemorrhage, syncope and urinary incontinence, and hypoxia can lead to seizures and encephalopathy.",
+      "onset_progression": "The incubation period is about 7-10 days. The catarrhal stage (1-2 weeks) resembles a common cold with coryza, low-grade fever and a mild, occasional cough. The paroxysmal stage follows with numerous rapid coughs, the inspiratory whoop and post-tussive vomiting; paroxysms can reach about 15 per day, are more frequent at night and last about 2-3 weeks or longer. In the convalescent stage the cough subsides gradually over weeks, and paroxysms may recur with later respiratory infections. Adolescents and adults often have milder illness without a whoop.",
+      "follow_up_monitoring": "Hospitalized infants are monitored for apnea, hypoxia and bradycardia, with attention to feeding, hydration and weight. White blood cell counts are followed in severe infant disease because extreme leukocytosis is associated with pulmonary hypertension. Close contacts are assessed for antibiotic post-exposure prophylaxis within 21 days of the index patient's cough onset, and vaccination status of the patient and household is reviewed and updated.",
+      "source_attribution": "StatPearls: Pertussis (Vijayan, Daley; updated 2026); CDC Clinical Features of Pertussis and Treatment of Pertussis; PIDSP Childhood Immunization Schedule 2026; PIDS Research Paper 2022-04 (EPI assessment); Philippine News Agency report of DOH surveillance data (March 2024); Nelson Textbook of Pediatrics, 22nd ed.",
+      "tags": [
+        "bacterial",
+        "vaccine-preventable",
+        "respiratory",
+        "infants",
+        "whooping cough"
+      ],
+      "causes": [
+        "Infection with Bordetella pertussis, a gram-negative coccobacillus",
+        "Person-to-person spread by respiratory droplets from coughing or sneezing; humans are the only reservoir",
+        "Toxin-mediated damage to ciliated respiratory epithelium (pertussis toxin, tracheal cytotoxin)"
+      ],
+      "risk_factors": [
+        "Infancy, especially under 6 months of age and before completion of the primary vaccine series",
+        "Unvaccinated or incompletely vaccinated status",
+        "Mother not vaccinated with Tdap during pregnancy",
+        "Household contact with an infected adolescent or adult, whose illness is often mild or unrecognized",
+        "Waning immunity years after childhood vaccination",
+        "Community outbreaks with low immunization coverage"
+      ],
+      "recommended_tests": [
+        "Nasopharyngeal swab or aspirate PCR for B. pertussis (first-line; most useful within about the first 4 weeks of cough)",
+        "Nasopharyngeal culture on specialized media (highly specific; results take 7-10 days)",
+        "Serology from about 3-12 weeks after cough onset; not used in infants under 6 months or recently vaccinated persons",
+        "CBC with differential for lymphocytosis and leukocytosis",
+        "Pulse oximetry and cardiorespiratory monitoring in infants",
+        "Chest radiograph when pneumonia is suspected"
+      ],
+      "treatments": [
+        "Azithromycin is the preferred antibiotic for all ages, including infants under 1 month despite a small association of macrolides with infantile hypertrophic pyloric stenosis",
+        "Clarithromycin is an alternative macrolide; erythromycin is generally avoided in infants under 1 month",
+        "Trimethoprim-sulfamethoxazole is an alternative for macrolide intolerance or resistance in patients aged 2 months and older",
+        "Antibiotics are most effective in the first 1-2 weeks; treatment is recommended within 3 weeks of cough onset for persons aged 1 year and older and within 6 weeks for infants and pregnant women, mainly to reduce transmission",
+        "Treatment may start before test results when clinical suspicion is high or the patient is high risk or in contact with infants or pregnant women",
+        "Supportive care with hospitalization for infants under 6 months or those with apnea, hypoxia, pneumonia or pulmonary hypertension (oxygen, suctioning, hydration and nutrition support)"
+      ],
+      "home_care": [
+        "Completion of the full antibiotic course as prescribed",
+        "Small, frequent feeds or meals, especially after coughing fits with vomiting, with attention to fluid intake",
+        "Limiting close contact with infants and pregnant women while infectious, particularly before effective antibiotic therapy",
+        "Avoidance of smoke and other airway irritants that may trigger paroxysms"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Routine infant vaccination with a DTP-containing vaccine (the pentavalent DPT-HepB-Hib vaccine of the Philippine Expanded Program on Immunization) as a 3-dose primary series at 6, 10 and 14 weeks, with DTP boosters at 12-18 months and 4-6 years and Tdap at 7-18 years (PIDSP 2026 schedule; PIDS 2022 EPI assessment)."
+        },
+        {
+          "tier": "primary",
+          "content": "Maternal Tdap vaccination at 27-36 weeks of gestation in each pregnancy, which reduces pertussis hospitalization in early infancy by more than 90% and deaths by about 95%."
+        },
+        {
+          "tier": "secondary",
+          "content": "Antibiotic post-exposure prophylaxis (same macrolide regimens as treatment) for household contacts and high-risk contacts such as infants, pregnant women and immunocompromised persons, ideally within 21 days of the index case's cough onset."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early testing and antibiotic treatment of suspected cases, with droplet precautions, to limit spread to infants and other vulnerable contacts."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Hospital care for high-risk infants with monitoring for apnea and hypoxia and management of complications such as pneumonia, seizures and pulmonary hypertension."
+        }
+      ],
+      "emergency_signs": [
+        "Pauses in breathing (apnea) in an infant",
+        "Bluish or gray color of the lips or face (cyanosis) during or after coughing fits",
+        "Difficulty breathing, fast breathing or low oxygen saturation",
+        "Poor feeding, dehydration or repeated vomiting in a young infant",
+        "Seizures or reduced consciousness",
+        "Fever with worsening breathing suggesting pneumonia"
+      ],
+      "differentials": [
+        {
+          "condition": "Viral respiratory infections (e.g., RSV bronchiolitis, adenovirus)",
+          "distinguishing_feature": "Shorter course, often with fever and wheeze; lacks prolonged paroxysms with whoop and post-tussive vomiting"
+        },
+        {
+          "condition": "Mycoplasma pneumoniae infection",
+          "distinguishing_feature": "Prolonged cough in older children and adults with fever, headache and radiographic infiltrates; PCR distinguishes"
+        },
+        {
+          "condition": "Bordetella parapertussis infection",
+          "distinguishing_feature": "Pertussis-like but usually milder illness without marked lymphocytosis; identified by species-specific PCR"
+        },
+        {
+          "condition": "Foreign body aspiration",
+          "distinguishing_feature": "Sudden onset of cough or choking without a catarrhal prodrome; focal findings on examination or imaging"
+        },
+        {
+          "condition": "Asthma",
+          "distinguishing_feature": "Recurrent wheeze and variable airflow limitation responsive to bronchodilators; no whoop or post-tussive vomiting"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_paroxysmal_cough",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_posttussive_vomiting",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 4,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 2,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Preferred antibiotic for treatment and post-exposure prophylaxis at all ages, including infants under 1 month (CDC, StatPearls)."
+        },
+        {
+          "medicine_id": "med_clarithromycin",
+          "safety": "caution",
+          "note": "Alternative macrolide; macrolides are used with caution in infants under 1 month because of the association with infantile hypertrophic pyloric stenosis, where azithromycin is preferred."
+        },
+        {
+          "medicine_id": "med_cotrimoxazole",
+          "safety": "caution",
+          "note": "Alternative for macrolide allergy, intolerance or resistance; not used in infants under 2 months."
+        }
+      ],
+      "related": [
+        "community_acquired_pneumonia",
+        "influenza",
+        "covid19",
+        "asthma",
+        "tuberculosis"
+      ],
+      "references": [
+        {
+          "source_name": "Nelson Textbook of Pediatrics",
+          "citation_text": "Kliegman RM, St Geme JW III, Blum NJ, et al., eds. Nelson Textbook of Pediatrics, 22nd ed. Philadelphia: Elsevier; 2024.",
+          "url": "",
+          "specialty": "Pediatrics / Pediatric Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Pertussis",
+          "citation_text": "Vijayan V, Daley SF. Pertussis. [Updated 2026 Apr 13]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519008/",
+          "specialty": "Pediatrics / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Features of Pertussis",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Features of Pertussis. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/pertussis/hcp/clinical-signs/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Treatment of Pertussis",
+          "citation_text": "Centers for Disease Control and Prevention. Treatment of Pertussis. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/pertussis/hcp/clinical-care/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "PIDSP - Childhood Immunization Schedule 2026",
+          "citation_text": "Pediatric Infectious Disease Society of the Philippines. Childhood Immunization Schedule 2026. Quezon City: PIDSP; 2025.",
+          "url": "https://www.pidsphil.org/home/wp-content/uploads/2025/11/2026-PIDSP-Immunization-Calendar.pdf",
+          "specialty": "Pediatrics / Immunization",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "PIDS - An Assessment of the Expanded Program on Immunization (EPI) in the Philippines",
+          "citation_text": "Ulep VGT, Uy J. An Assessment of the Expanded Program on Immunization (EPI) in the Philippines: Supply-side Challenges and Ways Forward. Research Paper Series No. 2022-04. Quezon City: Philippine Institute for Development Studies; 2022.",
+          "url": "https://pidswebs.pids.gov.ph/CDN/document/pidsrp2204.pdf",
+          "specialty": "Public Health / Immunization",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

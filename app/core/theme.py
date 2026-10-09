@@ -26,6 +26,7 @@ class Theme:
         "BADGE_BG": "rgba(108, 92, 231, 0.15)",
         "BADGE_BORDER": "rgba(108, 92, 231, 0.3)",
         "BADGE_TEXT": "#A29BFE",
+        "ACCENT_2": "#C084FC",
     }
 
     _LIGHT = {
@@ -47,6 +48,7 @@ class Theme:
         "BADGE_BG": "#EDEAFF",
         "BADGE_BORDER": "#D6CFFF",
         "BADGE_TEXT": "#6C5CE7",
+        "ACCENT_2": "#7E22CE",
     }
 
     FONT = "DM Sans"
@@ -69,9 +71,34 @@ class Theme:
     def toggle_mode(cls) -> None:
         cls.set_mode("light" if cls._mode == "dark" else "dark")
 
+    # Colour theme (Settings > Appearance): Akeso, Dracula, Catppuccin...
+    # Each has a light and a dark palette; light/dark still switches within it.
+    _color_theme = "akeso"
+
+    @classmethod
+    def color_theme(cls) -> str:
+        return cls._color_theme
+
+    @classmethod
+    def set_color_theme(cls, theme_id: str) -> None:
+        from app.core.theme_presets import PRESETS
+        cls._color_theme = theme_id if theme_id in PRESETS else "akeso"
+
+    @classmethod
+    def key(cls) -> str:
+        """Theme and mode together ("dracula:dark"): what a stylesheet is built for."""
+        return f"{cls._color_theme}:{cls._mode}"
+
+    @classmethod
+    def palette_for(cls, theme_id: str, mode: str) -> dict:
+        from app.core.theme_presets import PRESETS
+        base = cls._DARK if mode == "dark" else cls._LIGHT
+        preset = PRESETS.get(theme_id, {}).get(mode, {})
+        return {**base, **preset}
+
     @classmethod
     def _palette(cls) -> dict:
-        return cls._DARK if cls._mode == "dark" else cls._LIGHT
+        return cls.palette_for(cls._color_theme, cls._mode)
 
     @classmethod
     def token(cls, name: str) -> str:
@@ -99,6 +126,7 @@ class Theme:
         from app.core.account_styles import account_rules
         from app.core.exchange_styles import exchange_rules
         from app.core.admin_styles import admin_rules
+        from app.core.article_styles import article_rules
         check_image = checkmark_file("#FFFFFF")
         body_font = f"'{cls.FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         heading_font = f"'{cls.HEADING_FONT}', '{cls.FALLBACK_FONT}', sans-serif"
@@ -485,7 +513,7 @@ class Theme:
             font-weight: 800;
         }}
         #urgencyPillSoon {{
-            background-color: rgba(108, 92, 231, 0.12);
+            background-color: {p['PRIMARY_SOFT']};
             color: {p['BADGE_TEXT']};
             border: 1px solid {p['BADGE_BORDER']};
             border-radius: 6px;
@@ -1296,4 +1324,4 @@ class Theme:
         #googleButton[googleState="cooldown"] {{
             color: {p['TEXT_MUTED']};
         }}
-        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font)
+        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font) + article_rules(p, heading_font)

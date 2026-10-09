@@ -21,7 +21,6 @@ from PySide6.QtWidgets import (
     QButtonGroup,
     QLayout,
     QCheckBox,
-    QComboBox,
     QDoubleSpinBox,
     QFrame,
     QGridLayout,
@@ -350,7 +349,6 @@ class SymptomCheckerView(QWidget):
         title = QHBoxLayout()
         title.setSpacing(10)
         title.addWidget(_label("Akeso Symptom Correlation Engine", "pageTitle", wrap=False))
-        title.addWidget(_label("ENGINE V2.5", "ccEngineBadge", wrap=False))
         title.addStretch(1)
         text.addLayout(title)
         text.addWidget(_label(

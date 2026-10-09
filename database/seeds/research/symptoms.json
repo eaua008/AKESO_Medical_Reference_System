@@ -1,0 +1,2532 @@
+{
+  "symptoms": [
+    {
+      "id": "sym_fever",
+      "name": "Fever",
+      "scientific_name": "Pyrexia",
+      "description": "Fever is a regulated elevation of body temperature above the individual's normal range, produced when pyrogens reset the hypothalamic thermoregulatory set point. It is most often a response to infection but also accompanies inflammatory, malignant, drug-related and other conditions.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Fever accompanies a very wide range of infectious and non-infectious illnesses and narrows the differential little on its own.",
+      "tags": [
+        "infection",
+        "systemic",
+        "vital-sign"
+      ],
+      "causes": [
+        "Viral infections (e.g., influenza, dengue, COVID-19)",
+        "Bacterial infections (e.g., pneumonia, urinary tract infection, typhoid fever)",
+        "Parasitic infections (e.g., malaria)",
+        "Inflammatory and autoimmune diseases",
+        "Malignancy (e.g., lymphoma)",
+        "Drug reactions"
+      ],
+      "red_flags": [
+        "Confusion or reduced level of consciousness",
+        "Neck stiffness with severe headache",
+        "Difficulty breathing or cyanosis",
+        "Seizures",
+        "Petechial or purpuric rash, or mucosal bleeding"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Fever. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003090.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Dall L, Stanford JF. Fever, Chills, and Night Sweats. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK324/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_chills",
+      "name": "Chills / rigors",
+      "scientific_name": "Rigors (shaking chills)",
+      "description": "Chills are a sensation of coldness, often with shivering and pallor, that occur as body temperature rises toward a newly elevated set point. Rigors are intense, uncontrollable shaking chills ('teeth-chattering, bed-shaking') that are associated with rapid temperature rise and suggest bacteremia or other acute infection.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Chills accompany most febrile illnesses, although true rigors modestly favour bacteremia, malaria, pyelonephritis and similar infections.",
+      "tags": [
+        "fever",
+        "infection",
+        "systemic"
+      ],
+      "causes": [
+        "Bacteremia or sepsis",
+        "Malaria",
+        "Pyelonephritis",
+        "Pneumonia",
+        "Influenza and other viral infections",
+        "Transfusion or drug reactions"
+      ],
+      "red_flags": [
+        "Hypotension or cold, mottled extremities (possible sepsis)",
+        "Confusion",
+        "Rapid breathing or low oxygen saturation",
+        "Rigors after travel to a malaria-endemic area"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Chills. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003091.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Dall L, Stanford JF. Fever, Chills, and Night Sweats. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK324/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_headache",
+      "name": "Headache",
+      "scientific_name": "Cephalalgia",
+      "description": "Headache is pain in any region of the head, arising from pain-sensitive intracranial or extracranial structures. Most headaches are primary (migraine, tension-type, cluster), but headache also accompanies systemic infection and can signal serious intracranial disease.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Headache is extremely common and accompanies many primary headache disorders and systemic illnesses, so it has low specificity alone.",
+      "tags": [
+        "neurologic",
+        "pain",
+        "fever-associated"
+      ],
+      "causes": [
+        "Tension-type headache",
+        "Migraine",
+        "Systemic viral or bacterial infection (e.g., influenza, dengue)",
+        "Sinusitis",
+        "Severe hypertension",
+        "Meningitis or intracranial hemorrhage (less common, serious)"
+      ],
+      "red_flags": [
+        "Sudden, explosive 'worst ever' headache",
+        "Fever with stiff neck",
+        "Focal neurological deficits, confusion or slurred speech",
+        "New headache after age 50 or after head injury",
+        "Headache worsening progressively over 24 hours"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Headache. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003024.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_retroorbital_pain",
+      "name": "Retro-orbital pain (pain behind the eyes)",
+      "scientific_name": "Retro-orbital pain",
+      "description": "Retro-orbital pain is aching or pressure felt behind the eyeball, often worsened by eye movement. In febrile illness it is a characteristic feature of dengue, accompanying severe headache, myalgia and arthralgia; it also occurs with migraine, sinusitis and orbital disease.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "In a febrile patient, pain behind the eyes points fairly strongly toward dengue and other arboviral infections.",
+      "tags": [
+        "dengue",
+        "eye",
+        "pain",
+        "fever-associated"
+      ],
+      "causes": [
+        "Dengue",
+        "Other arboviral infections",
+        "Migraine and cluster headache",
+        "Sinusitis",
+        "Optic neuritis",
+        "Orbital inflammation or infection"
+      ],
+      "red_flags": [
+        "Visual loss or double vision",
+        "Red, painful eye with reduced vision",
+        "In dengue: abdominal pain, persistent vomiting or mucosal bleeding",
+        "Proptosis or fever with swollen eyelids"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Pescador Ruschel MA, Panda PK, Farmer A. Dengue Fever. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430732/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Eye pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003032.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_myalgia",
+      "name": "Muscle aches (myalgia)",
+      "scientific_name": "Myalgia",
+      "description": "Myalgia is diffuse or localized pain in skeletal muscles, which may also be felt in the associated tendons, ligaments and fascia. Generalized myalgia is a common feature of systemic viral and bacterial infections, while localized myalgia more often reflects overuse or injury.",
+      "body_system": "Musculoskeletal System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Generalized muscle aches accompany many infections and systemic illnesses and are only weakly discriminating.",
+      "tags": [
+        "musculoskeletal",
+        "pain",
+        "viral"
+      ],
+      "causes": [
+        "Influenza and other viral infections",
+        "Dengue",
+        "Leptospirosis",
+        "Muscle overuse or injury",
+        "Drug-induced myopathy (e.g., statins)",
+        "Hypothyroidism"
+      ],
+      "red_flags": [
+        "Dark (cola-coloured) urine suggesting rhabdomyolysis",
+        "Marked muscle weakness",
+        "Fever with jaundice or reduced urine output",
+        "Severe pain with swelling of a limb"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Muscle aches. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003178.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_calf_pain",
+      "name": "Calf muscle pain / tenderness",
+      "scientific_name": "Calf myalgia",
+      "description": "Calf pain is pain or tenderness localized to the posterior lower leg muscles. In an acute febrile illness, myalgia characteristically involving the calves and lower back is a recognized feature of leptospirosis; outside that context, calf pain is often musculoskeletal or vascular.",
+      "body_system": "Musculoskeletal System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Febrile illness with prominent calf muscle pain is a classic pointer toward leptospirosis, especially after flood or animal-urine exposure.",
+      "tags": [
+        "leptospirosis",
+        "musculoskeletal",
+        "pain"
+      ],
+      "causes": [
+        "Leptospirosis",
+        "Muscle cramp or strain",
+        "Deep vein thrombosis",
+        "Peripheral arterial disease (claudication)",
+        "Viral myositis"
+      ],
+      "red_flags": [
+        "Unilateral calf swelling, warmth or redness (possible deep vein thrombosis)",
+        "Fever with jaundice, reduced urine output or bleeding",
+        "Dark urine suggesting rhabdomyolysis",
+        "Cold, pale leg"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "CDC Yellow Book",
+          "citation_text": "Leptospirosis. CDC Yellow Book: Health Information for International Travel. Atlanta (GA): Centers for Disease Control and Prevention.",
+          "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/leptospirosis.html",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Leg pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003182.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_arthralgia",
+      "name": "Joint pain (arthralgia)",
+      "scientific_name": "Arthralgia",
+      "description": "Arthralgia is pain in one or more joints without necessarily visible swelling or inflammation. It may arise from injury, degenerative or inflammatory arthritis, or as part of systemic infection such as dengue ('breakbone fever').",
+      "body_system": "Musculoskeletal System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Joint pain is common in systemic infection and rheumatic disease; its pattern and accompanying features determine how much it narrows the differential.",
+      "tags": [
+        "musculoskeletal",
+        "pain",
+        "arboviral"
+      ],
+      "causes": [
+        "Viral infections (e.g., dengue, chikungunya)",
+        "Osteoarthritis",
+        "Rheumatoid arthritis and other inflammatory arthritides",
+        "Gout",
+        "Septic arthritis",
+        "Injury"
+      ],
+      "red_flags": [
+        "Single hot, swollen joint with fever (possible septic arthritis)",
+        "Inability to bear weight",
+        "Joint pain with rash and bleeding",
+        "Rapid onset of multiple swollen joints"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Joint pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003261.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Pescador Ruschel MA, Panda PK, Farmer A. Dengue Fever. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430732/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_rash",
+      "name": "Skin rash",
+      "scientific_name": "Exanthem (eruption)",
+      "description": "A rash is a change in the colour, texture or feel of the skin, which may be macular, papular, vesicular, petechial or urticarial. In febrile illness, a generalized exanthem accompanies many viral infections (e.g., measles, dengue) and some bacterial and drug-related conditions.",
+      "body_system": "Integumentary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Rash is shared by many infections and drug reactions, but its morphology and distribution add useful discriminating information.",
+      "tags": [
+        "skin",
+        "exanthem",
+        "fever-associated"
+      ],
+      "causes": [
+        "Viral exanthems (e.g., measles, dengue)",
+        "Drug eruptions",
+        "Contact or atopic dermatitis",
+        "Urticaria",
+        "Bacterial infections",
+        "Autoimmune disease"
+      ],
+      "red_flags": [
+        "Petechial or purpuric rash that does not blanch",
+        "Rash with fever and low blood pressure",
+        "Mucosal involvement or skin blistering/peeling",
+        "Rash with facial or throat swelling or difficulty breathing"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Rashes. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003220.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_bleeding",
+      "name": "Mucosal bleeding / petechiae (gum bleeding, nosebleed)",
+      "scientific_name": "Mucocutaneous hemorrhage (petechiae, epistaxis, gingival bleeding)",
+      "description": "Mucocutaneous bleeding includes petechiae (pinpoint red dots from capillary bleeding), bruising, nosebleeds (epistaxis) and gum bleeding. In dengue, minor mucocutaneous bleeding may occur, and mucosal bleeding is listed as a warning sign of severe dengue; it also reflects thrombocytopenia or coagulation disorders.",
+      "body_system": "Hematologic System",
+      "is_red_flag": true,
+      "diagnostic_weight": 7,
+      "weight_rationale": "In an acute febrile illness, spontaneous mucosal bleeding or petechiae strongly suggests dengue or another cause of thrombocytopenia or coagulopathy.",
+      "tags": [
+        "bleeding",
+        "dengue",
+        "platelets",
+        "warning-sign"
+      ],
+      "causes": [
+        "Dengue",
+        "Immune or other thrombocytopenia",
+        "Leptospirosis",
+        "Anticoagulant or antiplatelet medicines",
+        "Leukemia and other bone marrow disorders",
+        "Local causes (dry nasal mucosa, gingivitis) for isolated nosebleed or gum bleeding"
+      ],
+      "red_flags": [
+        "Persistent vomiting, severe abdominal pain or lethargy in dengue",
+        "Vomiting blood or black stools",
+        "Signs of shock (cold extremities, weak pulse)",
+        "Widespread new petechiae or bruising with fever"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Pescador Ruschel MA, Panda PK, Farmer A. Dengue Fever. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430732/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Bleeding into the skin. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003235.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_abdominal_pain",
+      "name": "Abdominal pain",
+      "scientific_name": "Abdominal pain",
+      "description": "Abdominal pain is pain felt anywhere between the chest and the groin, arising from abdominal organs, the abdominal wall or referred from outside the abdomen. Its location, character, timing and associated features guide the differential, and severity does not always reflect seriousness.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Abdominal pain without localisation is common to many gastrointestinal, urinary, gynecological and systemic conditions.",
+      "tags": [
+        "gastrointestinal",
+        "pain"
+      ],
+      "causes": [
+        "Gastroenteritis",
+        "Constipation or gas",
+        "Peptic ulcer disease or gastritis",
+        "Appendicitis",
+        "Gallbladder disease",
+        "Urinary tract infection or kidney stones"
+      ],
+      "red_flags": [
+        "Sudden, severe pain or rigid abdomen",
+        "Vomiting blood or passing bloody or black stools",
+        "Pain with fever and inability to pass stool",
+        "Pain in pregnancy",
+        "Pain with chest, neck or shoulder pain, or difficulty breathing"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Abdominal pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003120.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_epigastric_pain",
+      "name": "Epigastric pain",
+      "scientific_name": "Epigastralgia",
+      "description": "Epigastric pain is pain or burning located in the upper central abdomen below the xiphoid process. It is characteristic of peptic ulcer disease, gastritis and functional dyspepsia, but cardiac, biliary and pancreatic disease may also present here.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Pain localised to the epigastrium focuses the differential on upper gastrointestinal causes, while still overlapping with cardiac and pancreaticobiliary disease.",
+      "tags": [
+        "gastrointestinal",
+        "dyspepsia",
+        "pain"
+      ],
+      "causes": [
+        "Peptic ulcer disease",
+        "Gastritis",
+        "Functional dyspepsia",
+        "Gastroesophageal reflux disease",
+        "Pancreatitis",
+        "Biliary colic"
+      ],
+      "red_flags": [
+        "Vomiting blood or black, tarry stools",
+        "Unintentional weight loss or difficulty swallowing",
+        "Persistent vomiting",
+        "Pain with sweating or breathlessness (possible cardiac cause)",
+        "Sudden severe pain with rigid abdomen (possible perforation)"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Francis P, Zavala SR. Functional Dyspepsia. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554563/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Abdominal pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003120.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_heartburn",
+      "name": "Heartburn",
+      "scientific_name": "Pyrosis",
+      "description": "Heartburn is a painful burning feeling just below or behind the breastbone, usually caused by reflux of gastric acid into the esophagus. It is often worse after meals, when lying down or bending over.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Retrosternal burning related to meals and posture is fairly characteristic of acid reflux and peptic disease.",
+      "tags": [
+        "gastrointestinal",
+        "reflux",
+        "acid"
+      ],
+      "causes": [
+        "Gastroesophageal reflux disease",
+        "Hiatal hernia",
+        "Peptic ulcer disease",
+        "Pregnancy",
+        "Medicines (e.g., NSAIDs)",
+        "Large or fatty meals, alcohol, smoking"
+      ],
+      "red_flags": [
+        "Chest pain with sweating, breathlessness or radiation to the arm or jaw (possible cardiac cause)",
+        "Difficulty or pain on swallowing",
+        "Vomiting blood or black stools",
+        "Unintentional weight loss"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Heartburn. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003114.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_nausea_vomiting",
+      "name": "Nausea & vomiting",
+      "scientific_name": "Nausea and emesis",
+      "description": "Nausea is an unpleasant sensation of the urge to vomit, and vomiting (emesis) is forceful expulsion of gastric contents through the mouth. Both are common and arise from gastrointestinal, central nervous system, metabolic, drug-related and pregnancy-related causes.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Nausea and vomiting occur in a very wide range of gastrointestinal and systemic conditions and are nonspecific alone.",
+      "tags": [
+        "gastrointestinal",
+        "dehydration"
+      ],
+      "causes": [
+        "Viral gastroenteritis",
+        "Food poisoning",
+        "Pregnancy",
+        "Medicines",
+        "Migraine",
+        "Raised intracranial pressure or other central causes"
+      ],
+      "red_flags": [
+        "Blood or coffee-ground material in the vomit",
+        "Signs of dehydration (no urine for 8 hours, dry mouth, sunken eyes)",
+        "Severe abdominal pain",
+        "Headache with stiff neck",
+        "Persistent vomiting in dengue (warning sign)"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Nausea and vomiting - adults. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003117.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_diarrhea",
+      "name": "Diarrhea",
+      "scientific_name": "Diarrhea",
+      "description": "Diarrhea is the passage of loose or watery stools, typically three or more times a day. Acute diarrhea is most often infectious, while chronic diarrhea suggests malabsorptive, inflammatory or functional disease.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Diarrhea points toward intestinal involvement, most often acute infectious gastroenteritis, but also occurs in systemic infections.",
+      "tags": [
+        "gastrointestinal",
+        "infection",
+        "dehydration"
+      ],
+      "causes": [
+        "Viral gastroenteritis",
+        "Bacterial or parasitic intestinal infection",
+        "Food poisoning",
+        "Antibiotics and other medicines",
+        "Inflammatory bowel disease",
+        "Irritable bowel syndrome"
+      ],
+      "red_flags": [
+        "Blood or pus in the stool",
+        "Signs of dehydration or reduced urine output",
+        "High fever",
+        "Severe abdominal pain",
+        "Diarrhea lasting more than several days"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Diarrhea. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003126.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_constipation",
+      "name": "Constipation",
+      "scientific_name": "Constipation (obstipation when severe)",
+      "description": "Constipation is infrequent bowel movements (commonly fewer than three per week) or hard, dry stools that are difficult or painful to pass. It is most often functional or dietary, but may reflect medicines, metabolic disease or bowel obstruction.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Constipation is common and usually functional, adding limited diagnostic information on its own.",
+      "tags": [
+        "gastrointestinal",
+        "bowel-habit"
+      ],
+      "causes": [
+        "Low dietary fibre or fluid intake",
+        "Physical inactivity",
+        "Medicines (e.g., opioids, iron, some antacids)",
+        "Irritable bowel syndrome",
+        "Hypothyroidism",
+        "Colorectal cancer or other obstruction"
+      ],
+      "red_flags": [
+        "Inability to pass stool or gas with vomiting and abdominal distension",
+        "Blood in the stool",
+        "Unintentional weight loss",
+        "New change in bowel habit in older adults"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Health Topics",
+          "citation_text": "Constipation. MedlinePlus Health Topics. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/constipation.html",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_melena",
+      "name": "Black, tarry stools (melena)",
+      "scientific_name": "Melena",
+      "description": "Melena is the passage of black, sticky, tarry stools with a characteristic foul odour, produced when blood from the upper gastrointestinal tract is digested. It usually indicates bleeding from the esophagus, stomach or duodenum; iron and bismuth can blacken stools but do not make them tarry.",
+      "body_system": "Digestive System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Tarry black stool localises bleeding to the upper gastrointestinal tract, most commonly peptic ulcer disease.",
+      "tags": [
+        "gastrointestinal",
+        "bleeding",
+        "upper-GI"
+      ],
+      "causes": [
+        "Peptic ulcer disease",
+        "Gastritis or duodenitis (including NSAID-related)",
+        "Esophagitis",
+        "Esophageal or gastric varices",
+        "Mallory-Weiss tear",
+        "Upper gastrointestinal cancer"
+      ],
+      "red_flags": [
+        "Dizziness, fainting or orthostatic hypotension",
+        "Rapid heart rate or low blood pressure",
+        "Concurrent vomiting of blood",
+        "Use of anticoagulants or antiplatelet agents"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Antunes C, Tian C, Copelin EL II. Upper Gastrointestinal Bleeding. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470300/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Black or tarry stools. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003130.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_hematemesis",
+      "name": "Vomiting blood (hematemesis)",
+      "scientific_name": "Hematemesis",
+      "description": "Hematemesis is vomiting of fresh blood, clots or dark 'coffee-ground' material from the upper gastrointestinal tract. It indicates bleeding proximal to the ligament of Treitz and requires assessment for hemodynamic instability.",
+      "body_system": "Digestive System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Vomiting blood localises bleeding to the upper gastrointestinal tract and is a strong pointer toward peptic ulcer, varices or mucosal tears.",
+      "tags": [
+        "gastrointestinal",
+        "bleeding",
+        "upper-GI",
+        "emergency"
+      ],
+      "causes": [
+        "Peptic ulcer disease",
+        "Esophageal or gastric varices",
+        "Esophagitis",
+        "Gastritis",
+        "Mallory-Weiss tear",
+        "Upper gastrointestinal cancer"
+      ],
+      "red_flags": [
+        "Fainting, dizziness or orthostatic hypotension",
+        "Rapid heart rate or low blood pressure",
+        "Large-volume bleeding",
+        "Known liver disease (possible variceal bleeding)"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Antunes C, Tian C, Copelin EL II. Upper Gastrointestinal Bleeding. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470300/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Vomiting blood. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003118.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_anorexia",
+      "name": "Loss of appetite",
+      "scientific_name": "Anorexia",
+      "description": "Loss of appetite is a reduced desire to eat; the medical term is anorexia (distinct from the eating disorder anorexia nervosa). It accompanies many acute infections as well as chronic, malignant, psychiatric and medicine-related conditions.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Reduced appetite is a highly nonspecific accompaniment of many acute and chronic illnesses.",
+      "tags": [
+        "systemic",
+        "nutrition"
+      ],
+      "causes": [
+        "Acute infections",
+        "Chronic liver, kidney or heart disease",
+        "Cancer",
+        "Depression",
+        "Medicines (e.g., chemotherapy, some antibiotics)",
+        "Pregnancy"
+      ],
+      "red_flags": [
+        "Unintentional weight loss",
+        "Inability to keep down fluids",
+        "Jaundice",
+        "Persistent loss of appetite with night sweats or fever"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Appetite - decreased. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003121.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_fatigue",
+      "name": "Fatigue & malaise",
+      "scientific_name": "Fatigue and malaise",
+      "description": "Fatigue is a feeling of weariness, tiredness or lack of energy that is not relieved by usual rest, and malaise is a general sense of being unwell. Both accompany a very broad range of infectious, metabolic, hematologic, psychiatric and lifestyle-related conditions.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Fatigue and malaise are among the least specific symptoms and occur in most acute and chronic illnesses.",
+      "tags": [
+        "systemic",
+        "nonspecific"
+      ],
+      "causes": [
+        "Acute viral infections",
+        "Anemia",
+        "Hypothyroidism",
+        "Diabetes mellitus",
+        "Depression and sleep disorders",
+        "Heart failure and chronic kidney disease"
+      ],
+      "red_flags": [
+        "Fatigue with breathlessness or chest pain",
+        "Unintentional weight loss or night sweats",
+        "Confusion",
+        "Fatigue with bleeding, pallor or jaundice"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Fatigue. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003088.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_weight_loss",
+      "name": "Unintentional weight loss",
+      "scientific_name": "Unintentional weight loss (cachexia when severe)",
+      "description": "Unintentional weight loss is a decrease in body weight that occurs without deliberate dieting or exercise. Clinically significant loss (commonly defined as more than 5% of body weight over 6-12 months) warrants evaluation for malignancy, chronic infection, endocrine and gastrointestinal disease.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Unintentional weight loss narrows the differential toward chronic infection, malignancy and endocrine disease but remains broad.",
+      "tags": [
+        "systemic",
+        "chronic",
+        "nutrition"
+      ],
+      "causes": [
+        "Cancer",
+        "Tuberculosis and other chronic infections",
+        "Uncontrolled diabetes mellitus",
+        "Hyperthyroidism",
+        "Malabsorption or chronic gastrointestinal disease",
+        "Depression"
+      ],
+      "red_flags": [
+        "Night sweats and fever",
+        "Chronic cough or hemoptysis",
+        "Difficulty swallowing or gastrointestinal bleeding",
+        "Excessive thirst and urination"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Weight loss - unintentional. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003107.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_night_sweats",
+      "name": "Night sweats",
+      "scientific_name": "Nocturnal hyperhidrosis",
+      "description": "Night sweats are episodes of sweating during sleep severe enough to soak nightclothes or bedding, resulting from exaggeration of the normal circadian temperature rhythm. They may accompany any febrile illness and are classically associated with tuberculosis and lymphoma.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Drenching night sweats, especially with weight loss or chronic cough, direct attention toward tuberculosis, lymphoma and other chronic infections.",
+      "tags": [
+        "systemic",
+        "tuberculosis",
+        "B-symptom"
+      ],
+      "causes": [
+        "Tuberculosis",
+        "Lymphoma",
+        "Other chronic infections (e.g., lung abscess, endocarditis, brucellosis)",
+        "Menopause",
+        "Nocturnal hypoglycemia",
+        "Medicines"
+      ],
+      "red_flags": [
+        "Unintentional weight loss",
+        "Persistent cough or hemoptysis",
+        "Enlarged lymph nodes",
+        "Persistent fever"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Dall L, Stanford JF. Fever, Chills, and Night Sweats. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK324/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_cough",
+      "name": "Cough",
+      "scientific_name": "Tussis",
+      "description": "Cough is a protective reflex that expels air forcefully to clear the airways of secretions and irritants. It is classified as acute (under 3 weeks), subacute (3-8 weeks) or chronic (over 8 weeks) and may be dry or productive.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Cough is common to most respiratory infections and many airway diseases and discriminates poorly alone.",
+      "tags": [
+        "respiratory",
+        "airway"
+      ],
+      "causes": [
+        "Upper respiratory tract infection",
+        "Acute bronchitis or pneumonia",
+        "Asthma",
+        "Chronic obstructive pulmonary disease",
+        "Gastroesophageal reflux",
+        "Tuberculosis",
+        "ACE inhibitors"
+      ],
+      "red_flags": [
+        "Coughing up blood",
+        "Shortness of breath or chest pain",
+        "Cough lasting more than 3 weeks with weight loss or night sweats",
+        "High fever"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Cough. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003072.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_productive_cough",
+      "name": "Productive cough (sputum)",
+      "scientific_name": "Productive cough (expectoration)",
+      "description": "A productive cough brings up sputum from the lower respiratory tract. Purulent sputum (yellow, green, opaque) suggests bacterial infection, rust-coloured sputum is associated with pneumococcal pneumonia, and pink frothy sputum suggests pulmonary edema.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Sputum production points to lower respiratory tract involvement, and its character (purulent, rusty, blood-streaked) adds diagnostic value.",
+      "tags": [
+        "respiratory",
+        "sputum",
+        "infection"
+      ],
+      "causes": [
+        "Community-acquired pneumonia",
+        "Acute bronchitis",
+        "Chronic obstructive pulmonary disease (chronic bronchitis)",
+        "Bronchiectasis",
+        "Tuberculosis",
+        "Lung abscess"
+      ],
+      "red_flags": [
+        "Blood in sputum",
+        "Shortness of breath or low oxygen saturation",
+        "High fever with pleuritic chest pain",
+        "Pink frothy sputum",
+        "Chronic cough with weight loss and night sweats"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Farzan S. Cough and Sputum Production. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK359/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Cough. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003072.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_hemoptysis",
+      "name": "Coughing up blood (hemoptysis)",
+      "scientific_name": "Hemoptysis",
+      "description": "Hemoptysis is the expectoration of blood or blood-tinged sputum originating from the lungs or tracheobronchial tree, distinguished from bleeding from the nose, mouth or upper gastrointestinal tract. Massive hemoptysis is a life-threatening emergency.",
+      "body_system": "Respiratory System",
+      "is_red_flag": true,
+      "diagnostic_weight": 8,
+      "weight_rationale": "Coughing up blood narrows the differential to a limited set of pulmonary causes, prominently tuberculosis, bronchitis, bronchiectasis, lung cancer and pulmonary embolism.",
+      "tags": [
+        "respiratory",
+        "bleeding",
+        "tuberculosis",
+        "emergency"
+      ],
+      "causes": [
+        "Acute or chronic bronchitis",
+        "Tuberculosis",
+        "Pneumonia",
+        "Bronchiectasis",
+        "Lung cancer",
+        "Pulmonary embolism"
+      ],
+      "red_flags": [
+        "Large volumes of blood",
+        "Shortness of breath or low oxygen saturation",
+        "Chest pain",
+        "Low blood pressure or rapid heart rate",
+        "Weight loss and night sweats"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Corey R. Hemoptysis. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK360/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Coughing up blood. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003073.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_dyspnea",
+      "name": "Shortness of breath (dyspnea)",
+      "scientific_name": "Dyspnea",
+      "description": "Dyspnea is a subjective sensation of uncomfortable or difficult breathing, or of not getting enough air. It arises from respiratory, cardiac, metabolic, hematologic and psychological causes, and severe or sudden dyspnea can indicate a life-threatening condition.",
+      "body_system": "Respiratory System",
+      "is_red_flag": true,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Breathlessness points to cardiopulmonary disease but is shared by many respiratory, cardiac and systemic conditions.",
+      "tags": [
+        "respiratory",
+        "cardiac",
+        "emergency"
+      ],
+      "causes": [
+        "Asthma",
+        "Chronic obstructive pulmonary disease",
+        "Pneumonia",
+        "Heart failure",
+        "Acute coronary syndrome",
+        "Pulmonary embolism",
+        "Anemia"
+      ],
+      "red_flags": [
+        "Difficulty speaking in full sentences",
+        "Blue lips or low oxygen saturation",
+        "Chest pain",
+        "Confusion or drowsiness",
+        "Sudden onset"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Breathing difficulty. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003075.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Suha F, Modi P, Sharma S. Dyspnea. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499965/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_wheezing",
+      "name": "Wheezing",
+      "scientific_name": "Wheeze (sibilant rhonchi)",
+      "description": "Wheezing is a high-pitched, musical sound produced by airflow through narrowed or compressed airways, usually most prominent on expiration. It is characteristic of asthma and chronic obstructive pulmonary disease, but 'all that wheezes is not asthma'.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Wheeze indicates airway narrowing and strongly favours obstructive airway diseases such as asthma and COPD.",
+      "tags": [
+        "respiratory",
+        "airway-obstruction",
+        "asthma"
+      ],
+      "causes": [
+        "Asthma",
+        "Chronic obstructive pulmonary disease",
+        "Viral bronchitis or bronchiolitis",
+        "Heart failure with pulmonary edema",
+        "Anaphylaxis",
+        "Foreign body or airway tumour"
+      ],
+      "red_flags": [
+        "Difficulty speaking or use of accessory muscles",
+        "Blue lips or low oxygen saturation",
+        "Facial or throat swelling (possible anaphylaxis)",
+        "Wheeze that is unilateral or fixed (possible obstruction)",
+        "Silent chest in a patient with severe asthma"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Wheezing. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003070.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Gong H Jr. Wheezing and Asthma. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK358/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_chest_tightness",
+      "name": "Chest tightness",
+      "scientific_name": "Chest tightness",
+      "description": "Chest tightness is a sensation of constriction or inability to fully expand the chest. It is one of the cardinal symptoms of asthma, often reported more frequently than wheeze, but a sensation of tightness or pressure may also represent myocardial ischemia.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Chest tightness with wheeze or cough favours bronchospasm, although overlap with cardiac ischemic pain limits specificity.",
+      "tags": [
+        "respiratory",
+        "asthma",
+        "chest"
+      ],
+      "causes": [
+        "Asthma",
+        "Chronic obstructive pulmonary disease",
+        "Exercise-induced bronchoconstriction",
+        "Acute coronary syndrome",
+        "Anxiety or panic"
+      ],
+      "red_flags": [
+        "Tightness with sweating, nausea or radiation to arm or jaw",
+        "Inability to speak in full sentences",
+        "Low oxygen saturation",
+        "Symptoms not relieved by usual reliever inhaler"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Goldin J, Cataletto ME. Asthma. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430901/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Gong H Jr. Wheezing and Asthma. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK358/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_pleuritic_chest_pain",
+      "name": "Pleuritic chest pain",
+      "scientific_name": "Pleuritic chest pain (pleurodynia)",
+      "description": "Pleuritic chest pain is sharp, localized pain in the chest, neck or shoulder that worsens with breathing, coughing or sneezing. It results from irritation or inflammation of the parietal pleura; pulmonary embolism is the most frequent serious cause.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Pain that is sharp and worsened by breathing localises the process to the pleura and narrows the differential to pleural, pulmonary and pericardial causes.",
+      "tags": [
+        "respiratory",
+        "pleura",
+        "chest-pain"
+      ],
+      "causes": [
+        "Pneumonia",
+        "Pulmonary embolism",
+        "Viral pleurisy",
+        "Pneumothorax",
+        "Pericarditis",
+        "Autoimmune disease (e.g., lupus)"
+      ],
+      "red_flags": [
+        "Sudden onset with shortness of breath (possible embolism or pneumothorax)",
+        "Coughing up blood",
+        "Low blood pressure or low oxygen saturation",
+        "High fever with productive cough"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Hunter MP, Goldin J, Regunath H. Pleurisy. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK558958/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_chest_pain",
+      "name": "Chest pain or pressure (angina-like)",
+      "scientific_name": "Angina pectoris / anginal chest pain",
+      "description": "Anginal chest pain is typically a dull, heavy, pressing or crushing substernal discomfort that may radiate to the arm, neck or jaw, is precipitated by exertion or stress and relieved by rest. Chest pain has a broad differential that includes several immediately life-threatening causes.",
+      "body_system": "Cardiovascular System",
+      "is_red_flag": true,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Pressure-like substernal pain with exertional features points toward myocardial ischemia, though other thoracic causes overlap.",
+      "tags": [
+        "cardiac",
+        "ischemia",
+        "chest-pain",
+        "emergency"
+      ],
+      "causes": [
+        "Acute coronary syndrome",
+        "Stable angina",
+        "Pulmonary embolism",
+        "Aortic dissection",
+        "Gastroesophageal reflux disease",
+        "Musculoskeletal chest pain"
+      ],
+      "red_flags": [
+        "Pain lasting more than a few minutes at rest",
+        "Sweating, nausea or breathlessness",
+        "Radiation to arm, jaw, neck or back",
+        "Fainting or low blood pressure",
+        "Sudden tearing pain radiating to the back"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Chest pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003079.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Johnson K, Ghassemzadeh S. Chest Pain. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470557/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_sore_throat",
+      "name": "Sore throat",
+      "scientific_name": "Pharyngitis (pharyngodynia)",
+      "description": "Sore throat is discomfort, pain or scratchiness in the throat that often makes swallowing painful. Most cases are due to viral upper respiratory infection; group A streptococcus is the main bacterial cause.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Sore throat localises disease to the upper respiratory tract but is shared by many viral and bacterial infections.",
+      "tags": [
+        "respiratory",
+        "upper-airway",
+        "infection"
+      ],
+      "causes": [
+        "Viral upper respiratory infections (common cold, influenza, COVID-19)",
+        "Streptococcal pharyngitis",
+        "Infectious mononucleosis",
+        "Allergic rhinitis with postnasal drip",
+        "Gastroesophageal reflux",
+        "Dry air or irritants"
+      ],
+      "red_flags": [
+        "Difficulty breathing or drooling",
+        "Inability to swallow or open the mouth",
+        "Muffled voice or one-sided throat swelling (possible abscess)",
+        "Stiff neck"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Pharyngitis - sore throat. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/000655.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_rhinorrhea",
+      "name": "Runny nose (coryza)",
+      "scientific_name": "Rhinorrhea (coryza)",
+      "description": "Rhinorrhea is discharge of fluid from the nose, often with nasal congestion, caused by inflamed nasal mucosa and blood vessels. Coryza (runny nose with sneezing and congestion) is typical of viral upper respiratory infections and is part of the measles prodrome.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Runny nose points to the upper respiratory tract but is common to colds, influenza, allergy and measles.",
+      "tags": [
+        "respiratory",
+        "upper-airway",
+        "viral"
+      ],
+      "causes": [
+        "Common cold and other viral upper respiratory infections",
+        "Influenza",
+        "Allergic rhinitis",
+        "Measles (prodrome)",
+        "Sinusitis",
+        "Vasomotor or non-allergic rhinitis"
+      ],
+      "red_flags": [
+        "High fever with conjunctivitis and cough (possible measles)",
+        "Clear watery discharge after head injury",
+        "Facial swelling or severe facial pain",
+        "Difficulty breathing"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Stuffy or runny nose - adult. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003049.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_conjunctivitis",
+      "name": "Red eyes (conjunctivitis / conjunctival suffusion)",
+      "scientific_name": "Conjunctival injection / conjunctival suffusion",
+      "description": "Red eye results from dilated or swollen blood vessels on the surface of the eye. Conjunctivitis involves inflammation with discharge, whereas conjunctival suffusion is redness without purulent discharge that is characteristic of leptospirosis; conjunctivitis is also part of the measles prodrome.",
+      "body_system": "Immune & Lymphatic System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "In a febrile patient, conjunctival suffusion or conjunctivitis points toward leptospirosis or measles.",
+      "tags": [
+        "eye",
+        "leptospirosis",
+        "measles"
+      ],
+      "causes": [
+        "Viral or bacterial conjunctivitis",
+        "Allergic conjunctivitis",
+        "Leptospirosis (conjunctival suffusion)",
+        "Measles",
+        "Subconjunctival hemorrhage",
+        "Acute glaucoma or uveitis"
+      ],
+      "red_flags": [
+        "Eye pain with reduced vision",
+        "Severe headache with nausea (possible acute glaucoma)",
+        "Sensitivity to light",
+        "Fever with jaundice or reduced urine output (possible severe leptospirosis)"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Eye redness. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003031.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC Yellow Book",
+          "citation_text": "Leptospirosis. CDC Yellow Book: Health Information for International Travel. Atlanta (GA): Centers for Disease Control and Prevention.",
+          "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/leptospirosis.html",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_koplik_spots",
+      "name": "Koplik spots",
+      "scientific_name": "Koplik spots (enanthem of measles)",
+      "description": "Koplik spots are small bluish-white spots, about 2-3 mm, on an erythematous base on the buccal mucosa opposite the molars, likened to 'grains of salt on a red background'. They typically appear about a day before the measles rash and fade as the rash develops.",
+      "body_system": "Integumentary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 10,
+      "weight_rationale": "Koplik spots are considered pathognomonic of measles, so their presence strongly confirms the diagnosis.",
+      "tags": [
+        "measles",
+        "pathognomonic",
+        "oral-mucosa"
+      ],
+      "causes": [
+        "Measles (rubeola)"
+      ],
+      "red_flags": [
+        "Difficulty breathing (possible measles pneumonia)",
+        "Confusion or seizures (possible encephalitis)",
+        "Dehydration from diarrhea or poor intake",
+        "Infants, pregnant or immunocompromised patients"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Jain P, Rathee M. Koplik Spots. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK549793/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Measles. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/001569.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_anosmia",
+      "name": "Loss of smell or taste",
+      "scientific_name": "Anosmia / ageusia",
+      "description": "Anosmia is partial or total loss of the sense of smell, and ageusia or dysgeusia refers to loss or distortion of taste; because flavour depends largely on smell, the two are often reported together. Sudden loss of smell is a recognised feature of viral upper respiratory infections, notably COVID-19.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "New, sudden loss of smell or taste during an acute respiratory illness is relatively characteristic of COVID-19.",
+      "tags": [
+        "neurologic",
+        "covid-19",
+        "special-senses"
+      ],
+      "causes": [
+        "COVID-19",
+        "Common cold and other viral upper respiratory infections",
+        "Chronic sinusitis or nasal polyps",
+        "Allergic rhinitis",
+        "Head injury",
+        "Neurodegenerative disease"
+      ],
+      "red_flags": [
+        "Loss of smell with other neurological symptoms",
+        "Loss of smell after head injury",
+        "Difficulty breathing in suspected COVID-19",
+        "Persistent one-sided nasal obstruction or bleeding"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Smell - impaired. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003052.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Taste - impaired. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003050.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_jaundice",
+      "name": "Jaundice",
+      "scientific_name": "Icterus",
+      "description": "Jaundice is yellow discolouration of the skin, mucous membranes and sclerae caused by accumulation of bilirubin. Scleral icterus is best appreciated when serum bilirubin exceeds about 3 mg/dL, and causes are grouped as prehepatic, hepatic and posthepatic.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Jaundice localises the problem to hemolysis, liver disease or biliary obstruction, and in febrile illness points toward hepatitis, leptospirosis or severe malaria.",
+      "tags": [
+        "hepatobiliary",
+        "bilirubin",
+        "leptospirosis"
+      ],
+      "causes": [
+        "Viral hepatitis",
+        "Alcohol-related or other liver disease",
+        "Gallstones or other biliary obstruction",
+        "Hemolysis (e.g., malaria)",
+        "Leptospirosis",
+        "Drug-induced liver injury"
+      ],
+      "red_flags": [
+        "Confusion or drowsiness (possible liver failure)",
+        "Bleeding or bruising",
+        "Fever with right upper abdominal pain",
+        "Reduced urine output"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Jaundice. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/000210.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Joseph A, Samant H. Jaundice. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK544252/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_dark_urine",
+      "name": "Dark urine",
+      "scientific_name": "Choluria / abnormal urine colour",
+      "description": "Dark urine is urine that is dark yellow, tea- or cola-coloured. Dark brown clear urine may reflect bilirubinuria from liver disease, while dark urine can also result from severe dehydration, rhabdomyolysis, hemoglobinuria, blood in the urine or certain foods and medicines.",
+      "body_system": "Urinary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Tea- or cola-coloured urine narrows the differential to liver disease, hemolysis, rhabdomyolysis or hematuria.",
+      "tags": [
+        "urine",
+        "hepatobiliary",
+        "hemolysis"
+      ],
+      "causes": [
+        "Dehydration",
+        "Viral hepatitis or cirrhosis (bilirubinuria)",
+        "Rhabdomyolysis",
+        "Hemolysis (e.g., severe malaria)",
+        "Hematuria",
+        "Foods and medicines"
+      ],
+      "red_flags": [
+        "Jaundice",
+        "Reduced urine output",
+        "Severe muscle pain or weakness",
+        "Fever with confusion"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Urine - abnormal color. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003139.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_decreased_urine",
+      "name": "Decreased urine output (oliguria)",
+      "scientific_name": "Oliguria",
+      "description": "Oliguria is reduced urine output, commonly defined in adults as less than 400 mL per day (or below about 0.5 mL/kg/h). Causes are classified as prerenal (reduced kidney perfusion, e.g., dehydration or shock), intrinsic renal and postrenal (urinary obstruction).",
+      "body_system": "Urinary System",
+      "is_red_flag": true,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Reduced urine output points to hypovolemia, shock or acute kidney injury rather than to a specific disease.",
+      "tags": [
+        "renal",
+        "acute-kidney-injury",
+        "shock",
+        "warning-sign"
+      ],
+      "causes": [
+        "Dehydration (vomiting, diarrhea, poor intake)",
+        "Shock or sepsis",
+        "Acute kidney injury (e.g., leptospirosis, severe malaria)",
+        "Heart failure",
+        "Urinary tract obstruction",
+        "Nephrotoxic medicines"
+      ],
+      "red_flags": [
+        "No urine for 8 hours or more",
+        "Dizziness, low blood pressure or rapid pulse",
+        "Confusion",
+        "Swelling or breathlessness from fluid overload",
+        "Jaundice with fever"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Urine output - decreased. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003147.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Haider MZ, Aslam A. Oliguria. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK560738/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_dysuria",
+      "name": "Painful urination (dysuria)",
+      "scientific_name": "Dysuria",
+      "description": "Dysuria is pain, burning, stinging or itching of the urethra or urethral meatus during urination. Acute cystitis is the most common cause, but urethritis, sexually transmitted infections, vaginitis and prostatitis also cause it.",
+      "body_system": "Urinary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Dysuria localises disease to the lower urinary or genital tract and strongly favours urinary tract infection.",
+      "tags": [
+        "urinary",
+        "infection",
+        "UTI"
+      ],
+      "causes": [
+        "Acute cystitis",
+        "Urethritis and sexually transmitted infections",
+        "Pyelonephritis",
+        "Prostatitis",
+        "Vaginitis",
+        "Urinary stones"
+      ],
+      "red_flags": [
+        "Fever, chills or flank pain (possible pyelonephritis)",
+        "Nausea and vomiting",
+        "Blood in the urine",
+        "Pregnancy",
+        "Symptoms in men or with recurrent infections"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Mehta P, Leslie SW, Reddivari AKR. Dysuria. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK549918/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Urination - painful. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003145.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_urinary_frequency",
+      "name": "Urinary frequency & urgency",
+      "scientific_name": "Pollakiuria and urinary urgency",
+      "description": "Urinary frequency is the need to urinate more often than usual, and urgency is a sudden, strong need to urinate. Together they are typical of bladder irritation from infection, but also occur with overactive bladder, prostatic enlargement, pregnancy and diabetes.",
+      "body_system": "Urinary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Frequency with urgency points to the lower urinary tract, most often cystitis, but overlaps with polyuric states.",
+      "tags": [
+        "urinary",
+        "UTI",
+        "bladder"
+      ],
+      "causes": [
+        "Urinary tract infection",
+        "Overactive bladder",
+        "Benign prostatic hyperplasia",
+        "Pregnancy",
+        "Diabetes mellitus",
+        "Diuretics, caffeine or alcohol"
+      ],
+      "red_flags": [
+        "Fever, flank pain or vomiting",
+        "Blood in the urine",
+        "Inability to pass urine",
+        "Excessive thirst and weight loss"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Frequent or urgent urination. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003140.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_flank_pain",
+      "name": "Flank pain",
+      "scientific_name": "Flank pain (loin pain)",
+      "description": "Flank pain is pain in one side of the body between the upper abdomen and the back. It commonly arises from the kidney or ureter, as in pyelonephritis or kidney stones, and costovertebral angle tenderness may be present.",
+      "body_system": "Urinary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Flank pain localises the process to the kidney or ureter, especially with urinary symptoms or fever.",
+      "tags": [
+        "urinary",
+        "kidney",
+        "pyelonephritis"
+      ],
+      "causes": [
+        "Pyelonephritis",
+        "Kidney stones",
+        "Musculoskeletal back strain",
+        "Shingles (herpes zoster)",
+        "Kidney infarction or abscess",
+        "Aortic aneurysm (rare)"
+      ],
+      "red_flags": [
+        "High fever and rigors",
+        "Vomiting with inability to keep fluids down",
+        "Low blood pressure or confusion (possible urosepsis)",
+        "Reduced urine output",
+        "Blood in the urine"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Flank pain. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003113.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Gill R, Leslie SW, Minter DA. Acute Cystitis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459322/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_suprapubic_pain",
+      "name": "Suprapubic pain",
+      "scientific_name": "Suprapubic pain (hypogastric pain)",
+      "description": "Suprapubic pain is discomfort in the lower midline abdomen above the pubic bone, over the bladder. It is a typical feature of acute cystitis, and suprapubic tenderness may be found on examination.",
+      "body_system": "Urinary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Suprapubic pain with dysuria and frequency points strongly to lower urinary tract infection.",
+      "tags": [
+        "urinary",
+        "bladder",
+        "UTI"
+      ],
+      "causes": [
+        "Acute cystitis",
+        "Interstitial cystitis/bladder pain syndrome",
+        "Urinary retention",
+        "Pelvic inflammatory disease",
+        "Bladder stones"
+      ],
+      "red_flags": [
+        "Fever, rigors or flank pain",
+        "Inability to pass urine with a distended bladder",
+        "Pregnancy",
+        "Blood in the urine"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Gill R, Leslie SW, Minter DA. Acute Cystitis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459322/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_polyuria",
+      "name": "Excessive urination (polyuria)",
+      "scientific_name": "Polyuria",
+      "description": "Polyuria is production of abnormally large volumes of urine, generally more than 2.5 L per day in adults, distinct from frequent passage of small volumes. It results from osmotic diuresis (e.g., hyperglycemia), excess fluid intake, diuretics or impaired urine concentration.",
+      "body_system": "Endocrine System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "True polyuria, especially with thirst, points to hyperglycemia or other disorders of water balance.",
+      "tags": [
+        "endocrine",
+        "diabetes",
+        "urinary"
+      ],
+      "causes": [
+        "Uncontrolled diabetes mellitus",
+        "Excessive fluid intake",
+        "Diuretics",
+        "Diabetes insipidus",
+        "Hypercalcemia",
+        "Chronic kidney disease"
+      ],
+      "red_flags": [
+        "Confusion, drowsiness or vomiting (possible hyperglycemic emergency)",
+        "Signs of dehydration",
+        "Rapid weight loss",
+        "Rapid deep breathing"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Urination - excessive amount. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003146.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_polydipsia",
+      "name": "Excessive thirst (polydipsia)",
+      "scientific_name": "Polydipsia",
+      "description": "Polydipsia is an abnormal, persistent feeling of needing to drink fluids. It usually accompanies polyuria and dehydration, and is a classic symptom of uncontrolled diabetes mellitus.",
+      "body_system": "Endocrine System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Excessive thirst with polyuria is a classic pointer to hyperglycemia and other water-balance disorders.",
+      "tags": [
+        "endocrine",
+        "diabetes",
+        "dehydration"
+      ],
+      "causes": [
+        "Uncontrolled diabetes mellitus",
+        "Dehydration from fluid loss",
+        "Diabetes insipidus",
+        "Hypercalcemia",
+        "Medicines (e.g., diuretics, anticholinergics)",
+        "Psychogenic polydipsia"
+      ],
+      "red_flags": [
+        "Confusion or drowsiness",
+        "Vomiting or abdominal pain with rapid breathing",
+        "Unintentional weight loss",
+        "Blurred vision with high blood glucose"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Thirst - excessive. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003085.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_blurred_vision",
+      "name": "Blurred vision",
+      "scientific_name": "Blurred vision",
+      "description": "Blurred vision is loss of sharpness of vision and inability to see fine details. It may result from refractive errors, lens changes from high blood glucose, cataract, retinal or optic nerve disease, and neurological causes.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Blurred vision is shared by ocular, metabolic and neurological disorders and discriminates moderately.",
+      "tags": [
+        "eye",
+        "diabetes",
+        "neurologic"
+      ],
+      "causes": [
+        "Refractive error",
+        "Hyperglycemia in diabetes",
+        "Cataract",
+        "Diabetic or hypertensive retinopathy",
+        "Migraine aura",
+        "Stroke or transient ischemic attack"
+      ],
+      "red_flags": [
+        "Sudden loss of vision",
+        "Double vision, facial droop, weakness or speech difficulty",
+        "Eye pain with redness",
+        "Severe headache with very high blood pressure"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Vision problems. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003029.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_palpitations",
+      "name": "Palpitations",
+      "scientific_name": "Palpitations",
+      "description": "Palpitations are an awareness of the heartbeat as pounding, racing, fluttering or irregular, felt in the chest, throat or neck. They may be benign or reflect arrhythmia, structural heart disease, anemia, thyrotoxicosis or stimulant use.",
+      "body_system": "Cardiovascular System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Palpitations point to the heart rhythm but have many benign and systemic causes.",
+      "tags": [
+        "cardiac",
+        "arrhythmia"
+      ],
+      "causes": [
+        "Anxiety or stress",
+        "Caffeine, nicotine or stimulants",
+        "Atrial fibrillation and other arrhythmias",
+        "Anemia",
+        "Hyperthyroidism",
+        "Fever"
+      ],
+      "red_flags": [
+        "Fainting or near-fainting",
+        "Chest pain",
+        "Shortness of breath",
+        "Known heart disease",
+        "Very fast heart rate at rest"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Heart palpitations. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003081.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_orthopnea",
+      "name": "Breathlessness lying flat (orthopnea)",
+      "scientific_name": "Orthopnea",
+      "description": "Orthopnea is breathlessness in the recumbent position that is relieved by sitting or standing, often quantified by the number of pillows needed to sleep. It is characteristic of left ventricular failure due to redistribution of fluid into the pulmonary circulation, and often occurs with paroxysmal nocturnal dyspnea.",
+      "body_system": "Cardiovascular System",
+      "is_red_flag": false,
+      "diagnostic_weight": 8,
+      "weight_rationale": "Orthopnea is a relatively specific symptom of heart failure with raised pulmonary venous pressure.",
+      "tags": [
+        "cardiac",
+        "heart-failure",
+        "respiratory"
+      ],
+      "causes": [
+        "Heart failure (left ventricular dysfunction)",
+        "Mitral valve disease",
+        "Severe chronic obstructive pulmonary disease",
+        "Large pleural effusion or ascites",
+        "Diaphragmatic weakness"
+      ],
+      "red_flags": [
+        "Breathlessness at rest",
+        "Pink frothy sputum",
+        "Chest pain",
+        "Low oxygen saturation or confusion"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "Clinical Methods (NCBI Bookshelf)",
+          "citation_text": "Mukerji V. Dyspnea, Orthopnea, and Paroxysmal Nocturnal Dyspnea. In: Walker HK, Hall WD, Hurst JW, editors. Clinical Methods: The History, Physical, and Laboratory Examinations. 3rd ed. Boston: Butterworths; 1990.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK213/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_edema",
+      "name": "Leg swelling (edema)",
+      "scientific_name": "Peripheral edema",
+      "description": "Peripheral edema is abnormal buildup of fluid in the tissues of the feet, ankles and legs, typically pitting on pressure. Bilateral edema suggests systemic causes such as heart, kidney or liver disease or medicines, while unilateral swelling suggests local venous or lymphatic causes.",
+      "body_system": "Cardiovascular System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Leg edema is shared by cardiac, renal, hepatic, venous and drug-related causes, though distribution helps narrow it.",
+      "tags": [
+        "cardiac",
+        "fluid",
+        "heart-failure"
+      ],
+      "causes": [
+        "Heart failure",
+        "Chronic venous insufficiency",
+        "Kidney disease (including nephrotic syndrome)",
+        "Liver cirrhosis",
+        "Medicines (e.g., calcium channel blockers)",
+        "Deep vein thrombosis"
+      ],
+      "red_flags": [
+        "Shortness of breath or chest pain",
+        "Unilateral painful swelling with warmth (possible deep vein thrombosis)",
+        "Swelling with reduced urine output",
+        "Swelling in pregnancy with headache or high blood pressure"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Foot, leg, and ankle swelling. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003104.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_diaphoresis",
+      "name": "Sweating (diaphoresis)",
+      "scientific_name": "Diaphoresis",
+      "description": "Diaphoresis is profuse sweating out of proportion to temperature or activity. It accompanies fever and its defervescence, and cold sweats occur with sympathetic activation in acute coronary syndrome, hypoglycemia, shock and pain.",
+      "body_system": "Systemic / General",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Sweating has many physiological and pathological causes, but diaphoresis with chest pain raises concern for myocardial infarction.",
+      "tags": [
+        "autonomic",
+        "cardiac",
+        "fever-associated"
+      ],
+      "causes": [
+        "Fever and its resolution",
+        "Acute coronary syndrome",
+        "Hypoglycemia",
+        "Anxiety or pain",
+        "Hyperthyroidism",
+        "Menopause"
+      ],
+      "red_flags": [
+        "Sweating with chest pain or breathlessness",
+        "Sweating with confusion or tremor in a person with diabetes (possible hypoglycemia)",
+        "Cold, clammy skin with low blood pressure",
+        "Sweating with palpitations or fainting"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Sweating. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003218.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_dizziness",
+      "name": "Dizziness / lightheadedness",
+      "scientific_name": "Presyncope / vertigo",
+      "description": "Dizziness is a term used for two main symptoms: lightheadedness (a feeling of faintness) and vertigo (a false sense of spinning or movement). Lightheadedness often reflects reduced blood flow to the brain, while vertigo usually reflects inner ear or brainstem disease.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Dizziness is common and arises from cardiovascular, vestibular, metabolic, medication and neurological causes.",
+      "tags": [
+        "neurologic",
+        "cardiovascular",
+        "vestibular"
+      ],
+      "causes": [
+        "Dehydration",
+        "Orthostatic hypotension and antihypertensive medicines",
+        "Benign paroxysmal positional vertigo",
+        "Vestibular neuritis",
+        "Anemia",
+        "Arrhythmia",
+        "Stroke (less common)"
+      ],
+      "red_flags": [
+        "Fainting",
+        "Chest pain or palpitations",
+        "Slurred speech, double vision, facial droop or limb weakness",
+        "Sudden severe headache",
+        "Black stools or vomiting blood"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Dizziness. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003093.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_hemiparesis",
+      "name": "One-sided weakness or numbness",
+      "scientific_name": "Hemiparesis / hemisensory loss",
+      "description": "Hemiparesis is weakness of one side of the body, often with numbness (hemisensory loss). Sudden onset is a hallmark of stroke; middle cerebral artery infarction typically causes contralateral weakness and sensory loss affecting the face and arm more than the leg.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Sudden one-sided weakness or numbness is a focal neurological deficit that strongly localises to the brain and points toward stroke.",
+      "tags": [
+        "neurologic",
+        "stroke",
+        "emergency",
+        "focal-deficit"
+      ],
+      "causes": [
+        "Acute ischemic stroke",
+        "Intracerebral hemorrhage",
+        "Transient ischemic attack",
+        "Hemiplegic migraine",
+        "Brain tumour or abscess",
+        "Hypoglycemia (stroke mimic)"
+      ],
+      "red_flags": [
+        "Sudden onset (note the time last known well)",
+        "Facial droop or speech difficulty",
+        "Sudden severe headache",
+        "Reduced consciousness",
+        "Loss of vision or balance"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Lui F, Khan Suheb MZ, Patti L. Ischemic Stroke. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Weakness. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003174.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_facial_droop",
+      "name": "Facial droop",
+      "scientific_name": "Facial paresis",
+      "description": "Facial droop is weakness of the facial muscles causing asymmetry of the face, such as a drooping mouth corner. Stroke typically causes lower facial weakness with forehead sparing, whereas Bell's palsy affects the whole side of the face including the forehead.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Sudden facial droop is a highly localising neurological sign and a core feature of stroke recognition tools.",
+      "tags": [
+        "neurologic",
+        "stroke",
+        "emergency",
+        "focal-deficit"
+      ],
+      "causes": [
+        "Acute ischemic stroke",
+        "Intracerebral hemorrhage",
+        "Bell's palsy",
+        "Transient ischemic attack",
+        "Lyme disease or other infections",
+        "Tumour or trauma"
+      ],
+      "red_flags": [
+        "Sudden onset with arm or leg weakness",
+        "Slurred or difficult speech",
+        "Confusion or reduced consciousness",
+        "Sudden severe headache"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Lui F, Khan Suheb MZ, Patti L. Ischemic Stroke. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Facial paralysis. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003028.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_speech_difficulty",
+      "name": "Slurred or difficult speech",
+      "scientific_name": "Dysarthria / aphasia",
+      "description": "Speech difficulty includes dysarthria (slurred, poorly articulated speech from weakness or incoordination of speech muscles) and aphasia (impaired production or comprehension of language from injury to the dominant hemisphere). Sudden onset is a classic warning sign of stroke.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 8,
+      "weight_rationale": "Sudden slurred speech or language disturbance localises to the brain and strongly suggests stroke or transient ischemic attack.",
+      "tags": [
+        "neurologic",
+        "stroke",
+        "emergency",
+        "focal-deficit"
+      ],
+      "causes": [
+        "Acute ischemic stroke",
+        "Transient ischemic attack",
+        "Intracerebral hemorrhage",
+        "Alcohol or drug intoxication",
+        "Hypoglycemia",
+        "Neurodegenerative disease"
+      ],
+      "red_flags": [
+        "Sudden onset",
+        "Facial droop or one-sided weakness",
+        "Confusion or reduced consciousness",
+        "Difficulty swallowing"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Lui F, Khan Suheb MZ, Patti L. Ischemic Stroke. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499997/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Speech impairment in adults. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003204.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_confusion",
+      "name": "Confusion / altered mental status",
+      "scientific_name": "Delirium / altered mental status",
+      "description": "Confusion is the inability to think as clearly or quickly as usual, with disorientation and difficulty with attention, memory and decisions. Acute confusion (delirium) is a medical emergency commonly caused by infection, metabolic derangement, hypoxia, drugs or brain disease.",
+      "body_system": "Systemic / General",
+      "is_red_flag": true,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Acute confusion signals serious illness but arises from many systemic and neurological causes.",
+      "tags": [
+        "neurologic",
+        "delirium",
+        "emergency",
+        "sepsis"
+      ],
+      "causes": [
+        "Sepsis and systemic infection",
+        "Hypoglycemia or other metabolic derangement",
+        "Hypoxia",
+        "Stroke",
+        "Meningitis or encephalitis",
+        "Medicines, alcohol or drug withdrawal"
+      ],
+      "red_flags": [
+        "Sudden onset",
+        "Fever with stiff neck",
+        "Focal weakness or speech difficulty",
+        "Low blood glucose",
+        "Low oxygen saturation or low blood pressure"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Confusion. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003205.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_photophobia",
+      "name": "Sensitivity to light (photophobia)",
+      "scientific_name": "Photophobia",
+      "description": "Photophobia is discomfort or pain in the eyes in response to bright light. It is a common feature of migraine and also occurs with meningitis, subarachnoid hemorrhage and inflammatory eye disease.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Photophobia with headache favours migraine but is also a feature of meningeal irritation, giving moderate specificity.",
+      "tags": [
+        "neurologic",
+        "migraine",
+        "eye"
+      ],
+      "causes": [
+        "Migraine",
+        "Meningitis",
+        "Subarachnoid hemorrhage",
+        "Uveitis or keratitis",
+        "Corneal abrasion",
+        "Measles (with conjunctivitis)"
+      ],
+      "red_flags": [
+        "Fever with stiff neck",
+        "Sudden severe headache",
+        "Eye pain with reduced vision",
+        "Confusion"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Photophobia. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003041.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_visual_aura",
+      "name": "Visual aura",
+      "scientific_name": "Visual aura (scintillating scotoma)",
+      "description": "A visual aura is a transient, fully reversible visual disturbance that develops gradually over at least 5 minutes and lasts up to 60 minutes, often preceding migraine headache. It typically begins as a small area of vision loss or bright shimmering lines (scintillating scotoma) that expands across the visual field.",
+      "body_system": "Nervous System",
+      "is_red_flag": false,
+      "diagnostic_weight": 8,
+      "weight_rationale": "A gradually spreading, positive visual disturbance lasting 5-60 minutes is highly characteristic of migraine with aura.",
+      "tags": [
+        "neurologic",
+        "migraine"
+      ],
+      "causes": [
+        "Migraine with aura",
+        "Transient ischemic attack (mimic)",
+        "Occipital seizures (mimic)",
+        "Retinal detachment (mimic)"
+      ],
+      "red_flags": [
+        "Sudden onset rather than gradual spread",
+        "Only negative symptoms (vision loss) without positive phenomena",
+        "Aura lasting more than 60 minutes",
+        "Accompanying weakness, facial droop or speech difficulty",
+        "First aura after age 50"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Kikkeri NS, Nagalli S. Migraine With Aura. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554611/",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

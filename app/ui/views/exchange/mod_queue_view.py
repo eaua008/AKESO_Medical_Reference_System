@@ -3,11 +3,13 @@
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QScrollArea, QVBoxLayout, QWidget
 
-from app.models.exchange import REPORT_REASONS, STATUS_LABELS, ModItem, time_ago
+from app.models.exchange import (
+    PROFILE_REPORT_REASONS, REPORT_REASONS, STATUS_LABELS, ModItem, time_ago,
+)
 from app.ui.views.account.account_widgets import Banner, button, label, pill, refresh_icons
 from app.ui.views.exchange.exchange_widgets import AuthorLine, clear_layout, flow
 
-REASON_TEXT = dict(REPORT_REASONS)
+REASON_TEXT = {**dict(PROFILE_REPORT_REASONS), **dict(REPORT_REASONS)}
 
 
 class ModQueueView(QWidget):
@@ -66,16 +68,19 @@ class ModQueueView(QWidget):
         layout.setContentsMargins(16, 14, 16, 14)
         layout.setSpacing(8)
         top = QHBoxLayout()
-        top.addWidget(pill("Post" if item.target_kind == "post" else "Reply", "acPill"))
+        top.addWidget(pill({"post": "Post", "reply": "Reply", "profile": "Profile"}.get(
+            item.target_kind, item.target_kind.capitalize()), "acPill"))
         top.addWidget(pill(f"{item.reports} report{'s' if item.reports != 1 else ''}",
                            "acPillDanger"))
-        if item.status != "open":
+        if item.target_kind == "profile":
+            top.addWidget(pill(item.status.capitalize(), "acPillWarn"))
+        elif item.status != "open":
             top.addWidget(pill(STATUS_LABELS.get(item.status, item.status), "acPillWarn"))
         top.addStretch(1)
         top.addWidget(label(f"first reported {time_ago(item.first_reported)}", "acSmall",
                             wrap=False))
         layout.addLayout(top)
-        layout.addWidget(label(item.title if item.target_kind == "post"
+        layout.addWidget(label(item.title if item.target_kind in ("post", "profile")
                                else f"Reply on “{item.title}”", "exPostTitle"))
         if item.excerpt:
             layout.addWidget(label(item.excerpt, "acMuted"))
@@ -85,10 +90,16 @@ class ModQueueView(QWidget):
             layout.addWidget(label(f"“{note}”", "acSmall"))
         actions = QHBoxLayout()
         actions.addWidget(button("Open", "acGhost", on_click=lambda: self.item_action.emit("open", item)))
-        actions.addWidget(button("Hide", "acGhost", on_click=lambda: self.item_action.emit("hide", item)))
-        if item.target_kind == "post":
-            actions.addWidget(button("Lock", "acGhost", on_click=lambda: self.item_action.emit("lock", item)))
-        actions.addWidget(button("Remove", "acDanger", on_click=lambda: self.item_action.emit("remove", item)))
+        if item.target_kind == "profile":
+            actions.addWidget(button("Make private", "acGhost",
+                                     on_click=lambda: self.item_action.emit("make_private", item)))
+            actions.addWidget(button("Clear bio", "acDanger",
+                                     on_click=lambda: self.item_action.emit("clear_bio", item)))
+        else:
+            actions.addWidget(button("Hide", "acGhost", on_click=lambda: self.item_action.emit("hide", item)))
+            if item.target_kind == "post":
+                actions.addWidget(button("Lock", "acGhost", on_click=lambda: self.item_action.emit("lock", item)))
+            actions.addWidget(button("Remove", "acDanger", on_click=lambda: self.item_action.emit("remove", item)))
         actions.addStretch(1)
         actions.addWidget(button("Dismiss reports", "acLink",
                                  on_click=lambda: self.item_action.emit("dismiss", item)))

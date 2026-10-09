@@ -1,0 +1,979 @@
+{
+  "symptoms": [
+    {
+      "id": "sym_joint_swelling",
+      "name": "Joint swelling",
+      "scientific_name": "Articular swelling (joint effusion or synovitis)",
+      "description": "Joint swelling is enlargement of a joint from synovial fluid (effusion), synovial thickening or swelling of the surrounding soft tissues. It distinguishes true arthritis from arthralgia alone and is characterized by the number and pattern of joints involved, acuity and the presence of warmth or redness.",
+      "body_system": "Musculoskeletal System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Objective swelling separates inflammatory arthritis from simple joint pain and, combined with acuity and joint pattern, narrows the differential to arthritides, crystal disease, septic arthritis and viral arthritis such as chikungunya.",
+      "tags": [
+        "musculoskeletal",
+        "arthritis",
+        "inflammation",
+        "chikungunya"
+      ],
+      "causes": [
+        "Chikungunya (acute and persistent polyarthritis)",
+        "Rheumatoid arthritis",
+        "Osteoarthritis",
+        "Gout and pseudogout (crystal arthritis)",
+        "Septic arthritis",
+        "Reactive or psoriatic arthritis",
+        "Systemic lupus erythematosus",
+        "Joint injury"
+      ],
+      "red_flags": [
+        "Hot, red, swollen single joint with fever (possible septic arthritis)",
+        "Inability to bear weight or move the joint",
+        "Swelling after significant trauma",
+        "Rapidly spreading redness over the joint",
+        "Joint swelling in an immunocompromised patient"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Joint swelling. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003262.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "Chikungunya. WHO fact sheet. Geneva: World Health Organization.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/chikungunya",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_ruq_pain",
+      "name": "Right upper abdominal pain (right upper quadrant)",
+      "scientific_name": "Right upper quadrant abdominal pain",
+      "description": "Right upper quadrant pain is pain localized beneath the right costal margin, overlying the liver, gallbladder and biliary tree, with contributions from the duodenum, right kidney, hepatic flexure and right lung base. Biliary pain is often steady and may radiate to the right scapula, whereas hepatic pain from capsular stretch is usually a dull ache accompanying hepatitis or congestion.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 6,
+      "weight_rationale": "Localization to the right upper quadrant focuses the differential on hepatobiliary disease (cholecystitis, biliary colic, cholangitis, hepatitis), although duodenal, pancreatic, renal and basal pulmonary causes remain possible.",
+      "tags": [
+        "abdominal",
+        "hepatobiliary",
+        "liver",
+        "gallbladder"
+      ],
+      "causes": [
+        "Acute cholecystitis and biliary colic (gallstones)",
+        "Choledocholithiasis and cholangitis",
+        "Acute viral hepatitis (hepatitis A, hepatitis B)",
+        "Liver abscess",
+        "Hepatic congestion in right heart failure",
+        "Pancreatitis",
+        "Peptic ulcer disease (duodenal)",
+        "Right lower-lobe pneumonia"
+      ],
+      "red_flags": [
+        "Fever with jaundice and right upper quadrant pain (possible cholangitis)",
+        "Jaundice with confusion or bleeding tendency (possible acute liver failure)",
+        "Rigid abdomen or rebound tenderness",
+        "Hypotension or rapid heart rate",
+        "Persistent vomiting preventing oral intake"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Jones MW, Santos G, Patel PJ, O'Rourke MC. Acute Cholecystitis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Girish V, Grant LM, John S. Hepatitis A. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459290/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_pale_stool",
+      "name": "Pale or clay-colored stools",
+      "scientific_name": "Acholic stool",
+      "description": "Pale, clay-colored (acholic) stools result from reduced delivery of bile pigments to the intestine, so that stercobilin no longer gives stool its normal brown color. The finding indicates cholestasis, either intrahepatic (hepatitis, cirrhosis) or extrahepatic (bile duct obstruction), and usually accompanies jaundice and dark urine.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 8,
+      "weight_rationale": "Acholic stool points specifically to impaired bile flow and narrows the differential to hepatitis and biliary obstruction; with jaundice and dark urine it forms a characteristic cholestatic triad.",
+      "tags": [
+        "hepatobiliary",
+        "cholestasis",
+        "jaundice",
+        "liver"
+      ],
+      "causes": [
+        "Acute viral hepatitis (hepatitis A, hepatitis B)",
+        "Gallstones in the common bile duct",
+        "Pancreatic or biliary tumors",
+        "Bile duct strictures or cysts",
+        "Alcoholic hepatitis",
+        "Biliary cirrhosis and sclerosing cholangitis",
+        "Drug-induced cholestasis",
+        "Biliary atresia (infants)"
+      ],
+      "red_flags": [
+        "Painless jaundice with weight loss (possible pancreatic or biliary malignancy)",
+        "Fever, rigors and right upper quadrant pain (possible cholangitis)",
+        "Confusion, drowsiness or bleeding (possible acute liver failure)",
+        "Pale stools persisting in an infant"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Stools - pale or clay-colored. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003129.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Girish V, Grant LM, John S. Hepatitis A. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459290/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_pruritus",
+      "name": "Itching (pruritus)",
+      "scientific_name": "Pruritus",
+      "description": "Pruritus is an unpleasant skin sensation that provokes the desire to scratch. It may be localized, usually from primary skin disease, or generalized, when systemic causes such as cholestatic liver disease, chronic kidney disease, drug reactions or hematologic disorders are considered.",
+      "body_system": "Integumentary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Itching is very common and nonspecific; it narrows the differential mainly when generalized without rash (suggesting systemic causes such as cholestasis) or when paired with a characteristic eruption such as varicella.",
+      "tags": [
+        "skin",
+        "dermatology",
+        "cholestasis",
+        "allergy"
+      ],
+      "causes": [
+        "Atopic dermatitis and contact dermatitis",
+        "Urticaria and allergic reactions",
+        "Chickenpox (varicella)",
+        "Scabies and other infestations",
+        "Cholestatic liver disease (including cholestatic hepatitis A)",
+        "Chronic kidney disease",
+        "Drug reactions",
+        "HIV-associated skin disorders"
+      ],
+      "red_flags": [
+        "Itching with hives, lip or tongue swelling or breathing difficulty (possible anaphylaxis)",
+        "Generalized itching with jaundice",
+        "Itching with unexplained weight loss, fever or night sweats",
+        "Widespread blistering or skin peeling"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Itching. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003217.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_watery_diarrhea",
+      "name": "Profuse watery (\"rice-water\") diarrhea",
+      "scientific_name": "Rice-water stool (secretory diarrhea)",
+      "description": "Profuse watery diarrhea consists of large-volume, liquid stools; in cholera it is classically pale, flecked with mucus and described as \"rice-water\". Toxin-mediated intestinal secretion can cause losses of up to about a liter per hour in adults, producing severe dehydration and hypovolemic shock within hours if fluid is not replaced.",
+      "body_system": "Digestive System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Painless, high-volume rice-water stools are highly characteristic of cholera and, in the right epidemiologic setting, strongly direct the diagnosis and urgent rehydration.",
+      "tags": [
+        "diarrhea",
+        "cholera",
+        "dehydration",
+        "waterborne",
+        "emergency"
+      ],
+      "causes": [
+        "Cholera (Vibrio cholerae)",
+        "Enterotoxigenic Escherichia coli infection",
+        "Acute infectious gastroenteritis (viral or bacterial)",
+        "Rotavirus and norovirus infection"
+      ],
+      "red_flags": [
+        "Sunken eyes, very dry mouth or loss of skin turgor",
+        "Lethargy or unconsciousness",
+        "Weak or absent pulse or low blood pressure",
+        "Little or no urine output",
+        "Inability to drink or persistent vomiting",
+        "Muscle cramps with weakness (electrolyte loss)"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "Cholera. WHO fact sheet. Geneva: World Health Organization.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/cholera",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Fanous M, King KC. Cholera. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470232/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_dehydration",
+      "name": "Signs of dehydration (sunken eyes, dry mouth, intense thirst)",
+      "scientific_name": "Dehydration (volume depletion)",
+      "description": "Dehydration is a deficit of body water and electrolytes from fluid losses exceeding intake, most often from diarrhea, vomiting, fever, sweating or osmotic diuresis. Clinical signs progress from thirst, dry mucous membranes and reduced dark urine to sunken eyes, reduced skin turgor, tachycardia, confusion and hypovolemic shock.",
+      "body_system": "Systemic / General",
+      "is_red_flag": true,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Dehydration reflects severity of fluid loss rather than a specific diagnosis; it narrows attention to diarrheal and vomiting illnesses, uncontrolled hyperglycemia and heat illness, and determines urgency of rehydration.",
+      "tags": [
+        "fluid balance",
+        "diarrhea",
+        "cholera",
+        "systemic"
+      ],
+      "causes": [
+        "Cholera and other acute infectious gastroenteritis",
+        "Persistent vomiting",
+        "Fever and excessive sweating (heat illness)",
+        "Uncontrolled diabetes mellitus (osmotic diuresis)",
+        "Diuretic use",
+        "Inadequate fluid intake"
+      ],
+      "red_flags": [
+        "Confusion, lethargy or loss of consciousness",
+        "Seizures",
+        "No urine output or very dark amber urine",
+        "Rapid heartbeat or low blood pressure",
+        "Inability to keep fluids down"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Dehydration. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/000982.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "Cholera. WHO fact sheet. Geneva: World Health Organization.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/cholera",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_muscle_cramps",
+      "name": "Muscle cramps",
+      "scientific_name": "Muscle cramps",
+      "description": "Muscle cramps are sudden, involuntary and painful contractions of a muscle or muscle group, commonly the calves and feet. They occur with overuse and dehydration and with electrolyte disturbances such as hypokalemia, hyponatremia and hypocalcemia, as in the large fluid and electrolyte losses of cholera.",
+      "body_system": "Musculoskeletal System",
+      "is_red_flag": false,
+      "diagnostic_weight": 3,
+      "weight_rationale": "Cramps are common and mostly benign; they gain significance mainly alongside profuse diarrhea, diuretic use or renal disease, where they suggest electrolyte depletion.",
+      "tags": [
+        "musculoskeletal",
+        "electrolytes",
+        "dehydration"
+      ],
+      "causes": [
+        "Muscle overuse or injury",
+        "Dehydration",
+        "Electrolyte depletion (low sodium, potassium or calcium), including in cholera",
+        "Diuretic and other medication use",
+        "Kidney failure",
+        "Hypothyroidism",
+        "Pregnancy",
+        "Alcohol use disorder"
+      ],
+      "red_flags": [
+        "Cramps with profuse watery diarrhea and weakness",
+        "Cramps with muscle weakness or palpitations (possible severe electrolyte disturbance)",
+        "Severe, persistent cramps not relieved by stretching",
+        "Cramps with dark urine after exertion"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Muscle cramps. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003193.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Fanous M, King KC. Cholera. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470232/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_bite_site_paresthesia",
+      "name": "Pain or tingling at an animal-bite site",
+      "scientific_name": "Paresthesia at the bite site",
+      "description": "Pain, itching, tingling or burning at a healed or healing animal-bite or scratch wound can mark the prodrome of rabies as the virus reaches the dorsal root ganglia. It typically appears with nonspecific fever, malaise and headache weeks to months after the exposure and precedes the neurologic phase.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 9,
+      "weight_rationale": "New paresthesia at a prior animal-bite site in a febrile patient is a classic early clue to rabies, which is nearly always fatal once clinical signs appear.",
+      "tags": [
+        "rabies",
+        "animal bite",
+        "neurologic",
+        "emergency"
+      ],
+      "causes": [
+        "Rabies (prodromal phase)",
+        "Local wound infection",
+        "Nerve injury from the bite",
+        "Normal wound healing"
+      ],
+      "red_flags": [
+        "Fever, headache or malaise after a dog, cat or bat exposure",
+        "Fear of water or throat spasms on swallowing",
+        "Agitation, confusion or hallucinations",
+        "Weakness or paralysis starting in the bitten limb",
+        "Incomplete or absent post-exposure prophylaxis after the bite"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "Rabies. WHO fact sheet. Geneva: World Health Organization.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/rabies",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Koury R, Warrington SJ. Rabies. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448076/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_hydrophobia",
+      "name": "Fear of water / throat spasms on swallowing (hydrophobia)",
+      "scientific_name": "Hydrophobia",
+      "description": "Hydrophobia is a terrifying, involuntary spasm of the pharyngeal, laryngeal and inspiratory muscles provoked by attempts to drink, and in time by the sight, sound or even thought of water. It is the hallmark of furious (encephalitic) rabies and is often accompanied by aerophobia, spasms triggered by a draft of air on the face.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 10,
+      "weight_rationale": "Hydrophobia is essentially pathognomonic of rabies encephalitis, especially with a history of animal bite, and signals a disease that is fatal once symptomatic.",
+      "tags": [
+        "rabies",
+        "encephalitis",
+        "neurologic",
+        "emergency",
+        "pathognomonic"
+      ],
+      "causes": [
+        "Rabies (furious/encephalitic form)",
+        "Tetanus (pharyngeal spasms, a differential)"
+      ],
+      "red_flags": [
+        "History of a dog, cat or bat bite or scratch",
+        "Agitation, hallucinations or fluctuating consciousness",
+        "Excessive salivation or drooling",
+        "Aerophobia (spasms with air on the face)",
+        "Progressive paralysis or coma"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Swinkels HM, Koury R, Warrington SJ. Rabies. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448076/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Rabies. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/001334.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_hypersalivation",
+      "name": "Excessive salivation / drooling",
+      "scientific_name": "Sialorrhea (ptyalism)",
+      "description": "Hypersalivation and drooling result from excess saliva production or, more often, from an inability to retain or swallow normal saliva. Causes range from oral and pharyngeal infections to neurologic disorders that impair swallowing, and in rabies drooling reflects both autonomic stimulation and painful pharyngeal spasms.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Drooling has a broad differential (oral infection, neuromuscular disease, medications); it gains weight when combined with hydrophobia and agitation after an animal bite, as in rabies.",
+      "tags": [
+        "oral",
+        "neurologic",
+        "rabies",
+        "swallowing"
+      ],
+      "causes": [
+        "Rabies",
+        "Peritonsillar abscess, tonsillitis or pharyngitis",
+        "Painful mouth ulcers (e.g., hand, foot and mouth disease)",
+        "Stroke, Parkinson disease or ALS (impaired swallowing)",
+        "Medication adverse effects",
+        "Organophosphate poisoning (cholinergic excess)",
+        "Teething in infants"
+      ],
+      "red_flags": [
+        "Drooling with difficulty breathing or noisy breathing",
+        "Drooling with inability to swallow and fever (possible epiglottitis or deep neck abscess)",
+        "Drooling with fear of water or agitation after an animal bite",
+        "Sudden drooling with facial droop or slurred speech"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Drooling. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003048.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Rabies. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/001334.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_agitation",
+      "name": "Agitation, anxiety or hallucinations",
+      "scientific_name": "Psychomotor agitation",
+      "description": "Agitation is a state of excessive motor and mental restlessness with irritability or anxiety, which may be accompanied by hallucinations when perception is disturbed. It arises from psychiatric illness but also from delirium due to infection, metabolic disturbance, intoxication or withdrawal, and is a feature of furious rabies.",
+      "body_system": "Nervous System",
+      "is_red_flag": true,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Agitation is nonspecific, but new agitation or hallucinations with fever suggest delirium or encephalitis (including rabies) and mandate urgent evaluation.",
+      "tags": [
+        "neuropsychiatric",
+        "delirium",
+        "encephalitis",
+        "rabies"
+      ],
+      "causes": [
+        "Delirium from systemic infection, hypoxia or metabolic disturbance",
+        "Rabies (furious form) and other encephalitis",
+        "Alcohol or drug withdrawal",
+        "Stimulant or caffeine intoxication",
+        "Hyperthyroidism",
+        "Anxiety, bipolar and psychotic disorders",
+        "Dementia",
+        "Medication adverse effects"
+      ],
+      "red_flags": [
+        "Fever with agitation or hallucinations (possible encephalitis or sepsis)",
+        "Recent animal bite with fear of water or drooling",
+        "Threats of self-harm or harm to others",
+        "Seizures or reduced level of consciousness",
+        "Low oxygen saturation or low blood glucose"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Agitation. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003212.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "Rabies. WHO fact sheet. Geneva: World Health Organization.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/rabies",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_abdominal_swelling",
+      "name": "Abdominal swelling (distension or ascites)",
+      "scientific_name": "Abdominal distension / ascites",
+      "description": "Abdominal swelling is enlargement of the abdomen from gas, fluid, organ enlargement or masses. Ascites, free fluid in the peritoneal cavity, most often results from portal hypertension and low serum albumin in chronic liver disease, including the periportal fibrosis of chronic Schistosoma japonicum infection, and is suggested by shifting dullness and a fluid wave.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Distension alone is nonspecific (gas, obesity, pregnancy); demonstrable ascites narrows the differential to cirrhosis and portal hypertension, heart failure, malignancy and hypoalbuminemic states.",
+      "tags": [
+        "abdominal",
+        "ascites",
+        "liver",
+        "portal hypertension"
+      ],
+      "causes": [
+        "Cirrhosis and portal hypertension (e.g., chronic hepatitis B, alcohol)",
+        "Hepatosplenic schistosomiasis (Schistosoma japonicum)",
+        "Heart failure",
+        "Abdominal or peritoneal malignancy",
+        "Nephrotic syndrome",
+        "Intestinal obstruction",
+        "Gas and bloating, irritable bowel syndrome",
+        "Pregnancy and ovarian masses"
+      ],
+      "red_flags": [
+        "Fever and abdominal pain with ascites (possible spontaneous bacterial peritonitis)",
+        "Vomiting blood or black stools (possible variceal bleeding)",
+        "Confusion or jaundice",
+        "Distension with vomiting and no passage of stool or gas (possible obstruction)",
+        "Breathing difficulty from tense ascites"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Ascites. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/000286.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Peine W, Jenks JD, Horrall S. Schistosomiasis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554434/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_bloody_stool",
+      "name": "Blood in stool (hematochezia)",
+      "scientific_name": "Hematochezia",
+      "description": "Hematochezia is the passage of bright red or maroon blood per rectum, alone or mixed with stool. It usually indicates a colonic, rectal or anal source, although brisk upper gastrointestinal bleeding can also present this way; bloody diarrhea with fever suggests invasive infectious or inflammatory colitis.",
+      "body_system": "Digestive System",
+      "is_red_flag": true,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Visible blood localizes the problem to the gastrointestinal tract, most often the lower tract, but the range of causes remains wide from hemorrhoids to colitis, schistosomiasis and colorectal cancer.",
+      "tags": [
+        "gastrointestinal",
+        "bleeding",
+        "colitis",
+        "emergency"
+      ],
+      "causes": [
+        "Hemorrhoids and anal fissure",
+        "Diverticulosis",
+        "Infectious colitis (e.g., shigellosis, amebiasis)",
+        "Intestinal schistosomiasis",
+        "Inflammatory bowel disease",
+        "Colorectal polyps and cancer",
+        "Angiodysplasia and ischemic colitis",
+        "Brisk upper gastrointestinal bleeding"
+      ],
+      "red_flags": [
+        "Dizziness, fainting or low blood pressure",
+        "Large volume or ongoing bleeding",
+        "Rapid heart rate",
+        "Severe abdominal pain",
+        "Unexplained weight loss or change in bowel habit (possible malignancy)",
+        "Anticoagulant or antiplatelet use"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Rectal bleeding. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/007741.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Amin SK, Antunes C. Lower Gastrointestinal Bleeding. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448126/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_paroxysmal_cough",
+      "name": "Coughing fits with a \"whoop\" (paroxysmal cough)",
+      "scientific_name": "Paroxysmal cough with inspiratory whoop",
+      "description": "Paroxysmal cough consists of bursts of rapid, uncontrollable coughs on a single expiration, followed by a forced inspiration against a partially closed glottis that produces the characteristic high-pitched whoop. It is the defining feature of the paroxysmal stage of pertussis, although the whoop is often absent in young infants and in adolescents and adults.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 9,
+      "weight_rationale": "Paroxysms with an inspiratory whoop are highly characteristic of pertussis and strongly narrow the differential, though absence of the whoop does not exclude it.",
+      "tags": [
+        "respiratory",
+        "pertussis",
+        "cough",
+        "pediatric"
+      ],
+      "causes": [
+        "Pertussis (Bordetella pertussis)",
+        "Bordetella parapertussis infection",
+        "Mycoplasma pneumoniae infection",
+        "Adenovirus and other respiratory viral infections",
+        "Foreign body aspiration"
+      ],
+      "red_flags": [
+        "Apnea or pauses in breathing, especially in infants",
+        "Cyanosis during or after coughing",
+        "Seizures",
+        "Inability to feed or signs of dehydration",
+        "Young infant, unvaccinated or incompletely vaccinated"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Vijayan V, Daley SF. Pertussis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519008/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Pertussis. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/001561.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_posttussive_vomiting",
+      "name": "Vomiting after coughing fits (post-tussive vomiting)",
+      "scientific_name": "Post-tussive emesis",
+      "description": "Post-tussive vomiting is vomiting provoked by a severe bout of coughing, caused by the rise in intrathoracic and intra-abdominal pressure and vagal stimulation during paroxysms. It is a characteristic feature of pertussis and should prompt consideration of that diagnosis whenever vomiting follows coughing.",
+      "body_system": "Respiratory System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Vomiting triggered by coughing paroxysms is a recognized clinical criterion for pertussis and considerably raises its likelihood, although forceful coughing from other causes can occasionally do the same.",
+      "tags": [
+        "respiratory",
+        "pertussis",
+        "vomiting",
+        "pediatric"
+      ],
+      "causes": [
+        "Pertussis",
+        "Pertussis-like illness (B. parapertussis, Mycoplasma pneumoniae)",
+        "Asthma exacerbation with severe cough",
+        "Viral lower respiratory tract infection",
+        "Chronic cough with gastroesophageal reflux"
+      ],
+      "red_flags": [
+        "Signs of dehydration or poor feeding",
+        "Apnea or cyanosis with coughing spells",
+        "Weight loss in an infant",
+        "Blood in the vomitus"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Vijayan V, Daley SF. Pertussis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519008/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Pertussis. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/001561.htm",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_mouth_sores",
+      "name": "Painful mouth sores or ulcers",
+      "scientific_name": "Oral ulcers (stomatitis)",
+      "description": "Mouth sores are painful breaks or vesicles in the oral mucosa that often cause difficulty eating, drinking and swallowing. Most are aphthous, traumatic or viral (herpes simplex, enteroviruses in hand, foot and mouth disease), but persistent ulcers may reflect systemic, autoimmune, immunodeficient or malignant disease.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 4,
+      "weight_rationale": "Oral ulcers are common and usually benign; they narrow the differential when combined with a pattern such as a hand-foot rash in a child (HFMD) or vesicles elsewhere (varicella).",
+      "tags": [
+        "oral",
+        "viral",
+        "ulcers",
+        "pediatric"
+      ],
+      "causes": [
+        "Aphthous ulcers (canker sores)",
+        "Herpes simplex (cold sores, gingivostomatitis)",
+        "Hand, foot and mouth disease (enterovirus, coxsackievirus)",
+        "Herpangina",
+        "Chickenpox (varicella) oral lesions",
+        "Trauma from teeth, dentures or hot food",
+        "Autoimmune disease or immunodeficiency (including HIV)",
+        "Oral cancer"
+      ],
+      "red_flags": [
+        "Refusal to drink or signs of dehydration (especially in children)",
+        "Lethargy, seizures, persistent vomiting or breathing difficulty in a child with HFMD (possible neurologic complication)",
+        "Sores lasting more than two weeks",
+        "Sores with widespread rash or skin peeling after a new medicine",
+        "Sores in an immunocompromised patient"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Mouth sores. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003059.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Guerra AM, Orille E, Waseem M. Hand, Foot, and Mouth Disease. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK431082/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_vesicular_rash",
+      "name": "Blister-like rash (vesicles)",
+      "scientific_name": "Vesicular eruption",
+      "description": "A vesicular rash consists of small (under about 1 cm), fluid-filled elevations of the skin. In varicella the vesicles appear in successive crops, starting on the face and trunk, so lesions at all stages from macules to crusts coexist; other patterns include grouped vesicles (herpes simplex), dermatomal vesicles (zoster) and hand-foot-mouth distributions (enterovirus).",
+      "body_system": "Integumentary System",
+      "is_red_flag": false,
+      "diagnostic_weight": 7,
+      "weight_rationale": "Vesicles narrow the differential to a limited group of viral, contact and bullous conditions, and the pattern (crops at different stages, dermatomal, hand-foot-mouth) often points to a specific diagnosis.",
+      "tags": [
+        "skin",
+        "rash",
+        "viral",
+        "varicella"
+      ],
+      "causes": [
+        "Chickenpox (varicella)",
+        "Herpes zoster (shingles)",
+        "Herpes simplex",
+        "Hand, foot and mouth disease",
+        "Contact dermatitis",
+        "Eczema (dyshidrotic)",
+        "Bullous impetigo",
+        "Drug eruptions and bullous pemphigoid"
+      ],
+      "red_flags": [
+        "Rash with cough and breathing difficulty (possible varicella pneumonia)",
+        "Confusion, unsteady gait or severe headache (possible encephalitis or cerebellar ataxia)",
+        "Spreading redness, warmth or pus around lesions (secondary bacterial infection)",
+        "Hemorrhagic lesions or rash in an immunocompromised patient",
+        "Chickenpox in pregnancy or in a newborn",
+        "Widespread blistering with mucosal involvement"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Vesicles. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003939.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Saleh HM, Ayoade F, Kumar S. Varicella-Zoster Virus (Chickenpox). In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448191/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_lymphadenopathy",
+      "name": "Swollen lymph nodes (lymphadenopathy)",
+      "scientific_name": "Lymphadenopathy",
+      "description": "Lymphadenopathy is enlargement of lymph nodes in size, consistency or number, localized to one region or generalized across two or more non-contiguous regions. Most is reactive to infection, but size, consistency, fixation, location (especially supraclavicular) and duration help separate benign from malignant or systemic causes.",
+      "body_system": "Immune & Lymphatic System",
+      "is_red_flag": false,
+      "diagnostic_weight": 5,
+      "weight_rationale": "Enlarged nodes are common and mostly reactive; generalized lymphadenopathy or hard, fixed or supraclavicular nodes narrow the differential toward HIV, tuberculosis, lymphoma and metastatic cancer.",
+      "tags": [
+        "lymphatic",
+        "infection",
+        "HIV",
+        "malignancy"
+      ],
+      "causes": [
+        "Local bacterial or viral infections (pharyngitis, dental and skin infections)",
+        "HIV infection",
+        "Tuberculous lymphadenitis",
+        "Infectious mononucleosis (Epstein-Barr virus)",
+        "Lymphoma and leukemia",
+        "Metastatic cancer",
+        "Autoimmune disease (lupus, rheumatoid arthritis, sarcoidosis)",
+        "Drug reactions (e.g., phenytoin)"
+      ],
+      "red_flags": [
+        "Hard, fixed or matted nodes",
+        "Supraclavicular node enlargement",
+        "Nodes enlarging or persisting beyond several weeks",
+        "Fever, night sweats and unexplained weight loss",
+        "Generalized lymphadenopathy"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Swollen lymph nodes. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/003097.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Freeman AM, Matto P. Lymphadenopathy. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK513250/",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "sym_oral_thrush",
+      "name": "White patches in the mouth (oral thrush)",
+      "scientific_name": "Oropharyngeal (pseudomembranous) candidiasis",
+      "description": "Oral thrush is Candida overgrowth in the mouth, classically forming creamy white, curd-like plaques on the tongue, buccal mucosa and palate that can be wiped off to leave a red, sometimes bleeding surface. Outside infancy, denture use, antibiotics and inhaled or systemic corticosteroids, it suggests impaired cell-mediated immunity and is an important clinical marker of HIV infection.",
+      "body_system": "Digestive System",
+      "is_red_flag": false,
+      "diagnostic_weight": 8,
+      "weight_rationale": "Wipeable white plaques are highly characteristic of candidiasis, and unexplained thrush in an adult strongly suggests immunosuppression, notably HIV, or uncontrolled diabetes.",
+      "tags": [
+        "oral",
+        "fungal",
+        "HIV",
+        "immunosuppression"
+      ],
+      "causes": [
+        "HIV infection",
+        "Antibiotic therapy",
+        "Inhaled or systemic corticosteroid use",
+        "Uncontrolled diabetes mellitus",
+        "Chemotherapy or other immunosuppression",
+        "Dentures and poor oral hygiene",
+        "Infancy and old age"
+      ],
+      "red_flags": [
+        "Pain or difficulty swallowing (possible esophageal candidiasis)",
+        "Thrush in an adult without an obvious cause (possible undiagnosed HIV)",
+        "Unexplained weight loss, fever or chronic diarrhea",
+        "Thrush in a patient on chemotherapy or immunosuppressants"
+      ],
+      "references": [
+        {
+          "source_name": "Bates' Guide to Physical Examination and History Taking",
+          "citation_text": "Bickley LS, Szilagyi PG, Hoffman RM, Soriano RP. Bates' Guide to Physical Examination and History Taking. 13th ed. Philadelphia: Wolters Kluwer; 2021.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "MedlinePlus Medical Encyclopedia",
+          "citation_text": "Thrush - children and adults. MedlinePlus Medical Encyclopedia. Bethesda (MD): U.S. National Library of Medicine.",
+          "url": "https://medlineplus.gov/ency/article/000626.htm",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Taylor M, Brizuela M, Raja A. Oral Candidiasis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK545282/",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

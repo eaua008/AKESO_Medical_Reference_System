@@ -15,10 +15,11 @@ from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 
+from app.core.paths import resource_root
 from app.core.theme import Theme
 
-# app/core/assets.py -> app/core -> app -> <project root>
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+# The project folder, or the unpacked bundle inside Akeso.exe (paths.py).
+PROJECT_ROOT = resource_root()
 ASSETS_DIR = PROJECT_ROOT / "assets"
 
 LIGHT_INK_LOGO = ASSETS_DIR / "LIGHTLOGO.png"   # for dark backgrounds

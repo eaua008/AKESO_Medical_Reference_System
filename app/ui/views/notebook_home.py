@@ -386,6 +386,7 @@ class NotebookCard(_Clickable):
 class NotebookHome(QWidget):
     filters_changed = Signal()
     new_note_requested = Signal()
+    sync_requested = Signal()                   # "Sync now" (cloud copy, migration 011)
     new_case_requested = Signal(str)            # symptom_case | interaction_case
     item_clicked = Signal(str)
     item_action = Signal(str, str)              # action, item id
@@ -447,6 +448,21 @@ class NotebookHome(QWidget):
         titles.addWidget(QLabel("Study Notebook", objectName="nbTitle"))
         titles.addWidget(QLabel("Your notes and case studies, organised by subject.",
                                 objectName="nbSubtitle"))
+        # Cloud copy status: "Synced to your account just now" / offline.
+        sync_row = QHBoxLayout()
+        sync_row.setSpacing(8)
+        self._sync_label = QLabel("", objectName="nbSubtitle")
+        self._sync_tone = "muted"
+        self._sync_button = QPushButton("Sync now")
+        self._sync_button.setObjectName("nbLink")
+        self._sync_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._sync_button.setFlat(True)
+        self._sync_button.clicked.connect(self.sync_requested.emit)
+        self._sync_button.hide()
+        sync_row.addWidget(self._sync_label)
+        sync_row.addWidget(self._sync_button)
+        sync_row.addStretch(1)
+        titles.addLayout(sync_row)
         row.addLayout(titles, 1)
 
         note = QPushButton("  New Note")
@@ -665,6 +681,23 @@ class NotebookHome(QWidget):
             else:
                 widget.setPixmap(lucide.pixmap(icon, size, tone_color(tone)))
 
+    def set_sync_status(self, text: str, tone: str = "muted") -> None:
+        """tone: muted (working), good (synced) or warn (offline / not set up)."""
+        self._sync_tone = tone
+        self._sync_label.setText(text)
+        self._sync_button.setVisible(bool(text) and tone != "muted")
+        self._paint_sync()
+
+    def _paint_sync(self) -> None:
+        color = {"good": tone_color("success"), "warn": tone_color("amber")}.get(
+            self._sync_tone, Theme.token("TEXT_MUTED"))
+        self._sync_label.setStyleSheet(f"color: {color};")
+        self._sync_button.setStyleSheet(
+            f"QPushButton {{ color: {Theme.token('PRIMARY_TEXT_ON_NAV')}; background: transparent;"
+            f" border: none; font-weight: 600; padding: 0; }}"
+            f" QPushButton:hover {{ text-decoration: underline; }}")
+
     def refresh_theme(self) -> None:
+        self._paint_sync()
         self.refresh_icons()
         self.item_strip.refresh_theme()

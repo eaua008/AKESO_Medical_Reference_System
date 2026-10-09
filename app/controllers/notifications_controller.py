@@ -29,6 +29,7 @@ class NotificationsController(QObject):
         self._unread = 0
 
         view.open_requested.connect(self._open)
+        view.delete_requested.connect(self._delete)
         view.mark_all_requested.connect(self._mark_all)
         view.clear_requested.connect(self._clear)
         view.more_requested.connect(self._more)
@@ -80,6 +81,13 @@ class NotificationsController(QObject):
             self._view.mark_row_read(notification.id)
         if notification.post_id:
             self.open_post.emit(notification.post_id)
+
+    def _delete(self, notification: Notification) -> None:
+        """The row's trash button (migration 016)."""
+        self._items = [i for i in self._items if i.id != notification.id]
+        self._view.remove_row(notification.id)
+        self._run(lambda: self._service.delete([notification.id]),
+                  lambda _r: self.check_count())
 
     def _mark_all(self) -> None:
         self._run(lambda: self._service.mark_read(None), lambda _r: self.reload())
