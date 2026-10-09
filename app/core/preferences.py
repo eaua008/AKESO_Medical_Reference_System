@@ -30,7 +30,7 @@ START_TABS = (
 
 # Display size, in percent of normal. Applied when Akeso starts (Qt scales
 # every widget, font and icon by it), so a change needs a restart.
-UI_SCALES = (80, 90, 100, 110, 125)
+UI_SCALES = (100, 110, 125)     # never below 100%: see display_scale.py
 # Encyclopedia cards per row; 0 means "as many as fit".
 CARD_COLUMNS = (0, 2, 3, 4, 5)
 
@@ -49,7 +49,7 @@ class Preferences:
     theme: str = "dark"            # the app's built-in default (Theme._mode)
     sidebar_pinned: bool = False
     start_tab: str = "dashboard"
-    ui_scale: int = 90             # a little smaller than Qt's default
+    ui_scale: int = 100            # older files with 80 / 90 fall back to this
     color_theme: str = "akeso"     # Settings > Appearance (app/core/theme_presets.py)
     cards_per_row: int = 0
     # The window's normal ("restore down") size and place, [x, y, w, h] in

@@ -208,6 +208,7 @@ class SheetPresenter(QObject):
         self._scrim: Optional[_Scrim] = None
         self._tab: Optional[_CloseTab] = None
         self._slide: Optional[QPropertyAnimation] = None
+        self._ghost: Optional[QLabel] = None
         self.active = False
         dialog.finished.connect(lambda _r: self._dismantle())
 
@@ -246,19 +247,49 @@ class SheetPresenter(QObject):
             self._tab.show()
             self._tab.raise_()
         final = dialog.pos()
-        if animations_enabled:
+        picture = dialog.grab() if animations_enabled else None
+        if picture is not None and not picture.isNull():
+            # What slides is a picture of the sheet, not the sheet: moving the
+            # real form repaints every field on every frame, which is slow on
+            # a big page (the reference browser's sheet does the same). The
+            # real sheet waits out of sight and takes its place at the end.
             start = (QPoint(final.x(), final.y() - min(dialog.height(), 160)) if self.compact
                      else QPoint(self._host.width(), final.y()))
-            self._slide = QPropertyAnimation(dialog, b"pos", self)
+            ghost = QLabel(self._host)
+            ghost.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)
+            ghost.setPixmap(picture)
+            ghost.setGeometry(QRect(start, dialog.size()))
+            ghost.show()
+            ghost.raise_()
+            if self._tab is not None:
+                self._tab.raise_()
+            self._ghost = ghost
+            dialog.move(self._host.width() + 50, final.y())       # out of sight
+            self._slide = QPropertyAnimation(ghost, b"pos", self)
             self._slide.setDuration(SLIDE_MS)
             self._slide.setEasingCurve(QEasingCurve.Type.OutCubic)
             self._slide.setStartValue(start)
             self._slide.setEndValue(final)
             self._slide.valueChanged.connect(self._place_tab)
-            dialog.move(start)
+            self._slide.finished.connect(self._landed)
             self._place_tab(start)
             self._slide.start()
         QTimer.singleShot(0, self._focus)
+
+    def _landed(self) -> None:
+        """The picture has arrived: the real sheet takes its place."""
+        self._drop_ghost()
+        if self.active:
+            self.layout()
+            self._dialog.raise_()
+            if self._tab is not None:
+                self._tab.raise_()
+
+    def _drop_ghost(self) -> None:
+        if self._ghost is not None:
+            self._ghost.hide()
+            self._ghost.deleteLater()
+            self._ghost = None
 
     def _focus(self) -> None:
         dialog = self._dialog
@@ -315,6 +346,7 @@ class SheetPresenter(QObject):
         if watched is self._host and event.type() == QEvent.Type.Resize and self.active:
             if self._slide is not None:
                 self._slide.stop()
+            self._drop_ghost()
             self.layout()
         return False
 
@@ -322,15 +354,17 @@ class SheetPresenter(QObject):
         if not self.active:
             return
         self.active = False
+        landing = self._ghost is not None        # closed while still sliding in
         if self._slide is not None:
             self._slide.stop()
             self._slide = None
+        self._drop_ghost()
         if self._host is not None:
             self._host.removeEventFilter(self)
         dialog, origin, flags = self._dialog, self._origin, self._origin_flags
         scrim, tab = self._scrim, self._tab
         self._scrim = self._tab = None
-        if not self._slide_out(scrim, tab):
+        if landing or not self._slide_out(scrim, tab):
             for widget in (scrim, tab):
                 if widget is not None:
                     widget.hide()
