@@ -30,71 +30,29 @@ from app.core import lucide
 from app.core.interaction_styles import tone_color
 from app.models.case_study import SUGGESTED_TAGS
 from app.services.case_study_service import MedicineOption
+from app.ui.components.sheet_dialog import SheetDialog
 from app.ui.views.interaction_widgets import FlowLayout
 
 HYPOTHETICAL_NOTE = ("Cases are hypothetical study scenarios. Do not enter real patient "
                      "names or identifiers.")
 
 
-class OverlayDialog(QDialog):
-    """A modal card over a dimmed copy of the app window."""
+class OverlayDialog(SheetDialog):
+    """A checker pop-up, shown as a sheet over the module
+    (app/ui/components/sheet_dialog.py). self.body is the form column;
+    add_buttons() puts Cancel / confirm in the sheet's footer."""
 
     def __init__(self, parent: QWidget, title: str, subtitle: str, width: int = 420) -> None:
-        super().__init__(parent)
-        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setModal(True)
-        window = parent.window()
-        self.setGeometry(QRect(window.mapToGlobal(window.rect().topLeft()), window.size()))
-
-        outer = QVBoxLayout(self)
-        self.card = QFrame()
-        self.card.setObjectName("ixDialogCard")
-        self.card.setFixedWidth(width)
-        # Aligned, so the card keeps its natural height instead of stretching.
-        outer.addWidget(self.card, 0, Qt.AlignmentFlag.AlignCenter)
-
-        self.body = QVBoxLayout(self.card)
-        self.body.setContentsMargins(18, 16, 18, 16)
-        self.body.setSpacing(10)
-        head = QHBoxLayout()
-        titles = QVBoxLayout()
-        titles.setSpacing(1)
-        titles.addWidget(QLabel(title, objectName="ixDialogTitle"))
-        if subtitle:
-            sub = QLabel(subtitle, objectName="ixSmallMuted")
-            sub.setWordWrap(True)
-            titles.addWidget(sub)
-        head.addLayout(titles, 1)
-        close = QPushButton()
-        close.setObjectName("ixClose")
-        close.setIcon(lucide.icon("x", 16, tone_color("muted")))
-        close.setCursor(Qt.CursorShape.PointingHandCursor)
-        close.clicked.connect(self.reject)
-        head.addWidget(close, 0, Qt.AlignmentFlag.AlignTop)
-        self.body.addLayout(head)
-        self.body.addWidget(_divider())
-
+        super().__init__(parent, title, subtitle, width=width)
+        self.card = self.content
+        self.body = self.column
         self.error = QLabel("", objectName="ixError")
         self.error.setWordWrap(True)
         self.error.hide()
 
-    def paintEvent(self, event) -> None:  # noqa: N802
-        painter = QPainter(self)
-        painter.fillRect(self.rect(), QColor(0, 0, 0, 170))
-        painter.end()
-
-    def mousePressEvent(self, event) -> None:  # noqa: N802
-        if not self.card.geometry().contains(event.position().toPoint()):
-            self.reject()
-        else:
-            super().mousePressEvent(event)
-
     def add_buttons(self, confirm_text: str) -> QPushButton:
         self.body.addWidget(self.error)
-        self.body.addWidget(_divider())
-        row = QHBoxLayout()
-        row.addStretch(1)
+        self.body.addStretch(1)
         cancel = QPushButton("Cancel")
         cancel.setObjectName("ixSecondary")
         cancel.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -103,9 +61,8 @@ class OverlayDialog(QDialog):
         confirm.setObjectName("ixPrimary")
         confirm.setCursor(Qt.CursorShape.PointingHandCursor)
         confirm.setDefault(True)
-        row.addWidget(cancel)
-        row.addWidget(confirm)
-        self.body.addLayout(row)
+        self.footer.addWidget(cancel)
+        self.footer.addWidget(confirm)
         return confirm
 
     def show_error(self, message: str) -> None:
@@ -114,6 +71,8 @@ class OverlayDialog(QDialog):
 
 
 class ConfirmDialog(OverlayDialog):
+    compact = True
+
     def __init__(self, parent: QWidget, title: str, message: str, confirm_text: str) -> None:
         super().__init__(parent, title, "", width=380)
         text = QLabel(message, objectName="ixBoxBody")

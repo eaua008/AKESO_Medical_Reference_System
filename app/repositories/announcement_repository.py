@@ -38,6 +38,13 @@ class AnnouncementRepository:
     def dismiss(self, announcement_id: str) -> None:
         self._rpc("dismiss_announcement", {"p_id": announcement_id})
 
+    def hide(self, announcement_id: str) -> None:
+        """Off this account's Notifications and dashboard (migration 016)."""
+        self._rpc("hide_announcement", {"p_id": announcement_id})
+
+    def hide_read(self) -> None:
+        self._rpc("hide_read_announcements")
+
     # -------------------------------------------------------------- admins
 
     def all(self) -> list[Announcement]:

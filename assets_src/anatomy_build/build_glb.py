@@ -9,7 +9,7 @@ def load(fj):
             idx = [int(t.split("/")[0]) - 1 for t in line.split()[1:]]
             for i in range(1, len(idx) - 1): f.append((idx[0], idx[i], idx[i + 1]))
     return trimesh.Trimesh(np.array(v, float), np.array(f, int), process=False)
-for layer in ("skin", "bone", "organ", "muscle"):
+for layer in sys.argv[1:] or ("skin", "bone", "organ", "muscle", "vessel", "nerve"):
     scene = trimesh.Scene()
     for fj, p in parts.items():
         if p["layer"] == layer:

@@ -556,6 +556,13 @@ class _FrameController(QObject):
         if watched is not window:
             return False
         kind = event.type()
+        if kind == QEvent.Type.WinIdChange:
+            # Qt rebuilt the Windows window behind Akeso. It does that the
+            # first time a 3D / web view appears (the Body System Explorer,
+            # the reference browser): the window switches to GPU drawing and
+            # is recreated with Qt's plain frameless styles, which drops the
+            # sizing border, Aero Snap and snap layouts. Put them back.
+            QTimer.singleShot(0, self._restyle)
         if kind in (QEvent.Type.Move, QEvent.Type.Resize):
             self._remember()
         if kind == QEvent.Type.WindowStateChange:
@@ -571,6 +578,16 @@ class _FrameController(QObject):
             for bar in window.findChildren(TitleBar):
                 bar.refresh()
         return False
+
+    def _restyle(self) -> None:
+        if sys.platform != "win32" or not _active:
+            return
+        try:
+            _apply_native_styles(self._window)
+        except Exception as error:  # noqa: BLE001 - cosmetics never stop the app
+            print(f"[window_frame] Could not restore the window styles: {error}")
+        for bar in self._window.findChildren(TitleBar):
+            bar.refresh()
 
     def _remember(self) -> None:
         window = self._window

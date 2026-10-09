@@ -242,6 +242,9 @@ class SettingsView(QWidget):
         card.body.addWidget(label("Text, buttons, cards and the sidebar all scale together. "
                                   "90% is the default; pick a bigger size if text is hard "
                                   "to read.", "acSmall"))
+        self._scale_floor_note = label("", "acSmall")
+        self._scale_floor_note.hide()
+        card.body.addWidget(self._scale_floor_note)
         self._restart_row = QWidget()
         self._restart_row.setObjectName("panel")
         rr = QHBoxLayout(self._restart_row)
@@ -447,17 +450,27 @@ class SettingsView(QWidget):
         self.set_clear_pending(clear_pending)
         self._version.setText(f"Akeso {version}")
 
-    def show_display(self, scale: int, running_scale: int, columns: int) -> None:
-        """scale: saved choice; running_scale: what this session started with."""
+    def show_display(self, scale: int, running_scale: int, columns: int,
+                     effective: int = 0, floor: int = 0) -> None:
+        """scale: saved choice; running_scale: what this session started with;
+        effective: the size the choice really gives on this screen; floor:
+        the smallest size this screen allows (app/core/display_scale.py)."""
+        effective = effective or scale
         chip = self._scale_chips.get(scale)
         if chip is not None:
             chip.setChecked(True)
         chip = self._column_chips.get(columns)
         if chip is not None:
             chip.setChecked(True)
-        pending = scale != running_scale
+        limited = effective != scale
+        self._scale_floor_note.setText(
+            f"On this screen Akeso can't go below {floor}%, so it uses {effective}%. Smaller "
+            "sizes break the 3D body and the built-in browser (with Windows display scaling "
+            "at 100%, the browser engine can't draw smaller than normal)." if limited else "")
+        self._scale_floor_note.setVisible(limited)
+        pending = effective != running_scale
         self._restart_note.setText(f"Akeso is showing {running_scale}%. Restart to use "
-                                   f"{scale}% (you will sign in again). Or it applies the "
+                                   f"{effective}% (you will sign in again). Or it applies the "
                                    "next time you open Akeso." if pending else "")
         self._restart_row.setVisible(pending)
 

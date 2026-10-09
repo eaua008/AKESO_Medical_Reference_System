@@ -26,6 +26,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.core import icons
+from app.ui.components.sheet_dialog import SheetPresenter
 
 CODE_LENGTH = 6
 RESEND_COOLDOWN_SECONDS = 45
@@ -70,6 +71,15 @@ class VerifyEmailDialog(QDialog):
 
         self._timer = QTimer(self)
         self._timer.timeout.connect(self._tick)
+        # Drops down over the sign-in screen like Akeso's other pop-ups.
+        self._sheet = SheetPresenter(self, compact=True, chrome=False)
+
+    def setVisible(self, visible: bool) -> None:  # noqa: N802
+        if visible and not self.isVisible():
+            self._sheet.prepare()
+        super().setVisible(visible)
+        if visible:
+            self._sheet.shown()
 
     # -------------------------------------------------------------- pieces
 

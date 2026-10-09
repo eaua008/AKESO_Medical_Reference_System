@@ -372,6 +372,11 @@ class BmiPanel(_Panel):
         self.number, _unit = c.big_number("", "kg/m\u00b2")
         self.badge = Badge()
         c.body.addWidget(self.badge)
+        # Age never changes the BMI number (weight / height squared); it
+        # decides how that number is judged. Say so, so changing the age
+        # visibly does something even when the number stays the same.
+        self.age_group = _label("", "wlHint")
+        c.body.addWidget(self.age_group)
         self.gauge = BmiGauge()
         c.body.addWidget(self.gauge)
         self.healthy = _label("", "wlStrong")
@@ -409,6 +414,17 @@ class BmiPanel(_Panel):
         self.healthy.setVisible(bool(r.healthy_weight_kg))
         self.message.setText(r.message)
         self.source.setText(f"Cutoffs: {r.standard.source}")
+        age = int(self.age.value())
+        if age < 5:
+            group = "Age under 5: judged on the WHO Child Growth Standards"
+        elif age < 20:
+            group = f"Age {age}: judged by BMI-for-age percentile (5\u201319 years)"
+        elif age < 65:
+            group = f"Age {age}: adult categories (20\u201364 years)"
+        else:
+            group = f"Age {age}: adult categories, with the older-adult note below"
+        self.age_group.setText(group + ". Age doesn't change the BMI number itself, "
+                               "only how it is read.")
 
 
 # =============================================================== hydration

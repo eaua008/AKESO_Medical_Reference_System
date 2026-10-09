@@ -2,8 +2,9 @@
 // with esbuild so it runs offline inside the app's built-in browser.
 //
 // Python drives it through window.akeso (setLayer, focus, setTheme,
-// clearSelection) and hears back through the Qt web channel "bridge"
-// (ready, partSelected, regionChanged). Models: BodyParts3D,
+// clearSelection, setExtra, setColor...) and hears back through the Qt web
+// channel "bridge" (ready, partSelected, regionChanged, extraLoaded,
+// coloursChanged). Models: BodyParts3D,
 // (c) The Database Center for Life Science (CC BY 4.0).
 
 import * as THREE from "three";
@@ -18,12 +19,26 @@ const SYSTEM_COLOURS = {
   digestive: 0xd9915a, urinary: 0xe0c060, endocrine: 0xa98bd8,
 };
 const LAYER_COLOURS = { skin: 0xe8b99a, muscle: 0xb04a4a, bone: 0xeee6d2 };
+// Blood vessels and nerves: switched on separately (not part of the peel
+// slider), loaded the first time they are switched on, and colour coded.
+const EXTRAS = ["vessel", "nerve"];
+// Textbook colours: oxygen-rich blood red, oxygen-poor blue. The lung
+// arteries carry oxygen-poor blood (blue) and the lung veins oxygen-rich (red).
+const KIND_DEFAULTS = {
+  artery: "#d63031", vein: "#2e6bd9", pulmonary_artery: "#2e6bd9",
+  pulmonary_vein: "#d63031", portal_vein: "#8e44ad", nerve: "#f1c40f",
+};
+let kindColours = { ...KIND_DEFAULTS };  // the user can change a whole kind...
+let custom = {};                         // ...or single vessels: part id -> "#rrggbb"
+const extraOn = { vessel: false, nerve: false };
+const extraLoading = {};                 // name -> Promise while loading
+let started = false;                     // the four main layers are in
 
 let bridge = null, parts = {}, regions = {};
 let theme = { bg: "#0d0d13", dark: true };
 let highlight = 0x6c5ce7;               // selection glow: the theme's accent
 const meshes = [];                      // every part mesh
-const byLayer = { skin: [], muscle: [], bone: [], organ: [] };
+const byLayer = { skin: [], muscle: [], bone: [], organ: [], vessel: [], nerve: [] };
 let layerValue = 0, region = "body", selected = null, hovered = null;
 // Parts the user hid or made see-through: key -> {label, kind, ids}
 const entries = new Map();
@@ -98,11 +113,23 @@ function frame(t) {
 controls.addEventListener("change", requestRender);
 
 // ------------------------------------------------------------- materials
-function material(part) {
-  const colour = part.layer === "organ" ? (SYSTEM_COLOURS[part.system] || 0xcc8888)
+function kindOf(part) {
+  if (part.layer === "nerve") return "nerve";
+  return part.layer === "vessel" ? (part.vtype || "artery") : null;
+}
+function colourFor(id) {                     // "#rrggbb" for vessels and nerves
+  const part = parts[id] || {};
+  const kind = kindOf(part);
+  if (!kind) return null;
+  return custom[id] || kindColours[kind] || KIND_DEFAULTS[kind];
+}
+function material(part, id) {
+  const coded = colourFor(id);
+  const colour = coded ? new THREE.Color(coded)
+               : part.layer === "organ" ? (SYSTEM_COLOURS[part.system] || 0xcc8888)
                                         : LAYER_COLOURS[part.layer];
   return new THREE.MeshStandardMaterial({
-    color: colour, roughness: part.layer === "bone" ? 0.75 : 0.55,
+    color: colour, roughness: part.layer === "bone" ? 0.75 : coded ? 0.45 : 0.55,
     metalness: 0.0, transparent: true, opacity: 1, side: THREE.DoubleSide,
   });
 }
@@ -123,6 +150,17 @@ function applyLayers() {
       m.renderOrder = opacity > 0.98 ? 0 : 10 - i;
     }
   });
+  for (const name of EXTRAS) {
+    for (const m of byLayer[name]) {
+      let opacity = isolated ? (isolated.ids.has(m.name) ? 1 : 0) : (extraOn[name] ? 1 : 0);
+      if (hidden.has(m.name)) opacity = 0;
+      else if (ghosts.has(m.name)) opacity = Math.min(opacity, 0.16);
+      m.visible = opacity > 0.02;
+      m.material.opacity = opacity;
+      m.material.depthWrite = opacity > 0.98;
+      m.renderOrder = opacity > 0.98 ? 0 : 6;
+    }
+  }
   if (hovered && !hovered.visible) {               // its name tag must not linger
     hovered = null;
     const tip = document.getElementById("tip");
@@ -281,6 +319,8 @@ function select(mesh) {
   setEmissive(selected, true, 0.7);
   requestRender();
   const p = Object.assign({ id: mesh.name }, parts[mesh.name] || {});
+  const colour = colourFor(mesh.name);
+  if (colour) { p.colour = colour; p.kind = kindOf(p); p.custom = !!custom[mesh.name]; }
   window.__akesoLast = p;                     // read by the tests
   if (bridge) bridge.partSelected(JSON.stringify(p));
 }
@@ -299,7 +339,7 @@ function loadLayer(name) {
         while (n && !parts[id]) { n = n.parent; id = n ? n.name : ""; }
         obj.name = id;
         const part = parts[id] || { layer: name };
-        obj.material = material(part);
+        obj.material = material(part, id);
         meshes.push(obj);
         byLayer[name].push(obj);
       });
@@ -324,7 +364,71 @@ async function start() {
     await loadLayer(name);
   }
   status.style.display = "none";
+  started = true;
+  for (const name of EXTRAS) if (extraOn[name]) setExtra(name, true);
   if (bridge) bridge.ready();
+}
+
+// ------------------------------------------------------- vessels and nerves
+function setExtra(name, on) {
+  if (!EXTRAS.includes(name)) return;
+  extraOn[name] = !!on;
+  if (!started) return;                  // start() loads it after the main layers
+  if (on && !byLayer[name].length && !extraLoading[name]) {
+    const status = document.getElementById("status");
+    status.textContent = name === "vessel" ? "Loading blood vessels…" : "Loading nerves…";
+    status.style.display = "block";
+    extraLoading[name] = loadLayer(name).then(() => {
+      status.style.display = "none";
+      window.__akesoExtras = (window.__akesoExtras || 0) + 1;       // read by the tests
+      if (bridge) bridge.extraLoaded(name);
+    }, err => {
+      console.error(`Couldn't load ${name}.glb: ${err && err.message ? err.message : err}`);
+      status.textContent = "Couldn't load this layer. Reinstall Akeso if it keeps happening.";
+      extraLoading[name] = null;
+    });
+  }
+  applyLayers();
+}
+function recolour() {
+  for (const name of EXTRAS) for (const m of byLayer[name]) {
+    const c = colourFor(m.name);
+    if (c) m.material.color.set(c);
+  }
+  requestRender();
+}
+function reportColours() {
+  if (bridge) bridge.coloursChanged(JSON.stringify({ kinds: kindColours, custom }));
+}
+const HEX = /^#[0-9a-fA-F]{6}$/;
+function setColour(id, whole, hex) {
+  if (!parts[id] || !kindOf(parts[id]) || !HEX.test(hex)) return;
+  for (const k of idsFor(id, whole)) custom[k] = hex.toLowerCase();
+  recolour(); reportColours();
+}
+function resetColour(id, whole) {
+  if (!parts[id]) return;
+  for (const k of idsFor(id, whole)) delete custom[k];
+  recolour(); reportColours();
+}
+function setKindColour(kind, hex) {
+  if (!(kind in KIND_DEFAULTS) || !HEX.test(hex)) return;
+  kindColours[kind] = hex.toLowerCase();
+  recolour(); reportColours();
+}
+function resetAllColours() {
+  kindColours = { ...KIND_DEFAULTS }; custom = {};
+  recolour(); reportColours();
+}
+function setColours(saved) {                 // restore what Python saved last time
+  saved = saved || {};
+  kindColours = { ...KIND_DEFAULTS };
+  for (const [k, v] of Object.entries(saved.kinds || {}))
+    if (k in KIND_DEFAULTS && HEX.test(v)) kindColours[k] = v.toLowerCase();
+  custom = {};
+  for (const [k, v] of Object.entries(saved.custom || {}))
+    if (parts[k] && kindOf(parts[k]) && HEX.test(v)) custom[k] = v.toLowerCase();
+  recolour();
 }
 
 // ------------------------------------------------------------ API for Python
@@ -337,6 +441,13 @@ window.akeso = {
   isolate(id, whole) { isolatePart(id, !!whole); },
   restore(key) { restore(key); },
   showAll() { showAll(); },
+  setExtra(name, on) { setExtra(name, on); },
+  setColor(id, whole, hex) { setColour(id, !!whole, hex); },
+  resetColor(id, whole) { resetColour(id, !!whole); },
+  setKindColor(kind, hex) { setKindColour(kind, hex); },
+  resetAllColors() { resetAllColours(); },
+  setColors(saved) { setColours(saved); },
+  colours() { return { kinds: kindColours, custom }; },
   setTheme(bg, dark, accent) {
     theme = { bg, dark };
     if (accent) highlight = new THREE.Color(accent).getHex();
