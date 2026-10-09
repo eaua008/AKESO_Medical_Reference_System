@@ -206,10 +206,13 @@ class MainWindow(QMainWindow):
         like Akeso closing and opening again. A 1-pixel, invisible web view
         added now, before the window is shown, makes Qt build the window
         GPU-ready from the start, so nothing is rebuilt later.
-        AKESO_NO_GPU_WARMUP=1 turns this off (for troubleshooting)."""
+        OFF by default since 1.0.3: a GPU-ready window redraws every change
+        through the graphics card, which made the whole app slow to respond
+        on some laptops (1.0.2). The price is one flicker the first time the
+        3D body opens. AKESO_GPU_WARMUP=1 turns it back on."""
         import os
         import sys
-        if sys.platform != "win32" or os.environ.get("AKESO_NO_GPU_WARMUP"):
+        if sys.platform != "win32" or not os.environ.get("AKESO_GPU_WARMUP"):
             return
         try:
             from PySide6.QtCore import Qt, QUrl

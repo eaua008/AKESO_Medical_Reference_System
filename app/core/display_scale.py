@@ -6,9 +6,11 @@ factor" and draws its pages at the wrong size. Those pages include the Body
 System Explorer's 3D view and the reference browser, so the 3D body ended up
 squeezed into a corner and clicks landed in the wrong place.
 
-What matters is the final size: Windows display scaling × Akeso's size. On a
-screen set to 125%, Akeso at 80% is 125% × 80% = 100%, which is fine. On a
-screen at 100%, anything under 100% is not, so Akeso stays at 100% there.
+Version 1.0.2 still allowed 80% on screens with Windows scaling at 125%
+(125% × 80% = 100% in the end), but the browser engine checks Akeso's own
+size, not the final one, so the 3D view broke there too and every redraw got
+slower. So Akeso is never drawn below 100% now, on any screen; Settings only
+offers 100%, 110% and 125%.
 """
 
 import sys
@@ -39,8 +41,8 @@ def smallest_percent() -> int:
 
 
 def effective_percent(chosen: int) -> int:
-    """The size Akeso actually uses for a chosen one (never below the floor)."""
-    return max(chosen, min(100, smallest_percent()))
+    """The size Akeso actually uses for a chosen one: never below 100%."""
+    return max(chosen, 100)
 
 
 def qt_scale_factor(chosen: int) -> float:

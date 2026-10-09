@@ -240,7 +240,7 @@ class SettingsView(QWidget):
             [(s, f"{s}%") for s in UI_SCALES], self.scale_chosen)
         card.body.addLayout(row)
         card.body.addWidget(label("Text, buttons, cards and the sidebar all scale together. "
-                                  "90% is the default; pick a bigger size if text is hard "
+                                  "100% is the default; pick a bigger size if text is hard "
                                   "to read.", "acSmall"))
         self._scale_floor_note = label("", "acSmall")
         self._scale_floor_note.hide()
