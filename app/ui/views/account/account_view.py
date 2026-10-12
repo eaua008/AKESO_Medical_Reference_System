@@ -18,6 +18,7 @@ from app.ui.views.account.overview_tab import OverviewTab, _clear
 from app.ui.views.account.privacy_tab import PrivacyTab
 from app.ui.views.account.profile_tab import ProfileTab
 from app.ui.views.account.security_tab import SecurityTab
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 TABS = [("overview", "Overview"), ("profile", "Profile"),
         ("security", "Security"), ("privacy", "Privacy && data")]
@@ -137,7 +138,7 @@ class AccountView(QWidget):
             self._tab_buttons[key] = tab
             row.addWidget(tab)
         row.addStretch(1)
-        self._loading = label("", "acSmall", wrap=False)
+        self._loading = LoadingLabel("", "acSmall", inline=True, wrap=False)
         row.addWidget(self._loading)
         self._retry = button("Retry", "acLink", on_click=self.retry_requested.emit)
         self._retry.hide()
@@ -158,16 +159,21 @@ class AccountView(QWidget):
     def show_loading(self, text: str = "Loading your account…") -> None:
         self._loading.setObjectName("acSmall")
         repolish(self._loading)
-        self._loading.setText(text)
+        LoadingHold.of(self).begin()                  # the loader shows for at least 3 s
+        self._loading.set_loading(text)
         self._retry.hide()
 
     def show_load_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_load_error, message):
+            return
         self._loading.setObjectName("acError")
         repolish(self._loading)
         self._loading.setText(message)
         self._retry.show()
 
     def loaded(self) -> None:
+        if LoadingHold.of(self).wait(self.loaded):
+            return
         self._loading.setText("")
         self._retry.hide()
 

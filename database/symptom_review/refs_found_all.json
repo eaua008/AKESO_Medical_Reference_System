@@ -1,0 +1,756 @@
+{
+"sym_proptosis": [
+{
+"source_name": "Merck Manual Professional - Proptosis (Exophthalmos)",
+"citation": "Brady CJ. Proptosis (Exophthalmos). Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/eye-disorders/symptoms-of-ophthalmologic-disorders/proptosis",
+"facts": "Graves disease is the most common cause in adults, orbital cellulitis in children; sudden unilateral onset suggests intraorbital hemorrhage or orbital/sinus inflammation, slower onset suggests tumor; red flags: eye pain/redness, vision loss, diplopia, fever, pulsating proptosis; confirm by exophthalmometry (normal often <20 mm), CT/MRI orbits, thyroid tests if Graves suspected."
+}
+],
+"sym_calf_pain": [
+{
+"source_name": "Merck Manual Professional - Limb Pain",
+"citation": "Thompson AD, Shea MJ. Limb Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/limb-pain",
+"facts": "DVT is among the most common causes of nontraumatic limb pain (swelling, warmth, redness may be minimal; ultrasound is the usual test); calf pain reliably brought on by walking and relieved by rest suggests claudication from PAD (ABI <=0.9); sudden severe pain with coolness, pallor, pulse deficit suggests acute arterial occlusion; crepitation, bullae, tense swelling or necrosis suggest deep soft-tissue infection."
+}
+],
+"sym_tophi": [
+{
+"source_name": "Merck Manual Professional - Gout",
+"citation": "Keller SF. Gout. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2025.",
+"url": "https://www.merckmanuals.com/professional/musculoskeletal-and-connective-tissue-disorders/crystal-induced-arthritides/gout",
+"facts": "Tophi are firm yellow or white papules/nodules, commonly on fingers, hands, feet, around the olecranon or Achilles tendon and in the skin of the ears; can rarely appear without prior gout flares; aspiration shows needle-shaped, strongly negatively birefringent urate crystals; tophi indicate chronic gouty arthritis."
+}
+],
+"sym_chest_pain": [
+{
+"source_name": "Merck Manual Professional - Chest Pain",
+"citation": "Thompson AD, Shea MJ. Chest Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/chest-pain",
+"facts": "Immediately life-threatening causes: acute coronary syndromes, aortic dissection, tension pneumothorax, esophageal rupture, pulmonary embolism; common causes include chest wall, pleural and GI disorders (GERD, esophageal spasm, ulcer, cholelithiasis); red flags: abnormal vitals, hypoperfusion, dyspnea, hypoxemia, asymmetric pulses or breath sounds, new murmur, pulsus paradoxus >10 mm Hg; pain lasting weeks-months is rarely immediately life-threatening."
+}
+],
+"sym_chest_tightness": [
+{
+"source_name": "Merck Manual Professional - Dyspnea",
+"citation": "Dezube R. Dyspnea. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/dyspnea",
+"facts": "Wheeze, cough, chest tightness, episodic symptoms and characteristic triggers suggest asthma; acute myocardial ischemia presents as substernal chest pressure radiating to arm or jaw (ECG and cardiac enzymes needed); PE and pneumothorax cause abrupt sharp chest pain with tachypnea; chest pain is a red flag and normal oxygen saturation does not exclude PE."
+}
+],
+"sym_chills": [
+{
+"source_name": "Merck Manual Professional - Fever",
+"citation": "Bush LM, Vazquez-Pertejo MT. Fever. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/biology-of-infectious-disease/fever",
+"facts": "Rigors are severe shaking chills with teeth chattering, distinct from feeling cold; rigors suggest infectious fever but are not specific; acute fever <=4 days in adults is very likely infectious (respiratory, GI, urinary, skin sources); red flags: altered mental status, headache with stiff neck, petechial rash, hypotension, temp >40 C or <35 C, travel to malaria areas, immunosuppression."
+}
+],
+"sym_confusion": [
+{
+"source_name": "Merck Manual Professional - Delirium",
+"citation": "Huang J. Delirium. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/delirium-and-dementia/delirium",
+"facts": "Most common triggers are medications (especially anticholinergics and opioids), dehydration and infection; hallmark is inattention with fluctuating consciousness, often worse at night, and older adults may be quiet/hypoactive rather than agitated; unlike dementia, onset is rapid, attention is mainly affected and it is often reversible; about 30-50% of hospitalized patients with delirium die within 1 year."
+}
+],
+"sym_constipation": [
+{
+"source_name": "Merck Manual Professional - Constipation",
+"citation": "Gotfried J. Constipation. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2026.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/symptoms-of-gastrointestinal-disorders/constipation",
+"facts": "Acute constipation suggests an organic cause (be wary of bowel obstruction when acute and severe); common causes include drugs (opioids, anticholinergics), colonic tumors, metabolic/neurologic disorders, low-fiber diet and dyssynergic defecation; red flags: distended tympanitic abdomen, vomiting, blood in stool, weight loss, new severe constipation in older adults; anorectal manometry with balloon expulsion if fiber/laxatives fail."
+}
+],
+"sym_cough": [
+{
+"source_name": "Merck Manual Professional - Cough in Adults",
+"citation": "Dezube R. Cough in Adults. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/cough-in-adults",
+"facts": "Acute (<3 wk) cough is mostly URI, rhinosinusitis, pneumonia, COPD exacerbation, pertussis or heart failure; subacute (3-8 wk) usually post-infectious airway hyperresponsiveness; chronic (>8 wk) mainly upper airway cough syndrome, GERD, asthma, chronic bronchitis or ACE inhibitors; red flags: dyspnea, hemoptysis, weight loss, persistent fever, TB/HIV risk."
+}
+],
+"sym_paroxysmal_cough": [
+{
+"source_name": "CDC - Clinical Features of Pertussis",
+"citation": "Centers for Disease Control and Prevention. Clinical Features of Pertussis. Atlanta (GA): CDC; last reviewed Dec 2025.",
+"url": "https://www.cdc.gov/pertussis/hcp/clinical-signs/index.html",
+"facts": "Paroxysmal stage: rapid repeated coughs followed by a long inspiration ending in a high-pitched whoop, more frequent at night (about 15 attacks/24 h), with post-tussive vomiting; illness progresses through catarrhal (coryza, low-grade fever, mild cough), paroxysmal and convalescent stages; in infants apnea may be the only sign and the whoop may be absent."
+}
+],
+"sym_hemoptysis": [
+{
+"source_name": "Merck Manual Professional - Hemoptysis",
+"citation": "Dezube R. Hemoptysis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/hemoptysis",
+"facts": "Common adult causes are bronchitis, bronchiectasis, necrotizing pneumonia, TB and COPD, with lung cancer important in heavy smokers; in children mainly lower respiratory infection and foreign body; red flags: massive hemoptysis, back pain, recent pulmonary artery catheter or tracheostomy, weight loss, heavy smoking, resting dyspnea or absent breath sounds; up to 50% idiopathic, usually resolving within 6 months."
+}
+],
+"sym_pica": [
+{
+"source_name": "Merck Manual Professional - Pica",
+"citation": "Attia E, Walsh BT. Pica. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/psychiatric-disorders/feeding-and-eating-disorders/pica",
+"facts": "Persistent eating of nonnutritive, nonfood material for at least 1 month, developmentally inappropriate and not culturally sanctioned (not diagnosed under age 2); common in pregnancy and iron-deficiency anemia; complications include clay binding iron/zinc, intestinal obstruction, lead poisoning from paint chips and parasitic infestation from soil; often coexists with autism or intellectual disability."
+}
+],
+"sym_dark_urine": [
+{
+"source_name": "Merck Manual Professional - Jaundice",
+"citation": "Tholey D. Jaundice. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/approach-to-the-patient-with-liver-disease/jaundice",
+"facts": "Conjugated bilirubin can darken urine before jaundice is visible, making dark urine an earlier marker of conjugated hyperbilirubinemia; unconjugated bilirubin is not excreted in urine, so bilirubinuria indicates hepatocellular dysfunction or cholestasis; most common causes are inflammatory hepatitis, alcohol-related liver disease and biliary obstruction; red flags: marked abdominal pain, altered mental status, GI bleeding, ecchymoses/petechiae."
+},
+{
+"source_name": "Merck Manual Professional - Table: Causes of Urine Color Changes",
+"citation": "Merck & Co. Table: Causes of Urine Color Changes. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; 2026.",
+"url": "https://www.merckmanuals.com/professional/multimedia/table/causes-of-urine-color-changes",
+"facts": "Red, orange or brown urine may result from bilirubin, hemoglobinuria, free myoglobin, porphyrins, red blood cells, beets or drugs (rifampin, phenazopyridine, phenytoin, levodopa, methyldopa, senna, phenothiazines); dark brown or black urine occurs with melanoma (melanogen) and homogentisic acid oxidizing on standing."
+}
+],
+"sym_decreased_urine": [
+{
+"source_name": "Merck Manual Professional - Oliguria",
+"citation": "Berry C. Oliguria. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/critical-care-medicine/approach-to-the-critically-ill-patient/oliguria",
+"facts": "Defined as <500 mL/24 h in adults or <0.5 mL/kg/h (<1 mL/kg/h in neonates); prerenal (hypovolemia, low cardiac output, sepsis), renal (ATN, rhabdomyolysis, contrast, nephrotoxins) and postrenal (blocked catheter, BPH, stones) causes; sudden drop in a catheterized normotensive patient suggests catheter occlusion, palpable bladder suggests outlet obstruction, dark brown urine suggests myoglobinuria; FENa <1% prerenal, >2% ATN."
+}
+],
+"sym_diarrhea": [
+{
+"source_name": "Merck Manual Professional - Diarrhea",
+"citation": "Gotfried J. Diarrhea. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2026.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/symptoms-of-gastrointestinal-disorders/diarrhea",
+"facts": "Defined as stool weight >200 g/day; mechanisms are increased osmotic load, increased secretion/decreased absorption, and reduced transit time or surface area, with infection the most common cause of acute secretory diarrhea; red flags: blood or pus, fever, dehydration, chronic or nocturnal diarrhea, weight loss; >1 L/day without laxatives suggests an endocrine tumor."
+}
+],
+"sym_dysphagia": [
+{
+"source_name": "Merck Manual Professional - Dysphagia",
+"citation": "Lynch KL. Dysphagia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2026.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/esophageal-and-swallowing-disorders/dysphagia",
+"facts": "Oropharyngeal dysphagia usually stems from neuromuscular disease (stroke, Parkinson disease, myasthenia gravis); esophageal dysphagia from motility disorders (achalasia, eosinophilic esophagitis) or mechanical obstruction (cancer, peptic stricture, rings/webs); all patients need upper endoscopy, with biopsies for EoE if no structural cause; red flags: complete obstruction/drooling, weight loss, new focal neurologic deficits, recurrent aspiration pneumonia."
+}
+],
+"sym_dizziness": [
+{
+"source_name": "Merck Manual Professional - Dizziness and Vertigo",
+"citation": "Formeister EJ. Dizziness and Vertigo. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jan 2025.",
+"url": "https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/approach-to-the-patient-with-ear-problems/dizziness-and-vertigo",
+"facts": "Common peripheral causes: BPPV, Meniere disease, vestibular neuronitis, labyrinthitis; most common central cause is vestibular migraine, then drug effects (especially antihypertensives); ear symptoms (tinnitus, fullness, hearing loss) suggest peripheral cause, while nystagmus not suppressed by fixation suggests central; red flags: head/neck pain, ataxia, loss of consciousness, focal deficit, severe continuous symptoms >1 hour."
+}
+],
+"sym_epigastric_pain": [
+{
+"source_name": "Merck Manual Professional - Dyspepsia",
+"citation": "Gotfried J. Dyspepsia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2026.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/symptoms-of-gastrointestinal-disorders/dyspepsia",
+"facts": "Upper abdominal pain or discomfort, often recurrent; causes include peptic ulcer disease, GERD, drugs (NSAIDs, opioids, iron), delayed gastric emptying, celiac disease, gastric/esophageal cancer and coronary ischemia, with functional dyspepsia when workup is normal; red flags: acute episode with dyspnea/diaphoresis/tachycardia, weight loss, vomiting, blood in stool, dysphagia, PPI failure; evaluate cardiac causes first if ischemia possible; endoscopy for patients >60 with new symptoms."
+}
+],
+"sym_hypersalivation": [
+{
+"source_name": "Merck Manual Professional - Organophosphate Poisoning and Carbamate Poisoning",
+"citation": "O'Malley GF, O'Malley R. Organophosphate Poisoning and Carbamate Poisoning. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2025.",
+"url": "https://www.merckmanuals.com/professional/injuries-poisoning/poisoning/organophosphate-poisoning-and-carbamate-poisoning",
+"facts": "Salivation is a muscarinic sign alongside lacrimation, urination, defecation, vomiting, miosis, bronchorrhea, wheezing and bradycardia, with fasciculations/weakness as nicotinic signs; diagnosis is mainly clinical (response to 1 mg atropine supports it); atropine is titrated to dry bronchial secretions, with pralidoxime for neuromuscular effects."
+},
+{
+"source_name": "Merck Manual Professional - Epiglottitis",
+"citation": "Cheng AG. Epiglottitis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2026.",
+"url": "https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/oral-and-pharyngeal-disorders/epiglottitis",
+"facts": "In children, drooling without a barking cough is a highly specific and sensitive feature of epiglottitis, distinguishing it from croup; drooling with stridor or respiratory distress predicts need for urgent airway management; avoid provoking the child until the airway is secured by experienced personnel."
+}
+],
+"sym_polydipsia": [
+{
+"source_name": "Merck Manual Professional - Arginine Vasopressin Deficiency (Central Diabetes Insipidus)",
+"citation": "Carmichael JD. Arginine Vasopressin Deficiency (Central Diabetes Insipidus). Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2025.",
+"url": "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/pituitary-disorders/arginine-vasopressin-deficiency-central-diabetes-insipidus",
+"facts": "Diabetes mellitus is the most common cause of polyuria with thirst; others are diuretics, AVP deficiency, AVP resistance and primary polydipsia; primary polydipsia patients may drink up to 6 L/day, often have a psychiatric disorder and usually lack nocturia, and excessive intake can cause life-threatening hyponatremia; the water deprivation test, done under constant supervision, is the most reliable diagnostic test."
+}
+],
+"sym_polyuria": [
+{
+"source_name": "Merck Manual Professional - Polyuria",
+"citation": "Maddukuri G. Polyuria. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2024.",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/symptoms-of-genitourinary-disorders/polyuria",
+"facts": "Defined as urine output >3 L/day, distinct from urinary frequency; uncontrolled diabetes mellitus and diuretics are the most common causes, otherwise primary polydipsia, AVP deficiency and AVP resistance; red flags: abrupt onset, onset in early childhood, night sweats/cough/weight loss, psychiatric disorder; hypernatremia suggests diabetes insipidus while hyponatremia suggests excess water intake."
+}
+],
+"sym_facial_droop": [
+{
+"source_name": "Merck Manual Professional - Facial Nerve Palsy",
+"citation": "Rubin M. Facial Nerve Palsy. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/neuro-ophthalmologic-and-cranial-nerve-disorders/facial-nerve-palsy",
+"facts": "Central (supranuclear) lesions such as stroke or tumor mainly weaken the lower face and spare the forehead, whereas peripheral lesions weaken upper and lower face on the same side; peripheral causes include idiopathic Bell palsy (HSV most common), herpes zoster oticus, Lyme disease, sarcoidosis, diabetes, petrous fracture and CPA tumors; MRI if other neurologic signs or gradual onset; bilateral palsy suggests Lyme or sarcoidosis."
+}
+],
+"sym_fatigue": [
+{
+"source_name": "Merck Manual Professional - Fatigue",
+"citation": "Wasserman MR. Fatigue. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025 (updated Jan 2026).",
+"url": "https://www.merckmanuals.com/professional/special-subjects/nonspecific-symptoms/fatigue",
+"facts": "Cause varies by duration: <1 mo usually drugs, anemia, stress/depression; 1-6 mo diabetes, hypothyroidism, sleep apnea, cancer; >6 mo ME/CFS, postviral, psychiatric. Red flags: weight loss, fever/night sweats, generalized lymphadenopathy, multi-organ symptoms, new headache/vision loss in older adult (GCA/PMR). Worse with activity and relieved by rest suggests medical cause; constant fatigue unrelieved by rest suggests psychiatric cause. Routine labs low yield without clinical clues."
+}
+],
+"sym_hydrophobia": [
+{
+"source_name": "Merck Manual Professional - Rabies",
+"citation": "Klein RS. Rabies. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2026 (updated Sep 2026).",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/brain-infections/rabies",
+"facts": "Attempts to drink cause painful laryngeal/pharyngeal spasms (hydrophobia) with excessive salivation. Furious (encephalitic) rabies ~80%: agitation, hallucinations, insomnia; paralytic ('dumb') ~20%: ascending paralysis without hydrophobia or delirium. Prodrome of fever, headache, malaise; incubation averages 1-2 months, can exceed 1 year. Death usually 3-10 days after symptom onset; prompt postexposure prophylaxis almost always prevents disease."
+},
+{
+"source_name": "CDC - Clinical Features of Rabies",
+"citation": "Centers for Disease Control and Prevention. Clinical Features of Rabies. Atlanta (GA): CDC; reviewed Jul 2025 (updated Mar 2026).",
+"url": "https://www.cdc.gov/rabies/hcp/clinical-signs/index.html",
+"facts": "Prodrome of several days with weakness, fever, headache, and discomfort or itching at the bite site. Brain dysfunction (hydrophobia, hypersalivation, seizures) usually within 2 weeks of first symptoms; all patients develop encephalitis. Typically fatal within 4 weeks of symptom onset; illness lasting longer than 4 weeks argues against rabies."
+}
+],
+"sym_fever": [
+{
+"source_name": "Merck Manual Professional - Fever",
+"citation": "Bush LM, Vazquez-Pertejo MT. Fever. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024 (updated Apr 2026).",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/biology-of-infectious-disease/fever",
+"facts": "Fever = hypothalamic set-point elevation, unlike hyperthermia. Oral temp >=37.8 C after early morning or >=37.2 C in early morning is elevated; acute fever <=4 days in adults is usually infectious (respiratory, GI, urinary, skin). Red flags: altered mental status, headache with stiff neck, petechial rash, hypotension, temp >40 C or <35 C, recent travel, immunosuppression. Older adults may have little or no fever despite serious infection."
+}
+],
+"sym_flank_pain": [
+{
+"source_name": "Merck Manual Professional - Urinary Calculi",
+"citation": "Preminger GM. Urinary Calculi. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jan 2025 (updated Apr 2025).",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/urinary-calculi/urinary-calculi",
+"facts": "Renal colic is excruciating, intermittent, lasts 20-60 min, with nausea/vomiting; patient writhes or paces (vs lying still in peritonitis). Flank pain radiating across abdomen = upper ureter/renal pelvis; radiating to genitals = lower ureter. Fever, dysuria, or cloudy urine with obstruction needs urgent decompression (stent or nephrostomy). Consider aortic dissection/aneurysm in older patients."
+}
+],
+"sym_foamy_urine": [
+{
+"source_name": "Merck Manual Professional - Proteinuria",
+"citation": "Maddukuri G. Proteinuria. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2024 (updated Feb 2026).",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/symptoms-of-genitourinary-disorders/proteinuria",
+"facts": "High urinary protein concentrations cause frothy or sudsy urine. Glomerular disease is the most common cause (FSGS, membranous nephropathy, diabetic nephropathy in adults); nephrotic range is >3.5 g/day or UPCR >3.5. Dipstick mainly detects albumin; persistent proteinuria warrants quantification, imaging, serology, nephrology referral, and biopsy if noninvasive tests are not diagnostic."
+}
+],
+"sym_headache": [
+{
+"source_name": "Merck Manual Professional - Approach to the Patient With Headache",
+"citation": "Silberstein SD. Approach to the Patient With Headache. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/headache/approach-to-the-patient-with-headache",
+"facts": "Tension-type and migraine are the most common causes; primary headaches also include cluster/trigeminal autonomic cephalalgias. New headache after age 50 is secondary until proven otherwise. Red flags: thunderclap onset, focal deficits, papilledema, altered mental status, meningismus, fever, immunosuppression/cancer, progressive worsening, GCA symptoms. Thunderclap headache needs urgent imaging and CSF analysis even if imaging is normal."
+}
+],
+"sym_heartburn": [
+{
+"source_name": "Merck Manual Professional - Gastroesophageal Reflux Disease (GERD)",
+"citation": "Lynch KL. Gastroesophageal Reflux Disease (GERD). Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2026.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/esophageal-and-swallowing-disorders/gastroesophageal-reflux-disease-gerd",
+"facts": "Heartburn, with or without regurgitation, is the most prominent GERD symptom in adolescents and adults. Complications: esophagitis (odynophagia, bleeding, iron-deficiency anemia), peptic stricture (progressive solid-food dysphagia), Barrett esophagus, adenocarcinoma; chronic aspiration causes cough, hoarseness, wheeze. Further testing if no response to PPI or complication symptoms. Differential includes peptic ulcer, eosinophilic esophagitis, cancer, and ischemic heart disease."
+}
+],
+"sym_heat_intolerance": [
+{
+"source_name": "Merck Manual Professional - Hyperthyroidism",
+"citation": "Boucai L. Hyperthyroidism. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jan 2026.",
+"url": "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/thyroid-disorders/hyperthyroidism",
+"facts": "Heat hypersensitivity and increased sweating reflect enhanced adrenergic sensitivity. Graves disease is caused by stimulating TSH-receptor autoantibodies; Graves-specific signs are infiltrative ophthalmopathy and pretibial dermopathy. Typical signs: warm moist skin, tremor, tachycardia, wide pulse pressure, atrial fibrillation. Older adults may have apathetic hyperthyroidism mimicking depression/dementia, with AF or heart failure."
+}
+],
+"sym_chorea": [
+{
+"source_name": "Merck Manual Professional - Chorea, Athetosis, and Hemiballismus",
+"citation": "Rajput A, Noyes E. Chorea, Athetosis, and Hemiballismus. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/movement-and-cerebellar-disorders/chorea-athetosis-and-hemiballismus",
+"facts": "Chorea = involuntary, irregular, flowing movements mainly of distal limbs and face, often incorporated into semipurposeful acts. Results from reduced basal ganglia inhibition of thalamocortical neurons, possibly excess dopamine. Causes: Huntington disease (most common degenerative), Sydenham chorea with rheumatic fever (often self-limited), drugs (levodopa, phenytoin, cocaine, TCAs, oral contraceptives, antipsychotics/tardive dyskinesia). Treat the underlying cause."
+}
+],
+"sym_pruritus": [
+{
+"source_name": "Merck Manual Professional - Itching",
+"citation": "Benedetti J. Itching. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jan 2024 (updated Apr 2025).",
+"url": "https://www.merckmanuals.com/professional/dermatologic-disorders/approach-to-the-dermatologic-patient/itching",
+"facts": "Most often due to skin disease (xerosis, atopic or contact dermatitis, fungal infection); systemic causes include cholestasis, CKD, and allergic reactions; drugs such as morphine and IV contrast. Prominent itch without skin lesions should raise suspicion of systemic, drug, or neurogenic causes. Red flags: weight loss, fatigue, night sweats; jaundice/abdominal pain; polyuria/polydipsia; limb weakness or paresthesias."
+}
+],
+"sym_jaundice": [
+{
+"source_name": "Merck Manual Professional - Jaundice",
+"citation": "Tholey D. Jaundice. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/approach-to-the-patient-with-liver-disease/jaundice",
+"facts": "Visible at serum bilirubin ~2-3 mg/dL (34-51 micromol/L). Most common causes: viral/autoimmune/toxic hepatitis, alcohol-related liver disease, biliary obstruction. Red flags: marked abdominal pain, altered mental status, GI bleeding, petechiae/purpura; ascending cholangitis is an emergency. Aminotransferases >500 U/L with ALP <3x normal suggests hepatocellular; aminotransferases <200 with ALP >3x normal suggests cholestasis."
+}
+],
+"sym_arthralgia": [
+{
+"source_name": "Merck Manual Professional - Pain in Multiple Joints",
+"citation": "Villa-Forte A. Pain in Multiple Joints. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2025.",
+"url": "https://www.merckmanuals.com/professional/musculoskeletal-and-connective-tissue-disorders/pain-in-and-around-joints/pain-in-multiple-joints",
+"facts": "Acute polyarthritis usually from viral/other infection, systemic inflammatory flare, or gout/CPP; chronic polyarthritis in adults usually RA or seronegative spondyloarthropathy; noninflammatory polyarthralgia usually osteoarthritis. Pain at rest and on starting activity suggests inflammation; pain worse with use and relieved by rest suggests mechanical cause. Red flags: warmth, swelling, erythema, extra-articular features (fever, rash, uveitis, weight loss)."
+}
+],
+"sym_joint_swelling": [
+{
+"source_name": "Merck Manual Professional - Pain in and Around a Single Joint",
+"citation": "Villa-Forte A. Pain in and Around a Single Joint. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2025 (updated Jun 2025).",
+"url": "https://www.merckmanuals.com/professional/musculoskeletal-and-connective-tissue-disorders/pain-in-and-around-joints/pain-in-and-around-a-single-joint",
+"facts": "Acute infectious arthritis is the most dangerous cause of joint pain at any age; with effusion, prompt assessment to exclude infection is essential. Arthrocentesis (WBC, Gram stain/culture, crystals) is mandatory for acute monoarticular pain with effusion. Crystals do not exclude coexisting infection; synovial WBC >50,000/mcL occurs in both. Red flags: fever, sexually active young adult, anticoagulant use/bleeding disorder."
+}
+],
+"sym_koplik_spots": [
+{
+"source_name": "Merck Manual Professional - Measles",
+"citation": "de St. Maurice A. Measles. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2025 (updated Sep 2025).",
+"url": "https://www.merckmanuals.com/professional/pediatrics/common-viral-infections-in-infants-and-children/measles",
+"facts": "Koplik spots are bright red spots with white/bluish-white centers ('grains of sand'), usually on buccal mucosa opposite the 1st and 2nd upper molars. Appear during the prodrome ~2 days before the rash and persist 1-2 days after; seen in ~70% and pathognomonic. Prodrome (3-7 days): fever, coryza, hacking cough, conjunctivitis; rash spreads cephalocaudally. Contagious from 4 days before to 4 days after rash onset."
+},
+{
+"source_name": "CDC - Clinical Overview of Measles",
+"citation": "Centers for Disease Control and Prevention. Clinical Overview of Measles. Atlanta (GA): CDC; reviewed May 2025 (updated Aug 2026).",
+"url": "https://www.cdc.gov/measles/hcp/clinical-overview/index.html",
+"facts": "Koplik spots are a pathognomonic enanthem appearing after the prodrome of fever (up to 105 F), malaise, cough, coryza, and conjunctivitis. Maculopapular rash follows ~14 days after exposure, spreading head to trunk to lower extremities. Some immunocompromised patients never develop the rash."
+}
+],
+"sym_edema": [
+{
+"source_name": "Merck Manual Professional - Edema",
+"citation": "Thompson AD, Shea MJ. Edema. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024 (updated Oct 2025).",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/edema",
+"facts": "Heart failure gives symmetric, dependent, painless pitting edema; DVT gives acute unilateral, often painful pitting edema. Generalized edema mostly from heart, liver, or kidney (nephrotic) disease; localized from DVT/venous disease, infection, angioedema, lymphatic obstruction. Red flags: sudden onset, pain, dyspnea, fever, unilateral tender swelling; isolated leg swelling usually needs ultrasound to exclude DVT."
+}
+],
+"sym_anorexia": [
+{
+"source_name": "Merck Manual Professional - Involuntary Weight Loss",
+"citation": "Wasserman MR. Involuntary Weight Loss. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025 (updated Jan 2026).",
+"url": "https://www.merckmanuals.com/professional/special-subjects/nonspecific-symptoms/involuntary-weight-loss",
+"facts": "Weight loss with decreased appetite most often from depression, cancer, medication adverse effects, or substance use; with increased appetite suggests hyperthyroidism, uncontrolled diabetes, or malabsorption. Inadequate caloric intake is the usual mechanism. Significant if >5% body weight or 5 kg over 6 months. Red flags: fever, night sweats, lymphadenopathy, bone pain, dyspnea/hemoptysis, fear of weight gain in young people."
+}
+],
+"sym_anosmia": [
+{
+"source_name": "Merck Manual Professional - Anosmia",
+"citation": "Fried MP. Anosmia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2025 (updated Sep 2026).",
+"url": "https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/approach-to-the-patient-with-nasal-and-pharyngeal-symptoms/anosmia",
+"facts": "Anosmia = complete loss of smell; most patients still detect salty, sweet, sour, bitter but report 'taste' loss because flavor depends on smell. Main causes: head trauma (young adults), viral infection (post-URI in 14-26%), Alzheimer disease (older adults), drugs, toxins, radiation, sinonasal surgery. Red flags: head injury, neurologic signs, sudden onset, COVID-19 exposure; cranial imaging usually required unless cause obvious."
+}
+],
+"sym_bleeding": [
+{
+"source_name": "Merck Manual Professional - Excessive Bleeding",
+"citation": "Streiff MB. Excessive Bleeding. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2025.",
+"url": "https://www.merckmanuals.com/professional/hematology-and-oncology/hemostasis/excessive-bleeding",
+"facts": "Skin/mucous membrane bleeding and petechiae suggest platelet or vascular defects; deep bleeding (hemarthroses, muscle hematomas) suggests coagulopathy. Causes: thrombocytopenia (ITP, DIC, TTP, sepsis, HIT), platelet dysfunction (aspirin, P2Y12 inhibitors, NSAIDs, uremia, von Willebrand disease), vascular (scurvy, amyloidosis, IgA vasculitis). Red flags: hypovolemia/shock, pregnancy, sepsis (DIC), bloody diarrhea with thrombocytopenia (HUS). Initial tests: CBC, smear, PT, aPTT."
+}
+],
+"sym_myalgia": [
+{
+"source_name": "Merck Manual Professional - Polymyalgia Rheumatica",
+"citation": "Villa-Forte A. Polymyalgia Rheumatica. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Dec 2024.",
+"url": "https://www.merckmanuals.com/professional/musculoskeletal-and-connective-tissue-disorders/vasculitis/polymyalgia-rheumatica",
+"facts": "Bilateral aching and morning stiffness (>1 h) of shoulder and hip girdles, neck and back, without true weakness. Occurs in adults >50, about twice as common in women. ESR markedly elevated in >80% (often >50 mm/h) with raised CRP. 40-60% of giant cell arteritis patients have PMR, so screen for GCA symptoms."
+}
+],
+"sym_muscle_cramps": [
+{
+"source_name": "Merck Manual Professional - Muscle Cramps",
+"citation": "Freedman M. Muscle Cramps. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/symptoms-of-neurologic-disorders/muscle-cramps",
+"facts": "Sudden, brief, involuntary painful contraction; most commonly benign idiopathic (nocturnal calf) leg cramps or exercise-associated cramps. Contributors: tight calves, dehydration, low K or Mg, medications. Red flags: upper limb or truncal cramps, abnormal reflexes, weakness, fasciculations, alcohol use disorder, hypovolemia, dermatomal/nerve-distribution sensory loss. Stretching and hydration preferred; drugs generally lack proven efficacy."
+}
+],
+"sym_nausea_vomiting": [
+{
+"source_name": "Merck Manual Professional - Nausea and Vomiting",
+"citation": "Gotfried J. Nausea and Vomiting. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2026 (updated Jun 2026).",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/symptoms-of-gastrointestinal-disorders/nausea-and-vomiting",
+"facts": "Most common causes: gastroenteritis, medications or illicit drugs, toxins. Cyclic vomiting in adults may be linked to chronic cannabis use (relieved by hot baths, resolves with cessation). Red flags: hypovolemia, headache with stiff neck or altered mental status, peritoneal signs, distended tympanitic abdomen. Pregnancy test for females of childbearing age."
+}
+],
+"sym_night_sweats": [
+{
+"source_name": "CDC - Signs and Symptoms of Tuberculosis",
+"citation": "Centers for Disease Control and Prevention. Signs and Symptoms of Tuberculosis. Atlanta (GA): CDC; reviewed Mar 2024.",
+"url": "https://www.cdc.gov/tb/signs-symptoms/index.html",
+"facts": "Night sweats are a symptom of active TB disease along with fever, chills, weight loss, loss of appetite, and fatigue. Pulmonary TB adds cough >=3 weeks, chest pain, hemoptysis. Latent TB infection is asymptomatic and noninfectious but can progress to active disease without treatment."
+},
+{
+"source_name": "Merck Manual Professional - Hodgkin Lymphoma",
+"citation": "Martin P, Leonard JP. Hodgkin Lymphoma. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2024 (updated Apr 2026).",
+"url": "https://www.merckmanuals.com/professional/oncology/lymphomas/hodgkin-lymphoma",
+"facts": "B symptoms = fever, night sweats, and unintentional weight loss >10% over 6 months; they carry staging ('B' suffix) and prognostic significance and may indicate mediastinal/retroperitoneal, liver, or marrow involvement. Refractory pruritus may be an early symptom; alcohol-induced pain in involved nodes is an occasional diagnostic clue."
+}
+],
+"sym_hemiparesis": [
+{
+"source_name": "Merck Manual Professional - Weakness",
+"citation": "Freedman M. Weakness. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/symptoms-of-neurologic-disorders/weakness",
+"facts": "Stroke is the most common cause of unilateral weakness; others include tumor/abscess, Todd postictal paralysis and TIA. Arm+leg weakness on one side with UMN signs (spasticity, hyperreflexia, extensor plantar) suggests a contralateral hemispheric lesion. Weakness becoming severe within minutes is usually stroke or trauma."
+}
+],
+"sym_bite_site_paresthesia": [
+{
+"source_name": "Merck Manual Professional - Rabies",
+"citation": "Klein RS. Rabies. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2026.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/brain-infections/rabies",
+"facts": "Pain or paresthesias may develop at the bite site; incubation averages 1-2 months but can exceed 1 year. Nonspecific prodrome (fever, headache, malaise) progresses to furious (~80%) or paralytic (~20%) rabies. Immediate wound cleansing plus PEP (vaccine + immune globulin); any bat contact is an absolute indication."
+},
+{
+"source_name": "CDC - Clinical Features of Rabies",
+"citation": "Centers for Disease Control and Prevention. Clinical Features of Rabies. Atlanta (GA): CDC, National Center for Emerging and Zoonotic Infectious Diseases; reviewed Jul 2025.",
+"url": "https://www.cdc.gov/rabies/hcp/clinical-signs/index.html",
+"facts": "Flu-like prodrome (weakness, fever, headache) lasting days, with discomfort, prickling or itching at the bite site. Brain dysfunction usually begins within 2 weeks: anxiety, confusion, hydrophobia, hypersalivation, seizures. All rabies patients present with encephalitis."
+}
+],
+"sym_mouth_sores": [
+{
+"source_name": "Merck Manual Professional - Stomatitis",
+"citation": "Hennessy BJ. Stomatitis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/dental-disorders/symptoms-of-dental-and-oral-disorders/stomatitis",
+"facts": "Most common causes: recurrent aphthous stomatitis, HSV/zoster, Candida, trauma, irritants, chemo/radiation, systemic disease. Red flags: fever, skin bullae, ocular inflammation, immunocompromise; positive Nikolsky sign suggests SJS or pemphigus vulgaris. Isolated stomatitis without systemic signs is usually viral or aphthous."
+}
+],
+"sym_dysuria": [
+{
+"source_name": "Merck Manual Professional - Dysuria",
+"citation": "Maddukuri G. Dysuria. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2024.",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/symptoms-of-genitourinary-disorders/dysuria",
+"facts": "Cystitis and STI urethritis are the most common causes. Red flags: fever, flank pain, recent instrumentation, immunocompromise, recurrence, urinary tract abnormality, male sex. Purulent discharge suggests gonorrhea; tender prostate suggests prostatitis; RBCs without WBCs and sterile culture may indicate cancer or calculus."
+}
+],
+"sym_pale_stool": [
+{
+"source_name": "Merck Manual Professional - Jaundice",
+"citation": "Tholey D. Jaundice. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/approach-to-the-patient-with-liver-disease/jaundice",
+"facts": "Clay-colored stools indicate intrahepatic or extrahepatic cholestasis (possibly severe). Cholestasis: ALP/GGT >3x normal with aminotransferases usually <200 U/L; dark urine may precede visible jaundice. Painless jaundice with weight loss suggests malignant obstruction; fever with RUQ pain suggests cholangitis (emergency); ultrasound is first imaging."
+}
+],
+"sym_pallor": [
+{
+"source_name": "Merck Manual Professional - Evaluation of Anemia",
+"citation": "Gerber GF. Evaluation of Anemia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed May 2024.",
+"url": "https://www.merckmanuals.com/professional/hematology-and-oncology/approach-to-the-patient-with-anemia/evaluation-of-anemia",
+"facts": "Pallor is common with severe anemia (Hb <7 g/dL) but signs are insensitive and nonspecific. Reticulocyte count separates underproduction from hemolysis/blood loss. Red flags: hypotension, tachycardia, diaphoresis or confusion (hemorrhagic shock); melena/hematemesis (GI bleed); jaundice with dark urine (hemolysis)."
+}
+],
+"sym_palpitations": [
+{
+"source_name": "Merck Manual Professional - Palpitations",
+"citation": "Thompson AD, Shea MJ. Palpitations. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/palpitations",
+"facts": "Most commonly from benign PACs/PVCs; also SVT, AF/flutter, VT, and noncardiac triggers (thyrotoxicosis, anemia, caffeine, stimulants, hypokalemia). Red flags: syncope, chest pain, dyspnea, HR >120 or <45, structural heart disease, family history of sudden death, exertional symptoms. ECG during symptoms is key."
+}
+],
+"sym_erythema_marginatum": [
+{
+"source_name": "Merck Manual Professional - Rheumatic Fever",
+"citation": "Weinberg GA. Rheumatic Fever. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2024.",
+"url": "https://www.merckmanuals.com/professional/pediatrics/miscellaneous-bacterial-infections-in-infants-and-children/rheumatic-fever",
+"facts": "Serpiginous, flat or slightly raised, nonscarring, painless rash on trunk and proximal limbs (not face), sometimes lasting <1 day. Occurs in fewer than 6% of children with acute rheumatic fever. One of five major Jones criteria: diagnosis needs 2 major or 1 major + 2 minor plus evidence of prior GAS infection."
+}
+],
+"sym_pleuritic_chest_pain": [
+{
+"source_name": "Merck Manual Professional - Chest Pain",
+"citation": "Thompson AD, Shea MJ. Chest Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/chest-pain",
+"facts": "Pleuritic pain causes include PE (with dyspnea, tachycardia, hemoptysis), pneumothorax (unilateral decreased breath sounds), pericarditis (worse supine, better leaning forward, friction rub) and pleuritis (pleural rub). Pain worse with breathing or palpation is not specific to chest wall. Red flags: abnormal vitals, hypoxemia, asymmetric breath sounds, pulsus paradoxus >10 mm Hg."
+}
+],
+"sym_productive_cough": [
+{
+"source_name": "Merck Manual Professional - Cough in Adults",
+"citation": "Dezube R. Cough in Adults. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/cough-in-adults",
+"facts": "Productive cough suggests pneumonia (with fever, dyspnea, pleuritic pain) or chronic bronchitis (productive cough 3 months/yr for 2 years in smokers/COPD). Sputum color/thickness does not distinguish bacterial from other causes. Red flags: dyspnea, hemoptysis, weight loss, persistent fever, TB/HIV risk."
+}
+],
+"sym_watery_diarrhea": [
+{
+"source_name": "Merck Manual Professional - Cholera",
+"citation": "Bush LM, Vazquez-Pertejo MT. Cholera. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2024.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/gram-negative-bacilli/cholera",
+"facts": "Abrupt, painless watery diarrhea with vomiting; white 'rice-water' stool without fecal material; adult losses can exceed 1 L/hour. Causes hypovolemia, oliguria, hypokalemic metabolic acidosis and circulatory collapse; untreated mortality >50%, ~1% with rehydration. Rehydration is core therapy; doxycycline first-line antibiotic."
+}
+],
+"sym_periorbital_edema": [
+{
+"source_name": "Merck Manual Professional - Edema",
+"citation": "Thompson AD, Shea MJ. Edema. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2024.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/edema",
+"facts": "Nephrotic syndrome causes diffuse edema, often with ascites and sometimes periorbital edema (low oncotic pressure). Angioedema causes sudden, asymmetric, non-dependent swelling most often of face/lips and can involve the airway. Generalized edema is mostly from heart, liver or kidney failure."
+},
+{
+"source_name": "Merck Manual Professional - Postinfectious Glomerulonephritis (PIGN)",
+"citation": "O'Brien F. Postinfectious Glomerulonephritis (PIGN). Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Apr 2025.",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/glomerular-disorders/postinfectious-glomerulonephritis-pign",
+"facts": "Onset typically 6-21 days after infection (up to ~6 weeks). Edema accompanies hematuria, proteinuria, oliguria, hypertension and AKI. C3/CH50 low during active disease, normalizing within 6-8 weeks in ~80%; urinalysis shows dysmorphic RBCs."
+}
+],
+"sym_nonblanching_rash": [
+{
+"source_name": "Merck Manual Professional - Meningococcal Diseases",
+"citation": "Bush LM, Vazquez-Pertejo MT. Meningococcal Diseases. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/gram-negative-cocci-and-coccobacilli/meningococcal-diseases",
+"facts": "Maculopapular or hemorrhagic petechial rash appears soon after onset, widespread on trunk and lower extremities. In fulminant meningococcemia petechiae become confluent and rapidly progress to ecchymoses and necrosis, with shock and DIC (case fatality up to 40% with septic shock). Treat empirically at once with third-generation cephalosporin (plus vancomycin)."
+}
+],
+"sym_conjunctivitis": [
+{
+"source_name": "Merck Manual Professional - Red Eye",
+"citation": "Brady CJ. Red Eye. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/eye-disorders/symptoms-of-ophthalmologic-disorders/red-eye",
+"facts": "Most red eye is infectious or allergic conjunctivitis. Conjunctivitis lacks pain, photophobia and corneal staining. Red flags: severe pain with vomiting, reduced acuity, zoster rash, dendritic corneal lesion, IOP >30-35 mm Hg; clinical criteria cannot reliably separate viral from bacterial conjunctivitis."
+}
+],
+"sym_retroorbital_pain": [
+{
+"source_name": "Merck Manual Professional - Dengue",
+"citation": "Carmona S. Dengue. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2025.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/arboviruses-arenaviridae-and-filoviridae/dengue",
+"facts": "Retro-orbital pain worse with eye movement begins abruptly with fever, headache, lumbar pain and prostration after 3-15 day incubation. Saddleback fever pattern with relative bradycardia. Warning signs on days 4-7 (abdominal pain, persistent vomiting, mucosal bleeding, hepatomegaly, lethargy, hemoconcentration); exclude malaria, Zika, chikungunya, leptospirosis."
+},
+{
+"source_name": "Merck Manual Professional - Eye Pain",
+"citation": "Brady CJ. Eye Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/eye-disorders/symptoms-of-ophthalmologic-disorders/eye-pain",
+"facts": "Deep aching/throbbing pain suggests serious disease (glaucoma, uveitis, scleritis, orbital cellulitis, orbital pseudotumor). Pain with eye movement plus disproportionate pupillary defect suggests optic neuritis. Red flags: vomiting, halos, fever, decreased acuity, proptosis, impaired extraocular motility."
+}
+],
+"sym_rlq_pain": [
+{
+"source_name": "Merck Manual Professional - Appendicitis",
+"citation": "Ansari P. Appendicitis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/acute-abdomen-and-surgical-gastroenterology/appendicitis",
+"facts": "Pain begins periumbilical/epigastric with anorexia, nausea, then shifts to RLQ within hours, worse with cough and motion. McBurney point tenderness with rebound; Rovsing, psoas and obturator signs; atypical in >50%, especially elderly and pregnant. Classic cases are clinical diagnoses; CT/ultrasound for equivocal cases."
+},
+{
+"source_name": "Merck Manual Professional - Acute Abdominal Pain",
+"citation": "Ansari P. Acute Abdominal Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/acute-abdomen-and-surgical-gastroenterology/acute-abdominal-pain",
+"facts": "RLQ tenderness suggests appendicitis, though location may not be diagnostic. Midgut visceral pain (incl. appendix) is felt periumbilically. Red flags: severe pain, shock, peritonitis, distention; back pain with shock suggests ruptured AAA."
+}
+],
+"sym_ruq_pain": [
+{
+"source_name": "Merck Manual Professional - Acute Cholecystitis",
+"citation": "Saiman Y. Acute Cholecystitis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/gallbladder-and-bile-duct-disorders/acute-cholecystitis",
+"facts": "Pain resembles biliary colic but is more severe and lasts >6 hours. Positive Murphy sign and RUQ guarding develop within hours. Ultrasound is best test (stones, wall thickening, pericholecystic fluid); untreated ~10% perforate, mortality up to 16%."
+},
+{
+"source_name": "Merck Manual Professional - Acute Abdominal Pain",
+"citation": "Ansari P. Acute Abdominal Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2024.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/acute-abdomen-and-surgical-gastroenterology/acute-abdominal-pain",
+"facts": "RUQ tenderness suggests cholecystitis; gallbladder pain can refer to the right scapula. Foregut structures produce upper abdominal visceral pain. Red flags: severe pain, signs of shock or peritonitis, distention."
+}
+],
+"sym_rhinorrhea": [
+{
+"source_name": "Merck Manual Professional - Common Cold",
+"citation": "Katz S. Common Cold. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2026.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/respiratory-viruses/common-cold",
+"facts": "Rhinoviruses cause ~50% of colds; symptoms start 24-72 h after exposure with sore throat, then sneezing, watery rhinorrhea and congestion, resolving within ~10 days. Mucopurulent secretions do not indicate bacterial superinfection; fever usually absent. Allergic rhinitis is the main differential; complications include sinusitis, otitis media, asthma exacerbation."
+}
+],
+"sym_seizures": [
+{
+"source_name": "Merck Manual Professional - Seizure Disorders",
+"citation": "Adamolekun B. Seizure Disorders. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/seizure-disorders/seizure-disorders",
+"facts": "Provoked causes: metabolic derangement, CNS infection, drug toxicity/withdrawal, fever in children; adult causes include trauma, alcohol withdrawal, tumor, stroke (~50% unknown). Status epilepticus = tonic-clonic activity >5 min or repeated seizures without recovery; give IV benzodiazepine promptly. Tongue biting, incontinence and prolonged postictal confusion favor seizure over syncope."
+}
+],
+"sym_photophobia": [
+{
+"source_name": "Merck Manual Professional - Eye Pain",
+"citation": "Brady CJ. Eye Pain. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/eye-disorders/symptoms-of-ophthalmologic-disorders/eye-pain",
+"facts": "True photophobia: light shone into the unaffected eye causes pain in the affected (closed) eye; most often corneal lesion or uveitis (ciliary spasm). Pain relieved by topical anesthetic suggests corneal cause. Red flags: vomiting, halos, fever, reduced acuity, proptosis."
+},
+{
+"source_name": "Merck Manual Professional - Migraine",
+"citation": "Silberstein SD. Migraine. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/headache/migraine",
+"facts": "Photophobia is a prominent migraine feature with nausea, sonophobia and osmophobia; patients lie in a dark quiet room. Red flags for other causes: thunderclap onset, onset after 50, progressive headache, fever, meningismus, altered mental status. Triptan response does not exclude SAH."
+}
+],
+"sym_tremor": [
+{
+"source_name": "Merck Manual Professional - Tremor",
+"citation": "Rajput A, Noyes E. Tremor. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/movement-and-cerebellar-disorders/tremor",
+"facts": "Rest tremor (3-6 Hz) suggests Parkinson disease; postural/action tremor most often essential tremor; intention tremor suggests cerebellar disease. Hyperthyroidism and drugs (lithium, SSRIs, valproate, theophylline) cause or worsen tremor. Red flags: abrupt onset, onset <50 without family history, other neurologic deficits, tachycardia with agitation."
+}
+],
+"sym_dyspnea": [
+{
+"source_name": "Merck Manual Professional - Dyspnea",
+"citation": "Dezube R. Dyspnea. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/dyspnea",
+"facts": "Acute causes: asthma, pneumothorax, PE; chronic: ILD, COPD, heart failure, deconditioning. Red flags: dyspnea at rest, confusion, accessory muscle use, chest pain, crackles, weight loss. Wheeze suggests asthma/COPD, stridor upper airway obstruction, crackles heart failure/ILD/pneumonia; normal SpO2 does not exclude PE."
+}
+],
+"sym_dehydration": [
+{
+"source_name": "Merck Manual Professional - Volume Depletion",
+"citation": "Lewis JL III. Volume Depletion. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2026.",
+"url": "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/fluid-metabolism/volume-depletion",
+"facts": "Caused by vomiting, diarrhea, sweating, burns, bleeding, diuretics; mild (<5% ECF) = thirst, decreased skin turgor, oliguria, moderate (5-10%) = orthostatic changes, severe (>10%) = shock (hypotension, confusion, poor capillary refill); skin turgor/dry mucosa unreliable in elderly; labs: urine Na <15 mEq/L, FENa <1%, BUN:Cr >20:1."
+}
+],
+"sym_rash": [
+{
+"source_name": "Merck Manual Professional - Description of Skin Lesions",
+"citation": "Benedetti J. Description of Skin Lesions. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Aug 2026.",
+"url": "https://www.merckmanuals.com/professional/dermatologic-disorders/approach-to-the-dermatologic-patient/description-of-skin-lesions",
+"facts": "Classify primary lesion by 10 mm cutoff (macule/patch, papule/plaque, vesicle/bulla, pustule, nodule); configuration clues: target = erythema multiforme, herpetiform = HSV, dermatomal = zoster; red flags: nonblanching petechiae/purpura (meningococcemia, RMSF, vasculitis), Nikolsky sign (TEN), black eschar; erythema may be subtle in darker skin."
+}
+],
+"sym_speech_difficulty": [
+{
+"source_name": "Merck Manual Professional - Aphasia",
+"citation": "Huang J. Aphasia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/function-and-dysfunction-of-the-cerebral-lobes/aphasia",
+"facts": "Aphasia is a language disorder, distinct from dysarthria (motor speech dysfunction); causes include stroke, head trauma, encephalitis (static) and tumor or dementia (progressive); Wernicke = fluent, poor comprehension (dominant temporal), Broca = nonfluent, comprehension preserved (dominant frontal); assess spontaneous speech, naming, repetition, comprehension, then CT/MRI."
+}
+],
+"sym_sore_throat": [
+{
+"source_name": "Merck Manual Professional - Sore Throat",
+"citation": "Fried MP. Sore Throat. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2025.",
+"url": "https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/approach-to-the-patient-with-nasal-and-pharyngeal-symptoms/sore-throat",
+"facts": "Most cases viral tonsillopharyngitis; GABHS causes ~10-25% in adults; red flags: stridor, drooling, muffled 'hot potato' voice, visible pharyngeal bulge; suspect epiglottitis if severe pain with normal-appearing pharynx; Centor criteria (exudate, tender nodes, fever, no cough) >=2 warrant testing."
+}
+],
+"sym_koilonychia": [
+{
+"source_name": "Merck Manual Professional - Iron Deficiency Anemia",
+"citation": "Gerber GF. Iron Deficiency Anemia. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2025.",
+"url": "https://www.merckmanuals.com/professional/hematology-and-oncology/anemias-caused-by-deficient-erythropoiesis/iron-deficiency-anemia",
+"facts": "Koilonychia (spoon nails) occurs in severe iron deficiency, with pica, glossitis, cheilosis; main cause is blood loss (occult GI bleeding in men/postmenopausal women, menorrhagia in premenopausal women); ferritin <30 ng/mL specific; GI evaluation needed when no obvious source, as anemia may be only sign of GI cancer."
+}
+],
+"sym_neck_stiffness": [
+{
+"source_name": "Merck Manual Professional - Acute Bacterial Meningitis",
+"citation": "Klein RS. Acute Bacterial Meningitis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2026.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/meningitis/acute-bacterial-meningitis",
+"facts": "Nuchal rigidity is typical but not always reported; fever and neck stiffness may be absent in neonates, infants, elderly, immunocompromised, and alcohol use disorder, so keep low threshold for LP; papilledema/focal deficits require imaging before LP; medical emergency, give antibiotics (plus glucocorticoids) within 30 minutes."
+}
+],
+"sym_podagra": [
+{
+"source_name": "Merck Manual Professional - Gout",
+"citation": "Keller SF. Gout. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jul 2025.",
+"url": "https://www.merckmanuals.com/professional/musculoskeletal-and-connective-tissue-disorders/crystal-induced-arthritides/gout",
+"facts": "Sudden, often nocturnal severe pain peaking over hours; first MTP joint (podagra) most common, initial flares monoarticular; triggers: trauma, surgery, infection, thiazides, starting urate-lowering drugs, purine-rich food, alcohol; diagnosis by needle-shaped negatively birefringent urate crystals in synovial fluid, serum urate normal in >=30% during flare."
+}
+],
+"sym_suprapubic_pain": [
+{
+"source_name": "Merck Manual Professional - Bacterial Urinary Tract Infections",
+"citation": "Imam TH. Bacterial Urinary Tract Infections. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/urinary-tract-infections/bacterial-urinary-tract-infections",
+"facts": "Cystitis: abrupt frequency, urgency, dysuria with small volumes, suprapubic pain, nocturia; fever, chills, flank pain, CVA tenderness suggest pyelonephritis; dysuria plus pyuria without bacteriuria suggests urethritis/STI; pyuria >=8 WBC/mcL, nitrite highly specific, leukocyte esterase fairly sensitive."
+}
+],
+"sym_diaphoresis": [
+{
+"source_name": "Merck Manual Professional - Hyperhidrosis",
+"citation": "Das S. Hyperhidrosis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2026.",
+"url": "https://www.merckmanuals.com/professional/dermatologic-disorders/sweating-disorders/hyperhidrosis",
+"facts": "Primary vs secondary distinguished by criteria (bilateral/symmetric, onset <=25 y, family history, no nocturnal sweating favor primary); generalized secondary causes: lymphoma/leukemia, TB, endocarditis, hyperthyroidism, hypoglycemia, drugs, opioid withdrawal, menopause; night sweats point to cancer or infection; asymmetric sweating suggests neurologic cause."
+}
+],
+"sym_goiter": [
+{
+"source_name": "Merck Manual Professional - Simple Nontoxic Goiter",
+"citation": "Boucai L. Simple Nontoxic Goiter. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jan 2026.",
+"url": "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/thyroid-disorders/simple-nontoxic-goiter",
+"facts": "Iodine deficiency is the leading cause worldwide; other causes: goitrogens (cassava, cruciferous vegetables), amiodarone, lithium, hormone synthesis defects; most asymptomatic, large goiters cause dysphagia, hoarseness, throat fullness; thyroid function usually normal, evaluate with ultrasound, RAIU/scan, thyroid antibodies."
+}
+],
+"sym_lymphadenopathy": [
+{
+"source_name": "Merck Manual Professional - Lymphadenopathy",
+"citation": "Douketis JD. Lymphadenopathy. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Mar 2026.",
+"url": "https://www.merckmanuals.com/professional/cardiovascular-disorders/lymphatic-disorders/lymphadenopathy",
+"facts": "Localized nodes <2 weeks usually benign (URI, local infection), generalized suggests systemic disease (mononucleosis, lymphoma, SLE); red flags: node >2 cm, any supraclavicular node, hard/fixed/matted nodes, fever, weight loss, splenomegaly; observe up to 4 weeks if no red flags; avoid empiric glucocorticoids (mask lymphoma/leukemia)."
+}
+],
+"sym_burrows": [
+{
+"source_name": "Merck Manual Professional - Scabies",
+"citation": "Dinulos JGH. Scabies. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/dermatologic-disorders/parasitic-skin-infections/scabies",
+"facts": "Burrows are fine, wavy, slightly scaly lines on wrists, hands, or feet and are diagnostic; papules favor finger webs, flexor wrists/elbows, axillary folds, belt line, buttocks, face spared in adults; intense pruritus worse at night, onset 4-6 weeks after first exposure; confirm by microscopy of burrow scrapings (negative does not exclude), dermoscopy 'delta-wing jet' sign."
+}
+],
+"sym_weight_loss": [
+{
+"source_name": "Merck Manual Professional - Involuntary Weight Loss",
+"citation": "Wasserman MR. Involuntary Weight Loss. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025.",
+"url": "https://www.merckmanuals.com/professional/special-subjects/nonspecific-symptoms/involuntary-weight-loss",
+"facts": "Significant if >5% or >5 kg over 6 months; with increased appetite think hyperthyroidism, uncontrolled diabetes, malabsorption, with decreased appetite think depression, cancer, drugs; red flags: fever/night sweats, lymphadenopathy, bone pain, hemoptysis, polyuria/polydipsia; baseline tests: CXR, UA, CBC, ESR/CRP, HIV, chemistries, TSH."
+}
+],
+"sym_urinary_frequency": [
+{
+"source_name": "Merck Manual Professional - Urinary Frequency",
+"citation": "Maddukuri G. Urinary Frequency. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2024.",
+"url": "https://www.merckmanuals.com/professional/genitourinary-disorders/symptoms-of-genitourinary-disorders/urinary-frequency",
+"facts": "Most common causes: UTI, incontinence, BPH, urinary calculi, also caffeine, alcohol, diuretics, pregnancy; frequency = many voids of normal/small volume vs polyuria >3 L/day; red flags: leg weakness or spinal cord signs (sensory level, reduced anal tone), fever with back pain; nocturia with weak stream suggests BPH."
+}
+],
+"sym_visual_aura": [
+{
+"source_name": "Merck Manual Professional - Migraine",
+"citation": "Silberstein SD. Migraine. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Feb 2025.",
+"url": "https://www.merckmanuals.com/professional/neurologic-disorders/headache/migraine",
+"facts": "Aura in ~25% of migraineurs, usually before headache, sometimes without headache; visual aura most common: flashes, scintillating arcs, zigzags, scotomata, lasting minutes to ~1 hour; aura without headache in older adults can be mistaken for TIA; red flags: onset after 50, persistent focal deficit, change in headache pattern; mimics include arterial dissection, vasculitis, CADASIL, MELAS."
+}
+],
+"sym_posttussive_vomiting": [
+{
+"source_name": "Merck Manual Professional - Pertussis",
+"citation": "Bush LM, Vazquez-Pertejo MT. Pertussis. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2024.",
+"url": "https://www.merckmanuals.com/professional/infectious-diseases/gram-negative-bacilli/pertussis",
+"facts": "Three stages (catarrhal, paroxysmal, convalescent) over 6-10 weeks; paroxysms of >=5 rapid coughs followed by a whoop, vomiting characteristic; infants <6 months at highest risk, may have choking/cyanotic spells instead of whoop; suspect with cough >=2 weeks plus whoop, paroxysms, or post-tussive vomiting, PCR preferred test."
+}
+],
+"sym_hematemesis": [
+{
+"source_name": "Merck Manual Professional - Overview of Gastrointestinal Bleeding",
+"citation": "Ansari P. Overview of Gastrointestinal Bleeding. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Jun 2025.",
+"url": "https://www.merckmanuals.com/professional/gastrointestinal-disorders/gastrointestinal-bleeding/overview-of-gastrointestinal-bleeding",
+"facts": "Hematemesis indicates upper GI bleeding, usually peptic ulcer, vascular lesions, or varices; coffee-ground emesis suggests slowed/stopped bleeding, bright red blood suggests active bleeding; red flags: syncope, hypotension, tachycardia, pallor, diaphoresis, cirrhosis history (varices); manage with airway protection, large-bore IV, fluids, transfusion, IV PPI, endoscopy."
+}
+],
+"sym_nocturia": [
+{
+"source_name": "Merck Manual Professional - Polyuria",
+"citation": "Maddukuri G. Polyuria. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Sep 2024.",
+"url": "https://www.merckmanuals.com/professional/nephrology/symptoms-of-nephrologic-disorders/polyuria",
+"facts": "Nocturia can result from polyuria (>3 L/day) or urinary frequency; polyuria causes: uncontrolled diabetes mellitus (most common), diuretics, primary polydipsia, AVP deficiency/resistance (diabetes insipidus); compare fluid intake with voided volume, 24-h urine if unclear; manage troublesome nocturia by reducing fluids before bedtime."
+}
+],
+"sym_wheezing": [
+{
+"source_name": "Merck Manual Professional - Wheezing",
+"citation": "Dezube R. Wheezing. Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Nov 2025.",
+"url": "https://www.merckmanuals.com/professional/pulmonary-disorders/symptoms-of-pulmonary-disorders/wheezing",
+"facts": "Asthma and COPD most common, also heart failure, anaphylaxis, bronchitis, drugs (beta-blockers, ACE inhibitors, NSAIDs), bronchiolitis and foreign body in children; red flags: accessory muscle use with fatigue, decreased consciousness, fixed inspiratory+expiratory wheeze, angioedema; persistent localized wheeze suggests tumor or foreign body; inspiratory noise suggests stridor."
+}
+],
+"sym_oral_thrush": [
+{
+"source_name": "Merck Manual Professional - Candidiasis (Mucocutaneous)",
+"citation": "Aaron DM. Candidiasis (Mucocutaneous). Merck Manual Professional Version. Rahway (NJ): Merck & Co.; reviewed Oct 2025.",
+"url": "https://www.merckmanuals.com/professional/dermatologic-disorders/fungal-skin-infections/candidiasis-mucocutaneous",
+"facts": "Creamy white plaques on oral mucosa that may bleed when scraped; risk factors: immunosuppression, advanced HIV, antibiotics, glucocorticoids, diabetes, ill-fitting dentures; diagnosis clinical, KOH wet mount shows yeast and pseudohyphae; treat with clotrimazole troches, nystatin suspension, or oral fluconazole."
+}
+]
+}

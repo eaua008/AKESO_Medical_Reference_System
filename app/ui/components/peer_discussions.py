@@ -18,6 +18,7 @@ from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QWidget
 
 from app.ui.views.account.account_widgets import icon_label, label
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 SHOWN = 5
 
@@ -96,7 +97,8 @@ class PeerDiscussionList(QWidget):
         self._column = QVBoxLayout(self)
         self._column.setContentsMargins(0, 4, 0, 0)
         self._column.setSpacing(6)
-        self._message = label("", "acMuted")
+        self._message = LoadingLabel("", "acMuted", size=44)
+        self._hold = LoadingHold(self)      # the loader shows for at least 3 s
         self._message.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._column.addWidget(self._message)
         self._more = label("", "acSmall")
@@ -119,14 +121,21 @@ class PeerDiscussionList(QWidget):
         self._more.hide()
 
     def show_loading(self) -> None:
-        self.show_message("Looking for discussions…")
+        self._clear()
+        self._hold.begin()
+        self._message.set_loading("Looking for discussions…")
+        self._message.show()
 
     def show_message(self, text: str) -> None:
+        if self._hold.wait(self.show_message, text):
+            return
         self._clear()
         self._message.setText(text)
         self._message.show()
 
     def show_posts(self, posts: list) -> None:
+        if self._hold.wait(self.show_posts, posts):
+            return
         self._clear()
         self.count_changed.emit(len(posts))
         if not posts:

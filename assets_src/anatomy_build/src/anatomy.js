@@ -1,9 +1,9 @@
 // Akeso Body System Explorer: the 3D view (three.js), bundled into one file
 // with esbuild so it runs offline inside the app's built-in browser.
 //
-// Python drives it through window.akeso (setLayer, focus, setTheme,
+// Python drives it through window.akeso (setLayer, focus, setTheme, isolateSystem,
 // clearSelection, setExtra, setColor...) and hears back through the Qt web
-// channel "bridge" (ready, partSelected, regionChanged, extraLoaded,
+// channel "bridge" (ready, partSelected, regionChanged, extraLoaded, extraFailed,
 // coloursChanged). Models: BodyParts3D,
 // (c) The Database Center for Life Science (CC BY 4.0).
 
@@ -211,6 +211,18 @@ function isolatePart(id, whole) {
   for (const m of meshes) if (isolated.ids.has(m.name)) box.expandByObject(m);
   if (!box.isEmpty()) flyToBox(box, null);
 }
+// "Focus on system": only the parts of one body system (Python turns on the
+// vessels / nerves layer first when the system needs it).
+function isolateSystem(system, label) {
+  const ids = Object.keys(parts).filter(k => parts[k].system === system);
+  if (!ids.length) return;
+  isolated = { label, ids: new Set(ids) };
+  if (selected && !isolated.ids.has(selected.name)) clearSelection();
+  applyLayers(); report();
+  const box = new THREE.Box3();
+  for (const m of meshes) if (isolated.ids.has(m.name) && m.visible) box.expandByObject(m);
+  if (!box.isEmpty()) flyToBox(box, null);
+}
 function restore(key) { entries.delete(key); applyLayers(); report(); }
 function showAll() { entries.clear(); isolated = null; applyLayers(); report(); }
 function clearSelection() { if (selected) setEmissive(selected, false); selected = null; requestRender(); }
@@ -384,8 +396,9 @@ function setExtra(name, on) {
       if (bridge) bridge.extraLoaded(name);
     }, err => {
       console.error(`Couldn't load ${name}.glb: ${err && err.message ? err.message : err}`);
-      status.textContent = "Couldn't load this layer. Reinstall Akeso if it keeps happening.";
+      status.textContent = "Couldn't load this layer. Repair Akeso in Settings \u2192 Updates.";
       extraLoading[name] = null;
+      if (bridge && bridge.extraFailed) bridge.extraFailed(name);   // Akeso offers Repair
     });
   }
   applyLayers();
@@ -439,6 +452,7 @@ window.akeso = {
   hide(id, whole) { hidePart(id, !!whole); },
   ghost(id, whole) { ghostPart(id, !!whole); },
   isolate(id, whole) { isolatePart(id, !!whole); },
+  isolateSystem(system, label) { isolateSystem(String(system), String(label || system)); },
   restore(key) { restore(key); },
   showAll() { showAll(); },
   setExtra(name, on) { setExtra(name, on); },

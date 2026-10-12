@@ -27,6 +27,7 @@ from app.ui.views.account.account_widgets import (
     Banner, button, icon_label, label, pill, refresh_icons, repolish,
 )
 from app.ui.views.compare_view import FlowLayout
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 LINK_ICONS = {"disease": "book-open", "symptom": "activity", "medicine": "pill"}
 def _accent() -> str:
@@ -254,7 +255,7 @@ class HealthArticlesView(QWidget):
         self._list.setContentsMargins(0, 0, 0, 0)
         self._list.setSpacing(12)
         column.addWidget(self._list_host)
-        self.empty = label("", "haEmpty")
+        self.empty = LoadingLabel("", "haEmpty")
         self.empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
         column.addWidget(self.empty)
         column.addStretch(1)
@@ -288,10 +289,13 @@ class HealthArticlesView(QWidget):
     # ---------------------------------------------------------------- api
 
     def show_loading(self) -> None:
-        self.empty.setText("Loading articles…")
+        LoadingHold.of(self).begin()                  # the loader shows for at least 3 s
+        self.empty.set_loading("Loading articles…")
         self.empty.show()
 
     def show_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_error, message):
+            return
         self.banner.show_message(message, "danger", "Try again")
 
     def set_categories(self, categories: list[tuple[str, int]], total: int) -> None:
@@ -307,6 +311,8 @@ class HealthArticlesView(QWidget):
 
     def show_articles(self, articles: list[HealthArticle], starred: set[str],
                       total: int) -> None:
+        if LoadingHold.of(self).wait(self.show_articles, articles, starred, total):
+            return
         self.banner.hide()
         self._last = (list(articles), set(starred), total)
         self.count.setText(f"{total} Article{'' if total == 1 else 's'} Published")

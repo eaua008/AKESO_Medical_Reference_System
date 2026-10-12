@@ -294,6 +294,7 @@ class DashboardShell(QWidget):
     def _wire_header(self) -> None:
         h = self.header
         h.themeToggled.connect(self._on_theme_changed)
+        h.run_theme_change = self._behind_loader
         h.navigationRequested.connect(self.show_tab)
         h.emergencyClicked.connect(lambda: self.show_tab("emergency"))
         h.accountRequested.connect(lambda: self.show_tab("account"))
@@ -620,6 +621,15 @@ class DashboardShell(QWidget):
         self.checker_controller.case_saved.connect(
             self.notebook_controller.item_changed_elsewhere)
         self.checker_controller.notebook_requested.connect(self._open_notebook_item)
+        # Sync with encyclopedias: the checker's symptom list and disease
+        # matches come from the Symptom and Disease encyclopedias, so it
+        # reloads whenever either finishes a sync (including the automatic
+        # one at start-up), and its Sync button refreshes both.
+        self.checker_view.sync_requested.connect(self._sync_checker)
+        self.symptom_controller.synced.connect(
+            lambda changed, error: self._encyclopedia_synced("symptom", changed, error))
+        self.disease_controller.synced.connect(
+            lambda changed, error: self._encyclopedia_synced("disease", changed, error))
         self.register_view("symptom-checker", self.checker_view)
 
         # --- Bookmarks
@@ -688,6 +698,9 @@ class DashboardShell(QWidget):
             open_history=lambda: self.show_tab("history"),
         )
         self.register_view("settings", self.settings_view)
+        # A screen that could not load a program file (the 3D vessels) offers
+        # Repair: open Settings and check the files straight away.
+        self.body_view.repair_requested.connect(self._open_repair)
 
         # --- Dashboard Overview (the landing page). Account parts (study
         # activity, Clinical Exchange) attach in _register_account.
@@ -1038,6 +1051,11 @@ class DashboardShell(QWidget):
             if owner == tab_id:
                 sheet.resume()
 
+    def _open_repair(self) -> None:
+        self.show_tab("settings")
+        self.settings_view.scroll_to_updates()
+        self.settings_controller.open_repair()
+
     def show_tab(self, tab_id: str) -> None:
         page = self._pages.get(tab_id)
         if page is None:
@@ -1206,6 +1224,36 @@ class DashboardShell(QWidget):
         or medicine's linked condition: shown over the current page."""
         self._inspect_here("disease", disease_id)
 
+    # ------------------------------------------------- checker sync
+
+    def _sync_checker(self) -> None:
+        """The Symptom Checker's Sync: refresh both encyclopedias it uses."""
+        if self.checker_view.syncing():
+            return
+        self._checker_wait = {"symptom", "disease"}
+        self._checker_errors: list[str] = []
+        self.checker_view.begin_sync()
+        self.symptom_controller.refresh()
+        self.disease_controller.refresh()
+
+    def _encyclopedia_synced(self, kind: str, _changed: bool, error: str) -> None:
+        self.checker_controller.load()            # new symptoms show at once
+        wait = getattr(self, "_checker_wait", None)
+        if not wait or kind not in wait:
+            return
+        wait.discard(kind)
+        if error:
+            self._checker_errors.append(error)
+        if not wait:
+            self._checker_wait = None
+            note = ""
+            if self._checker_errors:
+                note = ("Couldn't reach the server. Using the copy saved on this computer."
+                        if self._symptom_service.all_symptoms() else
+                        "Couldn't reach the server. Check your internet connection and "
+                        "press Sync again.")
+            self.checker_view.end_sync(note)
+
     # -------------------------------------------------------------- theme
 
     def _on_theme_changed(self, _is_dark: bool) -> None:
@@ -1217,23 +1265,61 @@ class DashboardShell(QWidget):
         if self.content.currentWidget() is self._pages.get("settings"):
             self.settings_controller.refresh()
 
+    def _behind_loader(self, work) -> None:
+        """Run a theme switch behind the Akeso loader.
+
+        Restyling hundreds of widgets takes a moment, and doing it in plain
+        view made the window flicker and stutter part by part. Now the
+        loader covers the window first (it is painted before the work
+        starts), the switch happens underneath, and the loader stays a
+        little longer (3 seconds in all) so the new theme appears all at once."""
+        from PySide6.QtCore import QEventLoop, QTimer
+        from app.ui.components.akeso_loader import MinimumLoading
+        gate = getattr(self, "_theme_gate", None)
+        if gate is None:
+            gate = self._theme_gate = MinimumLoading(self, "Applying theme\u2026", min_ms=3000)
+        if gate.active:
+            return                          # a switch is already running
+        gate.begin()
+        self.repaint()
+        QApplication.processEvents(QEventLoop.ProcessEventsFlag.ExcludeUserInputEvents)
+
+        def run() -> None:
+            # The visible part switches now, under the cover (the one short
+            # pause). Hidden pages are restyled in the background as before,
+            # but only after the loader closes: doing it while the animation
+            # plays is what made the logo stutter.
+            self._theme_scope.hold()
+            try:
+                work()
+            finally:
+                gate.restart_animation()        # play smoothly from the start
+                gate.finish(then=self._theme_scope.resume)
+        QTimer.singleShot(60, run)
+
     def _set_theme(self, mode: str) -> None:
         """Settings picked a theme: same path as the header's sun/moon button."""
         if mode == Theme.mode():
             return
-        Theme.set_mode(mode)
-        self.header.refresh_theme()
-        self._on_theme_changed(mode == "dark")
+
+        def work() -> None:
+            Theme.set_mode(mode)
+            self.header.refresh_theme()
+            self._on_theme_changed(mode == "dark")
+        self._behind_loader(work)
 
     def _set_color_theme(self, theme_id: str) -> None:
         """Settings picked a colour theme (Dracula, Nord...). Light/dark stays
         as it is; the same visible-first restyle as the sun/moon button."""
         if theme_id == Theme.color_theme():
             return
-        Theme.set_color_theme(theme_id)
-        self._prefs.update(color_theme=Theme.color_theme())
-        self.header.refresh_theme()
-        self._on_theme_changed(Theme.mode() == "dark")
+
+        def work() -> None:
+            Theme.set_color_theme(theme_id)
+            self._prefs.update(color_theme=Theme.color_theme())
+            self.header.refresh_theme()
+            self._on_theme_changed(Theme.mode() == "dark")
+        self._behind_loader(work)
 
 
 def main() -> int:

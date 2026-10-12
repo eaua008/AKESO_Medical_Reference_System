@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.core.preferences import CARD_COLUMNS, UI_SCALES
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 from app.ui.views.account.account_widgets import (
     Banner, Card, SwitchRow, button, divider, label, refresh_icons, repolish, set_text,
 )
@@ -123,6 +124,8 @@ class SettingsView(QWidget):
     check_updates_requested = Signal()
     install_update_requested = Signal()
     open_releases_requested = Signal()
+    check_files_requested = Signal()
+    repair_requested = Signal()
 
     def __init__(self) -> None:
         super().__init__()
@@ -161,12 +164,14 @@ class SettingsView(QWidget):
         grid.addWidget(self._offline(), 3, 0)
         grid.addWidget(self._shortcuts(), 3, 1)
         grid.addWidget(self._about(), 4, 0)
-        grid.addWidget(self._updates(), 4, 1)
+        self._updates_card = self._updates()
+        grid.addWidget(self._updates_card, 4, 1)
         column.addLayout(grid)
         column.addStretch(1)
 
         scroll.setWidget(page)
         outer.addWidget(scroll)
+        self._scroll = scroll
 
     # -------------------------------------------------------------- cards
 
@@ -240,8 +245,9 @@ class SettingsView(QWidget):
             [(s, f"{s}%") for s in UI_SCALES], self.scale_chosen)
         card.body.addLayout(row)
         card.body.addWidget(label("Text, buttons, cards and the sidebar all scale together. "
-                                  "100% is the default; pick a bigger size if text is hard "
-                                  "to read.", "acSmall"))
+                                  "100% is the default; pick 80% or 90% to fit more on "
+                                  "the screen, or a bigger size if text is hard to read.",
+                                  "acSmall"))
         self._scale_floor_note = label("", "acSmall")
         self._scale_floor_note.hide()
         card.body.addWidget(self._scale_floor_note)
@@ -350,7 +356,7 @@ class SettingsView(QWidget):
     def _updates(self) -> Card:
         card = Card("Updates", "New versions of Akeso, installed in one click.",
                     "refresh-cw")
-        self._update_status = label("", "acValue")
+        self._update_status = LoadingLabel("", "acValue", inline=True)
         card.body.addWidget(self._update_status)
         self._update_notes = label("", "acSmall")
         self._update_notes.hide()
@@ -376,7 +382,64 @@ class SettingsView(QWidget):
         card.body.addWidget(self._releases_link, 0, Qt.AlignmentFlag.AlignLeft)
         card.body.addWidget(label("Your notes, settings and saved sign-in are kept. Akeso "
                                   "closes, updates and opens again by itself.", "acSmall"))
+
+        # Repair: missing or damaged program files (app/services/repair.py)
+        card.body.addSpacing(8)
+        card.body.addWidget(label("Repair", "acValue"))
+        card.body.addWidget(label("If a part of Akeso won't load (for example the 3D blood "
+                                  "vessels), check its files. Repair reinstalls this version; "
+                                  "your notes, settings and saved sign-in are kept.", "acSmall"))
+        self._repair_status = LoadingLabel("", "acSmall", inline=True)
+        self._repair_status.hide()
+        card.body.addWidget(self._repair_status)
+        row = QHBoxLayout()
+        row.setSpacing(8)
+        self._repair_button = button("Repair Akeso", "acPrimary", "rotate-ccw",
+                                     self.repair_requested.emit)
+        self._repair_button.hide()
+        row.addWidget(self._repair_button)
+        self._check_files = button("Check files", "acGhost", "shield-check",
+                                   self.check_files_requested.emit)
+        row.addWidget(self._check_files)
+        row.addStretch(1)
+        card.body.addLayout(row)
         return card
+
+    def scroll_to_updates(self) -> None:
+        from PySide6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self._scroll.ensureWidgetVisible(self._updates_card, 0, 24))
+
+    def show_repair(self, *, state: str, message: str, done: int, total: int,
+                    can_install: bool, busy_updating: bool) -> None:
+        """state: idle | scanning | fetching | ok | damaged | unknown | error
+        (see update_controller.py)."""
+        hold = LoadingHold.of(self, "_repair_hold")           # loader shows for at least 3 s
+        working = state in ("scanning", "fetching")
+        if working:
+            if not self._repair_status.is_loading():
+                hold.begin()
+            if state == "scanning":
+                text = (f"Checking Akeso's files\u2026  {done} of {total}" if total
+                        else "Checking Akeso's files\u2026")
+            else:
+                text = "Getting the repair from GitHub\u2026"
+            self._repair_status.set_loading(text)
+            self._repair_status.show()
+        elif hold.wait(self.show_repair, state=state, message=message, done=done,
+                       total=total, can_install=can_install, busy_updating=busy_updating):
+            return
+        else:
+            self._repair_status.setText(message)
+            self._repair_status.setVisible(bool(message))
+        self._repair_status.setObjectName(
+            {"error": "acError", "damaged": "acError", "ok": "acOk"}.get(state, "acSmall"))
+        repolish(self._repair_status)
+        # Repair is offered after a check that found problems (or could not
+        # check), or after a failed attempt, never while something runs.
+        offer = can_install and not working and not busy_updating and \
+            state in ("damaged", "unknown", "error")
+        self._repair_button.setVisible(offer)
+        self._check_files.setEnabled(not working and not busy_updating)
 
     def show_update(self, *, state: str, current: str, latest: str, notes: str,
                     message: str, done: int, total: int, can_install: bool) -> None:
@@ -391,7 +454,18 @@ class SettingsView(QWidget):
             "installing": f"Installing Akeso {latest}. Akeso will open again in a moment.",
             "error": message or "Something went wrong.",
         }
+        working = ("checking", "downloading", "installing")
+        hold = LoadingHold.of(self, "_update_hold")          # loader shows for at least 3 s
+        if state in working:
+            if not self._update_status.is_loading():
+                hold.begin()
+        elif hold.wait(self.show_update, state=state, current=current, latest=latest,
+                       notes=notes, message=message, done=done, total=total,
+                       can_install=can_install):
+            return
         self._update_status.setText(texts.get(state, ""))
+        if state in ("checking", "downloading", "installing"):
+            self._update_status.set_loading(texts[state])            # the Akeso loader
         self._update_status.setObjectName("acError" if state == "error" else "acValue")
         repolish(self._update_status)
         show_notes = bool(latest) and state in ("available", "downloading") and bool(notes)
@@ -402,11 +476,11 @@ class SettingsView(QWidget):
         if state == "downloading" and total:
             self._update_bar.setRange(0, 1000)
             self._update_bar.setValue(int(done * 1000 / total))
-            self._update_status.setText(
+            self._update_status.set_loading(
                 f"Downloading Akeso {latest}\u2026  {done / 1048576:.0f} of "
                 f"{total / 1048576:.0f} MB")
         elif busy:
-            self._update_bar.setRange(0, 0)               # moving bar
+            self._update_bar.hide()                       # the loader shows it is working
         offer = bool(latest) and state in ("available", "error") and can_install
         self._install_update.setVisible(offer)
         if offer:
@@ -464,9 +538,10 @@ class SettingsView(QWidget):
             chip.setChecked(True)
         limited = effective != scale
         self._scale_floor_note.setText(
-            f"On this screen Akeso can't go below {floor}%, so it uses {effective}%. Smaller "
-            "sizes break the 3D body and the built-in browser (with Windows display scaling "
-            "at 100%, the browser engine can't draw smaller than normal)." if limited else "")
+            f"On this screen Akeso can't go below {floor}%, so it uses {effective}%. "
+            "80% and 90% need Windows display scaling above 100% (Settings > System > "
+            "Display > Scale); below that the 3D body can't be drawn smaller than normal."
+            if limited else "")
         self._scale_floor_note.setVisible(limited)
         pending = effective != running_scale
         self._restart_note.setText(f"Akeso is showing {running_scale}%. Restart to use "

@@ -57,13 +57,13 @@ def main() -> None:
 
     # Display size (Settings > Display). Qt reads this once, before the
     # application exists, and scales everything by it. A QT_SCALE_FACTOR
-    # already set outside Akeso (for testing, say) wins. Never smaller than
-    # the screen allows: the built-in browser engine (3D body, reference
-    # pages) breaks below 100% in the end (see display_scale.py).
-    from app.core.display_scale import qt_scale_factor
-    factor = qt_scale_factor(prefs.ui_scale)
-    if factor != 1 and "QT_SCALE_FACTOR" not in os.environ:
-        os.environ["QT_SCALE_FACTOR"] = f"{factor:g}"
+    # already set outside Akeso (for testing, say) wins. 80% and 90% are
+    # handed to Qt so that the built-in browser engine (3D body, reference
+    # pages) never sees a factor below 1 (see display_scale.py).
+    from app.core.display_scale import effective_percent, qt_environment
+    if "QT_SCALE_FACTOR" not in os.environ:
+        os.environ.update(qt_environment(prefs.ui_scale))
+        os.environ["AKESO_UI_SCALE"] = str(effective_percent(prefs.ui_scale))
     # Cards per row in the encyclopedias (Settings > Display).
     from app.ui.components.fluid import ResponsiveGrid
     ResponsiveGrid.set_user_columns(prefs.cards_per_row)
@@ -89,6 +89,11 @@ def main() -> None:
             pass
     app = QApplication(sys.argv)
     app.setApplicationName("Akeso")
+    # 80% / 90%: Akeso's widgets shrink, the 3D explorer stays at 1
+    # (app/core/soft_scale.py). Must run before any window is built.
+    from app.core import soft_scale
+    from app.core.display_scale import soft_factor
+    soft_scale.install(soft_factor(int(os.environ.get("AKESO_UI_SCALE", "100"))), app)
     icon = resource("assets", "akeso.ico")
     if icon.exists():
         app.setWindowIcon(QIcon(str(icon)))      # title bar, taskbar, Alt+Tab

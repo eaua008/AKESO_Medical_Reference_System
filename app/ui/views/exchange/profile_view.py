@@ -22,6 +22,7 @@ from app.ui.views.account.account_widgets import (
     Banner, Card, button, icon_label, label, pill, refresh_icons, repolish,
 )
 from app.ui.views.exchange.exchange_widgets import clear_layout, flow, tag_chip
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 BADGE_ICONS = {"first_case": "file-text", "best_answer": "badge-check", "verified_1": "shield-check",
                "verified_10": "shield-check", "helpful_10": "thumbs-up", "helpful_25": "thumbs-up",
@@ -135,10 +136,16 @@ class ProfileView(QWidget):
     # ---------------------------------------------------------------- api
 
     def show_loading(self) -> None:
+        LoadingHold.of(self).begin()                  # the loader shows for at least 3 s
         self._reset()
-        self._column.addWidget(label("Loading profile…", "acMuted"))
+        loading = LoadingLabel("", "acMuted")
+        loading.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        loading.set_loading("Loading profile…")
+        self._column.addWidget(loading)
 
     def show_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_error, message):
+            return
         self._reset()
         box = Card("Profile unavailable", "", "lock")
         box.body.addWidget(label(message, "acMuted"))
@@ -146,6 +153,8 @@ class ProfileView(QWidget):
         self._column.addStretch(1)
 
     def set_avatar(self, pixmap: QPixmap) -> None:
+        if LoadingHold.of(self).wait(self.set_avatar, pixmap):
+            return
         if self._picture is not None:
             self._picture.setPixmap(pixmap)
 
@@ -156,6 +165,8 @@ class ProfileView(QWidget):
 
     def show_profile(self, profile: MemberProfile, avatar: Optional[QPixmap] = None,
                      keep_scroll: bool = False) -> None:
+        if LoadingHold.of(self).wait(self.show_profile, profile, avatar, keep_scroll):
+            return
         position = self.scroll.verticalScrollBar().value() if keep_scroll else 0
         old_picture = self._picture.pixmap() if (keep_scroll and self._picture) else None
         self.profile = profile

@@ -30,6 +30,7 @@ from app.core import icons
 from app.core.theme import Theme
 from app.models.disease import Disease
 from app.services.comparison import Comparison
+from app.ui.components.akeso_loader import LoadingLabel
 
 MAX_CONDITIONS = 3
 
@@ -608,6 +609,14 @@ class CompareView(QWidget):
     def show_message(self, message: str) -> None:
         self._clear_results()
         self._results_layout.addWidget(_label(message, "bodyTextMuted"))
+
+    def show_loading(self, message: str) -> None:
+        """The Akeso loader with a message (first download)."""
+        self._clear_results()
+        loading = LoadingLabel("", "bodyTextMuted")
+        loading.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        loading.set_loading(message)
+        self._results_layout.addWidget(loading)
 
     # ------------------------------------------------------------- sections
 
