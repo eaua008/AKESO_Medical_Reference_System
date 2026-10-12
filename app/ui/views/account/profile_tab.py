@@ -18,6 +18,7 @@ from app.models.account import (
 )
 from app.models.exchange import VISIBILITY_LABELS
 from app.ui.components.fluid import ResponsiveGrid
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 from app.ui.views.account.account_widgets import (
     Card, ChipGroup, SwitchRow, button, field_block, label, pill, set_text,
 )
@@ -189,7 +190,7 @@ class ProfileTab(QWidget):
         row = QHBoxLayout(bar)
         row.setContentsMargins(0, 0, 0, 0)
         row.setSpacing(10)
-        self._status = label("", "acSmall")
+        self._status = LoadingLabel("", "acSmall", inline=True)
         row.addWidget(self._status, 1)
         self._discard = button("Discard changes", "acGhost", on_click=self._discard_changes)
         self._save = button("Save profile", "acPrimary", "check", self._emit_save)
@@ -264,13 +265,22 @@ class ProfileTab(QWidget):
         }
 
     def set_busy(self, busy: bool, message: str = "") -> None:
+        if busy and message:
+            LoadingHold.of(self).begin()              # the loader shows for at least 3 s
+        elif LoadingHold.of(self).wait(self.set_busy, busy, message):
+            return
         self._save.setEnabled(not busy and self._dirty)
         self._change_photo.setEnabled(not busy)
         self._status.setObjectName("acSmall")
-        self._status.setText(message)
+        if busy and message:
+            self._status.set_loading(message)       # "Saving…", "Uploading photo…"
+        else:
+            self._status.setText(message)
         self._status.style().polish(self._status)
 
     def show_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_error, message):
+            return
         self._status.setObjectName("acError")
         self._status.setText(message)
         self._status.style().unpolish(self._status)
@@ -279,6 +289,8 @@ class ProfileTab(QWidget):
         self._change_photo.setEnabled(True)
 
     def show_saved(self, message: str = "Saved.") -> None:
+        if LoadingHold.of(self).wait(self.show_saved, message):
+            return
         self._status.setObjectName("acOk")
         self._status.setText(message)
         self._status.style().unpolish(self._status)

@@ -466,6 +466,14 @@ class AuthView(QWidget):
 
         # "Signing you in…" / "Setting up your dashboard…" while the steps
         # after a successful sign-in run (see set_signing_in).
+        # The Akeso loader (the logo building itself) above the step text.
+        from app.ui.components.akeso_loader import AkesoLoader
+        self._loader = AkesoLoader(84)
+        from PySide6.QtCore import QElapsedTimer
+        self._signing_clock = QElapsedTimer()
+        self._loader.hide()
+        layout.addWidget(self._loader, 0, Qt.AlignmentFlag.AlignHCenter)
+
         self._progress = QLabel("")
         self._progress.setObjectName("cardSubtitle")
         self._progress.setWordWrap(True)
@@ -855,6 +863,8 @@ class AuthView(QWidget):
         window keeps responding meanwhile; this stops a second sign-in
         from starting. None unlocks it again."""
         busy = text is not None
+        if busy and not self._loader.isVisible():
+            self._signing_clock.start()            # see wait_out_loader()
         if busy:
             self.clear_error()
             self._progress.setText(text)
@@ -862,9 +872,22 @@ class AuthView(QWidget):
         elif self._google_state != "cooldown":
             self._set_google_state("idle", "  Continue with Google")
         self._progress.setVisible(busy)
+        self._loader.setVisible(busy)
         for widget in (self._login_form, self._signup_form, self._google_btn,
                        self._switch_label):
             widget.setEnabled(not busy)
+
+    def wait_out_loader(self, min_ms: int = 3000) -> None:
+        """Keep the sign-in animation up until it has shown for min_ms
+        (the window stays responsive), so it never just flickers past."""
+        if not self._loader.isVisible() or not self._signing_clock.isValid():
+            return
+        left = min_ms - self._signing_clock.elapsed()
+        if left > 0:
+            from PySide6.QtCore import QEventLoop, QTimer
+            loop = QEventLoop()
+            QTimer.singleShot(int(left), loop.quit)
+            loop.exec()
 
     # --------------------------------------------------------- Google button
 

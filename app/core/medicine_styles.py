@@ -335,6 +335,112 @@ def medicine_rules(p: dict, heading_font: str) -> str:
             font-size: 13px;
             color: {p['TEXT']};
         }}
+        /* -------------------------------------------- dosage table */
+        #mdDoseScroll, #mdDoseScroll > QWidget > QWidget {{ background: transparent; }}
+        #mdDoseTable {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        #mdDoseHead {{
+            background-color: {p['SURFACE_ALT']};
+            border-bottom: 1px solid {p['BORDER']};
+            padding: 8px 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #mdDoseHead[first="true"] {{ padding-left: 12px; border-top-left-radius: 10px; }}
+        #mdDoseGroup {{
+            background-color: {p['PRIMARY_SOFT']};
+            border-bottom: 1px solid {p['BORDER']};
+            padding: 5px 12px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: {p['BADGE_TEXT']};
+        }}
+        #mdDoseCell {{ background: transparent; border-bottom: 1px solid {p['BORDER']}; }}
+        #mdDoseCell[last="true"] {{ border-bottom: 1px solid {p['BORDER']}; }}
+        #mdDoseIndication {{ font-size: 12px; font-weight: 700; color: {p['TEXT']}; }}
+        #mdDoseNote {{ font-size: 11px; color: {p['TEXT_MUTED']}; }}
+        #mdDoseText {{ font-size: 12px; color: {p['TEXT']}; }}
+        #mdDoseNumber {{
+            font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+            font-size: 12px;
+            color: {p['TEXT']};
+        }}
+        #mdDoseSource {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-size: 10px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #mdDoseSourceLink {{
+            background-color: {_rgba(GOOD, 0.10)};
+            border: 1px solid {_rgba(GOOD, 0.55)};
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 700;
+            color: {GOOD};
+            text-align: left;
+        }}
+        #mdDoseSourceLink:hover {{ background-color: {_rgba(GOOD, 0.22)}; }}
+        #mdRefTierDose {{
+            background-color: {_rgba(GOOD, 0.15)};
+            border: 1px solid {_rgba(GOOD, 0.6)};
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: {GOOD};
+        }}
+        #mdRefTag {{
+            border: 1px solid {p['BORDER']};
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 9px;
+            color: {p['TEXT_MUTED']};
+        }}
+        #mdDoseMore {{
+            background-color: {p['PRIMARY_SOFT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+            padding: 3px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: {p['BADGE_TEXT']};
+        }}
+        #mdDoseScroll QScrollBar:vertical {{ width: 10px; background: transparent; }}
+        #mdDoseScroll QScrollBar::handle:vertical {{
+            background: {p['PRIMARY']}; border-radius: 4px; min-height: 30px;
+        }}
+        #mdDoseScroll QScrollBar:horizontal {{ height: 10px; background: transparent; }}
+        #mdDoseScroll QScrollBar::handle:horizontal {{
+            background: {p['PRIMARY']}; border-radius: 4px; min-width: 30px;
+        }}
+        #mdDoseScroll QScrollBar::add-line, #mdDoseScroll QScrollBar::sub-line {{
+            width: 0px; height: 0px;
+        }}
+        #mdDosePanel {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        #mdDosePanelTitle {{ font-size: 12px; font-weight: 800; color: {p['TEXT']}; }}
+        #mdDosePanelKey {{
+            font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: {p['BADGE_TEXT']};
+        }}
+        #mdDosePanelText {{ font-size: 12px; color: {p['TEXT']}; }}
+
         #mdGoodTile, #mdWarnTile, #mdBadTile {{
             background-color: {p['SURFACE_ALT']};
             border: 1px solid {p['BORDER']};

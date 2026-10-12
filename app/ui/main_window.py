@@ -133,6 +133,7 @@ class MainWindow(QMainWindow):
             account=account,
             progress=self._breathe,
         )
+        self.auth_view.wait_out_loader()          # the animation shows for at least 3 s
         self.auth_view.set_signing_in(None)
         self.shell.sign_out_requested.connect(self.log_out)
         self.shell.identity_changed.connect(

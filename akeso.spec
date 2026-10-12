@@ -16,8 +16,11 @@ datas = [
     (str(ROOT / "assets" / "LIGHTLOGO.png"), "assets"),
     (str(ROOT / "assets" / "DARKLOGO.png"), "assets"),
     (str(ROOT / "assets" / "akeso.ico"), "assets"),
+    (str(ROOT / "assets" / "loader_mark.png"), "assets"),          # loading animation
+    (str(ROOT / "assets" / "loader_outline.json"), "assets"),
     (str(ROOT / "data" / "emergency_ph.json"), "data"),
     (str(ROOT / "data" / "health_tips.json"), "data"),
+    (str(ROOT / "data" / "who_growth.json"), "data"),            # WHO growth charts (children's BMI)
     (str(ROOT / "THIRD_PARTY_NOTICES.md"), "."),
 ]
 # Supabase address + publishable key. Only the PUBLISHABLE (anon) key may be

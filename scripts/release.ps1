@@ -5,7 +5,8 @@
 #
 #   1. checks everything it needs is there (before changing anything),
 #   2. sets the version (app\core\device_identity.py, installer\akeso.iss),
-#   3. builds the app (PyInstaller) and the installer (Inno Setup),
+#   3. builds the app (PyInstaller), lists its files for Settings > Updates >
+#      Check files (scripts\make_manifest.py), and builds the installer (Inno Setup),
 #   4. writes the installer's SHA-256 fingerprint,
 #   5. publishes both files as a GitHub release on eaua008/akeso-releases
 #      (every installed Akeso then shows the green "Update" button),
@@ -97,6 +98,10 @@ Set-InFile "installer\akeso.iss" '#define AppVersion\s+"[^"]*"' "#define AppVers
 Step "Building the app (PyInstaller, a few minutes)"
 & $python -m PyInstaller akeso.spec --noconfirm
 if ($LASTEXITCODE -ne 0) { Fail "PyInstaller failed (see the messages above)." }
+
+Step "Listing the files (for Check files / Repair Akeso)"
+& $python scripts\make_manifest.py $Version
+if ($LASTEXITCODE -ne 0) { Fail "make_manifest.py failed (see the messages above)." }
 
 Step "Building the installer (Inno Setup)"
 & $iscc "installer\akeso.iss"

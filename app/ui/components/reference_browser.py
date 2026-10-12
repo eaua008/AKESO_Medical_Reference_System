@@ -15,6 +15,8 @@ Privacy and safety:
   * Links that open a new window load here instead.
   * Downloads are not saved from here; the page can be opened in the real
     browser instead, where the student sees and controls the download.
+  * PDF references open in Chromium's built-in PDF viewer, right here (the
+    only "plugin" QtWebEngine has; no third-party plugins exist in it).
 
 QtWebEngine is heavy, so this module is imported only when the first link
 is opened (DashboardShell._open_link).
@@ -23,7 +25,8 @@ is opened (DashboardShell._open_link).
 from PySide6.QtCore import QSize, Qt, QUrl, Signal
 from PySide6.QtGui import QDesktopServices, QGuiApplication
 from PySide6.QtWebEngineCore import (
-    QWebEngineDownloadRequest, QWebEnginePage, QWebEngineProfile, QWebEngineSettings,
+    QWebEngineDownloadRequest, QWebEngineLoadingInfo, QWebEnginePage, QWebEngineProfile,
+    QWebEngineSettings,
 )
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (
@@ -33,6 +36,7 @@ from PySide6.QtWidgets import (
 from app.core import lucide
 from app.core.links import safe_url
 from app.core.theme import Theme
+from app.ui.components.akeso_loader import LoaderOverlay
 from app.ui.views.account.account_widgets import Banner, button, label, refresh_icons, repolish
 
 
@@ -47,7 +51,10 @@ def _shared_profile() -> QWebEngineProfile:
     if _PROFILE is None:
         _PROFILE = QWebEngineProfile(QApplication.instance())
         settings = _PROFILE.settings()
-        settings.setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, False)
+        # PDFs: Chromium's own PDF viewer needs both of these. Without them a
+        # PDF link turned into a (blocked) download and the page stayed empty.
+        settings.setAttribute(QWebEngineSettings.WebAttribute.PluginsEnabled, True)
+        settings.setAttribute(QWebEngineSettings.WebAttribute.PdfViewerEnabled, True)
         settings.setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessFileUrls,
                               False)
     return _PROFILE
@@ -120,9 +127,14 @@ class ReferenceBrowser(QWidget):
         self.view.titleChanged.connect(self._title_changed)
         self.view.urlChanged.connect(self._url_changed)
         self.view.loadStarted.connect(self._load_started)
-        self.view.loadProgress.connect(self._progress.setValue)
+        self.view.loadProgress.connect(self._load_progress)
         self.view.loadFinished.connect(self._load_finished)
+        self._page.loadingChanged.connect(self._loading_changed)
+        self._http_error = 0
         column.addWidget(self.view, 1)
+        # The Akeso loader in the middle of the page until it has mostly
+        # drawn (the thin bar at the top keeps showing the exact progress).
+        self._loader = LoaderOverlay(self.view)
         self.refresh_theme()
 
     # ------------------------------------------------------------ toolbar
@@ -187,6 +199,7 @@ class ReferenceBrowser(QWidget):
         """The sheet closed: stop loading and silence any audio or video."""
         self.view.stop()
         self.view.setUrl(QUrl("about:blank"))
+        self._loader.hide()
 
     def open_externally(self) -> None:
         if self._url:
@@ -224,21 +237,52 @@ class ReferenceBrowser(QWidget):
         self._back.setEnabled(self.view.history().canGoBack())
         self._forward.setEnabled(self.view.history().canGoForward())
 
+    def _load_progress(self, value: int) -> None:
+        self._progress.setValue(value)
+        if value >= 70:
+            self._loader.hide()
+
+    def _loading_changed(self, info: QWebEngineLoadingInfo) -> None:
+        """Remember the website's own error code (404 and so on), so the
+        notice can say what really happened instead of guessing."""
+        if info.status() == QWebEngineLoadingInfo.LoadStatus.LoadStartedStatus:
+            self._http_error = 0
+        elif (info.status() == QWebEngineLoadingInfo.LoadStatus.LoadFailedStatus and
+              info.errorDomain() == QWebEngineLoadingInfo.ErrorDomain.HttpStatusCodeDomain):
+            self._http_error = info.errorCode()
+            self._http_notice()          # (may come after loadFinished: replace its notice)
+
+    def _http_notice(self) -> bool:
+        if self._http_error in (404, 410):
+            self._notice("The website says this page isn’t there anymore (error "
+                         f"{self._http_error}). The link may have moved; please report it "
+                         "so it can be fixed.", "warn", "")
+            return True
+        if self._http_error >= 400:
+            self._notice(f"The website returned an error ({self._http_error}). Try again "
+                         "later, or open it in your browser.", "warn", "Open in browser")
+            return True
+        return False
+
     def _load_started(self) -> None:
         self._progress.setValue(0)
         self._progress.show()
+        self._loader.show_over()
         self._reload.setProperty("wbIcon", "x")
         self._reload.setToolTip("Stop")
         self._paint_icons()
 
     def _load_finished(self, ok: bool) -> None:
         self._progress.hide()
+        self._loader.hide()
         self._reload.setProperty("wbIcon", "refresh-cw")
         self._reload.setToolTip("Reload")
         self._paint_icons()
         self._back.setEnabled(self.view.history().canGoBack())
         self._forward.setEnabled(self.view.history().canGoForward())
-        if not ok and self.view.url().toString() not in ("", "about:blank"):
+        if self._http_notice():
+            pass
+        elif not ok and self.view.url().toString() not in ("", "about:blank"):
             self._notice("This page didn’t load. You may be offline, or the site "
                          "doesn’t allow being shown inside other apps.", "warn",
                          "Open in browser")

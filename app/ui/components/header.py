@@ -522,7 +522,17 @@ class AkesoHeader(QFrame):
 
     # -------------------------------------------------------------- theme
 
+    # The shell sets this so the switch runs behind the Akeso loader
+    # (DashboardShell._behind_loader); without it the switch runs directly.
+    run_theme_change = None
+
     def _toggle_theme(self) -> None:
+        if self.run_theme_change is not None:
+            self.run_theme_change(self._do_toggle_theme)
+        else:
+            self._do_toggle_theme()
+
+    def _do_toggle_theme(self) -> None:
         Theme.toggle_mode()
         self.refresh_theme()
         self.themeToggled.emit(Theme.mode() == "dark")

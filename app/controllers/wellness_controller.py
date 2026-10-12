@@ -28,6 +28,7 @@ class WellnessController(QObject):
             (view.sleep, lambda v: self._service.sleep.recommend(**v)),
             (view.energy, lambda v: self._service.energy.calculate(**v)),
             (view.converter, lambda v: self._service.converter.convert(**v)),
+            (view.vitals, lambda v: self._service.vitals.check(**v)),
         )
         for panel, calculate in self._routes:
             panel.changed.connect(lambda p=panel, c=calculate: self._recalculate(p, c))

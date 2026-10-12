@@ -87,6 +87,7 @@ class ThemeScope(QObject):
         self._timer.setSingleShot(True)
         self._timer.timeout.connect(self._catch_up_one)
         self._backdrops: list[QWidget] = []
+        self._held = False
 
     # ------------------------------------------------------------- areas
 
@@ -121,15 +122,30 @@ class ThemeScope(QObject):
 
     # ------------------------------------------------------------ switch
 
-    def switch(self) -> None:
-        """Call after Theme.toggle_mode() or Theme.set_color_theme()."""
+    def switch(self, everything: bool = False) -> None:
+        """Call after Theme.toggle_mode() or Theme.set_color_theme().
+
+        everything=True restyles hidden pages too, right now. Used while
+        the Akeso loader covers the window: one pause at the start, instead
+        of the background catch-up making the loader animation stutter."""
         for backdrop in self._backdrops:
             backdrop.update()
         for widget in list(self._areas):
-            if widget.isVisible():
+            if everything or widget.isVisible():
                 self._restyle(widget)
         self._restyle_windows()
         self._queue = [w for w in self._areas if not self._current(w)]
+        if self._queue and not self._held:
+            self._timer.start(CATCH_UP_DELAY_MS)
+
+    def hold(self) -> None:
+        """Pause the background catch-up (while the Akeso loader plays, so
+        restyling hidden pages does not make the animation stutter)."""
+        self._held = True
+        self._timer.stop()
+
+    def resume(self) -> None:
+        self._held = False
         if self._queue:
             self._timer.start(CATCH_UP_DELAY_MS)
 
@@ -160,7 +176,7 @@ class ThemeScope(QObject):
             self._queue.pop(0)
         if self._queue:
             self._restyle(self._queue.pop(0))
-        if self._queue:
+        if self._queue and not self._held:
             self._timer.start(CATCH_UP_STEP_MS)
         else:
             self._restyle_windows()

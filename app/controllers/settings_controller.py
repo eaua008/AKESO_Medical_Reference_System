@@ -14,7 +14,7 @@ from PySide6.QtWidgets import QApplication
 from app.controllers.search_history_controller import SearchHistoryController
 from app.controllers.update_controller import UpdateManager
 from app.core.device_identity import APP_VERSION
-from app.core.display_scale import effective_percent
+from app.core.display_scale import QT_KEYS, effective_percent, smallest_percent
 from app.core.preferences import PreferenceStore
 from app.core.theme import Theme
 from app.repositories.local_account_data import LocalAccountData
@@ -27,6 +27,8 @@ from app.ui.views.settings_view import SettingsView
 def running_scale() -> int:
     """The display size this session started with (main.py sets it)."""
     try:
+        if "AKESO_UI_SCALE" in os.environ:
+            return int(os.environ["AKESO_UI_SCALE"])
         return round(float(os.environ.get("QT_SCALE_FACTOR", "1")) * 100)
     except ValueError:
         return 100
@@ -70,7 +72,12 @@ class SettingsController(QObject):
         view.check_updates_requested.connect(lambda: self._updates.check())
         view.install_update_requested.connect(self._install_update)
         view.open_releases_requested.connect(self._open_releases)
+        self._updates.repair_changed.connect(self._show_repair)
+        self._updates.changed.connect(self._show_repair)
+        view.check_files_requested.connect(self._updates.check_files)
+        view.repair_requested.connect(self._repair)
         self._show_update()
+        self._show_repair()
 
     def refresh(self) -> None:
         prefs = self._prefs.load()
@@ -97,6 +104,36 @@ class SettingsController(QObject):
             latest=release.version if release else "", notes=release.notes if release else "",
             message=u.message, done=u.progress[0], total=u.progress[1],
             can_install=u.can_install)
+
+    def _show_repair(self) -> None:
+        u = self._updates
+        self._view.show_repair(
+            state=u.repair_state, message=u.repair_message,
+            done=u.repair_progress[0], total=u.repair_progress[1],
+            can_install=u.can_install,
+            busy_updating=u.state in ("downloading", "installing"))
+
+    def _repair(self) -> None:
+        from app.services import updater
+        newer = self._updates.release is not None and \
+            updater.is_newer(self._updates.release.version)
+        text = (f"A newer Akeso ({self._updates.release.version}) is out. Updating "
+                "replaces every file too, so it repairs Akeso and brings the fixes."
+                if newer else
+                f"Akeso downloads the installer of version {APP_VERSION} again, checks "
+                "that it is genuine, then closes, reinstalls every file and opens again.")
+        dialog = ConfirmDialog(
+            "Repair Akeso?",
+            text + " Your notes, settings and saved sign-in are kept.\n\n"
+            "Unsaved work in an open note is saved first.",
+            "Update and repair" if newer else "Repair now", "rotate-ccw", parent=self._view)
+        if dialog.exec() == ConfirmDialog.DialogCode.Accepted:
+            self._updates.repair()
+
+    def open_repair(self) -> None:
+        """From a screen that failed to load a file: check right away."""
+        if self._updates.repair_state not in ("scanning", "fetching"):
+            self._updates.check_files()
 
     def _install_update(self) -> None:
         release = self._updates.release
@@ -129,7 +166,7 @@ class SettingsController(QObject):
 
     def _show_display(self, prefs) -> None:
         self._view.show_display(prefs.ui_scale, running_scale(), prefs.cards_per_row,
-                                effective_percent(prefs.ui_scale), 100)
+                                effective_percent(prefs.ui_scale), smallest_percent())
 
     def _columns(self, columns: int) -> None:
         prefs = self._prefs.update(cards_per_row=columns)
@@ -142,14 +179,14 @@ class SettingsController(QObject):
         """Start a fresh copy of Akeso, then close this one (the new size is
         read at start-up). Sessions are not stored, so the new copy opens on
         the sign-in screen; unsaved notebook edits are flushed on quit."""
-        env_scale = os.environ.pop("QT_SCALE_FACTOR", None)   # let main.py read the new one
+        saved = {key: os.environ.pop(key) for key in QT_KEYS if key in os.environ}
+        # (popped so main.py works out the new size)
         # Packaged: sys.executable is Akeso.exe and argv[0] is that same path,
         # so pass only the real arguments. From IntelliJ: python + main.py.
         frozen = getattr(sys, "frozen", False)
         arguments = sys.argv[1:] if frozen else sys.argv
         if not QProcess.startDetached(sys.executable, arguments):
-            if env_scale is not None:
-                os.environ["QT_SCALE_FACTOR"] = env_scale
+            os.environ.update(saved)
             self._view.banner.show_message(
                 "Could not restart automatically. Close Akeso and open it again.", "danger")
             return

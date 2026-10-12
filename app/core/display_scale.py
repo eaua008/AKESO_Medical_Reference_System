@@ -1,16 +1,15 @@
-"""How small Akeso may be drawn on this screen (Settings > Display > Size).
+"""How big Akeso is drawn (Settings > Display > Size), including 80% and 90%.
 
-Qt can draw the whole app smaller than normal (QT_SCALE_FACTOR below 1), but
-the built-in browser engine cannot: below 1 it prints "Unsupported scale
-factor" and draws its pages at the wrong size. Those pages include the Body
-System Explorer's 3D view and the reference browser, so the 3D body ended up
-squeezed into a corner and clicks landed in the wrong place.
+The problem with sizes below 100%: Qt can draw the whole app smaller
+(QT_SCALE_FACTOR below 1), but the built-in browser engine cannot. Below 1 it
+prints "Unsupported scale factor" and draws its pages at the wrong size. That
+is the Body System Explorer's 3D view (and the reference browser), which in
+1.0.2 ended up squeezed into a corner with clicks landing in the wrong place.
 
-Version 1.0.2 still allowed 80% on screens with Windows scaling at 125%
-(125% × 80% = 100% in the end), but the browser engine checks Akeso's own
-size, not the final one, so the 3D view broke there too and every redraw got
-slower. So Akeso is never drawn below 100% now, on any screen; Settings only
-offers 100%, 110% and 125%.
+How 80% / 90% work now: Qt stays at its normal size and Akeso shrinks its
+own widgets (app/core/soft_scale.py). The sidebar, header, pages and side
+panels are 80%, while the Body System Explorer's 3D view (a web page) keeps
+its own size of 1, on every screen.
 """
 
 import sys
@@ -35,15 +34,33 @@ def windows_scaling() -> float:
     return dpi / 96 if 96 <= dpi <= 480 else 1.0
 
 
-def smallest_percent() -> int:
-    """The smallest Akeso size that keeps the browser engine working here."""
-    return round(100 / windows_scaling())
+def smallest_percent(scaling: float = 0.0) -> int:
+    """80% and 90% work on every screen now (soft_scale.py)."""
+    return 80
 
 
-def effective_percent(chosen: int) -> int:
-    """The size Akeso actually uses for a chosen one: never below 100%."""
-    return max(chosen, 100)
+def effective_percent(chosen: int, scaling: float = 0.0) -> int:
+    return chosen
+
+
+def qt_environment(chosen: int, scaling: float = 0.0) -> dict:
+    """Qt settings for a chosen size. Under 100% Qt is left at its normal size:
+    Akeso shrinks its own widgets instead (app/core/soft_scale.py), so the
+    3D explorer's browser engine keeps a factor of exactly 1."""
+    if chosen > 100:
+        return {"QT_SCALE_FACTOR": f"{chosen / 100:g}"}
+    return {}
+
+
+def soft_factor(chosen: int) -> float:
+    """What soft_scale.install() gets: 0.8 for 80%, 1.0 for 100% and up."""
+    return chosen / 100 if chosen < 100 else 1.0
 
 
 def qt_scale_factor(chosen: int) -> float:
-    return effective_percent(chosen) / 100
+    """Kept for older callers."""
+    return max(chosen, 100) / 100
+
+
+# Environment names main.py may set, so a restart can clear them all.
+QT_KEYS = ("QT_ENABLE_HIGHDPI_SCALING", "QT_SCALE_FACTOR", "QT_FONT_DPI", "AKESO_UI_SCALE")

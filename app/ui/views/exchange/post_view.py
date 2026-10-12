@@ -14,6 +14,7 @@ from app.ui.views.exchange.exchange_widgets import (
     AuthorLine, PollWidget, ReplyBox, ReplyWidget, VitalsBlock, clear_layout, flow,
     refresh_small_icons, small_button, tag_chip,
 )
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 
 class PostView(QWidget):
@@ -74,14 +75,22 @@ class PostView(QWidget):
     # ---------------------------------------------------------------- api
 
     def show_loading(self) -> None:
+        LoadingHold.of(self).begin()                  # the loader shows for at least 3 s
         clear_layout(self._content)
-        self._content.addWidget(label("Loading…", "acMuted"))
+        loading = LoadingLabel("", "acMuted")
+        loading.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        loading.set_loading("Loading the discussion…")
+        self._content.addWidget(loading)
 
     def show_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_error, message):
+            return
         clear_layout(self._content)
         self._content.addWidget(label(message, "acError"))
 
     def show_post(self, post: PostDetail, bookmarked: bool, keep_scroll: bool = False) -> None:
+        if LoadingHold.of(self).wait(self.show_post, post, bookmarked, keep_scroll):
+            return
         position = self.scroll.verticalScrollBar().value() if keep_scroll else 0
         if self.post is None or self.post.id != post.id:
             self._open_threads = set()              # a different post: start closed

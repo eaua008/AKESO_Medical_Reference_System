@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.core.anatomy_colours import AnatomyColourStore
+from app.ui.components.akeso_loader import LoaderOverlay, LoadingHold, LoadingLabel
 from app.core.theme import Theme
 from app.ui.views.account.account_widgets import (
     Card, button, icon_label, label, pill, refresh_icons, repolish,
@@ -54,6 +55,7 @@ SYSTEMS = [("nervous", "Nervous"), ("cardiovascular", "Cardiovascular"),
            ("respiratory", "Respiratory"), ("digestive", "Digestive"), ("urinary", "Urinary"),
            ("endocrine", "Endocrine"), ("musculoskeletal", "Musculoskeletal"),
            ("integumentary", "Skin (integumentary)")]
+SYSTEM_KEYS = {key for key, _text in SYSTEMS}      # every one has parts in the 3D model
 SHOW_MAX = 8
 GUIDE = [
     ("Rotate", "Drag with the left mouse button."),
@@ -65,6 +67,7 @@ GUIDE = [
     ("Hide", "Hide button or H. Shift + H hides the whole group (e.g. all of the skull)."),
     ("See-through", "See-through button or T (Shift + T for the group). Again makes it solid."),
     ("Only this", "Only this button or O (Shift + O for the group)."),
+    ("Focus", "Focus on system: only that body system's parts. Show all brings back the rest."),
     ("Reset", "Show all, or R. Esc clears the selection."),
     ("Vessels", "Blood vessels / Nerves switches under Layers. Peel to Bone to see them."),
     ("Colours", "Click a vessel, then a colour. Vessel colours recolours a whole kind."),
@@ -81,11 +84,16 @@ class _Bridge(QObject):
     no_webgl = Signal()
     visibility = Signal(dict)
     extra_loaded = Signal(str)
+    extra_failed = Signal(str)
     colours = Signal(dict)
 
     @Slot(str)
     def extraLoaded(self, name: str) -> None:  # noqa: N802
         self.extra_loaded.emit(name)
+
+    @Slot(str)
+    def extraFailed(self, name: str) -> None:  # noqa: N802
+        self.extra_failed.emit(name)
 
     @Slot(str)
     def coloursChanged(self, payload: str) -> None:  # noqa: N802
@@ -151,6 +159,7 @@ class _Row(QFrame):
 class BodyExplorerView(QWidget):
     part_selected = Signal(dict)            # the part the user clicked (from parts.json)
     disease_requested = Signal(str)
+    repair_requested = Signal()             # a 3D file is missing: Settings > Repair
     symptom_requested = Signal(str)
     article_requested = Signal(str)
 
@@ -173,8 +182,9 @@ class BodyExplorerView(QWidget):
         self._stage.setObjectName("panel")
         self._stage_layout = QVBoxLayout(self._stage)
         self._stage_layout.setContentsMargins(0, 0, 0, 0)
-        self._placeholder = label("Loading the 3D body…", "acMuted")
+        self._placeholder = LoadingLabel("", "acMuted")
         self._placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._placeholder.set_loading("Loading the 3D body…")
         self._stage_layout.addWidget(self._placeholder)
         row.addWidget(self._stage, 1)
 
@@ -265,9 +275,13 @@ class BodyExplorerView(QWidget):
             extras.addWidget(chip)
         extras.addStretch(1)
         layers.body.addLayout(extras)
-        self.extra_note = label("", "acSmall")
+        self.extra_note = LoadingLabel("", "acSmall", inline=True)
         self.extra_note.hide()
         layers.body.addWidget(self.extra_note)
+        self.repair_button = button("Repair Akeso", "acPrimary", "rotate-ccw",
+                                    self.repair_requested.emit)
+        self.repair_button.hide()
+        layers.body.addWidget(self.repair_button, 0, Qt.AlignmentFlag.AlignLeft)
         self._side.addWidget(layers)
         self.layers_card = layers
         self.colours_card = self._build_colours()
@@ -331,12 +345,25 @@ class BodyExplorerView(QWidget):
             self.slider.setValue(200)
         self._js(f"akeso.setExtra({json.dumps(key)}, {'true' if on else 'false'})")
         if on and self._ready:
-            self.extra_note.setText("Loading… the first time takes a few seconds.")
+            LoadingHold.of(self, "_extra_hold").begin()   # loader shows for at least 3 s
+            self.extra_note.set_loading("Loading… the first time takes a few seconds.")
             self.extra_note.show()
         self.colours_card.setVisible(any(self._extras.values()))
         self._update_legend()
 
+    def _extra_failed(self, name: str) -> None:
+        """vessel.glb / nerve.glb would not load: a damaged install. Offer Repair."""
+        if LoadingHold.of(self, "_extra_hold").wait(self._extra_failed, name):
+            return
+        what = {"vessel": "blood vessels", "nerve": "nerves"}.get(name, "this layer")
+        self.extra_note.setText(f"Couldn't load the {what}. A file of Akeso is missing or "
+                                "damaged; Repair Akeso puts it back.")
+        self.extra_note.show()
+        self.repair_button.show()
+
     def _extra_loaded(self, _name: str) -> None:
+        if LoadingHold.of(self, "_extra_hold").wait(self._extra_loaded, _name):
+            return
         self.extra_note.hide()
 
     def _build_colours(self) -> Card:
@@ -497,6 +524,16 @@ class BodyExplorerView(QWidget):
             chips.addWidget(pill("Body system", "acPillGood"))
         chips.addStretch(1)
         self._part_body.addLayout(chips)
+        system_key = part.get("system") or ""
+        if system_key in SYSTEM_KEYS and self.web:
+            name_of = dict(SYSTEMS).get(system_key, system_key.capitalize())
+            text = ("Focus on this system" if browsing
+                    else f"Focus on the {name_of.split(' (')[0].lower()} system")
+            self._part_body.addWidget(
+                button(text, "acGhost", "target",
+                       lambda _c=False, k=system_key, t=system_label or name_of:
+                       self.focus_system(k, t)),
+                0, Qt.AlignmentFlag.AlignLeft)
         if part.get("fma"):
             self._part_body.addWidget(label(f"Anatomy ID: {part['fma']} (Foundational Model "
                                             "of Anatomy)", "acSmall"))
@@ -521,6 +558,16 @@ class BodyExplorerView(QWidget):
                         "system.", "message-circle")
             card.body.addWidget(discussions)
             self._lists.addWidget(card)
+
+    def focus_system(self, key: str, title: str) -> None:
+        """Show only the parts of one body system (Show all brings the rest
+        back). Vessels and nerves are extra layers: switched on first."""
+        if not self._ready:
+            return
+        extra = {"cardiovascular": "vessel", "nervous": "nerve"}.get(key)
+        if extra and not self._extras.get(extra):
+            self.extra_buttons[extra].setChecked(True)      # loads the layer
+        self._js(f"akeso.isolateSystem({json.dumps(key)}, {json.dumps(title)})")
 
     def _actions(self, part_id: str, whole: bool, caption: str) -> QVBoxLayout:
         """Hide / See-through / Show only, for one part or its whole group."""
@@ -619,7 +666,8 @@ class BodyExplorerView(QWidget):
         from app.ui.components import anatomy_scheme
         if not anatomy_scheme.models_present():
             self._placeholder.setText("The 3D body files are missing (assets/anatomy/). "
-                                      "Reinstall Akeso or ask an admin.")
+                                      "Use Repair Akeso to put them back.")
+            self.repair_button.show()
             self.web = False
             return
         from PySide6.QtWebChannel import QWebChannel
@@ -641,6 +689,7 @@ class BodyExplorerView(QWidget):
         self.bridge.no_webgl.connect(self._no_webgl)
         self.bridge.visibility.connect(self._visibility)
         self.bridge.extra_loaded.connect(self._extra_loaded)
+        self.bridge.extra_failed.connect(self._extra_failed)
         self.bridge.colours.connect(self._colours_changed)
         self.channel = QWebChannel(page)
         self.channel.registerObject("bridge", self.bridge)
@@ -650,6 +699,17 @@ class BodyExplorerView(QWidget):
         self._stage_layout.removeWidget(self._placeholder)
         self._placeholder.hide()
         self._stage_layout.addWidget(self.web)
+        # The page draws its models one by one; the Akeso loader covers it
+        # until everything is in (page_ready) or 3D turns out unavailable.
+        self._web_loader = LoaderOverlay(self._stage, "Loading the 3D body…", opaque=True)
+        LoadingHold.of(self, "_web_hold").begin()         # loader shows for at least 3 s
+        self._web_loader.show_over()
+
+    def _hide_web_loader(self) -> None:
+        if LoadingHold.of(self, "_web_hold").wait(self._hide_web_loader):
+            return
+        if getattr(self, "_web_loader", None) is not None:
+            self._web_loader.hide()
 
     @staticmethod
     def _console(level, message, line, source) -> None:
@@ -663,6 +723,7 @@ class BodyExplorerView(QWidget):
 
     def _page_ready(self) -> None:
         self._ready = True
+        self._hide_web_loader()
         self._apply_theme()
         self._js(f"akeso.setColors({json.dumps(self._colours)})")
         if self._layer:
@@ -673,6 +734,7 @@ class BodyExplorerView(QWidget):
 
     def _no_webgl(self) -> None:
         """3D can't run here: say so and keep browsing by body system."""
+        self._hide_web_loader()
         self.layers_card.setEnabled(False)
         self.colours_card.hide()
         for chip in self.region_buttons.values():

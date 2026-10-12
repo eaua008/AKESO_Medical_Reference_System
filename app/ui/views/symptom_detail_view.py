@@ -33,7 +33,7 @@ from PySide6.QtWidgets import (
 from app.core import icons
 from app.core.theme import Theme
 from app.models.symptom import AssociatedCondition, Symptom
-from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain
+from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain, fit_width
 from app.ui.components.peer_discussions import PeerDiscussionList
 from app.ui.components.related_articles import RelatedArticlesList
 from app.ui.components.reference_cards import reference_grid
@@ -195,12 +195,20 @@ class SymptomDetailView(QWidget):
         return bar
 
     def _build_rail(self) -> QWidget:
+        # The rail scrolls on its own, like the Disease Encyclopedia's. Without
+        # this, a long "Related entities" list (a symptom or medicine linked to
+        # many diseases) had no room to grow, so Qt squeezed the Page sections
+        # links on top of each other.
+        scroller = QScrollArea()
+        scroller.setWidgetResizable(True)
+        scroller.setFrameShape(QFrame.Shape.NoFrame)
+        scroller.setFixedWidth(256)
+        scroller.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         rail = QWidget()
         rail.setObjectName("panel")
-        rail.setFixedWidth(250)
         self._rail = rail
         layout = QVBoxLayout(rail)
-        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setContentsMargins(0, 0, 6, 0)
         layout.setSpacing(14)
 
         nav = QFrame()
@@ -263,7 +271,9 @@ class SymptomDetailView(QWidget):
         self._related.setSpacing(8)
         layout.addWidget(related)
         layout.addStretch(1)
-        return rail
+        scroller.setWidget(rail)
+        fit_width(scroller)
+        return scroller
 
     # ---------------------------------------------------------- sections
 
