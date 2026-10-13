@@ -3,6 +3,8 @@ them (scripts/preview_dosage.py). The app itself never loads this file.
 
 Values come from the reviewed draft shown to the tester:
     aciclovir    UK SmPC (Aciclovir 400 mg tablets, section 4.2)
+    (UK SmPC links point to the MHRA Products search: emc limits free page
+     views for users outside the UK, MHRA is free and official.)
     amoxicillin  UK SmPC (Amoxicillin 250 mg/5 ml oral suspension, emc 14145,
                  section 4.2), checked 2026-10-13. Replaced the FDA PH insert
                  PDF, whose link gave 404 for the user.
@@ -21,14 +23,14 @@ SOURCES = {
         S(SMPC, "Aciclovir 400 mg Tablets – Summary of Product Characteristics",
           "Aciclovir 400 mg Tablets. Summary of Product Characteristics, section 4.2 "
           "Posology. electronic medicines compendium (emc), UK.",
-          "https://www.medicines.org.uk/emc/product/2352/smpc/print"),
+          "https://products.mhra.gov.uk/search/?search=aciclovir#emc-2352"),
     ],
     "med_amoxicillin": [
         S(SMPC, "Amoxicillin 250 mg/5 ml Powder for Oral Suspension – SmPC",
           "Amoxicillin 250 mg/5 ml Powder for Oral Suspension Sugar Free (Flamingo Pharma "
           "UK Ltd). Summary of Product Characteristics, section 4.2 Posology. electronic "
           "medicines compendium (emc), UK.",
-          "https://www.medicines.org.uk/emc/product/14145/smpc/print"),
+          "https://products.mhra.gov.uk/search/?search=amoxicillin#emc-14145"),
         S(FDAPH, "FDA Philippines Verification Portal – amoxicillin 250 mg/5 mL",
           "Amoxicillin (as trihydrate) 250 mg/5 mL powder for oral suspension, registration "
           "DRP-10727. Search the registration number on the FDA Philippines Verification "

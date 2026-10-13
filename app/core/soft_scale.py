@@ -19,6 +19,7 @@ install(0.8) must run right after QApplication exists and before any window
 is built (main.py does it). With 1.0 (100% and up) nothing is changed.
 """
 
+import math
 import re
 from typing import Optional
 
@@ -38,6 +39,7 @@ from PySide6.QtWidgets import (
 FACTOR = 1.0
 _PX = re.compile(r"(?<![\w.#-])(\d+(?:\.\d+)?)px")
 _HUGE = 10_000          # QWIDGETSIZE_MAX and other "no limit" values stay as they are
+SNAPSHOT = 600          # px: pictures this big are widget snapshots, never shrunk
 _ORIGINAL = {}          # (class, setter name) -> the unpatched Qt setter
 
 
@@ -51,13 +53,35 @@ def px(value) -> int:
         return value
     if abs(value) <= 2 or abs(value) >= _HUGE:
         return int(value)
-    return int(round(value * FACTOR))
+    # Half rounds up (Python's round() sends 4.5 to 4): padding 5px at 90%
+    # stays 5, so buttons keep their height relative to their corners.
+    return int(math.floor(value * FACTOR + 0.5))
+
+
+def _radius(value: float) -> int:
+    """Corner radii round DOWN. Qt draws a box square when its radius is
+    more than half its height, and text/padding don't shrink exactly by the
+    factor, so a pill (radius = half its height at 100%) could lose its
+    round corners at 90%. One px less keeps it a pill."""
+    if value <= 2 or value >= _HUGE:
+        return int(value)
+    return max(1, int(math.floor(value * FACTOR)) - (1 if value >= 8 else 0))
+
+
+_DECL = re.compile(r"([\w-]+)(\s*:\s*)([^;{}]*)")
 
 
 def css(sheet: str) -> str:
     if FACTOR == 1.0 or not sheet or "px" not in sheet:
         return sheet
-    return _PX.sub(lambda m: f"{px(float(m.group(1)))}px", sheet)
+
+    def declaration(m):
+        prop, colon, value = m.group(1), m.group(2), m.group(3)
+        if "px" not in value:
+            return m.group(0)
+        size = _radius if "radius" in prop else px
+        return prop + colon + _PX.sub(lambda n: f"{size(float(n.group(1)))}px", value)
+    return _DECL.sub(declaration, sheet)
 
 
 def _size_args(args):
@@ -150,13 +174,21 @@ def install(value: float, app: Optional[QApplication] = None) -> None:
     original_pixmap = QLabel.setPixmap
 
     def set_pixmap(self, pixmap):
-        if isinstance(pixmap, QPixmap) and not pixmap.isNull() and pixmap.width() > 2:
+        # Icons, avatars and logos are drawn at their 100% size, so they
+        # shrink. Pictures of whole widgets (the sliding sheets' "ghost",
+        # grab()) are already at the real size: shrinking those again showed
+        # the page at 80% of its size while it slid in. Anything bigger than
+        # SNAPSHOT px is such a picture and stays as it is.
+        if (isinstance(pixmap, QPixmap) and not pixmap.isNull() and pixmap.width() > 2
+                and max(pixmap.deviceIndependentSize().width(),
+                        pixmap.deviceIndependentSize().height()) < SNAPSHOT):
             ratio = pixmap.devicePixelRatio() or 1.0
             pixmap = pixmap.scaled(
                 max(1, round(pixmap.width() * FACTOR)), max(1, round(pixmap.height() * FACTOR)),
                 Qt.AspectRatioMode.IgnoreAspectRatio, Qt.TransformationMode.SmoothTransformation)
             pixmap.setDevicePixelRatio(ratio)
         return original_pixmap(self, pixmap)
+    _ORIGINAL[(QLabel, "setPixmap")] = original_pixmap
     QLabel.setPixmap = set_pixmap
 
     app = app or QApplication.instance()
