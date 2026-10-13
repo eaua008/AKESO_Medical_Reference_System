@@ -43,7 +43,7 @@ from PySide6.QtCore import QEasingCurve, QEvent, QObject, QPoint, QPropertyAnima
 from PySide6.QtGui import QKeySequence, QShortcut
 from PySide6.QtWidgets import QFrame, QLabel, QPushButton, QVBoxLayout, QWidget
 
-from app.core import lucide
+from app.core import lucide, soft_scale
 
 TAB_SIZE = 44          # the square close tab
 TAB_TOP = 14           # its distance from the top of the sheet
@@ -158,7 +158,9 @@ class PageSheet(QFrame):
             self._place_tab(self.pos())
 
     def _place_tab(self, pos: QPoint) -> None:
-        self.tab.move(pos.x() - TAB_SIZE, pos.y() + TAB_TOP)
+        # The tab's real width (80%/90% make it smaller), so it always sits
+        # flush against the sheet's edge.
+        self.tab.move(pos.x() - self.tab.width(), pos.y() + soft_scale.px(TAB_TOP))
 
     def _sliding(self) -> bool:
         return self._slide.state() == QPropertyAnimation.State.Running
@@ -227,7 +229,8 @@ class PageSheet(QFrame):
         layout = self.layout()
         if layout is not None:
             layout.activate()
-        self._ghost.setPixmap(self.grab())
+        # A picture of the real widget: already at the 80%/90% size.
+        soft_scale.exact(self._ghost, "setPixmap", self.grab())
         self._ghost.resize(self.size())
 
     def _show_live(self) -> None:

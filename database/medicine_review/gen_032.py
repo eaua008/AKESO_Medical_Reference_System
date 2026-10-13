@@ -45,6 +45,13 @@ update public.medicine_dose_sources
    set url = '{new_ph.url}', source_name = '{new_ph.source_name.replace("'", "''")}', updated_at = now()
  where medicine_id = '{MID}' and url = '{OLD_URL}';
 
+-- emc (medicines.org.uk) now limits free page views outside the UK: point the
+-- two UK SmPC dose sources from the earlier 031 to the free MHRA Products search.
+update public.medicine_dose_sources set url = 'https://products.mhra.gov.uk/search/?search=amoxicillin#emc-14145', updated_at = now()
+ where url = 'https://www.medicines.org.uk/emc/product/14145/smpc/print';
+update public.medicine_dose_sources set url = 'https://products.mhra.gov.uk/search/?search=aciclovir#emc-2352', updated_at = now()
+ where url = 'https://www.medicines.org.uk/emc/product/2352/smpc/print';
+
 """
 text += block(MID, rows, notes, src)
 text += "update public.content_version set version = version + 1, updated_at = now() where id = 1;\n\ncommit;\n"

@@ -45,7 +45,7 @@ from PySide6.QtWidgets import (
     QDialog, QFrame, QHBoxLayout, QLabel, QPushButton, QScrollArea, QVBoxLayout, QWidget,
 )
 
-from app.core import lucide
+from app.core import lucide, soft_scale
 from app.core.theme import Theme
 
 TAB_SIZE = 44            # the red close tab (same as PageSheet)
@@ -257,7 +257,7 @@ class SheetPresenter(QObject):
                      else QPoint(self._host.width(), final.y()))
             ghost = QLabel(self._host)
             ghost.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)
-            ghost.setPixmap(picture)
+            soft_scale.exact(ghost, "setPixmap", picture)   # real size already
             ghost.setGeometry(QRect(start, dialog.size()))
             ghost.show()
             ghost.raise_()
@@ -332,14 +332,16 @@ class SheetPresenter(QObject):
         if self._tab is None:
             return
         found = sheet_area(self._host)
-        inside = found is not None and found[1].x() < TAB_SIZE
+        inside = found is not None and found[1].x() < self._tab.width()
         self._tab.inside = inside
         if inside:
             # No sidebar to overhang (the sign-in screen): the X sits in the
             # sheet's own corner instead.
-            self._tab.move(pos.x() + self._dialog.width() - TAB_SIZE - 8, pos.y() + 6)
+            self._tab.move(pos.x() + self._dialog.width() - self._tab.width() - soft_scale.px(8),
+                           pos.y() + soft_scale.px(6))
         else:
-            self._tab.move(pos.x() - TAB_SIZE, pos.y() + TAB_TOP)
+            # Real tab width (smaller at 80%/90%): flush against the sheet.
+            self._tab.move(pos.x() - self._tab.width(), pos.y() + soft_scale.px(TAB_TOP))
         self._tab.raise_()
 
     def eventFilter(self, watched, event) -> bool:  # noqa: N802
@@ -399,7 +401,7 @@ class SheetPresenter(QObject):
             return False
         ghost = QLabel(host)
         ghost.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)
-        ghost.setPixmap(picture)
+        soft_scale.exact(ghost, "setPixmap", picture)   # real size already
         ghost.setGeometry(QRect(start, picture.deviceIndependentSize().toSize()))
         ghost.show()
         ghost.raise_()

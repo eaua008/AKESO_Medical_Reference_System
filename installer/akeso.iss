@@ -19,7 +19,7 @@
 ; =====================================================================
 
 #define AppName      "Akeso"
-#define AppVersion   "1.0.4"
+#define AppVersion   "1.0.5"
 #define AppPublisher "Eijkim Maulit, Mapua Malayan Colleges Mindanao"
 #define AppExe       "Akeso.exe"
 

@@ -21,6 +21,13 @@ update public.medicine_dose_sources
    set url = 'https://verification.fda.gov.ph/', source_name = 'FDA Philippines Verification Portal – amoxicillin 250 mg/5 mL', updated_at = now()
  where medicine_id = 'med_amoxicillin' and url = 'https://verification.fda.gov.ph/files/DRP-10727_PI_01.pdf';
 
+-- emc (medicines.org.uk) now limits free page views outside the UK: point the
+-- two UK SmPC dose sources from the earlier 031 to the free MHRA Products search.
+update public.medicine_dose_sources set url = 'https://products.mhra.gov.uk/search/?search=amoxicillin#emc-14145', updated_at = now()
+ where url = 'https://www.medicines.org.uk/emc/product/14145/smpc/print';
+update public.medicine_dose_sources set url = 'https://products.mhra.gov.uk/search/?search=aciclovir#emc-2352', updated_at = now()
+ where url = 'https://www.medicines.org.uk/emc/product/2352/smpc/print';
+
 -- med_amoxicillin
 insert into public.medicine_doses (medicine_id, population, position, indication, route, dose, frequency, duration, max_dose, source, note)
 select * from (values
@@ -59,7 +66,7 @@ where exists (select 1 from public.medicines where id = 'med_amoxicillin')
   and not exists (select 1 from public.medicine_dose_notes where medicine_id = 'med_amoxicillin');
 insert into public.medicine_dose_sources (medicine_id, tag, source_name, citation_text, url, position)
 select * from (values
-    ('med_amoxicillin', 'Label · UK SmPC', 'Amoxicillin 250 mg/5 ml Powder for Oral Suspension – SmPC', 'Amoxicillin 250 mg/5 ml Powder for Oral Suspension Sugar Free (Flamingo Pharma UK Ltd). Summary of Product Characteristics, section 4.2 Posology. electronic medicines compendium (emc), UK.', 'https://www.medicines.org.uk/emc/product/14145/smpc/print', 0),
+    ('med_amoxicillin', 'Label · UK SmPC', 'Amoxicillin 250 mg/5 ml Powder for Oral Suspension – SmPC', 'Amoxicillin 250 mg/5 ml Powder for Oral Suspension Sugar Free (Flamingo Pharma UK Ltd). Summary of Product Characteristics, section 4.2 Posology. electronic medicines compendium (emc), UK.', 'https://products.mhra.gov.uk/search/?search=amoxicillin#emc-14145', 0),
     ('med_amoxicillin', 'Label · FDA PH', 'FDA Philippines Verification Portal – amoxicillin 250 mg/5 mL', 'Amoxicillin (as trihydrate) 250 mg/5 mL powder for oral suspension, registration DRP-10727. Search the registration number on the FDA Philippines Verification Portal (the direct PDF link no longer opens).', 'https://verification.fda.gov.ph/', 1)
 ) v(medicine_id, tag, source_name, citation_text, url, position)
 where exists (select 1 from public.medicines where id = 'med_amoxicillin')

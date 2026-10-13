@@ -1,0 +1,103 @@
+SMPC_URL = "https://products.mhra.gov.uk/search/?search=clarithromycin#emc-7072"
+SUSP_URL = "https://products.mhra.gov.uk/search/?search=clarithromycin#emc-515"
+US_URL = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b98b02bb-2609-49a0-b29f-e5911aa0cbc1"
+CDC_URL = "https://www.cdc.gov/mmwr/preview/mmwrhtml/rr5414a1.htm"
+PNF_URL = "https://www.philhealth.gov.ph/partners/providers/pdf/PNF-EML_11022022.pdf"
+
+MED = {
+  "id": "med_clarithromycin",
+  "desc_add": "Clarithromycin is converted on first pass to 14-hydroxyclarithromycin, an active metabolite that is about twice as active as the parent drug against Haemophilus influenzae. Its kinetics are non-linear: the half-life is 2–4 hours at 250 mg twice daily and about 5 hours at 500 mg twice daily, and steady state is reached within 2 days. In the Philippines it is on the PNF Essential Medicines List as 250 mg and 500 mg tablets and as a 125 mg/5 mL or 250 mg/5 mL oral suspension.",
+  "facts": {
+    "indication": [
+      "Pertussis: treatment and post-exposure prophylaxis (age 1 month and over)",
+      "Prophylaxis of disseminated Mycobacterium avium complex infection",
+      "Respiratory and skin infections in children 6 months to 12 years (oral suspension)",
+    ],
+    "adverse": [
+      "Insomnia, headache and excessive sweating (common)",
+      "Abnormal liver function tests and rash (common)",
+      "Dizziness, vertigo, tinnitus and hearing impairment (uncommon)",
+      "Leukopenia, neutropenia and candidiasis (uncommon)",
+      "Severe skin reactions: SJS, TEN, DRESS, AGEP (post-marketing)",
+      "Pancreatitis, hallucinations, psychotic disorder and convulsions (post-marketing)",
+      "Renal failure and interstitial nephritis; rhabdomyolysis (post-marketing)",
+    ],
+    "contraindication": [
+      "Oral midazolam",
+      "Astemizole, terfenadine or domperidone",
+      "Ticagrelor, ivabradine or ranolazine",
+      "Colchicine (any patient, per UK SmPC)",
+      "Low potassium or magnesium (electrolyte disturbance)",
+      "Severe hepatic failure together with renal impairment",
+      "Pregnancy: safety not established; possible higher miscarriage risk; use only if benefit outweighs risk (precaution)",
+      "Infants under 1 month: not recommended for pertussis; azithromycin preferred (precaution)",
+    ],
+    "interaction": [
+      "Rifampicin, rifabutin, rifapentine, efavirenz, nevirapine: lower clarithromycin levels; rifabutin levels rise (uveitis risk).",
+      "Ritonavir or atazanavir: raise clarithromycin levels; cut dose by 50% at CrCl 30–60 and 75% at CrCl <30; max 1 g/day.",
+      "Digoxin: raised levels with toxicity and arrhythmias; monitor digoxin levels.",
+      "IV midazolam, triazolam, alprazolam: increased sedation; monitor closely.",
+      "Direct oral anticoagulants (dabigatran, edoxaban, rivaroxaban, apixaban): higher bleeding risk; use with caution.",
+      "Zidovudine: reduced absorption; separate doses by 4 hours.",
+      "Sildenafil, tadalafil, vardenafil: consider dose reduction.",
+      "Omeprazole: omeprazole AUC up 89%.",
+      "Hydroxychloroquine or chloroquine: additive QT risk; weigh risk and benefit.",
+      "Phenytoin and valproate: monitor levels.",
+    ],
+    "brand_ph": [],
+    "brand_intl": [],
+  },
+  "refs": [
+    ("UK SmPC (emc)", "Clarithromycin 500 mg film-coated tablets – Summary of Product Characteristics. Milpharm Limited (PL 16363/0414). Electronic Medicines Compendium (emc), medicines.org.uk; revised July 2026.", SMPC_URL),
+    ("UK SmPC (emc)", "Clarithromycin 125 mg/5 ml suspension – Summary of Product Characteristics. Sandoz Ltd. Electronic Medicines Compendium (emc), medicines.org.uk; June 2021.", SUSP_URL),
+    ("CDC (MMWR)", "Centers for Disease Control and Prevention. Recommended antimicrobial agents for the treatment and postexposure prophylaxis of pertussis: 2005 CDC guidelines. MMWR Recomm Rep. 2005;54(RR-14).", CDC_URL),
+    ("Philippine National Formulary (PNF EML)", "Philippine National Formulary Essential Medicines List, Volume I, 8th Edition (2019), as of November 02, 2022. PhilHealth / Department of Health.", PNF_URL),
+  ],
+  "links": [
+    ("chronic_kidney_disease", "caution", "CrCl <30 mL/min: halve the dose and do not treat beyond 14 days; contraindicated with severe hepatic failure plus renal impairment"),
+    ("type2_diabetes", "caution", "Significant hypoglycaemia reported with oral hypoglycaemics or insulin; monitor glucose"),
+    ("hiv_infection", "caution", "Used for MAC prophylaxis/treatment, but interacts with ritonavir, atazanavir, efavirenz, nevirapine and zidovudine (dose changes or spacing needed)"),
+  ],
+  "sources": [
+    ("Label · UK SmPC", "UK SmPC (emc)", "Clarithromycin 500 mg film-coated tablets. Summary of Product Characteristics. Milpharm Ltd; July 2026.", SMPC_URL),
+    ("Label · UK SmPC susp", "UK SmPC (emc)", "Clarithromycin 125 mg/5 ml suspension. Summary of Product Characteristics. Sandoz Ltd; June 2021.", SUSP_URL),
+    ("Label · FDA", "DailyMed (FDA label)", "Clarithromycin tablet. Prescribing information. Sandoz Inc.; revised 5/2023.", US_URL),
+    ("CDC 2005", "CDC (MMWR)", "Recommended antimicrobial agents for the treatment and postexposure prophylaxis of pertussis: 2005 CDC guidelines. MMWR 2005;54(RR-14).", CDC_URL),
+    ("PNF", "Philippine National Formulary – EML", "Philippine National Formulary – Essential Medicines List. DOH / PhilHealth; 2022.", PNF_URL),
+  ],
+  "doses": [
+    ("adult", "Respiratory and skin infections (and >12 y)", "PO", "250 mg", "2× a day", "6–14 days", "500 mg 2× a day", "Label · UK SmPC", "Increase to 500 mg 2× a day if severe"),
+    ("adult", "Community-acquired pneumonia", "PO", "250 mg", "Every 12 h", "7–14 days", "—", "Label · FDA", "H. influenzae: 500 mg for 7 days"),
+    ("adult", "Acute maxillary sinusitis", "PO", "500 mg", "Every 12 h", "14 days", "—", "Label · FDA", ""),
+    ("adult", "H. pylori (triple therapy)", "PO", "500 mg", "2× a day", "10–14 days", "—", "Label · FDA", "With amoxicillin 1 g and a PPI, all 2× a day"),
+    ("adult", "H. pylori (UK alternative)", "PO", "500 mg", "2× a day", "6–14 days", "—", "Label · UK SmPC", "With a PPI plus metronidazole 400 mg 2× a day"),
+    ("adult", "Disseminated MAC (treatment/prophylaxis)", "PO", "500 mg", "Every 12 h", "Ongoing while response lasts", "—", "Label · FDA", "With other antimycobacterials (e.g. ethambutol)"),
+    ("adult", "Pertussis (treatment or PEP)", "PO", "500 mg", "2× a day", "7 days", "1 g/day", "CDC 2005", ""),
+    ("child", "Respiratory and skin infections (6 mo–12 y)", "PO", "7.5 mg/kg", "2× a day", "5–10 days", "—", "Label · UK SmPC susp", "S. pyogenes: at least 10 days"),
+    ("child", "Other infections", "PO", "15 mg/kg/day ÷ 2", "Every 12 h", "10 days", "Adult dose", "Label · FDA", ""),
+    ("child", "MAC (treatment/prophylaxis)", "PO", "7.5 mg/kg", "Every 12 h", "Ongoing", "500 mg/dose", "Label · FDA", ""),
+    ("child", "Pertussis (≥1 month)", "PO", "15 mg/kg/day ÷ 2", "2× a day", "7 days", "1 g/day", "CDC 2005", "Not recommended <1 month"),
+  ],
+  "notes": [
+    ("renal", "Halve the dose: 250 mg once a day (250 mg 2× a day in severe infection); children 7.5 mg/kg once a day; do not continue beyond 14 days.", "CrCl <30", "Label · UK SmPC"),
+    ("renal", "With ritonavir or atazanavir: reduce dose by 50%.", "CrCl 30–60", "Label · FDA"),
+    ("renal", "With ritonavir or atazanavir: reduce dose by 75%.", "CrCl <30", "Label · FDA"),
+    ("hepatic", "No set dose change; use with caution. Contraindicated in severe hepatic failure with renal impairment.", "", "Label · UK SmPC"),
+    ("elderly", "Same dose as adults; watch for colchicine toxicity in elderly with renal insufficiency.", "", "Label · UK SmPC"),
+    ("pregnancy", "Safety not established; some studies show more first- and second-trimester miscarriage. Small amounts pass into breast milk (about 1.7% of the maternal weight-adjusted dose).", "", "Label · UK SmPC"),
+    ("administration", "Tablets can be taken with or without food.", "", "Label · UK SmPC"),
+    ("administration", "Suspension: shake well before each dose; food or a drink right after the dose masks the bitter aftertaste.", "", "Label · UK SmPC susp"),
+    ("forms_ph", "Tablet 250 mg, 500 mg (base); granules/powder for suspension 125 mg/5 mL and 250 mg/5 mL, 50 mL.", "", "PNF"),
+    ("monitor", "Check ECG, potassium and magnesium before use in patients at QT risk (heart disease, bradycardia, QT-prolonging drugs).", "", "Label · UK SmPC"),
+    ("monitor", "Check INR closely with warfarin; digoxin levels with digoxin; glucose in diabetics on insulin or oral agents.", "", "Label · UK SmPC"),
+    ("monitor", "Stop and check liver tests if jaundice, dark urine or abdominal pain appear; watch for diarrhoea up to 2 months after treatment (C. difficile).", "", "Label · UK SmPC"),
+  ],
+  "checked": [
+    (SMPC_URL, "Milpharm SmPC rev 07/2026: 4.2 adult 250 mg BID up to 500 mg BID 6–14 d, H. pylori regimens (incl. metronidazole 400 mg), renal CrCl <30 halve to 250 mg OD/BID max 14 d, hepatic caution, elderly as adults, with/without food; 4.3 full list (oral midazolam, astemizole/terfenadine/domperidone, ticagrelor/ivabradine/ranolazine, colchicine, hypoK/hypoMg, severe hepatic failure + renal impairment); 4.4; 4.5 (rifamycins/efavirenz/nevirapine, ritonavir/atazanavir renal reductions, digoxin, midazolam, DOACs, zidovudine 4 h, PDE5, omeprazole AUC +89%, HCQ/chloroquine, phenytoin/valproate); 4.6 miscarriage, 1.7% milk; 4.8; 5.1 14-OH 2x vs H. influenzae; 5.2 non-linear, steady state 2 days"),
+    (SUSP_URL, "Sandoz suspension SmPC: 7.5 mg/kg BID 6 mo–12 y, 5–10 days (≥10 d S. pyogenes), renal 7.5 mg/kg OD max 14 d; shake, bitter aftertaste; adult t½ 2–4 h (250 BID), ~5 h (500 BID)"),
+    (US_URL, "Sandoz clarithromycin label rev 5/2023: adult table (CAP 250 mg q12h 7–14 d, H. influenzae 500 mg 7 d; sinusitis 500 mg 14 d), H. pylori triple 10–14 d, MAC 500 mg q12h with ethambutol, paediatric 15 mg/kg/day ÷ q12h 10 d up to adult dose, MAC 7.5 mg/kg q12h max 500 mg; renal with atazanavir/ritonavir 50%/75%"),
+    (CDC_URL, "2005 CDC pertussis guideline: clarithromycin 15 mg/kg/day ÷ 2 (max 1 g/day) 7 days for >1 month; adults 1 g/day ÷ 2 for 7 days; not recommended <1 month"),
+    (PNF_URL, "Clarithromycin: 250 mg and 500 mg base tablet; 125 mg/5 mL and 250 mg/5 mL granules/powder for suspension, 50 mL"),
+    ("https://www.cdc.gov/pertussis/hcp/clinical-care/index.html", "Clarithromycin listed among macrolides for pertussis treatment/PEP; no doses (not used)"),
+  ],
+}

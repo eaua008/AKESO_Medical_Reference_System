@@ -1,0 +1,100 @@
+SMPC_URL = "https://products.mhra.gov.uk/search/?search=metoprolol#emc-12971"
+XL_URL = "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019962s050s052lbl.pdf"
+IV_URL = "https://labeling.pfizer.com/ShowLabeling.aspx?id=4523"
+LOP_URL = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0283bc9d-6998-493a-824a-d4c85f704111"
+PNF_URL = "https://www.philhealth.gov.ph/partners/providers/pdf/PNF-EML_11022022.pdf"
+
+MED = {
+  "id": "med_metoprolol",
+  "desc_add": "Oral bioavailability is about 50% after a single dose, rising to about 70% with repeated dosing; the half-life is short (about 3.5 hours, range 1–9 hours), so the immediate-release tartrate is usually given two or more times a day. It is cleared mainly by hepatic CYP2D6, and poor metabolisers can have several-fold higher blood levels. In the Philippines the PNF Essential Medicines List includes only metoprolol tartrate 50 mg and 100 mg tablets (no extended-release succinate or injection).",
+  "facts": {
+    "indication": [
+      "Cardiac arrhythmias, especially supraventricular tachyarrhythmias",
+      "Adjunct in thyrotoxicosis",
+      "Migraine prophylaxis",
+    ],
+    "adverse": [
+      "Orthostatic hypotension, occasionally with syncope",
+      "Headache, nausea, vomiting and abdominal pain",
+      "Nightmares, insomnia or somnolence",
+      "Raynaud's phenomenon and cold extremities; gangrene in severe peripheral arterial disease (very rare)",
+      "Visual disturbance, dry eyes, tinnitus",
+      "Worsening of psoriasis, alopecia, photosensitivity",
+      "Sexual dysfunction",
+      "Retroperitoneal fibrosis and Peyronie's disease (frequency not known)",
+    ],
+    "contraindication": [
+      "Severe asthma or history of severe bronchospasm",
+      "Severe peripheral arterial disease",
+      "Untreated phaeochromocytoma",
+      "Metabolic acidosis",
+      "Suspected MI with heart rate <45/min or significant first-degree heart block (PR ≥0.24 s)",
+      "Prinzmetal's (variant) angina: use only with great care (precaution)",
+    ],
+    "interaction": [
+      "IV verapamil must never be given to a patient taking metoprolol.",
+      "Class I antiarrhythmics and amiodarone: added slowing of heart rate and AV conduction.",
+      "Insulin and sulfonylureas: altered hypoglycaemia risk; warning signs may be masked.",
+      "NSAIDs (e.g., indometacin): reduce the blood-pressure-lowering effect.",
+      "Rifampicin and other enzyme inducers: lower metoprolol levels.",
+      "Bupropion and cimetidine: raise metoprolol levels (CYP2D6 inhibition).",
+      "Other beta-blockers, including eye drops: additive beta-blockade.",
+      "Inhalational anaesthetics and lidocaine: additive cardiac depression; tell the anaesthetist.",
+    ],
+    "brand_ph": [],
+    "brand_intl": [],
+  },
+  "refs": [
+    ("UK SmPC (emc)", "Metoprolol Tartrate 25 mg Tablets – Summary of Product Characteristics. Zentiva Pharma UK Limited. Electronic Medicines Compendium (emc), medicines.org.uk; updated August 2026.", SMPC_URL),
+    ("US FDA label (Drugs@FDA)", "TOPROL-XL (metoprolol succinate) extended-release tablets. Prescribing information. Revised 03/2023. US Food and Drug Administration.", XL_URL),
+    ("Pfizer labeling (US)", "Metoprolol Tartrate Injection, USP, 5 mg/5 mL. Prescribing information. Hospira, Inc.; revised 5/2024.", IV_URL),
+    ("Philippine National Formulary (PNF EML)", "Philippine National Formulary Essential Medicines List, Volume I, 8th Edition (2019), as of November 02, 2022. PhilHealth / Department of Health.", PNF_URL),
+  ],
+  "links": [
+    ("chronic_kidney_disease", "safe", "UK SmPC: dose adjustment usually not needed in renal impairment"),
+  ],
+  "sources": [
+    ("Label · UK SmPC", "UK SmPC (emc)", "Metoprolol Tartrate 25 mg Tablets. Summary of Product Characteristics. Zentiva Pharma UK Ltd; 2026.", SMPC_URL),
+    ("Label · US XL", "US FDA label", "TOPROL-XL (metoprolol succinate) extended-release tablets. Prescribing information; 03/2023.", XL_URL),
+    ("Label · US IV", "Pfizer labeling (US)", "Metoprolol Tartrate Injection, USP. Prescribing information. Hospira, Inc.; 5/2024.", IV_URL),
+    ("Label · US", "DailyMed", "LOPRESSOR (metoprolol tartrate) tablets. Prescribing information. Validus Pharmaceuticals; 9/2023.", LOP_URL),
+    ("PNF", "Philippine National Formulary – EML", "Philippine National Formulary – Essential Medicines List. DOH / PhilHealth; 2022.", PNF_URL),
+  ],
+  "doses": [
+    ("adult", "Hypertension", "PO", "100 mg/day to start", "Once a day or ÷ 2", "Long term", "200 mg/day", "Label · UK SmPC", "Raise by 100 mg/day at weekly intervals"),
+    ("adult", "Hypertension (extended-release succinate)", "PO", "25–100 mg", "Once a day", "Long term", ">400 mg/day not studied", "Label · US XL", "Adjust at weekly or longer intervals"),
+    ("adult", "Angina", "PO", "50–100 mg", "2–3× a day", "Long term", "400 mg/day", "Label · UK SmPC", ""),
+    ("adult", "Angina (extended-release succinate)", "PO", "100 mg", "Once a day", "Long term", ">400 mg/day not studied", "Label · US XL", "Increase weekly"),
+    ("adult", "Arrhythmias", "PO", "50 mg", "2–3× a day", "Long term", "300 mg/day", "Label · UK SmPC", ""),
+    ("adult", "Hyperthyroidism (adjunct)", "PO", "50 mg", "4× a day", "Until euthyroid", "—", "Label · UK SmPC", "Reduce as euthyroid state is reached"),
+    ("adult", "Acute MI, early", "IV", "5 mg", "Every 2 min × 3 doses", "Once (15 mg total)", "15 mg", "Label · US IV", "Coronary care unit; monitor ECG, BP, HR"),
+    ("adult", "Acute MI, early (after IV)", "PO", "50 mg", "Every 6 h", "48 h", "—", "Label · US", "Start 15 min after last IV dose; 25 mg if not tolerated"),
+    ("adult", "Acute MI, early (oral only)", "PO", "50 mg", "Every 6 h", "48 h", "—", "Label · UK SmPC", "Ideally within 12 h of chest pain onset"),
+    ("adult", "Post-MI maintenance", "PO", "200 mg/day ÷ 2", "2× a day", "≥3 months", "—", "Label · UK SmPC", "US label: 100 mg 2× a day"),
+    ("adult", "Migraine prophylaxis", "PO", "100–200 mg/day", "Divided doses", "Long term", "200 mg/day", "Label · UK SmPC", ""),
+    ("adult", "Heart failure (extended-release succinate)", "PO", "25 mg (NYHA II); 12.5 mg (more severe)", "Once a day", "Long term", "200 mg/day", "Label · US XL", "Double every 2 weeks to highest tolerated dose"),
+    ("child", "Hypertension, ≥6 y (extended-release succinate)", "PO", "1 mg/kg", "Once a day", "Long term", "50 mg starting dose", "Label · US XL", ">2 mg/kg or >200 mg/day not studied; not for <6 y"),
+  ],
+  "notes": [
+    ("renal", "Dose adjustment usually not needed.", "", "Label · UK SmPC"),
+    ("hepatic", "Significant liver dysfunction: consider lower doses (levels may rise substantially); start low and titrate gradually.", "", "Label · UK SmPC"),
+    ("elderly", "No special dose needed in healthy older adults; watch for excessive falls in blood pressure or pulse.", "", "Label · UK SmPC"),
+    ("pregnancy", "Avoid unless benefit outweighs risk (may reduce placental perfusion); has been used for hypertension after 20 weeks under close supervision. Stop 2–3 days before delivery if possible. Watch newborns for bradycardia, hypotension and hypoglycaemia.", "", "Label · UK SmPC"),
+    ("pregnancy", "Breastfeeding: small amounts in milk (0.5–2% of maternal weight-adjusted dose); monitor the infant for slow heart rate and listlessness.", "", "Label · US XL"),
+    ("administration", "Tartrate: take with a drink of water; US label advises with or right after meals.", "", "Label · UK SmPC"),
+    ("administration", "Extended-release succinate tablets can be split at the score line but must not be crushed or chewed.", "", "Label · US XL"),
+    ("administration", "Stopping: taper over about 10 days, using 25 mg for the last 6 days. For surgery, if stopping, stop at least 24 h before and tell the anaesthetist.", "", "Label · UK SmPC"),
+    ("administration", "Poor CYP2D6 metabolisers may need lower doses.", "", "Label · UK SmPC"),
+    ("forms_ph", "Metoprolol (as tartrate) tablet 50 mg, 100 mg.", "", "PNF"),
+    ("monitor", "Check pulse and blood pressure at each visit; reduce dose or stop if heart rate falls below 50–55/min.", "", "Label · UK SmPC"),
+    ("monitor", "Diabetics: check blood glucose more often (masked hypoglycaemia, especially with sulfonylureas). Thyrotoxicosis: monitor thyroid and cardiac function.", "", "Label · UK SmPC"),
+    ("monitor", "During IV dosing in MI: continuous ECG, blood pressure and heart rate.", "", "Label · US IV"),
+  ],
+  "checked": [
+    (SMPC_URL, "Zentiva metoprolol tartrate 25 mg SmPC, updated 04-Aug-2026: 4.1 (arrhythmias, thyrotoxicosis adjunct, migraine prophylaxis); 4.2 (HTN 100 mg/day +100 mg weekly to max 200 mg/day; angina 50–100 mg BID/TID; arrhythmias 50 mg BID/TID up to 300 mg/day; hyperthyroidism 50 mg QID; MI 50 mg q6h 48 h within 12 h then 200 mg/day divided ≥3 months; migraine 100–200 mg/day; max 400 mg/day; taper 10 days with 25 mg last 6 days; elderly; hepatic lower doses; renal usually no adjustment; CYP2D6 poor metabolisers; children not recommended; take with water); 4.3 (severe asthma, severe PAD, untreated phaeo, metabolic acidosis, MI first-degree block); 4.4 (Prinzmetal, HR <50–55, diabetes, thyrotoxicosis, anaesthesia stop ≥24 h); 4.5 (IV verapamil never, class I/amiodarone, insulin/SU, NSAIDs/indometacin, rifampicin, bupropion, cimetidine, other beta-blockers incl eye drops, lignocaine, inhalational anaesthetics); 4.6 (avoid; used after 20 weeks; stop 2–3 days before delivery); 4.8 frequencies; 5.2 bioavailability ~50% to ~70%, t½ 3.5 h (1–9 h), CYP2D6 several-fold"),
+    (XL_URL, "Toprol-XL label rev 03/2023: HTN 25–100 mg OD; paediatric ≥6 y 1 mg/kg OD, max initial 50 mg, >2 mg/kg or 200 mg not studied; angina 100 mg OD; HF 25 mg OD (NYHA II) or 12.5 mg OD, double every 2 weeks to 200 mg; scored, do not crush/chew; hepatic start low; 8.1 neonatal hypotension/hypoglycaemia/bradycardia; 8.2 infant dose 0.5–2%, monitor bradycardia/listlessness"),
+    (IV_URL, "Hospira metoprolol tartrate injection rev 5/2024: three 5 mg IV boluses ~2 min apart in CCU; monitor BP, HR, ECG; MI contraindications HR <45, PR ≥0.24 s, SBP <100"),
+    (LOP_URL, "Lopressor tablets (already in refs; used as dose-table source only): after IV, 50 mg q6h starting 15 min after last IV dose for 48 h, 25 mg if not tolerated; maintenance 100 mg BID ≥3 months; take with or right after meals"),
+    (PNF_URL, "Metoprolol (as tartrate) Oral: 50 mg and 100 mg tablet; no injection or modified-release form; no restriction note"),
+  ],
+}
