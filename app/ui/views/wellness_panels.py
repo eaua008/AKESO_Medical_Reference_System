@@ -11,7 +11,7 @@ apart from converting slider positions, which are integers.
 
 from typing import Optional
 
-from PySide6.QtCore import QPointF, QRectF, Qt, Signal
+from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QPainter, QPolygonF
 from PySide6.QtWidgets import (
     QAbstractSpinBox,
@@ -68,6 +68,44 @@ def _panel_widget() -> QWidget:
 
 # ============================================================ shared inputs
 
+class _TypeSpin(QDoubleSpinBox):
+    """A number box you can just type into.
+
+    Clicking or tabbing in selects the whole value, so typing replaces it.
+    While it shows its "Not measured" text, the first digit you type clears
+    that text instead of being refused (before, you had to select the words
+    by hand before you could enter a number).
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._select_on_click = False
+        # Clicks land on the inner text box, not on the spin box itself.
+        self.lineEdit().installEventFilter(self)
+
+    def eventFilter(self, watched, event) -> bool:  # noqa: N802
+        if watched is self.lineEdit() and event.type() == QEvent.Type.MouseButtonRelease:
+            if self._select_on_click or self._showing_special():
+                self._select_on_click = False
+                QTimer.singleShot(0, self.selectAll)
+        return super().eventFilter(watched, event)
+
+    def _showing_special(self) -> bool:
+        # The words themselves are on screen (not a number being typed).
+        return bool(self.specialValueText()) and self.lineEdit().text() == self.specialValueText()
+
+    def focusInEvent(self, event) -> None:  # noqa: N802
+        super().focusInEvent(event)
+        self._select_on_click = True
+        QTimer.singleShot(0, self.selectAll)
+
+    def keyPressEvent(self, event) -> None:  # noqa: N802
+        text = event.text()
+        if text and (text.isdigit() or text in ".,") and self._showing_special():
+            self.selectAll()                     # the digit replaces "Not measured"
+        super().keyPressEvent(event)
+
+
 class NumberField(QWidget):
     """A labelled number box, optionally with a slider kept in sync.
 
@@ -102,7 +140,7 @@ class NumberField(QWidget):
         row.addWidget(_label(title, "wlFieldLabel", wrap=False))
         row.addStretch(1)
 
-        self.spin = QDoubleSpinBox()
+        self.spin = _TypeSpin()
         self.spin.setObjectName("wlSpin")
         self.spin.setRange(minimum, maximum)
         self.spin.setDecimals(decimals)
