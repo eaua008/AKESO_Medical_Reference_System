@@ -165,9 +165,12 @@ class AdminController(QObject):
         if not published:
             dialog = ConfirmDialog(
                 f"Archive {KIND_LABELS[kind].lower()}",
-                f"“{name}” will be hidden from the encyclopedias, checkers and search on "
-                "every computer after its next sync. Nothing is deleted: you can restore "
-                "it from here at any time.", "Archive", "archive", danger=True,
+                (f"“{name}” will be hidden from Health Articles, related-article lists "
+                 "and search. Nothing is deleted: you can restore it from here at any time."
+                 if kind == "article" else
+                 f"“{name}” will be hidden from the encyclopedias, checkers and search on "
+                 "every computer after its next sync. Nothing is deleted: you can restore "
+                 "it from here at any time."), "Archive", "archive", danger=True,
                 parent=self._content_view)
             if dialog.exec() != ConfirmDialog.DialogCode.Accepted:
                 return

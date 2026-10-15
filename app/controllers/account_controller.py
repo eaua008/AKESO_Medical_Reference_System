@@ -77,7 +77,6 @@ class AccountController(QObject):
         p.save_requested.connect(self._save_profile)
         p.photo_chosen.connect(self._set_photo)
         p.photo_remove_requested.connect(self._remove_photo)
-        p.handle_check_requested.connect(self._check_handle)
         p.verify_school_requested.connect(self._verify_school)
 
         s = v.security
@@ -266,11 +265,6 @@ class AccountController(QObject):
             self._view.profile.show_saved("Photo removed.")
         self._run(lambda: self._account.remove_avatar(self._snapshot.profile), done,
                   self._view.profile.show_error)
-
-    def _check_handle(self, handle: str) -> None:
-        self._run(lambda: self._account.handle_available(handle),
-                  lambda ok: self._view.profile.show_handle_status(handle, bool(ok)),
-                  on_error=lambda _m: None)
 
     def _verify_school(self) -> None:
         dialog = SchoolEmailDialog(parent=self._view)

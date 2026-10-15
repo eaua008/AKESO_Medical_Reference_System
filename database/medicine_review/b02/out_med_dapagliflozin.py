@@ -1,0 +1,71 @@
+MED = {
+  "id": "med_dapagliflozin",
+  "desc_add": "It is more than 1,400-fold selective for SGLT2 over SGLT1, has an oral bioavailability of 78% and a terminal half-life of about 12.9 hours, and is cleared mainly by UGT1A9 glucuronidation rather than CYP enzymes. Because its glucose-lowering effect depends on blood glucose and kidney function, hypoglycaemia risk on its own is low and the glucose-lowering effect fades below an eGFR of 45, while the heart and kidney benefits persist. In the Philippines, the DOH added dapagliflozin 10 mg film-coated tablet to the Philippine National Formulary in April 2023 as add-on therapy to metformin for adults with type 2 diabetes who have, or are at high risk of, cardiovascular disease or diabetic nephropathy.",
+  "facts": {
+    "indication": [
+      "Type 2 diabetes in children aged 10 years and above (adjunct to diet and exercise)",
+    ],
+    "adverse": [
+      "Dizziness, rash, back pain and dysuria (common)",
+      "Increased haematocrit and dyslipidaemia (common)",
+      "Thirst, dry mouth, constipation and nocturia (uncommon)",
+      "Transient rise in serum creatinine and fall in creatinine clearance at the start of treatment",
+      "Angioedema and tubulointerstitial nephritis (very rare)",
+      "Lower-limb amputations (mainly toes) seen more often in long-term SGLT2 inhibitor studies",
+    ],
+    "contraindication": [
+      "Type 1 diabetes: should not be used",
+      "Second and third trimesters of pregnancy: not recommended; stop when pregnancy is detected",
+      "Breastfeeding: should not be used",
+      "Galactose intolerance, total lactase deficiency or glucose-galactose malabsorption (contains lactose; precaution)",
+    ],
+    "interaction": [
+      "Rifampicin: lowers dapagliflozin exposure (AUC −22%); no dose adjustment needed.",
+      "Mefenamic acid (UGT1A9 inhibitor): raises dapagliflozin exposure (AUC +55%); no dose adjustment needed.",
+      "No clinically relevant effect on metformin, sitagliptin, glimepiride, valsartan, digoxin or warfarin.",
+    ],
+    "brand_ph": [],
+    "brand_intl": [],
+  },
+  "refs": [
+    ("UK SmPC (emc)", "Forxiga 10 mg film-coated tablets – Summary of Product Characteristics. AstraZeneca UK Limited. Electronic Medicines Compendium (emc), medicines.org.uk.", "https://products.mhra.gov.uk/search/?search=dapagliflozin#emc-7607"),
+    ("PhilHealth Advisory No. 2024-0026", "Philippine Health Insurance Corporation. Advisory No. 2024-0026: Philippine National Formulary Essential Medicines List (8th Edition) and additional medicines as of April 25, 2024. Signed May 30, 2024.", "https://www.philhealth.gov.ph/advisories/2024/PA2024-0026.pdf"),
+    ("DOH Department Circular 2023-0169", "Department of Health. Secretary of Health Decision on the HTA Council Recommendation on Dapagliflozin for Type 2 Diabetes Mellitus Patients. Department Circular No. 2023-0169, 11 April 2023.", "https://hta.dost.gov.ph/wp-content/uploads/2025/05/DOH-DC-2023-0169-SOH-Decision-on-HTAC-Recommendation-on-Dapagliflozin-for-T2DM-Patients-11-April-2023.pdf"),
+    ("HTA Philippines", "Health Technology Assessment Council (Philippines). Dapagliflozin for 2nd-line treatment of type 2 diabetes mellitus: published assessment and recommendation.", "https://hta.dost.gov.ph/published-assessment/dapagliflozin-5mg-and-10-mg-tablet-for-2nd-line-treatment-of-type-2-diabetes-mellitus-t2dm/"),
+  ],
+  "links": [
+    ("urinary_tract_infection", "caution", "Glucosuria raises UTI risk; consider temporarily stopping dapagliflozin while treating pyelonephritis or urosepsis (UK SmPC)"),
+  ],
+  "sources": [
+    ("Label · UK SmPC", "UK SmPC (emc)", "Forxiga 10 mg film-coated tablets – SmPC. AstraZeneca UK Limited. emc.", "https://products.mhra.gov.uk/search/?search=dapagliflozin#emc-7607"),
+    ("Label · US", "DailyMed (US National Library of Medicine)", "FARXIGA (dapagliflozin) tablets. Prescribing information. DailyMed.", "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72ad22ae-efe6-4cd6-a302-98aaee423d69"),
+    ("PNF", "PhilHealth Advisory No. 2024-0026", "PhilHealth Advisory No. 2024-0026: PNF EML 8th Edition and medicines added as of April 25, 2024 (dapagliflozin added via DOH-DC No. 2023-0169).", "https://www.philhealth.gov.ph/advisories/2024/PA2024-0026.pdf"),
+    ("DOH 2023", "DOH Department Circular 2023-0169", "DOH DC No. 2023-0169: SOH Decision on HTAC Recommendation on Dapagliflozin for T2DM Patients, 11 April 2023.", "https://hta.dost.gov.ph/wp-content/uploads/2025/05/DOH-DC-2023-0169-SOH-Decision-on-HTAC-Recommendation-on-Dapagliflozin-for-T2DM-Patients-11-April-2023.pdf"),
+  ],
+  "doses": [
+    ("adult", "Type 2 diabetes", "PO", "10 mg", "Once a day", "Long-term", "10 mg/day", "Label · UK SmPC", "Consider lower insulin or sulfonylurea dose"),
+    ("adult", "Type 2 diabetes (US regimen)", "PO", "5 mg, may increase to 10 mg", "Once a day", "Long-term", "10 mg/day", "Label · US", "Not for glycaemic control if eGFR <45"),
+    ("adult", "Type 2 diabetes with CVD or nephropathy (PNF, add-on to metformin)", "PO", "10 mg", "Once a day", "Long-term", "10 mg/day", "DOH 2023", "PH government-financed indication"),
+    ("adult", "Heart failure", "PO", "10 mg", "Once a day", "Long-term", "10 mg/day", "Label · UK SmPC", "Reduced or preserved ejection fraction"),
+    ("adult", "Chronic kidney disease", "PO", "10 mg", "Once a day", "Long-term", "10 mg/day", "Label · UK SmPC", "With or without diabetes"),
+    ("child", "Type 2 diabetes (≥10 y)", "PO", "10 mg", "Once a day", "Long-term", "10 mg/day", "Label · UK SmPC", "No data under 10 y"),
+    ("child", "Type 2 diabetes (≥10 y, US regimen)", "PO", "5 mg, may increase to 10 mg", "Once a day", "Long-term", "10 mg/day", "Label · US", "HF and CKD use not established in children"),
+  ],
+  "notes": [
+    ("renal", "No dose adjustment by renal function. Initiation not recommended at eGFR <15 (UK); glucose-lowering effect reduced below 45 and likely absent in severe impairment, so add another glucose-lowering drug if needed.", "eGFR <45", "Label · UK SmPC"),
+    ("hepatic", "No adjustment in mild or moderate impairment. Severe impairment: start 5 mg once a day, increase to 10 mg if tolerated.", "", "Label · UK SmPC"),
+    ("elderly", "No dose adjustment by age; take extra care with volume depletion and hypotension.", "", "Label · UK SmPC"),
+    ("pregnancy", "Not recommended in the 2nd and 3rd trimesters (kidney toxicity in rats); stop when pregnancy is detected. Do not use while breastfeeding.", "", "Label · UK SmPC"),
+    ("administration", "Once a day at any time, with or without food; swallow whole. Correct volume depletion before starting.", "", "Label · UK SmPC"),
+    ("monitor", "Kidney function before starting and as needed; volume status and blood pressure; ketones (blood preferred) if unwell or around surgery, even with normal glucose; genital or perineal pain with fever (Fournier's); foot care; haematocrit.", "", "Label · UK SmPC"),
+    ("forms_ph", "Oral: 10 mg film-coated tablet (added to the PNF on 11 April 2023 via DOH-DC No. 2023-0169).", "", "PNF"),
+  ],
+  "checked": [
+    ("https://products.mhra.gov.uk/search/?search=dapagliflozin#emc-7607", "Forxiga SmPC (AstraZeneca UK, updated July 2026): 4.1 incl. T2DM children ≥10 y; 4.2 10 mg once daily all indications, renal (initiation not recommended eGFR <15, efficacy reduced <45), severe hepatic start 5 mg, elderly, administration; 4.4 DKA/type 1 diabetes, volume, Fournier, UTI interruption for pyelonephritis/urosepsis, haematocrit, amputation, lactose; 4.5 rifampicin −22%, mefenamic acid +55%, no relevant effect on metformin etc., UGT1A9; 4.6 not in 2nd/3rd trimester, not breastfeeding; 4.8 frequencies; 5.1 >1400-fold selectivity. (Section 5.2 could not be read via WebFetch.)"),
+    ("https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72ad22ae-efe6-4cd6-a302-98aaee423d69", "Farxiga US label: 5 mg start up to 10 mg for glycaemic control in adults and children ≥10 y; 10 mg for HF/CKD; eGFR thresholds; peds HF/CKD not established; bioavailability 78%; t½ ~12.9 h (already an existing ref; used as dose-table source only)"),
+    ("https://www.philhealth.gov.ph/advisories/2024/PA2024-0026.pdf", "PhilHealth Advisory 2024-0026 (signed May 30, 2024): Dapagliflozin 10 mg film-coated tablet added to PNF April 11, 2023 under DOH-DC No. 2023-0169"),
+    ("https://hta.dost.gov.ph/wp-content/uploads/2025/05/DOH-DC-2023-0169-SOH-Decision-on-HTAC-Recommendation-on-Dapagliflozin-for-T2DM-Patients-11-April-2023.pdf", "DOH circular 11 April 2023: SOH approved inclusion of dapagliflozin 10 mg film-coated tablet in PNF as add-on to metformin for adults with T2DM with or at high risk of CVD and/or diabetic nephropathy"),
+    ("https://hta.dost.gov.ph/published-assessment/dapagliflozin-5mg-and-10-mg-tablet-for-2nd-line-treatment-of-type-2-diabetes-mellitus-t2dm/", "HTA Council page: recommendation for PNF inclusion, 10 mg tablet, add-on to metformin (2nd line), SOH approval April 11, 2023"),
+    ("https://www.philhealth.gov.ph/partners/providers/pdf/PNF-EML_11022022.pdf", "Dapagliflozin NOT in the Nov 2022 PNF EML text (D entries Dacarbazine–Dapsone–Deferiprone); hence the 2024 advisory is used"),
+  ],
+}

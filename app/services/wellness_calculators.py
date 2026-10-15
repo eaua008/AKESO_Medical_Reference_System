@@ -7,6 +7,8 @@ against a worked example from its source.
 Sources, so anyone reviewing the numbers can check them:
 
     BMI cutoffs      DOH Philippines (WHO Asia-Pacific, 2000) and WHO global
+    Children's BMI   WHO growth charts: z-scores (child_growth.py)
+    Vital signs      see vital_signs.py
     Hydration        U.S. National Academies, Dietary Reference Intakes for
                      Water (2004): Adequate Intake by age and sex
     Sleep            National Sleep Foundation recommendations (2015)
@@ -21,7 +23,22 @@ Sources, so anyone reviewing the numbers can check them:
 from dataclasses import dataclass, field
 from typing import Callable, Optional
 
+from app.services import child_growth
+from app.services.child_growth import ChildGrowth
+from app.services.vital_signs import VitalSignsChecker
+
 # ====================================================================== BMI
+
+def ordinal(value: float) -> str:
+    """12.4 -> "12th", 1 -> "1st"; below 1 and above 99 say so."""
+    if value < 1:
+        return "below the 1st"
+    if value > 99:
+        return "above the 99th"
+    n = int(round(value))
+    suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
 
 ADULT_AGE = 20   # WHO adult BMI categories start at 20; 5-19 use BMI-for-age
 
@@ -94,6 +111,7 @@ class BmiResult:
     tone: str
     message: str
     healthy_weight_kg: Optional[tuple[float, float]]
+    child: Optional[ChildGrowth] = None   # under 20: the WHO z-scores
 
 
 class BmiCalculator:
@@ -105,6 +123,8 @@ class BmiCalculator:
             weight_kg: float,
             age: int,
             standard_id: str = "asia_pacific",
+            sex: str = "male",
+            months: int = 0,
     ) -> BmiResult:
         standard = BMI_STANDARDS[standard_id]
         height_m = height_cm / 100
@@ -113,6 +133,25 @@ class BmiCalculator:
         bmi = round(weight_kg / (height_m ** 2), 1)
 
         if age < ADULT_AGE:
+            age_months = age * 12 + max(0, min(11, int(months)))
+            if age_months <= child_growth.MAX_MONTHS:
+                growth = child_growth.assess(sex, age_months, height_cm, weight_kg)
+                b = growth.bmi
+                sign = "+" if b.z >= 0 else "\u2212"
+                return BmiResult(
+                    bmi=bmi,
+                    standard=standard,
+                    category=b.label,
+                    tone=b.tone,
+                    message=(
+                        f"BMI-for-age z-score {sign}{abs(b.z):.2f} "
+                        f"({ordinal(b.percentile)} percentile) on the {growth.reference}. "
+                        "Children are judged "
+                        "against children of the same age and sex, not adult cut-offs."
+                    ),
+                    healthy_weight_kg=growth.healthy_weight_kg,
+                    child=growth,
+                )
             if age >= 5:
                 chart = "WHO BMI-for-age growth reference (5\u201319 years)"
             else:
@@ -513,3 +552,4 @@ class WellnessService:
         self.sleep = SleepCalculator()
         self.energy = EnergyCalculator()
         self.converter = UnitConverter()
+        self.vitals = VitalSignsChecker()

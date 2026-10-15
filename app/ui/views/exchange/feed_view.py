@@ -12,6 +12,7 @@ from app.models.account import PROGRAMS
 from app.models.exchange import FEED_TABS, TAG_KINDS, FeedPost, Tag
 from app.ui.views.account.account_widgets import Banner, button, label, refresh_icons, set_text
 from app.ui.views.exchange.exchange_widgets import PostCard, SearchPicker, clear_layout
+from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 
 class FeedView(QWidget):
@@ -55,7 +56,7 @@ class FeedView(QWidget):
         self._list = QVBoxLayout()
         self._list.setSpacing(10)
         self._page.addLayout(self._list)
-        self._empty = label("", "acMuted")
+        self._empty = LoadingLabel("", "acMuted")
         self._empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._empty.hide()
         self._page.addWidget(self._empty)
@@ -206,10 +207,13 @@ class FeedView(QWidget):
         self.tab_changed.emit(key)
 
     def show_loading(self) -> None:
-        self._empty.setText("Loading posts…")
+        LoadingHold.of(self).begin()                  # the loader shows for at least 3 s
+        self._empty.set_loading("Loading posts…")
         self._empty.show()
 
     def show_posts(self, posts: list[FeedPost], append: bool, has_more: bool) -> None:
+        if LoadingHold.of(self).wait(self.show_posts, posts, append, has_more):
+            return
         if not append:
             clear_layout(self._list)
         for post in posts:
@@ -224,6 +228,8 @@ class FeedView(QWidget):
         self._more.setVisible(has_more)
 
     def show_error(self, message: str) -> None:
+        if LoadingHold.of(self).wait(self.show_error, message):
+            return
         self._empty.setText(message)
         self._empty.show()
         self._more.hide()

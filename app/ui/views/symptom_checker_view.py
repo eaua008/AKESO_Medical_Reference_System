@@ -21,7 +21,6 @@ from PySide6.QtWidgets import (
     QButtonGroup,
     QLayout,
     QCheckBox,
-    QComboBox,
     QDoubleSpinBox,
     QFrame,
     QGridLayout,
@@ -52,6 +51,7 @@ from app.models.checker import (
 from app.models.symptom import Symptom
 from app.ui.views.compare_view import FlowLayout
 from app.ui.components.fluid import HScrollArea, ResponsiveGrid, contain, fit_width
+from app.ui.components.akeso_loader import MinimumLoading
 from app.ui.views.checker_widgets import (
     SuggestionChip,
     SymptomParameters,
@@ -286,6 +286,7 @@ class SymptomCheckerView(QWidget):
     save_case_requested = Signal()      # Save to Notebook
     open_case_requested = Signal()      # Open the saved case in the notebook
     unlink_requested = Signal()         # stop saving into the linked note
+    sync_requested = Signal()           # "Sync with encyclopedias"
 
     def __init__(self, parent: Optional[QWidget] = None) -> None:
         super().__init__(parent)
@@ -350,7 +351,6 @@ class SymptomCheckerView(QWidget):
         title = QHBoxLayout()
         title.setSpacing(10)
         title.addWidget(_label("Akeso Symptom Correlation Engine", "pageTitle", wrap=False))
-        title.addWidget(_label("ENGINE V2.5", "ccEngineBadge", wrap=False))
         title.addStretch(1)
         text.addLayout(title)
         text.addWidget(_label(
@@ -416,7 +416,20 @@ class SymptomCheckerView(QWidget):
         self._search.setFixedHeight(36)
         self._search.setClearButtonEnabled(True)
         self._search.textChanged.connect(lambda _t: self._render_symptom_list())
-        picker_layout.addWidget(self._search)
+        # The checker works from the Symptom and Disease encyclopedias on this
+        # computer; Sync downloads the latest of both.
+        search_row = QHBoxLayout()
+        search_row.setSpacing(8)
+        search_row.addWidget(self._search, 1)
+        sync = QPushButton("Sync")
+        sync.setObjectName("secondaryButton")
+        sync.setFixedHeight(36)
+        sync.setCursor(Qt.CursorShape.PointingHandCursor)
+        sync.setToolTip("Sync with the encyclopedias: download the latest symptoms and "
+                        "diseases the checker uses")
+        sync.clicked.connect(lambda _c=False: self.sync_requested.emit())
+        search_row.addWidget(sync)
+        picker_layout.addLayout(search_row)
 
         self._list_scroll = QScrollArea()
         self._list_scroll.setWidgetResizable(True)
@@ -703,6 +716,23 @@ class SymptomCheckerView(QWidget):
 
     # ------------------------------------------------------- symptom list
 
+    # ------------------------------------------------------------- syncing
+
+    def begin_sync(self) -> None:
+        """The Akeso loader over the checker while both encyclopedias sync."""
+        if getattr(self, "_sync_gate", None) is None:
+            self._sync_gate = MinimumLoading(self, "Syncing with the encyclopedias\u2026")
+        self._sync_gate.begin()
+
+    def end_sync(self, message: str = "") -> None:
+        gate = getattr(self, "_sync_gate", None)
+        if gate is not None:
+            gate.finish(message=message)
+
+    def syncing(self) -> bool:
+        gate = getattr(self, "_sync_gate", None)
+        return gate is not None and gate.active
+
     def set_symptoms(self, symptoms: list[Symptom]) -> None:
         self._symptoms = sorted(symptoms, key=lambda s: -s.diagnostic_weight)
         self._render_symptom_list()
@@ -727,11 +757,25 @@ class SymptomCheckerView(QWidget):
             self._list_layout.insertWidget(self._list_layout.count() - 1, row)
             self._rows.append(row)
 
-        if not self._rows:
-            message = ("No symptom matches that search." if query else
-                       "No symptoms available. The Symptom Encyclopedia has to "
-                       "sync at least once first.")
-            self._list_layout.insertWidget(0, _label(message, "ccMuted"))
+        if not self._rows and query:
+            self._list_layout.insertWidget(0, _label("No symptom matches that search.", "ccMuted"))
+        elif not self._rows:
+            # Nothing downloaded yet on this computer: say why, and offer the fix.
+            empty = QWidget()
+            empty.setObjectName("panel")
+            box = QVBoxLayout(empty)
+            box.setContentsMargins(0, 8, 0, 0)
+            box.setSpacing(8)
+            box.addWidget(_label(
+                "The symptom list is not on this computer yet. The Symptom Checker "
+                "uses the Symptom and Disease encyclopedias, so it needs one sync "
+                "first.", "ccMuted"))
+            button = QPushButton("Sync with encyclopedias")
+            button.setObjectName("primaryButton")
+            button.setCursor(Qt.CursorShape.PointingHandCursor)
+            button.clicked.connect(lambda _c=False: self.sync_requested.emit())
+            box.addWidget(button, 0, Qt.AlignmentFlag.AlignLeft)
+            self._list_layout.insertWidget(0, empty)
 
     def _on_symptom_toggled(self, symptom_id: str, state: bool) -> None:
         if state:

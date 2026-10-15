@@ -10,13 +10,15 @@ from html import escape
 from urllib.parse import urlparse
 
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
 
+from app.core.links import open_link
 from app.core.theme import Theme
 from app.ui.components.fluid import ResponsiveGrid
 
 TIER_1 = "TIER 1 — MOTHER BOOK"
 TIER_2 = "TIER 2 — SPECIFIC REFERENCE"
+DOSING = "DOSING TABLE SOURCE"
 
 
 def safe_url(url: str) -> str:
@@ -33,7 +35,9 @@ def link_label(url: str, text: str, object_name: str) -> QLabel:
         f' text-decoration:none;">{escape(text)} ↗</a>')
     label.setObjectName(object_name)
     label.setTextFormat(Qt.TextFormat.RichText)
-    label.setOpenExternalLinks(True)
+    # Opens in the built-in reference browser (app/core/links.py).
+    label.setOpenExternalLinks(False)
+    label.linkActivated.connect(lambda href, t=text: open_link(href, t))
     label.setCursor(Qt.CursorShape.PointingHandCursor)
     label.setToolTip(url)
     return label
@@ -47,15 +51,27 @@ def _text(text: str, object_name: str, wrap: bool = True) -> QLabel:
 
 
 def reference_card(reference, prefix: str) -> QFrame:
-    """One citation. prefix is the page's style prefix: "sy" or "md"."""
+    """One citation. prefix is the page's style prefix: "sy" or "md".
+
+    A dosing-table source (it has a .tag) gets its own DOSING badge and shows
+    the short tag used in the table, so the two can be matched up."""
     primary = bool(reference.is_mother_book)
+    dosing = bool(getattr(reference, "tag", ""))
     box = QFrame()
     box.setObjectName(f"{prefix}RefPrimary" if primary else f"{prefix}Ref")
     layout = QVBoxLayout(box)
     layout.setContentsMargins(14, 12, 14, 12)
     layout.setSpacing(4)
-    layout.addWidget(_text(TIER_1 if primary else TIER_2,
-                           f"{prefix}RefTierPrimary" if primary else f"{prefix}RefTier"))
+    if dosing:
+        badges = QHBoxLayout()
+        badges.setSpacing(6)
+        badges.addWidget(_text(DOSING, f"{prefix}RefTierDose", wrap=False))
+        badges.addWidget(_text(reference.tag, f"{prefix}RefTag", wrap=False))
+        badges.addStretch(1)
+        layout.addLayout(badges)
+    else:
+        layout.addWidget(_text(TIER_1 if primary else TIER_2,
+                               f"{prefix}RefTierPrimary" if primary else f"{prefix}RefTier"))
     layout.addWidget(_text(reference.source_name or "Untitled source", f"{prefix}RefSource"))
     if reference.citation_text:
         layout.addWidget(_text(reference.citation_text, f"{prefix}RefCitation"))

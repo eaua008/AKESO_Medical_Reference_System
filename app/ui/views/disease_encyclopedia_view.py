@@ -30,6 +30,7 @@ from app.core.models_helpers import urgency_style  # see edits file
 from app.core.theme import Theme
 from app.ui.components.fluid import ResponsiveGrid, contain
 from app.models.disease import BodySystem, Disease
+from app.ui.components.akeso_loader import LoadingLabel
 
 CARD_COLUMNS = 3
 CARD_MIN_WIDTH = 330
@@ -401,8 +402,9 @@ class DiseaseEncyclopediaView(QWidget):
         # Up to three columns, fewer when the window is narrow: a fixed three
         # columns of 330 px cards forced the page wider than small screens.
         self._grid_host = ResponsiveGrid(CARD_MIN_WIDTH, CARD_COLUMNS, spacing=18)
+        self._grid_host.follow_user_columns()        # Settings > Display > Cards per row
 
-        self._empty_label = QLabel("No conditions match those filters.")
+        self._empty_label = LoadingLabel("No conditions match those filters.")
         self._empty_label.setObjectName("cardSubtitle")
         self._empty_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._empty_label.hide()
@@ -498,6 +500,13 @@ class DiseaseEncyclopediaView(QWidget):
     def show_error(self, message: str) -> None:
         self._clear_grid()
         self._empty_label.setText(message)
+        self._empty_label.show()
+        self._grid_host.hide()
+
+    def show_loading(self, message: str) -> None:
+        """The Akeso loader with a message (first download)."""
+        self._clear_grid()
+        self._empty_label.set_loading(message)
         self._empty_label.show()
         self._grid_host.hide()
 

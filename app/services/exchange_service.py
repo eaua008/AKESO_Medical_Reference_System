@@ -12,7 +12,8 @@ from typing import Callable, Optional
 
 from app.models.account import friendly_time
 from app.models.exchange import (
-    CASE, QUESTION, Draft, FeedPost, ModItem, Notification, PostDetail, ProfileCard, Tag,
+    CASE, QUESTION, Draft, FeedPost, MemberProfile, ModItem, Notification, PostDetail,
+    ProfileCard, Tag,
 )
 from app.models.notebook import INTERACTION_CASE, SYMPTOM_CASE, NotebookItem
 from app.repositories.account_errors import AccountError
@@ -112,6 +113,13 @@ class ExchangeService:
     def profile_card(self, handle: str) -> ProfileCard:
         return ProfileCard.from_json(self._repo.profile_card(handle))
 
+    def profile(self, handle: str) -> MemberProfile:
+        """A member's profile page (raises AccountError if it is private)."""
+        return MemberProfile.from_json(self._repo.profile(handle))
+
+    def follow_user(self, handle: str, on: bool) -> bool:
+        return self._repo.follow_user(handle, on)
+
     def mod_queue(self) -> list[ModItem]:
         return [ModItem.from_json(r) for r in self._repo.mod_queue()]
 
@@ -187,6 +195,18 @@ class ExchangeService:
         if warning:
             raise AccountError(warning)
         return self._repo.reply(post_id, parent_id, body, anonymous)
+
+    def option_comment(self, post_id: str, option_id: str, body: str, anonymous: bool) -> str:
+        """A comment on one poll choice: same rules as a reply."""
+        body = body.strip()
+        if not body:
+            raise AccountError("Write a comment first.")
+        if len(body) > 3000:
+            raise AccountError("Comments can be at most 3,000 characters.")
+        warning = self.check_text(body)
+        if warning:
+            raise AccountError(warning)
+        return self._repo.option_comment(post_id, option_id, body, anonymous)
 
     def edit_reply(self, reply_id: str, body: str) -> None:
         warning = self.check_text(body)
@@ -359,6 +379,9 @@ class NotificationService:
 
     def clear_read(self) -> None:
         self._repo.clear_read()
+
+    def delete(self, ids: list[int]) -> None:
+        self._repo.delete_notifications(ids)
 
 
 def draft_json(draft: Draft) -> dict:

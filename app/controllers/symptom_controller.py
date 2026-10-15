@@ -11,6 +11,7 @@ from PySide6.QtCore import QObject, Signal
 
 from app.core.sync_worker import SyncWorker, start_worker
 from app.services.symptom_service import SymptomService
+from app.ui.components.akeso_loader import MinimumLoading
 from app.ui.views.symptom_encyclopedia_page import SymptomEncyclopediaPage
 
 
@@ -21,6 +22,7 @@ class SymptomController(QObject):
     matching_requested = Signal(str)   # "Find Matching Diseases"
     case_requested = Signal(str)       # "Present Case"
     opened = Signal(str)               # an entry was shown (study activity)
+    synced = Signal(bool, str)         # a sync ended: (changed, error); the checker listens
 
     def __init__(self, page: SymptomEncyclopediaPage,
                  service: Optional[SymptomService] = None) -> None:
@@ -28,9 +30,12 @@ class SymptomController(QObject):
         self._page = page
         self._service = service or SymptomService()
         self._filters = ("", "", False)
+        self._syncing = False
+        self._refresh = MinimumLoading(page.browse, "Refreshing the symptom encyclopedia\u2026")
 
         page.browse.filters_changed.connect(self._on_filters)
         page.browse.symptom_chosen.connect(self.inspect)
+        page.browse.refresh_requested.connect(self.refresh)
         page.detail.condition_chosen.connect(self.condition_chosen.emit)
         page.detail.session_requested.connect(self.session_requested.emit)
         page.detail.matching_requested.connect(self.matching_requested.emit)
@@ -46,17 +51,38 @@ class SymptomController(QObject):
         self._page.browse.set_tiers(self._service.tiers())
         self._apply()
         if not self._service.has_local_copy():
-            self._page.browse.show_status("Downloading the symptom encyclopedia\u2026")
+            self._page.browse.show_loading("Downloading the symptom encyclopedia\u2026")
+
+    def refresh(self) -> None:
+        """The Refresh button: download everything again, with the Akeso
+        loader over the page for at least 10 seconds."""
+        if self._syncing:
+            return
+        self._refresh.begin()
+        self.start_sync(force=True)
 
     def start_sync(self, force: bool = False) -> None:
+        if self._syncing:
+            return
+        self._syncing = True
         worker = SyncWorker(self._service, force=force)
         worker.sync_finished.connect(self._on_synced)
         start_worker(worker)
 
     def _on_synced(self, changed: bool, error: str) -> None:
-        if changed:
-            self.load()
-        elif error and not self._service.has_local_copy():
+        self._syncing = False
+        def done() -> None:
+            if changed:
+                self.load()
+            self.synced.emit(changed, error)
+
+        if self._refresh.active:
+            note = ("Couldn't reach the server. Showing the copy saved on this computer."
+                    if error and not changed else "")
+            self._refresh.finish(then=done, message=note)
+            return
+        done()
+        if not changed and error and not self._service.has_local_copy():
             self._page.browse.show_status(
                 "Couldn't download the symptom encyclopedia. Check your "
                 f"connection and reopen the app.\n({error})")

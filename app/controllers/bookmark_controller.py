@@ -5,8 +5,6 @@ each encyclopedia's bookmark signal here, so no module has to know the
 Bookmarks page exists.
 """
 
-from typing import Optional
-
 from PySide6.QtCore import QObject, Signal
 
 from app.services.bookmark_service import BookmarkService

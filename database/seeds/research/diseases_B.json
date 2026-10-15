@@ -1,0 +1,1229 @@
+{
+  "diseases": [
+    {
+      "id": "community_acquired_pneumonia",
+      "name": "Community-Acquired Pneumonia",
+      "scientific_name": "Community-acquired pneumonia (CAP); lower respiratory tract infection of the lung parenchyma",
+      "body_system": "Respiratory System",
+      "severity": "Moderate",
+      "urgency": "SEEK_URGENT_CARE",
+      "urgency_criteria": "Any suspected pneumonia warrants prompt same-day assessment and risk stratification. Respiratory rate >=30/min, heart rate >=125/min, SBP <90 or DBP <=60 mmHg, temperature <36 or >40 C, altered mental status or CURB-65 >=2 indicate hospital-level care; sepsis, septic shock or need for ventilatory support places the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Community-acquired pneumonia is an acute infection of the lung parenchyma acquired outside the hospital, confirmed by a new infiltrate on chest imaging in a patient with compatible respiratory symptoms. Streptococcus pneumoniae remains the leading bacterial cause, with Haemophilus influenzae, Staphylococcus aureus, atypical organisms (Mycoplasma, Chlamydia, Legionella) and respiratory viruses (influenza, SARS-CoV-2, rhinovirus) also important. Philippine guidelines (PSMID/PCP 2020) stratify adults into low-, moderate- and high-risk CAP to guide site of care and empiric antibiotics. The syndrome itself is not classed as contagious, although some causative pathogens (e.g., influenza, SARS-CoV-2) spread person to person.",
+      "pathophysiology": "Pathogens colonizing the nasopharynx reach the lower airways mainly by microaspiration, less often by inhalation of aerosols or hematogenous spread. Pneumonia develops when the inoculum or virulence of the organism overwhelms local defenses such as mucociliary clearance, cough, alveolar macrophages and secretory immunity. Recruitment of neutrophils and release of inflammatory mediators (e.g., IL-1, TNF) fill the alveoli with exudate, producing consolidation. The resulting ventilation-perfusion mismatch and shunt cause hypoxemia, while the systemic inflammatory response produces fever and, in severe cases, sepsis and organ dysfunction.",
+      "clinicopathologic_correlation": "Alveolar exudate and consolidation account for productive cough, crackles, bronchial breath sounds, dullness to percussion and the infiltrate on chest radiograph. Inflammation extending to the parietal pleura causes pleuritic chest pain, and parapneumonic effusion or empyema may follow. Hypoxemia from shunting drives tachypnea and dyspnea; systemic cytokine release explains fever, chills, tachycardia and, in older adults, confusion.",
+      "onset_progression": "Typically acute, developing over hours to a few days, often after or during a viral upper respiratory infection. With appropriate therapy, fever and tachycardia usually settle within 48-72 hours, while cough, fatigue and radiographic changes can take several weeks to resolve. Deterioration within the first days may signal sepsis, empyema, lung abscess, necrotizing pneumonia or respiratory failure.",
+      "follow_up_monitoring": "Vital signs, oxygen saturation and mental status are monitored closely, with clinical stability (afebrile >=48 hours, normal vital signs and oxygen saturation, tolerating oral intake, baseline mental status) reassessed at 48-72 hours to guide oral step-down and stopping antibiotics after a minimum course. Failure to improve prompts review for resistant organisms, complications (effusion, empyema, abscess) or alternative diagnoses such as tuberculosis. Routine repeat chest imaging during treatment is not needed in patients who are improving; PSMID 2020 addresses post-treatment imaging at 6-8 weeks in selected patients.",
+      "source_attribution": "PSMID/PCP Philippine CPG on Adult CAP 2020; StatPearls (Regunath & Oba, 2024); ATS/IDSA CAP guideline 2019; ATS CAP guideline 2025; Harrison's Principles of Internal Medicine 21st ed.",
+      "tags": [
+        "pneumonia",
+        "respiratory infection",
+        "bacterial",
+        "PSMID guideline",
+        "lower respiratory tract"
+      ],
+      "causes": [
+        "Streptococcus pneumoniae (most common bacterial cause)",
+        "Haemophilus influenzae and Moraxella catarrhalis",
+        "Staphylococcus aureus, including MRSA (notably after influenza)",
+        "Atypical bacteria: Mycoplasma pneumoniae, Chlamydia pneumoniae, Legionella species",
+        "Respiratory viruses: influenza, SARS-CoV-2, rhinovirus, RSV",
+        "Gram-negative bacilli including Pseudomonas aeruginosa and ESBL producers in patients with specific risk factors"
+      ],
+      "risk_factors": [
+        "Age 65 years or older",
+        "Cigarette smoking",
+        "Chronic lung disease (COPD, bronchiectasis), heart failure, diabetes, chronic liver or kidney disease",
+        "Alcohol use disorder",
+        "Aspiration risk (impaired consciousness, dysphagia, stroke)",
+        "Immunosuppression, including systemic corticosteroid use and HIV",
+        "Recent influenza or other viral respiratory infection",
+        "Recent antibiotic exposure or hospitalization (risk for resistant organisms)"
+      ],
+      "recommended_tests": [
+        "Chest radiograph (PA and lateral) to confirm infiltrate and detect effusion or cavitation",
+        "Pulse oximetry or arterial blood gas",
+        "Complete blood count, serum electrolytes, BUN/creatinine and liver function tests",
+        "Blood cultures and sputum Gram stain/culture in moderate- to high-risk CAP (not routinely in low-risk CAP)",
+        "Influenza nucleic acid testing during periods of high influenza activity; SARS-CoV-2 testing",
+        "Legionella and pneumococcal urinary antigen in high-risk/severe CAP",
+        "Sputum AFB smear/GeneXpert when tuberculosis is a consideration",
+        "Severity scoring (CURB-65, PSI, or PSMID risk categories) to guide site of care"
+      ],
+      "treatments": [
+        "Low-risk CAP without comorbidities (PSMID 2020): amoxicillin 1 g PO three times daily, or clarithromycin 500 mg PO twice daily, or azithromycin 500 mg PO once daily",
+        "Low-risk CAP with stable comorbidities (PSMID 2020): co-amoxiclav or cefuroxime, with or without a macrolide or doxycycline",
+        "Moderate-risk CAP (hospitalized, no MDRO risk): IV non-pseudomonal beta-lactam (e.g., ceftriaxone 1-2 g daily, ampicillin-sulbactam, cefotaxime) plus a macrolide (azithromycin or clarithromycin)",
+        "High-risk CAP (ICU): non-pseudomonal beta-lactam plus macrolide; alternative is beta-lactam plus a respiratory fluoroquinolone (levofloxacin or moxifloxacin)",
+        "Added coverage only with specific risk factors: anti-MRSA agent (vancomycin, linezolid) or antipseudomonal/anti-ESBL beta-lactam per risk profile",
+        "Antibiotic duration: minimum 5 days once clinically stable (PSMID 2020); longer for Pseudomonas, S. aureus, Legionella or complications such as empyema or abscess",
+        "Oseltamivir added when influenza is suspected or confirmed",
+        "Supplemental oxygen for hypoxemia; drainage of complicated parapneumonic effusion or empyema",
+        "Systemic corticosteroids are not used in nonsevere CAP; ATS 2025 conditionally supports them in severe CAP (excluding influenza pneumonia)"
+      ],
+      "home_care": [
+        "Adequate oral fluid intake to prevent dehydration from fever and tachypnea",
+        "Rest and gradual return to activity as fatigue resolves",
+        "Antipyretic use for fever and pleuritic discomfort",
+        "Completion of the prescribed antibiotic course with reassessment if fever persists beyond 48-72 hours",
+        "Smoking cessation and avoidance of second-hand smoke during recovery"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Pneumococcal vaccination (PCV and/or PPSV) for adults aged 50 years and above and younger adults with risk factors, together with annual influenza vaccination (PSMID 2020); COVID-19 vaccination as recommended."
+        },
+        {
+          "tier": "primary",
+          "content": "Smoking cessation, reduction of aspiration risk and optimal control of chronic cardiopulmonary disease and diabetes."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early clinical recognition, chest radiography and risk stratification so that empiric antibiotics are started promptly at the correct site of care."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Reassessment for clinical stability, timely treatment of complications (empyema, abscess) and post-recovery vaccination to prevent recurrence."
+        }
+      ],
+      "emergency_signs": [
+        "Respiratory rate 30/min or more, or increasing work of breathing",
+        "Oxygen saturation below normal on room air or cyanosis",
+        "New confusion or decreased level of consciousness",
+        "Hypotension (SBP <90 mmHg) or signs of septic shock",
+        "Heart rate 125/min or more",
+        "Rapid spread to multiple lobes or large pleural effusion"
+      ],
+      "differentials": [
+        {
+          "condition": "Pulmonary tuberculosis",
+          "distinguishing_feature": "Subacute cough over 2 weeks with weight loss, night sweats and upper-lobe or cavitary lesions; highly relevant in the Philippines"
+        },
+        {
+          "condition": "Acute bronchitis",
+          "distinguishing_feature": "Cough without focal chest signs or new infiltrate on chest radiograph"
+        },
+        {
+          "condition": "Congestive heart failure",
+          "distinguishing_feature": "Orthopnea, edema, raised JVP, bilateral interstitial/alveolar edema and cardiomegaly rather than focal consolidation"
+        },
+        {
+          "condition": "Pulmonary embolism",
+          "distinguishing_feature": "Sudden dyspnea and pleuritic pain with risk factors for thrombosis, often with a clear chest radiograph"
+        },
+        {
+          "condition": "COVID-19 or influenza viral pneumonia",
+          "distinguishing_feature": "Bilateral ground-glass or interstitial pattern and positive viral testing"
+        },
+        {
+          "condition": "Lung malignancy with post-obstructive pneumonia",
+          "distinguishing_feature": "Recurrent or non-resolving infiltrate in the same lobe, smoking history, weight loss"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_productive_cough",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_pleuritic_chest_pain",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "safe",
+          "note": "First-line oral option (1 g three times daily) for low-risk CAP without comorbidities per PSMID 2020."
+        },
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Oral option for low-risk CAP and the macrolide partner to a beta-lactam in moderate- and high-risk CAP."
+        },
+        {
+          "medicine_id": "med_clarithromycin",
+          "safety": "caution",
+          "note": "Guideline macrolide option, but QT prolongation and strong CYP3A4 inhibition require review of co-medications."
+        },
+        {
+          "medicine_id": "med_coamoxiclav",
+          "safety": "safe",
+          "note": "Beta-lactam of choice for low-risk CAP with stable comorbidities, with or without a macrolide or doxycycline."
+        },
+        {
+          "medicine_id": "med_ceftriaxone",
+          "safety": "safe",
+          "note": "IV non-pseudomonal beta-lactam combined with a macrolide for hospitalized moderate- and high-risk CAP."
+        },
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "Alternative oral agent or add-on for atypical coverage in low-risk CAP with comorbidities."
+        },
+        {
+          "medicine_id": "med_oseltamivir",
+          "safety": "safe",
+          "note": "Added when CAP is associated with suspected or confirmed influenza."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic control of fever and pleuritic pain."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic corticosteroids are recommended against in nonsevere CAP; considered only in severe CAP (ATS 2025), not influenza pneumonia."
+        }
+      ],
+      "related": [
+        "influenza",
+        "covid19",
+        "tuberculosis",
+        "copd",
+        "heart_failure"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "PSMID Philippine CPG on Adult CAP 2020",
+          "citation_text": "Philippine Society for Microbiology and Infectious Diseases, Philippine College of Physicians, et al. Clinical Practice Guidelines: Management and Prevention of Adult Community-Acquired Pneumonia. 2020.",
+          "url": "https://psmid.org/wp-content/uploads/2025/10/2020-Community-Acquired-Pneumonia-Clinical-Practice-Guidelines.pdf",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Regunath H, Oba Y. Community-Acquired Pneumonia. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing. Updated 2024 Jan 26.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430749/",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "ATS/IDSA CAP Guideline 2019",
+          "citation_text": "Metlay JP, Waterer GW, Long AC, et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. An Official Clinical Practice Guideline of the American Thoracic Society and Infectious Diseases Society of America. Am J Respir Crit Care Med. 2019;200(7):e45-e67. doi:10.1164/rccm.201908-1581ST",
+          "url": "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap-in-adults/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "ATS CAP Guideline 2025",
+          "citation_text": "Jones BE, Ramirez JA, Oren E, et al. Diagnosis and Management of Community-acquired Pneumonia: An Official American Thoracic Society Clinical Practice Guideline. Am J Respir Crit Care Med. 2026;212(1):24-44. doi:10.1164/rccm.202507-1692ST",
+          "url": "https://academic.oup.com/ajrccm/article/212/1/24/8435770",
+          "specialty": "Pulmonology",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "influenza",
+      "name": "Influenza",
+      "scientific_name": "Seasonal influenza (influenza A and B virus infection, family Orthomyxoviridae)",
+      "body_system": "Respiratory System",
+      "severity": "Moderate",
+      "urgency": "SELF_CARE",
+      "urgency_criteria": "Uncomplicated influenza in healthy adults is usually self-limited and managed supportively. High-risk persons (age >=65, pregnancy, chronic cardiopulmonary, renal, metabolic disease, immunosuppression) move to SEE_DOCTOR_SOON because antivirals work best within 48 hours; dyspnea, chest pain, confusion, persistent dizziness or relapse of fever and cough move to SEEK_URGENT_CARE or EMERGENCY.",
+      "contagious": true,
+      "description": "Influenza is an acute viral respiratory infection caused by influenza A and B viruses, characterized by abrupt fever, cough, headache, myalgia, sore throat and rhinorrhea. Most people recover within about a week without specific treatment, but it causes an estimated 290,000-650,000 respiratory deaths worldwide each year, concentrated in older adults, young children, pregnant women and people with chronic disease. In tropical countries such as the Philippines it circulates year-round with irregular outbreaks rather than a single winter season.",
+      "pathophysiology": "Influenza viruses bind sialic acid receptors on respiratory epithelium via hemagglutinin, enter the cell and replicate, with neuraminidase releasing new virions from the cell surface. Infection of the upper airway and trachea causes epithelial necrosis, loss of cilia and local inflammation. Cytokine release (interferons, IL-6, TNF) produces the prominent systemic features. Epithelial damage and impaired mucociliary clearance predispose to secondary bacterial pneumonia, and in severe cases viral infection of the lower respiratory tract causes primary viral pneumonia and ARDS. Frequent point mutations (antigenic drift) and, for influenza A, reassortment (antigenic shift) allow repeated infections and require annual vaccine updates.",
+      "clinicopathologic_correlation": "Systemic cytokine release accounts for the abrupt high fever, chills, myalgia, headache and profound malaise that distinguish influenza from the common cold. Tracheobronchial epithelial injury produces a dry, persistent cough and substernal discomfort that may outlast the fever. Loss of mucociliary defenses explains the characteristic pattern of initial improvement followed by recurrent fever and productive cough when secondary bacterial pneumonia develops.",
+      "onset_progression": "Incubation is about 2 days (range 1-4 days). Onset is abrupt, with fever and systemic symptoms dominating the first 3 days; most cases resolve in 3-7 days, although cough and fatigue may persist for more than 2 weeks, especially in older adults. Complications such as pneumonia usually appear within the first week. Transmission can begin before symptom onset and continues for roughly 5-7 days.",
+      "follow_up_monitoring": "Respiratory rate, oxygen saturation and hydration are monitored, especially in high-risk patients. Failure to improve after 3-5 days of antiviral therapy, or recrudescence of fever with productive cough, prompts evaluation for bacterial coinfection (chest radiograph, cultures). Exacerbation of underlying heart failure, COPD, asthma or diabetes is watched for during and after the illness.",
+      "source_attribution": "WHO fact sheet on seasonal influenza (2025); CDC Influenza Antiviral Medications: Summary for Clinicians; CDC Clinical Signs and Symptoms of Influenza; IDSA 2018 influenza guideline; StatPearls (Boktor & Hafner, 2023); Harrison's 21st ed.",
+      "tags": [
+        "flu",
+        "viral",
+        "respiratory infection",
+        "vaccine-preventable",
+        "antiviral"
+      ],
+      "causes": [
+        "Influenza A virus (subtypes such as H1N1 and H3N2)",
+        "Influenza B virus (Victoria lineage)",
+        "Transmission by respiratory droplets and aerosols from coughing, sneezing and talking",
+        "Contact with contaminated hands or surfaces followed by touching the eyes, nose or mouth"
+      ],
+      "risk_factors": [
+        "Age 65 years and older (risk of complications)",
+        "Pregnancy and the postpartum period",
+        "Chronic lung, heart, kidney, liver, neurologic or metabolic disease including diabetes",
+        "Immunosuppression",
+        "Lack of annual vaccination",
+        "Health-care work and crowded or institutional living settings"
+      ],
+      "recommended_tests": [
+        "Clinical diagnosis is often sufficient during periods of known influenza activity",
+        "Rapid molecular assay (preferred over rapid antigen tests) in outpatients when results will change management",
+        "RT-PCR or other molecular assay of respiratory specimens in hospitalized patients",
+        "Chest radiograph when pneumonia is suspected",
+        "Pulse oximetry; CBC and blood cultures if secondary bacterial infection is suspected",
+        "SARS-CoV-2 testing, as clinical features overlap"
+      ],
+      "treatments": [
+        "Oseltamivir 75 mg PO twice daily for 5 days for hospitalized patients, severe or progressive illness, and high-risk outpatients, started as early as possible without waiting for test confirmation",
+        "Greatest benefit when started within 48 hours of onset; hospitalized patients are treated regardless of illness duration",
+        "Oseltamivir dose reduced in renal impairment (e.g., 30 mg twice daily for CrCl 31-60 mL/min)",
+        "Oseltamivir is the preferred antiviral in pregnancy",
+        "Antiviral treatment may be considered for otherwise healthy outpatients presenting within 2 days of onset",
+        "Empiric antibiotics when bacterial coinfection is suspected (severe initial illness or deterioration after initial improvement), covering S. pneumoniae and S. aureus",
+        "Adjunctive corticosteroids are not recommended for influenza, influenza pneumonia or ARDS unless indicated for another reason (IDSA 2018)"
+      ],
+      "home_care": [
+        "Rest and maintenance of oral fluid intake",
+        "Antipyretic/analgesic use for fever, headache and myalgia",
+        "Staying home and limiting contact with others while febrile to reduce transmission",
+        "Covering coughs and sneezes, hand hygiene and mask use around high-risk household members"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Annual influenza vaccination, prioritized for older adults, pregnant women, young children, people with chronic disease and health-care workers."
+        },
+        {
+          "tier": "primary",
+          "content": "Respiratory hygiene, hand hygiene and staying home when ill; antiviral chemoprophylaxis for selected high-risk exposed persons and institutional outbreaks."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early testing and prompt antiviral treatment of high-risk and hospitalized patients to shorten illness and reduce complications."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Monitoring for and early treatment of secondary bacterial pneumonia and decompensation of chronic diseases."
+        }
+      ],
+      "emergency_signs": [
+        "Difficulty breathing or shortness of breath",
+        "Persistent chest pain or pressure",
+        "Persistent dizziness, confusion or inability to arouse",
+        "Seizures",
+        "Severe muscle pain or weakness",
+        "Fever or cough that improve and then return or worsen",
+        "Worsening of chronic medical conditions"
+      ],
+      "differentials": [
+        {
+          "condition": "COVID-19",
+          "distinguishing_feature": "Clinically overlapping; loss of smell or taste favors COVID-19 and laboratory testing is needed to distinguish them"
+        },
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, rash, leukopenia and falling platelets with minimal respiratory symptoms; common in the Philippines"
+        },
+        {
+          "condition": "Common cold (rhinovirus and other viruses)",
+          "distinguishing_feature": "Gradual onset, prominent nasal symptoms, low or no fever and mild systemic symptoms"
+        },
+        {
+          "condition": "Bacterial community-acquired pneumonia",
+          "distinguishing_feature": "Productive cough, focal chest signs and lobar consolidation on chest radiograph"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Flood or animal-urine exposure, calf muscle tenderness and conjunctival suffusion"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_sore_throat",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_arthralgia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_retroorbital_pain",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_oseltamivir",
+          "safety": "safe",
+          "note": "Neuraminidase inhibitor of choice; 75 mg twice daily for 5 days, renally dose-adjusted, preferred in pregnancy."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic relief of fever, headache and myalgia."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "caution",
+          "note": "Salicylates are not given to persons aged 18 or younger with influenza because of Reye syndrome risk (CDC); adult antiplatelet use is not affected."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "avoid",
+          "note": "IDSA 2018 recommends against adjunctive corticosteroids in influenza unless indicated for another condition."
+        }
+      ],
+      "related": [
+        "covid19",
+        "community_acquired_pneumonia",
+        "dengue",
+        "leptospirosis"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "WHO Fact Sheet: Influenza (Seasonal)",
+          "citation_text": "World Health Organization. Influenza (seasonal). Fact sheet. Updated 28 February 2025.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC Influenza Antiviral Medications: Summary for Clinicians",
+          "citation_text": "Centers for Disease Control and Prevention. Influenza Antiviral Medications: Summary for Clinicians.",
+          "url": "https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "IDSA Seasonal Influenza Guideline 2018",
+          "citation_text": "Uyeki TM, Bernstein HH, Bradley JS, et al. Clinical Practice Guidelines by the Infectious Diseases Society of America: 2018 Update on Diagnosis, Treatment, Chemoprophylaxis, and Institutional Outbreak Management of Seasonal Influenza. Clin Infect Dis. 2019;68(6):e1-e47. doi:10.1093/cid/ciy866",
+          "url": "https://www.idsociety.org/practice-guideline/influenza/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Boktor SW, Hafner JW. Influenza. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing. Updated 2023 Jan 23.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459363/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "covid19",
+      "name": "COVID-19",
+      "scientific_name": "Coronavirus disease 2019 (SARS-CoV-2 infection, genus Betacoronavirus)",
+      "body_system": "Respiratory System",
+      "severity": "Moderate",
+      "urgency": "SELF_CARE",
+      "urgency_criteria": "Most non-severe infections in vaccinated, low-risk adults are managed supportively. Adults at high risk of severe disease (older age, chronic disease, immunosuppression, pregnancy, unvaccinated) fall under SEE_DOCTOR_SOON because nirmatrelvir-ritonavir must start within 5 days of onset; dyspnea, low oxygen saturation, persistent chest pain, confusion or drowsiness place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "COVID-19 is an infectious disease caused by SARS-CoV-2, spread mainly through the air via infectious respiratory particles, especially in close contact and poorly ventilated indoor spaces. Illness ranges from asymptomatic infection and mild upper respiratory symptoms to pneumonia, ARDS, thromboembolic disease and multiorgan failure. Older age is the strongest risk factor for severe disease, and a proportion of patients develop post-COVID-19 condition with persistent fatigue and cognitive symptoms.",
+      "pathophysiology": "The spike protein binds angiotensin-converting enzyme 2 (ACE2) on respiratory epithelium, and the host protease TMPRSS2 primes the spike to allow membrane fusion and cell entry. Early disease is driven by viral replication and direct cytopathic injury in the upper and lower airways. In severe disease a later dysregulated immune response with high levels of IL-6, TNF-alpha and other cytokines causes diffuse alveolar damage, increased vascular permeability and pulmonary edema. Endothelial injury and activation of coagulation create a hypercoagulable state that predisposes to venous and arterial thrombosis.",
+      "clinicopathologic_correlation": "Viral replication in the upper airway and olfactory epithelium produces sore throat, rhinorrhea and loss of smell or taste. Alveolar injury and inflammatory exudate produce dyspnea, hypoxemia and bilateral ground-glass opacities, typically worsening in the second week when the host inflammatory phase dominates. The hypercoagulable state correlates with elevated D-dimer and complications such as pulmonary embolism, myocardial infarction and stroke.",
+      "onset_progression": "Symptoms usually begin 3-6 days after exposure (StatPearls reports a median incubation of about 5 days for earlier variants; Omicron lineages have shorter incubation) and commonly last up to 10 days. A minority progress to hypoxemic pneumonia, usually about one week into the illness. Post-COVID-19 condition, with fatigue, breathlessness and memory problems persisting for months, develops in a subset of patients.",
+      "follow_up_monitoring": "Symptom trajectory and oxygen saturation are monitored, particularly during days 5-10 when deterioration is most likely. Hospitalized patients are followed with oxygen requirements, inflammatory markers (CRP), D-dimer, renal and liver function and for thromboembolic complications. Patients with persistent symptoms beyond the acute phase are assessed for post-COVID-19 condition.",
+      "source_attribution": "WHO COVID-19 fact sheet (2025); WHO Therapeutics and COVID-19 living guideline (2025); StatPearls (Cascella et al., 2023); Harrison's 21st ed.",
+      "tags": [
+        "coronavirus",
+        "SARS-CoV-2",
+        "viral",
+        "respiratory infection",
+        "pandemic",
+        "vaccine-preventable"
+      ],
+      "causes": [
+        "SARS-CoV-2, an enveloped positive-sense single-stranded RNA betacoronavirus",
+        "Airborne spread via infectious respiratory particles during breathing, talking, coughing and sneezing",
+        "Close contact and shared, poorly ventilated indoor spaces",
+        "Less commonly, contact with contaminated surfaces"
+      ],
+      "risk_factors": [
+        "Older age (strongest predictor of severe disease and death)",
+        "Lack of vaccination",
+        "Diabetes and obesity",
+        "Chronic lung, heart, liver or kidney disease",
+        "Cancer, immunosuppression and solid organ transplantation",
+        "Pregnancy",
+        "Smoking"
+      ],
+      "recommended_tests": [
+        "RT-PCR of nasopharyngeal or other respiratory specimens (diagnostic standard)",
+        "Rapid antigen test (faster, lower sensitivity)",
+        "Pulse oximetry",
+        "Chest radiograph or CT in moderate-severe disease (bilateral ground-glass opacities)",
+        "CBC (lymphopenia), CRP, D-dimer, renal and liver function tests, troponin in hospitalized patients",
+        "Serology is not used to diagnose acute infection"
+      ],
+      "treatments": [
+        "Non-severe disease at high risk of hospitalization: nirmatrelvir 300 mg + ritonavir 100 mg PO twice daily for 5 days, started within 5 days of symptom onset (150/100 mg if eGFR 30-60; not recommended if eGFR <30 or Child-Pugh C)",
+        "Remdesivir is an alternative antiviral for eligible patients",
+        "Severe or critical disease: systemic corticosteroid (dexamethasone 6 mg daily up to 10 days) plus supplemental oxygen",
+        "Severe or critical disease with progression: IL-6 receptor blocker (tocilizumab) or baricitinib added to corticosteroids",
+        "Thromboprophylaxis with heparin in hospitalized patients; oxygen, high-flow nasal oxygen, noninvasive or invasive ventilation as required",
+        "Corticosteroids are not recommended for non-severe COVID-19",
+        "Ivermectin and hydroxychloroquine are not recommended for COVID-19 treatment (WHO)"
+      ],
+      "home_care": [
+        "Rest, oral hydration and antipyretics for fever and myalgia",
+        "Isolation from others while symptomatic, mask use and good ventilation to limit transmission",
+        "Home monitoring of breathing and, where available, pulse oximetry",
+        "Particular attention to high-risk household members"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "COVID-19 vaccination with revaccination for high-risk groups per national and WHO recommendations."
+        },
+        {
+          "tier": "primary",
+          "content": "Masks in crowded settings, hand hygiene, improved indoor ventilation and staying home when symptomatic."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early testing of symptomatic persons and prompt nirmatrelvir-ritonavir for high-risk patients within 5 days of onset."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Thromboprophylaxis and corticosteroids in hospitalized severe disease; rehabilitation and follow-up for post-COVID-19 condition."
+        }
+      ],
+      "emergency_signs": [
+        "Difficulty breathing or shortness of breath",
+        "Low oxygen saturation or cyanosis",
+        "Persistent chest pain or pressure",
+        "Confusion or drowsiness",
+        "Cold or clammy skin",
+        "Loss of speech or movement"
+      ],
+      "differentials": [
+        {
+          "condition": "Influenza",
+          "distinguishing_feature": "Very similar presentation; distinguished by laboratory testing, loss of smell or taste favors COVID-19"
+        },
+        {
+          "condition": "Bacterial community-acquired pneumonia",
+          "distinguishing_feature": "Purulent sputum and focal lobar consolidation rather than bilateral peripheral ground-glass opacities"
+        },
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, rash, bleeding tendency and thrombocytopenia with little respiratory involvement"
+        },
+        {
+          "condition": "Pulmonary embolism",
+          "distinguishing_feature": "Sudden pleuritic pain and dyspnea with thrombotic risk factors; also a complication of COVID-19"
+        },
+        {
+          "condition": "Acute heart failure",
+          "distinguishing_feature": "Orthopnea, edema, cardiomegaly and response to diuresis"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_anosmia",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_sore_throat",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_nirmatrelvir_ritonavir",
+          "safety": "caution",
+          "note": "Recommended for high-risk non-severe COVID-19 within 5 days of onset, but ritonavir's strong CYP3A inhibition causes serious interactions (boxed warning); renal dose adjustment required."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic control of fever, headache and myalgia."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic corticosteroids (dexamethasone preferred) are recommended only for severe/critical COVID-19 and not for non-severe disease."
+        }
+      ],
+      "related": [
+        "influenza",
+        "community_acquired_pneumonia",
+        "dengue"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Cascella M, Rajnik M, Aleem A, Dulebohn SC, Di Napoli R. Features, Evaluation, and Treatment of Coronavirus (COVID-19). In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing. Updated 2023 Aug 18.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554776/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet: Coronavirus disease (COVID-19)",
+          "citation_text": "World Health Organization. Coronavirus disease (COVID-19). Fact sheet. Updated 27 November 2025.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/coronavirus-disease-(covid-19)",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Therapeutics and COVID-19: living guideline",
+          "citation_text": "World Health Organization. Therapeutics and COVID-19: living guideline, August 2025. Geneva: WHO; 2025.",
+          "url": "https://www.who.int/publications/i/item/B09540",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "measles",
+      "name": "Measles",
+      "scientific_name": "Measles (rubeola); measles virus, genus Morbillivirus, family Paramyxoviridae",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Fever with rash plus cough, coryza or conjunctivitis warrants prompt clinical assessment for confirmation, vitamin A, isolation and public health notification, with advance notice to the facility to prevent waiting-room spread. Breathing difficulty, seizures, altered consciousness, dehydration, or illness in infants, pregnant women, malnourished or immunocompromised persons place it in SEEK_URGENT_CARE or EMERGENCY.",
+      "contagious": true,
+      "description": "Measles is a highly contagious viral illness in which one case can generate up to 18 secondary infections among susceptible people. It presents with high fever and the '3 Cs' (cough, coryza, conjunctivitis), followed by Koplik spots and a maculopapular rash that spreads from the face downward. Complications include pneumonia, diarrhea, otitis media, encephalitis, blindness and the late, fatal subacute sclerosing panencephalitis (SSPE). The Philippines experienced a large outbreak in 2018-2019 linked to falling immunization coverage and vaccine hesitancy.",
+      "pathophysiology": "Measles virus enters through the respiratory tract and infects immune cells (lymphocytes and dendritic cells) that carry it to regional lymph nodes. Viremia disseminates the virus to the skin, respiratory tract, conjunctiva, gastrointestinal tract and other organs. The virus suppresses innate interferon responses during the prodrome, and infection depletes pre-existing memory lymphocytes ('immune amnesia'), leaving patients vulnerable to secondary infections for months. The rash coincides with the appearance of the cell-mediated immune response against infected endothelial cells in the skin.",
+      "clinicopathologic_correlation": "Infection of respiratory and conjunctival epithelium explains the cough, coryza and conjunctivitis of the prodrome, while Koplik spots are an enanthem of the buccal mucosa. The immune-mediated attack on infected dermal capillary endothelium produces the maculopapular rash that appears as antibodies develop. Measles-induced immunosuppression explains the frequency of secondary bacterial pneumonia, otitis media and diarrhea, and vitamin A depletion links the infection to corneal damage and blindness in malnourished children.",
+      "onset_progression": "Incubation is about 10-14 days (range 6-21 days). A 2-4 day prodrome of fever, cough, coryza and conjunctivitis is followed by Koplik spots 1-2 days before the rash. The rash appears around 14 days after exposure at the hairline and face, spreads down to the trunk and extremities over about 3 days and fades in the same order. Patients are infectious from 4 days before to 4 days after rash onset. SSPE can appear 7-10 years after the acute illness.",
+      "follow_up_monitoring": "Hydration, nutrition, respiratory status and neurologic status are monitored during the acute illness, with attention to pneumonia, otitis media, diarrhea and encephalitis. Vitamin A is given as two doses 24 hours apart, with a third dose weeks later if there are eye signs of deficiency. Contacts are traced for post-exposure prophylaxis, and airborne isolation is maintained until 4 days after rash onset.",
+      "source_attribution": "WHO measles fact sheet (2026); CDC Clinical Overview of Measles; StatPearls (Kondamudi et al., 2025); WHO Philippines measles outbreak Q&A (2019); Harrison's 21st ed.",
+      "tags": [
+        "rubeola",
+        "viral exanthem",
+        "vaccine-preventable",
+        "airborne",
+        "notifiable disease"
+      ],
+      "causes": [
+        "Measles virus (enveloped, single-stranded negative-sense RNA virus, genus Morbillivirus)",
+        "Airborne and respiratory droplet transmission; virus remains infectious in air for up to 2 hours",
+        "Close contact with an infected person from 4 days before to 4 days after rash onset"
+      ],
+      "risk_factors": [
+        "Unvaccinated or incompletely vaccinated status",
+        "Children under 5 years (highest mortality)",
+        "Malnutrition and vitamin A deficiency",
+        "Immunocompromise, including HIV",
+        "Pregnancy (risk of miscarriage, preterm birth and low birth weight)",
+        "Crowded living conditions and communities with low vaccination coverage"
+      ],
+      "recommended_tests": [
+        "Measles RT-PCR on throat, nasopharyngeal or urine specimens (most sensitive in the first days after rash onset)",
+        "Serum measles-specific IgM (may be falsely negative if collected very early after rash onset)",
+        "Chest radiograph when pneumonia is suspected",
+        "CBC and electrolytes in moderate-severe illness or dehydration",
+        "Notification to public health authorities for case confirmation and contact tracing"
+      ],
+      "treatments": [
+        "No specific antiviral therapy; management is supportive (antipyretics, fluids, nutrition)",
+        "Vitamin A: two doses 24 hours apart (200,000 IU for age 12 months and older, 100,000 IU for 6-11 months, 50,000 IU under 6 months), with a third dose 4-6 weeks later if signs of deficiency",
+        "Antibiotics directed at secondary bacterial complications such as otitis media and pneumonia",
+        "Airborne isolation until 4 days after rash onset",
+        "Hospital care for pneumonia, encephalitis, severe dehydration or severe malnutrition"
+      ],
+      "home_care": [
+        "Isolation at home away from unvaccinated persons, infants and pregnant women until 4 days after rash onset",
+        "Maintenance of fluid and nutritional intake, including continued breastfeeding in infants",
+        "Antipyretic use for fever",
+        "Cleaning of eye discharge and avoidance of bright light for ocular comfort"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Two doses of measles-containing vaccine; in the Philippines MCV1 is given at 9 months and MCV2 at 12 months, with vaccination from 6 months of age during outbreaks."
+        },
+        {
+          "tier": "primary",
+          "content": "Post-exposure prophylaxis for susceptible contacts: measles vaccine within 72 hours of exposure, or immune globulin within 6 days for those who cannot be vaccinated (infants, pregnant, immunocompromised)."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early case recognition, laboratory confirmation, prompt vitamin A and airborne isolation to limit spread and complications."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Management of pneumonia, diarrhea and eye complications, nutritional rehabilitation, and awareness of long-term immune amnesia and SSPE."
+        }
+      ],
+      "emergency_signs": [
+        "Difficulty breathing or fast breathing",
+        "Seizures, drowsiness or altered consciousness",
+        "Signs of dehydration or inability to drink",
+        "Corneal clouding or visual loss",
+        "Bleeding or purpuric rash",
+        "Stiff neck or severe headache"
+      ],
+      "differentials": [
+        {
+          "condition": "Rubella",
+          "distinguishing_feature": "Milder illness with postauricular and suboccipital lymphadenopathy, low fever, no Koplik spots"
+        },
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, bleeding manifestations and thrombocytopenia; lacks the 3 Cs and Koplik spots"
+        },
+        {
+          "condition": "Kawasaki disease",
+          "distinguishing_feature": "Young children with fever of 5 days or more, strawberry tongue, cracked lips, extremity changes, nonexudative conjunctivitis"
+        },
+        {
+          "condition": "Scarlet fever",
+          "distinguishing_feature": "Exudative pharyngitis with a fine sandpaper-like rash and circumoral pallor"
+        },
+        {
+          "condition": "Meningococcemia",
+          "distinguishing_feature": "Rapidly progressive petechial or purpuric rash with signs of sepsis"
+        },
+        {
+          "condition": "Drug eruption",
+          "distinguishing_feature": "Recent new drug exposure, no respiratory prodrome or Koplik spots"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_koplik_spots",
+          "typical_intensity": 4,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_conjunctivitis",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.4
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Supportive control of high fever and discomfort."
+        },
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "safe",
+          "note": "No antiviral effect; used only for secondary bacterial complications such as otitis media and pneumonia."
+        }
+      ],
+      "related": [
+        "dengue",
+        "influenza",
+        "community_acquired_pneumonia",
+        "acute_gastroenteritis",
+        "varicella"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "WHO Fact Sheet: Measles",
+          "citation_text": "World Health Organization. Measles. Fact sheet. Updated 15 July 2026.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/measles",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC Clinical Overview of Measles",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Measles. Measles (Rubeola) for Healthcare Providers.",
+          "url": "https://www.cdc.gov/measles/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Kondamudi NP, Tobin EH, Waymack JR. Measles. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing. Updated 2025 May 5.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448068/",
+          "specialty": "Pediatrics",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Philippines: Measles outbreak Q&A",
+          "citation_text": "World Health Organization Philippines. Questions and answers on the measles outbreak in the Philippines. 26 February 2019.",
+          "url": "https://www.who.int/philippines/news/feature-stories/detail/questions-and-answers-on-the-measles-outbreak-in-the-philippines",
+          "specialty": "Public Health",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "acute_gastroenteritis",
+      "name": "Acute Infectious Gastroenteritis (Acute Diarrhea)",
+      "scientific_name": "Acute infectious gastroenteritis / acute infectious diarrhea",
+      "body_system": "Digestive System",
+      "severity": "Mild",
+      "urgency": "SELF_CARE",
+      "urgency_criteria": "Acute watery diarrhea without dehydration is usually self-limited and managed with oral rehydration. Bloody or mucoid stools, fever, severe abdominal pain, persistent vomiting, age >65 or immunosuppression move to SEE_DOCTOR_SOON or SEEK_URGENT_CARE; severe dehydration (lethargy, sunken eyes, inability to drink, markedly reduced urine output, hypotension) or profuse rice-water stools suggesting cholera are EMERGENCY.",
+      "contagious": true,
+      "description": "Acute infectious gastroenteritis is inflammation of the stomach and intestines caused by viruses, bacteria or parasites, presenting as three or more loose or liquid stools per day, often with vomiting and abdominal cramps. Viruses, especially norovirus and in children rotavirus, cause most cases, while bacteria such as Salmonella, Campylobacter, Shigella, E. coli and Vibrio cholerae cause more severe or dysenteric illness. Spread is fecal-oral through contaminated water and food or person-to-person contact. Dehydration is the main complication, and diarrheal disease remains a leading cause of death in young children worldwide.",
+      "pathophysiology": "Enteric pathogens cause diarrhea by several mechanisms. Enterotoxin-producing organisms such as Vibrio cholerae and enterotoxigenic E. coli stimulate intestinal chloride and water secretion without damaging the mucosa, producing large-volume watery stools. Viruses such as rotavirus and norovirus injure small-intestinal villi, causing malabsorption and osmotic and secretory diarrhea. Invasive and cytotoxin-producing bacteria such as Shigella, Campylobacter and enteroinvasive E. coli invade the colonic epithelium, producing inflammation, ulceration and dysentery with blood and mucus. Shiga toxin-producing E. coli can damage endothelium systemically and cause hemolytic uremic syndrome.",
+      "clinicopathologic_correlation": "Secretory, toxin-mediated disease produces profuse watery stools with little fever and rapid dehydration, while mucosal invasion produces fever, tenesmus, small-volume bloody or mucoid stools and abdominal tenderness. Volume and electrolyte losses explain thirst, dizziness, oliguria, tachycardia and, when severe, hypotension and altered sensorium. Norovirus and other small-bowel viral infections commonly present with prominent vomiting and cramping.",
+      "onset_progression": "Incubation ranges from a few hours for preformed toxins to several days for invasive bacteria and parasites; cholera incubates 12 hours to 5 days. Viral gastroenteritis typically begins suddenly and resolves in 1-3 days in healthy adults. Bacterial diarrhea may last longer, and diarrhea persisting 14 days or more is classified as persistent and prompts evaluation for parasites and noninfectious causes.",
+      "follow_up_monitoring": "Hydration status (thirst, mucous membranes, skin turgor, urine output, orthostatic vital signs, mental status) is reassessed during rehydration. Serum electrolytes and renal function are checked in severe dehydration. After bloody diarrhea, particularly with confirmed STEC, CBC, platelets and creatinine are monitored for hemolytic uremic syndrome; persistent symptoms prompt stool studies.",
+      "source_attribution": "WHO diarrhoeal disease fact sheet (2024); WHO cholera fact sheet (2024); IDSA 2017 infectious diarrhea guideline; StatPearls Viral Gastroenteritis (2025) and Bacterial Gastroenteritis (archived, 2023); Harrison's 21st ed.",
+      "tags": [
+        "diarrhea",
+        "gastroenteritis",
+        "dehydration",
+        "food and waterborne",
+        "ORS"
+      ],
+      "causes": [
+        "Viruses: norovirus (most common in adults and outbreaks), rotavirus (children), adenovirus, astrovirus",
+        "Bacteria: nontyphoidal Salmonella, Campylobacter, Shigella, diarrheagenic E. coli (ETEC, STEC), Vibrio cholerae",
+        "Clostridioides difficile, especially after antibiotic exposure",
+        "Parasites: Giardia, Cryptosporidium, Entamoeba histolytica",
+        "Preformed toxins in contaminated food (e.g., Staphylococcus aureus, Bacillus cereus)",
+        "Fecal-oral transmission through contaminated water or food and poor hand hygiene"
+      ],
+      "risk_factors": [
+        "Unsafe drinking water and inadequate sanitation",
+        "Poor hand hygiene and unsafe food handling",
+        "Travel to areas with poor sanitation",
+        "Flooding and crowding (e.g., evacuation centers)",
+        "Recent antibiotic use or hospitalization (C. difficile)",
+        "Extremes of age, immunosuppression and malnutrition (risk of severe disease)"
+      ],
+      "recommended_tests": [
+        "Clinical assessment of dehydration severity is the key initial evaluation",
+        "Stool testing (culture or multiplex molecular panel) for fever, bloody or mucoid stools, severe abdominal pain, sepsis, immunosuppression or outbreak settings",
+        "Shiga toxin testing in bloody diarrhea",
+        "C. difficile testing after recent antibiotic exposure or hospitalization",
+        "Serum electrolytes, BUN and creatinine in severe dehydration",
+        "Stool microscopy for ova and parasites in persistent diarrhea"
+      ],
+      "treatments": [
+        "Reduced-osmolarity oral rehydration solution is first-line for mild to moderate dehydration",
+        "Intravenous isotonic crystalloid for severe dehydration, shock or failure of oral rehydration",
+        "Antibiotics are not recommended for most immunocompetent adults with acute watery diarrhea",
+        "Empiric antibiotic (azithromycin, or a fluoroquinolone such as ciprofloxacin guided by local susceptibility) for febrile bloody diarrhea suggesting Shigella, travelers with fever >=38.5 C or sepsis, and immunocompromised hosts",
+        "Antibiotics are avoided in STEC O157 and Shiga toxin 2-producing E. coli infection because of the risk of hemolytic uremic syndrome",
+        "Antibiotics alongside aggressive rehydration in severe cholera (tetracyclines such as doxycycline are active against Vibrio)",
+        "Loperamide may be used in immunocompetent adults with acute watery diarrhea but is avoided with fever, bloody or inflammatory diarrhea, or suspected toxic megacolon",
+        "Zinc supplementation for children 6 months to 5 years in zinc-deficient settings"
+      ],
+      "home_care": [
+        "Frequent small volumes of oral rehydration solution matched to ongoing losses",
+        "Early resumption of a normal diet and continued breastfeeding in infants",
+        "Handwashing with soap and water after toilet use and before food preparation; alcohol hand rubs are less effective against norovirus",
+        "Disinfection of contaminated surfaces with chlorine bleach solution",
+        "Avoidance of preparing food for others while symptomatic"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Safe drinking water, improved sanitation, handwashing with soap and safe food handling."
+        },
+        {
+          "tier": "primary",
+          "content": "Rotavirus vaccination in infants, exclusive breastfeeding for the first 6 months, and oral cholera vaccine in outbreak or high-risk settings."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early oral rehydration at the onset of diarrhea and prompt recognition of dehydration and dysentery."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Targeted stool testing and pathogen-directed therapy, monitoring for hemolytic uremic syndrome after STEC, and recognition of post-infectious complications such as reactive arthritis and Guillain-Barre syndrome after Campylobacter."
+        }
+      ],
+      "emergency_signs": [
+        "Lethargy, confusion or reduced consciousness",
+        "Inability to drink or persistent vomiting preventing oral rehydration",
+        "Sunken eyes and very slow skin turgor",
+        "Markedly reduced or absent urine output",
+        "Profuse rice-water diarrhea",
+        "Bloody diarrhea with high fever or severe abdominal pain",
+        "Low blood pressure, fast pulse or fainting"
+      ],
+      "differentials": [
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "Stepwise sustained fever, relative bradycardia, abdominal pain and constipation as often as diarrhea"
+        },
+        {
+          "condition": "Acute appendicitis",
+          "distinguishing_feature": "Periumbilical pain migrating to the right lower quadrant with localized tenderness; diarrhea is minimal"
+        },
+        {
+          "condition": "Clostridioides difficile infection",
+          "distinguishing_feature": "Recent antibiotic use or hospitalization; positive C. difficile toxin/PCR"
+        },
+        {
+          "condition": "Inflammatory bowel disease",
+          "distinguishing_feature": "Chronic or relapsing bloody diarrhea, weight loss and extraintestinal features"
+        },
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "High fever with myalgia, retro-orbital pain and thrombocytopenia; abdominal pain and vomiting can be warning signs"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Flood exposure, calf tenderness, conjunctival suffusion, and possible jaundice or renal failure"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_decreased_urine",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_dizziness",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.5
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_ors",
+          "safety": "safe",
+          "note": "Reduced-osmolarity ORS is first-line therapy for mild to moderate dehydration at all ages."
+        },
+        {
+          "medicine_id": "med_loperamide",
+          "safety": "caution",
+          "note": "Acceptable for acute watery diarrhea in immunocompetent adults; avoided with fever, bloody/inflammatory diarrhea or suspected toxic megacolon."
+        },
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Empiric agent when antibiotics are indicated (febrile dysentery, febrile travelers, immunocompromised); not used for routine watery diarrhea."
+        },
+        {
+          "medicine_id": "med_ciprofloxacin",
+          "safety": "caution",
+          "note": "Empiric fluoroquinolone option only when antibiotics are indicated, chosen according to local susceptibility patterns."
+        },
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "Tetracyclines are active against Vibrio cholerae and are used with rehydration in severe cholera."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic control of fever and discomfort."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "caution",
+          "note": "NSAIDs raise the risk of acute kidney injury in volume-depleted, dehydrated patients."
+        }
+      ],
+      "related": [
+        "typhoid_fever",
+        "dengue",
+        "leptospirosis",
+        "cholera"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "WHO Fact Sheet: Diarrhoeal disease",
+          "citation_text": "World Health Organization. Diarrhoeal disease. Fact sheet. Updated 7 March 2024.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease",
+          "specialty": "Gastroenterology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "IDSA Infectious Diarrhea Guideline 2017",
+          "citation_text": "Shane AL, Mody RK, Crump JA, et al. 2017 Infectious Diseases Society of America Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea. Clin Infect Dis. 2017;65(12):e45-e80. doi:10.1093/cid/cix669",
+          "url": "https://www.idsociety.org/practice-guideline/infectious-diarrhea/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "StatPearls",
+          "citation_text": "Stuempfig ND, Tobin EH, Seroy J. Viral Gastroenteritis. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing. Updated 2025 May 4.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK518995/",
+          "specialty": "Gastroenterology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet: Cholera",
+          "citation_text": "World Health Organization. Cholera. Fact sheet. Updated 5 December 2024.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/cholera",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

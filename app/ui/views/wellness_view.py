@@ -27,14 +27,16 @@ from app.ui.views.wellness_panels import (
     EnergyPanel,
     HydrationPanel,
     SleepPanel,
+    VitalSignsPanel,
 )
 
 
 class WellnessView(QWidget):
-    """Hosts the five calculator panels."""
+    """Hosts the calculator panels."""
 
     TABS = (
         ("bmi", "Body Mass Index"),
+        ("vitals", "Vital Signs"),
         ("hydration", "Hydration"),
         ("sleep", "Sleep"),
         ("energy", "BMR && Energy"),   # "&&" shows one "&"; a single "&" marks a shortcut key
@@ -51,9 +53,10 @@ class WellnessView(QWidget):
         self.sleep = SleepPanel()
         self.energy = EnergyPanel()
         self.converter = ConverterPanel()
+        self.vitals = VitalSignsPanel()
         panels = {
             "bmi": self.bmi, "hydration": self.hydration, "sleep": self.sleep,
-            "energy": self.energy, "converter": self.converter,
+            "energy": self.energy, "converter": self.converter, "vitals": self.vitals,
         }
 
         root = QVBoxLayout(self)
@@ -126,8 +129,8 @@ class WellnessView(QWidget):
         layout.addLayout(row)
 
         subtitle = QLabel(
-            "BMI with Philippine cutoffs, daily water, sleep, energy needs, and "
-            "clinical unit conversion."
+            "BMI with Philippine cutoffs (WHO z-scores for children), vital signs by "
+            "age, daily water, sleep, energy needs, and clinical unit conversion."
         )
         subtitle.setObjectName("pageSubtitle")
         subtitle.setWordWrap(True)

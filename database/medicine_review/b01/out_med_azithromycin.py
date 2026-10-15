@@ -1,0 +1,105 @@
+PNF_URL = "https://www.philhealth.gov.ph/partners/providers/pdf/PNF-EML_11022022.pdf"
+CAP_URL = "https://products.mhra.gov.uk/search/?search=azithromycin#emc-1073"
+SUSP_URL = "https://products.mhra.gov.uk/search/?search=azithromycin#emc-3006"
+IV_URL = "https://labeling.pfizer.com/ShowLabeling.aspx?id=1181"
+MSF_URL = "https://medicalguidelines.msf.org/en/viewport/EssDr/english/azithromycin-oral-16685286.html"
+DM_URL = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=330a082d-57b2-2bf5-e054-00144ff88e88"
+
+MED = {
+  "id": "med_azithromycin",
+  "desc_add": "In the Philippines it is listed in the PNF as capsules, tablets, oral suspension and a vial for IV infusion. Beyond respiratory and sexually transmitted infections, it is used as a single-dose treatment for cholera and trachoma and as a 7-day oral option for typhoid fever.",
+  "facts": {
+    "indication": [
+      "Acute otitis media",
+      "Gonococcal urethritis/cervicitis (together with a second agent such as ceftriaxone)",
+      "Pelvic inflammatory disease (IV then oral)",
+      "Typhoid fever",
+      "Cholera (single dose, susceptible strains)",
+      "Pertussis",
+      "Leptospirosis",
+      "Trachoma (single dose)",
+      "Yaws (single dose)",
+      "Shigellosis (second-line)",
+    ],
+    "adverse": [
+      "Vomiting, headache",
+      "Deafness and tinnitus (hearing disorders usually reversible)",
+      "Dizziness, drowsiness, convulsions",
+      "Visual impairment (uncommon)",
+      "Decreased lymphocytes and bicarbonate; increased eosinophils",
+      "Electrolyte disturbances",
+    ],
+    "contraindication": [
+      "Severe hepatic impairment",
+    ],
+    "interaction": [
+      "Ergot derivatives: do not co-administer (risk of ergotism).",
+      "Ciclosporin: peak levels rise about 24%; monitor and adjust.",
+      "Statins (e.g., atorvastatin): rhabdomyolysis reported; use with caution.",
+      "Dabigatran: possible increased bleeding risk.",
+      "Antimalarials with QT effect (artemether-lumefantrine, chloroquine, mefloquine, quinine), amiodarone, fluconazole, ondansetron: avoid combining (QT prolongation).",
+      "Aluminium/magnesium hydroxide antacids: separate doses by 2 hours.",
+    ],
+    "brand_ph": [],
+    "brand_intl": [],
+  },
+  "refs": [
+    ("UK SmPC (emc)", "Zithromax 250 mg Capsules. Summary of Product Characteristics. Pfizer Ltd; updated July 2026. electronic medicines compendium (emc).", CAP_URL),
+    ("UK SmPC (emc)", "Zithromax 200 mg/5 ml Powder for Oral Suspension. Summary of Product Characteristics. Pfizer Ltd; updated July 2026. electronic medicines compendium (emc).", SUSP_URL),
+    ("Pfizer labeling (US)", "ZITHROMAX (azithromycin dihydrate) injection, powder, lyophilized, for solution. Prescribing information. Pfizer Inc; revised 2026.", IV_URL),
+    ("MSF Essential Drugs", "Médecins Sans Frontières. Essential drugs – Azithromycin oral. MSF Medical Guidelines; updated June 2025.", MSF_URL),
+    ("PhilHealth / DOH (PNF-EML)", "Philippine National Formulary – Essential Medicines List. Department of Health / PhilHealth; 2022.", PNF_URL),
+  ],
+  "links": [
+    ("heart_failure", "caution", "QT/arrhythmia risk; use with caution in severe cardiac insufficiency (UK SmPC)."),
+    ("malaria", "caution", "Avoid combining with QT-prolonging antimalarials (artemether-lumefantrine, quinine, mefloquine, chloroquine)."),
+  ],
+  "sources": [
+    ("Label · UK SmPC", "UK SmPC (emc)", "Zithromax 250 mg Capsules / 200 mg/5 ml Powder for Oral Suspension. Summary of Product Characteristics. Pfizer Ltd; July 2026.", CAP_URL),
+    ("Label · UK SmPC susp", "UK SmPC (emc)", "Zithromax 200 mg/5 ml Powder for Oral Suspension. Summary of Product Characteristics. Pfizer Ltd; July 2026.", SUSP_URL),
+    ("Label · US IV", "Pfizer labeling (US)", "ZITHROMAX (azithromycin) for injection. Prescribing information. Pfizer Inc; 2026.", IV_URL),
+    ("MSF 2025", "MSF Essential Drugs", "Médecins Sans Frontières. Essential drugs – Azithromycin oral. Updated June 2025.", MSF_URL),
+    ("PNF", "Philippine National Formulary – EML", "Philippine National Formulary – Essential Medicines List. DOH / PhilHealth; 2022.", PNF_URL),
+  ],
+  "doses": [
+    ("adult", "CAP, sinusitis, pharyngitis, skin infections", "PO", "500 mg", "Once a day", "3 days", "1.5 g/course", "Label · UK SmPC", "Or 500 mg day 1, then 250 mg days 2–5"),
+    ("adult", "Chlamydial urethritis/cervicitis", "PO", "1 g", "Single dose", "1 day", "—", "Label · UK SmPC", ""),
+    ("adult", "Gonorrhoea (with ceftriaxone)", "PO", "1–2 g", "Single dose", "1 day", "—", "Label · UK SmPC", "Give with a second antibacterial"),
+    ("adult", "CAP (hospitalised)", "IV", "500 mg", "Once a day", "≥2 days, then PO to 7–10 days", "—", "Label · US IV", "Switch to 500 mg PO once a day"),
+    ("adult", "Pelvic inflammatory disease", "IV", "500 mg", "Once a day", "1–2 days, then PO to 7 days", "—", "Label · US IV", "Then 250 mg PO once a day"),
+    ("adult", "Typhoid fever", "PO", "500 mg–1 g", "Once a day", "7 days", "1 g/day", "MSF 2025", "Or 1 g day 1, then 500 mg days 2–7"),
+    ("adult", "Cholera", "PO", "1 g", "Single dose", "1 day", "—", "MSF 2025", "If strain susceptible"),
+    ("adult", "Leptospirosis", "PO", "1 g day 1, then 500 mg", "Once a day", "3 days", "—", "MSF 2025", ""),
+    ("adult", "Trachoma", "PO", "1 g", "Single dose", "1 day", "—", "MSF 2025", ""),
+    ("child", "CAP, sinusitis, skin infections (≥6 mo)", "PO", "10 mg/kg", "Once a day", "3 days", "500 mg/day; 1.5 g/course", "Label · UK SmPC susp", "Or 10 mg/kg day 1, then 5 mg/kg days 2–5"),
+    ("child", "Acute otitis media (≥6 mo)", "PO", "30 mg/kg", "Single dose", "1 day", "1.5 g", "Label · UK SmPC susp", "Or a 3- or 5-day regimen"),
+    ("child", "Streptococcal pharyngitis (≥2 y)", "PO", "20 mg/kg", "Once a day", "3 days", "500 mg/day", "Label · UK SmPC susp", "Or 12 mg/kg once a day for 5 days"),
+    ("child", "Typhoid fever", "PO", "10–20 mg/kg", "Once a day", "7 days", "1 g/day", "MSF 2025", ""),
+    ("child", "Cholera", "PO", "20 mg/kg", "Single dose", "1 day", "1 g", "MSF 2025", "If strain susceptible"),
+    ("child", "Leptospirosis", "PO", "10 mg/kg day 1, then 5 mg/kg", "Once a day", "3 days", "500 mg day 1; 250 mg/day", "MSF 2025", ""),
+    ("child", "Pertussis (<6 mo)", "PO", "10 mg/kg", "Once a day", "5 days", "—", "MSF 2025", "Caution <6 weeks (pyloric stenosis)"),
+    ("child", "Pertussis (≥6 mo)", "PO", "10 mg/kg day 1, then 5 mg/kg", "Once a day", "5 days", "500 mg day 1; 250 mg/day", "MSF 2025", ""),
+  ],
+  "notes": [
+    ("renal", "No dose adjustment.", "GFR ≥10", "Label · UK SmPC"),
+    ("renal", "Use with caution.", "GFR <10", "Label · UK SmPC"),
+    ("hepatic", "No adjustment in mild–moderate impairment; use with caution in severe impairment (no data).", "", "Label · UK SmPC"),
+    ("elderly", "No dose adjustment, but extra caution because of arrhythmia/QT risk.", "", "Label · UK SmPC"),
+    ("pregnancy", "Use only if clinically needed; >7000 exposed pregnancies showed no clear rise in major malformations. Excreted substantially in breast milk.", "", "Label · UK SmPC"),
+    ("administration", "Capsules: swallow whole at least 1 h before or 2 h after a meal. Suspension: with or without food; shake before each dose.", "", "Label · UK SmPC susp"),
+    ("administration", "IV: infuse 1 mg/mL over 3 h or 2 mg/mL over 1 h; never as IV bolus or IM.", "", "Label · US IV"),
+    ("administration", "Missed dose: take if ≤12 h late, otherwise wait for the next scheduled dose.", "", "Label · UK SmPC"),
+    ("forms_ph", "Capsule 250 mg; tablet 250 mg, 500 mg; powder for suspension 200 mg/5 mL (15 mL, 60 mL); powder for IV infusion 500 mg vial.", "", "PNF"),
+    ("monitor", "Check ECG and K/Mg in patients with QT risk (bradycardia, arrhythmia, heart failure, QT-prolonging drugs).", "", "Label · UK SmPC"),
+    ("monitor", "Stop and check liver tests if jaundice, dark urine or other hepatitis symptoms appear.", "", "Label · UK SmPC"),
+    ("monitor", "Infants in the first 42 days: watch for projectile vomiting or feeding irritability (pyloric stenosis).", "", "Label · UK SmPC susp"),
+  ],
+  "checked": [
+    (PNF_URL, "Azithromycin Oral: 250 mg capsule; 250 mg and 500 mg (B) tablet; 200 mg/5 mL powder for suspension 15 mL and 60 mL; Inj.: 500 mg powder, vial (IV infusion)."),
+    (CAP_URL, "Zithromax 250 mg capsules SmPC (Pfizer, July 2026): indications incl. AOM, gonococcal urethritis/cervicitis with second agent e.g. ceftriaxone; 500 mg/day x3 days (1500 mg total) or 500 mg then 250 mg days 2–5; chlamydia 1 g; gonorrhoea 1 g or 2 g; missed dose ≤12 h; GFR ≥10 no adjustment, <10 caution; hepatic mild–moderate no adjustment, severe caution; elderly caution; 1 h before/2 h after meal; ergot avoid; QT cautions; ciclosporin +24%; statins rhabdomyolysis; dabigatran; pregnancy >7000 exposures; breast milk; AEs vomiting, headache, lymphocytes/bicarbonate decreased, eosinophils increased, visual impairment, dizziness, deafness, tinnitus, convulsions."),
+    (SUSP_URL, "Zithromax 200 mg/5 ml suspension SmPC: children ≥6 mo <45 kg 10 mg/kg x3 days or 10 then 5 mg/kg days 2–5; AOM single 30 mg/kg; strep pharyngitis ≥2 y 20 mg/kg x3 days or 12 mg/kg x5 days; daily max 500 mg (except AOM single dose), total max 1500 mg; with or without meal, shake; IHPS within first 42 days."),
+    (IV_URL, "Zithromax IV label: CAP 500 mg IV daily ≥2 days then oral 500 mg to complete 7–10 days; PID 500 mg IV 1–2 days then 250 mg oral to complete 7 days; 1 mg/mL over 3 h or 2 mg/mL over 1 h; no bolus or IM; pediatric IV safety not established."),
+    (MSF_URL, "MSF azithromycin oral (June 2025): typhoid adult 500 mg–1 g OD x7 days (or 1 g then 500 mg), child 10–20 mg/kg max 1 g x7 d; cholera 1 g / 20 mg/kg max 1 g single; trachoma 1 g / 20 mg/kg; leptospirosis adult 1 g then 500 mg days 2–3, child 10 then 5 mg/kg; pertussis <6 mo 10 mg/kg x5 d, ≥6 mo 10 then 5 mg/kg; yaws; shigellosis second-line; contraindicated in severe hepatic impairment; antacids separate 2 h; avoid with QT drugs incl. co-artemether, chloroquine, mefloquine, quinine, amiodarone, fluconazole, ondansetron; reversible hearing disorders, electrolyte disturbances."),
+    (DM_URL, "Zithromax US tablet label (oral only, no IV dosing); pediatric AOM 30 mg/kg single dose capped at 1500 mg (cross-check)."),
+  ],
+}

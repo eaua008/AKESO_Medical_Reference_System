@@ -1,0 +1,737 @@
+{
+  "diseases": [
+    {
+      "id": "hfmd",
+      "name": "Hand, Foot and Mouth Disease",
+      "scientific_name": "Enteroviral vesicular stomatitis with exanthem (coxsackievirus A16, coxsackievirus A6, enterovirus A71)",
+      "body_system": "Integumentary System",
+      "severity": "Mild",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Typical HFMD in a child who is drinking adequately is mild and self-limited, but clinical review is warranted to confirm the diagnosis, and DOH advises consultation at a health center once symptoms appear. Review is also indicated for poor oral intake with concern for dehydration, fever lasting more than 3 days, or symptoms not improving after 10 days (CDC). Neurologic signs (lethargy, severe headache, neck stiffness, limb weakness, seizures) or breathing difficulty suggest enterovirus A71-associated meningitis, encephalitis or cardiopulmonary involvement and place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "Hand, foot and mouth disease (HFMD) is a common, highly contagious enteroviral infection that mainly affects infants and children younger than 5 years, although adolescents and adults can also be infected. It presents with fever, painful mouth sores and a vesicular rash on the palms, soles and buttocks. Most cases are mild and resolve in 7-10 days, but enterovirus A71 can cause rare neurologic and cardiopulmonary complications. The Philippines reported a sharp rise in cases in early 2025, with DOH recording 7,598 cases from January 1 to February 22, 2025, nearly three times the number for the same period in 2024.",
+      "pathophysiology": "The enteroviruses that cause HFMD are acquired by oral ingestion of virus shed from the gastrointestinal or upper respiratory tract of an infected person, or from vesicle fluid and oral secretions. The virus replicates in the oropharyngeal and intestinal mucosa and regional lymphoid tissue, then spreads by viremia to the oral mucosa and skin, where infection of epithelial cells produces vesicles surrounded by erythema. Coxsackievirus A16 is the most common cause; coxsackievirus A6 has emerged as another major cause worldwide, and enterovirus A71 is associated with most severe neurologic disease.",
+      "clinicopathologic_correlation": "Oral vesicles rupture to form painful superficial ulcers with a grey-yellow base and erythematous rim, which cause odynophagia, reduced intake and a risk of dehydration. Skin lesions on the hands, feet, buttocks and legs are vesicles on an erythematous base that are usually non-pruritic and heal without scarring. Neurotropic enterovirus A71 accounts for aseptic meningitis, encephalitis and polio-like flaccid paralysis in a small minority of patients.",
+      "onset_progression": "Incubation is about 3-6 days. Illness begins with fever, reduced appetite, sore throat and malaise, followed 1-2 days later by small red spots on the tongue and inner mouth that blister and become painful. A rash then appears on the palms and soles and may involve the buttocks, legs and arms. Most children recover within 7-10 days. Nail shedding (onychomadesis) may follow weeks later in rare cases.",
+      "follow_up_monitoring": "Oral intake, urine output and hydration are monitored during the painful ulcer phase. Children are observed for neurologic signs (lethargy, irritability, limb weakness, seizures) and respiratory distress, particularly during outbreaks involving enterovirus A71. DOH advises home isolation for 7-10 days or until the fever resolves, with absence from school or work.",
+      "source_attribution": "StatPearls: Hand, Foot, and Mouth Disease (2023); CDC HFMD Symptoms and Complications and About HFMD; WHO Western Pacific health topic on HFMD; DOH statement via Philippine News Agency (March 2025); Nelson Textbook of Pediatrics, 22nd ed.",
+      "tags": [
+        "enterovirus",
+        "pediatric",
+        "viral exanthem",
+        "outbreak-prone",
+        "daycare"
+      ],
+      "causes": [
+        "Coxsackievirus A16, the most common cause",
+        "Coxsackievirus A6, an increasingly frequent cause worldwide",
+        "Enterovirus A71, associated with severe neurologic complications",
+        "Transmission by contact with saliva, respiratory secretions or blister fluid, by the fecal-oral route, and via contaminated objects and surfaces"
+      ],
+      "risk_factors": [
+        "Age under 5 years (more than 90% of cases in some series)",
+        "Attendance at daycare centers and schools, where outbreaks spread quickly",
+        "Close or household contact with an infected person",
+        "Poor hand hygiene and touching the eyes, nose or mouth after handling contaminated objects",
+        "Community outbreaks, including the 2025 surge in the Philippines"
+      ],
+      "recommended_tests": [
+        "Clinical diagnosis based on oral ulcers with vesicular rash on the hands, feet and buttocks",
+        "Enterovirus PCR of a vesicle or lesion swab when confirmation or strain identification is needed",
+        "Assessment of hydration with serum electrolytes in children with poor oral intake",
+        "Cerebrospinal fluid analysis when meningitis or encephalitis is suspected"
+      ],
+      "treatments": [
+        "No specific antiviral therapy; management is supportive",
+        "Paracetamol or an NSAID such as ibuprofen for fever and pain from mouth sores",
+        "Maintenance of hydration with oral fluids, with IV fluids if oral intake is inadequate",
+        "Topical oral analgesia; StatPearls notes that an ibuprofen/diphenhydramine gargle mixture may ease ulcer pain in older children",
+        "Hospital-based supportive care for neurologic or cardiopulmonary complications of enterovirus A71"
+      ],
+      "home_care": [
+        "Frequent small amounts of fluid to prevent dehydration while mouth sores make swallowing painful",
+        "Paracetamol for fever and oral pain at weight-appropriate doses",
+        "Home isolation for 7-10 days or until the fever resolves, with absence from school or daycare (DOH)",
+        "Handwashing with soap and water for at least 20 seconds, and cleaning of frequently touched surfaces and toys"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Handwashing with soap and water for at least 20 seconds has been shown to reduce HFMD transmission (StatPearls, CDC, DOH)."
+        },
+        {
+          "tier": "primary",
+          "content": "Cleaning and disinfection of frequently touched surfaces, and avoidance of close contact with infected persons."
+        },
+        {
+          "tier": "primary",
+          "content": "Strain-specific inactivated enterovirus A71 vaccines are approved in China (about 94.7% efficacy over roughly 2 years); no HFMD vaccine is in routine use in the Philippines."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early recognition and home isolation of cases for 7-10 days or until afebrile to limit spread in schools and daycare centers during outbreaks."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Close monitoring of hydration and neurologic status, with early hospital referral for dehydration or signs of meningitis, encephalitis or cardiopulmonary involvement."
+        }
+      ],
+      "emergency_signs": [
+        "Inability to drink with signs of dehydration (very little urine, lethargy)",
+        "Severe headache, neck stiffness or persistent vomiting (possible aseptic meningitis)",
+        "Drowsiness, confusion or seizures (possible encephalitis)",
+        "Sudden limb weakness or paralysis (polio-like syndrome)",
+        "Breathing difficulty or rapid breathing (possible cardiopulmonary involvement)"
+      ],
+      "differentials": [
+        {
+          "condition": "Herpangina",
+          "distinguishing_feature": "Also enteroviral, but ulcers are confined to the posterior oropharynx and soft palate without a vesicular rash on the hands and feet"
+        },
+        {
+          "condition": "Herpetic gingivostomatitis (HSV-1)",
+          "distinguishing_feature": "Prominent gingivitis and anterior oral and perioral lesions, without acral vesicles"
+        },
+        {
+          "condition": "Chickenpox (Varicella)",
+          "distinguishing_feature": "Intensely itchy vesicles in successive crops on the trunk and face, with lesions at all stages at once; palms and soles are not the main sites"
+        },
+        {
+          "condition": "Erythema multiforme",
+          "distinguishing_feature": "Target lesions on the extremities, often following HSV infection or a drug"
+        },
+        {
+          "condition": "Mpox",
+          "distinguishing_feature": "Deep-seated, often umbilicated lesions progressing in synchrony, with prominent lymphadenopathy"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_mouth_sores",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_vesicular_rash",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_sore_throat",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_dehydration",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_rhinorrhea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Used for fever and pain from mouth sores (StatPearls); weight-based pediatric dosing within the maximum daily dose."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "safe",
+          "note": "NSAIDs are listed by StatPearls for pain and fever in HFMD; adequate hydration is maintained because NSAIDs carry renal risk in dehydrated children."
+        },
+        {
+          "medicine_id": "med_ors",
+          "safety": "safe",
+          "note": "Oral fluids such as ORS help maintain hydration when painful oral ulcers reduce intake; dehydration is the most common complication (CDC)."
+        }
+      ],
+      "related": [
+        "varicella",
+        "measles",
+        "dengue"
+      ],
+      "references": [
+        {
+          "source_name": "Nelson Textbook of Pediatrics",
+          "citation_text": "Kliegman RM, St Geme JW III, Blum NJ, et al., eds. Nelson Textbook of Pediatrics, 22nd ed. Philadelphia: Elsevier; 2024.",
+          "url": "",
+          "specialty": "Pediatrics / Pediatric Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Hand, Foot, and Mouth Disease",
+          "citation_text": "Guerra AM, Orille E, Waseem M. Hand, Foot, and Mouth Disease. [Updated 2023 Mar 4]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK431082/",
+          "specialty": "Pediatrics / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - HFMD Symptoms and Complications",
+          "citation_text": "Centers for Disease Control and Prevention. HFMD Symptoms and Complications. Hand, Foot, and Mouth Disease (HFMD). Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/hand-foot-mouth/signs-symptoms/index.html",
+          "specialty": "Public Health / Pediatrics",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Western Pacific - Hand, foot and mouth disease (HFMD)",
+          "citation_text": "World Health Organization Regional Office for the Western Pacific. Hand, foot and mouth disease (HFMD). Health topics. Manila: WHO WPRO.",
+          "url": "https://www.who.int/westernpacific/health-topics/hand-foot-and-mouth-disease-(hfmd)",
+          "specialty": "Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Philippine News Agency - DOH on HFMD cases (2025)",
+          "citation_text": "Philippine News Agency. DOH: Cases of foot, mouth, hand disease triple from Jan. 1 to Feb. 22. 2025 Mar 2.",
+          "url": "https://www.pna.gov.ph/articles/1245192",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "varicella",
+      "name": "Chickenpox (Varicella)",
+      "scientific_name": "Primary varicella-zoster virus (human alphaherpesvirus 3) infection",
+      "body_system": "Integumentary System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Uncomplicated chickenpox in a healthy child is usually self-limited, but prompt clinical review is warranted because oral antivirals work best when started within 24 hours of rash onset in adolescents over 12 years, adults and children with chronic skin or lung disease or on steroid or long-term salicylate therapy (CDC, StatPearls). Exposure or illness in a pregnant woman, newborn or immunocompromised person needs same-day assessment for antiviral therapy or VariZIG. Breathing difficulty, red hot painful skin around blisters, confusion, unsteady gait, seizures or bleeding into lesions suggest pneumonia, bacterial superinfection, encephalitis or disseminated disease and place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "Chickenpox (varicella) is a highly contagious disease caused by primary infection with varicella-zoster virus (VZV). It presents with fever, malaise and an itchy rash that evolves from macules to papules to vesicles and crusts, appearing in successive crops so that lesions at all stages are seen together. It is usually mild in children but more severe in adolescents, adults, pregnant women, neonates and immunocompromised people. About 90% of susceptible household contacts develop the disease after exposure, and a two-dose varicella vaccine prevents most infections. The virus then remains latent in sensory ganglia and can reactivate later as herpes zoster (shingles).",
+      "pathophysiology": "VZV enters through the respiratory mucosa or conjunctiva by inhalation of aerosols from vesicular fluid or respiratory secretions, or by direct contact with skin lesions. After replication in regional lymphoid tissue, a primary viremia is followed by a secondary viremia that carries virus to the skin, where infection of epidermal cells produces ballooning degeneration and intraepidermal vesicles. The virus then establishes latency in dorsal root and cranial nerve ganglia.",
+      "clinicopathologic_correlation": "Successive waves of viremia produce crops of pruritic lesions evolving from macules and papules to 1-3 mm clear vesicles on a red base ('dewdrop on a rose petal') and then to crusts, so lesions at all stages coexist. Scratching and broken skin predispose to secondary bacterial skin and soft-tissue infection, the most common complication in children. Viral spread to the lungs causes varicella pneumonia, the most common serious complication in adults, and central nervous system involvement causes cerebellar ataxia or encephalitis.",
+      "onset_progression": "Incubation averages 14-16 days (range 10-21 days). Adults may have 1-2 days of fever and malaise before the rash, while in children the rash is often the first sign. Prodromal symptoms can include muscle aches, nausea, decreased appetite and headache. New crops appear over several days, and lesions progress quickly from macules to vesicles to crusts. The person is contagious from 1-2 days before rash onset until all lesions have crusted, usually about 5 days after the spots appear.",
+      "follow_up_monitoring": "Lesions are monitored for signs of bacterial superinfection (spreading redness, warmth, pain, pus). Respiratory symptoms, especially in adults, pregnant women and smokers, prompt assessment for pneumonia. Neurologic status is watched for ataxia or altered consciousness. The patient is excluded from school or work and kept away from newborns, pregnant women and immunocompromised people until all lesions have crusted.",
+      "source_attribution": "StatPearls: Varicella-Zoster Virus (Chickenpox) (2025); CDC Clinical Overview of Chickenpox and Clinical Guidance for People at Risk for Severe Varicella; NHS Chickenpox; Nelson Textbook of Pediatrics, 22nd ed.",
+      "tags": [
+        "herpesvirus",
+        "vaccine-preventable",
+        "pediatric",
+        "viral exanthem",
+        "airborne"
+      ],
+      "causes": [
+        "Primary infection with varicella-zoster virus (VZV), a human alphaherpesvirus",
+        "Airborne spread by inhalation of aerosols from vesicular fluid and respiratory secretions (coughing, sneezing)",
+        "Direct contact with fluid from chickenpox or herpes zoster lesions"
+      ],
+      "risk_factors": [
+        "No history of chickenpox and no varicella vaccination",
+        "Household or close contact with a person with chickenpox or herpes zoster (about 90% attack rate in susceptible household contacts)",
+        "Adolescence or adulthood at the time of infection (higher risk of severe disease and pneumonia)",
+        "Pregnancy without immunity to varicella",
+        "Newborns exposed perinatally and premature infants",
+        "Immunocompromise, including high-dose or prolonged corticosteroid therapy",
+        "Chronic skin or lung disease, or long-term salicylate therapy"
+      ],
+      "recommended_tests": [
+        "Clinical diagnosis based on the characteristic pruritic vesicular rash with lesions at different stages",
+        "PCR of vesicle fluid or scabs for laboratory confirmation, particularly in atypical or breakthrough cases",
+        "Chest X-ray in adolescents and adults with cough or shortness of breath to assess for varicella pneumonia",
+        "CBC with platelet count in severe or hemorrhagic disease",
+        "VZV IgG serology to document immunity in exposed pregnant or immunocompromised contacts"
+      ],
+      "treatments": [
+        "Oral aciclovir or valacyclovir, started ideally within 24 hours of rash onset, for healthy people older than 12 years and for those with chronic skin or lung disease, long-term salicylate therapy or corticosteroid courses (CDC); routine use in healthy children is not recommended",
+        "Intravenous aciclovir for severe or disseminated disease (pneumonia, encephalitis, thrombocytopenia) and for immunocompromised patients",
+        "Paracetamol for fever and discomfort; aspirin is avoided because of the risk of Reye syndrome",
+        "Antihistamines, calamine lotion and cool compresses for pruritus",
+        "Ibuprofen is avoided unless advised by a clinician because it may be associated with serious skin infections (NHS)",
+        "Antibiotic treatment of secondary bacterial skin and soft-tissue infection when present"
+      ],
+      "home_care": [
+        "Paracetamol for fever and discomfort, avoiding aspirin in children and adolescents",
+        "Antihistamine and calamine lotion or cool compresses to relieve itching and limit scratching",
+        "Adequate fluid intake to prevent dehydration",
+        "Staying home and away from newborns, pregnant women and immunocompromised people until all lesions have crusted"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Two doses of varicella vaccine for children, adolescents and adults without evidence of immunity (CDC); vaccination prevents about 70-90% of infections and most severe disease."
+        },
+        {
+          "tier": "primary",
+          "content": "Post-exposure vaccination of susceptible contacts within 3-5 days (72-120 hours) of exposure can prevent or modify disease."
+        },
+        {
+          "tier": "primary",
+          "content": "Varicella-zoster immune globulin (VariZIG) within 10 days of exposure for high-risk contacts who cannot be vaccinated, such as immunocompromised people, susceptible pregnant women and exposed newborns."
+        },
+        {
+          "tier": "secondary",
+          "content": "Isolation of cases from 1-2 days before rash onset until all lesions have crusted, and early antiviral treatment within 24 hours in those at risk of severe disease."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Early recognition and treatment of complications, including bacterial skin and soft-tissue infection, varicella pneumonia, encephalitis and cerebellar ataxia."
+        }
+      ],
+      "emergency_signs": [
+        "Shortness of breath, rapid breathing or chest pain (possible varicella pneumonia)",
+        "Red, hot, swollen or increasingly painful skin around blisters (bacterial skin and soft-tissue infection)",
+        "Confusion, severe drowsiness or seizures (possible encephalitis)",
+        "Unsteady gait or loss of balance (acute cerebellar ataxia)",
+        "Bleeding into skin lesions or other bleeding (hemorrhagic varicella or thrombocytopenia)",
+        "Signs of dehydration or persistent vomiting"
+      ],
+      "differentials": [
+        {
+          "condition": "Hand, Foot and Mouth Disease",
+          "distinguishing_feature": "Painful oral ulcers with non-pruritic vesicles concentrated on the palms, soles and buttocks in young children"
+        },
+        {
+          "condition": "Mpox or smallpox",
+          "distinguishing_feature": "Deeper lesions that progress in synchrony (all at the same stage), with a centrifugal distribution and, in mpox, prominent lymphadenopathy"
+        },
+        {
+          "condition": "Disseminated herpes simplex or eczema herpeticum",
+          "distinguishing_feature": "Clustered, punched-out vesicles on areas of pre-existing eczema; HSV PCR positive"
+        },
+        {
+          "condition": "Impetigo",
+          "distinguishing_feature": "Localized honey-colored crusted lesions, usually around the nose and mouth, without fever or crops of new vesicles"
+        },
+        {
+          "condition": "Insect bites (papular urticaria)",
+          "distinguishing_feature": "Grouped itchy papules on exposed skin without fever or evolution through vesicles to crusts"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_vesicular_rash",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_pruritus",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.7
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_aciclovir",
+          "safety": "safe",
+          "note": "Oral aciclovir within 24 hours of rash onset for people older than 12 years or with chronic skin/lung disease, salicylate or steroid therapy; IV aciclovir for severe disease or immunocompromise (CDC). Not routinely recommended for healthy children (StatPearls)."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Preferred antipyretic in chickenpox (StatPearls, NHS); weight-based dosing within the maximum daily dose."
+        },
+        {
+          "medicine_id": "med_cetirizine",
+          "safety": "safe",
+          "note": "Antihistamines are used for the pruritus of chickenpox (StatPearls, NHS), together with calamine lotion and cool compresses."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "avoid",
+          "note": "Aspirin is avoided in chickenpox because of the risk of Reye syndrome (StatPearls); NHS advises no aspirin for children under 16."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NHS advises against ibuprofen in chickenpox unless a doctor recommends it, because it may cause serious skin infections."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "People on corticosteroid courses are at risk of severe varicella; CDC lists them for oral antiviral therapy and recommends IV aciclovir for immunocompromised patients, including those on prolonged high-dose steroids."
+        }
+      ],
+      "related": [
+        "hfmd",
+        "measles",
+        "community_acquired_pneumonia"
+      ],
+      "references": [
+        {
+          "source_name": "Nelson Textbook of Pediatrics",
+          "citation_text": "Kliegman RM, St Geme JW III, Blum NJ, et al., eds. Nelson Textbook of Pediatrics, 22nd ed. Philadelphia: Elsevier; 2024.",
+          "url": "",
+          "specialty": "Pediatrics / Pediatric Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Varicella-Zoster Virus (Chickenpox)",
+          "citation_text": "Saleh HM, Ayoade F, Kumar S. Varicella-Zoster Virus (Chickenpox). [Updated 2025 Apr 27]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448191/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Overview of Chickenpox (Varicella)",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Chickenpox (Varicella). Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/chickenpox/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Guidance for People at Risk for Severe Varicella",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Guidance for People at Risk for Severe Varicella. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/chickenpox/hcp/clinical-guidance/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NHS - Chickenpox",
+          "citation_text": "National Health Service (UK). Chickenpox. NHS Health A to Z.",
+          "url": "https://www.nhs.uk/conditions/chickenpox/",
+          "specialty": "General Practice / Public Health",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "hiv_infection",
+      "name": "HIV Infection",
+      "scientific_name": "Human immunodeficiency virus (HIV-1, HIV-2) infection",
+      "body_system": "Immune & Lymphatic System",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "A possible exposure, symptoms compatible with acute retroviral syndrome, or chronic features such as persistent lymphadenopathy, unexplained weight loss, oral thrush or chronic diarrhea warrant prompt HIV testing and linkage to care, because ART is started as soon as possible after diagnosis regardless of CD4 count. Recent exposure within the PEP window calls for same-day assessment. Features of an opportunistic infection or advanced HIV disease (severe breathlessness, fever with severe headache or confusion, seizures or focal weakness, hemoptysis, profuse diarrhea with dehydration, or signs of sepsis) place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "HIV infection is a chronic retroviral infection that progressively depletes CD4+ T lymphocytes and, without treatment, can progress over years to acquired immunodeficiency syndrome (AIDS). HIV is transmitted through blood, semen, pre-ejaculate, rectal and vaginal fluids and breast milk, by sexual contact, shared injecting equipment and from mother to child. There is no cure, but lifelong antiretroviral therapy (ART) controls the virus, restores immune function and prevents transmission: people on ART with an undetectable viral load do not transmit HIV sexually. About 41 million people were living with HIV worldwide at the end of 2025. The Philippines has the fastest-growing HIV epidemic in the Asia-Pacific region, with cases rising from about 4,400 in 2010 to 29,600 in 2024 and about one third of new cases in early 2025 among people aged 15-24.",
+      "pathophysiology": "HIV binds CD4 on T-helper lymphocytes and uses the chemokine coreceptors CCR5 or CXCR4 to fuse with the cell membrane. Reverse transcriptase converts viral RNA into DNA, which integrase inserts into the host genome, establishing lifelong latent infection. Ongoing viral replication and immune activation cause progressive loss of CD4+ T cells. When the CD4 count falls below about 200 cells/mm3, cell-mediated immunity fails and opportunistic infections and cancers develop.",
+      "clinicopathologic_correlation": "High-level viremia in early infection produces a mononucleosis-like acute retroviral syndrome with fever, lymphadenopathy, pharyngitis, rash and mucocutaneous ulcers. Chronic immune activation causes persistent generalized lymphadenopathy. Falling CD4 counts explain the stepwise appearance of opportunistic infections: Pneumocystis pneumonia below 200 cells/mm3, cryptococcal meningitis and toxoplasmosis below 100, and disseminated Mycobacterium avium complex below 50. Tuberculosis can occur at any CD4 count and is the leading cause of death among people with HIV.",
+      "onset_progression": "Up to about 90% of newly infected people develop acute retroviral syndrome within the first 4 weeks, with fever, fatigue, myalgia, rash, headache, sore throat, lymphadenopathy and night sweats that usually resolve within about 18 days. A prolonged chronic phase follows, often asymptomatic, with possible persistent generalized lymphadenopathy, oral candidiasis and oral hairy leukoplakia. Without ART, progression to AIDS (CD4 below 200 cells/mm3 or an AIDS-defining illness) typically occurs after many years, with wasting, chronic diarrhea and opportunistic infections.",
+      "follow_up_monitoring": "HIV viral load is monitored after ART initiation to confirm and maintain viral suppression, and CD4 counts guide opportunistic-infection prophylaxis. Every visit includes adherence support and screening for tuberculosis symptoms. Baseline and periodic tests include hepatitis B and C serology, renal and liver function, and screening for sexually transmitted infections. Patients with a severe opportunistic infection are monitored for immune reconstitution inflammatory syndrome after ART is started.",
+      "source_attribution": "StatPearls: HIV and AIDS (2026); WHO fact sheets HIV and AIDS (2026) and Tuberculosis; WHO news release on dolutegravir as preferred first- and second-line treatment (2019); WHO TB Knowledge Sharing Platform on ART adjustment with rifampicin; WHO Philippines/UNAIDS statement on the Philippine HIV surge (2025); DOH via Philippine News Agency (TLD as first-line, 2026); DOH-designated HIV treatment hubs (AIDS Data Hub); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "retrovirus",
+        "sexually transmitted infection",
+        "bloodborne",
+        "chronic infection",
+        "opportunistic infections"
+      ],
+      "causes": [
+        "Infection with human immunodeficiency virus type 1 (HIV-1), the predominant type worldwide, or HIV-2",
+        "Sexual transmission through semen, pre-ejaculate, vaginal or rectal fluids",
+        "Bloodborne transmission through shared needles, syringes or other injecting equipment, or reusable medical equipment",
+        "Mother-to-child transmission during pregnancy, delivery or breastfeeding"
+      ],
+      "risk_factors": [
+        "Condomless sex with a partner whose HIV status is unknown or who is not virally suppressed",
+        "Men who have sex with men, a key population accounting for a large share of new infections (for example, 67% of new US infections per StatPearls)",
+        "Young age in the Philippines, where about one third of new diagnoses in early 2025 were among people aged 15-24",
+        "Sharing needles or other injecting equipment",
+        "Not using PrEP when at ongoing risk of exposure",
+        "Birth to or breastfeeding by a mother with untreated HIV"
+      ],
+      "recommended_tests": [
+        "Rapid HIV tests or fourth-generation antigen/antibody immunoassay (HIV-1/2 antibodies plus p24 antigen), with same-day results; HIV self-tests are also available",
+        "Confirmatory testing of all reactive results per national algorithm",
+        "HIV RNA nucleic acid test (detectable as early as 6-8 days after infection) when acute HIV is suspected",
+        "Baseline CD4+ T-cell count and HIV-1 RNA viral load",
+        "Genotypic drug-resistance testing where available",
+        "Hepatitis B and C serology, renal and liver function, and screening for other sexually transmitted infections",
+        "Tuberculosis symptom screening with further testing (chest X-ray, sputum testing) as indicated"
+      ],
+      "treatments": [
+        "Lifelong antiretroviral therapy (ART) started as soon as possible after diagnosis, regardless of CD4 count or clinical stage",
+        "Dolutegravir-based ART is WHO's preferred first- and second-line treatment for all populations, including pregnant women and women of childbearing potential; the fixed-dose combination tenofovir + lamivudine + dolutegravir (TLD) is a standard first-line regimen; in the Philippines, TLD is the DOH's recommended first-line ARV regimen",
+        "Co-trimoxazole prophylaxis when CD4 is below 200 cells/mm3 to prevent Pneumocystis pneumonia, with additional protection against toxoplasmosis and some bacterial infections",
+        "Screening for and treatment of tuberculosis; with rifampicin-based TB treatment the dolutegravir dose is given twice daily because of a drug interaction",
+        "Diagnosis and treatment of opportunistic infections, with attention to immune reconstitution inflammatory syndrome when ART is started during a severe opportunistic infection",
+        "Care through DOH-designated HIV treatment hubs and primary HIV care facilities, which provide ART, testing, clinical management and monitoring"
+      ],
+      "home_care": [
+        "Taking ART every day as prescribed; adherence is the main determinant of viral suppression",
+        "Keeping scheduled treatment-hub visits for viral load, CD4 and medication refills",
+        "Condom use to prevent other sexually transmitted infections; people with an undetectable viral load do not transmit HIV sexually",
+        "Prompt reporting of new cough, fever, night sweats or weight loss for tuberculosis and opportunistic-infection evaluation"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Correct and consistent condom use, pre-exposure prophylaxis (PrEP) for people at ongoing risk, and post-exposure prophylaxis (PEP) started promptly after a possible exposure."
+        },
+        {
+          "tier": "primary",
+          "content": "Voluntary medical male circumcision, and harm-reduction services such as sterile injecting equipment for people who inject drugs."
+        },
+        {
+          "tier": "primary",
+          "content": "Prevention of mother-to-child transmission through HIV testing in pregnancy and ART for pregnant and breastfeeding women with HIV."
+        },
+        {
+          "tier": "secondary",
+          "content": "Expanded HIV testing, including rapid tests and self-testing, with same-day or rapid ART initiation; viral suppression on ART also prevents onward sexual transmission (undetectable = untransmittable)."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Co-trimoxazole prophylaxis at CD4 below 200 cells/mm3, routine TB screening and TB preventive treatment, and viral load monitoring to prevent opportunistic infections and AIDS-related deaths."
+        }
+      ],
+      "emergency_signs": [
+        "Progressive shortness of breath with dry cough and fever (possible Pneumocystis pneumonia)",
+        "Fever with severe headache, neck stiffness or confusion (possible cryptococcal meningitis)",
+        "Seizures, focal weakness or new neurologic deficit (possible cerebral toxoplasmosis)",
+        "Coughing up blood with fever and weight loss (possible tuberculosis)",
+        "Profuse diarrhea with signs of dehydration",
+        "High fever with low blood pressure or altered mental status (possible sepsis)"
+      ],
+      "differentials": [
+        {
+          "condition": "Infectious mononucleosis (EBV) or CMV infection",
+          "distinguishing_feature": "Similar fever, pharyngitis and lymphadenopathy, but heterophile or EBV/CMV serology positive and HIV antigen/antibody and RNA negative; mucocutaneous ulcers favor acute HIV"
+        },
+        {
+          "condition": "Pulmonary Tuberculosis",
+          "distinguishing_feature": "Chronic cough, fever, night sweats and weight loss with sputum or radiographic evidence of TB; frequently coexists with HIV, so both are tested"
+        },
+        {
+          "condition": "Acute viral hepatitis",
+          "distinguishing_feature": "Jaundice and markedly raised transaminases with positive hepatitis serology"
+        },
+        {
+          "condition": "Secondary immunodeficiency (malnutrition, chemotherapy)",
+          "distinguishing_feature": "Low CD4 counts and infections with a clear alternative cause and negative HIV testing"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_lymphadenopathy",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_weight_loss",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_oral_thrush",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_night_sweats",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_sore_throat",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_tld",
+          "safety": "safe",
+          "note": "Dolutegravir-based ART with a tenofovir + lamivudine backbone is WHO's preferred first-line treatment for all populations, including pregnant women and women of childbearing potential (WHO 2019; StatPearls). TLD is the DOH's recommended first-line ARV regimen in the Philippines (DOH, reported by PNA 2026)."
+        },
+        {
+          "medicine_id": "med_cotrimoxazole",
+          "safety": "safe",
+          "note": "Prophylaxis when CD4 is below 200 cells/mm3 prevents Pneumocystis pneumonia and also protects against toxoplasmosis and some bacterial infections (StatPearls); alternatives are used in sulfa allergy."
+        },
+        {
+          "medicine_id": "med_tenofovir",
+          "safety": "caution",
+          "note": "Used in HIV only as part of a combination regimen (NRTI backbone with lamivudine or emtricitabine plus an integrase inhibitor, per StatPearls); hepatitis B status is checked at baseline because tenofovir is also active against HBV."
+        },
+        {
+          "medicine_id": "med_rifampicin",
+          "safety": "caution",
+          "note": "In TB/HIV coinfection the dolutegravir dose is doubled (given twice daily) during rifampicin-based TB treatment because of a drug-drug interaction (WHO TB Knowledge Sharing Platform)."
+        }
+      ],
+      "related": [
+        "tuberculosis",
+        "hepatitis_b",
+        "community_acquired_pneumonia",
+        "acute_gastroenteritis"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - HIV and AIDS",
+          "citation_text": "Swinkels HM, Nguyen AD, Samandari T, Gulick PG. HIV and AIDS. [Updated 2026 Jan 14]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK534860/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO fact sheet - HIV and AIDS",
+          "citation_text": "World Health Organization. HIV and AIDS. Fact sheet. Geneva: WHO; 2026 Jul 27.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/hiv-aids",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO - Dolutegravir as preferred HIV treatment option in all populations",
+          "citation_text": "World Health Organization. WHO recommends dolutegravir as preferred HIV treatment option in all populations. News release. Geneva: WHO; 2019 Jul 22.",
+          "url": "https://www.who.int/news/item/22-07-2019-who-recommends-dolutegravir-as-preferred-hiv-treatment-option-in-all-populations",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Philippines - UNAIDS and WHO support DOH's call for urgent action on the HIV surge",
+          "citation_text": "World Health Organization Philippines. UNAIDS, WHO support DOH's call for urgent action as the Philippines faces the fastest-growing HIV surge in the Asia-Pacific region. Manila: WHO Philippines; 2025 Jun 11.",
+          "url": "https://www.who.int/philippines/news/detail/11-06-2025-unaids--who-support-doh-s-call-for-urgent-action-as-the-philippines-faces-the-fastest-growing-hiv-surge-in-the-asia-pacific-region",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Philippine News Agency - DOH secures 1.2M HIV drug bottles",
+          "citation_text": "Montemayor MT. DOH secures 1.2M HIV drug bottles, monitors supplier delivery. Philippine News Agency; 2026 Jul 2.",
+          "url": "https://www.pna.gov.ph/articles/1278590",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

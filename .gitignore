@@ -1,0 +1,138 @@
+# =====================================================================
+# Akeso: what stays OUT of the GitHub repository
+# =====================================================================
+# Pushed: everything that runs the app (app/, assets/ including the 3D
+# body in assets/anatomy/, data/, main.py, requirements.txt, akeso.spec,
+# THIRD_PARTY_NOTICES.md, the Supabase Edge Functions) AND the material
+# that documents how it was built (database/ migrations and seeds,
+# scripts/, assets_src/ build scripts and part lists).
+#
+# Kept out: secrets, personal data, things your computer regenerates, and
+# files too big for GitHub (over 100 MB).
+# =====================================================================
+
+# ---------------------------------------------------------------- secrets
+# .env.* catches every variant (a second key file, a production copy...).
+# The ! line re-allows a placeholder template, and must come AFTER .env.*.
+.env
+.env.*
+!.env.example
+
+# Google OAuth downloads its credentials as client_secret_<id>.json
+client_secret*.json
+credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+# Supabase CLI login / link state (can hold access tokens)
+supabase/.temp/
+supabase/.branches/
+
+# ------------------------------------------------------------------ python
+__pycache__/
+*.py[cod]
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+.python-version
+
+# ------------------------------------------------- packaged app (PyInstaller)
+# Rebuilt with: pyinstaller akeso.spec --noconfirm
+build/
+dist/
+# Inno Setup output (installer\akeso.iss -> Akeso-Setup-x.y.z.exe)
+installer/Output/
+*.zip
+
+# ---------------------------------------------------------------- tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+.ipynb_checkpoints/
+
+# ----------------------------------------------- 3D body build (assets_src)
+# The build scripts, README and BodyParts3D part lists ARE pushed (they
+# document how assets/anatomy/ was made). Left out:
+#   * the BodyParts3D download zips: 143 MB and 65 MB, over GitHub's
+#     100 MB file limit; re-download them from
+#     https://dbarchive.biosciencedbc.jp/en/bodyparts3d/ (see the README),
+#   * what npm / the build scripts regenerate.
+assets_src/bodyparts3d/*.zip
+assets_src/bodyparts3d/isa_BP3D_4.0_obj_99/
+assets_src/bodyparts3d/partof_BP3D_4.0_obj_99/
+assets_src/anatomy_build/node_modules/
+assets_src/anatomy_build/*.glb
+assets_src/anatomy_build/anatomy.bundle.js
+
+# -------------------------------------------------------------- databases
+# SQLite in WAL mode (which the local cache uses) writes two sidecar files
+# next to the database. *.db alone would not catch them.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+*.sqlite
+*.db-journal
+# Everything Akeso writes on a user's computer (normally in AppData, but
+# kept out of git in case a dev run points it at the project folder):
+# reference caches, bookmarks, notes, saved cases, search history,
+# notebook images, preferences, device id and the crash log.
+akeso_*.db
+akeso_notebook_images/
+akeso_preferences.json
+akeso_preferences.tmp
+akeso_clear_caches.flag
+akeso_device.json
+akeso_exchange_titles.json
+akeso_crash.log
+akeso_session.bin
+
+# -------------------------------------------------------------------- IDE
+.idea/
+*.iml
+.vscode/
+.cursor/
+.fleet/
+*.swp
+*~
+# Claude Code / Cowork local settings
+.claude/settings.local.json
+
+# ------------------------------------------------------------------ system
+.DS_Store
+desktop.ini
+Thumbs.db
+ehthumbs.db
+$RECYCLE.BIN/
+# Office lock files left while a .docx/.xlsx is open
+~$*
+
+# ------------------------------------------------------ Claude work files
+# Scratch copies and screenshots from Claude sessions; never part of the app.
+Claude outputs/
+
+# --------------------------------------------------------- account export
+# "Export my data" archives hold personal data. Keep them out of git if
+# one is ever saved inside the project folder.
+akeso-export-*.zip
+
+# -------------------------------------------------------------------- logs
+# Logs can end up holding emails, errors with URLs, even tokens.
+*.log
+logs/
+
+# ---------------------------------------------------------------- scratch
+*.tmp
+*.bak
+*.orig
+tmp/
+temp/
