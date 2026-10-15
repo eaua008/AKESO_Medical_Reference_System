@@ -19,7 +19,6 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QLineEdit,
-    QProgressBar,
     QPushButton,
     QScrollArea,
     QVBoxLayout,
@@ -31,6 +30,7 @@ from app.core.theme import Theme
 from app.ui.components.fluid import ResponsiveGrid, contain
 from app.models.symptom import Symptom
 from app.ui.views.compare_view import FlowLayout, WrapChip
+from app.ui.components.akeso_loader import LoadingLabel
 
 CARD_MIN_WIDTH = 330
 MAX_COLUMNS = 3
@@ -198,11 +198,13 @@ class CardGrid(ResponsiveGrid):
 
     def __init__(self) -> None:
         super().__init__(CARD_MIN_WIDTH, MAX_COLUMNS, spacing=16)
+        self.follow_user_columns()                   # Settings > Display > Cards per row
 
 
 class SymptomBrowseView(QWidget):
     filters_changed = Signal(str, str, str)   # query, body system id, tier key
     symptom_chosen = Signal(str)
+    refresh_requested = Signal()              # the Refresh button
 
     def __init__(self, parent: Optional[QWidget] = None) -> None:
         super().__init__(parent)
@@ -228,7 +230,7 @@ class SymptomBrowseView(QWidget):
         layout.addWidget(self._build_scope_note())
         layout.addWidget(self._build_filters())
 
-        self.status = _label("", "syStatus")
+        self.status = LoadingLabel("", "syStatus")
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.status.hide()
         layout.addWidget(self.status)
@@ -286,6 +288,14 @@ class SymptomBrowseView(QWidget):
 
         self.count_badge = _label("", "countBadge", wrap=False)
         row.addWidget(self.count_badge, 0, Qt.AlignmentFlag.AlignTop)
+
+        # Same Refresh as the Disease Encyclopedia: download everything again.
+        refresh = QPushButton("Refresh")
+        refresh.setObjectName("secondaryButton")
+        refresh.setCursor(Qt.CursorShape.PointingHandCursor)
+        refresh.setToolTip("Download the latest entries from the server")
+        refresh.clicked.connect(lambda _c=False: self.refresh_requested.emit())
+        row.addWidget(refresh, 0, Qt.AlignmentFlag.AlignTop)
         self.refresh_theme()
         return header
 
@@ -412,6 +422,11 @@ class SymptomBrowseView(QWidget):
 
     def show_status(self, message: str) -> None:
         self.status.setText(message)
+        self.status.show()
+
+    def show_loading(self, message: str) -> None:
+        """The Akeso loader with a message (first download)."""
+        self.status.set_loading(message)
         self.status.show()
 
     def refresh_theme(self) -> None:

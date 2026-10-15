@@ -1,0 +1,2293 @@
+{
+  "medicines": [
+    {
+      "id": "med_nirmatrelvir_ritonavir",
+      "name": "Nirmatrelvir + Ritonavir",
+      "generic_name": "Nirmatrelvir + Ritonavir (co-packaged tablets)",
+      "international_generic_name": "nirmatrelvir + ritonavir",
+      "trade_name": "Paxlovid",
+      "drug_class": "Antiviral (SARS-CoV-2 protease inhibitor, ritonavir-boosted)",
+      "category": "Prescription",
+      "description": "Nirmatrelvir inhibits the SARS-CoV-2 main protease (Mpro), preventing viral polyprotein processing and replication. Ritonavir is a strong CYP3A inhibitor with no meaningful SARS-CoV-2 activity that is co-administered to raise nirmatrelvir plasma concentrations. It is used for mild-to-moderate COVID-19 in non-hospitalized patients at high risk of progression, started within 5 days of symptom onset.",
+      "dosage_text": "Adults: nirmatrelvir 300 mg (two 150 mg tablets) + ritonavir 100 mg orally twice daily for 5 days, started within 5 days of symptom onset. eGFR 30 to <60 mL/min: nirmatrelvir 150 mg + ritonavir 100 mg twice daily for 5 days. eGFR <30 mL/min including hemodialysis: 300 mg/100 mg once on day 1, then 150 mg/100 mg once daily on days 2-5 (after dialysis on dialysis days). Not recommended in severe hepatic impairment (Child-Pugh C). Refer to current product labeling.",
+      "storage": "Store at room temperature in the original blister packaging. Refer to current product labeling.",
+      "black_box_warning": "Significant drug interactions: ritonavir is a strong CYP3A inhibitor and may increase exposure to co-administered drugs, leading to potentially severe, life-threatening or fatal events. Review all concomitant medications before prescribing and during therapy.",
+      "source_attribution": "FDA/DailyMed Paxlovid prescribing information; StatPearls: Nirmatrelvir-Ritonavir.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Paxlovid"
+      ],
+      "indications": [
+        "Treatment of mild-to-moderate COVID-19 in adults at high risk of progression to severe COVID-19 (including hospitalization or death), started within 5 days of symptom onset"
+      ],
+      "adverse": [
+        "Dysgeusia (altered taste)",
+        "Diarrhea",
+        "Hypertension",
+        "Myalgia",
+        "Hepatotoxicity (transaminase elevations, hepatitis)",
+        "Hypersensitivity reactions including anaphylaxis",
+        "Stevens-Johnson syndrome / toxic epidermal necrolysis (rare)"
+      ],
+      "contraindications": [
+        "History of clinically significant hypersensitivity to nirmatrelvir, ritonavir or any component",
+        "Co-administration with drugs highly dependent on CYP3A for clearance for which elevated concentrations are associated with serious or life-threatening reactions",
+        "Co-administration with strong CYP3A inducers (loss of virologic response and possible resistance)"
+      ],
+      "interactions": [
+        "Calcineurin and mTOR inhibitors (tacrolimus, cyclosporine, sirolimus): markedly increased levels; avoid or use only with close therapeutic drug monitoring.",
+        "Statins metabolized by CYP3A (simvastatin, lovastatin): risk of myopathy/rhabdomyolysis; hold or avoid during treatment.",
+        "Antiarrhythmics (amiodarone, flecainide, propafenone, quinidine): risk of serious arrhythmia.",
+        "Calcium channel blockers (e.g., amlodipine), opioids (fentanyl, oxycodone): increased exposure; monitor or reduce dose.",
+        "Anticoagulants (warfarin, apixaban, dabigatran): altered anticoagulant exposure; monitor or avoid.",
+        "Strong CYP3A inducers (rifampicin, carbamazepine, phenytoin, St John's wort): reduced nirmatrelvir levels; contraindicated."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Nirmatrelvir-Ritonavir. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK585126/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "PAXLOVID (nirmatrelvir tablets; ritonavir tablets), co-packaged. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "Hypertension is a labeled adverse reaction and ritonavir raises levels of calcium channel blockers and other antihypertensives.",
+          "guidance": "Review antihypertensive co-medication (e.g., amlodipine) for dose reduction and monitor blood pressure.",
+          "source_attribution": "FDA label (Paxlovid), Adverse Reactions / Drug Interactions"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific restriction in labeling; diabetes is a high-risk condition for which treatment is indicated.",
+          "guidance": "Screen co-medications for CYP3A interactions as for any patient.",
+          "source_attribution": "FDA label (Paxlovid), Indications; StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Human data on nirmatrelvir are limited; ritonavir data show no increase in birth defects, and COVID-19 carries maternal and fetal risk.",
+          "guidance": "Not contraindicated; weigh benefit against risk (StatPearls supports use in pregnancy when indicated).",
+          "source_attribution": "FDA label (Paxlovid), Use in Specific Populations; StatPearls"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "caution",
+          "summary": "Ritonavir increases systemic exposure to CYP3A-metabolized inhaled corticosteroids (e.g., budesonide, fluticasone) and salmeterol.",
+          "guidance": "Review inhaler regimen for CYP3A interactions; monitor for corticosteroid or LABA adverse effects.",
+          "source_attribution": "FDA label (Paxlovid), Drug Interactions; Symbicort label"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No peptic ulcer or GI bleed-specific precaution in labeling.",
+          "guidance": "Check interactions with anticoagulants or antiplatelets in patients with GI bleeding risk.",
+          "source_attribution": "FDA label (Paxlovid), Drug Interactions"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Nirmatrelvir is renally cleared; exposure increases as eGFR falls.",
+          "guidance": "Reduce to 150 mg/100 mg twice daily for eGFR 30 to <60; use the labeled once-daily regimen for eGFR <30 including dialysis.",
+          "source_attribution": "FDA label (Paxlovid), Dosage and Administration"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Not recommended in severe hepatic impairment (Child-Pugh C); ritonavir is associated with transaminase elevations and hepatitis.",
+          "guidance": "No adjustment for Child-Pugh A/B; avoid in Child-Pugh C.",
+          "source_attribution": "FDA label (Paxlovid), Use in Specific Populations; StatPearls"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Major interactions with immunosuppressants (tacrolimus, cyclosporine, mTOR inhibitors) used in autoimmune disease.",
+          "guidance": "Avoid co-administration or use with specialist input and drug-level monitoring.",
+          "source_attribution": "FDA label (Paxlovid), Drug Interactions"
+        }
+      ]
+    },
+    {
+      "id": "med_ors",
+      "name": "Oral Rehydration Salts (reduced osmolarity)",
+      "generic_name": "Oral Rehydration Salts (reduced osmolarity, WHO/UNICEF formula)",
+      "international_generic_name": "Oral rehydration salts",
+      "trade_name": "Hydrite",
+      "drug_class": "Oral rehydration solution",
+      "category": "OTC",
+      "description": "Reduced-osmolarity ORS (245 mOsm/L) contains glucose and sodium in equimolar amounts (75 mmol/L each), exploiting sodium-glucose co-transport in the small intestine to drive water absorption even during secretory diarrhea. It also replaces potassium and corrects acidosis with citrate. Compared with the older standard ORS it reduces stool output, vomiting and the need for unscheduled IV therapy; it is the cornerstone of treatment for dehydration from acute diarrhea.",
+      "dosage_text": "Composition per litre: sodium chloride 2.6 g, glucose anhydrous 13.5 g, potassium chloride 1.5 g, trisodium citrate dihydrate 2.9 g (Na 75, Cl 65, K 20, citrate 10, glucose 75 mmol/L; 245 mOsm/L). Reconstitute each sachet in the stated volume of clean drinking water. Adults, no dehydration (WHO Plan A): as much as wanted after each loose stool. Some dehydration (Plan B): about 75 mL/kg over 4 hours (adults 15 years and older: roughly 2200-4000 mL in the first 4 hours), then reassess. Severe dehydration requires IV rehydration (Plan C). Refer to current product labeling.",
+      "storage": "Store sachets in a cool, dry place. Use reconstituted solution within 24 hours and discard the remainder. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "WHO/UNICEF Joint Statement: Clinical management of acute diarrhoea (2004); WHO Oral rehydration salts: production of the new ORS (2006); WHO The treatment of diarrhoea (2005).",
+      "brands_ph": [
+        "Hydrite"
+      ],
+      "brands_intl": [],
+      "indications": [
+        "Prevention and treatment of dehydration due to acute diarrhea (including cholera) in children and adults",
+        "Replacement of fluid and electrolytes lost through diarrhea and/or vomiting (mild to moderate dehydration)"
+      ],
+      "adverse": [
+        "Vomiting (usually settles with slow, frequent sips)",
+        "Eyelid (periorbital) puffiness as a sign of overhydration",
+        "Electrolyte disturbance (hypernatremia or hyperkalemia) if incorrectly reconstituted or in severe renal impairment"
+      ],
+      "contraindications": [
+        "Severe dehydration or shock (requires IV rehydration)",
+        "Abdominal distension with paralytic ileus",
+        "Inability to drink (e.g., depressed consciousness) unless given by nasogastric tube under supervision"
+      ],
+      "interactions": [
+        "No clinically significant drug-drug interactions are described in WHO/UNICEF ORS guidance.",
+        "Contains potassium 20 mmol/L: consider the cumulative potassium load with potassium-sparing diuretics, ACE inhibitors or ARBs in patients with renal impairment.",
+        "Zinc supplementation is recommended together with ORS for children with acute diarrhea (WHO/UNICEF)."
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, et al., eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "World Health Organization / UNICEF",
+          "citation_text": "WHO/UNICEF Joint Statement. Clinical management of acute diarrhoea. WHO/FCH/CAH/04.7. Geneva: WHO; 2004.",
+          "url": "https://www.who.int/publications/i/item/WHO_FCH_CAH_04.7",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "WHO, UNICEF. Oral rehydration salts: production of the new ORS. WHO/FCH/CAH/06.1. Geneva: WHO; 2006.",
+          "url": "https://www.who.int/publications/i/item/WHO-FCH-CAH-06.1",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "World Health Organization",
+          "citation_text": "WHO. The treatment of diarrhoea: a manual for physicians and other senior health workers. 4th rev. Geneva: WHO; 2005.",
+          "url": "https://www.who.int/publications/i/item/9241593180",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Short-term rehydration with ORS is standard for dehydration in adults; the sodium content replaces diarrheal losses.",
+          "guidance": "Use for the duration of the diarrheal illness; monitor fluid status in heart failure.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Glucose content (13.5 g/L) is needed for sodium-coupled absorption and is a modest load.",
+          "guidance": "Monitor blood glucose during illness and rehydration.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "ORS is first-line for diarrheal dehydration in all age groups, including pregnancy.",
+          "guidance": "Use as for other adults; seek care for severe dehydration.",
+          "source_attribution": "WHO/UNICEF ORS guidance; StatPearls: Loperamide (ORS first-line in pregnancy)"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory or drug-interaction concern.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal toxicity.",
+          "guidance": "Persistent vomiting of blood or melena needs urgent evaluation, not ORS alone.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Contains sodium and potassium; advanced CKD or oliguria limits excretion of fluid and potassium.",
+          "guidance": "Monitor fluid balance and electrolytes; oliguric or severe dehydration requires supervised (often IV) therapy.",
+          "source_attribution": "WHO/UNICEF ORS guidance (composition)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "safe",
+          "summary": "No hepatic metabolism or hepatotoxicity.",
+          "guidance": "Monitor fluid status in decompensated cirrhosis with ascites.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No interaction with immunosuppressive therapy.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "WHO/UNICEF ORS guidance"
+        }
+      ]
+    },
+    {
+      "id": "med_loperamide",
+      "name": "Loperamide",
+      "generic_name": "Loperamide hydrochloride",
+      "international_generic_name": "loperamide",
+      "trade_name": "Imodium",
+      "drug_class": "Antidiarrheal (opioid receptor agonist)",
+      "category": "OTC",
+      "description": "Loperamide is a peripherally acting synthetic mu-opioid receptor agonist that slows intestinal transit and increases anal sphincter tone, reducing stool frequency and volume. At therapeutic doses P-glycoprotein efflux keeps it out of the CNS; at very high doses it crosses the blood-brain barrier and blocks cardiac sodium and potassium channels. It is used for symptomatic control of acute non-specific diarrhea and chronic diarrhea, not as a substitute for rehydration.",
+      "dosage_text": "Adults, acute diarrhea: 4 mg initially, then 2 mg after each unformed stool. OTC maximum 8 mg/day; prescription maximum 16 mg/day. Chronic diarrhea: usual maintenance 4-8 mg/day (maximum 16 mg/day). Discontinue if no improvement within 48 hours of acute use or if constipation, abdominal distension or ileus develops. Maintain oral rehydration. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F) in a well-closed container. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed loperamide hydrochloride capsules prescribing information; StatPearls: Loperamide; Unilab Diatabs product information.",
+      "brands_ph": [
+        "Diatabs",
+        "Imodium"
+      ],
+      "brands_intl": [
+        "Imodium",
+        "Imodium A-D"
+      ],
+      "indications": [
+        "Symptomatic control of acute non-specific diarrhea",
+        "Chronic diarrhea associated with inflammatory bowel disease",
+        "Travelers' diarrhea (symptomatic)",
+        "Reduction of ileostomy output"
+      ],
+      "adverse": [
+        "Constipation",
+        "Abdominal cramps",
+        "Nausea",
+        "Dizziness and drowsiness",
+        "Dry mouth",
+        "Toxic megacolon / paralytic ileus",
+        "QT and QRS prolongation, torsades de pointes, cardiac arrest and death with higher than recommended doses or misuse"
+      ],
+      "contraindications": [
+        "Children under 2 years",
+        "Abdominal pain without diarrhea",
+        "Acute dysentery (blood in stool and high fever)",
+        "Acute ulcerative colitis",
+        "Bacterial enterocolitis caused by invasive organisms (Salmonella, Shigella, Campylobacter)",
+        "Pseudomembranous colitis (Clostridioides difficile)",
+        "Hypersensitivity to loperamide"
+      ],
+      "interactions": [
+        "CYP3A4 inhibitors (itraconazole) increase loperamide exposure about 3.8-fold.",
+        "CYP2C8 inhibitors (gemfibrozil) increase exposure about 2.2-fold.",
+        "P-glycoprotein inhibitors (quinidine, ritonavir, clarithromycin, amiodarone) increase exposure 2-3-fold and may allow CNS entry.",
+        "QT-prolonging drugs (class IA/III antiarrhythmics, antipsychotics, some antibiotics): additive risk of torsades; avoid combination."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Loperamide. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK557885/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "Loperamide hydrochloride capsules. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=3fcb106c-f72e-17d9-e054-00144ff8d46c",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No blood-pressure effect at therapeutic doses.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (loperamide Rx); StatPearls"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No glycemic effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (loperamide Rx); StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Human data are limited and conflicting.",
+          "guidance": "Oral rehydration and diet are first-line; if symptoms are disabling use the lowest effective amount.",
+          "source_attribution": "StatPearls: Loperamide; FDA label (loperamide Rx), Pregnancy"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory effect at therapeutic doses.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (loperamide Rx)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No mucosal toxicity; not a cause of GI bleeding.",
+          "guidance": "Bloody or black stools require evaluation rather than antidiarrheal therapy.",
+          "source_attribution": "FDA label (loperamide Rx), Contraindications"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "Eliminated mainly by hepatic metabolism and fecal excretion.",
+          "guidance": "No routine dose adjustment; ensure hydration.",
+          "source_attribution": "StatPearls: Loperamide (pharmacokinetics)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Reduced first-pass metabolism increases systemic exposure and risk of CNS toxicity.",
+          "guidance": "Use with caution and monitor for CNS depression.",
+          "source_attribution": "FDA label (loperamide Rx), Warnings (hepatic impairment)"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Contraindicated in acute ulcerative colitis because of toxic megacolon risk.",
+          "guidance": "Avoid in active inflammatory bowel disease flares unless specialist-directed.",
+          "source_attribution": "FDA label (loperamide Rx), Contraindications"
+        }
+      ]
+    },
+    {
+      "id": "med_omeprazole",
+      "name": "Omeprazole",
+      "generic_name": "Omeprazole (omeprazole magnesium)",
+      "international_generic_name": "omeprazole",
+      "trade_name": "Losec",
+      "drug_class": "Proton pump inhibitor",
+      "category": "Prescription",
+      "description": "Omeprazole irreversibly inhibits the parietal cell H+/K+-ATPase (proton pump), the final step of gastric acid secretion. Onset is within about an hour and acid suppression persists for up to 72 hours because new pumps must be synthesized. It is used for peptic ulcer disease, GERD and erosive esophagitis, Helicobacter pylori eradication regimens and hypersecretory states such as Zollinger-Ellison syndrome.",
+      "dosage_text": "Adults, taken before a meal: active duodenal ulcer 20 mg once daily for 4 weeks; benign gastric ulcer 40 mg once daily for 4-8 weeks; symptomatic GERD 20 mg once daily up to 4 weeks; erosive esophagitis 20 mg once daily for 4-8 weeks, maintenance 20 mg once daily; H. pylori triple therapy 20 mg twice daily with amoxicillin and clarithromycin for 10 days; pathological hypersecretory conditions 60 mg once daily, adjusted to response. Hepatic impairment or Asian patients: 10 mg once daily for maintenance of healing of erosive esophagitis. Refer to current product labeling.",
+      "storage": "Store at room temperature, protected from moisture. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Prilosec prescribing information (rev. 2024); StatPearls: Omeprazole.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Losec",
+        "Prilosec",
+        "Prilosec OTC"
+      ],
+      "indications": [
+        "Active duodenal ulcer and benign gastric ulcer",
+        "Helicobacter pylori eradication (with antibiotics)",
+        "Gastroesophageal reflux disease and erosive esophagitis (treatment and maintenance)",
+        "Pathological hypersecretory conditions (e.g., Zollinger-Ellison syndrome)"
+      ],
+      "adverse": [
+        "Headache",
+        "Abdominal pain, nausea, diarrhea, flatulence",
+        "Clostridioides difficile-associated diarrhea",
+        "Bone fractures with long-term, high-dose use",
+        "Hypomagnesemia and vitamin B12 deficiency with prolonged use",
+        "Acute tubulointerstitial nephritis",
+        "Cutaneous and systemic lupus erythematosus",
+        "Fundic gland polyps with long-term use"
+      ],
+      "contraindications": [
+        "Known hypersensitivity to substituted benzimidazoles or any component",
+        "Co-administration with rilpivirine-containing products"
+      ],
+      "interactions": [
+        "Clopidogrel: CYP2C19 inhibition reduces active metabolite formation and antiplatelet effect; avoid concomitant use.",
+        "Methotrexate (especially high dose): may raise and prolong methotrexate levels; consider temporary PPI withdrawal.",
+        "Warfarin: increased INR and bleeding reported; monitor INR.",
+        "Tacrolimus: increased exposure; monitor levels. Mycophenolate: reduced mycophenolic acid exposure.",
+        "St John's wort and rifampicin: markedly reduce omeprazole levels; avoid.",
+        "Rilpivirine and other drugs needing gastric acid for absorption: reduced absorption; rilpivirine contraindicated."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Omeprazole. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK539786/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "PRILOSEC (omeprazole magnesium) for delayed-release oral suspension. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6761f84-53ac-4745-a8c8-1e5427d7e179",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No blood-pressure effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Prilosec)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No glycemic effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Prilosec)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Epidemiologic data do not show increased major malformations with first-trimester use.",
+          "guidance": "Use when clinically needed.",
+          "source_attribution": "FDA label (Prilosec), Use in Specific Populations"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory contraindication.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Prilosec)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "Indicated for peptic ulcer healing and H. pylori eradication.",
+          "guidance": "Symptom response does not exclude gastric malignancy; investigate alarm features.",
+          "source_attribution": "FDA label (Prilosec), Indications / Warnings"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "No renal dose adjustment is required.",
+          "guidance": "Discontinue if acute tubulointerstitial nephritis is suspected.",
+          "source_attribution": "FDA label (Prilosec), Warnings and Precautions"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Hepatic impairment markedly increases omeprazole exposure.",
+          "guidance": "Reduce maintenance dose (10 mg daily for erosive esophagitis maintenance in Child-Pugh A-C).",
+          "source_attribution": "FDA label (Prilosec), Dosage and Administration"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Can cause new-onset or exacerbation of cutaneous/systemic lupus; interacts with methotrexate, tacrolimus and mycophenolate.",
+          "guidance": "Use the lowest effective dose and duration; review immunosuppressant interactions.",
+          "source_attribution": "FDA label (Prilosec), Warnings / Drug Interactions"
+        }
+      ]
+    },
+    {
+      "id": "med_amlodipine",
+      "name": "Amlodipine",
+      "generic_name": "Amlodipine besylate",
+      "international_generic_name": "amlodipine",
+      "trade_name": "Norvasc",
+      "drug_class": "Calcium channel blocker (dihydropyridine)",
+      "category": "Prescription",
+      "description": "Amlodipine is a long-acting dihydropyridine calcium channel blocker that inhibits L-type calcium channels in vascular smooth muscle, causing arterial vasodilation and a fall in peripheral resistance and blood pressure. Its long half-life allows once-daily dosing. It is a first-line antihypertensive and is also used for chronic stable and vasospastic angina.",
+      "dosage_text": "Adults: hypertension 5 mg once daily, maximum 10 mg once daily; coronary artery disease/angina 5-10 mg once daily. Small, fragile or elderly patients and those with hepatic insufficiency: start at 2.5 mg once daily and titrate slowly. Refer to current product labeling.",
+      "storage": "Store at controlled room temperature, 15-30 C (59-86 F). Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Norvasc prescribing information; StatPearls: Amlodipine.",
+      "brands_ph": [
+        "Amlocor",
+        "Ambesyl",
+        "Amlix",
+        "Actapin"
+      ],
+      "brands_intl": [
+        "Norvasc",
+        "Istin"
+      ],
+      "indications": [
+        "Hypertension",
+        "Chronic stable angina",
+        "Vasospastic (Prinzmetal) angina",
+        "Angiographically documented coronary artery disease"
+      ],
+      "adverse": [
+        "Dose-related peripheral edema",
+        "Flushing",
+        "Headache",
+        "Dizziness",
+        "Palpitations",
+        "Fatigue and somnolence",
+        "Symptomatic hypotension (especially with severe aortic stenosis)",
+        "Worsening angina or acute MI on initiation or dose increase (rare)"
+      ],
+      "contraindications": [
+        "Known hypersensitivity to amlodipine"
+      ],
+      "interactions": [
+        "Simvastatin: limit simvastatin to 20 mg daily with amlodipine (myopathy risk).",
+        "Strong/moderate CYP3A inhibitors (clarithromycin, azole antifungals, ritonavir): increased amlodipine exposure; monitor for hypotension and edema.",
+        "Cyclosporine and tacrolimus: increased immunosuppressant levels; monitor trough concentrations.",
+        "Other antihypertensives: additive blood-pressure lowering."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Amlodipine. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519508/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "NORVASC (amlodipine besylate) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=abd6a2ca-40c2-485c-bc53-db1c652505ed",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Indicated first-line antihypertensive.",
+          "guidance": "Titrate from 5 mg to 10 mg once daily as needed.",
+          "source_attribution": "FDA label (Norvasc), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Metabolically neutral; no adverse effect on glycemic control.",
+          "guidance": "Suitable antihypertensive in diabetes.",
+          "source_attribution": "StatPearls: Amlodipine"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Exposure has not been associated with increased fetal malformations; acceptable for chronic hypertension in pregnancy.",
+          "guidance": "Labeling notes limited data; labetalol and nifedipine remain the preferred agents in pregnancy guidelines.",
+          "source_attribution": "StatPearls: Amlodipine; FDA label (Norvasc), Pregnancy"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No bronchoconstrictor effect.",
+          "guidance": "Suitable antihypertensive in asthma/COPD.",
+          "source_attribution": "StatPearls: Amlodipine"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal or bleeding effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Norvasc)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "Hepatically metabolized; no renal dose adjustment.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "StatPearls: Amlodipine"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Clearance is reduced (AUC up 40-60%) with a prolonged half-life.",
+          "guidance": "Start 2.5 mg once daily and titrate slowly.",
+          "source_attribution": "FDA label (Norvasc), Dosage / Warnings; StatPearls"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Raises tacrolimus and cyclosporine levels.",
+          "guidance": "Monitor calcineurin inhibitor trough levels when combined.",
+          "source_attribution": "FDA label (Norvasc), Drug Interactions"
+        }
+      ]
+    },
+    {
+      "id": "med_losartan",
+      "name": "Losartan",
+      "generic_name": "Losartan potassium",
+      "international_generic_name": "losartan",
+      "trade_name": "Cozaar",
+      "drug_class": "Angiotensin receptor blocker (RAAS blocker)",
+      "category": "Prescription",
+      "description": "Losartan selectively blocks the angiotensin II type 1 (AT1) receptor, preventing angiotensin II-mediated vasoconstriction and aldosterone release. This lowers blood pressure and reduces intraglomerular pressure and proteinuria. It is used for hypertension (including with left ventricular hypertrophy) and diabetic nephropathy in type 2 diabetes, and does not cause the bradykinin-related cough typical of ACE inhibitors.",
+      "dosage_text": "Adults: hypertension 50 mg once daily (25 mg if volume-depleted), up to 100 mg daily in one or two doses; type 2 diabetic nephropathy 50 mg once daily, increased to 100 mg once daily based on blood pressure. Mild-to-moderate hepatic impairment: start 25 mg once daily. Refer to current product labeling.",
+      "storage": "Store at 15-30 C (59-86 F); keep container tightly closed and protect from light. Refer to current product labeling.",
+      "black_box_warning": "Fetal toxicity: drugs acting on the renin-angiotensin system cause injury and death to the developing fetus. Discontinue losartan as soon as pregnancy is detected.",
+      "source_attribution": "DailyMed Cozaar prescribing information; StatPearls: Losartan; Unilab Lifezar product information.",
+      "brands_ph": [
+        "Lifezar",
+        "Getzar",
+        "Hextan",
+        "Angioten",
+        "Kenzar"
+      ],
+      "brands_intl": [
+        "Cozaar"
+      ],
+      "indications": [
+        "Hypertension",
+        "Reduction of stroke risk in hypertension with left ventricular hypertrophy",
+        "Diabetic nephropathy with elevated creatinine and proteinuria in type 2 diabetes with hypertension"
+      ],
+      "adverse": [
+        "Dizziness",
+        "Upper respiratory infection, nasal congestion",
+        "Back pain",
+        "Fatigue",
+        "Hypotension (especially with volume depletion)",
+        "Hyperkalemia",
+        "Acute kidney injury in susceptible patients (e.g., renal artery stenosis)",
+        "Angioedema (rare)"
+      ],
+      "contraindications": [
+        "Hypersensitivity to any component",
+        "Co-administration with aliskiren in patients with diabetes",
+        "Pregnancy (boxed warning)"
+      ],
+      "interactions": [
+        "Potassium supplements, potassium-sparing diuretics, salt substitutes: hyperkalemia.",
+        "NSAIDs (including COX-2 inhibitors): reduced antihypertensive effect and risk of renal function deterioration.",
+        "Lithium: increased lithium levels and toxicity; monitor levels.",
+        "Dual RAAS blockade (ACE inhibitor, other ARB, aliskiren): more hypotension, syncope, hyperkalemia and renal impairment; generally avoid."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Losartan. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK526065/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "COZAAR (losartan potassium) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9949448f-c3b9-44ee-94ed-c1aca8c90f39",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Indicated first-line antihypertensive.",
+          "guidance": "Titrate 50-100 mg daily.",
+          "source_attribution": "FDA label (Cozaar), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Indicated for diabetic nephropathy in type 2 diabetes.",
+          "guidance": "Do not combine with aliskiren in diabetes; monitor potassium and creatinine.",
+          "source_attribution": "FDA label (Cozaar), Indications / Contraindications"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "Boxed warning: fetal toxicity (oligohydramnios, lung hypoplasia, skeletal deformities, neonatal renal failure).",
+          "guidance": "Discontinue as soon as pregnancy is detected.",
+          "source_attribution": "FDA label (Cozaar), Boxed Warning"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No bronchospasm and no ACE-inhibitor-type cough mechanism.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "StatPearls: Losartan"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Cozaar)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Can raise creatinine and potassium; risk of acute kidney injury in susceptible patients.",
+          "guidance": "Monitor serum creatinine and potassium periodically.",
+          "source_attribution": "FDA label (Cozaar), Warnings and Precautions"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Increased exposure in hepatic impairment.",
+          "guidance": "Start 25 mg once daily in mild-to-moderate impairment.",
+          "source_attribution": "FDA label (Cozaar), Dosage and Administration"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "safe",
+          "summary": "No autoimmune-specific precaution.",
+          "guidance": "Concomitant NSAIDs (common in arthritis) blunt effect and raise renal risk; monitor.",
+          "source_attribution": "FDA label (Cozaar), Drug Interactions"
+        }
+      ]
+    },
+    {
+      "id": "med_enalapril",
+      "name": "Enalapril",
+      "generic_name": "Enalapril maleate",
+      "international_generic_name": "enalapril",
+      "trade_name": "Renitec",
+      "drug_class": "ACE inhibitor (RAAS blocker)",
+      "category": "Prescription",
+      "description": "Enalapril is a prodrug hydrolyzed to enalaprilat, which inhibits angiotensin-converting enzyme, lowering angiotensin II and aldosterone and increasing bradykinin. The result is vasodilation, reduced afterload and favorable cardiac remodeling. It is used for hypertension, heart failure with reduced ejection fraction and asymptomatic left ventricular dysfunction.",
+      "dosage_text": "Adults: hypertension 5 mg once daily initially (2.5 mg if on a diuretic), usual 10-40 mg/day in one or two doses; heart failure 2.5 mg once daily initially, titrated to 2.5-20 mg twice daily (maximum 40 mg/day in divided doses). CrCl 30 mL/min or less (serum creatinine 3 mg/dL or more): start 2.5 mg once daily. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F); keep container tightly closed and protect from moisture. Refer to current product labeling.",
+      "black_box_warning": "Fetal toxicity: drugs acting on the renin-angiotensin system cause injury and death to the developing fetus. Discontinue enalapril as soon as pregnancy is detected.",
+      "source_attribution": "DailyMed enalapril maleate tablets prescribing information; StatPearls: Enalapril.",
+      "brands_ph": [
+        "Renitec",
+        "Hypace",
+        "Stadenace",
+        "RiteMED Enalapril"
+      ],
+      "brands_intl": [
+        "Vasotec",
+        "Renitec"
+      ],
+      "indications": [
+        "Hypertension",
+        "Symptomatic heart failure",
+        "Asymptomatic left ventricular dysfunction (EF 35% or less)"
+      ],
+      "adverse": [
+        "Persistent dry (nonproductive) cough",
+        "Dizziness, fatigue, headache",
+        "Hypotension (especially with volume depletion or heart failure)",
+        "Hyperkalemia",
+        "Renal function deterioration",
+        "Angioedema (face, tongue, larynx; intestinal)",
+        "Cholestatic jaundice progressing to hepatic necrosis (rare)",
+        "Neutropenia/agranulocytosis (rare; higher risk in collagen vascular disease with renal impairment)"
+      ],
+      "contraindications": [
+        "History of angioedema related to previous ACE inhibitor therapy",
+        "Hereditary or idiopathic angioedema",
+        "Co-administration with aliskiren in patients with diabetes",
+        "Use within 36 hours of a neprilysin inhibitor (sacubitril/valsartan)",
+        "Hypersensitivity; pregnancy (boxed warning)"
+      ],
+      "interactions": [
+        "Neprilysin inhibitors (sacubitril): increased angioedema risk; 36-hour washout required.",
+        "Potassium-sparing diuretics, potassium supplements: hyperkalemia.",
+        "NSAIDs: reduced antihypertensive effect and risk of renal impairment.",
+        "Lithium: increased lithium levels and toxicity.",
+        "Dual RAAS blockade (ARB, aliskiren): avoid; more hypotension, hyperkalemia and renal failure.",
+        "Diuretics: additive hypotension, particularly at initiation."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Enalapril. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK557708/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "Enalapril maleate tablets, USP. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e109e7b1-4650-4416-9d89-7c1185d5cf48",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Indicated antihypertensive.",
+          "guidance": "Titrate 5-40 mg/day.",
+          "source_attribution": "FDA label (enalapril maleate), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Commonly used and renoprotective in diabetes.",
+          "guidance": "Do not combine with aliskiren; diabetes increases hyperkalemia risk, so monitor potassium.",
+          "source_attribution": "FDA label (enalapril maleate), Contraindications / Warnings"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "Boxed warning: fetal toxicity (oligohydramnios, lung hypoplasia, skeletal malformations).",
+          "guidance": "Discontinue as soon as pregnancy is detected.",
+          "source_attribution": "FDA label (enalapril maleate), Boxed Warning"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No direct bronchoconstriction.",
+          "guidance": "ACE-inhibitor cough can mimic poor asthma control; consider an ARB if cough develops.",
+          "source_attribution": "FDA label (enalapril maleate), Warnings (cough)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (enalapril maleate)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Risk of hyperkalemia and creatinine rise; drug accumulates.",
+          "guidance": "Start 2.5 mg daily if CrCl 30 mL/min or less; monitor creatinine and potassium.",
+          "source_attribution": "FDA label (enalapril maleate), Dosage / Warnings"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Rare cholestatic jaundice progressing to fulminant hepatic necrosis; limited data in hepatic impairment.",
+          "guidance": "Discontinue if jaundice or marked transaminase rise occurs.",
+          "source_attribution": "FDA label (enalapril maleate), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Neutropenia/agranulocytosis risk is higher in collagen vascular disease (SLE, scleroderma), especially with renal impairment.",
+          "guidance": "Monitor white blood cell counts periodically.",
+          "source_attribution": "FDA label (enalapril maleate), Warnings (neutropenia/agranulocytosis)"
+        }
+      ]
+    },
+    {
+      "id": "med_hydrochlorothiazide",
+      "name": "Hydrochlorothiazide",
+      "generic_name": "Hydrochlorothiazide",
+      "international_generic_name": "hydrochlorothiazide",
+      "trade_name": "Microzide",
+      "drug_class": "Thiazide diuretic",
+      "category": "Prescription",
+      "description": "Hydrochlorothiazide inhibits the Na+/Cl- cotransporter in the distal convoluted tubule, increasing sodium and water excretion. Blood pressure falls initially from volume reduction and long-term from reduced peripheral vascular resistance. It is used alone or in combination for hypertension and for edema, and is less effective when renal function is severely reduced.",
+      "dosage_text": "Adults: hypertension 12.5-25 mg once daily, titrated to a maximum of 50 mg daily (little added benefit above 25 mg; doses above 50 mg cause marked potassium loss); edema 25-100 mg daily in single or divided doses. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F); protect from light and moisture. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed hydrochlorothiazide tablets prescribing information; StatPearls: Hydrochlorothiazide.",
+      "brands_ph": [
+        "Altiazide"
+      ],
+      "brands_intl": [
+        "Microzide",
+        "Esidrex"
+      ],
+      "indications": [
+        "Hypertension (alone or with other antihypertensives)",
+        "Edema due to heart failure, hepatic cirrhosis, corticosteroid/estrogen therapy or renal dysfunction (e.g., nephrotic syndrome)"
+      ],
+      "adverse": [
+        "Hypokalemia, hyponatremia, hypomagnesemia, hypercalcemia",
+        "Hyperglycemia",
+        "Hyperuricemia and precipitation of gout",
+        "Dyslipidemia (modest)",
+        "Photosensitivity",
+        "Pancreatitis, jaundice (rare)",
+        "Acute myopia and angle-closure glaucoma (rare)",
+        "Blood dyscrasias and Stevens-Johnson syndrome (rare)"
+      ],
+      "contraindications": [
+        "Anuria",
+        "Hypersensitivity to hydrochlorothiazide or other sulfonamide-derived drugs"
+      ],
+      "interactions": [
+        "Lithium: reduced renal clearance and high risk of lithium toxicity; generally avoid.",
+        "NSAIDs: reduced diuretic and antihypertensive effect.",
+        "Antidiabetic agents: hyperglycemia may require dose adjustment.",
+        "Corticosteroids: increased electrolyte (potassium) depletion.",
+        "Alcohol, barbiturates, opioids: potentiated orthostatic hypotension."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Hydrochlorothiazide. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430766/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "Hydrochlorothiazide tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b38ac8a-4540-4eb2-aedd-9aa966d22190",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Indicated antihypertensive.",
+          "guidance": "12.5-25 mg daily usually sufficient.",
+          "source_attribution": "FDA label (hydrochlorothiazide), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Can cause hyperglycemia and unmask latent diabetes, partly via hypokalemia.",
+          "guidance": "Monitor glucose; antidiabetic dose adjustment may be required.",
+          "source_attribution": "FDA label (hydrochlorothiazide), Precautions; StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Crosses the placenta; not a preferred agent.",
+          "guidance": "Labetalol and nifedipine are preferred for hypertension in pregnancy; HCTZ is an alternative.",
+          "source_attribution": "StatPearls: Hydrochlorothiazide; FDA label (hydrochlorothiazide), Pregnancy"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No bronchoconstrictor effect.",
+          "guidance": "Monitor potassium when combined with beta-2 agonists or systemic steroids.",
+          "source_attribution": "FDA label (hydrochlorothiazide); Ventolin HFA label, Drug Interactions"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (hydrochlorothiazide)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Contraindicated in anuria; ineffective in severe renal dysfunction and may precipitate azotemia.",
+          "guidance": "Use cautiously in severe renal disease; loop diuretics are preferred when eGFR is very low.",
+          "source_attribution": "FDA label (hydrochlorothiazide), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Electrolyte shifts can precipitate hepatic coma in severe liver disease.",
+          "guidance": "Use cautiously; monitor electrolytes.",
+          "source_attribution": "FDA label (hydrochlorothiazide), Warnings"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Exacerbation or activation of systemic lupus erythematosus has been reported.",
+          "guidance": "Use cautiously in SLE.",
+          "source_attribution": "FDA label (hydrochlorothiazide), Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_furosemide",
+      "name": "Furosemide",
+      "generic_name": "Furosemide",
+      "international_generic_name": "furosemide",
+      "trade_name": "Lasix",
+      "drug_class": "Loop diuretic",
+      "category": "Prescription",
+      "description": "Furosemide inhibits the Na+/K+/2Cl- cotransporter in the thick ascending limb of the loop of Henle, producing a potent, short-acting diuresis with loss of sodium, chloride, potassium, magnesium and water. It remains effective at low GFR. It is used for edema from heart failure, cirrhosis and renal disease, and for hypertension, particularly when renal function is reduced.",
+      "dosage_text": "Adults (oral): edema 20-80 mg as a single dose; repeat or increase by 20-40 mg no sooner than 6-8 hours after the previous dose until the desired diuresis (doses up to 600 mg/day in severe edematous states under close supervision). Hypertension: usually 80 mg/day, often as 40 mg twice daily, adjusted to response. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F); excursions permitted to 15-30 C. Refer to current product labeling.",
+      "black_box_warning": "Furosemide is a potent diuretic which, if given in excessive amounts, can lead to profound diuresis with water and electrolyte depletion; careful medical supervision and individualized dosing are required.",
+      "source_attribution": "DailyMed Lasix prescribing information; StatPearls: Furosemide.",
+      "brands_ph": [
+        "Rasitol"
+      ],
+      "brands_intl": [
+        "Lasix"
+      ],
+      "indications": [
+        "Edema associated with heart failure, cirrhosis and renal disease including nephrotic syndrome",
+        "Hypertension (alone or in combination)",
+        "Acute pulmonary edema (IV)"
+      ],
+      "adverse": [
+        "Dehydration and hypovolemia, orthostatic hypotension",
+        "Hypokalemia, hyponatremia, hypomagnesemia, metabolic alkalosis",
+        "Hyperglycemia",
+        "Hyperuricemia and gout",
+        "Ototoxicity (tinnitus, hearing loss), especially with rapid IV dosing, high doses or renal impairment",
+        "Photosensitivity and rash; rare blood dyscrasias and pancreatitis"
+      ],
+      "contraindications": [
+        "Anuria",
+        "Hypersensitivity to furosemide"
+      ],
+      "interactions": [
+        "Aminoglycosides and other ototoxic drugs (ethacrynic acid): increased ototoxicity.",
+        "Lithium: reduced clearance and high risk of toxicity.",
+        "NSAIDs: reduced diuretic effect and worsening renal function.",
+        "ACE inhibitors/ARBs: severe hypotension and renal impairment, especially at initiation.",
+        "Corticosteroids, laxatives, beta-2 agonists: additive hypokalemia.",
+        "Sucralfate: separate doses by at least 2 hours."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Furosemide. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499921/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "LASIX (furosemide) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2c9b4d8f-0770-482d-a9e6-9c616a440b1a",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Labeled for hypertension; preferred diuretic when GFR is low.",
+          "guidance": "Monitor electrolytes and volume status.",
+          "source_attribution": "FDA label (Lasix), Indications; StatPearls"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Can raise blood glucose and precipitate diabetes.",
+          "guidance": "Monitor glucose.",
+          "source_attribution": "FDA label (Lasix), Precautions"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Crosses the placenta; adverse effects in animal studies and no adequate human studies.",
+          "guidance": "Use only if benefit justifies risk, with fetal monitoring.",
+          "source_attribution": "FDA label (Lasix), Pregnancy; StatPearls"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No bronchoconstrictor effect.",
+          "guidance": "Monitor potassium with concurrent beta-2 agonists or steroids.",
+          "source_attribution": "FDA label (Lasix); Ventolin HFA label, Drug Interactions"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Lasix)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Contraindicated in anuria; higher doses are needed at low GFR and ototoxicity risk increases.",
+          "guidance": "Discontinue if azotemia and oliguria increase during treatment of progressive renal disease.",
+          "source_attribution": "FDA label (Lasix), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Rapid fluid and electrolyte shifts can precipitate hepatic coma in cirrhosis.",
+          "guidance": "Initiate in hospital in cirrhosis with ascites; avoid in hepatic coma until corrected.",
+          "source_attribution": "FDA label (Lasix), Warnings"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "May exacerbate or activate systemic lupus erythematosus.",
+          "guidance": "Use cautiously in SLE.",
+          "source_attribution": "FDA label (Lasix), Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_spironolactone",
+      "name": "Spironolactone",
+      "generic_name": "Spironolactone",
+      "international_generic_name": "spironolactone",
+      "trade_name": "Aldactone",
+      "drug_class": "Potassium-sparing diuretic (mineralocorticoid receptor antagonist)",
+      "category": "Prescription",
+      "description": "Spironolactone competitively blocks the mineralocorticoid (aldosterone) receptor in the distal nephron, increasing sodium and water excretion while retaining potassium. It also has anti-androgenic activity. It reduces mortality in heart failure with reduced ejection fraction and is used for resistant hypertension, primary hyperaldosteronism and edema from cirrhosis or nephrotic syndrome.",
+      "dosage_text": "Adults: heart failure (NYHA III-IV) 25 mg once daily, increased to 50 mg daily if tolerated (reduce to 25 mg every other day if hyperkalemia); hypertension 25-100 mg/day in single or divided doses, titrated at 2-week intervals; edema (cirrhosis, nephrotic syndrome) 100 mg/day initially (cirrhosis: start in hospital); primary hyperaldosteronism 100-400 mg/day. Refer to current product labeling.",
+      "storage": "Store below 25 C (77 F). Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Aldactone prescribing information; StatPearls: Spironolactone.",
+      "brands_ph": [
+        "Aldactone"
+      ],
+      "brands_intl": [
+        "Aldactone",
+        "CaroSpir"
+      ],
+      "indications": [
+        "Heart failure with reduced ejection fraction (NYHA III-IV)",
+        "Hypertension (add-on, including resistant hypertension)",
+        "Edema due to cirrhosis or nephrotic syndrome",
+        "Primary hyperaldosteronism"
+      ],
+      "adverse": [
+        "Hyperkalemia (can be life-threatening)",
+        "Gynecomastia, breast tenderness, decreased libido (men)",
+        "Menstrual irregularities (women)",
+        "Hyponatremia, dehydration, increased creatinine",
+        "GI upset",
+        "Stevens-Johnson syndrome (rare)"
+      ],
+      "contraindications": [
+        "Hyperkalemia",
+        "Addison's disease",
+        "Concomitant eplerenone",
+        "Significant renal impairment (StatPearls: eGFR <30 mL/min or serum creatinine >2.5 mg/dL men, >2.0 mg/dL women)"
+      ],
+      "interactions": [
+        "ACE inhibitors, ARBs, potassium supplements, heparin, trimethoprim: increased hyperkalemia risk.",
+        "NSAIDs: reduced diuretic effect and increased hyperkalemia risk.",
+        "Lithium: increased lithium toxicity.",
+        "Abiraterone and mitotane: avoid concomitant use."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Spironolactone. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554421/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "ALDACTONE (spironolactone) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0fed2822-3a03-4b64-9857-c682fcd462bc",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Labeled for hypertension; key add-on for resistant hypertension.",
+          "guidance": "Monitor potassium within 1 week and periodically.",
+          "source_attribution": "FDA label (Aldactone), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "No diabetes-specific restriction.",
+          "guidance": "Monitor potassium closely when combined with ACE inhibitors or ARBs.",
+          "source_attribution": "FDA label (Aldactone), Warnings (hyperkalemia)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "Anti-androgenic effects may cause feminization of male fetuses (animal data).",
+          "guidance": "Avoid spironolactone in pregnancy.",
+          "source_attribution": "FDA label (Aldactone), Use in Specific Populations"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Aldactone)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Markedly increased hyperkalemia risk; StatPearls lists eGFR <30 as a contraindication.",
+          "guidance": "Avoid if eGFR <30 or hyperkalemia; otherwise monitor potassium and creatinine closely.",
+          "source_attribution": "FDA label (Aldactone), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Fluid and electrolyte shifts can precipitate hepatic encephalopathy/coma, although it is used for cirrhotic ascites.",
+          "guidance": "Initiate in hospital in cirrhosis and titrate slowly.",
+          "source_attribution": "FDA label (Aldactone), Dosage / Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_metoprolol",
+      "name": "Metoprolol",
+      "generic_name": "Metoprolol tartrate / metoprolol succinate",
+      "international_generic_name": "metoprolol",
+      "trade_name": "Betaloc",
+      "drug_class": "Beta-blocker (beta-1 selective)",
+      "category": "Prescription",
+      "description": "Metoprolol is a relatively cardioselective beta-1 adrenergic receptor antagonist that reduces heart rate, contractility and blood pressure and lowers myocardial oxygen demand. Selectivity is dose-dependent and is lost at higher doses. It is used for hypertension, angina, secondary prevention after myocardial infarction, and (as the succinate extended-release form) heart failure with reduced ejection fraction.",
+      "dosage_text": "Adults (metoprolol tartrate): hypertension 100 mg/day in single or divided doses initially, effective range 100-450 mg/day; angina 100 mg/day in two divided doses, range 100-400 mg/day; post-MI maintenance 100 mg twice daily. Heart failure uses metoprolol succinate extended-release started at a low dose and titrated to a target of 100-200 mg once daily. Hepatic impairment: start low and titrate gradually. Do not stop abruptly; taper over 1-2 weeks. Refer to current product labeling.",
+      "storage": "Store at 25 C (77 F); excursions permitted to 15-30 C. Protect from moisture and heat. Refer to current product labeling.",
+      "black_box_warning": "Ischemic heart disease: abrupt cessation can cause severe exacerbation of angina, myocardial infarction and ventricular arrhythmias; taper over 1-2 weeks. This is a boxed warning in metoprolol labeling cited by StatPearls; the current Lopressor label lists it as a warning.",
+      "source_attribution": "DailyMed Lopressor prescribing information; StatPearls: Metoprolol.",
+      "brands_ph": [
+        "Betaloc",
+        "Neobloc",
+        "Cardiosel",
+        "RiteMED Metoprolol"
+      ],
+      "brands_intl": [
+        "Lopressor",
+        "Toprol-XL",
+        "Betaloc",
+        "Betaloc ZOK"
+      ],
+      "indications": [
+        "Hypertension",
+        "Angina pectoris",
+        "Acute myocardial infarction and secondary prevention",
+        "Heart failure with reduced ejection fraction (succinate extended-release)"
+      ],
+      "adverse": [
+        "Fatigue and dizziness",
+        "Bradycardia and hypotension",
+        "Depression",
+        "Diarrhea",
+        "Shortness of breath / bronchospasm",
+        "Heart block and worsening heart failure",
+        "Masking of hypoglycemia symptoms"
+      ],
+      "contraindications": [
+        "Severe bradycardia",
+        "Second- or third-degree heart block",
+        "Sick sinus syndrome (without a pacemaker)",
+        "Cardiogenic shock",
+        "Decompensated heart failure",
+        "Systolic blood pressure <100 mmHg (MI setting)",
+        "Hypersensitivity"
+      ],
+      "interactions": [
+        "Strong CYP2D6 inhibitors (fluoxetine, paroxetine, quinidine, propafenone): roughly double metoprolol concentrations.",
+        "Verapamil, diltiazem, digoxin: additive bradycardia and AV block.",
+        "Clonidine: beta-blockers can worsen rebound hypertension on clonidine withdrawal.",
+        "Catecholamine-depleting drugs (reserpine, MAOIs): additive hypotension and bradycardia.",
+        "Beta-2 agonists (salbutamol): mutual antagonism of bronchodilation."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Metoprolol. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK532923/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "LOPRESSOR (metoprolol tartrate) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0283bc9d-6998-493a-824a-d4c85f704111",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Indicated antihypertensive.",
+          "guidance": "Taper rather than stop abruptly.",
+          "source_attribution": "FDA label (Lopressor), Indications"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "May mask hypoglycemia warning signs (tachycardia) and prolong hypoglycemia.",
+          "guidance": "Monitor glucose more closely, especially with insulin or sulfonylureas.",
+          "source_attribution": "FDA label (Lopressor), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Crosses the placenta; neonatal bradycardia, hypotension and hypoglycemia possible.",
+          "guidance": "Use if benefit outweighs risk; monitor neonate.",
+          "source_attribution": "FDA label (Lopressor), Use in Specific Populations; StatPearls"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "caution",
+          "summary": "Patients with bronchospastic disease should generally not receive beta-blockers; beta-1 selectivity is relative and lost at higher doses.",
+          "guidance": "If used, give the lowest dose with a beta-2 agonist available.",
+          "source_attribution": "FDA label (Lopressor), Warnings (bronchospastic disease)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Lopressor)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "safe",
+          "summary": "Hepatically metabolized; no renal dose adjustment.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "StatPearls: Metoprolol"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Extensive hepatic (CYP2D6) metabolism; exposure increases.",
+          "guidance": "Start at lower doses and titrate gradually.",
+          "source_attribution": "FDA label (Lopressor), Warnings; StatPearls"
+        }
+      ]
+    },
+    {
+      "id": "med_atorvastatin",
+      "name": "Atorvastatin",
+      "generic_name": "Atorvastatin calcium",
+      "international_generic_name": "atorvastatin",
+      "trade_name": "Lipitor",
+      "drug_class": "Statin (HMG-CoA reductase inhibitor)",
+      "category": "Prescription",
+      "description": "Atorvastatin competitively inhibits HMG-CoA reductase, the rate-limiting enzyme of hepatic cholesterol synthesis, which up-regulates hepatic LDL receptors and lowers LDL-cholesterol. Moderate-intensity doses (10-20 mg) lower LDL-C by about 30-50% and high-intensity doses (40-80 mg) by more than 50%. It reduces the risk of MI, stroke and revascularization in primary and secondary prevention.",
+      "dosage_text": "Adults: 10-80 mg once daily at any time of day; usual starting dose 10-20 mg (40 mg if a large LDL-C reduction is needed). Dose caps with interacting drugs: do not exceed 20 mg/day with clarithromycin, itraconazole or several ritonavir-boosted protease inhibitors; 40 mg/day with nelfinavir; avoid with cyclosporine, gemfibrozil and tipranavir/ritonavir. Refer to current product labeling.",
+      "storage": "Store at controlled room temperature 20-25 C (68-77 F). Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "FDA Lipitor prescribing information (2024); StatPearls: Atorvastatin.",
+      "brands_ph": [
+        "Lipitor",
+        "Carvastin",
+        "Lipigo",
+        "Adivast"
+      ],
+      "brands_intl": [
+        "Lipitor"
+      ],
+      "indications": [
+        "Reduce the risk of MI, stroke and revascularization in adults with or at high risk of atherosclerotic cardiovascular disease",
+        "Primary hyperlipidemia and mixed dyslipidemia (adjunct to diet)",
+        "Familial hypercholesterolemia (heterozygous and homozygous)",
+        "Hypertriglyceridemia"
+      ],
+      "adverse": [
+        "Nasopharyngitis",
+        "Arthralgia and pain in extremity",
+        "Diarrhea, dyspepsia",
+        "Urinary tract infection",
+        "Myopathy and rhabdomyolysis",
+        "Immune-mediated necrotizing myopathy (rare)",
+        "Transaminase elevations; rare hepatic failure",
+        "Increased HbA1c and fasting glucose"
+      ],
+      "contraindications": [
+        "Acute liver failure or decompensated cirrhosis",
+        "Hypersensitivity to atorvastatin or excipients"
+      ],
+      "interactions": [
+        "Cyclosporine, gemfibrozil, tipranavir/ritonavir, glecaprevir/pibrentasvir: not recommended (myopathy risk).",
+        "Clarithromycin, itraconazole, boosted HIV/HCV protease inhibitors: do not exceed 20 mg daily.",
+        "Other fibrates, niacin 1 g/day or more, colchicine: increased myopathy risk; monitor.",
+        "Grapefruit juice in large amounts increases exposure.",
+        "Digoxin: monitor digoxin levels."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Atorvastatin. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430779/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "US FDA (Drugs@FDA)",
+          "citation_text": "LIPITOR (atorvastatin calcium) tablets. Prescribing information. Revised 2024.",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/020702s081lbl.pdf",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No blood-pressure concern; reduces cardiovascular risk in hypertensive patients.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "FDA label (Lipitor, 2024)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Strongly indicated for cardiovascular risk reduction in diabetes despite small increases in HbA1c/fasting glucose.",
+          "guidance": "Monitor glycemia; benefits outweigh the modest glycemic effect.",
+          "source_attribution": "FDA label (Lipitor, 2024), Warnings (5.4); StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "May cause fetal harm by decreasing cholesterol synthesis.",
+          "guidance": "Discontinue when pregnancy is recognized (consider individual therapeutic need); breastfeeding not recommended.",
+          "source_attribution": "FDA label (Lipitor, 2024), Use in Specific Populations (8.1, 8.2)"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Lipitor, 2024)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal or bleeding effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Lipitor, 2024)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Renal impairment is a risk factor for myopathy, although no dose adjustment is needed.",
+          "guidance": "Monitor for muscle symptoms.",
+          "source_attribution": "FDA label (Lipitor, 2024), Use in Specific Populations (8.6)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "avoid",
+          "summary": "Contraindicated in acute liver failure or decompensated cirrhosis; exposure rises markedly in chronic alcoholic liver disease.",
+          "guidance": "Check liver enzymes before starting; use caution in chronic liver disease or heavy alcohol use.",
+          "source_attribution": "FDA label (Lipitor, 2024), Contraindications / Warnings (5.3)"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Cyclosporine co-administration is not recommended; statins can rarely trigger immune-mediated necrotizing myopathy.",
+          "guidance": "Avoid with cyclosporine; evaluate persistent weakness with CK.",
+          "source_attribution": "FDA label (Lipitor, 2024), Drug Interactions / Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_dapagliflozin",
+      "name": "Dapagliflozin",
+      "generic_name": "Dapagliflozin (propanediol)",
+      "international_generic_name": "dapagliflozin",
+      "trade_name": "Forxiga",
+      "drug_class": "SGLT2 inhibitor",
+      "category": "Prescription",
+      "description": "Dapagliflozin inhibits the sodium-glucose cotransporter 2 in the proximal renal tubule, reducing glucose reabsorption and increasing urinary glucose excretion independent of insulin. It also causes natriuresis and osmotic diuresis, lowers blood pressure and reduces intraglomerular pressure. It is used for type 2 diabetes and, independent of diabetes status, to reduce cardiovascular and kidney outcomes in heart failure and chronic kidney disease.",
+      "dosage_text": "Adults: glycemic control 5 mg once daily, may increase to 10 mg once daily; heart failure and chronic kidney disease 10 mg once daily. Not recommended for glycemic control if eGFR <45 mL/min/1.73 m2. Initiation not recommended if eGFR <25; may continue if eGFR falls below 25 during treatment. Withhold at least 3 days before scheduled surgery or prolonged fasting. Refer to current product labeling.",
+      "storage": "Store at room temperature. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Farxiga prescribing information; StatPearls: SGLT2 Inhibitors.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Farxiga",
+        "Forxiga"
+      ],
+      "indications": [
+        "Glycemic control in type 2 diabetes (adjunct to diet and exercise)",
+        "Reduce risk of heart failure hospitalization in type 2 diabetes with cardiovascular disease or risk factors",
+        "Heart failure (reduced and preserved ejection fraction): reduce cardiovascular death and heart failure hospitalization",
+        "Chronic kidney disease at risk of progression: reduce eGFR decline, ESKD, CV death and HF hospitalization"
+      ],
+      "adverse": [
+        "Genital mycotic infections (female and male)",
+        "Urinary tract infections and urosepsis",
+        "Increased urination, volume depletion, hypotension, acute kidney injury",
+        "Ketoacidosis, including euglycemic DKA",
+        "Necrotizing fasciitis of the perineum (Fournier's gangrene, rare)",
+        "Hypoglycemia when combined with insulin or sulfonylureas"
+      ],
+      "contraindications": [
+        "History of serious hypersensitivity to dapagliflozin or excipients"
+      ],
+      "interactions": [
+        "Insulin and insulin secretagogues (sulfonylureas such as gliclazide): increased hypoglycemia; consider dose reduction.",
+        "Loop and thiazide diuretics: additive volume depletion and hypotension.",
+        "Lithium: SGLT2 inhibitors may lower lithium levels; monitor.",
+        "Positive urine glucose tests and unreliable 1,5-AG assay are expected during therapy."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Sodium-Glucose Transport 2 (SGLT2) Inhibitors. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK576405/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "FARXIGA (dapagliflozin) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72ad22ae-efe6-4cd6-a302-98aaee423d69",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "Modestly lowers blood pressure.",
+          "guidance": "Watch for volume depletion with concurrent diuretics.",
+          "source_attribution": "FDA label (Farxiga), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Indicated for type 2 diabetes; not for type 1 diabetes because of ketoacidosis risk.",
+          "guidance": "Reduce insulin/sulfonylurea dose if hypoglycemia; withhold before surgery or prolonged fasting.",
+          "source_attribution": "FDA label (Farxiga), Indications / Warnings"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "Adverse renal effects in animal studies; not recommended in the second and third trimesters.",
+          "guidance": "Switch to an alternative when pregnancy is detected; not recommended while breastfeeding.",
+          "source_attribution": "FDA label (Farxiga), Use in Specific Populations"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Farxiga)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Farxiga)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Glycemic efficacy falls at low eGFR, but kidney and heart benefits persist.",
+          "guidance": "Not for glycemic control if eGFR <45; do not initiate if eGFR <25 (may continue); not studied when initiated on dialysis.",
+          "source_attribution": "FDA label (Farxiga), Dosage and Administration"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "No adjustment in mild-to-moderate impairment; limited data in severe impairment.",
+          "guidance": "Assess benefit-risk individually in severe hepatic impairment.",
+          "source_attribution": "FDA label (Farxiga), Use in Specific Populations"
+        }
+      ]
+    },
+    {
+      "id": "med_metformin",
+      "name": "Metformin",
+      "generic_name": "Metformin hydrochloride",
+      "international_generic_name": "metformin",
+      "trade_name": "Glucophage",
+      "drug_class": "Biguanide antidiabetic",
+      "category": "Prescription",
+      "description": "Metformin lowers blood glucose mainly by decreasing hepatic gluconeogenesis, and also reduces intestinal glucose absorption and improves peripheral insulin sensitivity. It does not stimulate insulin secretion, so it rarely causes hypoglycemia alone and is weight-neutral. It is the usual first-line oral agent for type 2 diabetes.",
+      "dosage_text": "Adults (immediate-release): start 500 mg twice daily or 850 mg once daily with meals; increase by 500 mg weekly or 850 mg every 2 weeks; maximum 2550 mg/day in divided doses (doses above 2000 mg may be better tolerated three times daily). Extended-release: 500-1000 mg once daily with the evening meal, maximum 2000 mg/day. Contraindicated if eGFR <30; initiation not recommended at eGFR 30-45. Hold for iodinated contrast procedures in at-risk patients and re-check eGFR 48 hours after. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F). Refer to current product labeling.",
+      "black_box_warning": "Lactic acidosis: postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension and resistant bradyarrhythmias. Risk factors include renal impairment, age 65 or older, iodinated contrast, surgery, hypoxic states, excessive alcohol intake and hepatic impairment. Discontinue immediately and hospitalize if lactic acidosis is suspected.",
+      "source_attribution": "DailyMed metformin hydrochloride tablets prescribing information; StatPearls: Metformin.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Glucophage",
+        "Glucophage XR",
+        "Glumetza",
+        "Riomet"
+      ],
+      "indications": [
+        "Type 2 diabetes mellitus (adjunct to diet and exercise), in adults and children 10 years and older",
+        "Off-label: prediabetes, polycystic ovary syndrome, gestational diabetes (alternative to insulin), antipsychotic-induced weight gain"
+      ],
+      "adverse": [
+        "Diarrhea, nausea, vomiting, flatulence, abdominal discomfort",
+        "Metallic taste and anorexia",
+        "Vitamin B12 deficiency with long-term use",
+        "Lactic acidosis (rare, potentially fatal)",
+        "Hypoglycemia when combined with insulin or secretagogues"
+      ],
+      "contraindications": [
+        "eGFR below 30 mL/min/1.73 m2",
+        "Acute or chronic metabolic acidosis, including diabetic ketoacidosis",
+        "Hypersensitivity to metformin"
+      ],
+      "interactions": [
+        "Iodinated contrast: risk of acute kidney injury and lactic acidosis; hold around procedures in at-risk patients.",
+        "Carbonic anhydrase inhibitors (topiramate, zonisamide, acetazolamide): increased lactic acidosis risk.",
+        "OCT2/MATE inhibitors (cimetidine, ranolazine, dolutegravir, vandetanib): increased metformin exposure.",
+        "Alcohol: potentiates effect on lactate metabolism; avoid excess.",
+        "Insulin and sulfonylureas: increased hypoglycemia risk."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Metformin. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK518983/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "Metformin hydrochloride tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=bb62088f-e9af-4644-9f57-cb90bab0f199",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No blood-pressure concern.",
+          "guidance": "Standard dosing.",
+          "source_attribution": "FDA label (metformin)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "First-line therapy for type 2 diabetes.",
+          "guidance": "Titrate gradually to limit GI effects; monitor B12 periodically.",
+          "source_attribution": "FDA label (metformin), Indications; StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Crosses the placenta; no clear association with birth defects, but insulin remains preferred.",
+          "guidance": "May be used as an alternative to insulin in gestational/pregestational diabetes with specialist input.",
+          "source_attribution": "FDA label (metformin), Pregnancy; StatPearls"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "caution",
+          "summary": "Hypoxic states (e.g., severe acute asthma or COPD exacerbation) are a risk factor for lactic acidosis.",
+          "guidance": "Stable disease is not a contraindication; withhold during acute hypoxemic illness.",
+          "source_attribution": "FDA label (metformin), Boxed Warning (risk factors)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "GI adverse effects are functional, not ulcerogenic.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (metformin)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Renally excreted; accumulation increases lactic acidosis risk.",
+          "guidance": "Contraindicated if eGFR <30; do not initiate at eGFR 30-45; check eGFR at least annually.",
+          "source_attribution": "FDA label (metformin), Dosage / Contraindications"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "avoid",
+          "summary": "Hepatic impairment reduces lactate clearance and increases lactic acidosis risk.",
+          "guidance": "Label advises avoiding use in patients with clinical or laboratory evidence of hepatic disease.",
+          "source_attribution": "FDA label (metformin), Warnings (lactic acidosis); StatPearls"
+        }
+      ]
+    },
+    {
+      "id": "med_gliclazide",
+      "name": "Gliclazide",
+      "generic_name": "Gliclazide",
+      "international_generic_name": "gliclazide",
+      "trade_name": "Diamicron MR",
+      "drug_class": "Sulfonylurea antidiabetic",
+      "category": "Prescription",
+      "description": "Gliclazide is a second-generation sulfonylurea that binds the SUR1 subunit of ATP-sensitive potassium channels on pancreatic beta cells, causing depolarization, calcium influx and insulin release regardless of blood glucose level. Hypoglycemia and weight gain are the main drawbacks. It is used in type 2 diabetes when metformin alone is insufficient or not tolerated; it is not marketed in the United States.",
+      "dosage_text": "Adults, modified-release (MR): 30 mg once daily with breakfast, increased stepwise (at intervals of at least 1 month, or 2 weeks if glucose is not reduced) to a maximum of 120 mg once daily. Immediate-release: 40-80 mg daily initially, up to 320 mg/day (doses above 160 mg in two divided doses). Refer to current product labeling.",
+      "storage": "No special storage conditions (per SmPC). Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "Diamicron 30 mg MR SmPC (electronic Medicines Compendium, UK); StatPearls: Sulfonylureas.",
+      "brands_ph": [
+        "Diamicron MR",
+        "Glicla-Natrapharm",
+        "RiteMED Gliclazide",
+        "Zebet"
+      ],
+      "brands_intl": [
+        "Diamicron",
+        "Diamicron MR"
+      ],
+      "indications": [
+        "Type 2 diabetes mellitus in adults when diet, exercise and weight loss alone are insufficient"
+      ],
+      "adverse": [
+        "Hypoglycemia (most frequent; can be prolonged)",
+        "Weight gain",
+        "GI disturbances (abdominal pain, nausea, diarrhea, constipation)",
+        "Rash, pruritus; rare severe skin reactions",
+        "Hematologic changes (rare), including hemolytic anemia in G6PD deficiency",
+        "Hepatic enzyme elevation, hepatitis (rare)",
+        "Transient visual disturbances"
+      ],
+      "contraindications": [
+        "Hypersensitivity to gliclazide, other sulfonylureas or sulfonamides",
+        "Type 1 diabetes",
+        "Diabetic pre-coma, coma or ketoacidosis",
+        "Severe renal or hepatic insufficiency",
+        "Concomitant miconazole",
+        "Breastfeeding"
+      ],
+      "interactions": [
+        "Miconazole (systemic or oral gel): contraindicated; potentiates hypoglycemia.",
+        "Phenylbutazone and alcohol: not recommended; increased hypoglycemia.",
+        "Beta-blockers, fluconazole, ACE inhibitors, NSAIDs, other antidiabetics (insulin, SGLT2 inhibitors): enhanced hypoglycemia; beta-blockers mask symptoms.",
+        "Glucocorticoids, danazol, chlorpromazine: hyperglycemia. Fluoroquinolones: dysglycemia.",
+        "Warfarin: potentiation of anticoagulant effect possible."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Sulfonylureas. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK513225/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "electronic Medicines Compendium (UK)",
+          "citation_text": "Diamicron 30 mg MR Tablets. Summary of Product Characteristics. Servier Laboratories.",
+          "url": "https://www.medicines.org.uk/emc/product/1321/smpc",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "safe",
+          "summary": "No blood-pressure effect.",
+          "guidance": "ACE inhibitors may enhance hypoglycemia; monitor glucose.",
+          "source_attribution": "UK SmPC (Diamicron MR), Interactions"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "safe",
+          "summary": "Indicated for type 2 diabetes; contraindicated in type 1 diabetes and ketoacidosis.",
+          "guidance": "Regular meals needed; educate on hypoglycemia.",
+          "source_attribution": "UK SmPC (Diamicron MR), Indications / Contraindications"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "avoid",
+          "summary": "Insulin is preferred; oral sulfonylureas should be switched when pregnancy is planned or detected.",
+          "guidance": "Contraindicated in breastfeeding (neonatal hypoglycemia risk).",
+          "source_attribution": "UK SmPC (Diamicron MR), Fertility, pregnancy and lactation"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No respiratory effect.",
+          "guidance": "Systemic corticosteroids for exacerbations raise glucose; monitor.",
+          "source_attribution": "UK SmPC (Diamicron MR), Interactions"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Altered pharmacokinetics prolong hypoglycemia; contraindicated in severe renal insufficiency.",
+          "guidance": "Use with close glucose monitoring in mild-to-moderate impairment; avoid in severe.",
+          "source_attribution": "UK SmPC (Diamicron MR), Contraindications / Warnings"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Reduced metabolism prolongs hypoglycemia; contraindicated in severe hepatic insufficiency.",
+          "guidance": "Avoid in severe impairment; monitor closely otherwise.",
+          "source_attribution": "UK SmPC (Diamicron MR), Contraindications / Warnings"
+        }
+      ]
+    },
+    {
+      "id": "med_salbutamol",
+      "name": "Salbutamol (Albuterol)",
+      "generic_name": "Salbutamol sulfate (albuterol sulfate)",
+      "international_generic_name": "salbutamol",
+      "trade_name": "Ventolin",
+      "drug_class": "Short-acting beta-2 agonist (bronchodilator)",
+      "category": "Prescription",
+      "description": "Salbutamol stimulates beta-2 adrenergic receptors on bronchial smooth muscle, activating adenylyl cyclase and relaxing the airways within minutes, with effects lasting 4-6 hours. It also inhibits mediator release from mast cells. It is used for relief and prevention of bronchospasm in asthma, COPD and exercise-induced bronchoconstriction.",
+      "dosage_text": "Adults (metered-dose inhaler): 2 inhalations every 4-6 hours as needed (1 inhalation every 4 hours may suffice); exercise-induced bronchospasm: 2 inhalations 15-30 minutes before exercise. Increasing need for the reliever indicates deteriorating control and requires review; do not exceed labeled frequency without medical evaluation. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F) with the mouthpiece down. Pressurized canister: do not puncture, incinerate or expose to heat. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Ventolin HFA prescribing information; StatPearls: Albuterol.",
+      "brands_ph": [
+        "Ventolin",
+        "Aero-Vent",
+        "Hivent",
+        "Derihaler"
+      ],
+      "brands_intl": [
+        "Ventolin",
+        "ProAir",
+        "Proventil"
+      ],
+      "indications": [
+        "Treatment or prevention of bronchospasm in reversible obstructive airway disease (asthma, COPD)",
+        "Prevention of exercise-induced bronchospasm"
+      ],
+      "adverse": [
+        "Tremor and nervousness",
+        "Tachycardia, palpitations",
+        "Headache",
+        "Throat irritation, cough",
+        "Hypokalemia",
+        "Hyperglycemia (mainly high doses)",
+        "Paradoxical bronchospasm (rare, can be life-threatening)",
+        "Arrhythmias and ECG changes at high doses"
+      ],
+      "contraindications": [
+        "Hypersensitivity to salbutamol/albuterol or any component"
+      ],
+      "interactions": [
+        "Beta-blockers (especially non-selective): block bronchodilation and may cause severe bronchospasm.",
+        "Non-potassium-sparing diuretics (loop, thiazide): worsened hypokalemia and ECG changes.",
+        "MAOIs and tricyclic antidepressants: potentiated cardiovascular effects; use extreme caution.",
+        "Digoxin: serum digoxin may decrease by 16-22%."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Albuterol. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK482272/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "VENTOLIN HFA (albuterol sulfate) inhalation aerosol. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d92c5d6b-ff10-4087-36a2-1cfc464cb967",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "May raise pulse and blood pressure and cause ECG changes.",
+          "guidance": "Use cautiously in hypertension, coronary insufficiency or arrhythmias.",
+          "source_attribution": "FDA label (Ventolin HFA), Warnings (cardiovascular effects)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Beta-2 agonists can raise glucose; high-dose IV albuterol may aggravate diabetes and ketoacidosis.",
+          "guidance": "Monitor glucose with frequent or high-dose use.",
+          "source_attribution": "FDA label (Ventolin HFA), Warnings; StatPearls"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Well-controlled asthma protects mother and fetus; albuterol is standard for acute symptoms and exacerbations.",
+          "guidance": "Human safety data are limited; use at the lowest effective frequency with close asthma monitoring.",
+          "source_attribution": "StatPearls: Albuterol; FDA label (Ventolin HFA), Pregnancy"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "Indicated reliever for asthma and COPD.",
+          "guidance": "Rising reliever use signals poor control needing anti-inflammatory therapy.",
+          "source_attribution": "FDA label (Ventolin HFA), Indications / Warnings"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "No GI mucosal effect.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Ventolin HFA)"
+        }
+      ]
+    },
+    {
+      "id": "med_budesonide_formoterol",
+      "name": "Budesonide + Formoterol",
+      "generic_name": "Budesonide + Formoterol fumarate dihydrate",
+      "international_generic_name": "budesonide + formoterol",
+      "trade_name": "Symbicort",
+      "drug_class": "Inhaled corticosteroid + long-acting beta-2 agonist",
+      "category": "Prescription",
+      "description": "Budesonide is an inhaled glucocorticoid that suppresses airway inflammation, and formoterol is a long-acting beta-2 agonist with a rapid onset of bronchodilation. The combination provides maintenance control of asthma and COPD. Because formoterol acts quickly, GINA also recommends budesonide-formoterol as an as-needed anti-inflammatory reliever and for maintenance-and-reliever therapy in asthma, whereas US labeling covers maintenance use only.",
+      "dosage_text": "Adults and adolescents 12 years and older, asthma (US label): 2 inhalations of 80/4.5 mcg or 160/4.5 mcg twice daily; COPD: 2 inhalations of 160/4.5 mcg twice daily. Rinse mouth with water (without swallowing) after use. Not for primary treatment of acute bronchospasm under US labeling; do not use with other LABAs. Refer to current product labeling.",
+      "storage": "Store at room temperature with the mouthpiece down; pressurized canister - do not puncture, incinerate or expose to heat. Prime before first use and after 7 or more days of non-use. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Symbicort prescribing information; GINA (as-needed/maintenance-and-reliever use).",
+      "brands_ph": [],
+      "brands_intl": [
+        "Symbicort",
+        "Symbicort Turbuhaler",
+        "Breyna"
+      ],
+      "indications": [
+        "Maintenance treatment of asthma (patients 6 years and older)",
+        "Maintenance treatment of COPD (160/4.5 mcg strength)",
+        "As-needed and maintenance-and-reliever therapy in asthma (GINA recommendation)"
+      ],
+      "adverse": [
+        "Nasopharyngitis and upper respiratory tract infection",
+        "Headache",
+        "Oral candidiasis and dysphonia",
+        "Sinusitis, bronchitis",
+        "Pneumonia (COPD)",
+        "Tachycardia, palpitations, tremor",
+        "Hyperglycemia and hypokalemia",
+        "With long-term/high dose: adrenal suppression, reduced bone density, cataract and glaucoma"
+      ],
+      "contraindications": [
+        "Primary treatment of status asthmaticus or other acute episodes requiring intensive measures",
+        "Hypersensitivity to budesonide, formoterol or excipients"
+      ],
+      "interactions": [
+        "Strong CYP3A4 inhibitors (ritonavir, ketoconazole, itraconazole, clarithromycin): increased systemic corticosteroid exposure and Cushingoid/adrenal effects.",
+        "Beta-blockers: block formoterol effect and may cause bronchospasm.",
+        "MAOIs and tricyclic antidepressants: potentiated cardiovascular effects of formoterol.",
+        "Non-potassium-sparing diuretics: worsened hypokalemia and ECG changes.",
+        "Other LABA-containing products: do not combine (overdose risk)."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "SYMBICORT (budesonide and formoterol fumarate dihydrate) inhalation aerosol. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=6b78d08a-e098-4188-8f7f-94fbd5f396ef",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "Formoterol can increase pulse and blood pressure and cause arrhythmias.",
+          "guidance": "Use cautiously in cardiovascular disease and hypertension.",
+          "source_attribution": "FDA label (Symbicort), Warnings (cardiovascular effects)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Beta-agonist and corticosteroid components can raise blood glucose.",
+          "guidance": "Monitor glucose, particularly at high doses.",
+          "source_attribution": "FDA label (Symbicort), Warnings (hyperglycemia)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "safe",
+          "summary": "Controlling asthma in pregnancy outweighs drug risk; budesonide is the inhaled corticosteroid with the most human pregnancy data.",
+          "guidance": "Continue maintenance therapy at the lowest effective dose.",
+          "source_attribution": "FDA label (Symbicort), Use in Specific Populations; GINA"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "Indicated for asthma and COPD maintenance.",
+          "guidance": "Not a substitute for a reliever for acute bronchospasm under US labeling.",
+          "source_attribution": "FDA label (Symbicort), Indications"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "safe",
+          "summary": "Low systemic exposure at usual inhaled doses.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Symbicort)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Both components are hepatically metabolized; exposure may increase in hepatic impairment.",
+          "guidance": "Monitor for systemic corticosteroid effects.",
+          "source_attribution": "FDA label (Symbicort), Warnings (hepatic impairment)"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Corticosteroids can increase infection risk; additive immunosuppression with systemic immunosuppressants is possible.",
+          "guidance": "Monitor for infections and oral candidiasis.",
+          "source_attribution": "FDA label (Symbicort), Warnings (immunosuppression)"
+        }
+      ]
+    },
+    {
+      "id": "med_prednisone",
+      "name": "Prednisone",
+      "generic_name": "Prednisone",
+      "international_generic_name": "prednisone",
+      "trade_name": "Rayos",
+      "drug_class": "Corticosteroid (systemic glucocorticoid)",
+      "category": "Prescription",
+      "description": "Prednisone is an oral synthetic glucocorticoid prodrug converted in the liver to prednisolone. It binds glucocorticoid receptors and alters gene transcription, producing potent anti-inflammatory and immunosuppressive effects. It is used across endocrine, rheumatic, collagen-vascular, dermatologic, allergic (including asthma exacerbations), respiratory, hematologic, neoplastic and gastrointestinal inflammatory disorders.",
+      "dosage_text": "Adults: initial dose 5-60 mg/day depending on the disease and severity, individualized and maintained until an adequate response, then reduced gradually to the lowest effective maintenance dose. After prolonged therapy withdraw gradually to avoid adrenal insufficiency. Refer to current product labeling.",
+      "storage": "Store at 20-25 C (68-77 F) in a tight, light-resistant container. Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed prednisone tablets prescribing information.",
+      "brands_ph": [],
+      "brands_intl": [
+        "Rayos",
+        "Prednisone Intensol",
+        "Deltasone (discontinued)"
+      ],
+      "indications": [
+        "Endocrine disorders (adrenocortical insufficiency, congenital adrenal hyperplasia)",
+        "Rheumatic and collagen-vascular diseases (rheumatoid arthritis, SLE, dermatomyositis)",
+        "Allergic states, including severe asthma and asthma exacerbations",
+        "Dermatologic diseases (pemphigus, severe psoriasis, erythema multiforme)",
+        "Respiratory (sarcoidosis), hematologic (immune thrombocytopenia, hemolytic anemia) and neoplastic (leukemias, lymphomas) disorders",
+        "Inflammatory bowel disease (ulcerative colitis, regional enteritis), ophthalmic inflammation"
+      ],
+      "adverse": [
+        "Hyperglycemia",
+        "Hypertension, sodium and fluid retention, hypokalemia",
+        "Increased infection risk and masking of infection",
+        "Peptic ulceration/perforation (particularly with NSAIDs)",
+        "Osteoporosis and fractures, myopathy",
+        "Mood changes, insomnia, psychosis",
+        "Cushingoid features, HPA-axis suppression",
+        "Cataracts and glaucoma"
+      ],
+      "contraindications": [
+        "Systemic fungal infections",
+        "Known hypersensitivity to prednisone or components",
+        "Live or live-attenuated vaccines at immunosuppressive doses (per label warnings)"
+      ],
+      "interactions": [
+        "NSAIDs and aspirin: increased GI ulceration and bleeding.",
+        "Potassium-depleting agents (loop/thiazide diuretics, amphotericin B): hypokalemia.",
+        "Antidiabetic agents: hyperglycemia may require dose adjustment.",
+        "CYP3A4 inducers (rifampicin, phenytoin, carbamazepine) decrease and inhibitors (ketoconazole, macrolides) increase corticosteroid effect.",
+        "Warfarin: altered anticoagulant response; monitor INR.",
+        "Vaccines: live vaccines contraindicated at immunosuppressive doses; reduced response to killed vaccines."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "Prednisone tablets, USP. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10fe5a3b-84dc-4600-87c2-b80c97ce18cf",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "Causes sodium and water retention and elevated blood pressure.",
+          "guidance": "Monitor blood pressure; use the lowest effective dose and duration.",
+          "source_attribution": "FDA label (prednisone tablets), Warnings (cardio-renal)"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Raises blood glucose and can unmask diabetes.",
+          "guidance": "Monitor glucose; antidiabetic dose adjustment may be required.",
+          "source_attribution": "FDA label (prednisone tablets), Warnings (endocrine)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Teratogenic in animal studies; human benefit often outweighs risk for serious maternal disease.",
+          "guidance": "Use only if benefit justifies risk; monitor neonate for hypoadrenalism after high-dose use.",
+          "source_attribution": "FDA label (prednisone tablets), Pregnancy"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "Indicated for asthma exacerbations and severe asthma.",
+          "guidance": "Use short courses where possible; long-term oral use carries systemic toxicity.",
+          "source_attribution": "FDA label (prednisone tablets), Indications (allergic states)"
+        },
+        {
+          "condition_id": "peptic_ulcer",
+          "safety": "caution",
+          "summary": "Use with caution in active or latent peptic ulcer; increased perforation risk, especially with NSAIDs.",
+          "guidance": "Avoid concomitant NSAIDs; consider gastroprotection.",
+          "source_attribution": "FDA label (prednisone tablets), Warnings (gastrointestinal)"
+        },
+        {
+          "condition_id": "renal_impairment",
+          "safety": "caution",
+          "summary": "Fluid retention and electrolyte disturbance.",
+          "guidance": "Use cautiously in renal insufficiency; monitor fluid and electrolytes.",
+          "source_attribution": "FDA label (prednisone tablets), Warnings (cardio-renal)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Enhanced corticosteroid effect in cirrhosis; hepatitis B reactivation possible with immunosuppression.",
+          "guidance": "Screen for hepatitis B before prolonged therapy; use lowest effective dose.",
+          "source_attribution": "FDA label (prednisone tablets), Precautions"
+        },
+        {
+          "condition_id": "autoimmune",
+          "safety": "caution",
+          "summary": "Indicated for many autoimmune diseases, but adds to immunosuppression and infection risk with biologics/DMARDs.",
+          "guidance": "Screen for latent TB/hepatitis B; avoid live vaccines at immunosuppressive doses.",
+          "source_attribution": "FDA label (prednisone tablets), Indications / Warnings (infections, vaccines)"
+        }
+      ]
+    },
+    {
+      "id": "med_sumatriptan",
+      "name": "Sumatriptan",
+      "generic_name": "Sumatriptan succinate",
+      "international_generic_name": "sumatriptan",
+      "trade_name": "Imigran",
+      "drug_class": "Triptan (5-HT1B/1D agonist)",
+      "category": "Prescription",
+      "description": "Sumatriptan is a selective serotonin 5-HT1B/1D receptor agonist that constricts dilated cranial blood vessels and inhibits release of vasoactive neuropeptides and pain transmission in the trigeminal system. It is an abortive (acute) treatment and does not prevent migraine attacks. It is used for acute migraine with or without aura and, subcutaneously, for cluster headache.",
+      "dosage_text": "Adults (oral): 25, 50 or 100 mg as a single dose at onset; if headache returns or partial response, a second dose may be taken at least 2 hours later; maximum 200 mg in 24 hours. Subcutaneous: up to 6 mg, may repeat after at least 1 hour, maximum 12 mg/24 hours. Mild-to-moderate hepatic impairment: maximum single oral dose 50 mg. Use on 10 or more days per month risks medication overuse headache. Refer to current product labeling.",
+      "storage": "Store between 2-30 C (36-86 F). Refer to current product labeling.",
+      "black_box_warning": "",
+      "source_attribution": "DailyMed Imitrex tablets prescribing information; StatPearls: Sumatriptan.",
+      "brands_ph": [
+        "Imigran"
+      ],
+      "brands_intl": [
+        "Imitrex",
+        "Imigran"
+      ],
+      "indications": [
+        "Acute treatment of migraine with or without aura in adults",
+        "Acute treatment of cluster headache (subcutaneous injection)"
+      ],
+      "adverse": [
+        "Paresthesia, warm/cold sensations",
+        "Chest, throat, neck or jaw pain, tightness or pressure",
+        "Dizziness/vertigo, malaise, fatigue, drowsiness",
+        "Injection-site reactions (subcutaneous)",
+        "Myocardial ischemia, infarction, coronary vasospasm and arrhythmias (rare)",
+        "Stroke, peripheral or GI vascular ischemia (rare)",
+        "Serotonin syndrome with serotonergic drugs",
+        "Blood pressure elevation, seizures (rare)"
+      ],
+      "contraindications": [
+        "Ischemic coronary artery disease or coronary vasospasm",
+        "Wolff-Parkinson-White syndrome or other accessory conduction pathway arrhythmias",
+        "History of stroke, TIA, or hemiplegic or basilar migraine",
+        "Peripheral vascular disease; ischemic bowel disease",
+        "Uncontrolled hypertension",
+        "Use within 24 hours of another 5-HT1 agonist or ergotamine-containing drug",
+        "MAO-A inhibitor use currently or within 2 weeks",
+        "Severe hepatic impairment",
+        "Hypersensitivity to sumatriptan"
+      ],
+      "interactions": [
+        "Ergotamine derivatives and other triptans: additive vasospasm; do not use within 24 hours.",
+        "MAO-A inhibitors: markedly increased sumatriptan exposure; contraindicated within 2 weeks.",
+        "SSRIs, SNRIs, tricyclic antidepressants: risk of serotonin syndrome; monitor."
+      ],
+      "references": [
+        {
+          "source_name": "Goodman & Gilman's The Pharmacological Basis of Therapeutics",
+          "citation_text": "Brunton LL, Knollmann BC, eds. Goodman & Gilman's The Pharmacological Basis of Therapeutics. 14th ed. McGraw Hill; 2023.",
+          "url": "",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls (NCBI Bookshelf)",
+          "citation_text": "Sumatriptan. In: StatPearls. Treasure Island (FL): StatPearls Publishing.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470206/",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DailyMed (US National Library of Medicine)",
+          "citation_text": "IMITREX (sumatriptan) tablets. Prescribing information. DailyMed.",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=584abe73-8290-4484-ff8e-5890831c095e",
+          "is_mother_book": false
+        }
+      ],
+      "condition_safety": [
+        {
+          "condition_id": "hypertension",
+          "safety": "caution",
+          "summary": "Contraindicated in uncontrolled hypertension; can raise blood pressure, including hypertensive crisis.",
+          "guidance": "Avoid if uncontrolled; in controlled hypertension monitor blood pressure and assess cardiovascular risk.",
+          "source_attribution": "FDA label (Imitrex tablets), Contraindications / Warnings"
+        },
+        {
+          "condition_id": "diabetes",
+          "safety": "caution",
+          "summary": "Diabetes is a cardiovascular risk factor; triptans can cause myocardial ischemia.",
+          "guidance": "Cardiovascular evaluation is advised in triptan-naive patients with multiple risk factors.",
+          "source_attribution": "FDA label (Imitrex tablets), Warnings (myocardial ischemia)"
+        },
+        {
+          "condition_id": "pregnant",
+          "safety": "caution",
+          "summary": "Human registry data show no increase in major birth defects; animal studies showed embryolethality.",
+          "guidance": "Use if clinically needed; avoid breastfeeding for 12 hours after a dose to minimize infant exposure.",
+          "source_attribution": "FDA label (Imitrex tablets), Use in Specific Populations"
+        },
+        {
+          "condition_id": "asthma",
+          "safety": "safe",
+          "summary": "No bronchoconstrictor effect or respiratory contraindication.",
+          "guidance": "No adjustment needed.",
+          "source_attribution": "FDA label (Imitrex tablets)"
+        },
+        {
+          "condition_id": "liver_disease",
+          "safety": "caution",
+          "summary": "Exposure increases with hepatic impairment; contraindicated in severe impairment.",
+          "guidance": "Maximum single oral dose 50 mg in mild-to-moderate impairment; avoid in severe.",
+          "source_attribution": "FDA label (Imitrex tablets), Dosage / Contraindications"
+        }
+      ]
+    }
+  ]
+}

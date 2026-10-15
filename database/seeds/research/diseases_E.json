@@ -1,0 +1,893 @@
+{
+  "diseases": [
+    {
+      "id": "chikungunya",
+      "name": "Chikungunya",
+      "scientific_name": "Chikungunya virus (CHIKV) infection",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Acute fever with severe joint pain compatible with chikungunya warrants prompt clinical review with laboratory testing, largely because dengue must be excluded before NSAIDs are used. Neurologic signs, chest pain or breathlessness suggesting myocarditis, visual symptoms, dengue warning signs (bleeding, severe abdominal pain, persistent vomiting) or illness in a newborn exposed around delivery place the presentation in a higher urgency tier.",
+      "contagious": false,
+      "description": "Chikungunya is an acute mosquito-borne viral illness caused by chikungunya virus, an alphavirus transmitted mainly by Aedes aegypti and Aedes albopictus, the same vectors that spread dengue. It is characterized by abrupt fever and debilitating, usually symmetric polyarthralgia. Most patients recover fully, but joint pain can persist for weeks, months or years. Deaths are rare. In the Philippines, DOH surveillance reported 2,928 cases and no deaths in 2023 up to early December, with cases rising during the rainy season.",
+      "pathophysiology": "After inoculation by an infected Aedes mosquito, the virus replicates in epithelial cells, fibroblasts and monocyte-derived macrophages, producing high-level viremia and an intense inflammatory response. The virus reaches joint and muscle tissue, where persistent infection of monocyte-derived macrophages is hypothesized to underlie chronic arthritis and polyarthralgia.",
+      "clinicopathologic_correlation": "Inflammation of joints and periarticular tissues produces severe bilateral, symmetric polyarthralgia favoring distal joints (hands, wrists, ankles, knees), often with joint swelling. A maculopapular rash typically appears around day 3 of fever. Lymphopenia and mild thrombocytopenia may be seen, but marked thrombocytopenia and bleeding point more toward dengue.",
+      "onset_progression": "Incubation is typically 3-7 days (WHO: onset usually 4-8 days after the infective bite). The acute phase begins with sudden high fever, severe polyarthralgia and myalgia, followed by rash, and usually lasts 1-3 weeks. A chronic phase with persistent or relapsing rheumatic symptoms is reported in 26-40% of confirmed cases at 3-6 months. Older adults and people with preexisting joint disease have greater morbidity, and newborns infected around delivery are at risk of severe disease.",
+      "follow_up_monitoring": "Clinical review of fever, hydration and joint symptoms during the acute phase, with CBC and dengue testing until dengue is excluded. Patients with joint symptoms persisting beyond the acute phase are reassessed for chronic inflammatory arthritis, which may need rheumatology follow-up. New neurologic, cardiac or ocular symptoms prompt specialist evaluation.",
+      "source_attribution": "StatPearls: Chikungunya Fever (2026); WHO fact sheet Chikungunya (2025); DOH surveillance via Philippine News Agency (2023); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "vector-borne",
+        "Aedes mosquito",
+        "arthritis",
+        "alphavirus",
+        "rainy season"
+      ],
+      "causes": [
+        "Infection with chikungunya virus, an alphavirus",
+        "Transmission by bites of infected Aedes aegypti and Aedes albopictus mosquitoes, which feed mainly in the daytime",
+        "Transmission from mother to newborn around the time of delivery (uncommon)"
+      ],
+      "risk_factors": [
+        "Residence in or travel to areas with Aedes mosquitoes and active transmission, including the Philippines",
+        "Rainy season, when Philippine case counts rise",
+        "Lack of protection from daytime mosquito bites (no repellent, screens or protective clothing)",
+        "Older age, particularly with underlying medical conditions (risk of severe or prolonged disease)",
+        "Preexisting joint disease (greater morbidity)",
+        "Newborns of mothers infected near delivery (risk of severe disease)"
+      ],
+      "recommended_tests": [
+        "RT-PCR for chikungunya virus RNA in the acute phase (first 5 days to first week of illness)",
+        "Chikungunya IgM/IgG serology (ELISA) after the first week; antibodies remain detectable for about two months",
+        "Concurrent dengue testing (and Zika where relevant), because clinical features overlap",
+        "CBC (lymphopenia and mild thrombocytopenia may occur; marked thrombocytopenia favors dengue)"
+      ],
+      "treatments": [
+        "No specific antiviral therapy; management is supportive with rest and fluids",
+        "Paracetamol for fever and pain until dengue is excluded; NSAIDs and aspirin are withheld until then because of bleeding risk",
+        "After dengue is excluded, NSAIDs may be used for arthralgia",
+        "Persistent inflammatory arthritis in the chronic phase may be treated with hydroxychloroquine or methotrexate under specialist care"
+      ],
+      "home_care": [
+        "Rest and adequate oral fluid intake during the acute febrile phase",
+        "Paracetamol for fever and joint pain, without NSAIDs or aspirin until dengue has been excluded",
+        "Mosquito nets and repellent during the febrile illness to limit bites and onward transmission"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Reduction of Aedes breeding sites (removal of containers holding standing water) and community vector control."
+        },
+        {
+          "tier": "primary",
+          "content": "Personal protection with repellents (DEET, IR3535 or icaridin), protective clothing and window screens, particularly during daytime biting hours."
+        },
+        {
+          "tier": "primary",
+          "content": "Two chikungunya vaccines have received regulatory approval, but availability and use remain limited (WHO)."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early laboratory confirmation with concurrent dengue testing, so that NSAIDs and aspirin are withheld until dengue is excluded."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Follow-up of persistent joint symptoms and specialist management of chronic inflammatory arthritis (e.g., hydroxychloroquine or methotrexate)."
+        }
+      ],
+      "emergency_signs": [
+        "Confusion, seizures or new limb weakness (encephalitis or Guillain-Barre syndrome)",
+        "Chest pain, palpitations or breathlessness (possible myocarditis)",
+        "Sudden eye pain, redness or loss of vision (uveitis or retinitis)",
+        "Bleeding, severe abdominal pain or persistent vomiting while dengue has not been excluded",
+        "Fever, poor feeding or lethargy in a newborn whose mother was infected near delivery"
+      ],
+      "differentials": [
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, bleeding manifestations, marked thrombocytopenia and plasma leakage; arthralgia is less prominent. Laboratory testing is needed to separate them"
+        },
+        {
+          "condition": "Zika virus infection",
+          "distinguishing_feature": "Same Aedes vectors; usually milder fever with rash and conjunctivitis, less severe arthralgia"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater or animal-urine exposure, calf tenderness, conjunctival suffusion, jaundice and acute kidney injury"
+        },
+        {
+          "condition": "Rheumatoid arthritis",
+          "distinguishing_feature": "Gradual onset without an acute febrile illness; relevant when chronic post-chikungunya arthritis persists"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_arthralgia",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_joint_swelling",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Recommended for fever and pain until dengue is ruled out (WHO, StatPearls); adhere to the maximum daily dose."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "Avoided while dengue has not been excluded because NSAIDs increase bleeding risk (WHO, StatPearls); after dengue is excluded, NSAIDs may be used for arthralgia."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "avoid",
+          "note": "NSAID; avoided while dengue has not been excluded because of bleeding risk (WHO, StatPearls)."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "avoid",
+          "note": "StatPearls advises avoiding aspirin (and NSAIDs) until dengue is excluded, because of bleeding risk."
+        }
+      ],
+      "related": [
+        "dengue",
+        "leptospirosis",
+        "malaria",
+        "measles"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Chikungunya Fever",
+          "citation_text": "Ojeda Rodriguez JA, Haftel A, Farmer A, Walker JR III. Chikungunya Fever. [Updated 2026 May 24]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK534224/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Chikungunya",
+          "citation_text": "World Health Organization. Chikungunya. Fact sheet. Geneva: WHO; updated 14 April 2025.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/chikungunya",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Philippine News Agency - Chikungunya cases in PH on downtrend (DOH)",
+          "citation_text": "Philippine News Agency. Chikungunya cases in PH on downtrend -- DOH. December 2023.",
+          "url": "https://www.pna.gov.ph/articles/1216031",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "hepatitis_b",
+      "name": "Hepatitis B (Acute and Chronic)",
+      "scientific_name": "Hepatitis B virus (HBV) infection",
+      "body_system": "Digestive System",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Jaundice, dark urine or a positive HBsAg result warrants prompt clinical evaluation with liver tests and HBV serology. Confusion or drowsiness, bleeding or bruising, vomiting blood or black stools, or rapidly increasing abdominal swelling suggest acute liver failure or decompensated cirrhosis and place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "Hepatitis B is a liver infection caused by hepatitis B virus, a blood-borne DNA virus transmitted perinatally, through blood exposure and through sexual contact. Acute infection is often asymptomatic; symptomatic cases present with jaundice, dark urine, fatigue, nausea and abdominal pain. The risk of chronic infection depends strongly on age at infection: about 90-95% of infants infected at birth become chronically infected, compared with fewer than 5% of adults. Chronic infection can progress to cirrhosis and hepatocellular carcinoma. The WHO Western Pacific Region carries the highest burden, and WHO has estimated about 7.3 million Filipinos live with chronic hepatitis B.",
+      "pathophysiology": "HBV infects hepatocytes, and liver injury is mainly immune-mediated: cytotoxic T cells attack infected hepatocytes rather than the virus directly destroying them. The virus persists as covalently closed circular DNA (cccDNA) in hepatocyte nuclei, which resists complete clearance and allows chronic infection and later reactivation. Immune complexes can cause extrahepatic disease such as polyarteritis nodosa and glomerulonephritis (membranous or membranoproliferative).",
+      "clinicopathologic_correlation": "Hepatocellular injury raises transaminases and impairs bilirubin handling, producing jaundice and dark urine; hepatic inflammation and capsular stretch cause right upper quadrant pain. A serum sickness-like prodrome with fever, rash and arthralgia reflects immune complex formation and typically resolves as jaundice appears. Repeated cycles of inflammation in chronic infection drive fibrosis, cirrhosis (ascites, variceal bleeding, encephalopathy) and hepatocellular carcinoma.",
+      "onset_progression": "Average incubation is about 60 days to abnormal ALT (range 40-90) and about 90 days to symptom onset (range 60-150). Adults aged 30 and older are more likely to have symptoms during acute infection, and about 95% of infected adults recover completely. Chronic infection passes through immune-tolerant, immune-active, inactive carrier and reactivation phases. About 15-25% of people with chronic infection develop chronic liver disease, including cirrhosis, liver failure or liver cancer.",
+      "follow_up_monitoring": "Acute infection is followed with liver tests and serology until HBsAg clears and anti-HBs appears. Chronic infection is monitored with ALT, HBeAg status and HBV DNA to identify the immune-active phase needing treatment. Patients on tenofovir or entecavir need long-term follow-up, as most require lifelong therapy. Ultrasound surveillance for hepatocellular carcinoma is recommended in at-risk patients, and the risk of reactivation is considered before immunosuppressive therapy.",
+      "source_attribution": "WHO fact sheet Hepatitis B (2026); StatPearls: Hepatitis B; CDC Clinical Overview of Hepatitis B; WHO Philippines (2017); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "viral hepatitis",
+        "blood-borne",
+        "sexually transmitted",
+        "vaccine-preventable",
+        "liver cancer"
+      ],
+      "causes": [
+        "Infection with hepatitis B virus (HBV), a DNA virus",
+        "Perinatal transmission from an infected mother at birth",
+        "Exposure to infected blood (needlestick injuries, shared needles or injecting equipment)",
+        "Sexual contact with an infected person",
+        "Early-childhood person-to-person spread through open cuts and sores"
+      ],
+      "risk_factors": [
+        "Birth to a mother with chronic HBV infection",
+        "Lack of hepatitis B vaccination, including a missed birth dose",
+        "Infection in infancy or early childhood (about 90% of infected infants and 30% of children infected at 1-5 years remain chronically infected)",
+        "Sharing needles, syringes or other injecting equipment",
+        "Unprotected sex with an infected partner or multiple partners",
+        "Occupational blood exposure (health workers)",
+        "Living in a high-prevalence region such as the Western Pacific, including the Philippines"
+      ],
+      "recommended_tests": [
+        "HBsAg (marker of current infection; recommended by WHO for blood donors and pregnant women)",
+        "IgM anti-HBc (acute infection; the only marker present in the window period)",
+        "HBeAg and quantitative HBV DNA (replication and viral load, guiding treatment decisions)",
+        "Anti-HBs (immunity after recovery or vaccination)",
+        "Liver function tests (ALT, AST, bilirubin) and markers of liver synthetic function",
+        "Liver ultrasound (liver disease assessment and hepatocellular carcinoma surveillance)"
+      ],
+      "treatments": [
+        "Acute hepatitis B: supportive care; antivirals (tenofovir or entecavir) are reserved for severe acute disease",
+        "Chronic hepatitis B: oral tenofovir or entecavir when HBV DNA is elevated with evidence of liver inflammation; both have a high barrier to resistance",
+        "Antiviral therapy slows progression to cirrhosis and reduces the incidence of liver cancer; most patients need lifelong treatment",
+        "Surveillance for hepatocellular carcinoma with ultrasound in at-risk patients"
+      ],
+      "home_care": [
+        "Rest and adequate nutrition and fluids during symptomatic acute infection",
+        "Abstinence from alcohol",
+        "Daily adherence to prescribed antiviral therapy without unsupervised interruption",
+        "Not sharing razors, toothbrushes or needles, and covering open cuts, to limit blood exposure of household contacts"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Hepatitis B vaccination of all infants as soon as possible after birth (within 24 hours), followed by further doses; protection lasts at least 20 years and probably lifelong (WHO). Philippine law has required a hepatitis B birth dose within 24 hours since 2011."
+        },
+        {
+          "tier": "primary",
+          "content": "Screening of donated blood, safe injection practices and safer sex."
+        },
+        {
+          "tier": "secondary",
+          "content": "HBsAg testing of pregnant women to identify infection and prevent mother-to-child transmission (WHO)."
+        },
+        {
+          "tier": "secondary",
+          "content": "Testing of people at higher risk so that chronic infection is found before complications develop."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Long-term tenofovir or entecavir therapy to slow progression to cirrhosis and reduce hepatocellular carcinoma."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Ultrasound surveillance for hepatocellular carcinoma in patients with chronic infection at risk."
+        }
+      ],
+      "emergency_signs": [
+        "Confusion, drowsiness or altered behavior (possible hepatic encephalopathy or acute liver failure)",
+        "Easy bruising or bleeding with deepening jaundice",
+        "Vomiting blood or black, tarry stools (possible variceal bleeding)",
+        "Rapidly increasing abdominal swelling",
+        "Persistent vomiting preventing oral intake"
+      ],
+      "differentials": [
+        {
+          "condition": "Hepatitis A",
+          "distinguishing_feature": "Fecal-oral spread, shorter incubation, IgM anti-HAV positive; does not become chronic"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater or animal-urine exposure, high fever, calf tenderness, conjunctival suffusion and acute kidney injury with jaundice"
+        },
+        {
+          "condition": "Drug-induced liver injury",
+          "distinguishing_feature": "Temporal link to a hepatotoxic drug (e.g., antituberculosis agents); HBV serology negative"
+        },
+        {
+          "condition": "Alcohol-associated liver disease",
+          "distinguishing_feature": "History of heavy alcohol use; HBsAg negative"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_jaundice",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_dark_urine",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_ruq_pain",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_arthralgia",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        },
+        {
+          "symptom_id": "sym_abdominal_swelling",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_tenofovir",
+          "safety": "safe",
+          "note": "First-line oral antiviral for chronic hepatitis B (WHO); high barrier to resistance (StatPearls). Most patients require long-term therapy."
+        },
+        {
+          "medicine_id": "med_entecavir",
+          "safety": "safe",
+          "note": "First-line oral antiviral for chronic hepatitis B (WHO); high barrier to resistance (StatPearls)."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Immunosuppression is associated with HBV reactivation (StatPearls); HBV status is relevant before systemic corticosteroid therapy, particularly prolonged courses."
+        }
+      ],
+      "related": [
+        "hepatitis_a",
+        "hiv_infection",
+        "leptospirosis",
+        "schistosomiasis"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Hepatology",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Hepatitis B",
+          "citation_text": "Tripathi N, Mousa OY. Hepatitis B. [Updated 2023 Jul 9]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK555945/",
+          "specialty": "Hepatology / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Hepatitis B",
+          "citation_text": "World Health Organization. Hepatitis B. Fact sheet. Geneva: WHO; updated 28 July 2026.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-b",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Overview of Hepatitis B",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Hepatitis B. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/hepatitis-b/hcp/clinical-overview/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Philippines - Hepatitis: know it, treat it, prevent it",
+          "citation_text": "World Health Organization Philippines. Hepatitis: know it, treat it, prevent it. Feature story, 10 July 2017.",
+          "url": "https://www.who.int/philippines/news/feature-stories/detail/hepatitis-know-it-treat-it-prevent-it-",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "hepatitis_a",
+      "name": "Hepatitis A",
+      "scientific_name": "Hepatitis A virus (HAV) infection",
+      "body_system": "Digestive System",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Jaundice, dark urine or pale stools after a prodromal febrile illness warrant prompt evaluation with liver tests and viral hepatitis serology. Confusion or drowsiness, bleeding or bruising, persistent vomiting preventing oral intake, or illness in an older adult or someone with chronic liver disease raise concern for acute liver failure and place the presentation in a higher urgency tier.",
+      "contagious": true,
+      "description": "Hepatitis A is an acute, self-limited liver infection caused by hepatitis A virus and spread mainly by the fecal-oral route through contaminated food or water or close contact. Illness ranges from mild to severe, with fever, loss of appetite, nausea, abdominal discomfort, dark urine and jaundice. Most children under 6 years are asymptomatic, while older children and adults usually have symptoms, often with jaundice. It does not cause chronic infection, but rare cases progress to acute liver failure, more often in older people and those with chronic liver disease.",
+      "pathophysiology": "Ingested HAV reaches the liver and replicates in hepatocytes and is shed in bile into the stool. Hepatocellular injury is not caused mainly by direct viral destruction of liver cells but by the adaptive immune response, particularly T-cell-mediated immunity, that clears the virus.",
+      "clinicopathologic_correlation": "Immune-mediated hepatocyte injury produces marked transaminase elevation (often 10-100 times normal) and impaired bilirubin excretion, causing jaundice, dark urine and pale or clay-colored stools. Cholestasis can cause pruritus, and hepatic inflammation produces right upper quadrant discomfort.",
+      "onset_progression": "Incubation is usually 14-28 days (CDC: average 28 days, range 15-50). A prodrome of fever, malaise, anorexia, nausea and right upper quadrant pain is followed by jaundice, dark urine and pale stools; the icteric phase lasts a median of about 2 weeks. Most patients recover fully. About 10-15% of symptomatic people have a prolonged or relapsing course for up to 6 months, a cholestatic variant can cause prolonged jaundice and itching, and fulminant hepatitis occurs in fewer than 1% of adults.",
+      "follow_up_monitoring": "Liver function tests are followed until transaminases and bilirubin normalize. Prothrombin time/INR and mental status are monitored in patients with severe illness for signs of acute liver failure. Recurrence of symptoms within 6 months suggests relapsing hepatitis A. Close contacts are identified for post-exposure prophylaxis within 2 weeks of exposure.",
+      "source_attribution": "WHO fact sheet Hepatitis A (2026); StatPearls: Hepatitis A (2024); CDC Clinical Overview of Hepatitis A; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "viral hepatitis",
+        "fecal-oral",
+        "food and water-borne",
+        "vaccine-preventable",
+        "jaundice"
+      ],
+      "causes": [
+        "Infection with hepatitis A virus (HAV)",
+        "Ingestion of food or water contaminated with feces of an infected person",
+        "Close personal contact with an infected person, including within households",
+        "Sexual contact, including oral-anal contact"
+      ],
+      "risk_factors": [
+        "Unsafe drinking water and inadequate sanitation",
+        "Poor hand hygiene or exposure to food prepared by an infected person",
+        "Household or close contact with a person with hepatitis A",
+        "Lack of hepatitis A vaccination",
+        "Older age and chronic liver disease (greater risk of severe disease and death)"
+      ],
+      "recommended_tests": [
+        "IgM anti-HAV (confirms acute infection; usually positive for 4-6 months)",
+        "Liver function tests: ALT, AST (often 10-100-fold elevated), total and direct bilirubin, alkaline phosphatase",
+        "Prothrombin time/INR in severe illness (assessment for acute liver failure)",
+        "HBsAg and IgM anti-HBc to exclude other viral hepatitis, since clinical features alone cannot distinguish the types",
+        "HAV RNA by RT-PCR where available"
+      ],
+      "treatments": [
+        "No specific antiviral therapy; supportive care with rest, nutrition and hydration",
+        "Avoidance of unnecessary medications that can harm the liver and of alcohol; paracetamol dosing is limited",
+        "Severe cholestatic pruritus may be treated with cholestyramine, rifampicin or ondansetron",
+        "Hospitalization for severe symptoms, and urgent assessment at a center capable of liver transplantation for acute liver failure"
+      ],
+      "home_care": [
+        "Rest, a balanced diet and plenty of fluids",
+        "Avoidance of alcohol and of unnecessary medicines, including high doses of paracetamol",
+        "Careful handwashing after toilet use and before preparing food, to limit spread to household contacts"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Safe drinking water, proper sewage disposal and handwashing (WHO)."
+        },
+        {
+          "tier": "primary",
+          "content": "Hepatitis A vaccination with inactivated injectable vaccines; no vaccine is approved for children under 1 year (WHO)."
+        },
+        {
+          "tier": "primary",
+          "content": "Safer sex practices to reduce sexual transmission."
+        },
+        {
+          "tier": "secondary",
+          "content": "Post-exposure prophylaxis with hepatitis A vaccine or immune globulin within 2 weeks of exposure for close contacts (CDC)."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Monitoring for relapsing or cholestatic courses and early recognition of acute liver failure, with avoidance of alcohol and hepatotoxic drugs during recovery."
+        }
+      ],
+      "emergency_signs": [
+        "Confusion, drowsiness or abnormal behavior (possible acute liver failure)",
+        "Easy bruising or bleeding",
+        "Persistent vomiting preventing intake of fluids",
+        "Rapidly deepening jaundice with worsening general condition",
+        "Hepatitis in an older adult or a person with chronic liver disease who is becoming more unwell"
+      ],
+      "differentials": [
+        {
+          "condition": "Hepatitis B",
+          "distinguishing_feature": "Perinatal, blood or sexual transmission, longer incubation, HBsAg and IgM anti-HBc positive; can become chronic"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater or animal-urine exposure, calf tenderness, conjunctival suffusion and acute kidney injury; transaminases usually only modestly raised"
+        },
+        {
+          "condition": "Drug-induced liver injury",
+          "distinguishing_feature": "Temporal link to a hepatotoxic drug (e.g., antituberculosis agents); IgM anti-HAV negative"
+        },
+        {
+          "condition": "Biliary obstruction (e.g., choledocholithiasis)",
+          "distinguishing_feature": "Colicky right upper quadrant pain with dilated bile ducts on ultrasound and a predominantly cholestatic liver test pattern"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_jaundice",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.8
+        },
+        {
+          "symptom_id": "sym_dark_urine",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.7
+        },
+        {
+          "symptom_id": "sym_pale_stool",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_ruq_pain",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_pruritus",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "caution",
+          "note": "StatPearls advises limiting paracetamol dosing in hepatitis A, and WHO lists paracetamol among unnecessary medications that can adversely affect the liver."
+        },
+        {
+          "medicine_id": "med_rifampicin",
+          "safety": "caution",
+          "note": "Listed by StatPearls as an option for severe pruritus in cholestatic hepatitis A; it is itself potentially hepatotoxic, so use is specialist-directed with liver test monitoring."
+        },
+        {
+          "medicine_id": "med_isoniazid",
+          "safety": "avoid",
+          "note": "Recognized hepatotoxic drug; StatPearls advises avoiding hepatotoxic drugs during acute hepatitis A."
+        },
+        {
+          "medicine_id": "med_pyrazinamide",
+          "safety": "avoid",
+          "note": "Recognized hepatotoxic drug; StatPearls advises avoiding hepatotoxic drugs during acute hepatitis A."
+        }
+      ],
+      "related": [
+        "hepatitis_b",
+        "leptospirosis",
+        "acute_gastroenteritis",
+        "typhoid_fever"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Hepatology",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Hepatitis A",
+          "citation_text": "Girish V, Grant LM, John S. Hepatitis A. [Updated 2024 Oct 6]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459290/",
+          "specialty": "Hepatology / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Hepatitis A",
+          "citation_text": "World Health Organization. Hepatitis A. Fact sheet. Geneva: WHO; updated 28 July 2026.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-a",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Overview of Hepatitis A",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Hepatitis A. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/hepatitis-a/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "cholera",
+      "name": "Cholera",
+      "scientific_name": "Vibrio cholerae O1/O139 infection",
+      "body_system": "Digestive System",
+      "severity": "Severe",
+      "urgency": "SEEK_URGENT_CARE",
+      "urgency_criteria": "Acute profuse watery diarrhea, especially in an outbreak setting or after exposure to unsafe water, warrants same-day assessment of dehydration and early rehydration, because untreated cholera can kill within hours. Lethargy or unconsciousness, inability to drink, absent or weak pulse, low blood pressure or no urine output indicate severe dehydration or shock and place the presentation in the EMERGENCY tier.",
+      "contagious": true,
+      "description": "Cholera is an acute diarrheal infection caused by ingestion of food or water contaminated with toxigenic Vibrio cholerae serogroup O1 or O139. Most infected people are asymptomatic or have mild to moderate diarrhea, but a minority develop severe acute watery diarrhea with life-threatening dehydration that can be fatal within hours if untreated. Most cases are managed with oral rehydration solution. In the Philippines, cholera outbreaks are linked to unsafe water sources and poor hygiene; in 2022 Eastern Visayas reported 87 laboratory-confirmed cases and 32 suspected cholera deaths.",
+      "pathophysiology": "After surviving gastric acid, V. cholerae colonizes the small intestine and secretes cholera toxin. The toxin's A subunit permanently activates adenylate cyclase in enterocytes, raising cyclic AMP, which drives chloride secretion through CFTR and inhibits sodium chloride absorption. Water follows into the lumen, producing large-volume isotonic secretory diarrhea without mucosal invasion. Sodium-glucose cotransport remains intact, which is the physiological basis of oral rehydration solution.",
+      "clinicopathologic_correlation": "Loss of large volumes of isotonic, bicarbonate- and potassium-rich stool produces the characteristic 'rice-water' stools, hypovolemia (sunken eyes, dry mouth, thirst, reduced skin turgor, oliguria), metabolic acidosis and hypokalemia. Muscle cramps are secondary to electrolyte imbalance. Because the mucosa is not invaded, fever is usually absent and stools lack blood. Uncorrected hypovolemia leads to shock and prerenal acute kidney injury.",
+      "onset_progression": "Symptoms begin 12 hours to 5 days after ingestion. Infected people, including those without symptoms, shed the organism in feces for 1-10 days. Watery diarrhea with nausea and vomiting can progress within hours to severe dehydration and hypovolemic shock. With prompt rehydration, most patients recover within a few days.",
+      "follow_up_monitoring": "Dehydration status is reassessed frequently, with ongoing stool and vomit losses replaced by ORS or IV fluids. Urine output, mental status and pulse are monitored, and serum electrolytes and renal function are checked in moderate to severe cases. Stool culture supports confirmation and antimicrobial susceptibility testing, and confirmed cases are reported to public health authorities for outbreak response.",
+      "source_attribution": "WHO fact sheet Cholera (2024); CDC Yellow Book: Cholera; Philippine Clinical Practice Guideline for Acute Infectious Diarrhea (pocket guide); DOH Eastern Visayas via Philippine News Agency (2022); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "water-borne",
+        "fecal-oral",
+        "secretory diarrhea",
+        "outbreak-prone",
+        "dehydration",
+        "vaccine-preventable"
+      ],
+      "causes": [
+        "Infection with toxigenic Vibrio cholerae serogroup O1 or O139",
+        "Drinking water contaminated with feces",
+        "Eating contaminated food, including unwashed produce and street-vended food",
+        "Inadequate sanitation and hygiene during outbreaks"
+      ],
+      "risk_factors": [
+        "Unsafe drinking water sources and poor sanitation",
+        "Poor hand and food hygiene",
+        "Living in or traveling to areas with active cholera transmission or outbreaks",
+        "Blood group O (greater risk of severe disease)",
+        "Reduced gastric acidity, including use of acid-suppressing medicines (increased susceptibility to infection)"
+      ],
+      "recommended_tests": [
+        "Clinical assessment and grading of dehydration",
+        "Stool culture on selective media (TCBS agar) to isolate toxigenic V. cholerae O1/O139 and test antimicrobial susceptibility",
+        "Rapid diagnostic test for V. cholerae antigen in stool, mainly for outbreak detection",
+        "Molecular testing (PCR) where available",
+        "Serum electrolytes (potassium, bicarbonate) and renal function in moderate to severe dehydration"
+      ],
+      "treatments": [
+        "Rehydration is the cornerstone: oral rehydration solution for most patients",
+        "Severe dehydration: intravenous fluids (e.g., Ringer's lactate) plus ORS and antibiotics (WHO)",
+        "Adults (Philippine CPG): azithromycin 1 g single dose or ciprofloxacin; doxycycline 100 mg twice daily for 3 days as an alternative",
+        "Children (Philippine CPG): azithromycin, or doxycycline 300 mg single dose for children over 8 years; co-trimoxazole among the alternatives",
+        "Zinc supplementation for children older than 6 months (Philippine CPG: 20 mg/day for 10-14 days)",
+        "Loperamide is not recommended in acute infectious diarrhea (Philippine CPG)"
+      ],
+      "home_care": [
+        "Oral rehydration solution started early and continued to replace ongoing losses in mild cases",
+        "Boiling drinking water for five minutes when its safety is uncertain, or household chlorination (DOH)",
+        "Handwashing with soap after toilet use and before handling food",
+        "Early consultation for worsening diarrhea, vomiting or signs of dehydration"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Access to safe water, basic sanitation and hygiene (WASH), the essential measure against cholera (WHO)."
+        },
+        {
+          "tier": "primary",
+          "content": "Household water treatment (boiling for five minutes, chlorine or water purification tablets), regular cleaning of storage tanks, washing of fruits and vegetables with clean water and avoidance of street-vended food (DOH)."
+        },
+        {
+          "tier": "primary",
+          "content": "Oral cholera vaccines (WHO-prequalified Dukoral, Euvichol-Plus and Euvichol-S) used in outbreak and mass vaccination campaigns."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early detection through stool culture or rapid tests and surveillance of acute watery diarrhea clusters, with early ORS for cases."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Prompt, aggressive rehydration with frequent reassessment and antibiotics for severe cases to prevent death from hypovolemic shock and kidney injury."
+        }
+      ],
+      "emergency_signs": [
+        "Lethargy, confusion or unconsciousness",
+        "Inability to drink or keep fluids down",
+        "Very sunken eyes, very dry mouth and skin pinch that goes back very slowly",
+        "Weak or absent pulse, cold extremities or low blood pressure",
+        "Little or no urine for many hours",
+        "Continuous profuse watery diarrhea outpacing oral intake"
+      ],
+      "differentials": [
+        {
+          "condition": "Acute infectious gastroenteritis (e.g., enterotoxigenic E. coli, norovirus)",
+          "distinguishing_feature": "Usually smaller stool volumes and slower dehydration; stool culture does not grow V. cholerae"
+        },
+        {
+          "condition": "Bacillary dysentery (shigellosis)",
+          "distinguishing_feature": "Bloody, mucoid stools with fever and tenesmus; cholera stools are watery without blood"
+        },
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "Prolonged step-ladder fever and systemic illness; diarrhea is not the dominant feature"
+        },
+        {
+          "condition": "Preformed-toxin food poisoning (Staphylococcus aureus, Bacillus cereus)",
+          "distinguishing_feature": "Onset within hours of a shared meal, vomiting-predominant and short-lived"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_watery_diarrhea",
+          "typical_intensity": 10,
+          "is_primary": true,
+          "weight_multiplier": 2.0
+        },
+        {
+          "symptom_id": "sym_dehydration",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 1.9
+        },
+        {
+          "symptom_id": "sym_muscle_cramps",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 10,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_decreased_urine",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_ors",
+          "safety": "safe",
+          "note": "Mainstay of treatment; ORS alone suffices for most cases, and severely dehydrated patients receive IV fluids plus ORS (WHO)."
+        },
+        {
+          "medicine_id": "med_zinc_sulfate",
+          "safety": "safe",
+          "note": "Adjunct for children older than 6 months with acute infectious diarrhea, 20 mg/day for 10-14 days (Philippine CPG)."
+        },
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Philippine CPG first-line option for suspected/confirmed cholera: 1 g single dose in adults; 20 mg/kg single dose or 10 mg/kg daily for 3 days in children."
+        },
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "Philippine CPG: adult alternative 100 mg twice daily for 3 days; 300 mg single dose for children over 8 years. CDC Yellow Book lists doxycycline as a reasonable first-line drug for travelers."
+        },
+        {
+          "medicine_id": "med_ciprofloxacin",
+          "safety": "safe",
+          "note": "Philippine CPG adult option: 1-2 g single dose or 500 mg twice daily for 3 days; choice guided by local susceptibility."
+        },
+        {
+          "medicine_id": "med_cotrimoxazole",
+          "safety": "safe",
+          "note": "Listed among alternative antibiotics for children with suspected/confirmed cholera in the Philippine CPG."
+        },
+        {
+          "medicine_id": "med_loperamide",
+          "safety": "avoid",
+          "note": "The Philippine CPG does not recommend loperamide in adults with acute infectious diarrhea and advises against it in children because of serious adverse events; it does not address fluid loss."
+        },
+        {
+          "medicine_id": "med_omeprazole",
+          "safety": "caution",
+          "note": "Reduced gastric acidity from acid-suppressing medicines increases susceptibility to V. cholerae infection (CDC Yellow Book)."
+        }
+      ],
+      "related": [
+        "acute_gastroenteritis",
+        "typhoid_fever",
+        "hepatitis_a"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "WHO Fact Sheet - Cholera",
+          "citation_text": "World Health Organization. Cholera. Fact sheet. Geneva: WHO; updated 5 December 2024.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/cholera",
+          "specialty": "Infectious Disease / Public Health",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC Yellow Book - Cholera",
+          "citation_text": "Centers for Disease Control and Prevention. Cholera. In: CDC Yellow Book: Health Information for International Travel. Atlanta (GA): CDC.",
+          "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/cholera.html",
+          "specialty": "Infectious Disease / Travel Medicine",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Philippine Clinical Practice Guideline for Acute Infectious Diarrhea (pocket guide)",
+          "citation_text": "Philippine Clinical Practice Guideline for Acute Infectious Diarrhea. Pocket guide, pre-print copy. Hosted by the Philippine Society for Microbiology and Infectious Diseases (psmid.org); 2025.",
+          "url": "https://psmid.org/wp-content/uploads/2025/09/CPG-acute-infectious-diarrhea_pocket-guide_v2.pdf",
+          "specialty": "Infectious Disease (Philippines)",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Philippine News Agency - DOH reports 32 suspected cholera deaths in E. Visayas",
+          "citation_text": "Philippine News Agency. DOH reports 32 suspected cholera deaths, 4K ill in E. Visayas. 3 November 2022.",
+          "url": "https://www.pna.gov.ph/articles/1187656",
+          "specialty": "Public Health (Philippines)",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

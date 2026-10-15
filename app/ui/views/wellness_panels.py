@@ -1,4 +1,4 @@
-"""The five calculator panels and the small widgets they share.
+"""The calculator panels and the small widgets they share.
 
 Panels are display only. Each one:
     - emits `changed` whenever any input moves,
@@ -11,7 +11,7 @@ apart from converting slider positions, which are integers.
 
 from typing import Optional
 
-from PySide6.QtCore import QPointF, QRectF, Qt, Signal
+from PySide6.QtCore import QEvent, QPointF, QRectF, Qt, QTimer, Signal
 from PySide6.QtGui import QColor, QFont, QPainter, QPolygonF
 from PySide6.QtWidgets import (
     QAbstractSpinBox,
@@ -41,6 +41,7 @@ from app.services.wellness_calculators import (
     HydrationResult,
     SleepResult,
 )
+from app.services.vital_signs import VitalsResult
 from app.ui.views.compare_view import FlowLayout
 
 AMBER = "#F59E0B"
@@ -66,6 +67,44 @@ def _panel_widget() -> QWidget:
 
 
 # ============================================================ shared inputs
+
+class _TypeSpin(QDoubleSpinBox):
+    """A number box you can just type into.
+
+    Clicking or tabbing in selects the whole value, so typing replaces it.
+    While it shows its "Not measured" text, the first digit you type clears
+    that text instead of being refused (before, you had to select the words
+    by hand before you could enter a number).
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._select_on_click = False
+        # Clicks land on the inner text box, not on the spin box itself.
+        self.lineEdit().installEventFilter(self)
+
+    def eventFilter(self, watched, event) -> bool:  # noqa: N802
+        if watched is self.lineEdit() and event.type() == QEvent.Type.MouseButtonRelease:
+            if self._select_on_click or self._showing_special():
+                self._select_on_click = False
+                QTimer.singleShot(0, self.selectAll)
+        return super().eventFilter(watched, event)
+
+    def _showing_special(self) -> bool:
+        # The words themselves are on screen (not a number being typed).
+        return bool(self.specialValueText()) and self.lineEdit().text() == self.specialValueText()
+
+    def focusInEvent(self, event) -> None:  # noqa: N802
+        super().focusInEvent(event)
+        self._select_on_click = True
+        QTimer.singleShot(0, self.selectAll)
+
+    def keyPressEvent(self, event) -> None:  # noqa: N802
+        text = event.text()
+        if text and (text.isdigit() or text in ".,") and self._showing_special():
+            self.selectAll()                     # the digit replaces "Not measured"
+        super().keyPressEvent(event)
+
 
 class NumberField(QWidget):
     """A labelled number box, optionally with a slider kept in sync.
@@ -101,7 +140,7 @@ class NumberField(QWidget):
         row.addWidget(_label(title, "wlFieldLabel", wrap=False))
         row.addStretch(1)
 
-        self.spin = QDoubleSpinBox()
+        self.spin = _TypeSpin()
         self.spin.setObjectName("wlSpin")
         self.spin.setRange(minimum, maximum)
         self.spin.setDecimals(decimals)
@@ -111,7 +150,9 @@ class NumberField(QWidget):
         self.spin.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.spin.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.spin.setFixedWidth(120)
-        self.spin.setKeyboardTracking(False)   # recalc on Enter/focus-out, not per digit
+        # Recalculate while typing (UAT: with tracking off, the BMI only
+        # changed after Enter or leaving the box, so it looked stuck).
+        self.spin.setKeyboardTracking(True)
         row.addWidget(self.spin)
         layout.addLayout(row)
 
@@ -349,33 +390,50 @@ class BmiPanel(_Panel):
     def __init__(self) -> None:
         super().__init__("BODY MEASUREMENTS", "bmi")
 
-        self.height = NumberField("Height", 50, 230, 170, "cm", decimals=1, step=0.5)
-        self.weight = NumberField("Weight", 10, 250, 68, "kg", decimals=1, step=0.5)
-        self.age = NumberField("Age", 2, 100, 28, "years")
+        self.height = NumberField("Height", 40, 230, 170, "cm", decimals=1, step=0.5)
+        self.weight = NumberField("Weight", 1, 250, 68, "kg", decimals=1, step=0.1)
+        self.age = NumberField("Age", 0, 100, 28, "years")
+        # Children are read on the WHO growth charts: sex and months matter.
+        self.months = NumberField("And months", 0, 11, 0, "months", slider=False)
+        self.sex_label = _label("Sex", "wlFieldLabel", wrap=False)
+        self.sex = Segmented([("male", "Boy"), ("female", "Girl")], "male")
         self.standard = Segmented(
             [("asia_pacific", "Asia-Pacific (DOH)"), ("who", "WHO International")],
             "asia_pacific",
         )
-        for widget in (self.height, self.weight, self.age):
+        for widget in (self.height, self.weight, self.age, self.months, self.sex_label,
+                       self.sex):
             self.inputs.addWidget(widget)
-        self.inputs.addWidget(_label("Classification", "wlFieldLabel", wrap=False))
+        self.standard_label = _label("Classification", "wlFieldLabel", wrap=False)
+        self.inputs.addWidget(self.standard_label)
         self.inputs.addWidget(self.standard)
-        self.inputs.addWidget(_label(
+        self.standard_hint = _label(
             "DOH uses the Asia-Pacific cutoffs for Filipino adults: weight-related "
-            "risk starts at a lower BMI in Asian populations.", "wlHint"))
+            "risk starts at a lower BMI in Asian populations.", "wlHint")
+        self.inputs.addWidget(self.standard_hint)
         self._finish_inputs()
         self._watch(self.height.valueChanged, self.weight.valueChanged,
-                    self.age.valueChanged, self.standard.changed)
+                    self.age.valueChanged, self.standard.changed,
+                    self.months.valueChanged, self.sex.changed)
+        self.age.valueChanged.connect(lambda _v: self._update_child_inputs())
 
         c = self.card
         c.body.addWidget(_label("BODY MASS INDEX", "wlKicker", wrap=False))
         self.number, _unit = c.big_number("", "kg/m\u00b2")
         self.badge = Badge()
         c.body.addWidget(self.badge)
+        # Age never changes the BMI number (weight / height squared); it
+        # decides how that number is judged. Say so, so changing the age
+        # visibly does something even when the number stays the same.
+        self.age_group = _label("", "wlHint")
+        c.body.addWidget(self.age_group)
         self.gauge = BmiGauge()
         c.body.addWidget(self.gauge)
         self.healthy = _label("", "wlStrong")
         c.body.addWidget(self.healthy)
+        self.child_rows = QVBoxLayout()          # WHO z-scores for children
+        self.child_rows.setSpacing(6)
+        c.body.addLayout(self.child_rows)
         self.message = _label("", "wlBody")
         c.body.addWidget(self.message)
         c.divider()
@@ -387,28 +445,89 @@ class BmiPanel(_Panel):
         c.body.addWidget(self.source)
         c.body.addStretch(1)
 
+        self._update_child_inputs()
+
+    def _is_child(self) -> bool:
+        return self.age.value() < 20
+
+    def _update_child_inputs(self) -> None:
+        child = self._is_child()
+        for widget in (self.months, self.sex_label, self.sex):
+            widget.setVisible(child)
+        for widget in (self.standard_label, self.standard, self.standard_hint):
+            widget.setVisible(not child)
+
     def values(self) -> dict:
         return {
             "height_cm": self.height.value(),
             "weight_kg": self.weight.value(),
             "age": int(self.age.value()),
             "standard_id": self.standard.value(),
+            "sex": self.sex.value(),
+            "months": int(self.months.value()) if self._is_child() else 0,
         }
 
     def show_result(self, r: BmiResult) -> None:
         self.number.setText(f"{r.bmi:.1f}")
         self.badge.show_tone(r.category or "No adult category", r.tone)
-        self.gauge.setVisible(r.category is not None)
-        if r.category is not None:
+        adult = r.category is not None and r.child is None
+        self.gauge.setVisible(adult)
+        if adult:
             self.gauge.set_data(r)
         if r.healthy_weight_kg:
             low, high = r.healthy_weight_kg
+            where = "for this age and sex" if r.child else ""
             self.healthy.setText(
-                f"Healthy weight at {self.height.value():g} cm: {low:g}\u2013{high:g} kg"
+                f"Healthy weight at {self.height.value():g} cm {where}: "
+                f"{low:g}\u2013{high:g} kg".replace(" :", ":")
             )
         self.healthy.setVisible(bool(r.healthy_weight_kg))
+        self._show_child(r)
         self.message.setText(r.message)
-        self.source.setText(f"Cutoffs: {r.standard.source}")
+        self.source.setText(f"Charts: {r.child.reference}" if r.child
+                            else f"Cutoffs: {r.standard.source}")
+        age = int(self.age.value())
+        if age < 5:
+            group = "Under 5: judged on the WHO Child Growth Standards (z-scores)"
+        elif age < 20:
+            group = f"Age {age}: judged by BMI-for-age z-score (WHO, 5\u201319 years)"
+        elif age < 65:
+            group = f"Age {age}: adult categories (20\u201364 years)"
+        else:
+            group = f"Age {age}: adult categories, with the older-adult note below"
+        self.age_group.setText(group + ". Age doesn't change the BMI number itself, "
+                               "only how it is read.")
+
+
+    def _show_child(self, r: BmiResult) -> None:
+        """WHO z-scores, one row per indicator (children only)."""
+        while self.child_rows.count():
+            item = self.child_rows.takeAt(0)
+            if item.widget():
+                item.widget().hide()          # gone at once, freed a moment later
+                item.widget().deleteLater()
+        if r.child is None:
+            return
+        for ind in (r.child.bmi,) + r.child.others:
+            row = QWidget()
+            row.setObjectName("panel")
+            line = QHBoxLayout(row)
+            line.setContentsMargins(0, 0, 0, 0)
+            line.setSpacing(8)
+            sign = "+" if ind.z >= 0 else "\u2212"
+            line.addWidget(_label(f"{ind.name}: z {sign}{abs(ind.z):.2f}", "wlBody", wrap=False))
+            badge = Badge()
+            badge.show_tone(ind.label, ind.tone)
+            line.addWidget(badge)
+            line.addStretch(1)
+            self.child_rows.addWidget(row)
+        if r.child.healthy_note:
+            self.child_rows.addWidget(_label(f"Healthy range: {r.child.healthy_note}.",
+                                             "wlHint"))
+        if r.child.age_months < 24:
+            self.child_rows.addWidget(_label(
+                "Under 2 years, length is measured lying down. If the child was measured "
+                "standing, add 0.7 cm.", "wlHint"))
 
 
 # =============================================================== hydration
@@ -740,3 +859,139 @@ class ConverterPanel(QFrame):
         self.extra.setText(r.extra)
         self.extra.setVisible(bool(r.extra))
         self.badge.show_tone(r.badge, r.tone)
+
+# ============================================================ vital signs
+
+class VitalSignsPanel(_Panel):
+    """Age + any of BP, pulse, breathing, temperature, SpO2. Each box starts
+    at "Not measured" (its minimum), so only what was measured is judged."""
+
+    def __init__(self) -> None:
+        super().__init__("READINGS", "vitals")
+
+        self.age = NumberField("Age", 0, 110, 28, "years", slider=False)
+        self.months = NumberField("And months", 0, 11, 0, "months", slider=False)
+        self.sex = Segmented([("male", "Male"), ("female", "Female")], "male")
+        self.systolic = self._optional("Systolic (upper)", 40, 260, "mmHg")
+        self.diastolic = self._optional("Diastolic (lower)", 20, 160, "mmHg")
+        self.pulse = self._optional("Pulse", 20, 250, "/min")
+        self.breathing = self._optional("Breathing rate", 4, 90, "/min")
+        self.temperature = self._optional("Temperature", 30, 44, "°C", decimals=1, step=0.1)
+        self.site = ChoiceField("Measured in the", [
+            ("oral", "Mouth"), ("axillary", "Armpit"), ("ear", "Ear"),
+            ("forehead", "Forehead"), ("rectal", "Rectum (babies)")], "axillary")
+        self.spo2 = self._optional("Oxygen saturation (SpO₂)", 50, 100, "%")
+        self.bp_standard = Segmented(
+            [("ph", "Philippines (PHA/PSH 2020)"), ("aha", "AHA/ACC 2025")], "ph")
+
+        self.inputs.addWidget(self.age)
+        self.inputs.addWidget(self.months)
+        self.inputs.addWidget(_label("Sex (for a child's blood pressure)", "wlFieldLabel",
+                                     wrap=False))
+        self.inputs.addWidget(self.sex)
+        for widget in (self.systolic, self.diastolic, self.pulse, self.breathing,
+                       self.temperature, self.site, self.spo2):
+            self.inputs.addWidget(widget)
+        self.bp_label = _label("Adult blood pressure standard", "wlFieldLabel", wrap=False)
+        self.inputs.addWidget(self.bp_label)
+        self.inputs.addWidget(self.bp_standard)
+        self.inputs.addWidget(_label(
+            "Leave a box at “Not measured” to skip it. Measure at rest: sit 5 "
+            "minutes before blood pressure, count breathing for a full minute.", "wlHint"))
+        self._finish_inputs()
+        self._watch(self.age.valueChanged, self.months.valueChanged, self.sex.changed,
+                    self.systolic.valueChanged, self.diastolic.valueChanged,
+                    self.pulse.valueChanged, self.breathing.valueChanged,
+                    self.temperature.valueChanged, self.site.changed, self.spo2.valueChanged,
+                    self.bp_standard.changed)
+        self.age.valueChanged.connect(lambda _v: self._update_age_inputs())
+
+        c = self.card
+        c.body.addWidget(_label("VITAL SIGNS", "wlKicker", wrap=False))
+        self.group = _label("", "wlStrong")
+        c.body.addWidget(self.group)
+        self.badge = Badge()
+        c.body.addWidget(self.badge)
+        self.rows = QVBoxLayout()
+        self.rows.setSpacing(10)
+        c.body.addLayout(self.rows)
+        c.divider()
+        self.advice = _label("", "wlBody")
+        c.body.addWidget(self.advice)
+        c.body.addWidget(_label(
+            "A screening aid for study and self-checks, not a diagnosis. One reading can "
+            "be off: cuff size, movement, a cold finger or recent exercise all change it.",
+            "wlNote"))
+        self.sources = _label("", "wlSource")
+        c.body.addWidget(self.sources)
+        c.body.addStretch(1)
+        self._update_age_inputs()
+
+    @staticmethod
+    def _optional(title: str, minimum: float, maximum: float, unit: str,
+                  decimals: int = 0, step: float = 1) -> NumberField:
+        # One below the real minimum stands for "not measured".
+        floor = minimum - step
+        field = NumberField(title, floor, maximum, floor, unit, decimals=decimals,
+                            step=step, slider=False)
+        field.spin.setSpecialValueText("Not measured")
+        field.floor = floor
+        return field
+
+    @staticmethod
+    def _read(field: NumberField) -> float:
+        value = field.value()
+        return 0 if value <= field.floor else value
+
+    def _update_age_inputs(self) -> None:
+        self.months.setVisible(self.age.value() < 3)        # months matter for babies
+        adult = self.age.value() >= 18
+        self.bp_label.setVisible(adult)
+        self.bp_standard.setVisible(adult)
+
+    def values(self) -> dict:
+        return {
+            "age_years": int(self.age.value()),
+            "age_months": int(self.months.value()) if self.age.value() < 3 else 0,
+            "sex": self.sex.value(),
+            "systolic": self._read(self.systolic),
+            "diastolic": self._read(self.diastolic),
+            "pulse": self._read(self.pulse),
+            "breathing": self._read(self.breathing),
+            "temperature": self._read(self.temperature),
+            "temp_site": self.site.value(),
+            "spo2": self._read(self.spo2),
+            "bp_standard": self.bp_standard.value(),
+        }
+
+    def show_result(self, r: VitalsResult) -> None:
+        self.group.setText(f"Ranges for: {r.group}")
+        self.badge.show_tone(r.overall, r.tone)
+        while self.rows.count():
+            item = self.rows.takeAt(0)
+            if item.widget():
+                item.widget().hide()          # gone at once, freed a moment later
+                item.widget().deleteLater()
+        sources = []
+        for reading in r.readings:
+            box = QWidget()
+            box.setObjectName("panel")
+            column = QVBoxLayout(box)
+            column.setContentsMargins(0, 0, 0, 0)
+            column.setSpacing(2)
+            top = QHBoxLayout()
+            top.setSpacing(8)
+            top.addWidget(_label(f"{reading.name}: {reading.value}", "wlStrong", wrap=False))
+            badge = Badge()
+            badge.show_tone(reading.label, reading.tone)
+            top.addWidget(badge)
+            top.addStretch(1)
+            column.addLayout(top)
+            column.addWidget(_label(reading.usual, "wlHint"))
+            if reading.note:
+                column.addWidget(_label(reading.note, "wlBody"))
+            self.rows.addWidget(box)
+            if reading.source and reading.source not in sources:
+                sources.append(reading.source)
+        self.advice.setText(r.advice)
+        self.sources.setText("Ranges: " + "; ".join(sources) if sources else "")

@@ -35,6 +35,9 @@ from app.core.models_helpers import urgency_style
 from app.core.theme import Theme
 from app.models.disease import Disease, Medicine, SymptomLink
 from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain, elide_button, fit_width
+from app.ui.components.peer_discussions import PeerDiscussionList
+from app.ui.components.related_articles import RelatedArticlesList
+from app.core.links import open_link
 from app.ui.components.reference_cards import safe_url
 from app.ui.views.section_highlight import SectionHighlighter
 
@@ -848,12 +851,13 @@ class DiseaseDetailView(QWidget):
         return card
 
     def _discussion(self, d: Disease) -> QWidget:
-        """Peer case discussions. Clinical Exchange fills this once built."""
+        """Peer case discussions: Clinical Exchange posts tagged with this disease."""
         card, layout = _card()
 
         header = QHBoxLayout()
         header.addWidget(_heading("Recent peer case discussions", "chat"))
-        header.addWidget(_chip("0 cases", "systemChip"))
+        count = _chip("\u2014 cases", "systemChip")
+        header.addWidget(count)
         header.addStretch(1)
 
         present = QPushButton("+  Present Case")
@@ -870,11 +874,12 @@ class DiseaseDetailView(QWidget):
             )
         )
 
-        empty = _body(
-            "No peer discussions are linked to this entry yet.", "bodyTextMuted"
-        )
-        empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(empty)
+        self.peer = PeerDiscussionList("disease", d.id)
+        self.peer.count_changed.connect(
+            lambda n: count.setText(f"{n} case{'s' if n != 1 else ''}"))
+        layout.addWidget(self.peer)
+        self.related_articles = RelatedArticlesList("disease", d.id)
+        layout.addWidget(self.related_articles)
         return card
 
     def _references(self, d: Disease) -> QWidget:
@@ -937,7 +942,12 @@ class DiseaseDetailView(QWidget):
                 )
                 link.setObjectName("cardSubtitle")
                 link.setTextFormat(Qt.TextFormat.RichText)
-                link.setOpenExternalLinks(True)
+                # Opens in the built-in reference browser (app/core/links.py).
+                link.setOpenExternalLinks(False)
+                link.linkActivated.connect(
+                    lambda href, t=reference.source_name: open_link(href, t))
+                link.setCursor(Qt.CursorShape.PointingHandCursor)
+                link.setToolTip(url)
                 tile_layout.addWidget(link)
 
             tile_layout.addStretch(1)

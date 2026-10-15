@@ -22,6 +22,7 @@ from app.core.sync_worker import SyncWorker, start_worker
 from app.repositories.supabase_disease_repository import DiseaseRepositoryError
 from app.services import comparison as comparison_service
 from app.services.disease_service import DiseaseService
+from app.ui.components.akeso_loader import MinimumLoading
 from app.ui.views.encyclopedia_page import EncyclopediaPage
 
 
@@ -30,6 +31,7 @@ class DiseaseController(QObject):
 
     check_symptoms_requested = Signal(str)
     opened = Signal(str)       # a monograph was shown (study activity)
+    synced = Signal(bool, str)  # a sync ended: (changed, error); the checker listens
 
     def __init__(
             self,
@@ -43,6 +45,7 @@ class DiseaseController(QObject):
         self._detail = page.detail_view
         self._service = service or DiseaseService()
         self._syncing = False
+        self._refresh = MinimumLoading(self._grid, "Refreshing the encyclopedia\u2026")
 
         self._grid.filters_changed.connect(self._apply_filters)
         self._grid.refresh_requested.connect(self.refresh)
@@ -68,8 +71,8 @@ class DiseaseController(QObject):
                 "Downloading the encyclopedia for offline use\u2026 This only "
                 "happens the first time on this machine."
             )
-            self._grid.show_error(message)
-            self._compare.show_message(message)
+            self._grid.show_loading(message)
+            self._compare.show_loading(message)
             return
 
         try:
@@ -97,12 +100,28 @@ class DiseaseController(QObject):
     def _on_synced(self, changed: bool, error: str) -> None:
         self._syncing = False
 
+        if self._refresh.active:
+            # The Refresh button: keep the loader up for its full time, then
+            # redraw with whatever arrived.
+            note = ("Couldn't reach the server. Showing the copy saved on this computer."
+                    if error and not changed else "")
+
+            def redraw() -> None:
+                if changed:
+                    self._service.reload()
+                    self.load()
+                self.synced.emit(changed, error)
+            self._refresh.finish(then=redraw, message=note)
+            return
+
         if changed:
             # A newer copy is on disk. Pull it into memory and redraw. Search
             # shares this service, so it sees the new data automatically.
             self._service.reload()
             self.load()
+            self.synced.emit(changed, error)
             return
+        self.synced.emit(changed, error)
 
         if error and not self._service.has_local_copy():
             # First run AND offline: nothing downloaded, nothing to show.
@@ -123,6 +142,9 @@ class DiseaseController(QObject):
         also recovers from any edit made to a table the version triggers do
         not cover.
         """
+        if self._syncing:
+            return
+        self._refresh.begin()
         self.start_sync(force=True)
 
     # ------------------------------------------------------------- filters

@@ -14,6 +14,7 @@ ACCENTS = {
     "sleep":     ("#818CF8", "#4338CA"),
     "energy":    ("#FBBF24", "#B45309"),
     "converter": ("#34D399", "#047857"),
+    "vitals":    ("#F87171", "#B91C1C"),
 }
 AMBER = ("#FBBF24", "#B45309")
 

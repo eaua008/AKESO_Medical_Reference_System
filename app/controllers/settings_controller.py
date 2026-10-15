@@ -4,18 +4,34 @@ The shell owns the header, sidebar and theme switching, so it hands this
 class small callbacks rather than letting it reach into those widgets.
 """
 
+import os
+import sys
 from typing import Callable
 
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject, QProcess
+from PySide6.QtWidgets import QApplication
 
 from app.controllers.search_history_controller import SearchHistoryController
+from app.controllers.update_controller import UpdateManager
 from app.core.device_identity import APP_VERSION
+from app.core.display_scale import QT_KEYS, effective_percent, smallest_percent
 from app.core.preferences import PreferenceStore
 from app.core.theme import Theme
 from app.repositories.local_account_data import LocalAccountData
 from app.services.search_history_service import SearchHistoryService
 from app.ui.views.account.account_dialogs import ConfirmDialog, LegalDialog
+from app.ui.components.fluid import ResponsiveGrid
 from app.ui.views.settings_view import SettingsView
+
+
+def running_scale() -> int:
+    """The display size this session started with (main.py sets it)."""
+    try:
+        if "AKESO_UI_SCALE" in os.environ:
+            return int(os.environ["AKESO_UI_SCALE"])
+        return round(float(os.environ.get("QT_SCALE_FACTOR", "1")) * 100)
+    except ValueError:
+        return 100
 
 
 class SettingsController(QObject):
@@ -23,6 +39,7 @@ class SettingsController(QObject):
                  history: SearchHistoryService, history_controller: SearchHistoryController,
                  start_options: list[tuple[str, str]],
                  apply_theme: Callable[[str], None],
+                 apply_color_theme: Callable[[str], None],
                  apply_pinned: Callable[[bool], None],
                  open_history: Callable[[], None]) -> None:
         super().__init__(view)
@@ -35,6 +52,7 @@ class SettingsController(QObject):
 
         view.set_start_options(start_options)
         view.theme_chosen.connect(self._theme)
+        view.color_theme_chosen.connect(apply_color_theme)
         view.pin_toggled.connect(self._pin)
         view.start_tab_chosen.connect(lambda tab: self._prefs.update(start_tab=tab))
         view.history_saving_toggled.connect(self._saving)
@@ -43,6 +61,23 @@ class SettingsController(QObject):
         view.clear_cache_requested.connect(self._clear_cache)
         view.read_terms_requested.connect(lambda: LegalDialog("terms", parent=view).exec())
         view.read_privacy_requested.connect(lambda: LegalDialog("privacy", parent=view).exec())
+        view.scale_chosen.connect(self._scale)
+        view.columns_chosen.connect(self._columns)
+        view.restart_requested.connect(self._restart)
+
+        # Updates (update_controller.py): the shared manager keeps the state,
+        # this page shows it.
+        self._updates = UpdateManager.instance()
+        self._updates.changed.connect(self._show_update)
+        view.check_updates_requested.connect(lambda: self._updates.check())
+        view.install_update_requested.connect(self._install_update)
+        view.open_releases_requested.connect(self._open_releases)
+        self._updates.repair_changed.connect(self._show_repair)
+        self._updates.changed.connect(self._show_repair)
+        view.check_files_requested.connect(self._updates.check_files)
+        view.repair_requested.connect(self._repair)
+        self._show_update()
+        self._show_repair()
 
     def refresh(self) -> None:
         prefs = self._prefs.load()
@@ -56,12 +91,106 @@ class SettingsController(QObject):
             clear_pending=LocalAccountData.cache_clear_pending(),
             version=APP_VERSION,
         )
+        self._show_display(prefs)
+        self._view.show_color_themes(Theme.color_theme(), Theme.mode())
 
     # ------------------------------------------------------------- private
+
+    def _show_update(self) -> None:
+        u = self._updates
+        release = u.release
+        self._view.show_update(
+            state=u.state, current=u.current_version,
+            latest=release.version if release else "", notes=release.notes if release else "",
+            message=u.message, done=u.progress[0], total=u.progress[1],
+            can_install=u.can_install)
+
+    def _show_repair(self) -> None:
+        u = self._updates
+        self._view.show_repair(
+            state=u.repair_state, message=u.repair_message,
+            done=u.repair_progress[0], total=u.repair_progress[1],
+            can_install=u.can_install,
+            busy_updating=u.state in ("downloading", "installing"))
+
+    def _repair(self) -> None:
+        from app.services import updater
+        newer = self._updates.release is not None and \
+            updater.is_newer(self._updates.release.version)
+        text = (f"A newer Akeso ({self._updates.release.version}) is out. Updating "
+                "replaces every file too, so it repairs Akeso and brings the fixes."
+                if newer else
+                f"Akeso downloads the installer of version {APP_VERSION} again, checks "
+                "that it is genuine, then closes, reinstalls every file and opens again.")
+        dialog = ConfirmDialog(
+            "Repair Akeso?",
+            text + " Your notes, settings and saved sign-in are kept.\n\n"
+            "Unsaved work in an open note is saved first.",
+            "Update and repair" if newer else "Repair now", "rotate-ccw", parent=self._view)
+        if dialog.exec() == ConfirmDialog.DialogCode.Accepted:
+            self._updates.repair()
+
+    def open_repair(self) -> None:
+        """From a screen that failed to load a file: check right away."""
+        if self._updates.repair_state not in ("scanning", "fetching"):
+            self._updates.check_files()
+
+    def _install_update(self) -> None:
+        release = self._updates.release
+        if release is None:
+            return
+        size = release.size / 1048576
+        dialog = ConfirmDialog(
+            f"Update to Akeso {release.version}?",
+            f"Akeso downloads the update ({size:.0f} MB), checks that it is genuine, then "
+            "closes, installs it and opens again. Your notes, settings and saved sign-in "
+            "are kept.\n\nUnsaved work in an open note is saved first.",
+            "Update now", "download", parent=self._view)
+        if dialog.exec() == ConfirmDialog.DialogCode.Accepted:
+            self._updates.install()
+
+    @staticmethod
+    def _open_releases() -> None:
+        from PySide6.QtCore import QUrl
+        from PySide6.QtGui import QDesktopServices
+        from app.services.updater import RELEASES_PAGE
+        QDesktopServices.openUrl(QUrl(RELEASES_PAGE))
 
     def _theme(self, mode: str) -> None:
         if mode != Theme.mode():
             self._apply_theme(mode)        # the shell saves it with the header's toggle
+
+    def _scale(self, percent: int) -> None:
+        prefs = self._prefs.update(ui_scale=percent)
+        self._show_display(prefs)
+
+    def _show_display(self, prefs) -> None:
+        self._view.show_display(prefs.ui_scale, running_scale(), prefs.cards_per_row,
+                                effective_percent(prefs.ui_scale), smallest_percent())
+
+    def _columns(self, columns: int) -> None:
+        prefs = self._prefs.update(cards_per_row=columns)
+        ResponsiveGrid.set_user_columns(prefs.cards_per_row)      # applies right away
+        self._view.banner.show_message(
+            "Encyclopedia cards now fit as many as the window allows." if not columns else
+            f"Encyclopedias now show up to {columns} cards per row.", "good")
+
+    def _restart(self) -> None:
+        """Start a fresh copy of Akeso, then close this one (the new size is
+        read at start-up). Sessions are not stored, so the new copy opens on
+        the sign-in screen; unsaved notebook edits are flushed on quit."""
+        saved = {key: os.environ.pop(key) for key in QT_KEYS if key in os.environ}
+        # (popped so main.py works out the new size)
+        # Packaged: sys.executable is Akeso.exe and argv[0] is that same path,
+        # so pass only the real arguments. From IntelliJ: python + main.py.
+        frozen = getattr(sys, "frozen", False)
+        arguments = sys.argv[1:] if frozen else sys.argv
+        if not QProcess.startDetached(sys.executable, arguments):
+            os.environ.update(saved)
+            self._view.banner.show_message(
+                "Could not restart automatically. Close Akeso and open it again.", "danger")
+            return
+        QApplication.quit()
 
     def _pin(self, on: bool) -> None:
         self._prefs.update(sidebar_pinned=on)

@@ -13,13 +13,13 @@ from PySide6.QtCore import QObject, Signal
 from app.core.avatar_image import circle_pixmap
 from app.core.background import call_in_background
 from app.core.theme import Theme
-from app.models.exchange import Draft, ModItem, PostDetail, Tag
+from app.models.exchange import PROFILE_REPORT_REASONS, Draft, ModItem, PostDetail, Tag
 from app.models.notebook import NOTE
 from app.services.exchange_service import PAGE_SIZE, ExchangeService
 from app.services.notebook_service import NotebookService
 from app.ui.views.account.account_dialogs import ConfirmDialog
 from app.ui.views.exchange.exchange_dialogs import (
-    ComposerPanel, EditReplyDialog, ModerateDialog, ProfileCardDialog, ReportDialog, RevealDialog,
+    ComposerPanel, EditReplyDialog, ModerateDialog, ReportDialog, RevealDialog,
 )
 from app.ui.views.exchange.exchange_page import ExchangePage
 from app.ui.components.page_sheet import PageSheet
@@ -33,14 +33,21 @@ class ExchangeController(QObject):
     notebook_saved = Signal(str)             # notebook item id
     activity = Signal(str)                   # for study counters
     notifications_changed = Signal()
+    post_requested = Signal(str)             # open a post on top of the current page (shell)
+    edit_profile_requested = Signal()        # "Edit my profile" -> Account Settings
 
     def __init__(self, page: ExchangePage, service: ExchangeService,
                  notebook: Optional[NotebookService] = None,
                  is_bookmarked: Optional[Callable[[str, str], bool]] = None,
                  describe_interaction: Optional[Callable[[str, list, list], dict]] = None,
-                 is_moderator: bool = False) -> None:
+                 is_moderator: bool = False,
+                 avatar_loader: Optional[Callable[[str], Optional[bytes]]] = None) -> None:
         super().__init__(page)
         self._page = page
+        self._avatar_loader = avatar_loader          # storage path -> PNG bytes
+        self._profile_sheet = None
+        self.profile_view = None
+        self.before_profile_open: Optional[Callable[[], None]] = None   # the shell lends the sheet
         self._service = service
         self._notebook = notebook
         self._is_bookmarked = is_bookmarked or (lambda _k, _i: False)
@@ -70,6 +77,7 @@ class ExchangeController(QObject):
         post.reply_action.connect(self._on_reply_action)
         post.reply_upvote.connect(self._on_reply_upvote)
         post.reply_submitted.connect(self._on_reply)
+        post.option_comment.connect(self._on_option_comment)
         post.poll_vote.connect(self._on_poll_vote)
         post.poll_suggest.connect(self._on_poll_suggest)
         post.poll_reveal.connect(self._on_reveal)
@@ -245,6 +253,26 @@ class ExchangeController(QObject):
                 self._error(message)
         self._run(lambda: self._service.reply(post.id, parent_id, body, anonymous), done, failed)
 
+    def _on_option_comment(self, option_id: str, body: str, anonymous: bool) -> None:
+        post = self._post
+        if post is None:
+            return
+        box = self._page.post.option_box(option_id)
+
+        def done(_reply_id) -> None:
+            if box is not None:
+                box.done()
+            self.activity.emit("reply")
+            self._load_post(True)
+
+        def failed(message: str) -> None:
+            if box is not None:
+                box.failed(message)
+            else:
+                self._error(message)
+        self._run(lambda: self._service.option_comment(post.id, option_id, body, anonymous),
+                  done, failed)
+
     def _on_reply_upvote(self, reply_id: str, on: bool) -> None:
         self._run(lambda: self._service.vote("reply", reply_id, on), lambda _s: self._load_post(True))
 
@@ -310,11 +338,16 @@ class ExchangeController(QObject):
     # -------------------------------------------------------- moderation
 
     def _report(self, kind: str, target_id: str) -> None:
-        dialog = ReportDialog(kind, parent=self._page)
+        reasons = PROFILE_REPORT_REASONS if kind == "profile" else None
+        dialog = ReportDialog(kind, parent=self._page, reasons=reasons)
 
         def done(_r) -> None:
             dialog.accept()
-            self._notice("Thanks. Moderators will review it.")
+            if kind == "profile" and self.profile_view is not None:
+                self.profile_view.banner.show_message("Thanks. Moderators will review this "
+                                                      "profile.", "good", "OK")
+            else:
+                self._notice("Thanks. Moderators will review it.")
         dialog.submitted.connect(lambda reason, note: self._run(
             lambda: self._service.report(kind, target_id, reason, note), done, dialog.show_error))
         dialog.exec()
@@ -324,22 +357,42 @@ class ExchangeController(QObject):
 
         def done(_r) -> None:
             dialog.accept()
-            (after or (lambda: self._load_post(True)))()
+            (after or self._reload_after_moderation)()
         dialog.submitted.connect(lambda action, reason: self._run(
             lambda: self._service.moderate(kind, target_id, action, reason), done, dialog.show_error))
         dialog.exec()
+
+    def _reload_after_moderation(self) -> None:
+        """Hidden and removed posts are shown only to their author and admins
+        (migration 010), so an educator who hides one can't reopen it: go back
+        to the feed instead of showing "This post is not available"."""
+        post_id = self._post_id
+        if not post_id:
+            return
+
+        def done(post: PostDetail) -> None:
+            self._page.post.show_post(post, self._is_bookmarked(EXCHANGE_KIND, post.id), True)
+
+        def gone(_message: str) -> None:
+            self.back_to_feed()
+            self._notice("Done. Hidden and removed posts are visible only to their author "
+                         "and admins.")
+        self._run(lambda: self._service.post(post_id), done, gone)
 
     def open_queue(self) -> None:
         self._page.show_queue()
         self._run(self._service.mod_queue, self._page.queue.show_items, self._page.queue.show_error)
 
     def _on_queue_action(self, action: str, item: ModItem) -> None:
-        if action == "open" and item.post_id:
+        if action == "open" and item.target_kind == "profile":
+            if item.handle:
+                self.show_profile(item.handle)
+        elif action == "open" and item.post_id:
             self.open_post(item.post_id)
         elif action == "dismiss":
             self._run(lambda: self._service.dismiss(item.target_kind, item.target_id),
                       lambda _r: self.open_queue())
-        elif action in ("hide", "lock", "remove"):
+        elif action in ("hide", "lock", "remove", "make_private", "clear_bio"):
             dialog = ModerateDialog(item.target_kind, item.status, parent=self._page)
             dialog.action.setCurrentIndex(max(0, dialog.action.findData(action)))
             dialog.submitted.connect(lambda chosen, reason: self._run(
@@ -349,12 +402,74 @@ class ExchangeController(QObject):
 
     # ----------------------------------------------------------- profile
 
+    def attach_profile_sheet(self, sheet, view) -> None:
+        """The shell hands over a full-page sheet and the ProfileView in it."""
+        self._profile_sheet = sheet
+        self.profile_view = view
+        sheet.set_content(view)
+        sheet.close_requested.connect(sheet.close_sheet)
+        view.follow_toggled.connect(self._follow_user)
+        view.report_requested.connect(lambda p: self._report("profile", p.id))
+        view.moderate_requested.connect(self._moderate_profile)
+        view.post_requested.connect(self.post_requested.emit)
+        view.topic_requested.connect(lambda tag: self.open_reference.emit(tag.kind, tag.id))
+        view.edit_requested.connect(self._edit_own_profile)
+
     def show_profile(self, handle: str) -> None:
-        def done(card) -> None:
-            avatar = circle_pixmap(None, 64, card.display_name or card.handle,
-                                   Theme.token("PRIMARY"), "#FFFFFF")
-            ProfileCardDialog(card, avatar, parent=self._page).exec()
-        self._run(lambda: self._service.profile_card(handle), done)
+        """A member's profile, on top of whatever is open (a post, the feed...)."""
+        if not handle:
+            return
+        if self.profile_view is None:                  # outside the shell (tests)
+            self._run(lambda: self._service.profile(handle), lambda p: None)
+            return
+        view, sheet = self.profile_view, self._profile_sheet
+        if self.before_profile_open is not None:
+            self.before_profile_open()
+        view.show_loading()
+        sheet.open_sheet()
+        sheet.raise_()
+        sheet.tab.raise_()
+
+        def done(profile) -> None:
+            initials = circle_pixmap(None, 88, profile.display_name or profile.handle,
+                                     Theme.token("PRIMARY"), "#FFFFFF")
+            view.show_profile(profile, initials)
+            if profile.avatar_path and self._avatar_loader is not None:
+                path = profile.avatar_path
+                call_in_background(lambda: self._avatar_loader(path),
+                                   lambda png: png and view.profile is profile and view.set_avatar(
+                                       circle_pixmap(png, 88, profile.display_name,
+                                                     Theme.token("PRIMARY"), "#FFFFFF")),
+                                   lambda _m: None, owner=view)
+        self._run(lambda: self._service.profile(handle), done, view.show_error)
+
+    def _follow_user(self, handle: str, on: bool) -> None:
+        view = self.profile_view
+        profile = view.profile if view else None
+        if profile is None:
+            return
+
+        def done(_r) -> None:
+            if view.profile is profile:
+                view.set_following(on, max(0, profile.followers + (1 if on else -1)))
+        self._run(lambda: self._service.follow_user(handle, on), done,
+                  lambda m: view.banner.show_message(m, "danger", "OK"))
+
+    def _moderate_profile(self, profile) -> None:
+        dialog = ModerateDialog("profile", profile.visibility, parent=self._page)
+
+        def done(_r) -> None:
+            dialog.accept()
+            self.show_profile(profile.handle)
+        dialog.submitted.connect(lambda action, reason: self._run(
+            lambda: self._service.moderate("profile", profile.id, action, reason), done,
+            dialog.show_error))
+        dialog.exec()
+
+    def _edit_own_profile(self) -> None:
+        if self._profile_sheet is not None:
+            self._profile_sheet.close_sheet()
+        self.edit_profile_requested.emit()
 
     # ---------------------------------------------------------- composing
 

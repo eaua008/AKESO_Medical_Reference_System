@@ -1,0 +1,1215 @@
+{
+  "diseases": [
+    {
+      "id": "dengue",
+      "name": "Dengue",
+      "scientific_name": "Dengue virus (DENV-1 to DENV-4) infection",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Acute febrile illness compatible with dengue without warning signs warrants prompt clinical review with CBC. Any warning sign (severe abdominal pain, persistent vomiting, mucosal bleeding, lethargy/restlessness, fluid accumulation, rising hematocrit with falling platelets) or signs of shock, severe bleeding or organ impairment place the presentation in the EMERGENCY tier.",
+      "contagious": false,
+      "description": "Dengue is an acute mosquito-borne viral infection caused by four antigenically distinct dengue virus serotypes and transmitted mainly by Aedes aegypti and Aedes albopictus. It is endemic in the Philippines, with transmission rising during the rainy season. Most infections are asymptomatic or self-limited, but a minority progress to severe dengue with plasma leakage, shock, bleeding or organ impairment. Case fatality falls below 1% with early recognition and appropriate fluid management.",
+      "pathophysiology": "Dengue virus inoculated by an infected Aedes mosquito replicates in dendritic cells, monocytes and macrophages, producing viremia and a strong innate immune and cytokine response. The secreted nonstructural protein NS1 disrupts the endothelial glycocalyx and activates Toll-like receptor 4 signaling. The result is a transient but marked increase in capillary permeability, with plasma leakage rather than direct destruction of endothelial cells. In a secondary infection with a different serotype, subneutralizing antibodies can enhance viral entry into Fc receptor-bearing cells (antibody-dependent enhancement), which increases the risk of severe disease. Thrombocytopenia and coagulation abnormalities add to the bleeding tendency.",
+      "clinicopathologic_correlation": "Plasma leakage produces hemoconcentration (rising hematocrit), pleural effusion, ascites and, when severe, hypovolemic shock. Leakage peaks around defervescence, so a patient may worsen as the fever settles. Thrombocytopenia and capillary fragility account for petechiae, a positive tourniquet test and mucosal bleeding.",
+      "onset_progression": "Incubation is about 4-10 days after the mosquito bite. The febrile phase has abrupt high fever with headache, retro-orbital pain, myalgia and arthralgia. The critical phase follows around defervescence (about days 4-6), when capillary permeability and the risk of plasma leakage are greatest. In the recovery phase hemodynamics stabilize and extravasated fluid is reabsorbed, with a risk of fluid overload if IV fluids are continued.",
+      "follow_up_monitoring": "Serial CBC with hematocrit and platelet count from baseline, repeated closely through the critical phase. Vital signs, urine output, oral intake and warning signs are reviewed daily. After the critical phase, IV fluids are reduced and signs of fluid overload monitored. Discharge criteria include being afebrile for at least 24 hours with a stable hematocrit and no ongoing IV fluid requirement.",
+      "source_attribution": "StatPearls: Dengue Fever (2026); WHO fact sheet Dengue and severe dengue; DOH Philippines 4S campaign; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "vector-borne",
+        "Aedes mosquito",
+        "flavivirus",
+        "endemic in Philippines",
+        "plasma leakage"
+      ],
+      "causes": [
+        "Infection with dengue virus serotypes DENV-1, DENV-2, DENV-3 or DENV-4 (flavivirus)",
+        "Transmission by bite of infected Aedes aegypti (principal vector) or Aedes albopictus mosquitoes",
+        "Aedes breeding in stored water and water-holding containers near homes"
+      ],
+      "risk_factors": [
+        "Residence in or travel to endemic areas, including the Philippines, especially during the rainy season",
+        "Secondary infection with a different serotype (antibody-dependent enhancement), a risk factor for severe dengue",
+        "Extremes of age and pregnancy",
+        "Obesity and comorbidities such as diabetes, hypertension, renal and cardiovascular disease",
+        "Uncovered water containers and poor environmental sanitation around the household"
+      ],
+      "recommended_tests": [
+        "CBC with platelet count and hematocrit at baseline and serially (leukopenia, thrombocytopenia, hemoconcentration)",
+        "Dengue NS1 antigen (typically positive in the first 4-7 days of illness)",
+        "Dengue RT-PCR (typically positive in the first 5 days)",
+        "Dengue IgM serology (detectable from about day 4 of illness)",
+        "Tourniquet test (10 or more petechiae per 2.5 cm square supports the diagnosis)"
+      ],
+      "treatments": [
+        "No specific antiviral therapy exists; management is supportive and based on early risk stratification (WHO 2009: without warning signs, with warning signs, severe dengue)",
+        "Paracetamol for fever and pain. Aspirin and NSAIDs are avoided because of bleeding risk",
+        "Hospital admission for warning signs, comorbidities, extremes of age, pregnancy, obesity, unreliable follow-up or inability to maintain oral intake",
+        "Isotonic crystalloids (0.9% saline, Ringer's lactate) for established volume depletion/plasma leakage, titrated to clinical status and hematocrit. Hypotonic fluids are avoided",
+        "Fluids are reduced or stopped after the critical phase to prevent iatrogenic fluid overload. Colloids are considered only in refractory shock",
+        "Blood products are reserved for clinically significant bleeding. Prophylactic platelet transfusion is not recommended. A falling hematocrit in shock suggests occult bleeding"
+      ],
+      "home_care": [
+        "Adequate oral fluid intake (water, oral rehydration solution, juices) in patients managed as outpatients",
+        "Rest and paracetamol for fever and myalgia, without NSAIDs or aspirin",
+        "Daily clinical review through the critical phase for warning signs and falling platelet count",
+        "Mosquito net and repellent use during the febrile period to limit onward transmission via local mosquitoes"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "DOH 4S strategy: Search and destroy mosquito breeding sites, Self-protection measures, Seek early consultation, Support fogging/spraying only in hotspot areas."
+        },
+        {
+          "tier": "primary",
+          "content": "Personal protection with repellents (DEET, picaridin, IR3535), long-sleeved clothing, mosquito nets and screened windows, particularly during daytime Aedes biting hours."
+        },
+        {
+          "tier": "primary",
+          "content": "Vaccination: WHO recommends TAK-003 (Qdenga) for ages 6-16 in high-transmission settings. CYD-TDV (Dengvaxia) is restricted to individuals with documented prior dengue infection."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early consultation and serial CBC during the febrile and critical phases so that warning signs and plasma leakage are detected before shock develops."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Fluid therapy matched to the illness phase, plus intensive care for severe dengue, to prevent prolonged shock, organ failure and fluid overload."
+        }
+      ],
+      "emergency_signs": [
+        "Severe or worsening abdominal pain",
+        "Persistent vomiting",
+        "Mucosal bleeding, vomiting blood or blood in stool",
+        "Lethargy or restlessness",
+        "Rapid breathing or respiratory distress",
+        "Cold, pale, clammy skin or other signs of shock",
+        "Clinical fluid accumulation (pleural effusion, ascites)",
+        "Rising hematocrit with a rapid fall in platelet count"
+      ],
+      "differentials": [
+        {
+          "condition": "Chikungunya",
+          "distinguishing_feature": "Arthralgia more prominent. Bleeding and marked thrombocytopenia are relatively more specific for dengue"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater or animal-urine exposure, conjunctival suffusion, calf tenderness, jaundice and acute kidney injury"
+        },
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "Stepwise, prolonged fever with abdominal symptoms. Blood culture positive for Salmonella Typhi"
+        },
+        {
+          "condition": "Malaria",
+          "distinguishing_feature": "Exposure in an endemic area (e.g., Palawan), paroxysmal fever with rigors. Positive blood smear or RDT"
+        },
+        {
+          "condition": "Measles",
+          "distinguishing_feature": "Cough, coryza, conjunctivitis and Koplik spots preceding a cephalocaudal maculopapular rash"
+        },
+        {
+          "condition": "COVID-19 / influenza",
+          "distinguishing_feature": "Respiratory symptoms predominate. Confirmed by viral testing"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_retroorbital_pain",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_arthralgia",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_bleeding",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.4
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.7
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.6
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Preferred antipyretic/analgesic in dengue (WHO, StatPearls); adhere to maximum daily dose, especially with hepatic involvement."
+        },
+        {
+          "medicine_id": "med_ors",
+          "safety": "safe",
+          "note": "Oral fluids such as ORS support hydration in outpatient dengue without warning signs."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NSAIDs increase bleeding risk in dengue; WHO advises against them."
+        },
+        {
+          "medicine_id": "med_mefenamic_acid",
+          "safety": "avoid",
+          "note": "NSAID; antiplatelet effect and GI bleeding risk in the setting of dengue thrombocytopenia."
+        },
+        {
+          "medicine_id": "med_aspirin",
+          "safety": "avoid",
+          "note": "Antiplatelet salicylate increases hemorrhage risk; also carries Reye syndrome risk in children."
+        }
+      ],
+      "related": [
+        "leptospirosis",
+        "typhoid_fever",
+        "malaria",
+        "measles",
+        "influenza",
+        "covid19",
+        "chikungunya"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Dengue Fever",
+          "citation_text": "Pescador Ruschel MA, Panda PK, Farmer A. Dengue Fever. [Updated 2026 Mar 29]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430732/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Dengue and severe dengue",
+          "citation_text": "World Health Organization. Dengue and severe dengue. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+          "specialty": "Public Health / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DOH Philippines - 4S against dengue",
+          "citation_text": "Department of Health (Philippines). DOH reminds public to do 4S vs dengue as cases start to rise. Press release.",
+          "url": "https://doh.gov.ph/press-release/DOH-reminds-public-to-do-4S-vs-dengue-as-cases-start-to-rise/",
+          "specialty": "Public Health",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "typhoid_fever",
+      "name": "Typhoid Fever",
+      "scientific_name": "Salmonella enterica serovar Typhi infection (enteric fever)",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Moderate",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "A prolonged or stepwise-rising fever with abdominal symptoms in someone exposed to unsafe water or food warrants prompt evaluation with blood culture. The EMERGENCY tier applies to severe abdominal pain or peritonism (possible perforation), gastrointestinal bleeding, delirium or other altered mental status, or hemodynamic instability, typically in the 2nd-3rd week.",
+      "contagious": true,
+      "description": "Typhoid fever is a systemic infection caused by the exclusively human pathogen Salmonella enterica serovar Typhi. It is acquired by the fecal-oral route through contaminated food or water, including food handled by chronic carriers. It causes prolonged fever with abdominal symptoms and can be complicated by intestinal perforation, hemorrhage and encephalopathy. Globally about 9 million people are affected and about 110,000 die each year, with antimicrobial resistance a growing problem in Asia.",
+      "pathophysiology": "Ingested S. Typhi that survive gastric acid invade the distal ileal mucosa and the lymphoid tissue of Peyer patches. The bacteria are taken up by macrophages and dendritic cells, in which they survive intracellularly. A transient primary bacteremia seeds the reticuloendothelial system (liver, spleen, bone marrow) and the gallbladder, and a sustained secondary bacteremia follows. Hyperplasia of Peyer patches and later necrosis, partly endotoxin-mediated, lead to ulceration, bleeding and perforation. Persistent gallbladder colonization, particularly with gallstones, underlies chronic carriage.",
+      "clinicopathologic_correlation": "Sustained bacteremia and cytokine release produce the stepwise, persistent fever, malaise and headache. Involvement of the reticuloendothelial system explains hepatosplenomegaly. Ileal Peyer patch hyperplasia causes abdominal pain and altered bowel habit, and ulceration of these patches causes GI hemorrhage and perforation in the 2nd-3rd week. Rose spots are small cutaneous emboli of bacteria.",
+      "onset_progression": "Incubation is 6-30 days. In the first week fever rises stepwise to 38-40 C, often peaking in the afternoon, with malaise, headache, anorexia and abdominal discomfort. Relative bradycardia and rose spots (under 25% of patients) may occur. By weeks 2-3 abdominal symptoms (constipation or diarrhea) and hepatosplenomegaly (29-50%) become established. Complications usually arise 2-3 weeks after onset. About 1-4% of patients become chronic carriers, shedding for at least 12 months.",
+      "follow_up_monitoring": "Clinical response to antibiotics (defervescence, oral intake) and close observation for complications in the 2nd-3rd week (abdominal signs, GI bleeding, mental status). Relapse is monitored after treatment. Stool cultures are used to document clearance or identify chronic carriage, which matters particularly for food handlers.",
+      "source_attribution": "StatPearls: Typhoid Fever (2024); WHO fact sheet Typhoid; CDC Typhoid and Paratyphoid Fever clinical overview; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "enteric fever",
+        "fecal-oral",
+        "Salmonella Typhi",
+        "waterborne",
+        "antimicrobial resistance"
+      ],
+      "causes": [
+        "Salmonella enterica serovar Typhi (Paratyphi A, B and C cause the clinically similar paratyphoid fever)",
+        "Fecal-oral transmission via drinking water or food contaminated with feces of an ill person or carrier",
+        "Chronic asymptomatic carriers, often with gallbladder colonization, sustaining community transmission"
+      ],
+      "risk_factors": [
+        "Lack of access to safe water and adequate sanitation",
+        "Consumption of food prepared by infected persons or carriers, or street food of uncertain hygiene",
+        "Residence in or travel to endemic regions, especially South and Southeast Asia",
+        "Childhood in endemic settings (highest-risk group)",
+        "Lack of typhoid vaccination",
+        "Gallstones or biliary abnormalities (risk factor for chronic carriage)"
+      ],
+      "recommended_tests": [
+        "Blood culture, the first-line test: 100% specific, about 50-66% sensitive in endemic areas, highest yield in the first week. Multiple, larger-volume samples are preferred",
+        "Bone marrow culture: most sensitive (80-96%), even after antibiotics, but invasive and reserved for selected cases",
+        "Widal test: widely available but of low sensitivity and specificity, so results are interpreted with caution",
+        "Stool culture: not suitable for diagnosing acute typhoid. Used to detect convalescent shedding or chronic carriage",
+        "Antimicrobial susceptibility testing of isolates, given widespread fluoroquinolone non-susceptibility and MDR/XDR strains",
+        "CBC and liver function tests as supportive, nonspecific investigations"
+      ],
+      "treatments": [
+        "Uncomplicated disease where fluoroquinolone resistance is common: azithromycin 1 g on day 1, then 500 mg daily for 7 days",
+        "Severe disease or high fluoroquinolone resistance: ceftriaxone 2 g IV daily for about 10 days",
+        "Fluoroquinolone-susceptible isolates: ciprofloxacin 500 mg orally every 12 hours for 7 days (mild) to 10 days (severe)",
+        "XDR S. Typhi: azithromycin (uncomplicated) or a carbapenem such as meropenem",
+        "Severe typhoid with CNS involvement (delirium, obtundation, shock): adjunctive high-dose dexamethasone",
+        "Surgical management of intestinal perforation. Cholecystectomy is considered for chronic carriers with gallstones (cures 70-90%)"
+      ],
+      "home_care": [
+        "Maintenance of oral fluid and nutritional intake during the febrile illness",
+        "Paracetamol for fever and headache",
+        "Completion of the full prescribed antibiotic course",
+        "Strict hand hygiene after toilet use. Exclusion from food handling until bacterial clearance is confirmed"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Safe drinking water, adequate sanitation, food hygiene and handwashing with soap."
+        },
+        {
+          "tier": "primary",
+          "content": "Vaccination: single-dose typhoid conjugate vaccine (TCV) from 6 months of age (79-95% effective in the first 2 years). Older options are Vi polysaccharide (IM, age 2 years and older) and oral Ty21a vaccines."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early blood culture and appropriate antibiotic therapy for prolonged fever, plus public health follow-up of contacts and implicated food handlers."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Identification and treatment of chronic carriers, prompt surgical care of perforation, and susceptibility-guided therapy to limit resistance spread."
+        }
+      ],
+      "emergency_signs": [
+        "Sudden severe abdominal pain, rigidity or distension (possible intestinal perforation)",
+        "Black tarry stools or rectal bleeding",
+        "Delirium, confusion or reduced consciousness",
+        "Hypotension or signs of shock",
+        "Persistent vomiting with inability to maintain oral intake"
+      ],
+      "differentials": [
+        {
+          "condition": "Malaria",
+          "distinguishing_feature": "Paroxysmal fever with rigors after exposure in an endemic area. Parasites on smear or positive RDT"
+        },
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Abrupt high fever with retro-orbital pain, thrombocytopenia and hemoconcentration. Incubation of 10 days or less"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater or animal exposure, conjunctival suffusion, calf tenderness, jaundice with acute kidney injury"
+        },
+        {
+          "condition": "Scrub typhus / murine typhus",
+          "distinguishing_feature": "Eschar (scrub typhus), rural/vegetation or rodent-flea exposure. Responds to doxycycline"
+        },
+        {
+          "condition": "Viral hepatitis",
+          "distinguishing_feature": "Jaundice with markedly raised transaminases. Fever typically settles as jaundice appears"
+        },
+        {
+          "condition": "Acute gastroenteritis",
+          "distinguishing_feature": "Diarrhea-dominant, short illness without prolonged stepwise fever or bacteremia"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_constipation",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_diarrhea",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_rash",
+          "typical_intensity": 2,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Oral option for uncomplicated typhoid where fluoroquinolone resistance is common and for XDR strains."
+        },
+        {
+          "medicine_id": "med_ceftriaxone",
+          "safety": "safe",
+          "note": "IV therapy of choice for severe typhoid or where fluoroquinolone resistance prevails (ineffective against XDR strains)."
+        },
+        {
+          "medicine_id": "med_ciprofloxacin",
+          "safety": "caution",
+          "note": "Effective only for fluoroquinolone-susceptible isolates; non-susceptibility is widespread in Asia, so use is guided by susceptibility testing."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic antipyretic/analgesic for fever and headache."
+        }
+      ],
+      "related": [
+        "malaria",
+        "dengue",
+        "leptospirosis",
+        "acute_gastroenteritis"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Typhoid Fever",
+          "citation_text": "Swinkels HM, Jenks JD, DeVos E. Typhoid Fever. [Updated 2024 Apr 19]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK557513/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Typhoid",
+          "citation_text": "World Health Organization. Typhoid. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/typhoid",
+          "specialty": "Public Health / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Typhoid and Paratyphoid Fever: Clinical Overview",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Typhoid and Paratyphoid Fever. Atlanta: CDC.",
+          "url": "https://www.cdc.gov/typhoid-fever/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "leptospirosis",
+      "name": "Leptospirosis",
+      "scientific_name": "Leptospira spp. infection (severe icteric form: Weil disease)",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Severe",
+      "urgency": "SEEK_URGENT_CARE",
+      "urgency_criteria": "Acute fever with myalgia after floodwater, mud or animal-urine exposure warrants same-day evaluation and early antibiotics. The EMERGENCY tier applies to jaundice, oliguria, dyspnea or hemoptysis (pulmonary hemorrhage), bleeding, altered sensorium or meningeal signs, or unstable vital signs.",
+      "contagious": false,
+      "description": "Leptospirosis is a zoonotic spirochetal infection acquired through contact of broken skin or mucous membranes with water or soil contaminated by the urine of infected animals, chiefly rodents. In the Philippines it rises sharply after typhoons and floods during the rainy season. Most cases are a self-limited febrile illness, but severe disease (Weil disease) combines jaundice, acute kidney injury and hemorrhage, and pulmonary hemorrhage is the leading cause of death.",
+      "pathophysiology": "Pathogenic Leptospira penetrate abraded skin or intact mucous membranes (conjunctiva, oral mucosa) and spread through the lymphatics and bloodstream to all organs. They cause widespread endothelial injury and small-vessel vasculitis with capillary leakage and hemorrhage. The kidneys and liver are the main target organs. Renal involvement is a tubulointerstitial nephritis with tubular dysfunction, and hepatic involvement produces cholestatic jaundice. As antibodies appear, organisms are cleared from the blood but can persist in the renal tubules and are shed in urine. Lung capillary injury can cause pulmonary hemorrhage.",
+      "clinicopathologic_correlation": "Diffuse capillary injury explains conjunctival suffusion, myalgia (notably calf and lower-back muscles) and bleeding. Tubular dysfunction produces acute kidney injury, often nonoliguric at first, with potassium wasting. Cholestatic liver involvement produces jaundice. Alveolar capillary damage produces hemoptysis and respiratory failure.",
+      "onset_progression": "Incubation is usually 5-14 days (range 2-30 days). The acute (leptospiremic) phase begins abruptly with fever, headache, myalgia and conjunctival suffusion and lasts several days. It may be followed by a brief afebrile interval and then an immune phase, which can include aseptic meningitis. A minority progress to severe disease with jaundice, renal failure, hemorrhage and pulmonary hemorrhagic syndrome (case fatality can exceed 50%).",
+      "follow_up_monitoring": "Serial serum creatinine, potassium, urine output and urinalysis. Bilirubin and liver enzymes, CBC with platelet count, and bleeding parameters are also followed. Respiratory status is monitored with oxygen saturation, ABG and chest radiograph for early pulmonary hemorrhage. Patients are observed for a Jarisch-Herxheimer reaction after antibiotics start. Renal function is followed until recovery.",
+      "source_attribution": "StatPearls: Leptospirosis (2024); CDC Leptospirosis clinical overview; CDC Yellow Book 2024 Leptospirosis; PhilHealth Leptospirosis Policy Statements (based on the 2010 Philippine Leptospirosis Task Force CPG); Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "zoonosis",
+        "floodwater exposure",
+        "spirochete",
+        "Weil disease",
+        "rainy season Philippines"
+      ],
+      "causes": [
+        "Pathogenic spirochetes of the genus Leptospira",
+        "Contact of broken skin or mucous membranes with water or soil contaminated by urine of infected animals",
+        "Rodents as the principal reservoir; also dogs, cattle, pigs and other mammals"
+      ],
+      "risk_factors": [
+        "Wading or swimming in floodwater, especially after typhoons and heavy rains",
+        "Open wounds or abrasions on the legs and feet during water exposure",
+        "Accidental ingestion of contaminated water",
+        "Occupational exposure: rice farmers, sewer and sanitation workers, abattoir workers, veterinarians, rescuers",
+        "Rodent-infested living conditions and poor waste disposal",
+        "Recreational freshwater activities"
+      ],
+      "recommended_tests": [
+        "Leptospira PCR on blood during the first week of illness (urine after the first week)",
+        "Microscopic agglutination test (MAT), the reference serologic test, ideally on paired sera",
+        "Leptospira-specific IgM ELISA or rapid diagnostic test",
+        "Culture (reference standard, but slow)",
+        "Supporting tests: CBC, urinalysis, serum creatinine and electrolytes, liver function tests, bleeding parameters",
+        "Chest radiograph, ABG and ECG in moderate-severe disease"
+      ],
+      "treatments": [
+        "Mild disease (outpatient): doxycycline 100 mg orally twice daily for 7 days. Alternatives are amoxicillin or azithromycin",
+        "Moderate-severe disease (inpatient): IV penicillin G 1.5 million units every 6 hours, or ceftriaxone 1 g IV every 24 hours. Alternatives are ampicillin and cefotaxime",
+        "Monitoring for a Jarisch-Herxheimer reaction after the first antibiotic doses",
+        "Fluid and electrolyte management with attention to potassium losses and volume status",
+        "Renal replacement therapy (dialysis) for severe or oligoanuric acute kidney injury",
+        "ICU care with mechanical ventilation for pulmonary hemorrhage or respiratory failure"
+      ],
+      "home_care": [
+        "Rest and adequate oral fluid intake in mild disease managed as outpatient",
+        "Paracetamol for fever and myalgia",
+        "Monitoring of urine output, skin/eye yellowing and breathing, with early return if these change",
+        "Avoidance of further floodwater exposure during recovery"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Avoiding wading in floodwater. Protective boots and gloves for unavoidable exposure, covering of wounds, rodent control and proper garbage disposal."
+        },
+        {
+          "tier": "primary",
+          "content": "Doxycycline prophylaxis per the Philippine guideline: low-risk exposure 200 mg single dose within 24-72 h; moderate-risk 200 mg daily for 3-5 days; high-risk (continuous exposure) 200 mg once weekly until exposure ends."
+        },
+        {
+          "tier": "secondary",
+          "content": "Early consultation for fever after exposure, with prompt antibiotic therapy to reduce progression to severe disease."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Timely dialysis and ICU support for renal failure and pulmonary hemorrhage, with follow-up of renal function after recovery."
+        }
+      ],
+      "emergency_signs": [
+        "Jaundice",
+        "Markedly reduced or absent urine output",
+        "Shortness of breath or coughing up blood",
+        "Bleeding tendencies",
+        "Confusion, altered mental status or neck stiffness",
+        "Hypotension or unstable vital signs",
+        "Persistent vomiting or severe abdominal pain"
+      ],
+      "differentials": [
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, hemoconcentration with thrombocytopenia and plasma leakage. Acute kidney injury and prominent calf tenderness are uncommon"
+        },
+        {
+          "condition": "Malaria",
+          "distinguishing_feature": "Cyclic fever with rigors after exposure in an endemic area. Parasites on blood smear"
+        },
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "Gradual stepwise fever with abdominal symptoms. Salmonella Typhi on blood culture"
+        },
+        {
+          "condition": "Viral hepatitis",
+          "distinguishing_feature": "Transaminases markedly elevated relative to bilirubin. Myalgia, conjunctival suffusion and AKI usually absent"
+        },
+        {
+          "condition": "Influenza",
+          "distinguishing_feature": "Prominent respiratory symptoms. No jaundice or renal involvement"
+        },
+        {
+          "condition": "Scrub typhus",
+          "distinguishing_feature": "Eschar at the chigger bite site and regional lymphadenopathy"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_calf_pain",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_conjunctivitis",
+          "typical_intensity": 5,
+          "is_primary": true,
+          "weight_multiplier": 1.6
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_jaundice",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_decreased_urine",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_hemoptysis",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_abdominal_pain",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "Drug of choice for mild leptospirosis (100 mg BID x 7 days) and for post-exposure/pre-exposure prophylaxis (200 mg regimens); not used in pregnancy."
+        },
+        {
+          "medicine_id": "med_amoxicillin",
+          "safety": "safe",
+          "note": "Oral alternative for mild disease, e.g., when doxycycline is contraindicated."
+        },
+        {
+          "medicine_id": "med_azithromycin",
+          "safety": "safe",
+          "note": "Alternative for mild disease and listed option for moderate-severe disease in the Philippine guideline."
+        },
+        {
+          "medicine_id": "med_ceftriaxone",
+          "safety": "safe",
+          "note": "IV option (1 g every 24 h) for moderate-severe leptospirosis, equivalent alternative to penicillin G."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic antipyretic/analgesic; dose limits observed if hepatic involvement."
+        },
+        {
+          "medicine_id": "med_ibuprofen",
+          "safety": "avoid",
+          "note": "NSAIDs are nephrotoxic and impair platelet function; risky given frequent acute kidney injury and bleeding in leptospirosis."
+        }
+      ],
+      "related": [
+        "dengue",
+        "malaria",
+        "typhoid_fever",
+        "influenza"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Leptospirosis",
+          "citation_text": "Wang S, Dunn N. Leptospirosis. [Updated 2024 Sep 10]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK441858/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Clinical Overview of Leptospirosis",
+          "citation_text": "Centers for Disease Control and Prevention. Clinical Overview of Leptospirosis. Atlanta: CDC.",
+          "url": "https://www.cdc.gov/leptospirosis/hcp/clinical-overview/index.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC Yellow Book 2024 - Leptospirosis",
+          "citation_text": "Centers for Disease Control and Prevention. CDC Yellow Book 2024: Health Information for International Travel. Leptospirosis. New York: Oxford University Press; 2023.",
+          "url": "https://wwwnc.cdc.gov/travel/yellowbook/2024/infections-diseases/leptospirosis",
+          "specialty": "Travel Medicine / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "PhilHealth - Leptospirosis Policy Statements",
+          "citation_text": "Philippine Health Insurance Corporation. Leptospirosis Policy Statements (consensus based on the Philippine Leptospirosis Task Force Clinical Practice Guidelines, 2010).",
+          "url": "https://www.philhealth.gov.ph/partners/providers/pdf/Leptospirosis_Policy_Statements.pdf",
+          "specialty": "Infectious Disease / Philippine Guideline",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "tuberculosis",
+      "name": "Pulmonary Tuberculosis",
+      "scientific_name": "Mycobacterium tuberculosis pulmonary infection",
+      "body_system": "Respiratory System",
+      "severity": "Severe",
+      "urgency": "SEE_DOCTOR_SOON",
+      "urgency_criteria": "Cough lasting 2 weeks or more, especially with fever, night sweats or weight loss, warrants prompt evaluation with chest radiograph and rapid molecular sputum testing. The EMERGENCY tier applies to massive hemoptysis, respiratory distress, signs of TB meningitis, or drug-induced hepatitis during treatment.",
+      "contagious": true,
+      "description": "Pulmonary tuberculosis is a chronic granulomatous infection of the lungs caused by Mycobacterium tuberculosis and spread by airborne droplet nuclei. It is the world's leading infectious cause of death. The Philippines is one of the 30 high-burden countries and accounts for about 6.8% of global new cases. TB is preventable and curable with a standardized multidrug regimen, which the DOH National TB Control Program provides free through DOTS facilities.",
+      "pathophysiology": "Inhaled bacilli are ingested by alveolar macrophages, and primed T cells coordinate a granuloma of macrophages, multinucleated giant cells, dendritic cells and fibroblasts. The primary focus and its draining lymph nodes form the Ghon complex, which may heal and calcify. Most infections are contained as latent infection. About 5% progress to active disease within 2 years, and later reactivation is the commonest route to active disease. In active disease, granulomas undergo caseous necrosis, erode into airways and form cavities, mainly in the apical-posterior upper lobe segments where oxygen tension is high. Cavities hold large bacillary loads and drive transmission.",
+      "clinicopathologic_correlation": "Cytokine release (notably TNF-alpha) from chronic granulomatous inflammation produces fever, night sweats, anorexia and weight loss. Caseation and cavitation into bronchi cause productive cough. Erosion of vessels in cavity walls causes hemoptysis. Upper-lobe infiltrates and cavities on chest radiograph reflect the apical predilection of reactivation disease.",
+      "onset_progression": "Primary infection is usually asymptomatic, and about 90% of infected people develop latent infection. Active pulmonary disease develops insidiously over weeks to months with chronic cough, low-grade fever, night sweats, fatigue and weight loss. Asymptomatic yet infectious disease is recognized on screening. Untreated, the disease progresses with cavitation, hemoptysis and respiratory compromise.",
+      "follow_up_monitoring": "Sputum smear and/or culture at the end of the intensive phase (month 2) and during continuation to confirm conversion. Culture positivity at 2 months with cavitation prompts an extended continuation phase. Monthly clinical review covers adherence, weight (for dose adjustment) and adverse effects. Liver function tests are done at baseline and if symptoms appear or risk factors exist. Visual acuity and color vision are checked during ethambutol therapy. HIV status and diabetes are screened.",
+      "source_attribution": "StatPearls: Tuberculosis Overview (2024); WHO fact sheet Tuberculosis; DOH Philippines National TB Control Program and NTP Manual of Procedures 6th ed.; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "airborne",
+        "mycobacteria",
+        "high-burden Philippines",
+        "DOTS",
+        "granulomatous"
+      ],
+      "causes": [
+        "Mycobacterium tuberculosis, a slow-growing, acid-fast aerobic bacillus",
+        "Airborne transmission via droplet nuclei from people with pulmonary or laryngeal TB who cough, sneeze or speak",
+        "Reactivation of latent infection when host immunity declines"
+      ],
+      "risk_factors": [
+        "Close or household contact with an infectious TB patient",
+        "HIV infection (greatly increased risk of progression)",
+        "Undernutrition",
+        "Diabetes mellitus",
+        "Smoking and harmful alcohol use",
+        "Immunosuppressive therapy such as systemic corticosteroids or TNF inhibitors",
+        "Crowded, poorly ventilated settings (e.g., prisons) and residence in a high-burden country"
+      ],
+      "recommended_tests": [
+        "Chest radiograph (upper-lobe infiltrates, cavitation, lymphadenopathy or effusion; findings nonspecific)",
+        "Rapid molecular test on sputum (Xpert MTB/RIF or Ultra), which also detects rifampicin resistance",
+        "Sputum AFB smear microscopy (sensitivity about 34-80%)",
+        "Mycobacterial culture with drug-susceptibility testing (reference standard; results in 2-8 weeks)",
+        "Tuberculin skin test or IGRA to detect infection (neither distinguishes latent from active TB)",
+        "HIV test, blood glucose, and baseline liver function before treatment"
+      ],
+      "treatments": [
+        "Drug-susceptible TB: 2 months isoniazid, rifampicin, pyrazinamide and ethambutol (intensive phase), then 4 months isoniazid and rifampicin (continuation phase), i.e., 2HRZE/4HR",
+        "4-month alternative (CDC 2022): rifapentine, isoniazid, pyrazinamide and moxifloxacin for 8 weeks, then rifapentine, isoniazid and moxifloxacin for 9 weeks, in eligible patients",
+        "Directly observed therapy / treatment support (DOTS) to ensure adherence and prevent acquired resistance",
+        "Pyridoxine (vitamin B6) with isoniazid to prevent peripheral neuropathy in at-risk patients",
+        "Extended continuation phase (total up to 9 months) for cavitary disease with a positive 2-month culture",
+        "Rifampicin-resistant/MDR TB requires specialist second-line regimens guided by susceptibility testing"
+      ],
+      "home_care": [
+        "Daily adherence to the full regimen without interruption, with treatment-partner support",
+        "Cough etiquette, mask use and good ventilation during the infectious period",
+        "Adequate nutrition to support recovery and weight regain",
+        "Avoidance of alcohol (added hepatotoxicity) and smoking cessation"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "BCG vaccination of infants, which protects young children against severe forms such as TB meningitis and miliary TB but gives limited protection in adults."
+        },
+        {
+          "tier": "primary",
+          "content": "Airborne infection control: early case detection, ventilation, and masks for infectious patients."
+        },
+        {
+          "tier": "secondary",
+          "content": "Contact investigation, active case finding with chest radiography, and TB preventive treatment (e.g., 3HP or isoniazid regimens) for infected high-risk people."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Completion of therapy under DOTS to prevent relapse, drug resistance and progressive lung damage."
+        }
+      ],
+      "emergency_signs": [
+        "Massive or persistent hemoptysis",
+        "Severe shortness of breath or respiratory distress",
+        "Confusion, severe headache or neck stiffness (possible TB meningitis)",
+        "Jaundice, persistent vomiting or dark urine while on TB drugs (drug-induced hepatitis)",
+        "New visual blurring or color vision loss while on ethambutol"
+      ],
+      "differentials": [
+        {
+          "condition": "Community-acquired pneumonia",
+          "distinguishing_feature": "Acute onset over days with lobar consolidation and response to standard antibiotics"
+        },
+        {
+          "condition": "Lung cancer",
+          "distinguishing_feature": "Older smoker, mass lesion, negative mycobacterial studies. Diagnosed by tissue biopsy"
+        },
+        {
+          "condition": "COPD",
+          "distinguishing_feature": "Chronic progressive dyspnea with obstructive spirometry, usually without fever or cavitation"
+        },
+        {
+          "condition": "Nontuberculous mycobacterial lung disease",
+          "distinguishing_feature": "Acid-fast bacilli present, but molecular testing or culture speciation is negative for M. tuberculosis"
+        },
+        {
+          "condition": "COVID-19",
+          "distinguishing_feature": "Acute course with anosmia or viral symptoms. Positive SARS-CoV-2 test"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_cough",
+          "typical_intensity": 7,
+          "is_primary": true,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_night_sweats",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_weight_loss",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_productive_cough",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_hemoptysis",
+          "typical_intensity": 4,
+          "is_primary": false,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_anorexia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_pleuritic_chest_pain",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_dyspnea",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_isoniazid",
+          "safety": "safe",
+          "note": "First-line (H) in intensive and continuation phases; monitor for hepatotoxicity and give pyridoxine to prevent neuropathy."
+        },
+        {
+          "medicine_id": "med_rifampicin",
+          "safety": "safe",
+          "note": "First-line (R) sterilizing drug; hepatotoxic, colors body fluids orange, and a potent enzyme inducer with many drug interactions."
+        },
+        {
+          "medicine_id": "med_pyrazinamide",
+          "safety": "safe",
+          "note": "First-line (Z) in the 2-month intensive phase; hepatotoxicity and arthralgia are notable adverse effects."
+        },
+        {
+          "medicine_id": "med_ethambutol",
+          "safety": "safe",
+          "note": "First-line (E) in the intensive phase; causes dose-related optic neuritis, requiring baseline and periodic vision checks."
+        },
+        {
+          "medicine_id": "med_warfarin",
+          "safety": "caution",
+          "note": "Rifampicin induces warfarin metabolism, markedly reducing anticoagulant effect; close INR monitoring and dose adjustment needed."
+        },
+        {
+          "medicine_id": "med_prednisone",
+          "safety": "caution",
+          "note": "Systemic immunosuppression increases the risk of TB reactivation/progression; used in TB only for specific indications under treatment."
+        }
+      ],
+      "related": [
+        "community_acquired_pneumonia",
+        "covid19",
+        "copd",
+        "hiv_infection"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Pulmonology / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Tuberculosis Overview",
+          "citation_text": "Tobin EH, Tristram D. Tuberculosis Overview. [Updated 2024 Dec 22]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK441916/",
+          "specialty": "Infectious Disease / Pulmonology",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Tuberculosis",
+          "citation_text": "World Health Organization. Tuberculosis. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/tuberculosis",
+          "specialty": "Public Health / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "DOH Philippines - Tuberculosis Control Program",
+          "citation_text": "Department of Health (Philippines). Tuberculosis Control Program. Manila: DOH.",
+          "url": "https://doh.gov.ph/uhc/health-programs/tuberculosis-control-program/",
+          "specialty": "Public Health / Philippine Program",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "NTP Manual of Procedures, 6th Edition",
+          "citation_text": "Department of Health (Philippines), National Tuberculosis Control Program. Manual of Procedures, 6th ed. Manila: DOH.",
+          "url": "https://ntp.doh.gov.ph/download/ntp-mop-6th-edition/",
+          "specialty": "Public Health / Philippine Guideline",
+          "is_mother_book": false
+        }
+      ]
+    },
+    {
+      "id": "malaria",
+      "name": "Malaria (Plasmodium falciparum / vivax)",
+      "scientific_name": "Plasmodium falciparum / Plasmodium vivax infection",
+      "body_system": "Multisystem (Systemic Infection)",
+      "severity": "Severe",
+      "urgency": "SEEK_URGENT_CARE",
+      "urgency_criteria": "Any fever in someone living in or returning from a malaria-endemic area (in the Philippines, mainly Palawan) warrants same-day parasitological testing, because falciparum malaria can deteriorate within hours. The EMERGENCY tier applies to impaired consciousness, seizures, respiratory distress, jaundice, dark urine, severe anemia, prostration, hypoglycemia, renal failure, or parasitemia of 5% or more.",
+      "contagious": false,
+      "description": "Malaria is a parasitic infection of red blood cells caused by Plasmodium species and transmitted by female Anopheles mosquitoes. P. falciparum causes the most severe disease, while P. vivax can relapse from dormant liver stages. In the Philippines most provinces are malaria-free, and remaining transmission is concentrated in Palawan, historically about 71% P. falciparum and 26% P. vivax, with zoonotic P. knowlesi also documented. Prompt diagnosis and artemisinin-based combination therapy are central to treatment and elimination.",
+      "pathophysiology": "Sporozoites injected by an Anopheles mosquito reach the liver within about an hour and multiply to release merozoites. The merozoites invade erythrocytes, digest hemoglobin and mature into schizonts, and schizont rupture releases new merozoites and pyrogenic material, producing febrile paroxysms. Erythrocytes infected with P. falciparum adhere to the vascular endothelium (cytoadherence) and are sequestered in the microcirculation of the brain, kidneys and other organs. Sequestration, together with endothelial activation by free heme and the host inflammatory response, drives organ dysfunction. Hemolysis of infected and uninfected red cells causes anemia. P. vivax (and P. ovale) form hypnozoites in the liver, which cause relapses months to years later.",
+      "clinicopathologic_correlation": "Synchronous schizont rupture causes the classic paroxysm of rigors, then high fever, then drenching sweats, recurring every 48 hours in P. vivax. Hemolysis produces anemia, jaundice and dark urine, and splenic clearance of parasitized cells causes splenomegaly. Microvascular sequestration of P. falciparum underlies cerebral malaria (confusion, seizures, coma), acute kidney injury and pulmonary edema.",
+      "onset_progression": "Incubation is about 8-11 days for P. falciparum and 8-17 days for P. vivax (longer for P. malariae). Early symptoms are nonspecific: fever, chills, headache, myalgia and malaise. Paroxysms may become periodic, though falciparum fever is often irregular. Untreated falciparum infection can progress rapidly to severe malaria. Vivax infection can relapse from hypnozoites unless radical cure is given.",
+      "follow_up_monitoring": "Repeat blood smears to confirm parasite clearance, daily in hospitalized falciparum or knowlesi cases. If initial smears are negative but suspicion remains, smears are repeated every 12-24 hours for a total of 3 sets. Severe cases are monitored for glucose, hemoglobin, renal function, acid-base status and consciousness. After IV artesunate, weekly CBC and hemolysis markers are checked for up to 4 weeks for delayed hemolysis. Vivax patients are followed for relapse.",
+      "source_attribution": "StatPearls: Malaria (2023); WHO fact sheet Malaria; CDC Treatment of Uncomplicated Malaria and Treatment of Severe Malaria (updated Aug 2026); Luchavez et al., Emerg Infect Dis 2008; DOH Malaria Control and Elimination Program; Harrison's Principles of Internal Medicine, 21st ed.",
+      "tags": [
+        "vector-borne",
+        "Anopheles mosquito",
+        "protozoan",
+        "Palawan",
+        "hemolysis"
+      ],
+      "causes": [
+        "Plasmodium falciparum and Plasmodium vivax (also P. malariae, P. ovale and zoonotic P. knowlesi)",
+        "Bite of infected female Anopheles mosquitoes (An. flavirostris is the principal vector in the Philippines)",
+        "Rarely, transfusion of infected blood or congenital transmission"
+      ],
+      "risk_factors": [
+        "Residence in or travel to endemic areas, in the Philippines chiefly Palawan (forest and forest-fringe communities, including indigenous groups)",
+        "Lack of acquired immunity (non-immune travelers, young children)",
+        "Pregnancy (higher risk of severe disease and adverse outcomes)",
+        "Not using insecticide-treated nets or other vector protection",
+        "Absent or inappropriate chemoprophylaxis during travel to endemic regions"
+      ],
+      "recommended_tests": [
+        "Giemsa-stained thick and thin blood smears, the gold standard for diagnosis, species identification and percent parasitemia. Repeated every 12-24 h for 3 sets if initially negative and suspicion remains",
+        "Malaria rapid diagnostic test (RDT)",
+        "PCR for low-level parasitemia and species confirmation (including P. knowlesi)",
+        "CBC (anemia, thrombocytopenia), blood glucose, creatinine, bilirubin, and lactate or blood gas in suspected severe malaria",
+        "G6PD testing (quantitative) before primaquine or tafenoquine for P. vivax radical cure"
+      ],
+      "treatments": [
+        "Uncomplicated P. falciparum: artemisinin-based combination therapy such as artemether-lumefantrine, taken with fatty food. WHO standard is a 3-day (6-dose) course. US CDC guidance was extended to a 5-day (10-dose) course in August 2026",
+        "Uncomplicated P. vivax: chloroquine where the parasite is chloroquine-sensitive, or an ACT",
+        "P. vivax radical cure: primaquine (e.g., 30 mg daily for 14 days) or tafenoquine after G6PD testing. Contraindicated in G6PD deficiency and pregnancy",
+        "Severe malaria: IV artesunate 2.4 mg/kg at 0, 12 and 24 h, then daily until parasitemia is 1% or less and oral intake is possible, followed by a full oral ACT course",
+        "Supportive care in severe malaria: management of hypoglycemia, fluids, transfusion for severe anemia, seizure control, and renal replacement therapy as needed"
+      ],
+      "home_care": [
+        "Completion of the full antimalarial course, with artemether-lumefantrine taken with fatty food or milk",
+        "Paracetamol and oral fluids for fever",
+        "Sleeping under an insecticide-treated net during illness to prevent onward transmission",
+        "Early return for persistent fever, vomiting of doses or new warning signs"
+      ],
+      "prevention": [
+        {
+          "tier": "primary",
+          "content": "Vector control with insecticide-treated nets and indoor residual spraying, plus repellents (DEET) and permethrin-treated clothing."
+        },
+        {
+          "tier": "primary",
+          "content": "Chemoprophylaxis for travelers to endemic areas (atovaquone-proguanil, doxycycline or mefloquine). WHO-recommended RTS,S/AS01 and R21/Matrix-M vaccines are for children in P. falciparum endemic regions."
+        },
+        {
+          "tier": "secondary",
+          "content": "Prompt parasitological diagnosis (microscopy or RDT) and treatment of every suspected case, plus surveillance and case investigation under the DOH Malaria Control and Elimination Program."
+        },
+        {
+          "tier": "tertiary",
+          "content": "Radical cure of P. vivax to prevent relapse, and monitoring for post-artesunate delayed hemolysis after severe malaria."
+        }
+      ],
+      "emergency_signs": [
+        "Impaired consciousness, confusion or seizures",
+        "Difficulty breathing or respiratory distress",
+        "Dark or cola-colored urine",
+        "Jaundice",
+        "Extreme weakness or prostration and severe pallor",
+        "Markedly reduced urine output",
+        "Persistent vomiting preventing oral treatment"
+      ],
+      "differentials": [
+        {
+          "condition": "Dengue",
+          "distinguishing_feature": "Retro-orbital pain, rash, hemoconcentration with thrombocytopenia. Negative smear/RDT, positive NS1"
+        },
+        {
+          "condition": "Typhoid fever",
+          "distinguishing_feature": "Stepwise sustained fever with abdominal symptoms. Salmonella Typhi on blood culture"
+        },
+        {
+          "condition": "Leptospirosis",
+          "distinguishing_feature": "Floodwater exposure, conjunctival suffusion, calf tenderness, AKI with jaundice. Negative smear"
+        },
+        {
+          "condition": "Bacterial sepsis / meningitis",
+          "distinguishing_feature": "Focal source or meningeal signs. Positive blood or CSF culture, no parasites"
+        },
+        {
+          "condition": "Influenza",
+          "distinguishing_feature": "Respiratory symptoms predominate, with no hemolysis or parasitemia"
+        },
+        {
+          "condition": "Scrub typhus",
+          "distinguishing_feature": "Eschar and lymphadenopathy. Responds to doxycycline"
+        }
+      ],
+      "symptoms": [
+        {
+          "symptom_id": "sym_fever",
+          "typical_intensity": 9,
+          "is_primary": true,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_chills",
+          "typical_intensity": 8,
+          "is_primary": true,
+          "weight_multiplier": 1.5
+        },
+        {
+          "symptom_id": "sym_diaphoresis",
+          "typical_intensity": 6,
+          "is_primary": true,
+          "weight_multiplier": 1.3
+        },
+        {
+          "symptom_id": "sym_headache",
+          "typical_intensity": 7,
+          "is_primary": false,
+          "weight_multiplier": 1.0
+        },
+        {
+          "symptom_id": "sym_myalgia",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.9
+        },
+        {
+          "symptom_id": "sym_fatigue",
+          "typical_intensity": 6,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_nausea_vomiting",
+          "typical_intensity": 5,
+          "is_primary": false,
+          "weight_multiplier": 0.8
+        },
+        {
+          "symptom_id": "sym_jaundice",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.1
+        },
+        {
+          "symptom_id": "sym_dark_urine",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        },
+        {
+          "symptom_id": "sym_confusion",
+          "typical_intensity": 3,
+          "is_primary": false,
+          "weight_multiplier": 1.2
+        }
+      ],
+      "medicines": [
+        {
+          "medicine_id": "med_artemether_lumefantrine",
+          "safety": "safe",
+          "note": "First-line ACT for uncomplicated P. falciparum and follow-on after IV artesunate; must be taken with fatty food for absorption."
+        },
+        {
+          "medicine_id": "med_doxycycline",
+          "safety": "safe",
+          "note": "Option for malaria chemoprophylaxis in travelers (daily, continued 4 weeks after exposure); not used in pregnancy or young children."
+        },
+        {
+          "medicine_id": "med_paracetamol",
+          "safety": "safe",
+          "note": "Symptomatic antipyretic for malarial fever alongside antimalarial therapy."
+        }
+      ],
+      "related": [
+        "dengue",
+        "typhoid_fever",
+        "leptospirosis",
+        "influenza"
+      ],
+      "references": [
+        {
+          "source_name": "Harrison's Principles of Internal Medicine",
+          "citation_text": "Loscalzo J, Fauci A, Kasper D, Hauser S, Longo D, Jameson JL, eds. Harrison's Principles of Internal Medicine, 21st ed. New York: McGraw Hill; 2022.",
+          "url": "",
+          "specialty": "Internal Medicine / Infectious Disease",
+          "is_mother_book": true
+        },
+        {
+          "source_name": "StatPearls - Malaria",
+          "citation_text": "Buck E, Finnigan NA. Malaria. [Updated 2023 Jul 31]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2026 Jan-.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK551711/",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "WHO Fact Sheet - Malaria",
+          "citation_text": "World Health Organization. Malaria. Fact sheet. Geneva: WHO.",
+          "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+          "specialty": "Public Health / Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Treatment of Uncomplicated Malaria",
+          "citation_text": "Centers for Disease Control and Prevention. Treatment of Uncomplicated Malaria. Clinical Guidance: Malaria Diagnosis and Treatment in the U.S. Atlanta: CDC; updated 2026 Aug 17.",
+          "url": "https://www.cdc.gov/malaria/hcp/clinical-guidance/treatment-of-uncomplicated-malaria.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "CDC - Treatment of Severe Malaria",
+          "citation_text": "Centers for Disease Control and Prevention. Treatment of Severe Malaria. Clinical Guidance: Malaria Diagnosis and Treatment in the U.S. Atlanta: CDC.",
+          "url": "https://www.cdc.gov/malaria/hcp/clinical-guidance/treatment-of-severe-malaria-1.html",
+          "specialty": "Infectious Disease",
+          "is_mother_book": false
+        },
+        {
+          "source_name": "Emerging Infectious Diseases - P. knowlesi in the Philippines",
+          "citation_text": "Luchavez J, Espino F, Curameng P, et al. Human infections with Plasmodium knowlesi, the Philippines. Emerg Infect Dis. 2008;14(5):811-813.",
+          "url": "https://wwwnc.cdc.gov/eid/article/14/5/07-1407_article",
+          "specialty": "Infectious Disease / Parasitology",
+          "is_mother_book": false
+        }
+      ]
+    }
+  ]
+}

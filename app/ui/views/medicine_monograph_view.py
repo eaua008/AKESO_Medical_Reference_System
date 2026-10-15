@@ -37,8 +37,11 @@ from PySide6.QtWidgets import (
 from app.core import icons
 from app.core.theme import Theme
 from app.models.medicine import LinkedCondition, MedicineMonograph
-from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain
-from app.ui.components.reference_cards import reference_grid
+from app.ui.components.fluid import ResponsiveGrid, TitlePair, contain, fit_width
+from app.ui.components.dosage_table import DosageSection
+from app.ui.components.peer_discussions import PeerDiscussionList
+from app.ui.components.related_articles import RelatedArticlesList
+from app.ui.components.reference_cards import reference_card, reference_grid
 from app.ui.views.compare_view import FlowLayout, WrapChip
 from app.ui.views.section_highlight import SectionHighlighter
 
@@ -77,7 +80,6 @@ class ConditionCard(QFrame):
         super().__init__()
         self.setObjectName("mdConditionCard")
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setToolTip("Open in the Disease Encyclopedia")
         self._id = condition.disease_id
 
         row = QHBoxLayout(self)
@@ -121,6 +123,7 @@ class MedicineMonographView(QWidget):
         super().__init__(parent)
         self.setObjectName("panel")
         self._medicine: Optional[MedicineMonograph] = None
+        self._dose_source_cards: dict = {}
         self._sections: dict[str, QWidget] = {}
         self._rail_links: dict[str, QPushButton] = {}
         # Set by the shell so an entry opens with its star already correct.
@@ -190,18 +193,26 @@ class MedicineMonographView(QWidget):
         self._bookmark.setCheckable(True)
         self._bookmark.setFixedWidth(40)
         self._bookmark.setCursor(Qt.CursorShape.PointingHandCursor)
-        self._bookmark.setToolTip("Bookmark this entry (saved once Bookmarks is built)")
+        self._bookmark.setToolTip("Bookmark")
         self._bookmark.toggled.connect(self._on_bookmark_toggled)
         row.addWidget(self._bookmark)
         return bar
 
     def _build_rail(self) -> QWidget:
+        # The rail scrolls on its own, like the Disease Encyclopedia's. Without
+        # this, a long "Related entities" list (a symptom or medicine linked to
+        # many diseases) had no room to grow, so Qt squeezed the Page sections
+        # links on top of each other.
+        scroller = QScrollArea()
+        scroller.setWidgetResizable(True)
+        scroller.setFrameShape(QFrame.Shape.NoFrame)
+        scroller.setFixedWidth(256)
+        scroller.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         rail = QWidget()
         rail.setObjectName("panel")
-        rail.setFixedWidth(250)
         self._rail = rail
         layout = QVBoxLayout(rail)
-        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setContentsMargins(0, 0, 6, 0)
         layout.setSpacing(14)
 
         nav = QFrame()
@@ -259,7 +270,9 @@ class MedicineMonographView(QWidget):
         self._related.setSpacing(8)
         layout.addWidget(related)
         layout.addStretch(1)
-        return rail
+        scroller.setWidget(rail)
+        fit_width(scroller)
+        return scroller
 
     # ---------------------------------------------------------- sections
 
@@ -389,7 +402,29 @@ class MedicineMonographView(QWidget):
         dosage_layout.setContentsMargins(16, 12, 16, 12)
         dosage_layout.addWidget(_label(
             m.dosage_text or "No dosing recorded yet.", "mdDosageText"))
-        layout.addWidget(dosage)
+        if m.has_dose_table:
+            # The table (Adults / Children) with its panels. The original
+            # dosing paragraph is kept, folded under the table, so nothing
+            # that was written before is lost.
+            section = DosageSection(m, self._scroll.viewport())
+            section.source_clicked.connect(self._show_dose_source)
+            layout.addWidget(section)
+            if m.dosage_text:
+                toggle = QPushButton("Show the full dosing notes")
+                toggle.setObjectName("mdCopyLink")
+                toggle.setCursor(Qt.CursorShape.PointingHandCursor)
+                toggle.setCheckable(True)
+                dosage.hide()
+
+                def _flip(on: bool, box=dosage, button=toggle) -> None:
+                    box.setVisible(on)
+                    button.setText("Hide the full dosing notes" if on
+                                   else "Show the full dosing notes")
+                toggle.toggled.connect(_flip)
+                layout.addWidget(toggle, 0, Qt.AlignmentFlag.AlignLeft)
+                layout.addWidget(dosage)
+        else:
+            layout.addWidget(dosage)
         layout.addWidget(_label(
             "Educational reference only. Dosing is individual: always follow the "
             "prescriber and the product insert.", "mdMuted"))
@@ -472,7 +507,23 @@ class MedicineMonographView(QWidget):
             "Two-tier academic provenance for medical students and clinicians.", "mdMuted"))
         # Every citation gets its own card, with a working link when it has a
         # URL (same layout as the Disease Encyclopedia).
-        layout.addWidget(reference_grid(m.references, "md", self._scroll.viewport()))
+        # The dosing table's sources sit with them, after the other citations,
+        # each with its own DOSING badge; a click on a tag in the table lands here.
+        if m.dose_sources:
+            ordered = sorted(m.references, key=lambda r: not r.is_mother_book)
+            cards = [reference_card(r, "md") for r in ordered]
+            self._dose_source_cards = {}
+            for source in m.dose_sources:
+                card = reference_card(source, "md")
+                self._dose_source_cards[source.tag] = card
+                cards.append(card)
+            grid = ResponsiveGrid(320, 2, spacing=12)
+            grid.watch(self._scroll.viewport())
+            grid.set_cards(cards)
+            layout.addWidget(grid)
+        else:
+            self._dose_source_cards = {}
+            layout.addWidget(reference_grid(m.references, "md", self._scroll.viewport()))
 
         if m.source_attribution:
             box = QFrame()
@@ -497,8 +548,12 @@ class MedicineMonographView(QWidget):
         present.clicked.connect(lambda: self.case_requested.emit(m.id))
         row.addWidget(present)
         layout.addLayout(row)
-        layout.addWidget(_label("No peer discussions are linked to this entry yet.",
-                                "mdEmptyCentre"))
+        # Filled with Clinical Exchange posts tagged with this medicine
+        # (DashboardShell._load_peer_posts).
+        self.peer = PeerDiscussionList("medicine", m.id)
+        layout.addWidget(self.peer)
+        self.related_articles = RelatedArticlesList("medicine", m.id)
+        layout.addWidget(self.related_articles)
 
         self._content.addStretch(1)
         self._fill_glance(m)
@@ -551,13 +606,24 @@ class MedicineMonographView(QWidget):
         for condition in m.conditions:
             chip = WrapChip(condition.name, "mdRelatedChip")
             chip.setCursor(Qt.CursorShape.PointingHandCursor)
-            chip.setToolTip("Open in the Disease Encyclopedia")
             chip.mousePressEvent = (
                 lambda _e, did=condition.disease_id: self.condition_chosen.emit(did))
             flow.addWidget(chip)
         self._related.addWidget(holder)
 
     # ------------------------------------------------------- interaction
+
+    def _show_dose_source(self, tag: str) -> None:
+        """A source tag in the dosage table was clicked: show its citation."""
+        card = self._dose_source_cards.get(tag)
+        if card is None:
+            self._scroll_to("references")
+            return
+        top = card.mapTo(self._scroll.widget(), card.rect().topLeft()).y()
+        bar = self._scroll.verticalScrollBar()
+        bar.setValue(max(top - 80, 0))
+        self._highlighter.flash(card)
+        self._on_scrolled(bar.value())
 
     def _scroll_to(self, key: str) -> None:
         widget = self._sections.get(key)

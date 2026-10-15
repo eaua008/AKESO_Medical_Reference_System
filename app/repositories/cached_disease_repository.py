@@ -24,10 +24,7 @@ from typing import Callable, Optional
 
 from app.models.disease import BodySystem, Disease
 from app.repositories.local_disease_cache import LocalDiseaseCache
-from app.repositories.supabase_disease_repository import (
-    DiseaseRepositoryError,
-    SupabaseDiseaseRepository,
-)
+from app.repositories.supabase_disease_repository import SupabaseDiseaseRepository
 
 
 class CachedDiseaseRepository:

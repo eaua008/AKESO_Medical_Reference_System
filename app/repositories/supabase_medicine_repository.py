@@ -1,7 +1,8 @@
 """Medicine data access backed by Supabase.
 
-Four requests for the whole catalogue, whatever its size: the medicines, the
-facts, the references, and the disease links. Grouping happens in Python, as
+A few requests for the whole catalogue, whatever its size: the medicines, the
+facts, the references, the disease links, and the dosage table (rows, panel
+notes and their sources, migration 030). Grouping happens in Python, as
 in SupabaseDiseaseRepository.fetch_all_hydrated().
 
 The app doesn't read this during normal use: it reads the local copy, and
@@ -19,6 +20,9 @@ from app.models.medicine import (
     BRAND_INTL,
     BRAND_PH,
     CONTRAINDICATION,
+    DoseNote,
+    DoseRow,
+    DoseSource,
     INDICATION,
     INTERACTION,
     LinkedCondition,
@@ -74,6 +78,8 @@ class SupabaseMedicineRepository:
         except Exception as exc:
             raise MedicineRepositoryError(f"Could not download medicines: {exc}") from exc
 
+        doses, dose_notes, dose_sources = self._dosage_rows(ids)
+
         # kind -> medicine id -> ordered lines
         grouped: dict[str, dict[str, list[str]]] = defaultdict(lambda: defaultdict(list))
         for row in facts:
@@ -101,6 +107,36 @@ class SupabaseMedicineRepository:
                 note=row.get("note") or "",
             ))
 
+        dose_rows: dict[str, list[DoseRow]] = defaultdict(list)
+        for row in doses:
+            dose_rows[str(row["medicine_id"])].append(DoseRow(
+                population=row.get("population") or "adult",
+                indication=row.get("indication") or "",
+                route=row.get("route") or "",
+                dose=row.get("dose") or "",
+                frequency=row.get("frequency") or "",
+                duration=row.get("duration") or "",
+                max_dose=row.get("max_dose") or "",
+                source=row.get("source") or "",
+                note=row.get("note") or "",
+            ))
+        note_rows: dict[str, list[DoseNote]] = defaultdict(list)
+        for row in dose_notes:
+            note_rows[str(row["medicine_id"])].append(DoseNote(
+                kind=row.get("kind") or "",
+                content=row.get("content") or "",
+                label=row.get("label") or "",
+                source=row.get("source") or "",
+            ))
+        source_rows: dict[str, list[DoseSource]] = defaultdict(list)
+        for row in dose_sources:
+            source_rows[str(row["medicine_id"])].append(DoseSource(
+                tag=row.get("tag") or "",
+                source_name=row.get("source_name") or "",
+                citation_text=row.get("citation_text") or "",
+                url=row.get("url") or "",
+            ))
+
         medicines = []
         for row in rows:
             mid = str(row["id"])
@@ -123,8 +159,23 @@ class SupabaseMedicineRepository:
                 interactions=grouped[INTERACTION].get(mid, []),
                 references=refs.get(mid, []),
                 conditions=sorted(conditions.get(mid, []), key=lambda c: c.name.lower()),
+                doses=dose_rows.get(mid, []),
+                dose_notes=note_rows.get(mid, []),
+                dose_sources=source_rows.get(mid, []),
             ))
         return medicines
+
+    def _dosage_rows(self, ids: list[str]) -> tuple[list[dict], list[dict], list[dict]]:
+        """The dosage table's three tables. Empty (not an error) while the
+        database does not have them yet (migration 030 not run): the medicine
+        page then shows the dosing paragraph as before."""
+        try:
+            doses = self._rows("medicine_doses", ids, order="position")
+            notes = self._rows("medicine_dose_notes", ids, order="position")
+            sources = self._rows("medicine_dose_sources", ids, order="position")
+        except Exception:  # noqa: BLE001 - missing tables must not stop the sync
+            return [], [], []
+        return doses, notes, sources
 
     def _rows(self, table: str, ids: list[str], select: str = "*",
               order: Optional[str] = None) -> list[dict]:

@@ -1,0 +1,312 @@
+{
+  "pairs": [
+    {
+      "a": "med_tenofovir",
+      "b": "med_ibuprofen",
+      "severity": "caution",
+      "description": "Tenofovir is eliminated by glomerular filtration and active tubular secretion and is itself associated with renal tubular injury; NSAIDs reduce renal prostaglandin-mediated perfusion and are nephrotoxic at high or repeated doses.",
+      "clinical_significance": "Acute renal failure has been reported after initiation of high-dose or multiple NSAIDs in HIV-infected patients with risk factors for renal dysfunction who appeared stable on tenofovir disoproxil fumarate.",
+      "recommendation": "Tenofovir DF is avoided with concurrent or recent high-dose or multiple NSAID use; alternatives to NSAIDs (e.g., paracetamol) are considered in patients at risk for renal dysfunction. If coadministered, serum creatinine, creatinine clearance, urine glucose and urine protein are monitored.",
+      "source_attribution": "VIREAD (tenofovir disoproxil fumarate) FDA label (DailyMed), Sections 5.2 and 7.1",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=33fd6418-fbdc-42ca-a50d-ce2a476a5418"
+    },
+    {
+      "a": "med_tenofovir",
+      "b": "med_mefenamic_acid",
+      "severity": "caution",
+      "description": "Mefenamic acid is an NSAID; NSAID-induced reduction in renal perfusion adds to the tubular nephrotoxicity risk of tenofovir, which is renally eliminated.",
+      "clinical_significance": "The tenofovir DF label warns of acute renal failure after initiation of high-dose or multiple NSAIDs in patients with renal risk factors, and lists NSAIDs among drugs that may increase tenofovir concentrations.",
+      "recommendation": "Avoid concurrent or recent high-dose or multiple NSAID use with tenofovir DF; prefer a non-NSAID analgesic in patients at renal risk, and monitor renal function if the combination is used.",
+      "source_attribution": "VIREAD (tenofovir disoproxil fumarate) FDA label (DailyMed), Sections 5.2 and 7.1 (NSAID class statement)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=33fd6418-fbdc-42ca-a50d-ce2a476a5418"
+    },
+    {
+      "a": "med_tenofovir",
+      "b": "med_aciclovir",
+      "severity": "caution",
+      "description": "Tenofovir and aciclovir are both eliminated by the kidney partly via active tubular secretion; coadministration may increase serum concentrations of either drug.",
+      "clinical_significance": "Higher tenofovir exposure increases the risk of renal adverse reactions (acute kidney injury, proximal tubulopathy/Fanconi syndrome).",
+      "recommendation": "Monitor renal function (serum creatinine, creatinine clearance, urine glucose/protein, phosphorus in CKD) during coadministration, particularly with high-dose intravenous aciclovir or pre-existing renal impairment.",
+      "source_attribution": "VIREAD (tenofovir disoproxil fumarate) FDA label (DailyMed), Section 7.1 Drugs Affecting Renal Function",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=33fd6418-fbdc-42ca-a50d-ce2a476a5418"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_ibuprofen",
+      "severity": "caution",
+      "description": "The tenofovir disoproxil fumarate component of TLD is renally eliminated and nephrotoxic; NSAIDs impair renal perfusion.",
+      "clinical_significance": "Labels for lamivudine/tenofovir DF combinations state that coadministration should be avoided with concurrent or recent use of a nephrotoxic agent such as high-dose or multiple NSAIDs, because of the risk of acute renal failure.",
+      "recommendation": "Prefer paracetamol for analgesia in people on TLD, especially with renal risk factors; if an NSAID is needed, use briefly at the lowest dose with monitoring of renal function.",
+      "source_attribution": "CIMDUO (lamivudine and tenofovir disoproxil fumarate) FDA label (DailyMed), Warnings (new onset or worsening renal impairment) and Drug Interactions; applies to the TDF/3TC component of TLD",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a300f04d-118f-4136-aaf3-ddfd00197f86"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_mefenamic_acid",
+      "severity": "caution",
+      "description": "Mefenamic acid is an NSAID; NSAID-related renal hypoperfusion adds to the tubular nephrotoxicity risk of the tenofovir DF component of TLD.",
+      "clinical_significance": "Labels for lamivudine/tenofovir DF combinations advise avoiding concurrent or recent use of nephrotoxic agents such as high-dose or multiple NSAIDs.",
+      "recommendation": "Prefer a non-NSAID analgesic; if used (e.g., short courses for dysmenorrhea), keep to the lowest dose and shortest duration and monitor renal function in those with renal risk factors.",
+      "source_attribution": "CIMDUO (lamivudine and tenofovir disoproxil fumarate) FDA label (DailyMed), Warnings and Drug Interactions (NSAID class statement); applies to the TDF/3TC component of TLD",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a300f04d-118f-4136-aaf3-ddfd00197f86"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_aciclovir",
+      "severity": "caution",
+      "description": "Aciclovir competes with tenofovir for active renal tubular secretion; coadministration may increase serum concentrations of tenofovir and/or aciclovir.",
+      "clinical_significance": "Raised tenofovir exposure increases the risk of renal toxicity; the combination is common in people with HIV treated for herpes simplex or varicella-zoster infection.",
+      "recommendation": "Monitor renal function during coadministration, especially with intravenous or high-dose aciclovir, dehydration or pre-existing renal impairment; adjust aciclovir dose to creatinine clearance.",
+      "source_attribution": "CIMDUO (lamivudine and tenofovir disoproxil fumarate) FDA label (DailyMed), Drug Interactions: drugs affecting renal function (acyclovir, valacyclovir)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a300f04d-118f-4136-aaf3-ddfd00197f86"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_metformin",
+      "severity": "caution",
+      "description": "Dolutegravir inhibits the renal transporters OCT2 and MATE1, reducing tubular secretion of metformin. Dolutegravir 50 mg once daily increased metformin AUC by 79% and Cmax by 66%; twice-daily dolutegravir increased AUC by 145%.",
+      "clinical_significance": "Increased metformin exposure raises the risk of gastrointestinal adverse effects and, particularly with renal impairment, lactic acidosis; stopping dolutegravir can reduce glycaemic control.",
+      "recommendation": "Consider metformin dose adjustment when starting or stopping dolutegravir; the US prescribing information suggests limiting total daily metformin to 1,000 mg when starting either drug. Monitor renal function and blood glucose when starting and stopping coadministration.",
+      "source_attribution": "Liverpool HIV Drug Interactions: Dolutegravir + Metformin (Potential Interaction); TIVICAY FDA label Table of drug interactions",
+      "url": "https://www.hiv-druginteractions.org/interactions/81694"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_rifampicin",
+      "severity": "caution",
+      "description": "Rifampicin strongly induces UGT1A1 and CYP3A, which metabolize dolutegravir, markedly lowering dolutegravir concentrations.",
+      "clinical_significance": "Once-daily dolutegravir exposure with rifampicin is insufficient and risks virologic failure and integrase resistance, a common issue in HIV/TB co-infection.",
+      "recommendation": "The dolutegravir dose is increased to 50 mg twice daily during rifampicin coadministration in integrase-inhibitor-naive adults (for a TLD regimen, by adding a separate dolutegravir 50 mg dose); this adjustment is not suitable for integrase-experienced patients with suspected INSTI resistance.",
+      "source_attribution": "TIVICAY (dolutegravir) FDA label (DailyMed), Section 2 Dosage and Section 7 Table of established drug interactions (rifampin)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=63df5af3-b8ac-4e76-9830-2dbb340af922"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_zinc_sulfate",
+      "severity": "caution",
+      "description": "Zinc and other polyvalent cations chelate dolutegravir in the gastrointestinal tract, reducing its absorption.",
+      "clinical_significance": "Reduced dolutegravir concentrations may compromise viral suppression; evidence quality for zinc specifically is very low but the effect is expected by class.",
+      "recommendation": "Administer dolutegravir-containing regimens 2 hours before or 6 hours after zinc-containing products, or take them together with food.",
+      "source_attribution": "Liverpool HIV Drug Interactions: Dolutegravir/lamivudine + Zinc (Potential Interaction); TIVICAY FDA label (polyvalent cations)",
+      "url": "https://www.hiv-druginteractions.org/interactions/143345"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_omeprazole",
+      "severity": "safe",
+      "description": "Dolutegravir absorption is not meaningfully affected by gastric acid suppression; omeprazole is not listed among drugs requiring dose change with dolutegravir.",
+      "clinical_significance": "The dolutegravir label lists omeprazole among drugs without clinically significant interactions.",
+      "recommendation": "Can be coadministered without dose adjustment (note: this does not apply to cation-containing antacids, which require dose separation).",
+      "source_attribution": "TIVICAY (dolutegravir) FDA label (DailyMed), Section 7 Drugs without Clinically Significant Interactions",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=63df5af3-b8ac-4e76-9830-2dbb340af922"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_prednisone",
+      "severity": "safe",
+      "description": "Prednisone did not meaningfully alter dolutegravir pharmacokinetics in interaction studies.",
+      "clinical_significance": "The dolutegravir label lists prednisone among drugs that can be coadministered without dose adjustment.",
+      "recommendation": "Can be coadministered without dose adjustment of the dolutegravir component.",
+      "source_attribution": "TIVICAY (dolutegravir) FDA label (DailyMed), Section 7 Drugs without Clinically Significant Interactions",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=63df5af3-b8ac-4e76-9830-2dbb340af922"
+    },
+    {
+      "a": "med_tld",
+      "b": "med_cotrimoxazole",
+      "severity": "safe",
+      "description": "Trimethoprim inhibits renal cationic secretion of lamivudine; co-trimoxazole increased lamivudine AUC by about 43% and reduced its renal clearance by about 30%.",
+      "clinical_significance": "The increase is not considered clinically significant at standard co-trimoxazole doses; the combination is routine when co-trimoxazole prophylaxis is given with antiretroviral therapy. Effects of high (PCP-treatment) doses on lamivudine have not been studied.",
+      "recommendation": "No dose adjustment of lamivudine is needed at standard co-trimoxazole doses; renal function is reviewed in patients with renal impairment.",
+      "source_attribution": "EPIVIR (lamivudine) FDA label (DailyMed), Section 7 Drug Interactions (trimethoprim/sulfamethoxazole); applies to the lamivudine component of TLD",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89226149-47fa-4f7d-bb1f-1aa7034486b8"
+    },
+    {
+      "a": "med_entecavir",
+      "b": "med_tenofovir",
+      "severity": "safe",
+      "description": "Both are renally eliminated HBV antivirals, but interaction studies showed no change in the steady-state pharmacokinetics of either drug.",
+      "clinical_significance": "Entecavir is not a CYP450 substrate, inhibitor or inducer; no pharmacokinetic interaction was observed with tenofovir DF, lamivudine or adefovir.",
+      "recommendation": "No pharmacokinetic dose adjustment is required; both drugs are dose-adjusted for creatinine clearance below 50 mL/min and renal function is monitored.",
+      "source_attribution": "BARACLUDE (entecavir) FDA label (DailyMed), Section 7 Drug Interactions and Clinical Pharmacology",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=046e61c9-9298-4b2e-b76e-b26b81fecd20"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_warfarin",
+      "severity": "caution",
+      "description": "Sulfamethoxazole inhibits CYP2C9, the main enzyme metabolizing S-warfarin, and may displace warfarin from protein binding.",
+      "clinical_significance": "Co-trimoxazole may prolong prothrombin time and raise INR, increasing bleeding risk.",
+      "recommendation": "Monitor INR closely during and shortly after co-trimoxazole therapy and adjust warfarin dose as needed; an alternative antibiotic may be considered.",
+      "source_attribution": "BACTRIM (sulfamethoxazole and trimethoprim) FDA label (DailyMed), Precautions - Drug Interactions (warfarin)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_metformin",
+      "severity": "caution",
+      "description": "Trimethoprim inhibits the renal organic cation transporter OCT2 (and MATE), reducing tubular secretion of metformin.",
+      "clinical_significance": "Co-trimoxazole potentiates the glucose-lowering effect of metformin; increased metformin exposure is a concern in renal impairment.",
+      "recommendation": "Monitor blood glucose during coadministration and review renal function; adjust antidiabetic therapy as needed.",
+      "source_attribution": "BACTRIM (sulfamethoxazole and trimethoprim) FDA label (DailyMed), Precautions - Drug Interactions (oral hypoglycemics eliminated renally via OCT2)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_gliclazide",
+      "severity": "caution",
+      "description": "Sulfonamides potentiate the glucose-lowering effect of sulfonylureas; sulfamethoxazole inhibits CYP2C9, a pathway of sulfonylurea metabolism.",
+      "clinical_significance": "Potentiation of the blood-glucose-lowering effect, and in some instances hypoglycaemia, may occur, particularly in older adults or with renal impairment.",
+      "recommendation": "Monitor blood glucose closely during and after the co-trimoxazole course and adjust the gliclazide dose as needed.",
+      "source_attribution": "Gliclazide MR Canadian product monograph (Drug Interactions: sulfonamides); BACTRIM FDA label (CYP2C9 sulfonylurea potentiation)",
+      "url": "https://pdf.hres.ca/dpd_pm/00075650.PDF"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_enalapril",
+      "severity": "caution",
+      "description": "Trimethoprim blocks the epithelial sodium channel in the distal nephron (amiloride-like effect), reducing potassium excretion; ACE inhibitors reduce aldosterone.",
+      "clinical_significance": "Additive potassium retention; hyperkalemia has been reported in elderly patients after concomitant co-trimoxazole and an ACE inhibitor.",
+      "recommendation": "Monitor serum potassium closely, especially in older adults and renal impairment; consider an alternative antibiotic when clinically appropriate.",
+      "source_attribution": "BACTRIM (sulfamethoxazole and trimethoprim) FDA label (DailyMed), Precautions - Drug Interactions (angiotensin converting enzyme inhibitor) and Hyperkalemia",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_losartan",
+      "severity": "caution",
+      "description": "Trimethoprim's amiloride-like reduction of distal potassium secretion adds to the aldosterone-lowering effect of angiotensin receptor blockers.",
+      "clinical_significance": "In a population-based study of older adults on ACE inhibitors or ARBs, co-trimoxazole was associated with about a 7-fold higher risk of hospital admission for hyperkalemia compared with amoxicillin (adjusted OR 6.7).",
+      "recommendation": "Consider an alternative antibiotic when clinically appropriate; if co-trimoxazole is used, monitor serum potassium and renal function.",
+      "source_attribution": "Antoniou T et al. Trimethoprim-Sulfamethoxazole-Induced Hyperkalemia in Patients Receiving Inhibitors of the Renin-Angiotensin System. Arch Intern Med. 2010",
+      "url": "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/416098"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_spironolactone",
+      "severity": "caution",
+      "description": "Trimethoprim and spironolactone both reduce renal potassium excretion (ENaC blockade and mineralocorticoid receptor antagonism).",
+      "clinical_significance": "Concomitant use may result in clinically relevant hyperkalaemia; EU product information for spironolactone was updated to include this interaction. Observational data in older adults show a markedly increased risk of hyperkalaemia admission.",
+      "recommendation": "Prefer an alternative antibiotic where feasible; if used together, monitor serum potassium and renal function closely and consider temporary dose reduction of spironolactone.",
+      "source_attribution": "EMA CMDh scientific conclusions, altizide/spironolactone PSUSA (2015): interaction with trimethoprim/sulfamethoxazole",
+      "url": "https://www.ema.europa.eu/en/documents/psusa/altizide/spironolactone-cmdh-scientific-conclusions-grounds-variation-amendments-product-information/000002781/201501_en.pdf"
+    },
+    {
+      "a": "med_cotrimoxazole",
+      "b": "med_hydrochlorothiazide",
+      "severity": "caution",
+      "description": "Mechanism is not established; the interaction is reported with concurrent sulfonamide-trimethoprim and diuretic therapy, primarily thiazides.",
+      "clinical_significance": "An increased incidence of thrombocytopenia with purpura has been reported in elderly patients receiving certain diuretics, primarily thiazides, with co-trimoxazole.",
+      "recommendation": "In older adults, monitor for bruising, petechiae or bleeding and check platelet count if symptoms occur.",
+      "source_attribution": "BACTRIM (sulfamethoxazole and trimethoprim) FDA label (DailyMed), Precautions - Drug Interactions (diuretics)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "a": "med_praziquantel",
+      "b": "med_rifampicin",
+      "severity": "avoid",
+      "description": "Rifampicin is a strong CYP3A inducer and markedly reduces praziquantel plasma concentrations.",
+      "clinical_significance": "Concomitant use can lead to subtherapeutic praziquantel levels and treatment failure; the label lists it as a contraindication.",
+      "recommendation": "Contraindicated. If praziquantel treatment is required, the label advises discontinuing rifampicin 2-4 weeks beforehand; rifampicin can be restarted one day after praziquantel treatment is completed.",
+      "source_attribution": "BILTRICIDE (praziquantel) FDA label (DailyMed), Section 4 Contraindications and Section 7 Drug Interactions (strong CYP3A inducers)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=34ce1cdd-648e-4f1e-8512-bf3d4cc22eb9"
+    },
+    {
+      "a": "med_praziquantel",
+      "b": "med_nirmatrelvir_ritonavir",
+      "severity": "caution",
+      "description": "Ritonavir inhibits CYP3A-mediated metabolism of praziquantel.",
+      "clinical_significance": "Praziquantel plasma concentrations may increase, which may increase dose-related adverse effects (dizziness, headache, abdominal discomfort).",
+      "recommendation": "Monitor for praziquantel adverse effects; where feasible, deworming can be timed after the 5-day nirmatrelvir/ritonavir course.",
+      "source_attribution": "BILTRICIDE (praziquantel) FDA label (DailyMed), Section 7 Drug Interactions (CYP450 inhibitors including ritonavir)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=34ce1cdd-648e-4f1e-8512-bf3d4cc22eb9"
+    },
+    {
+      "a": "med_rabies_vaccine",
+      "b": "med_prednisone",
+      "severity": "caution",
+      "description": "Systemic corticosteroids and other immunosuppressive agents can interfere with the development of active immunity after rabies vaccination.",
+      "clinical_significance": "Reduced neutralizing antibody response during post-exposure prophylaxis may leave the patient unprotected against rabies.",
+      "recommendation": "Immunosuppressive agents are not given during post-exposure prophylaxis unless essential for another condition; in immunosuppressed patients, serum rabies antibody is tested (e.g., on Day 14) to confirm an adequate response.",
+      "source_attribution": "RabAvert (rabies vaccine, PCECV) FDA label (DailyMed), Section 5 Altered Immunocompetence and Section 7 Drug Interactions",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=84b7a672-eeb1-4527-84ac-68196b156be2"
+    },
+    {
+      "a": "med_rabies_vaccine",
+      "b": "med_rabies_immunoglobulin",
+      "severity": "caution",
+      "description": "Rabies immunoglobulin provides passive neutralizing antibody but can partially suppress the active antibody response to rabies vaccine if given in excess or at the same site.",
+      "clinical_significance": "Standard complementary combination for category III exposures in previously unvaccinated persons; an excessive or repeated RIG dose may impair vaccine immunogenicity.",
+      "recommendation": "Give a single RIG dose (HRIG 20 IU/kg) infiltrated into and around the wound(s), with any remainder IM at a site distant from the vaccine; never in the same syringe or anatomical site as the vaccine; do not exceed the recommended dose; RIG is not given to previously vaccinated persons.",
+      "source_attribution": "HYPERRAB (rabies immune globulin [human]) FDA label (DailyMed), Section 2 Dosage and Administration and Section 7 Drug Interactions",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f82880b8-998c-4659-8f20-6dcc81f258e9"
+    },
+    {
+      "a": "med_zinc_sulfate",
+      "b": "med_ciprofloxacin",
+      "severity": "caution",
+      "description": "Zinc and other multivalent cations form chelation complexes with fluoroquinolones in the gut, reducing ciprofloxacin absorption.",
+      "clinical_significance": "Markedly reduced ciprofloxacin bioavailability can result in treatment failure, relevant when zinc is given with antibiotics in pediatric diarrhea.",
+      "recommendation": "Administer ciprofloxacin at least 2 hours before or 6 hours after zinc-containing products.",
+      "source_attribution": "Ciprofloxacin tablets FDA label (DailyMed), Section 2 and Section 7 (products containing calcium, iron or zinc)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5f4e80a1-0225-63dd-e053-2991aa0aa7fb"
+    },
+    {
+      "a": "med_cetirizine",
+      "b": "med_nirmatrelvir_ritonavir",
+      "severity": "safe",
+      "description": "Cetirizine is minimally metabolized by CYP3A. Full-dose ritonavir (600 mg twice daily) increased cetirizine AUC by 42%, similar to exposures seen in older adults or mild renal impairment.",
+      "clinical_significance": "With ritonavir used as a pharmacokinetic booster, a clinically significant interaction is not expected.",
+      "recommendation": "Can be coadministered without dose adjustment (nirmatrelvir itself was not studied; assessment is based on cetirizine's minimal metabolism).",
+      "source_attribution": "Liverpool HIV Drug Interactions: Ritonavir + Cetirizine (No Interaction Expected)",
+      "url": "https://www.hiv-druginteractions.org/interactions/67417"
+    }
+  ],
+  "rules": [
+    {
+      "id": "cotrimoxazole_raas_k_sparing_hyperkalemia",
+      "name": "Hyperkalemia triad (co-trimoxazole + RAAS blocker + potassium-sparing diuretic)",
+      "severity": "avoid",
+      "description": "Trimethoprim blocks distal-nephron sodium channels (amiloride-like), ACE inhibitors/ARBs lower aldosterone, and spironolactone antagonizes the mineralocorticoid receptor; all three reduce renal potassium excretion.",
+      "clinical_significance": "The co-trimoxazole label warns that even recommended doses may cause hyperkalemia when drugs known to induce hyperkalemia are given concomitantly; combining all three compounds the risk of severe hyperkalemia, especially in older adults and renal impairment.",
+      "recommendation": "Prefer an alternative antibiotic; if co-trimoxazole is unavoidable, check serum potassium and creatinine before and within a few days of starting, and consider temporarily holding spironolactone.",
+      "required_condition_id": "",
+      "members": [
+        "dihydrofolate reductase",
+        "RAAS blocker",
+        "Potassium-sparing"
+      ],
+      "source_attribution": "BACTRIM FDA label (DailyMed), Precautions - Hyperkalemia and Drug Interactions; EMA CMDh 2015 spironolactone/trimethoprim conclusions; Antoniou et al., Arch Intern Med 2010",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "id": "cotrimoxazole_raas_ckd",
+      "name": "Co-trimoxazole + RAAS blocker in chronic kidney disease",
+      "severity": "caution",
+      "description": "Trimethoprim reduces distal potassium secretion; with an ACE inhibitor or ARB and reduced renal function, potassium elimination is further impaired and co-trimoxazole components accumulate.",
+      "clinical_significance": "The label states hyperkalemia may occur at recommended doses in patients with renal insufficiency or when drugs known to induce hyperkalemia are given concomitantly; half-lives of both components increase in severe renal impairment.",
+      "recommendation": "Adjust co-trimoxazole dose for creatinine clearance, monitor serum potassium closely, and consider an alternative antibiotic when clinically appropriate.",
+      "required_condition_id": "renal_impairment",
+      "members": [
+        "dihydrofolate reductase",
+        "RAAS blocker"
+      ],
+      "source_attribution": "BACTRIM FDA label (DailyMed), Precautions - Hyperkalemia; Dosage in renal impairment",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62"
+    },
+    {
+      "id": "tenofovir_nsaid_ckd",
+      "name": "Tenofovir DF + NSAID in chronic kidney disease",
+      "severity": "avoid",
+      "description": "Tenofovir DF is renally eliminated and can cause tubular injury; NSAIDs reduce renal perfusion; pre-existing kidney disease reduces reserve.",
+      "clinical_significance": "Acute renal failure has been reported after initiation of high-dose or multiple NSAIDs in patients with renal risk factors who were stable on tenofovir DF.",
+      "recommendation": "Avoid NSAIDs with tenofovir DF in chronic kidney disease; use paracetamol for analgesia. Tenofovir DF dosing interval is adjusted for creatinine clearance below 50 mL/min, with monitoring of creatinine, urine glucose/protein and phosphorus.",
+      "required_condition_id": "renal_impairment",
+      "members": [
+        "nucleotide reverse transcriptase",
+        "NSAID"
+      ],
+      "source_attribution": "VIREAD (tenofovir disoproxil fumarate) FDA label (DailyMed), Sections 5.2 and 7.1",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=33fd6418-fbdc-42ca-a50d-ce2a476a5418"
+    }
+  ]
+}
