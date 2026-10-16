@@ -3,7 +3,10 @@
 from typing import Callable, Optional
 
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QFrame, QHBoxLayout, QScrollArea, QVBoxLayout, QWidget
+from PySide6.QtGui import QAction, QActionGroup
+from PySide6.QtWidgets import (
+    QFrame, QHBoxLayout, QLineEdit, QMenu, QScrollArea, QVBoxLayout, QWidget,
+)
 
 from app.models.account import friendly_time
 from app.models.exchange import KIND_LABELS, STATUS_LABELS, PostDetail, Tag
@@ -12,8 +15,14 @@ from app.ui.views.account.account_widgets import (
 )
 from app.ui.views.exchange.exchange_widgets import (
     AuthorLine, PollWidget, ReplyBox, ReplyWidget, VitalsBlock, clear_layout, flow,
-    refresh_small_icons, small_button, tag_chip,
+    refresh_small_icons, small_button, tag_chip, vote_button,
 )
+
+# Discussion: how replies are ordered, and which are shown.
+SORTS = [("top", "Top (best answer first)"), ("newest", "Newest"), ("oldest", "Oldest"),
+         ("votes", "Most upvoted"), ("replies", "Most replies")]
+SHOWS = [("all", "All replies"), ("best", "Best answer & educator verified"),
+         ("unanswered", "Without replies yet"), ("mine", "My replies")]
 from app.ui.components.akeso_loader import LoadingHold, LoadingLabel
 
 
@@ -41,6 +50,12 @@ class PostView(QWidget):
         self._reply_widgets: dict[str, ReplyWidget] = {}
         self._option_boxes: dict[str, ReplyBox] = {}
         self._open_threads: set = set()           # choices whose comments are open
+        # Discussion search, sort and filter: kept while the post refreshes
+        # (after a vote or a reply), reset when another post opens.
+        self._query = ""
+        self._sort = "top"
+        self._show = "all"
+        self._thread_items: list = []             # (reply, widget, [(child, widget)])
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 0)
         self.scroll = QScrollArea()
@@ -94,6 +109,7 @@ class PostView(QWidget):
         position = self.scroll.verticalScrollBar().value() if keep_scroll else 0
         if self.post is None or self.post.id != post.id:
             self._open_threads = set()              # a different post: start closed
+            self._query, self._sort, self._show = "", "top", "all"
         self.post = post
         self.bookmarked = bookmarked
         clear_layout(self._content)
@@ -188,9 +204,7 @@ class PostView(QWidget):
 
         actions = QHBoxLayout()
         actions.setSpacing(4)
-        up = small_button(f"▲ {post.score}", "", "exVote")
-        up.setCheckable(True)
-        up.setChecked(post.voted)
+        up = vote_button(post.score, post.voted)
         up.setEnabled(not post.is_author and post.status in ("open", "locked"))
         up.clicked.connect(lambda on: self.post_action.emit("upvote" if on else "unvote"))
         actions.addWidget(up)
@@ -270,14 +284,124 @@ class PostView(QWidget):
             card.body.addWidget(label("Replies are closed on this post.", "acMuted"))
         if not general:
             card.body.addWidget(label("No replies yet. Start the discussion.", "acMuted"))
-        ordered = sorted(general, key=lambda r: (not r.is_best, -r.score,
-                                                      r.created_at.timestamp() if r.created_at else 0))
-        for reply in ordered:
+            return card
+
+        # Search and Sort & filter, on the Discussion heading's line.
+        self._search = QLineEdit()
+        self._search.setObjectName("filterSearch")
+        self._search.setPlaceholderText("Search replies or authors\u2026")
+        self._search.setClearButtonEnabled(True)
+        self._search.setFixedHeight(32)
+        self._search.setMaximumWidth(280)
+        self._search.setText(self._query)
+        self._search.textChanged.connect(self._on_search)
+        card.head.addWidget(self._search, 1)
+        self._filter_button = small_button("Sort & filter", "funnel")
+        self._filter_button.setMenu(self._filter_menu())
+        card.head.addWidget(self._filter_button)
+
+        self._match_note = label("", "acSmall")
+        card.body.addWidget(self._match_note)
+        self._thread = QVBoxLayout()
+        self._thread.setSpacing(10)
+        card.body.addLayout(self._thread)
+        self._thread_items = []
+        for reply in general:
             widget = self._reply_widget(reply, False, post, vote_label)
+            kids = []
             for child in reply.children:
-                widget.add_child(self._reply_widget(child, True, post, vote_label))
-            card.body.addWidget(widget)
+                child_widget = self._reply_widget(child, True, post, vote_label)
+                widget.add_child(child_widget)
+                kids.append((child, child_widget))
+            self._thread_items.append((reply, widget, kids))
+        self._apply_discussion()
         return card
+
+    # ------------------------------------------------- discussion: search, sort, filter
+
+    def _filter_menu(self) -> QMenu:
+        menu = QMenu(self)
+        menu.setObjectName("exMenu")
+        for title, options, current, setter in (
+                ("Sort by", SORTS, self._sort, self._set_sort),
+                ("Show", SHOWS, self._show, self._set_show)):
+            menu.addSection(title)
+            group = QActionGroup(menu)
+            group.setExclusive(True)
+            for key, text in options:
+                action = QAction(text, menu)
+                action.setCheckable(True)
+                action.setChecked(key == current)
+                action.triggered.connect(lambda _c=False, k=key, s=setter: s(k))
+                group.addAction(action)
+                menu.addAction(action)
+        return menu
+
+    def _set_sort(self, key: str) -> None:
+        self._sort = key
+        self._apply_discussion()
+
+    def _set_show(self, key: str) -> None:
+        self._show = key
+        self._apply_discussion()
+
+    def _on_search(self, text: str) -> None:
+        self._query = text
+        self._apply_discussion()
+
+    @staticmethod
+    def _matches(reply, words: list[str]) -> bool:
+        author = reply.author
+        haystack = " ".join((reply.body or "", author.name or "", author.handle or "",
+                             "anonymous" if author.anonymous else "")).lower()
+        return all(word in haystack for word in words)
+
+    def _apply_discussion(self) -> None:
+        """Order and show the replies for the current search, sort and filter."""
+        if not self._thread_items:
+            return
+        stamp = (lambda r: r.created_at.timestamp() if r.created_at else 0)
+        keys = {
+            "top": lambda r: (not r.is_best, -r.score, stamp(r)),
+            "newest": lambda r: -stamp(r),
+            "oldest": stamp,
+            "votes": lambda r: (-r.score, -stamp(r)),
+            "replies": lambda r: (-len(r.children), -stamp(r)),
+        }
+        ordered = sorted(self._thread_items, key=lambda item: keys[self._sort](item[0]))
+        words = self._query.lower().split()
+        shown = 0
+        for reply, widget, kids in ordered:
+            self._thread.removeWidget(widget)
+            self._thread.addWidget(widget)
+            keep = {
+                "all": True,
+                "best": reply.is_best or reply.verified
+                        or any(c.verified for c, _w in kids),
+                "unanswered": not kids,
+                "mine": reply.author.is_me or reply.is_mine
+                        or any(c.is_mine for c, _w in kids),
+            }[self._show]
+            child_hits = [self._matches(child, words) for child, _w in kids] if words else []
+            hit = not words or self._matches(reply, words) or any(child_hits)
+            visible = keep and hit
+            widget.setVisible(visible)
+            # While searching, a matching reply shows its whole thread, and a
+            # matching answer shows with its parent but without unrelated answers.
+            parent_hit = not words or self._matches(reply, words)
+            for (child, child_widget), child_hit in zip(kids, child_hits or [True] * len(kids)):
+                child_widget.setVisible(parent_hit or child_hit)
+            shown += visible
+        total = len(self._thread_items)
+        filtering = bool(words) or self._show != "all"
+        if filtering:
+            self._match_note.setText(
+                f"Showing {shown} of {total} threads." if shown else
+                "No replies match. Try another word, or Sort & filter \u2192 All replies.")
+        self._match_note.setVisible(filtering)
+        label_text = "Sort & filter" if not filtering and self._sort == "top" else \
+            f"{dict(SORTS)[self._sort].split(' (')[0]}" + (" \u00b7 filtered" if filtering else "")
+        self._filter_button.setText(f" {label_text}")       # the gap after its icon
 
     def _reply_widget(self, reply, child: bool, post: PostDetail, vote_label: str) -> ReplyWidget:
         widget = ReplyWidget(reply, child=child, post_open=post.is_open,
