@@ -61,6 +61,120 @@ def exchange_rules(p: dict, heading_font: str) -> str:
         #exComposer {{
             background-color: {p['BG']};
         }}
+        /* the post card (composer) */
+        #exPostComposer {{
+            background-color: {p['SURFACE']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 14px;
+        }}
+        #exComposerHeading {{
+            font-family: {heading_font};
+            font-size: 17px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #exComposerRule {{ background-color: {p['BORDER']}; }}
+        #exRoundButton {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 15px;
+            color: {p['TEXT_MUTED']};
+            font-size: 12px;
+            font-weight: 700;
+        }}
+        #exRoundButton:hover {{ color: {p['TEXT']}; border-color: {p['PRIMARY']}; }}
+        #exAuthorName {{
+            font-size: 14px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #exPillCombo {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 11px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: {p['TEXT']};
+            min-height: 18px;
+        }}
+        #exPillCombo:hover {{ border-color: {p['PRIMARY']}; }}
+        #exPillCombo::drop-down {{ border: none; width: 14px; }}
+        #exPillCombo QAbstractItemView {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            selection-background-color: {p['PRIMARY_SOFT']};
+            selection-color: {p['TEXT']};
+            color: {p['TEXT']};
+        }}
+        #exComposerTitle {{
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid {p['BORDER']};
+            border-radius: 0px;
+            padding: 6px 2px;
+            font-family: {heading_font};
+            font-size: 18px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #exComposerTitle:focus {{ border-bottom-color: {p['PRIMARY']}; }}
+        #exComposerBody {{
+            background: transparent;
+            border: none;
+            padding: 2px;
+            font-size: 15px;
+            color: {p['TEXT']};
+        }}
+        #exComposerQuestion {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 13px;
+            color: {p['TEXT']};
+        }}
+        #exComposerQuestion:focus {{ border-color: {p['PRIMARY']}; }}
+        #exAttachPanel {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        #exAttachTitle {{
+            font-size: 13px;
+            font-weight: 700;
+            color: {p['TEXT']};
+        }}
+        #exAddBar {{
+            background-color: transparent;
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+        }}
+        #exAddBarLabel {{
+            font-size: 13px;
+            font-weight: 600;
+            color: {p['TEXT']};
+        }}
+        #exAddButton {{
+            background-color: transparent;
+            border: none;
+            border-radius: 19px;
+        }}
+        #exAddButton:hover {{ background-color: {p['SURFACE_RAISED']}; }}
+        #exAddButton:checked {{ background-color: {p['PRIMARY_SOFT']}; }}
+        #exPostButton {{
+            background-color: {p['PRIMARY']};
+            border: none;
+            border-radius: 9px;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+        }}
+        #exPostButton:hover {{ background-color: {p['PRIMARY_HOVER']}; }}
+        #exPostButton:disabled {{
+            background-color: {p['SURFACE_RAISED']};
+            color: {p['TEXT_MUTED']};
+        }}
         #exComposerFoot {{
             background-color: {p['SURFACE']};
             border-top: 1px solid {p['BORDER']};
@@ -138,6 +252,27 @@ def exchange_rules(p: dict, heading_font: str) -> str:
             border-color: {p['PRIMARY']};
             color: {p['BADGE_TEXT']};
         }}
+        QMenu#exMenu {{
+            background-color: {p['SURFACE_RAISED']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 10px;
+            padding: 5px;
+            font-size: 12px;
+        }}
+        QMenu#exMenu::item {{
+            padding: 6px 22px 6px 26px;
+            border-radius: 6px;
+            color: {p['TEXT']};
+            background-color: transparent;
+        }}
+        QMenu#exMenu::item:selected {{ background-color: {p['PRIMARY_SOFT']}; }}
+        QMenu#exMenu::item:disabled {{ color: {p['TEXT_MUTED']}; font-weight: 700; }}
+        QMenu#exMenu::separator {{
+            height: 1px;
+            background-color: {p['BORDER']};
+            margin: 4px 6px;
+        }}
+        #exAction::menu-indicator {{ image: none; width: 0px; }}
         #exAction {{
             background: transparent;
             border: none;

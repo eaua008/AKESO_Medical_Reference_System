@@ -58,6 +58,9 @@ class ExchangeController(QObject):
         self._loaded_once = False
         self._post_id: Optional[str] = None
         self._composer: Optional[ComposerPanel] = None
+        # Who is posting, for the top of the composer (set by the shell).
+        self.author_name = ""
+        self.author_photo_path: Optional[str] = None
         self._sheet: Optional[PageSheet] = None
 
         feed = page.feed
@@ -220,7 +223,8 @@ class ExchangeController(QObject):
                       tags=list(post.tags))
         panel = ComposerPanel(draft, self._service.reference.tag_options(),
                               self._service.reference.diseases(), [], self._composer_check,
-                              editing=True)
+                              editing=True, author_name=self.author_name)
+        self._load_author_photo(panel)
 
         def saved(_r) -> None:
             self._close_composer(force=True)
@@ -473,6 +477,15 @@ class ExchangeController(QObject):
 
     # ---------------------------------------------------------- composing
 
+    def _load_author_photo(self, panel: ComposerPanel) -> None:
+        """Your photo at the top of the post card, once it has downloaded."""
+        path = self.author_photo_path
+        if not path or self._avatar_loader is None:
+            return
+        call_in_background(lambda: self._avatar_loader(path),
+                           lambda png: png and panel.set_author_photo(png),
+                           lambda _e: None, owner=panel)
+
     def _composer_check(self, title: str, body: str, question: str) -> Optional[str]:
         return self._service.check_text(title, body, question)
 
@@ -485,7 +498,8 @@ class ExchangeController(QObject):
     def new_post(self, draft: Draft) -> None:
         panel = ComposerPanel(draft, self._service.reference.tag_options(),
                               self._service.reference.diseases(), self._notebook_cases(),
-                              self._composer_check)
+                              self._composer_check, author_name=self.author_name)
+        self._load_author_photo(panel)
 
         def attach(item_id: str) -> None:
             item = self._notebook.get(item_id) if self._notebook else None

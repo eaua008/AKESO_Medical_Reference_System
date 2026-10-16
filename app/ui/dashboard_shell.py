@@ -858,6 +858,9 @@ class DashboardShell(QWidget):
         AvatarCache.loader = photos.download_avatar
         self.register_view("exchange", self.exchange_page)
         ex = self.exchange_controller
+        ex.author_name = account.display_name or ""
+        snapshot = account.snapshot
+        ex.author_photo_path = snapshot.profile.avatar_path if snapshot is not None else None
         # A post and the composer both slide in over the feed.
         self._post_sheet = self.add_sheet("exchange", keep_content=True)
         self.exchange_page.attach_sheet(self._post_sheet)

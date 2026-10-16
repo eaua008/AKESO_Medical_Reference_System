@@ -54,8 +54,28 @@ def small_button(text: str, icon: str = "", name: str = "exAction") -> QPushButt
     return widget
 
 
+def vote_button(score: int, voted: bool) -> QPushButton:
+    """Upvote: an up-arrow and the count, in the accent colour once you voted."""
+    widget = small_button(str(score), "arrow-big-up", "exVote")
+    widget.setCheckable(True)
+    widget.setChecked(voted)
+    widget.setProperty("exVoteIcon", True)
+    _paint_vote(widget)
+    widget.toggled.connect(lambda _on: _paint_vote(widget))
+    return widget
+
+
+def _paint_vote(widget: QPushButton) -> None:
+    colour = Theme.token("BADGE_TEXT") if widget.isChecked() else Theme.token("TEXT_MUTED")
+    widget.setIcon(lucide.icon("arrow-big-up", 15, colour))
+    widget.setIconSize(QSize(15, 15))
+
+
 def refresh_small_icons(root: QWidget) -> None:
     for child in root.findChildren(QPushButton):
+        if child.property("exVoteIcon"):
+            _paint_vote(child)
+            continue
         name = child.property("exIcon")
         if name:
             child.setIcon(lucide.icon(name, 14, Theme.token("TEXT_MUTED")))
@@ -208,7 +228,7 @@ class PostCard(QFrame):
         author = AuthorLine(post.author, time_ago(post.last_activity_at or post.created_at))
         author.profile_requested.connect(self.profile_requested.emit)
         bottom.addWidget(author, 1)
-        stats = f"▲ {post.score}   ·   {post.reply_count} " \
+        stats = f"↑ {post.score}   ·   {post.reply_count} " \
                 f"{'reply' if post.reply_count == 1 else 'replies'}"
         if post.following:
             stats += "   ·   Following"
@@ -410,6 +430,39 @@ class PollWidget(QFrame):
         self.picker.reset()
 
 
+class GrowingTextEdit(QPlainTextEdit):
+    """A text box that grows taller as you type, up to a limit, then scrolls.
+
+    A fixed-height box hid everything past its third line behind a tiny
+    scrollbar, so a long reply or vignette could not be read back while
+    writing it.
+    """
+
+    def __init__(self, minimum: int, maximum: int) -> None:
+        super().__init__()
+        self._minimum, self._maximum = minimum, max(minimum, maximum)
+        self.setFixedHeight(minimum)
+        self.document().documentLayout().documentSizeChanged.connect(self._fit)
+
+    def resizeEvent(self, event) -> None:  # noqa: N802
+        super().resizeEvent(event)
+        self._fit()                    # a new width re-wraps the lines
+
+    def _fit(self, *_args) -> None:
+        # documentSize() is in lines for a plain text edit (wrapped lines
+        # included); the frame, padding and margins are what the box adds.
+        lines = max(1, int(self.document().documentLayout().documentSize().height()))
+        chrome = self.height() - self.viewport().height()
+        margin = int(self.document().documentMargin() * 2)
+        wanted = lines * self.fontMetrics().lineSpacing() + margin + chrome + 4
+        height = max(self._minimum, min(self._maximum, wanted))
+        if height != self.height():
+            self.setFixedHeight(height)
+        self.setVerticalScrollBarPolicy(
+            Qt.ScrollBarPolicy.ScrollBarAsNeeded if wanted > self._maximum
+            else Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+
 class ReplyBox(QFrame):
     """Write a reply (or an answer to a reply)."""
 
@@ -423,10 +476,9 @@ class ReplyBox(QFrame):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(6)
-        self.text = QPlainTextEdit()
+        self.text = GrowingTextEdit(64 if compact else 90, 320 if compact else 420)
         self.text.setObjectName("acInput")
         self.text.setPlaceholderText(placeholder)
-        self.text.setFixedHeight(64 if compact else 90)
         self.text.textChanged.connect(self._check)
         layout.addWidget(self.text)
         self.warning = label("", "acError")
@@ -516,9 +568,7 @@ class ReplyWidget(QFrame):
         actions = QHBoxLayout()
         actions.setSpacing(2)
         if reply.status == "open":
-            up = small_button(f"▲ {reply.score}", "", "exVote")
-            up.setCheckable(True)
-            up.setChecked(reply.voted)
+            up = vote_button(reply.score, reply.voted)
             up.setEnabled(not reply.is_mine)
             up.setToolTip("You can't upvote your own reply" if reply.is_mine else "Helpful")
             up.clicked.connect(lambda on: self.upvote.emit(reply.id, on))
@@ -598,4 +648,4 @@ def expanding(widget: QWidget) -> QWidget:
 
 __all__ = ["AuthorLine", "PostCard", "PollWidget", "ReplyBox", "ReplyWidget", "SearchPicker",
            "VitalsBlock", "clear_layout", "flow", "set_text", "small_button", "tag_chip",
-           "refresh_small_icons", "repolish"]
+           "refresh_small_icons", "repolish", "vote_button"]

@@ -74,7 +74,7 @@ class _ActivityRow(QFrame):
         column.addLayout(top)
         if item.excerpt:
             column.addWidget(label(item.excerpt, "acMuted"))
-        bits = [time_ago(item.created_at), f"▲ {item.score}"]
+        bits = [time_ago(item.created_at), f"↑ {item.score}"]
         if item.kind != "reply":
             bits.append(f"{item.reply_count} repl{'y' if item.reply_count == 1 else 'ies'}")
         foot = QHBoxLayout()
