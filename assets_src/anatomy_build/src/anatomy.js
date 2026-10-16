@@ -2,7 +2,7 @@
 // with esbuild so it runs offline inside the app's built-in browser.
 //
 // Python drives it through window.akeso (setLayer, focus, setTheme, isolateSystem,
-// clearSelection, setExtra, setColor...) and hears back through the Qt web
+// clearSelection, setExtra, setColor, findParts...) and hears back through the Qt web
 // channel "bridge" (ready, partSelected, regionChanged, extraLoaded, extraFailed,
 // coloursChanged). Models: BodyParts3D,
 // (c) The Database Center for Life Science (CC BY 4.0).
@@ -40,6 +40,12 @@ let highlight = 0x6c5ce7;               // selection glow: the theme's accent
 const meshes = [];                      // every part mesh
 const byLayer = { skin: [], muscle: [], bone: [], organ: [], vessel: [], nerve: [] };
 let layerValue = 0, region = "body", selected = null, hovered = null;
+// Parts lit up by a search (a whole group such as "heart" can be several
+// meshes). They pulse for a moment so the eye finds them, then stay lit
+// like a selection until something else is selected.
+let glowing = [], pulse = null;
+const PULSE_MS = 2600;
+function lit(mesh) { return mesh === selected || glowing.includes(mesh); }
 // Parts the user hid or made see-through: key -> {label, kind, ids}
 const entries = new Map();
 let isolated = null;                    // {label, ids} while "Show only" is on
@@ -106,9 +112,15 @@ function frame(t) {
     controls.target.lerpVectors(flying.fromTarget, flying.toTarget, e);
     if (k >= 1) flying = null;
   }
+  if (pulse) {
+    const k = (t - pulse.start) / PULSE_MS;
+    const strength = k >= 1 ? 0.7 : 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(k * Math.PI * 7));
+    for (const m of glowing) setEmissive(m, true, strength);
+    if (k >= 1) pulse = null;
+  }
   const moving = controls.update();
   renderer.render(scene, camera);
-  if (flying || moving) requestRender();
+  if (flying || moving || pulse) requestRender();
 }
 controls.addEventListener("change", requestRender);
 
@@ -148,6 +160,7 @@ function applyLayers() {
       m.material.opacity = opacity;
       m.material.depthWrite = opacity > 0.98;
       m.renderOrder = opacity > 0.98 ? 0 : 10 - i;
+      if (glowing.includes(m)) m.renderOrder = 999;       // a searched part stays on top
     }
   });
   for (const name of EXTRAS) {
@@ -159,6 +172,7 @@ function applyLayers() {
       m.material.opacity = opacity;
       m.material.depthWrite = opacity > 0.98;
       m.renderOrder = opacity > 0.98 ? 0 : 6;
+      if (glowing.includes(m)) m.renderOrder = 999;       // a searched part stays on top
     }
   }
   if (hovered && !hovered.visible) {               // its name tag must not linger
@@ -225,7 +239,59 @@ function isolateSystem(system, label) {
 }
 function restore(key) { entries.delete(key); applyLayers(); report(); }
 function showAll() { entries.clear(); isolated = null; applyLayers(); report(); }
-function clearSelection() { if (selected) setEmissive(selected, false); selected = null; requestRender(); }
+// A searched part can sit behind others (the abdominal aorta behind the
+// intestines), so it is drawn on top of everything, x-ray style, while lit.
+function xray(mesh, on) {
+  mesh.material.depthTest = !on;
+  mesh.renderOrder = on ? 999 : (mesh.material.opacity > 0.98 ? 0 : 6);
+  mesh.material.needsUpdate = true;
+}
+function clearGlow() {
+  for (const m of glowing) {
+    xray(m, false);
+    if (m !== selected) setEmissive(m, false);
+  }
+  glowing = []; pulse = null;
+}
+function clearSelection() {
+  clearGlow();
+  if (selected) setEmissive(selected, false);
+  selected = null; requestRender();
+}
+
+// Search: bring the parts into view, fly to them and make them glow.
+// Python has already peeled the slider to their layer; this switches on the
+// vessels / nerves layer if needed (waiting for it to load), and un-hides
+// the parts if the user hid them or is showing only something else.
+async function findParts(ids) {
+  ids = ids.filter(id => parts[id]);
+  if (!ids.length) return;
+  const want = new Set(ids);
+  for (const name of EXTRAS) {
+    if (!ids.some(id => parts[id].layer === name)) continue;
+    if (!extraOn[name]) setExtra(name, true);
+    if (extraLoading[name]) {
+      try { await extraLoading[name]; } catch (err) { return; }
+    }
+  }
+  for (const [k, e] of [...entries]) if ([...e.ids].some(id => want.has(id))) entries.delete(k);
+  if (isolated && !ids.every(id => isolated.ids.has(id))) isolated = null;
+  applyLayers(); report();
+  body.updateMatrixWorld(true);           // a layer loaded just now has no position yet
+  const size = m => new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3()).length();
+  // Biggest first, so a whole organ ("heart") shows the heart itself in the
+  // Selected card rather than one small valve cusp.
+  const found = meshes.filter(m => want.has(m.name)).sort((a, b) => size(b) - size(a));
+  if (!found.length) return;
+  select(found[0]);                       // fills the Selected card in Akeso
+  glowing = found;
+  for (const m of found) xray(m, true);
+  pulse = { start: performance.now() };
+  const box = new THREE.Box3();
+  for (const m of found) box.expandByObject(m);
+  flyToBox(box, null);
+  window.__akesoFound = found.length;     // read by the tests
+}
 
 window.addEventListener("keydown", e => {
   const k = e.key.toLowerCase();
@@ -304,9 +370,9 @@ canvas.addEventListener("pointermove", e => {
   const hit = pick(e);
   const mesh = hit ? hit.object : null;
   if (mesh !== hovered) {
-    if (hovered && hovered !== selected) setEmissive(hovered, false);
+    if (hovered && !lit(hovered)) setEmissive(hovered, false);
     hovered = mesh;
-    if (hovered && hovered !== selected) setEmissive(hovered, true, 0.25);
+    if (hovered && !lit(hovered)) setEmissive(hovered, true, 0.25);
     const tip = document.getElementById("tip");
     if (mesh) {
       const p = parts[mesh.name] || {};
@@ -321,11 +387,12 @@ canvas.addEventListener("pointermove", e => {
 });
 canvas.addEventListener("pointerleave", () => {
   document.getElementById("tip").style.display = "none";
-  if (hovered && hovered !== selected) setEmissive(hovered, false);
+  if (hovered && !lit(hovered)) setEmissive(hovered, false);
   hovered = null; requestRender();
 });
 
 function select(mesh) {
+  clearGlow();
   if (selected) setEmissive(selected, false);
   selected = mesh;
   setEmissive(selected, true, 0.7);
@@ -449,6 +516,7 @@ window.akeso = {
   setLayer(v) { layerValue = Math.max(0, Math.min(3, Number(v))); applyLayers(); },
   focus(key) { focus(key); },
   clearSelection() { clearSelection(); },
+  findParts(ids) { findParts((ids || []).map(String)); },
   hide(id, whole) { hidePart(id, !!whole); },
   ghost(id, whole) { ghostPart(id, !!whole); },
   isolate(id, whole) { isolatePart(id, !!whole); },
@@ -466,6 +534,7 @@ window.akeso = {
     theme = { bg, dark };
     if (accent) highlight = new THREE.Color(accent).getHex();
     if (selected) setEmissive(selected, true, 0.7);
+    for (const m of glowing) setEmissive(m, true, 0.7);
     scene.background = new THREE.Color(bg);
     document.body.style.background = bg;
     document.getElementById("tip").className = dark ? "dark" : "light";
