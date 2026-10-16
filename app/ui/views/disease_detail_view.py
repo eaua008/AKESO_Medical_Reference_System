@@ -15,7 +15,7 @@ drugs should say nothing rather than show a blank frame.
 from html import escape
 from typing import Optional
 
-from PySide6.QtCore import QEvent, QObject, QSize, Qt, Signal
+from PySide6.QtCore import QEvent, QObject, QSize, Qt, QTimer, Signal
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QFrame,
@@ -214,6 +214,14 @@ class SymptomTile(QFrame):
         layout.addLayout(bottom)
 
 
+SAFETY_LABELS = {
+    "safe": ("Used in this condition", "otcChip"),
+    "caution": ("Use with caution", "cautionChip"),
+    "avoid": ("Avoid in this condition", "avoidChip"),
+}
+SAFETY_ORDER = {"safe": 0, "caution": 1, "avoid": 2}
+
+
 class MedicineTile(QFrame):
     """One linked drug in the pharmacotherapy strip."""
 
@@ -235,6 +243,12 @@ class MedicineTile(QFrame):
                 "rxChip" if medicine.category == "Prescription" else "otcChip",
             )
         )
+        # How this drug relates to THIS condition. Without it, a drug listed
+        # as "avoid" (loperamide in suspected appendicitis) read like a
+        # recommendation.
+        safety = SAFETY_LABELS.get(medicine.safety)
+        if safety:
+            top.addWidget(_chip(safety[0], safety[1]))
         top.addStretch(1)
 
         drug_class = QLabel(medicine.drug_class)
@@ -262,6 +276,12 @@ class MedicineTile(QFrame):
             generic.setObjectName("cardScientificName")
             generic.setWordWrap(True)
             layout.addWidget(generic)
+
+        if medicine.note:
+            note = QLabel(medicine.note)
+            note.setObjectName("metaLabel")
+            note.setWordWrap(True)
+            layout.addWidget(note)
 
         open_btn = QPushButton("Open Pharmacology  \u203A")
         open_btn.setObjectName("inspectLink")
@@ -293,6 +313,9 @@ class DiseaseDetailView(QWidget):
         self._active_key: Optional[str] = None
         self._highlighter = SectionHighlighter(self)
         self._bookmarked = False
+        # Set by the shell: entry id -> starred?, so an entry opens with its
+        # star already filled when it is bookmarked.
+        self.bookmark_lookup = None
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -401,6 +424,7 @@ class DiseaseDetailView(QWidget):
         header.addWidget(heading)
         header.addStretch(1)
         header.addWidget(self._progress_label)
+        self._progress_label.hide()      # UAT: the progress line is enough; no "37%" number
         layout.addLayout(header)
 
         self._progress_bar = QProgressBar()
@@ -476,6 +500,8 @@ class DiseaseDetailView(QWidget):
     def show_disease(self, disease: Disease, bookmarked: bool = False) -> None:
         """Render a fully hydrated Disease. Safe to call repeatedly."""
         self._disease = disease
+        if not bookmarked and self.bookmark_lookup is not None:
+            bookmarked = bool(self.bookmark_lookup(disease.id))
         self._bookmarked = bookmarked
 
         self._titles.set_texts(
@@ -495,8 +521,19 @@ class DiseaseDetailView(QWidget):
             if pill.objectName().startswith("relatedPill"):
                 elide_button(pill, 200)
 
+        # Open at the top, on the first section. Before layout every new
+        # section still sits at y = 0, so the scroll check alone marked the
+        # LAST one (Textbook References) as current (UAT: "Inspect Entry
+        # takes you to the textbook section"). Mark the first, then check
+        # again once the sections have their real positions.
         self._scroll.verticalScrollBar().setValue(0)
-        self._on_scrolled(0)
+        if self._anchors:
+            self._set_active(next(iter(self._anchors)))
+
+        def settle() -> None:
+            self._scroll.verticalScrollBar().setValue(0)
+            self._on_scrolled(0)
+        QTimer.singleShot(0, settle)
 
     # ------------------------------------------------------------ sections
 
@@ -505,6 +542,7 @@ class DiseaseDetailView(QWidget):
             item = self._content_layout.takeAt(0)
             widget = item.widget()
             if widget is not None:
+                widget.hide()          # gone at once, freed a moment later
                 widget.deleteLater()
         self._anchors.clear()
         self._highlighter.clear()
@@ -612,7 +650,7 @@ class DiseaseDetailView(QWidget):
         # The active section is the last one whose top edge has passed the
         # reading line, a little below the viewport top.
         line = value + 60
-        current = None
+        current = next(iter(self._anchors), None)
         for key, widget in self._anchors.items():
             if widget.y() <= line:
                 current = key
@@ -818,13 +856,20 @@ class DiseaseDetailView(QWidget):
         card, layout = _card()
         layout.addWidget(
             _heading(
-                f"Associated pharmacotherapy & formulary ({len(d.medicines)})",
+                f"Pharmacotherapy study notes ({len(d.medicines)})",
                 "pill",
             )
         )
+        layout.addWidget(_body(
+            "For study only, not a prescription. Each drug is tagged with how it "
+            "relates to this condition: used, used with caution, or avoided. "
+            "Treatment choices for a real patient follow current Philippine "
+            "clinical practice guidelines and a licensed clinician.",
+            "metaLabel"))
 
         tiles = []
-        for medicine in d.medicines:
+        for medicine in sorted(d.medicines,
+                               key=lambda m: SAFETY_ORDER.get(m.safety, 0)):
             tile = MedicineTile(medicine)
             tile.open_requested.connect(self.medicine_requested.emit)
             tiles.append(tile)

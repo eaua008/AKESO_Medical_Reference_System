@@ -981,6 +981,8 @@ class DashboardShell(QWidget):
         # Reading: a lookup per entity type, so an entry opens already starred.
         self.encyclopedia_page.grid_view.bookmark_lookup = (
             lambda entry_id: service.is_bookmarked(DISEASE, entry_id))
+        self.encyclopedia_page.detail_view.bookmark_lookup = (
+            lambda entry_id: service.is_bookmarked(DISEASE, entry_id))
         self.symptom_page.detail.bookmark_lookup = (
             lambda entry_id: service.is_bookmarked(SYMPTOM, entry_id))
         self.medicine_page.monograph.bookmark_lookup = (

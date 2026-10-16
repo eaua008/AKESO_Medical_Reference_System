@@ -854,6 +854,24 @@ class Theme:
             font-size: 10px;
             font-weight: 700;
         }}
+        #cautionChip {{
+            background-color: rgba(251, 191, 36, 0.14);
+            color: #D97706;
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #avoidChip {{
+            background-color: rgba(248, 113, 113, 0.14);
+            color: {p['DANGER']};
+            border: 1px solid rgba(248, 113, 113, 0.45);
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
         #otcChip {{
             background-color: rgba(52, 211, 153, 0.12);
             color: {p['SUCCESS']};

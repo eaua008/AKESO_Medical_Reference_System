@@ -100,6 +100,22 @@ def wellness_rules(p: dict, heading_font: str) -> str:
         #wlSpin:focus, #wlCombo:focus, #wlConvInput:focus {{
             border: 1px solid {p['PRIMARY']};
         }}
+        #wlStepButton {{
+            background-color: {p['SURFACE_ALT']};
+            border: 1px solid {p['BORDER']};
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: 700;
+            color: {p['TEXT']};
+            padding: 0px;
+        }}
+        #wlStepButton:hover {{
+            border: 1px solid {p['PRIMARY']};
+            color: {p['PRIMARY']};
+        }}
+        #wlStepButton:pressed {{
+            background-color: {p['PRIMARY_SOFT']};
+        }}
         #wlConvInput {{
             font-family: {heading_font};
             font-size: 18px;

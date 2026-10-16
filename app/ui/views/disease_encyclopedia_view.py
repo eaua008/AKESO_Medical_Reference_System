@@ -53,6 +53,8 @@ class ConditionCard(QFrame):
         self._bookmarked = bookmarked
 
         self.setObjectName("conditionCard")
+        # The whole card opens the entry, not just "Inspect Entry" (UAT).
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setMinimumWidth(CARD_MIN_WIDTH)
         self.setSizePolicy(
             QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
@@ -159,6 +161,14 @@ class ConditionCard(QFrame):
         return row
 
     # ----------------------------------------------------------- behaviour
+
+    def mouseReleaseEvent(self, event) -> None:
+        # Buttons on the card (bookmark, Inspect Entry) handle their own
+        # clicks, so this only fires for a click on the card itself.
+        if (event.button() == Qt.MouseButton.LeftButton
+                and self.rect().contains(event.position().toPoint())):
+            self.inspect_requested.emit(self._disease.id)
+        super().mouseReleaseEvent(event)
 
     def _toggle_bookmark(self) -> None:
         self._bookmarked = not self._bookmarked
