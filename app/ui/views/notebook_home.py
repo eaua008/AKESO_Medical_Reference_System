@@ -632,9 +632,16 @@ class NotebookHome(QWidget):
         self.found.setText(f"{n} item{'s' if n != 1 else ''} found")
         self.empty.setVisible(n == 0)
         if total == 0:
-            self.empty_title.setText("Nothing here yet")
-            self.empty_text.setText("Write a note, or save a case from the Symptom Checker "
-                                    "or the Drug Interaction Checker.")
+            # A short guide, so a first-time user knows the notebook is for
+            # their own writing and how things get into it (UAT).
+            self.empty_title.setText("Your Study Notebook is empty")
+            self.empty_text.setText(
+                "This notebook is for your own study notes.\n\n"
+                "\u2022  Click \u201cNew Note\u201d at the top to write a note.\n"
+                "\u2022  Use \u201cNew Case\u201d to start a case study.\n"
+                "\u2022  Click \u201cSave to Notebook\u201d in the Symptom Checker, or "
+                "\u201cSave as Case Study\u201d in the Drug Interaction Checker, to keep "
+                "a run here and add your notes to it.")
         else:
             self.empty_title.setText("No items match")
             self.empty_text.setText("Try another search, subject, type or tag.")

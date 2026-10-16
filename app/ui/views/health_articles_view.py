@@ -636,6 +636,7 @@ class ArticleReader(QWidget):
         self._progress_label = QLabel("0%")
         self._progress_label.setObjectName("progressLabel")
         top.addWidget(self._progress_label)
+        self._progress_label.hide()      # UAT: the progress line is enough; no "37%" number
         t.addLayout(top)
         self._progress = QProgressBar()
         self._progress.setObjectName("readProgress")

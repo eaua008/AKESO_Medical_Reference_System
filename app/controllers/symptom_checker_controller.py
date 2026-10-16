@@ -65,6 +65,7 @@ class SymptomCheckerController(QObject):
         result = self._engine.evaluate(self._view.gather())
         self._view.show_result(result)
         self._view.show_suggestions(self._suggestions(result))
+        self._view.reveal_results()
 
     def refresh_suggestions(self) -> None:
         """Co-occurring symptoms, updated as the selection changes.

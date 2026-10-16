@@ -226,6 +226,7 @@ class MedicineMonographView(QWidget):
         head.addStretch(1)
         self._progress_label = _label("0%", "mdProgress", wrap=False)
         head.addWidget(self._progress_label)
+        self._progress_label.hide()      # UAT: the progress line is enough; no "37%" number
         nav_layout.addLayout(head)
 
         self._progress_bar = QProgressBar()
