@@ -16,11 +16,11 @@ page is shown, not when Akeso starts.
 import json
 from typing import Optional
 
-from PySide6.QtCore import QObject, Qt, QUrl, Signal, Slot
+from PySide6.QtCore import QObject, QStringListModel, Qt, QUrl, Signal, Slot
 from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
-    QButtonGroup, QFrame, QHBoxLayout, QMenu, QPushButton, QScrollArea, QSlider, QVBoxLayout,
-    QWidget,
+    QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton, QScrollArea,
+    QSlider, QVBoxLayout, QWidget,
 )
 
 from app.core.anatomy_colours import AnatomyColourStore
@@ -57,11 +57,51 @@ SYSTEMS = [("nervous", "Nervous"), ("cardiovascular", "Cardiovascular"),
            ("integumentary", "Skin (integumentary)")]
 SYSTEM_KEYS = {key for key, _text in SYSTEMS}      # every one has parts in the 3D model
 SHOW_MAX = 8
+LAYER_INDEX = {"skin": 0, "muscle": 1, "bone": 2, "organ": 3}     # slider position / 100
+
+
+def search_index() -> dict[str, tuple[list[str], str]]:
+    """Search entries for the part search: "shown text" -> (part ids, layer).
+
+    One entry per part name (a name can cover several meshes, e.g. both
+    halves of a muscle) and one per whole group ("Heart (whole organ)").
+    Read from parts.json, the same list the 3D page uses.
+    """
+    from app.ui.components.anatomy_scheme import ANATOMY_DIR
+    try:
+        parts = json.loads((ANATOMY_DIR / "parts.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    by_name: dict[str, list[str]] = {}
+    by_group: dict[str, list[str]] = {}
+    layer_of: dict[str, str] = {}
+    for part_id, part in parts.items():
+        name = (part.get("name") or "").strip()
+        if not name:
+            continue
+        by_name.setdefault(name, []).append(part_id)
+        layer_of.setdefault(name, part.get("layer") or "")
+        group = (part.get("group") or "").strip()
+        if group:
+            by_group.setdefault(group, []).append(part_id)
+            layer_of.setdefault("group:" + group, part.get("layer") or "")
+    index: dict[str, tuple[list[str], str]] = {}
+    for group, ids in by_group.items():
+        index[f"{group[:1].upper()}{group[1:]} (whole)"] = (ids, layer_of["group:" + group])
+    for name, ids in by_name.items():
+        layer = layer_of[name]
+        index[f"{name[:1].upper()}{name[1:]} \u00b7 {LAYER_LABELS.get(layer, 'Part')}"] = (
+            ids, layer)
+    return dict(sorted(index.items(), key=lambda item: item[0].lower()))
+
+
 GUIDE = [
     ("Rotate", "Drag with the left mouse button."),
     ("Move", "Drag with the right mouse button."),
     ("Zoom", "Scroll the mouse wheel."),
     ("Zoom in", "Click the body or a Regions button. Whole body goes back."),
+    ("Search", "Type a part's name (femur, aorta, liver) and pick it: Akeso peels to it, "
+               "flies there and makes it glow."),
     ("Peel", "Layers slider: Skin → Muscle → Bone → Organs."),
     ("Select", "Once zoomed in, click a part. Point at it to see its name."),
     ("Hide", "Hide button or H. Shift + H hides the whole group (e.g. all of the skull)."),
@@ -212,6 +252,7 @@ class BodyExplorerView(QWidget):
         title.addWidget(label("Click a region to zoom in, slide to peel the layers, then click "
                               "a part to see related conditions.", "acSubtitle"))
         self._side.addLayout(title)
+        self._side.addWidget(self._build_search())       # above the long guide: in view
         self._side.addWidget(self._build_guide())
 
         nav = Card("Regions", "", "layout-grid")
@@ -329,6 +370,72 @@ class BodyExplorerView(QWidget):
         self._side.addWidget(label("3D models: BodyParts3D, © The Database Center for Life "
                                    "Science (CC BY 4.0). Educational reference only.", "acSmall"))
         self.show_part(None)
+
+    # ---------------------------------------------------------------- search
+
+    def _build_search(self) -> Card:
+        """Find a part by name: it is peeled into view, flown to and glows."""
+        card = Card("Find a body part", "", "search")
+        self._index = search_index()
+        self.search = QLineEdit()
+        self.search.setObjectName("filterSearch")
+        self.search.setPlaceholderText("Search a part, e.g. femur, aorta, liver\u2026")
+        self.search.setClearButtonEnabled(True)
+        self.search.setFixedHeight(36)
+        completer = QCompleter(QStringListModel(list(self._index)), self.search)
+        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        completer.setFilterMode(Qt.MatchFlag.MatchContains)
+        completer.setMaxVisibleItems(10)
+        completer.activated.connect(self._find)
+        self.search.setCompleter(completer)
+        self.search.returnPressed.connect(self._find_typed)
+        self.search.textEdited.connect(lambda _t: self.search_note.hide())
+        card.body.addWidget(self.search)
+        self.search_note = label("", "acSmall")
+        self.search_note.hide()
+        card.body.addWidget(self.search_note)
+        if not self._index:
+            self.search.setEnabled(False)
+        return card
+
+    def _find_typed(self) -> None:
+        """Enter: the exact entry, else the first suggestion that contains it."""
+        text = self.search.text().strip()
+        if not text:
+            return
+        if text in self._index:
+            self._find(text)
+            return
+        lower = text.lower()
+        match = next((k for k in self._index if k.lower().startswith(lower)), None) \
+            or next((k for k in self._index if lower in k.lower()), None)
+        if match:
+            self.search.setText(match)
+            self._find(match)
+        else:
+            self.search_note.setText("No part with that name. Try another word, "
+                                     "e.g. \u201cheart\u201d or \u201cfemur\u201d.")
+            self.search_note.show()
+
+    def _find(self, text: str) -> None:
+        entry = self._index.get(text)
+        if entry is None:
+            return
+        ids, layer = entry
+        self.search.completer().popup().hide()
+        if not self._ready:
+            self.search_note.setText("The 3D body is still loading. Try again in a moment.")
+            self.search_note.show()
+            return
+        # Peel to the part's own layer: outer layers fade away, it stays solid.
+        if layer in LAYER_INDEX:
+            self.slider.setValue(LAYER_INDEX[layer] * 100)
+        elif layer in self._extras and not self._extras[layer]:
+            self.extra_buttons[layer].setChecked(True)      # loads vessels / nerves
+        name = text.split(" \u00b7 ")[0]
+        self.search_note.setText(f"Showing: {name}.")
+        self.search_note.show()
+        self._js(f"akeso.findParts({json.dumps(ids)})")
 
     def _slider_moved(self, value: int) -> None:
         self._layer = value / 100
