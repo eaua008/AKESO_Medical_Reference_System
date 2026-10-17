@@ -1,5 +1,5 @@
 """Pick the parts for each layer and give every element file a readable name."""
-import csv, collections, json, os
+import csv, collections, json, os, re
 S = "C:/Users/eijki/IdeaProjects/akeso/assets_src/bodyparts3d/"
 D = "C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/bp3d/isa_BP3D_4.0_obj_99/"
 el = collections.defaultdict(set); names = {}
@@ -85,10 +85,10 @@ def classify(n):
     if _has(n, "costal cartilage", "manubrium", "body of sternum", "xiphoid"):
         return "bone", "musculoskeletal", None, "", ""
     # eye and orbit
-    if _has(n, "retina", "lacrimal", "corona ciliaris", "anterior chamber", "check ligament",
+    if re.search(r"\bretina\b", n) or _has(n, "lacrimal", "corona ciliaris", "anterior chamber", "check ligament",
             "common tendinous ring", "tarsal plate", "trochlea"):
         grp = ("FMA12514", "right eyeball") if "right" in n else ("FMA12515", "left eyeball")
-        if not _has(n, "retina", "corona ciliaris", "anterior chamber"): grp = ("", "")
+        if not (re.search(r"\bretina\b", n) or _has(n, "corona ciliaris", "anterior chamber")): grp = ("", "")
         if "anterior chamber of right" in n: grp = ("FMA12514", "right eyeball")
         return "organ", "nervous", None, grp[0], grp[1]
     # brain
@@ -150,6 +150,11 @@ for fj, kind in vtype.items():
     if fj in parts:
         parts[fj]["vtype"] = kind
         parts[fj]["group_fma"] = parts[fj]["group"] = ""     # a vessel is its own group
+# ---- group chains (see group_rules.py / group_engine.py)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from group_engine import build_groups
+build_groups(parts, el, names, S)
 json.dump(parts, open("C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/anat/parts.json", "w"), indent=0)
 c = collections.Counter(p["layer"] for p in parts.values()); print(c, len(parts))
 for fj in list(parts)[:3]: print(fj, parts[fj])

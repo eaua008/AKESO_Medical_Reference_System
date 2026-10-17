@@ -186,46 +186,122 @@ function applyLayers() {
 }
 
 // ------------------------------------------------- hide / see-through / show only
-function idsFor(id, whole) {
+// Groups: every part carries a CHAIN of groups, smallest to largest (parts.json
+// "groups"), plus alternative groupings ("alt", e.g. teeth by type). Hide /
+// See-through / Only this act on one part, or on the group level that is picked.
+const groupCache = new Map();
+function idsInGroup(gid) {
+  if (!groupCache.has(gid)) {
+    groupCache.set(gid, Object.keys(parts).filter(k =>
+      (parts[k].groups || []).some(g => g.id === gid) || (parts[k].alt || []).some(g => g.id === gid)));
+  }
+  return groupCache.get(gid);
+}
+function groupLabelOf(id, gid) {
   const p = parts[id] || {};
+  const g = [...(p.groups || []), ...(p.alt || [])].find(x => x.id === gid);
+  return g ? g.label : "";
+}
+let level = null;                  // the picked group level for the selected part (null = smallest)
+function defaultGroup(id) {
+  const chain = (parts[id] || {}).groups || [];
+  return chain.length ? chain[0].id : null;
+}
+function groupFor(id, gid) {
+  const p = parts[id] || {};
+  const known = g => g && [...(p.groups || []), ...(p.alt || [])].some(x => x.id === g);
+  if (known(gid)) return gid;
+  if (known(level)) return level;
+  return defaultGroup(id);
+}
+function idsFor(id, whole, gid) {
   if (!whole) return [id];
-  // the whole organ or bone group ("skull", "heart"), or every piece with the same name
+  const g = groupFor(id, gid);
+  if (g) return idsInGroup(g);
+  const p = parts[id] || {};
+  // no chain: the old single group, or every piece with the same name
   const key = p.group_fma ? "group_fma" : "fma", value = p[key];
   return Object.keys(parts).filter(k => parts[k][key] === value);
 }
-function labelFor(id, whole) {
+function labelFor(id, whole, gid) {
   const p = parts[id] || {};
-  const text = whole && p.group ? p.group : (p.name || id);
+  const g = whole ? groupFor(id, gid) : null;
+  const text = whole ? ((g && groupLabelOf(id, g)) || p.group || p.name || id) : (p.name || id);
   return text.charAt(0).toUpperCase() + text.slice(1);
+}
+function keyFor(kind, id, whole, gid) {
+  return `${kind}:${whole ? "g:" + (groupFor(id, gid) || id) : id}`;
 }
 function report() {
   if (!bridge) return;
   bridge.visibilityChanged(JSON.stringify({
-    entries: [...entries.entries()].map(([key, e]) => ({ key, label: e.label, kind: e.kind, count: e.ids.size })),
+    entries: [...entries.entries()].map(([key, e]) => ({ key, label: e.label, kind: e.kind, count: e.ids.size, whole: !!e.whole })),
     isolated: isolated ? isolated.label : null,
   }));
 }
-function hidePart(id, whole) {
+function hidePart(id, whole, gid) {
   if (!parts[id]) return;
-  const key = `hide:${whole ? "g:" : ""}${id}`;
-  entries.set(key, { label: labelFor(id, whole), kind: "hide", ids: new Set(idsFor(id, whole)) });
+  const key = keyFor("hide", id, whole, gid);
+  entries.set(key, { label: labelFor(id, whole, gid), kind: "hide", whole: !!whole, ids: new Set(idsFor(id, whole, gid)) });
   if (selected && entries.get(key).ids.has(selected.name)) clearSelection();
   applyLayers(); report();
 }
-function ghostPart(id, whole) {
+function ghostPart(id, whole, gid) {
   if (!parts[id]) return;
-  const key = `ghost:${whole ? "g:" : ""}${id}`;
+  const key = keyFor("ghost", id, whole, gid);
   if (entries.has(key)) entries.delete(key);            // pressing again makes it solid
-  else entries.set(key, { label: labelFor(id, whole), kind: "ghost", ids: new Set(idsFor(id, whole)) });
+  else entries.set(key, { label: labelFor(id, whole, gid), kind: "ghost", whole: !!whole, ids: new Set(idsFor(id, whole, gid)) });
   applyLayers(); report();
 }
-function isolatePart(id, whole) {
-  if (!parts[id]) return;
-  isolated = { label: labelFor(id, whole), ids: new Set(idsFor(id, whole)) };
+function isolateIds(label, ids) {
+  isolated = { label, ids: new Set(ids) };
   applyLayers(); report();
   const box = new THREE.Box3();
   for (const m of meshes) if (isolated.ids.has(m.name)) box.expandByObject(m);
   if (!box.isEmpty()) flyToBox(box, null);
+}
+function isolatePart(id, whole, gid) {
+  if (!parts[id]) return;
+  isolateIds(labelFor(id, whole, gid), idsFor(id, whole, gid));
+}
+// a whole group by its id (from the search box)
+function groupAction(kind, gid, label) {
+  const ids = idsInGroup(gid);
+  if (!ids.length) return;
+  const text = label || groupLabelOf(ids[0], gid) || gid;
+  if (kind === "isolate") { isolateIds(text, ids); return; }
+  entries.set(`${kind}:g:${gid}`, { label: text, kind, whole: true, ids: new Set(ids) });
+  applyLayers(); report();
+}
+// Tint every part of a group, so the student sees what a level will affect.
+let previewMeshes = [], previewTimer = null;
+function clearPreview() {
+  if (previewTimer) { clearTimeout(previewTimer); previewTimer = null; }
+  for (const m of previewMeshes) if (m !== selected && !glowing.includes(m)) setEmissive(m, false);
+  previewMeshes = [];
+  requestRender();
+}
+function previewGroup(gid, ms) {
+  clearPreview();
+  if (!gid) return;
+  const ids = new Set(idsInGroup(gid));
+  previewMeshes = meshes.filter(m => ids.has(m.name) && m.visible && m !== selected);
+  for (const m of previewMeshes) setEmissive(m, true, 0.4);
+  requestRender();
+  if (ms) previewTimer = setTimeout(clearPreview, ms);
+}
+function setLevel(gid, quiet) {
+  level = gid || null;
+  if (!quiet && bridge && bridge.levelChanged) bridge.levelChanged(level || "");
+  previewGroup(level, 1600);
+}
+function moveLevel(step) {              // ] broader, [ narrower
+  if (!selected) return;
+  const chain = (parts[selected.name] || {}).groups || [];
+  if (!chain.length) return;
+  let i = chain.findIndex(g => g.id === (level || chain[0].id));
+  if (i < 0) i = 0;
+  setLevel(chain[Math.max(0, Math.min(chain.length - 1, i + step))].id);
 }
 // "Focus on system": only the parts of one body system (Python turns on the
 // vessels / nerves layer first when the system needs it).
@@ -256,6 +332,7 @@ function clearGlow() {
   glowing = []; pulse = null;
 }
 function clearSelection() {
+  level = null; clearPreview();
   clearGlow();
   if (selected) setEmissive(selected, false);
   selected = null; requestRender();
@@ -301,9 +378,11 @@ window.addEventListener("keydown", e => {
   if (k === "escape") { clearSelection(); return; }
   if (!selected) return;
   // Shift = the whole group (all of the skull, the whole heart...)
-  if (k === "h") hidePart(selected.name, e.shiftKey);
-  else if (k === "t") ghostPart(selected.name, e.shiftKey);
-  else if (k === "o") isolatePart(selected.name, e.shiftKey);
+  if (k === "h") hidePart(selected.name, e.shiftKey, level);
+  else if (k === "t") ghostPart(selected.name, e.shiftKey, level);
+  else if (k === "o") isolatePart(selected.name, e.shiftKey, level);
+  else if (k === "]" || (k === "arrowup" && e.shiftKey)) { moveLevel(1); e.preventDefault(); }
+  else if (k === "[" || (k === "arrowdown" && e.shiftKey)) { moveLevel(-1); e.preventDefault(); }
 });
 
 // ------------------------------------------------------------ camera
@@ -394,6 +473,7 @@ canvas.addEventListener("pointerleave", () => {
 });
 
 function select(mesh) {
+  level = null; clearPreview();
   clearGlow();
   if (selected) setEmissive(selected, false);
   selected = mesh;
@@ -519,9 +599,14 @@ window.akeso = {
   focus(key) { focus(key); },
   clearSelection() { clearSelection(); },
   findParts(ids) { findParts((ids || []).map(String)); },
-  hide(id, whole) { hidePart(id, !!whole); },
-  ghost(id, whole) { ghostPart(id, !!whole); },
-  isolate(id, whole) { isolatePart(id, !!whole); },
+  hide(id, whole, gid) { hidePart(id, !!whole, gid || null); },
+  ghost(id, whole, gid) { ghostPart(id, !!whole, gid || null); },
+  isolate(id, whole, gid) { isolatePart(id, !!whole, gid || null); },
+  hideGroup(gid, label) { groupAction("hide", String(gid), label); },
+  ghostGroup(gid, label) { groupAction("ghost", String(gid), label); },
+  isolateGroup(gid, label) { groupAction("isolate", String(gid), label); },
+  setLevel(gid) { setLevel(String(gid || ""), true); },
+  previewGroup(gid) { if (gid) previewGroup(String(gid), 0); else clearPreview(); },
   isolateSystem(system, label) { isolateSystem(String(system), String(label || system)); },
   restore(key) { restore(key); },
   showAll() { showAll(); },
