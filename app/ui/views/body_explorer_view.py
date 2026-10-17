@@ -74,39 +74,60 @@ def _shown(name: str) -> str:
     return name
 
 
-def search_index() -> dict[str, tuple[list[str], str]]:
-    """Search entries for the part search: "shown text" -> (part ids, layer).
-
-    One entry per part name (a name can cover several meshes, e.g. both
-    halves of a muscle) and one per whole group ("Heart (whole organ)").
-    Read from parts.json, the same list the 3D page uses.
-    """
+def _parts_json() -> dict:
     from app.ui.components.anatomy_scheme import ANATOMY_DIR
     try:
-        parts = json.loads((ANATOMY_DIR / "parts.json").read_text(encoding="utf-8"))
+        return json.loads((ANATOMY_DIR / "parts.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
+
+
+def group_sizes(parts: Optional[dict] = None) -> dict[str, int]:
+    """Group id -> how many parts it holds (chains and alternatives)."""
+    count: dict[str, int] = {}
+    for part in (parts if parts is not None else _parts_json()).values():
+        for group in (part.get("groups") or []) + (part.get("alt") or []):
+            count[group["id"]] = count.get(group["id"], 0) + 1
+    return count
+
+
+def search_index() -> dict[str, tuple[list[str], str, str]]:
+    """Search entries for the part search: "shown text" -> (part ids, layer, group id).
+
+    One entry per part name (a name can cover several meshes, e.g. both
+    halves of a muscle) and one per group ("Upper teeth \u00b7 Group of 16");
+    group id is "" for a part. Read from parts.json, the same list the 3D page uses.
+    """
+    parts = _parts_json()
+    if not parts:
+        return {}
     by_name: dict[str, list[str]] = {}
-    by_group: dict[str, list[str]] = {}
     layer_of: dict[str, str] = {}
+    by_group: dict[str, tuple[str, list[str], str]] = {}
     for part_id, part in parts.items():
         name = (part.get("name") or "").strip()
         if not name:
             continue
         by_name.setdefault(name, []).append(part_id)
         layer_of.setdefault(name, part.get("layer") or "")
-        group = (part.get("group") or "").strip()
-        if group:
-            by_group.setdefault(group, []).append(part_id)
-            layer_of.setdefault("group:" + group, part.get("layer") or "")
-    index: dict[str, tuple[list[str], str]] = {}
-    for group, ids in by_group.items():
-        index[f"{group[:1].upper()}{group[1:]} (whole)"] = (ids, layer_of["group:" + group])
+        for group in (part.get("groups") or []) + (part.get("alt") or []):
+            if group["id"].startswith("all_"):
+                continue                          # "All bones" is the slider's job
+            entry = by_group.setdefault(group["id"], (group["label"], [], part.get("layer") or ""))
+            entry[1].append(part_id)
+    index: dict[str, tuple[list[str], str, str]] = {}
+    for gid, (text, ids, layer) in by_group.items():
+        if len(ids) < 2:
+            continue
+        key = f"{text[:1].upper()}{text[1:]} \u00b7 Group of {len(ids)}"
+        if key in index:
+            key += f" ({LAYER_LABELS.get(layer, 'Part').lower()})"
+        index[key] = (ids, layer, gid)
     for name, ids in by_name.items():
         layer = layer_of[name]
         shown = _shown(name)
         index[f"{shown[:1].upper()}{shown[1:]} \u00b7 {LAYER_LABELS.get(layer, 'Part')}"] = (
-            ids, layer)
+            ids, layer, "")
     return dict(sorted(index.items(), key=lambda item: item[0].lower()))
 
 
@@ -119,9 +140,13 @@ GUIDE = [
                "flies there and makes it glow."),
     ("Peel", "Layers slider: Skin → Muscle → Bone → Organs."),
     ("Select", "Once zoomed in, click a part. Point at it to see its name."),
-    ("Hide", "Hide button or H. Shift + H hides the whole group (e.g. all of the skull)."),
+    ("Hide", "Hide button or H hides the part. Shift + H hides the picked group level."),
     ("See-through", "See-through button or T (Shift + T for the group). Again makes it solid."),
     ("Only this", "Only this button or O (Shift + O for the group)."),
+    ("Groups", "A selected part shows its groups as chips, smallest to largest (molar, "
+               "upper teeth, all teeth, all bones). Click a chip to pick the level; point "
+               "at it to tint what it covers. [ and ] (or Shift + Up / Down) move the "
+               "level in the 3D view. Search finds groups too."),
     ("Focus", "Focus on system: only that body system's parts. Show all brings back the rest."),
     ("Reset", "Show all, or R. Esc clears the selection."),
     ("Vessels", "Blood vessels / Nerves switches under Layers. Peel to Bone to see them."),
@@ -141,6 +166,11 @@ class _Bridge(QObject):
     extra_loaded = Signal(str)
     extra_failed = Signal(str)
     colours = Signal(dict)
+    level_changed = Signal(str)
+
+    @Slot(str)
+    def levelChanged(self, gid: str) -> None:  # noqa: N802
+        self.level_changed.emit(gid)
 
     @Slot(str)
     def extraLoaded(self, name: str) -> None:  # noqa: N802
@@ -182,6 +212,29 @@ class _Bridge(QObject):
     @Slot(str)
     def regionChanged(self, key: str) -> None:  # noqa: N802
         self.region_moved.emit(key)
+
+
+class _LevelChip(QPushButton):
+    """One group level in the chain. Pointing at it tints that group in the 3D view."""
+
+    hovered = Signal(str)
+    left = Signal()
+
+    def __init__(self, group_id: str, text: str, tip: str) -> None:
+        super().__init__(text)
+        self.group_id = group_id
+        self.setObjectName("acChip")
+        self.setCheckable(True)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setToolTip(tip)
+
+    def enterEvent(self, event) -> None:  # noqa: N802
+        self.hovered.emit(self.group_id)
+        super().enterEvent(event)
+
+    def leaveEvent(self, event) -> None:  # noqa: N802
+        self.left.emit()
+        super().leaveEvent(event)
 
 
 class _Row(QFrame):
@@ -228,6 +281,10 @@ class BodyExplorerView(QWidget):
         self._colour_store = AnatomyColourStore()
         self._colours = self._colour_store.load()       # {"kinds": {}, "custom": {}}
         self._part: Optional[dict] = None
+        self._level = ""                      # picked group level of the selected part
+        self._level_chips: dict[str, _LevelChip] = {}
+        self._level_host = None
+        self._sizes: dict[str, int] = {}
         self._swatches: Optional[QButtonGroup] = None
         row = QHBoxLayout(self)
         row.setContentsMargins(0, 0, 0, 0)
@@ -412,11 +469,25 @@ class BodyExplorerView(QWidget):
         completer.activated.connect(self._find)
         self.search.setCompleter(completer)
         self.search.returnPressed.connect(self._find_typed)
-        self.search.textEdited.connect(lambda _t: self.search_note.hide())
+        self.search.textEdited.connect(lambda _t: (self.search_note.hide(), self.group_row.hide()))
         card.body.addWidget(self.search)
         self.search_note = label("", "acSmall")
         self.search_note.hide()
         card.body.addWidget(self.search_note)
+        # A group in the results ("Upper teeth", "Rotator cuff") can be shown alone or hidden.
+        self.group_row = QWidget()
+        self.group_row.setObjectName("panel")
+        group_line = QHBoxLayout(self.group_row)
+        group_line.setContentsMargins(0, 0, 0, 0)
+        group_line.setSpacing(6)
+        self._found_group = ("", "")
+        for text, icon, call in (("Show only", "target", "isolateGroup"), ("Hide", "eye-off", "hideGroup"),
+                                 ("See-through", "eye", "ghostGroup")):
+            group_line.addWidget(button(text, "acGhost", icon,
+                                        lambda _c=False, c=call: self._group_action(c)))
+        group_line.addStretch(1)
+        self.group_row.hide()
+        card.body.addWidget(self.group_row)
         if not self._index:
             self.search.setEnabled(False)
         return card
@@ -444,7 +515,7 @@ class BodyExplorerView(QWidget):
         entry = self._index.get(text)
         if entry is None:
             return
-        ids, layer = entry
+        ids, layer, gid = entry
         self.search.completer().popup().hide()
         if not self._ready:
             self.search_note.setText("The 3D body is still loading. Try again in a moment.")
@@ -458,7 +529,14 @@ class BodyExplorerView(QWidget):
         name = text.split(" \u00b7 ")[0]
         self.search_note.setText(f"Showing: {name}.")
         self.search_note.show()
+        self._found_group = (gid, name)
+        self.group_row.setVisible(bool(gid))
         self._js(f"akeso.findParts({json.dumps(ids)})")
+
+    def _group_action(self, call: str) -> None:
+        gid, name = self._found_group
+        if gid:
+            self._js(f"akeso.{call}({json.dumps(gid)}, {json.dumps(name)})")
 
     def _slider_moved(self, value: int) -> None:
         self._layer = value / 100
@@ -671,10 +749,14 @@ class BodyExplorerView(QWidget):
             self._part_body.addLayout(self._colour_picker(part))
         if part.get("id") and not browsing:
             self._part_body.addLayout(self._actions(part["id"], False, "This part"))
-            group = part.get("group") or ""
-            if group and group != part.get("name"):
-                self._part_body.addLayout(self._actions(part["id"], True,
-                                                        f"Whole {group}"))
+            chain = part.get("groups") or []
+            if chain:
+                self._build_levels(part, chain, part.get("alt") or [])
+            else:
+                group = part.get("group") or ""
+                if group and group != part.get("name"):
+                    self._part_body.addLayout(self._actions(part["id"], True,
+                                                            f"Whole {group}"))
 
         self._list_card(f"Conditions · {system_label}" if system_label else "Conditions",
                         "book-open", diseases, self.disease_requested,
@@ -699,7 +781,75 @@ class BodyExplorerView(QWidget):
             self.extra_buttons[extra].setChecked(True)      # loads the layer
         self._js(f"akeso.isolateSystem({json.dumps(key)}, {json.dumps(title)})")
 
-    def _actions(self, part_id: str, whole: bool, caption: str) -> QVBoxLayout:
+    # ---------------------------------------------------------- group levels
+
+    def _build_levels(self, part: dict, chain: list, alt: list) -> None:
+        """The part's group chain as chips, smallest to largest, then the other ways
+        to group it. The picked chip is what Hide / See-through / Only this act on."""
+        from app.ui.views.compare_view import FlowLayout
+        if not self._sizes:
+            self._sizes = group_sizes()
+        self._level_chips = {}
+        self._level = chain[0]["id"]
+        self._part_body.addWidget(label("GROUP LEVEL (SMALLEST TO LARGEST)", "acFieldLabel"))
+        for title, groups in ((None, chain), ("OTHER WAYS TO GROUP IT", alt)):
+            if not groups:
+                continue
+            if title:
+                self._part_body.addWidget(label(title, "acFieldLabel"))
+            host = QWidget()
+            host.setObjectName("panel")
+            flow = FlowLayout(6, 6)
+            host.setLayout(flow)
+            for group in groups:
+                n = self._sizes.get(group["id"], 0)
+                chip = _LevelChip(group["id"], group["label"],
+                                  f"{group['label']}: {n} parts. Click to pick this level; "
+                                  "point at it to see what it covers.")
+                chip.clicked.connect(lambda _c=False, g=group["id"]: self._pick_level(g))
+                chip.hovered.connect(lambda g: self._js(f"akeso.previewGroup({json.dumps(g)})"))
+                chip.left.connect(lambda: self._js('akeso.previewGroup("")'))
+                self._level_chips[group["id"]] = chip
+                flow.addWidget(chip)
+            self._part_body.addWidget(host)
+        self._level_host = QVBoxLayout()
+        self._level_host.setSpacing(4)
+        self._part_body.addLayout(self._level_host)
+        self._show_level()
+
+    def _show_level(self) -> None:
+        """Mark the picked chip and offer Hide / See-through / Only this for that group."""
+        for gid, chip in self._level_chips.items():
+            chip.blockSignals(True)
+            chip.setChecked(gid == self._level)
+            chip.blockSignals(False)
+        if self._level_host is None or not self._part:
+            return
+        while self._level_host.count():
+            item = self._level_host.takeAt(0)
+            if item.layout():
+                self._clear(item.layout())
+            elif item.widget():
+                item.widget().deleteLater()
+        chip = self._level_chips.get(self._level)
+        if chip is None:
+            return
+        n = self._sizes.get(self._level, 0)
+        self._level_host.addLayout(self._actions(
+            self._part["id"], True, f"{chip.text()} \u00b7 {n} parts", self._level))
+
+    def _pick_level(self, gid: str) -> None:
+        self._level = gid
+        self._show_level()
+        self._js(f"akeso.setLevel({json.dumps(gid)})")
+
+    def _level_changed(self, gid: str) -> None:
+        """[ and ] in the 3D view moved the level: follow it here."""
+        if gid and gid in self._level_chips and gid != self._level:
+            self._level = gid
+            self._show_level()
+
+    def _actions(self, part_id: str, whole: bool, caption: str, group_id: str = "") -> QVBoxLayout:
         """Hide / See-through / Show only, for one part or its whole group."""
         box = QVBoxLayout()
         box.setSpacing(4)
@@ -710,12 +860,14 @@ class BodyExplorerView(QWidget):
         line = FlowLayout(6, 6)                  # wraps inside the narrow side panel
         host.setLayout(line)
         arg = f"{json.dumps(part_id)}, {'true' if whole else 'false'}"
+        if group_id:
+            arg += f", {json.dumps(group_id)}"
         for text, icon, call, tip in (
                 ("Hide", "eye-off", "hide", "Hide it to see what's behind (H)"),
                 ("See-through", "eye", "ghost", "Make it transparent; press again for solid (T)"),
                 ("Only this", "target", "isolate", "Hide everything else and fly to it (O)")):
             b = button(text, "acGhost", icon, lambda c=call: self._js(f"akeso.{c}({arg})"))
-            b.setToolTip(tip + (" — add Shift for the whole group" if whole else ""))
+            b.setToolTip(tip + (" \u2014 add Shift for the picked group level" if whole else ""))
             line.addWidget(b)
         box.addWidget(host)
         return box
@@ -764,7 +916,8 @@ class BodyExplorerView(QWidget):
             line = QHBoxLayout()
             line.setSpacing(6)
             count = entry.get("count", 1)
-            text = entry.get("label", "") + (f" ({count} pieces)" if count > 1 else "")
+            text = entry.get("label", "") + (
+                f" ({count})" if entry.get("whole") else f" ({count} pieces)" if count > 1 else "")
             line.addWidget(label(text, "acRowTitle"), 1)
             line.addWidget(pill("Hidden" if entry.get("kind") == "hide" else "See-through",
                                 "acPill"))
@@ -824,6 +977,7 @@ class BodyExplorerView(QWidget):
         self.bridge.extra_loaded.connect(self._extra_loaded)
         self.bridge.extra_failed.connect(self._extra_failed)
         self.bridge.colours.connect(self._colours_changed)
+        self.bridge.level_changed.connect(self._level_changed)
         self.channel = QWebChannel(page)
         self.channel.registerObject("bridge", self.bridge)
         page.setWebChannel(self.channel)
