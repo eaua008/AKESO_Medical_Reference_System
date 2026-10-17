@@ -25,6 +25,8 @@ CREDIT_LINE = ("A student of Mapúa Malayan Colleges Mindanao, who built Akeso d
 
 SHORTCUTS = [
     ("Ctrl + K", "Jump to the search bar"),
+    ("Ctrl + F", "Find on the page you are on"),
+    ("Enter / F3", "Next match (Shift for the previous one)"),
     ("↑ / ↓", "Move through search suggestions"),
     ("Enter", "Open the highlighted suggestion"),
     ("Esc", "Close a detail page or the suggestions"),

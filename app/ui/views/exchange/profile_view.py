@@ -19,6 +19,7 @@ from app.models.account import PROGRAM_LABELS, ROLE_LABELS, YEAR_LABELS
 from app.models.exchange import VISIBILITY_LABELS, MemberProfile, ProfileActivity, time_ago
 from app.ui.components.fluid import ResponsiveGrid, contain
 from app.ui.views.account.account_widgets import (
+    set_text,
     Banner, Card, button, icon_label, label, pill, refresh_icons, repolish,
 )
 from app.ui.views.exchange.exchange_widgets import clear_layout, flow, tag_chip
@@ -101,6 +102,8 @@ class ProfileView(QWidget):
     post_requested = Signal(str)             # post id
     topic_requested = Signal(object)         # Tag
     edit_requested = Signal()                # "Edit my profile" (own profile)
+    # Friends (migration 040): request | accept | unfriend | block | unblock, profile
+    friend_action = Signal(str, object)
 
     def __init__(self) -> None:
         super().__init__()
@@ -158,6 +161,40 @@ class ProfileView(QWidget):
         if self._picture is not None:
             self._picture.setPixmap(pixmap)
 
+    def set_friend_state(self, state: str) -> None:
+        """none | friends | sent | received | blocked (friend_status, migration 040)."""
+        friend = getattr(self, "friend_button", None)
+        if friend is None:
+            return
+        self._friend_state = state
+        texts = {"none": ("Add friend", "Friends are mutual: they need to accept. Not the same "
+                          "as Follow."),
+                 "sent": ("Request sent", "Waiting for them to accept"),
+                 "received": ("Accept friend request", "They asked to be your friend"),
+                 "friends": ("Friends", "Click to unfriend or block"),
+                 "blocked": ("Unblock", "You blocked this person")}
+        text, tip = texts.get(state, texts["none"])
+        set_text(friend, text)
+        friend.setToolTip(tip)
+        friend.setEnabled(state != "sent")
+        friend.show()
+        self.block_button.setVisible(state not in ("blocked",))
+
+    def _friend_clicked(self, p) -> None:
+        state = getattr(self, "_friend_state", "none")
+        if state == "friends":
+            from PySide6.QtCore import QPoint
+            from PySide6.QtWidgets import QMenu
+            menu = QMenu(self)
+            menu.setObjectName("exMenu")
+            menu.addAction("Unfriend", lambda: self.friend_action.emit("unfriend", p))
+            menu.addAction("Block", lambda: self.friend_action.emit("block", p))
+            menu.exec(self.friend_button.mapToGlobal(QPoint(0, self.friend_button.height() + 4)))
+            return
+        action = {"none": "request", "received": "accept", "blocked": "unblock"}.get(state)
+        if action:
+            self.friend_action.emit(action, p)
+
     def set_following(self, on: bool, followers: int) -> None:
         if self.profile is not None:
             self.profile.following, self.profile.followers = on, followers
@@ -208,6 +245,9 @@ class ProfileView(QWidget):
         clear_layout(self._column)
         self._picture = None
         self.follow_button = None
+        self.friend_button = None
+        self.block_button = None
+        self._friend_state = "none"
 
     def _header(self, p: MemberProfile, avatar: Optional[QPixmap]) -> Card:
         card = Card()
@@ -254,6 +294,19 @@ class ProfileView(QWidget):
             self.follow_button.setToolTip("You'll be notified when they post a new case or "
                                           "question" if not p.following else "Stop following")
             actions.addWidget(self.follow_button)
+            # Friends are mutual and separate from Follow. Shown once the
+            # friend state is known (set_friend_state); hidden when the
+            # Friends feature isn't set up.
+            self.friend_button = button("Add friend", "acGhost", "user-check",
+                                        lambda: self._friend_clicked(p))
+            self.friend_button.hide()
+            actions.addWidget(self.friend_button)
+            self.block_button = button("Block", "acLink", "user-x",
+                                       lambda: self.friend_action.emit("block", p))
+            self.block_button.setToolTip("They can't send you friend requests, shares or group "
+                                         "invites")
+            self.block_button.hide()
+            actions.addWidget(self.block_button)
             actions.addWidget(button("Report", "acLink", "flag",
                                      lambda: self.report_requested.emit(p)))
         if p.can_moderate and not p.is_me:

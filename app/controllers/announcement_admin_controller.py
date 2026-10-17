@@ -1,4 +1,4 @@
-"""Admin > Announcements: list, write, edit, preview and end announcements.
+"""Admin > Announcements: list, write, edit, preview, end and delete announcements.
 
 Every request runs in the background. The database refuses non-admins
 whatever this screen shows (migration 015).
@@ -25,6 +25,7 @@ class AnnouncementAdminController(QObject):
         view.edit_requested.connect(self._open_editor)
         view.preview_requested.connect(self._preview)
         view.end_requested.connect(self._end)
+        view.delete_requested.connect(self._delete)
 
     def shown(self) -> None:
         if not self._loaded:
@@ -81,5 +82,19 @@ class AnnouncementAdminController(QObject):
             return
         call_in_background(lambda: self._repo.end(item.id),
                            lambda _r: (self._view.show_notice(f"“{item.title}” has ended."),
+                                       self.reload()),
+                           self._view.show_error, owner=self._view)
+
+    def _delete(self, item: Announcement) -> None:
+        dialog = ConfirmDialog(
+            "Delete announcement",
+            f"“{item.title}” is removed for good: it leaves everyone's dashboard and "
+            "Notifications, and this list. This can't be undone. To stop it without "
+            "deleting it, use End now instead.", "Delete", "trash-2", danger=True,
+            parent=self._view)
+        if dialog.exec() != ConfirmDialog.DialogCode.Accepted:
+            return
+        call_in_background(lambda: self._repo.delete(item.id),
+                           lambda _r: (self._view.show_notice(f"“{item.title}” was deleted."),
                                        self.reload()),
                            self._view.show_error, owner=self._view)

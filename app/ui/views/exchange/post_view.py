@@ -131,9 +131,34 @@ class PostView(QWidget):
 
     # -------------------------------------------------------------- build
 
+    def _section(self, title: str, icon: str) -> tuple[QFrame, QVBoxLayout]:
+        """A titled panel, like the extras in the composer (patient, tags, poll)."""
+        panel = QFrame()
+        panel.setObjectName("exAttachPanel")
+        column = QVBoxLayout(panel)
+        column.setContentsMargins(14, 10, 14, 12)
+        column.setSpacing(8)
+        head = QHBoxLayout()
+        head.setSpacing(8)
+        head.addWidget(icon_label(icon, 15), 0, Qt.AlignmentFlag.AlignVCenter)
+        head.addWidget(label(title, "exAttachTitle", wrap=False), 1)
+        column.addLayout(head)
+        return panel, column
+
     def _build_post(self, post: PostDetail) -> QFrame:
-        card = Card()
-        body = card.body
+        """The post laid out like the composer that wrote it: who posted and
+        what kind, the title and text, the patient in a panel of its own, the
+        question, tags, then the actions under a rule."""
+        card = QFrame()
+        card.setObjectName("exPostComposer")
+        outer = QVBoxLayout(card)
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.setSpacing(0)
+        body = QVBoxLayout()
+        body.setContentsMargins(24, 18, 24, 16)
+        body.setSpacing(12)
+        outer.addLayout(body)
+
         if post.status != "open":
             note = Banner()
             if post.status in ("hidden", "removed"):
@@ -145,62 +170,77 @@ class PostView(QWidget):
             note.show_message(STATUS_LABELS.get(post.status, post.status) + detail,
                               "danger" if post.status != "locked" else "warn")
             body.addWidget(note)
+
+        # who posted, and what kind of post it is
         top = QHBoxLayout()
+        top.setSpacing(6)
+        author = AuthorLine(post.author, friendly_time(post.created_at),
+                            "edited" if post.edited_at else "")
+        author.profile_requested.connect(self.profile_requested.emit)
+        top.addWidget(author, 1)
         top.addWidget(pill(KIND_LABELS.get(post.kind, post.kind), "acPill"))
         if post.source:
             top.addWidget(pill("From the Symptom Checker" if post.source == "symptom_case"
                                else "From the Drug Interaction Checker", "acPill"))
-        top.addStretch(1)
         body.addLayout(top)
-        body.addWidget(label(post.title, "exDetailTitle"))
-        author = AuthorLine(post.author, friendly_time(post.created_at),
-                            "edited" if post.edited_at else "")
-        author.profile_requested.connect(self.profile_requested.emit)
-        body.addWidget(author)
 
-        details = [x for x in (f"{post.age_range} years" if post.age_range else "",
-                               (post.sex or "").capitalize(), post.setting or "") if x]
-        if details:
-            body.addWidget(label("PATIENT", "acFieldLabel", wrap=False))
-            body.addWidget(label(" · ".join(details), "acValue"))
-        if post.vitals:
-            body.addWidget(VitalsBlock(post.vitals))
-        data = post.case_data
-        if data.get("symptoms"):
-            body.addWidget(label("REPORTED SYMPTOMS", "acFieldLabel", wrap=False))
-            chips = []
-            for s in data["symptoms"]:
-                text = f"{s.get('name')} · {s.get('intensity', '?')}/10"
-                if s.get("onset"):
-                    text += f" · {str(s['onset']).replace('_', ' ')}"
-                chips.append(pill(text, "acPill"))
-            body.addWidget(flow(chips))
-        if data.get("candidate"):
-            body.addWidget(label("MEDICINES", "acFieldLabel", wrap=False))
-            meds = [pill(f"Adding: {data['candidate'].get('name', '')}", "acPillWarn")]
-            meds += [pill(r.get("name", ""), "acPill") for r in data.get("regimen", [])]
-            body.addWidget(flow(meds))
-        history = (data.get("comorbidities") or []) + (data.get("conditions") or [])
-        if history:
-            body.addWidget(label("HISTORY / CONDITIONS", "acFieldLabel", wrap=False))
-            body.addWidget(label(", ".join(history), "acValue"))
-        if data.get("exposures"):
-            body.addWidget(label("EXPOSURES", "acFieldLabel", wrap=False))
-            body.addWidget(label(", ".join(data["exposures"]), "acValue"))
+        # the post itself
+        body.addWidget(label(post.title, "exDetailTitle"))
         if post.body:
             text = label(post.body, "exBody")
             text.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
             body.addWidget(text)
+
+        # patient details (de-identified), one panel
+        data = post.case_data
+        details = [x for x in (f"{post.age_range} years" if post.age_range else "",
+                               (post.sex or "").capitalize(), post.setting or "") if x]
+        history = (data.get("comorbidities") or []) + (data.get("conditions") or [])
+        if details or post.vitals or data.get("symptoms") or data.get("candidate")                 or history or data.get("exposures"):
+            panel, column = self._section("Patient details (de-identified)", "user")
+            if details:
+                column.addWidget(flow([pill(x, "acPill") for x in details]))
+            if post.vitals:
+                column.addWidget(VitalsBlock(post.vitals))
+            if data.get("symptoms"):
+                column.addWidget(label("REPORTED SYMPTOMS", "acFieldLabel", wrap=False))
+                chips = []
+                for s in data["symptoms"]:
+                    chip = f"{s.get('name')} · {s.get('intensity', '?')}/10"
+                    if s.get("onset"):
+                        chip += f" · {str(s['onset']).replace('_', ' ')}"
+                    chips.append(pill(chip, "acPill"))
+                column.addWidget(flow(chips))
+            if data.get("candidate"):
+                column.addWidget(label("MEDICINES", "acFieldLabel", wrap=False))
+                meds = [pill(f"Adding: {data['candidate'].get('name', '')}", "acPillWarn")]
+                meds += [pill(r.get("name", ""), "acPill") for r in data.get("regimen", [])]
+                column.addWidget(flow(meds))
+            if history:
+                column.addWidget(label("HISTORY / CONDITIONS", "acFieldLabel", wrap=False))
+                column.addWidget(flow([pill(x, "acPill") for x in history]))
+            if data.get("exposures"):
+                column.addWidget(label("EXPOSURES", "acFieldLabel", wrap=False))
+                column.addWidget(flow([pill(x, "acPill") for x in data["exposures"]]))
+            body.addWidget(panel)
+
         if post.question:
             body.addWidget(label(post.question, "exQuestion"))
         if post.tags:
+            panel, column = self._section("Tags", "tag")
             chips = []
             for tag in post.tags:
                 chip = tag_chip(tag)
                 if tag.kind != "topic":
                     chip.clicked.connect(lambda _c=False, t=tag: self.tag_opened.emit(t))
                 chips.append(chip)
-            body.addWidget(flow(chips))
+            column.addWidget(flow(chips))
+            body.addWidget(panel)
+
+        rule = QFrame()
+        rule.setObjectName("exComposerRule")
+        rule.setFixedHeight(1)
+        body.addWidget(rule)
 
         actions = QHBoxLayout()
         actions.setSpacing(4)

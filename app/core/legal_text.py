@@ -14,6 +14,9 @@ sections, styled for the white document sheet (LegalDialog).
 from html import escape
 
 EFFECTIVE_DATE = "10 October 2026"
+# The Privacy Notice changed on its own (friends, shared notes, study
+# groups); the Terms keep their date.
+PRIVACY_EFFECTIVE_DATE = "17 October 2026"
 OPERATOR = ("Eijkim Maulit (@eaua008), a student of Mapúa Malayan Colleges Mindanao, "
             "as a school project")
 CONTACT = ("Eijkim Maulit (@eaua008), through Clinical Exchange or the contact details "
@@ -127,6 +130,13 @@ _COLLECTED = "".join(_ROW.format(*row) for row in [
      "they follow you to every computer.", "Server + this computer"),
     ("Clinical Exchange", "Posts, replies, votes, follows and reports you make, and "
      "the notifications they create.", "Server"),
+    ("Friends", "Who you are friends with, friend requests you sent (the handles you "
+     "typed) and received, and the people you blocked.", "Server"),
+    ("Shared notes", "Read-only copies of notes you share with friends or a study group "
+     "(the title and text, never the pictures), who you shared them with, and whether they "
+     "opened them.", "Server"),
+    ("Study groups", "Groups you create or join, your role in them, the chat messages you "
+     "send, notes you put on a group's shelf, invites, and reports you make.", "Server"),
     ("Announcements", "Which announcements you have opened, so they stop showing as "
      "unread.", "Server"),
     ("Consents", "Which version of these documents you accepted, and when.", "Server"),
@@ -160,7 +170,13 @@ PRIVACY_SECTIONS = [
      <li><b>Other members</b> see your profile only if you make it public, and then
      only the parts your switches allow. Your Clinical Exchange posts and replies are
      visible to other members.</li>
-     <li><b>Educators and administrators</b> can moderate Clinical Exchange content.
+     <li><b>Friends and study groups:</b> a friend you share a note with can read that
+     copy and save their own. Members of a study group can read its chat and shared notes
+     and see your name, role, @handle (so they can mention you; even if your profile is private) and, only if you allow it, your photo. A group's owner and
+     moderators can hide its messages and notes and remove members.</li>
+     <li><b>Educators and administrators</b> can moderate Clinical Exchange content, and
+     can see study group messages and notes that someone <b>reported</b> (not the rest of
+     a group's chat, and they cannot browse private groups).
      Administrators can see account details (name, email, role, sign-up and sign-in
      times, status) to manage accounts, but not your notebook, saved cases or study
      data.</li>
@@ -186,7 +202,13 @@ PRIVACY_SECTIONS = [
      """<p>Server information is kept while your account exists. When you delete
      your account it is removed after a 30-day window, during which signing in
      cancels the deletion. Information on your computer stays until you delete it
-     or remove Akeso and its data folder. A record of consents is kept as history.</p>"""),
+     or remove Akeso and its data folder. A record of consents is kept as history.</p>
+     <p>Unsharing a note ends access to the shared copy at once; copies others already
+     saved to their own notebooks stay theirs. Leaving a study group removes your
+     membership; your messages stay in the group until it is deleted. Deleting a group
+     removes its chat, shared notes and invites. Deleting your account removes your
+     friendships, the notes you shared, your memberships and your messages; a group you
+     own passes to its longest-standing moderator, or is deleted if it has none.</p>"""),
 
     ("Your rights",
      """<ul>
@@ -241,7 +263,7 @@ def _document_body(prefix: str, title: str, version: str, summary: str,
         parts.append(f"<h1>{escape(title)}</h1>")
     if version:
         parts.append(f"<p class='meta'>Version {escape(version)} &nbsp;·&nbsp; "
-                     f"Effective {EFFECTIVE_DATE}</p>")
+                     f"Effective {PRIVACY_EFFECTIVE_DATE if prefix == 'p' else EFFECTIVE_DATE}</p>")
     parts.append(f"<p class='summary'>{summary}</p>")
     parts.append("<p class='toc-title'>CONTENTS</p>")
     for number, (heading, _html) in enumerate(sections, 1):

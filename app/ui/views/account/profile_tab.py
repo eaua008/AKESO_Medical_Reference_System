@@ -29,6 +29,7 @@ class ProfileTab(QWidget):
     photo_remove_requested = Signal()
     verify_school_requested = Signal()
     preview_requested = Signal(str)          # handle: open my profile as others see it
+    handle_change_requested = Signal()       # "Change…" beside the handle (migration 043)
 
     def __init__(self) -> None:
         super().__init__()
@@ -79,9 +80,26 @@ class ProfileTab(QWidget):
         self.handle.setReadOnly(True)
         self.handle.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.handle.setPlaceholderText("Being assigned…")
-        card.body.addWidget(field_block("Handle", self.handle,
-                                        "Given automatically from your name. Others use it "
-                                        "to open your profile."))
+        # A Copy button beside it: the handle is what friends type to add
+        # you (Community > Friends, migration 040).
+        handle_row = QWidget()
+        handle_row.setObjectName("panel")
+        handle_line = QHBoxLayout(handle_row)
+        handle_line.setContentsMargins(0, 0, 0, 0)
+        handle_line.setSpacing(6)
+        handle_line.addWidget(self.handle, 1)
+        self.copy_handle = button("Copy", "acGhost", "copy", self._copy_handle)
+        self.copy_handle.setToolTip("Copy your @handle, to send to someone who wants to add "
+                                    "you as a friend")
+        handle_line.addWidget(self.copy_handle)
+        self.change_handle = button("Change…", "acGhost", "pencil",
+                                    self.handle_change_requested.emit)
+        self.change_handle.setToolTip("Choose a new @handle (once every 30 days)")
+        handle_line.addWidget(self.change_handle)
+        card.body.addWidget(field_block("Handle", handle_row,
+                                        "Given automatically from your name; you can change "
+                                        "it once every 30 days. Others use it to open your "
+                                        "profile and to add you as a friend."))
 
         self.bio = QPlainTextEdit()
         self.bio.setObjectName("acInput")
@@ -314,6 +332,13 @@ class ProfileTab(QWidget):
             text = text[:280]
         self._bio_count.setText(f"{len(text)} / 280")
         self._changed()
+
+    def _copy_handle(self) -> None:
+        text = self.handle.text().strip()
+        if text.startswith("@"):
+            from PySide6.QtGui import QGuiApplication
+            QGuiApplication.clipboard().setText(text)
+            set_text(self.copy_handle, "Copied")
 
     def _changed(self, *_args) -> None:
         if self._loading or self._profile is None:

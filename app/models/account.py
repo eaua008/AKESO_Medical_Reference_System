@@ -11,7 +11,7 @@ from typing import Optional
 # Bump when the Terms or Privacy Notice text changes (app/core/legal_text.py).
 # Everyone is asked to accept the new version at their next sign-in.
 TERMS_VERSION = "2026-10"       # 2026-10: rewritten (numbered sections, Clinical Exchange, updates)
-PRIVACY_VERSION = "2026-10.2"    # 2026-10: notebook sync; 2026-10.2: rewritten (data table, providers, retention)
+PRIVACY_VERSION = "2026-10.3"    # 2026-10: notebook sync; 2026-10.2: rewritten (data table, providers, retention); 2026-10.3: friends, shared notes, study groups
 
 DELETION_GRACE_DAYS = 30
 
@@ -241,6 +241,8 @@ class SecurityEvent:
         if self.kind == "deletion_requested":
             when = parse_time(d.get("scheduled_for"))
             return f"scheduled for {friendly_time(when, with_time=False)}" if when else ""
+        if self.kind == "profile_updated" and d.get("from") and d.get("to"):
+            return f"handle @{d['from']} → @{d['to']}"          # change_handle (043)
         if self.kind == "profile_updated" and d.get("fields"):
             return ", ".join(str(f).replace("_", " ") for f in d["fields"][:5])
         if self.kind == "consent_accepted":

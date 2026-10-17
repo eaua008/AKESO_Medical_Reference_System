@@ -95,6 +95,10 @@ NAV_SECTIONS = [
         "header": "COMMUNITY",
         "items": [
             {"id": "exchange", "label": "Clinical Exchange", "icon": "chat"},
+            # Migrations 042 and 040: study groups, and friends (mutual; not
+            # the same as Follow in Clinical Exchange).
+            {"id": "groups", "label": "Study Groups", "icon": "users"},
+            {"id": "friends", "label": "Friends", "icon": "user-check"},
         ],
     },
     {

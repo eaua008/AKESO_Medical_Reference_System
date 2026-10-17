@@ -22,8 +22,9 @@ from app.ui.views.admin.admin_widgets import (
 ROLE_TONES = {"admin": "amber", "educator": "teal", "student": "blue"}
 STATUS_TONES = {"active": "good", "suspended": "danger", "deleting": "amber"}
 
-COLUMNS = ["User / Name", "Email", "Role", "Account created", "Last active", "Status", "Actions"]
-NAME, EMAIL, ROLE, CREATED, LAST, STATUS, ACTIONS = range(7)
+COLUMNS = ["User / Name", "Email", "Role", "Account created", "Last active", "Status",
+           "Akeso version", "Actions"]
+NAME, EMAIL, ROLE, CREATED, LAST, STATUS, VERSION, ACTIONS = range(8)
 
 
 class UserManagementView(QWidget):
@@ -82,7 +83,7 @@ class UserManagementView(QWidget):
         column.addWidget(self._filter_bar())
 
         self.table = DataTable(COLUMNS, stretch=[NAME, EMAIL], fixed={ACTIONS: 150},
-                               sortable=(NAME, EMAIL, ROLE, CREATED, LAST, STATUS))
+                               sortable=(NAME, EMAIL, ROLE, CREATED, LAST, STATUS, VERSION))
         self.table.header_clicked.connect(self._sort_by)
         self.table.show_sort(*self._sort)
         column.addWidget(self.table)
@@ -181,6 +182,7 @@ class UserManagementView(QWidget):
             CREATED: lambda u: u.created_at.timestamp() if u.created_at else 0,
             LAST: lambda u: u.last_sign_in_at.timestamp() if u.last_sign_in_at else 0,
             STATUS: lambda u: u.status,
+            VERSION: lambda u: u.version_key,
         }[column]
         return sorted(users, key=key, reverse=not ascending)
 
@@ -223,6 +225,8 @@ class UserManagementView(QWidget):
             text_cell(friendly_time(user.created_at, with_time=False)),
             text_cell("◷  " + last),
             pill_cell("●  " + STATUS_LABELS[user.status], STATUS_TONES[user.status]),
+            text_cell(("v" + user.app_version) if user.app_version else "Not reported",
+                      "adMono" if user.app_version else ""),
             actions_cell([
                 IconButton("eye", "View account details",
                            on_click=lambda u=user: self.view_requested.emit(u)),

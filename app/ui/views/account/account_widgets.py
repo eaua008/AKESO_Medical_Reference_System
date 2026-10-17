@@ -174,17 +174,23 @@ class ToggleSwitch(QAbstractButton):
         return QSize(40, 22)
 
     def paintEvent(self, _event) -> None:  # noqa: N802
+        # Drawn from the widget's real size, not a fixed 40 x 22: at 80% / 90%
+        # Akeso shrinks the widget itself, and a fixed drawing was cut off at
+        # its right edge (the knob half missing).
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         on = self.isChecked()
         track = QColor(Theme.token("PRIMARY") if on else Theme.token("BORDER"))
         if not self.isEnabled():
             track.setAlpha(110)
+        w, h = float(self.width()), float(self.height())
+        pad = max(2.0, h * 0.14)
+        knob = h - 2 * pad
         painter.setPen(Qt.PenStyle.NoPen)
         painter.setBrush(track)
-        painter.drawRoundedRect(QRectF(0, 0, 40, 22), 11, 11)
+        painter.drawRoundedRect(QRectF(0, 0, w, h), h / 2, h / 2)
         painter.setBrush(QColor("#FFFFFF"))
-        painter.drawEllipse(QRectF(21 if on else 3, 3, 16, 16))
+        painter.drawEllipse(QRectF(w - pad - knob if on else pad, pad, knob, knob))
         painter.end()
 
 

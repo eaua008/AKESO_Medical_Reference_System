@@ -27,7 +27,7 @@ from app.services.account_service import AccountService
 from app.services.activity_tracker import ActivityTracker
 from app.services.security_service import SecurityService
 from app.ui.views.account.account_dialogs import (
-    ChangeEmailDialog, ChangePasswordDialog, CodeDialog, ConfirmDialog, DeleteAccountDialog,
+    ChangeEmailDialog, ChangeHandleDialog, ChangePasswordDialog, CodeDialog, ConfirmDialog, DeleteAccountDialog,
     LegalDialog, SchoolEmailDialog, TwoFactorSetupDialog,
 )
 from app.ui.views.account.account_view import AccountView
@@ -78,6 +78,7 @@ class AccountController(QObject):
         p.photo_chosen.connect(self._set_photo)
         p.photo_remove_requested.connect(self._remove_photo)
         p.verify_school_requested.connect(self._verify_school)
+        p.handle_change_requested.connect(self._change_handle)
 
         s = v.security
         s.change_email_requested.connect(self._change_email)
@@ -236,6 +237,49 @@ class AccountController(QObject):
             self._view.profile.show_saved("Profile saved.")
         self._run(lambda: self._account.save_profile(self._snapshot.profile, changes),
                   done, self._view.profile.show_error)
+
+    @property
+    def my_handle(self) -> str:
+        profile = self._snapshot.profile if self._snapshot else None
+        return (profile.handle or "") if profile else ""
+
+    def _change_handle(self) -> None:
+        """Account › Profile › Change… beside the handle (migration 043)."""
+        current = (self._snapshot.profile.handle or "") if self._snapshot else ""
+        if not current:
+            self._notice("Your handle is still being set up. Try again in a moment.")
+            return
+        button = self._view.profile.change_handle
+        button.setEnabled(False)
+
+        def opened(info: dict) -> None:
+            button.setEnabled(True)
+            from app.models.account import friendly_time, parse_time
+            when = parse_time((info or {}).get("next_change_at"))
+            dialog = ChangeHandleDialog(current, friendly_time(when, with_time=False)
+                                        if when else "", parent=self._view)
+
+            def check(text: str) -> None:
+                handle = self._account.clean_handle(text)
+                self._run(lambda: self._account.check_handle(handle),
+                          lambda problem: dialog.show_check(handle, problem),
+                          lambda message: dialog.show_check(handle, message))
+
+            def done(profile) -> None:
+                dialog.accept()
+                self._snapshot.profile = profile
+                self._render()
+                self._emit_identity()
+                self._view.profile.show_saved(f"Your handle is now @{profile.handle}.")
+            dialog.check_requested.connect(check)
+            dialog.submitted.connect(lambda handle: self._run(
+                lambda: self._account.change_handle(handle), done, dialog.show_error))
+            dialog.exec()
+
+        def failed(message: str) -> None:
+            button.setEnabled(True)
+            self._notice(message, "danger")
+        self._run(self._account.handle_change_info, opened, failed)
 
     def _set_photo(self, path: str) -> None:
         try:

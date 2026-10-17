@@ -180,6 +180,86 @@ class ChangeEmailDialog(AccountDialog):
         self.submitted.emit(self.email.text(), self.password.text())
 
 
+class ChangeHandleDialog(AccountDialog):
+    """Pick a new @handle (migration 043). The controller checks it as you
+    type (check_requested, debounced) and answers with show_check()."""
+
+    submitted = Signal(str)
+    check_requested = Signal(str)
+
+    def __init__(self, current: str, next_change: str = "",
+                 parent: Optional[QWidget] = None) -> None:
+        super().__init__(
+            "Change your handle",
+            f"Your handle is @{current}. Friends use it to add you, and it's how people "
+            "find and mention you.", "at-sign", parent)
+        from PySide6.QtCore import QTimer
+        self._current = current
+        self.handle = QLineEdit()
+        self.handle.setObjectName("acInput")
+        self.handle.setMaxLength(21)
+        self.handle.setPlaceholderText("new_handle")
+        self.handle.setText(current)
+        self.handle.selectAll()
+        self.body.addWidget(field_block("New handle", self.handle,
+                                        "3 to 20 lowercase letters, numbers or underscores."))
+        self.status = label("", "acSmall")
+        self.body.addWidget(self.status)
+        self.body.addWidget(label(
+            "You can change it once every 30 days. Links to your profile and @mentions that "
+            "use your old handle stop working. Your old handle is held for 30 days, so nobody "
+            "else can take it and pretend to be you.", "acSmall"))
+        self._timer = QTimer(self)
+        self._timer.setSingleShot(True)
+        self._timer.setInterval(400)
+        self._timer.timeout.connect(lambda: self.check_requested.emit(self.handle.text()))
+        self.handle.textEdited.connect(self._edited)
+        self.handle.returnPressed.connect(self._submit)
+        self.add_button("Cancel", on_click=self.reject)
+        self.go = self.add_button("Change handle", "acPrimary", "check", self._submit, default=True)
+        self.go.setEnabled(False)
+        if next_change:
+            self.handle.setEnabled(False)
+            self.show_error(f"You changed your handle recently. You can change it again on "
+                            f"{next_change}.")
+            self.go.setEnabled(False)
+
+    def _clean(self) -> str:
+        return self.handle.text().strip().lstrip("@").strip().lower()
+
+    def _edited(self, text: str) -> None:
+        clean = text.strip().lstrip("@").strip().lower()
+        if clean != text:                          # type it the way it will be saved
+            position = self.handle.cursorPosition()
+            self.handle.setText(clean)
+            self.handle.setCursorPosition(min(position, len(clean)))
+        self.go.setEnabled(False)
+        self.error.hide()
+        if clean == self._current:
+            self.status.setText("That's your handle now.")
+            return
+        self.status.setText("Checking…")
+        self._timer.start()
+
+    def show_check(self, handle: str, problem: Optional[str]) -> None:
+        if handle != self._clean():
+            return                                 # an older answer: they kept typing
+        if problem:
+            self.status.setText("")
+            self.show_error(problem)
+            self.go.setEnabled(False)
+        else:
+            self.error.hide()
+            self.status.setText(f"✓  @{handle} is available.")
+            self.go.setEnabled(True)
+
+    def _submit(self) -> None:
+        if not self.go.isEnabled():
+            return
+        self.set_busy(True)
+        self.submitted.emit(self._clean())
+
+
 # ------------------------------------------------------------------ 2FA setup
 
 def svg_pixmap(svg: str, size: int) -> QPixmap:
