@@ -16,8 +16,9 @@ symptom scrolls that column instead of stretching the page.
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal
 from PySide6.QtWidgets import (
+    QGraphicsOpacityEffect,
     QButtonGroup,
     QLayout,
     QCheckBox,
@@ -110,7 +111,9 @@ class MatchCard(QFrame):
 
         # The two weighted values the ranking really uses, then the plain
         # counts. Hover for the full breakdown (hallmarks, intensity, boosters).
-        why = "\n".join(match.why())
+        # An open card already shows this working in its body, so the hover
+        # text only appears on a closed one, and says what it is.
+        why = "" if expanded else "Why it ranks here:\n" + "\n".join(match.why())
         score = QVBoxLayout()
         score.setSpacing(2)
         headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}",
@@ -296,7 +299,12 @@ class SymptomCheckerView(QWidget):
         self._param_cards: dict[str, SymptomParameters] = {}
         self._rows: list[SymptomRow] = []
         self._expanded: set[str] = set()
+        self._collapsed: set[str] = set()       # the #1 card, closed by the user
+        self._match_cards: dict = {}
         self._view_mode = "both"
+        self._mode_buttons: dict = {}
+        self._matrix_view: Optional[QWidget] = None
+        self._results_anchor: Optional[QWidget] = None
         self._last_result: Optional[CheckerResult] = None
         self._saved_case = False
         self._link_title = ""
@@ -373,11 +381,14 @@ class SymptomCheckerView(QWidget):
         layout = QHBoxLayout(box)
         layout.setContentsMargins(16, 10, 16, 10)
         layout.setSpacing(8)
-        layout.addWidget(_label("Medical disclaimer:", "ccDisclaimerTitle", wrap=False))
+        layout.addWidget(_label("For study only:", "ccDisclaimerTitle", wrap=False))
         layout.addWidget(_label(
-            "This computes statistical differential probabilities for educational "
-            "reference. It generates possible conditions, never a certified "
-            "diagnosis. In a medical emergency, seek urgent in-person care.",
+            "Akeso is an educational study tool, not a medical device. The checker "
+            "lists conditions to study from the symptoms you enter; it does not "
+            "diagnose real patients, and any treatment or medicine it links to is "
+            "a study note, not a prescription. For a real person, see a licensed "
+            "clinician. In an emergency, call 911 or go to the nearest emergency "
+            "department.",
             "ccDisclaimerText"), 1)
         return box
 
@@ -847,14 +858,43 @@ class SymptomCheckerView(QWidget):
                 self._suggest_row.addWidget(chip)
 
     def clear(self) -> None:
+        """Reset: every input back to its starting value, not only the symptoms
+        (history, exposures, vitals, demographics and the specificity meter too)."""
         self._selected.clear()
         self._expanded.clear()
+        self._collapsed.clear()
         self._last_result = None
         self._saved_case = False
+        self._view_mode = "both"
+        self._search.blockSignals(True)
+        self._search.clear()
+        self._search.blockSignals(False)
+        for box in (*self._exposure_boxes.values(), *self._comorbidity_boxes.values(),
+                    *self._family_boxes.values()):
+            box.setChecked(False)
+        self._no_history.setChecked(True)
+        for button in self._unit_group.buttons():
+            button.setChecked(button.text() == "\u00b0C")
+        self._set_unit("\u00b0C")
+        self.temperature.setValue(37.0)
+        self.heart_rate.setValue(88)
+        self.bp_systolic.setValue(120)
+        self.bp_diastolic.setValue(80)
+        self.spo2.setValue(98)
+        self.resp_rate.setValue(18)
+        self.age.setValue(29)
+        self.sex.setCurrentIndex(max(0, self.sex.findData("female")))
+        self._spec_badge.setText("\u2014")
+        self._spec_badge.setProperty("level", None)
+        self._spec_badge.style().unpolish(self._spec_badge)
+        self._spec_badge.style().polish(self._spec_badge)
+        self._spec_bar.setValue(0)
+        self._spec_text.setText("Add symptoms to begin.")
         self._render_symptom_list()
         self._render_parameters()
         self.show_suggestions([])
         self._clear_results()
+        self._scroll.verticalScrollBar().setValue(0)
 
     # ------------------------------------------------------------- input
 
@@ -905,7 +945,8 @@ class SymptomCheckerView(QWidget):
             self._results_host.addWidget(empty)
             return
 
-        self._results_host.addWidget(self._build_results_header(result))
+        self._results_anchor = self._build_results_header(result)
+        self._results_host.addWidget(self._results_anchor)
         self._results_host.addWidget(self._build_notebook_strip())
         self._results_host.addWidget(self._build_triage(result))
         if result.vital_alerts:
@@ -915,18 +956,51 @@ class SymptomCheckerView(QWidget):
             self._results_host.addWidget(alerts)
 
         self._results_host.addWidget(self._build_view_switch())
-        if self._view_mode in ("both", "matrix"):
-            self._results_host.addWidget(self._build_matrix(result))
-        if self._view_mode in ("both", "cards"):
-            self._results_host.addWidget(_label(
-                "2. DETAILED CLINICAL DIFFERENTIAL MONOGRAPHS & CARDS",
-                "ccSectionTitle", wrap=False))
-            for rank, match in enumerate(result.matches, 1):
-                card = MatchCard(match, rank,
-                                 expanded=(rank == 1 or match.disease_id in self._expanded))
-                card.open_requested.connect(self.disease_requested.emit)
-                card.toggled.connect(self._toggle_card)
-                self._results_host.addWidget(card)
+        # Both views are built once; the switch only shows or hides them, so
+        # changing view never rebuilds the page or moves the scroll position.
+        self._matrix_view = self._build_matrix(result)
+        self._results_host.addWidget(self._matrix_view)
+        self._cards_title = _label("2. DETAILED CLINICAL DIFFERENTIAL MONOGRAPHS & CARDS",
+                                   "ccSectionTitle", wrap=False)
+        self._results_host.addWidget(self._cards_title)
+        for rank, match in enumerate(result.matches, 1):
+            self._results_host.addWidget(self._make_match_card(match, rank))
+        self._apply_view_mode()
+
+    def _is_open(self, disease_id: str, rank: int) -> bool:
+        if rank == 1:
+            return disease_id not in self._collapsed
+        return disease_id in self._expanded
+
+    def _make_match_card(self, match: MatchResult, rank: int) -> MatchCard:
+        card = MatchCard(match, rank, expanded=self._is_open(match.disease_id, rank))
+        card.open_requested.connect(self.disease_requested.emit)
+        card.toggled.connect(self._toggle_card)
+        self._match_cards[match.disease_id] = (card, match, rank)
+        return card
+
+    def _apply_view_mode(self) -> None:
+        show_matrix = self._view_mode in ("both", "matrix")
+        show_cards = self._view_mode in ("both", "cards")
+        if self._matrix_view is not None:
+            self._matrix_view.setVisible(show_matrix)
+            self._cards_title.setVisible(show_cards)
+            for card, _match, _rank in self._match_cards.values():
+                card.setVisible(show_cards)
+        button = self._mode_buttons.get(self._view_mode)
+        if button is not None:
+            button.setChecked(True)
+
+    def reveal_results(self) -> None:
+        """After Calculate, scroll down to the results (once the new widgets
+        have their size), so nobody has to scroll to find them."""
+        def scroll() -> None:
+            anchor = self._results_anchor
+            if anchor is None:
+                return
+            top = anchor.mapTo(self._scroll.widget(), anchor.rect().topLeft()).y()
+            self._scroll.verticalScrollBar().setValue(max(0, top - 12))
+        QTimer.singleShot(60, scroll)
 
     def _build_results_header(self, result: CheckerResult) -> QWidget:
         holder = QWidget()
@@ -1070,8 +1144,9 @@ class SymptomCheckerView(QWidget):
         toggle_row = QHBoxLayout(toggle)
         toggle_row.setContentsMargins(4, 4, 4, 4)
         toggle_row.setSpacing(2)
-        self._mode_group = QButtonGroup(self)
+        self._mode_group = QButtonGroup(card)
         self._mode_group.setExclusive(True)
+        self._mode_buttons = {}
         for key, text in (("both", "Both Views"), ("matrix", "Tabular Matrix"),
                           ("cards", "Detailed Cards")):
             button = QPushButton(text)
@@ -1081,22 +1156,61 @@ class SymptomCheckerView(QWidget):
             button.setCursor(Qt.CursorShape.PointingHandCursor)
             button.clicked.connect(lambda _c=False, k=key: self._set_mode(k))
             self._mode_group.addButton(button)
+            self._mode_buttons[key] = button
             toggle_row.addWidget(button)
         row.addWidget(toggle)
         return card
 
     def _set_mode(self, mode: str) -> None:
         self._view_mode = mode
-        if self._last_result:
-            self.show_result(self._last_result)
+        self._apply_view_mode()
 
     def _toggle_card(self, disease_id: str) -> None:
-        if disease_id in self._expanded:
-            self._expanded.discard(disease_id)
-        else:
+        """Open or close one card in place. Only that card is rebuilt, and the
+        view stays on its header instead of jumping to the bottom."""
+        entry = self._match_cards.get(disease_id)
+        if entry is None:
+            return
+        old, match, rank = entry
+        opening = not self._is_open(disease_id, rank)
+        if opening:
+            self._collapsed.discard(disease_id)
             self._expanded.add(disease_id)
-        if self._last_result:
-            self.show_result(self._last_result)
+        else:
+            self._expanded.discard(disease_id)
+            self._collapsed.add(disease_id)
+
+        bar = self._scroll.verticalScrollBar()
+        keep = bar.value()
+        new = self._make_match_card(match, rank)
+        new.setVisible(self._view_mode in ("both", "cards"))
+        self._results_host.replaceWidget(old, new)
+        old.hide()
+        old.deleteLater()
+        bar.setValue(keep)
+
+        def settle() -> None:
+            top = new.mapTo(self._scroll.widget(), new.rect().topLeft()).y()
+            if top < bar.value() or top > bar.value() + self._scroll.viewport().height() - 60:
+                bar.setValue(max(0, top - 12))
+            else:
+                bar.setValue(keep)
+        QTimer.singleShot(0, settle)
+        self._fade_in(new)
+
+    @staticmethod
+    def _fade_in(card: QWidget) -> None:
+        """Ease a freshly opened or closed card in instead of snapping."""
+        effect = QGraphicsOpacityEffect(card)
+        effect.setOpacity(0.0)
+        card.setGraphicsEffect(effect)
+        anim = QPropertyAnimation(effect, b"opacity", card)
+        anim.setDuration(220)
+        anim.setStartValue(0.0)
+        anim.setEndValue(1.0)
+        anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        anim.finished.connect(lambda: card.setGraphicsEffect(None))
+        anim.start(QPropertyAnimation.DeletionPolicy.DeleteWhenStopped)
 
     def _build_triage(self, result: CheckerResult) -> QWidget:
         danger = result.triage_level in ("EMERGENCY", "URGENT")
@@ -1230,7 +1344,13 @@ class SymptomCheckerView(QWidget):
         middle = HScrollArea()
         middle.setObjectName("ccMxScroll")
         middle.setWidget(grid_host)
-        middle.fit_height()
+        # Exactly header + one fixed-height row per condition (+ the scroll bar).
+        # Asking the grid for its height here came back too short when there
+        # were many conditions, which cut off the last rows (#10, #11 showed
+        # no cells at all).
+        from app.core import soft_scale
+        middle.setFixedHeight(soft_scale.px(self.MX_HEAD) + len(matches) * soft_scale.px(self.MX_ROW)
+                              + middle.horizontalScrollBar().sizeHint().height() + 4)
 
         # ---- right, pinned: triage and match
         right, right_stack = column("ccMxPinRight", self.MX_TRIAGE_W + self.MX_MATCH_W)
@@ -1255,7 +1375,7 @@ class SymptomCheckerView(QWidget):
             slot.addStretch(1)
             row.addWidget(urgency_slot)
 
-            why = "\n".join(match.why())
+            why = "Why it ranks here:\n" + "\n".join(match.why())
             score = QVBoxLayout()
             score.setSpacing(1)
             headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}"
@@ -1293,6 +1413,9 @@ class SymptomCheckerView(QWidget):
         return card
 
     def _clear_results(self) -> None:
+        self._matrix_view = None
+        self._results_anchor = None
+        self._match_cards = {}
         while self._results_host.count():
             item = self._results_host.takeAt(0)
             if item.widget():

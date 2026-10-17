@@ -17,6 +17,7 @@ from app.ui.views.body_explorer_view import BodyExplorerView
 SYSTEM_WORDS = {
     "nervous": "nervous", "cardiovascular": "cardiovascular", "respiratory": "respiratory",
     "digestive": "digestive", "urinary": "urinary", "endocrine": "endocrine",
+    "reproductive": "reproductive",
     "musculoskeletal": "musculoskeletal", "integumentary": "integumentary",
 }
 

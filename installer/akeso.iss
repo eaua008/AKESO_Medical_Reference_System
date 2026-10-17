@@ -19,7 +19,7 @@
 ; =====================================================================
 
 #define AppName      "Akeso"
-#define AppVersion   "1.0.6"
+#define AppVersion   "1.0.7"
 #define AppPublisher "Eijkim Maulit, Mapua Malayan Colleges Mindanao"
 #define AppExe       "Akeso.exe"
 
@@ -58,6 +58,16 @@ Source: "..\dist\Akeso\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Name: "{group}\{#AppName}"; Filename: "{app}\{#AppExe}"
 Name: "{group}\Uninstall {#AppName}"; Filename: "{uninstallexe}"
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopicon
+
+[Registry]
+; akeso://join/<code> opens Akeso to join a study group from an invite link
+; (migration 042). Per user (HKA = current user here, PrivilegesRequired=lowest);
+; removed on uninstall. Akeso only acts on a 64-character join code: any other
+; akeso:// address passed this way is ignored.
+Root: HKA; Subkey: "Software\Classes\akeso"; ValueType: string; ValueName: ""; ValueData: "URL:Akeso study group link"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\akeso"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""
+Root: HKA; Subkey: "Software\Classes\akeso\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#AppExe},0"
+Root: HKA; Subkey: "Software\Classes\akeso\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#AppExe}"" ""%1"""
 
 [Run]
 Filename: "{app}\{#AppExe}"; Description: "Open {#AppName} now"; Flags: nowait postinstall skipifsilent

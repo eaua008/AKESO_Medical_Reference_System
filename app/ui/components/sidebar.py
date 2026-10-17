@@ -54,8 +54,16 @@ HEADER_HEIGHT = 30
 #   accent   "danger", "primary" or "admin" (amber) tints the row
 #   featured solid primary pill with a chevron
 NAV_SECTIONS = [
+    # Grouped by what each screen is for (UAT: sort tools, references,
+    # community and your own space into clear categories).
     {
-        "header": "NAVIGATION",
+        "header": "HOME",
+        "items": [
+            {"id": "dashboard", "label": "Dashboard Overview", "icon": "grid"},
+        ],
+    },
+    {
+        "header": "CLINICAL TOOLS",
         "items": [
             {
                 "id": "symptom-checker",
@@ -64,16 +72,6 @@ NAV_SECTIONS = [
                 "featured": True,
             },
             {"id": "drug-checker", "label": "Drug Interaction Checker", "icon": "shield"},
-        ],
-    },
-    {
-        "header": "CLINICAL MODULES",
-        "items": [
-            {"id": "dashboard", "label": "Dashboard Overview", "icon": "grid"},
-            {"id": "diseases", "label": "Disease Encyclopedia", "icon": "book"},
-            {"id": "symptoms", "label": "Symptom Encyclopedia", "icon": "pulse"},
-            {"id": "medicines", "label": "Medicine Reference", "icon": "pill"},
-            {"id": "body-systems", "label": "Body System Explorer", "icon": "heart"},
             {"id": "wellness", "label": "Wellness Calculators", "icon": "calculator"},
             {
                 "id": "emergency",
@@ -81,18 +79,41 @@ NAV_SECTIONS = [
                 "icon": "alert",
                 "accent": "danger",
             },
-            {"id": "articles", "label": "Health Articles", "icon": "stack"},
-            {"id": "exchange", "label": "Clinical Exchange", "icon": "chat"},
         ],
     },
     {
-        "header": "USER WORKSPACE",
+        "header": "REFERENCE LIBRARY",
+        "items": [
+            {"id": "diseases", "label": "Disease Encyclopedia", "icon": "book"},
+            {"id": "symptoms", "label": "Symptom Encyclopedia", "icon": "pulse"},
+            {"id": "medicines", "label": "Medicine Reference", "icon": "pill"},
+            {"id": "body-systems", "label": "Body System Explorer", "icon": "heart"},
+            {"id": "articles", "label": "Health Articles", "icon": "stack"},
+        ],
+    },
+    {
+        "header": "COMMUNITY",
+        "items": [
+            {"id": "exchange", "label": "Clinical Exchange", "icon": "chat"},
+            # Migrations 042 and 040: study groups, and friends (mutual; not
+            # the same as Follow in Clinical Exchange).
+            {"id": "groups", "label": "Study Groups", "icon": "users"},
+            {"id": "friends", "label": "Friends", "icon": "user-check"},
+        ],
+    },
+    {
+        "header": "MY WORKSPACE",
         "items": [
             {"id": "notebook", "label": "Study Notebook", "icon": "notebook"},
-            {"id": "account", "label": "Account Settings", "icon": "user"},
             {"id": "favorites", "label": "Bookmarks", "icon": "star"},
             {"id": "history", "label": "Search History", "icon": "clock"},
             {"id": "notifications", "label": "Notifications", "icon": "bell"},
+        ],
+    },
+    {
+        "header": "ACCOUNT",
+        "items": [
+            {"id": "account", "label": "Account Settings", "icon": "user"},
             {"id": "settings", "label": "Settings", "icon": "gear"},
         ],
     },

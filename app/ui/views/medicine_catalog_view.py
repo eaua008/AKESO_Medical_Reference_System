@@ -347,8 +347,19 @@ class MedicineCatalogView(QWidget):
         self.regulatory.currentIndexChanged.connect(self._emit_filters)
         return bar
 
+    SCOPE_HINTS = {
+        "all": "Search paracetamol, amlodipine, metformin, Ventolin, PPI\u2026",
+        "generic": "Search generic names only (e.g. paracetamol, amlodipine)\u2026",
+        "brand": "Search brand names only (e.g. Biogesic, Ventolin, Norvasc)\u2026",
+    }
+
     def _set_scope(self, key: str) -> None:
+        """The scope buttons choose which fields the search reads. With an
+        empty search they changed nothing on screen, so they looked broken
+        (UAT). Now the box says what it searches and takes the cursor."""
         self._scope = key
+        self.search.setPlaceholderText(self.SCOPE_HINTS.get(key, self.SCOPE_HINTS["all"]))
+        self.search.setFocus()
         self._emit_filters()
 
     def _emit_filters(self, *_args) -> None:

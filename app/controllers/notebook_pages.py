@@ -148,6 +148,8 @@ class NotebookPages(QObject):
                                "another note.")
         editor = NotesEditor(doc)
         editor.link_clicked.connect(self.follow_link)
+        editor.share_requested.connect(lambda iid=tab.ref: self.c.social_action.emit(
+            "share_friends", iid))
         return NotesPage(editor, tab.ref)
 
     def _current_subject(self) -> str:

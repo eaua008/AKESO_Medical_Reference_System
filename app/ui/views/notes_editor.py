@@ -244,6 +244,7 @@ class NoteTextEdit(QTextEdit):
 
 class NotesEditor(QWidget):
     link_clicked = Signal(str)
+    share_requested = Signal()          # "Share…" in the toolbar (migration 041)
 
     def __init__(self, document: QTextDocument) -> None:
         super().__init__()
@@ -364,6 +365,9 @@ class NotesEditor(QWidget):
             t("image", "image", "Insert image", self._image),
             t("code", "code", "Code / lab values (monospace)", self._code),
             t("clear", "remove-formatting", "Clear formatting", self._clear_formatting),
+            self._gap(),
+            t("share", "share-2", "Share this note with friends (read-only copy)",
+              self.share_requested.emit),
         ):
             flow.addWidget(widget)
         return bar

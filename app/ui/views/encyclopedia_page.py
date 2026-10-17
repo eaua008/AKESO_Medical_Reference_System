@@ -113,6 +113,15 @@ class EncyclopediaPage(QWidget):
         title_row.addStretch(1)
         title_row.addWidget(self._build_view_toggle(), 0, Qt.AlignmentFlag.AlignTop)
         title_row.addWidget(self._count_badge, 0, Qt.AlignmentFlag.AlignTop)
+
+        # Refresh lives up here, beside the count, as on the Symptom
+        # Encyclopedia, instead of on a row of its own above the filters.
+        refresh = QPushButton("Refresh")
+        refresh.setObjectName("secondaryButton")
+        refresh.setCursor(Qt.CursorShape.PointingHandCursor)
+        refresh.setToolTip("Download the latest entries from the server")
+        refresh.clicked.connect(lambda _c=False: self.grid_view.refresh_requested.emit())
+        title_row.addWidget(refresh, 0, Qt.AlignmentFlag.AlignTop)
         layout.addLayout(title_row)
 
         layout.addWidget(self._build_scope_note())

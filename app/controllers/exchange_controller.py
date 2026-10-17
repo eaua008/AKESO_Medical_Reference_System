@@ -35,6 +35,7 @@ class ExchangeController(QObject):
     notifications_changed = Signal()
     post_requested = Signal(str)             # open a post on top of the current page (shell)
     edit_profile_requested = Signal()        # "Edit my profile" -> Account Settings
+    profile_loaded = Signal(object)          # MemberProfile shown (Friends adds its buttons)
 
     def __init__(self, page: ExchangePage, service: ExchangeService,
                  notebook: Optional[NotebookService] = None,
@@ -58,6 +59,9 @@ class ExchangeController(QObject):
         self._loaded_once = False
         self._post_id: Optional[str] = None
         self._composer: Optional[ComposerPanel] = None
+        # Who is posting, for the top of the composer (set by the shell).
+        self.author_name = ""
+        self.author_photo_path: Optional[str] = None
         self._sheet: Optional[PageSheet] = None
 
         feed = page.feed
@@ -220,7 +224,8 @@ class ExchangeController(QObject):
                       tags=list(post.tags))
         panel = ComposerPanel(draft, self._service.reference.tag_options(),
                               self._service.reference.diseases(), [], self._composer_check,
-                              editing=True)
+                              editing=True, author_name=self.author_name)
+        self._load_author_photo(panel)
 
         def saved(_r) -> None:
             self._close_composer(force=True)
@@ -434,6 +439,7 @@ class ExchangeController(QObject):
             initials = circle_pixmap(None, 88, profile.display_name or profile.handle,
                                      Theme.token("PRIMARY"), "#FFFFFF")
             view.show_profile(profile, initials)
+            self.profile_loaded.emit(profile)
             if profile.avatar_path and self._avatar_loader is not None:
                 path = profile.avatar_path
                 call_in_background(lambda: self._avatar_loader(path),
@@ -473,6 +479,15 @@ class ExchangeController(QObject):
 
     # ---------------------------------------------------------- composing
 
+    def _load_author_photo(self, panel: ComposerPanel) -> None:
+        """Your photo at the top of the post card, once it has downloaded."""
+        path = self.author_photo_path
+        if not path or self._avatar_loader is None:
+            return
+        call_in_background(lambda: self._avatar_loader(path),
+                           lambda png: png and panel.set_author_photo(png),
+                           lambda _e: None, owner=panel)
+
     def _composer_check(self, title: str, body: str, question: str) -> Optional[str]:
         return self._service.check_text(title, body, question)
 
@@ -485,7 +500,8 @@ class ExchangeController(QObject):
     def new_post(self, draft: Draft) -> None:
         panel = ComposerPanel(draft, self._service.reference.tag_options(),
                               self._service.reference.diseases(), self._notebook_cases(),
-                              self._composer_check)
+                              self._composer_check, author_name=self.author_name)
+        self._load_author_photo(panel)
 
         def attach(item_id: str) -> None:
             item = self._notebook.get(item_id) if self._notebook else None

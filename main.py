@@ -103,6 +103,10 @@ def main() -> None:
     apply_app_stylesheet()      # records which theme the app-level sheet is in
 
     window = MainWindow()
+    # akeso://join/<token> (a study group invite link, when the installer
+    # registered the protocol): joined after sign-in.
+    from app.ui.social_wiring import join_link_from_args
+    window.pending_join = join_link_from_args(sys.argv)
     window.show()
 
     sys.exit(app.exec())
