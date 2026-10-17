@@ -1,5 +1,5 @@
 import csv, collections, json, numpy as np
-S = "/mnt/user-data/uploads/akeso/assets_src/bodyparts3d/"; D = "/var/tmp/bp3d/isa_BP3D_4.0_obj_99/"
+S = "C:/Users/eijki/IdeaProjects/akeso/assets_src/bodyparts3d/"; D = "C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/bp3d/isa_BP3D_4.0_obj_99/"
 el = collections.defaultdict(set)
 for f in ("isa_element_parts.txt", "partof_element_parts.txt.txt"):
     for r in list(csv.reader(open(S + f, encoding="utf-8", errors="replace"), delimiter="\t"))[1:]:
@@ -23,4 +23,4 @@ R = {
   "legs":    {"label": "Legs",       "box": union("FMA24882", "FMA24883", "FMA16581")},
 }
 for k, v in R.items(): print(k, v["box"])
-json.dump(R, open("/var/tmp/anat/build/regions.json", "w"), indent=1)
+json.dump(R, open("C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/anat/regions.json", "w"), indent=1)
