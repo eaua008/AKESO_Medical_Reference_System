@@ -288,7 +288,7 @@ class CheckerTab(QWidget):
     condition_toggled = Signal(str, bool)
     regimen_toggled = Signal(str, bool)     # medicine id, included
     remove_drug_requested = Signal(str)
-    add_drug_requested = Signal()
+    add_drug_requested = Signal(str)      # medicine id picked in the regimen search
     save_requested = Signal()
     monograph_requested = Signal(str)
 
@@ -298,6 +298,7 @@ class CheckerTab(QWidget):
         self._icon_jobs: list = []
         self._by_label: dict[str, MedicineOption] = {}
         self._selected_ids: set[str] = set()
+        self._regimen_ids: set[str] = set()
 
         columns = QHBoxLayout(self)
         columns.setContentsMargins(0, 0, 0, 0)
@@ -472,12 +473,30 @@ class CheckerTab(QWidget):
 
     def _regimen_panel(self) -> QFrame:
         panel, body, head = self._step("3", "Case Regimen", "Medicines the case is already on")
-        add = QPushButton(" Add drug")
-        add.setObjectName("ixCheckInCase")
-        add.setCursor(Qt.CursorShape.PointingHandCursor)
-        _repaintable(self._icon_jobs, add, "plus", 13, "primary")
-        add.clicked.connect(self.add_drug_requested.emit)
-        head.addWidget(add, 0, Qt.AlignmentFlag.AlignTop)
+        field = QFrame()
+        field.setObjectName("ixSearchField")
+        row = QHBoxLayout(field)
+        row.setContentsMargins(10, 0, 4, 0)
+        row.setSpacing(6)
+        search_icon = QLabel()
+        _repaintable(self._icon_jobs, search_icon, "search", 15, "muted")
+        row.addWidget(search_icon)
+        self.regimen_search = QLineEdit()
+        self.regimen_search.setObjectName("ixSearchInput")
+        self.regimen_search.setPlaceholderText("Search a medicine to add to the regimen...")
+        row.addWidget(self.regimen_search, 1)
+        field.setFixedHeight(38)
+        body.addWidget(field)
+        self._regimen_model = QStringListModel([], self)
+        completer = QCompleter(self._regimen_model, self)
+        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        completer.setFilterMode(Qt.MatchFlag.MatchContains)
+        completer.setMaxVisibleItems(7)
+        completer.popup().setObjectName("ixSuggest")
+        completer.activated[str].connect(self._on_regimen_chosen)
+        self.regimen_search.setCompleter(completer)
+        self.regimen_search.returnPressed.connect(
+            lambda: self._on_regimen_chosen(self.regimen_search.text()))
         self._regimen_host = QWidget()
         self._regimen_host.setObjectName("panel")
         self._regimen = QVBoxLayout(self._regimen_host)
@@ -491,6 +510,14 @@ class CheckerTab(QWidget):
     def set_options(self, options: list[MedicineOption]) -> None:
         self._by_label = {o.label: o for o in options}
         self._model.setStringList([o.label for o in options])
+
+    def _on_regimen_chosen(self, text: str) -> None:
+        text = text.strip().lower()
+        option = next((o for o in self._by_label.values()
+                       if o.label.lower() == text or o.name.lower() == text), None)
+        if option is not None and option.medicine_id not in self._regimen_ids:
+            self.regimen_search.clear()
+            self.add_drug_requested.emit(option.medicine_id)
 
     def _on_completed(self, label: str) -> None:
         option = self._by_label.get(label)
@@ -558,8 +585,11 @@ class CheckerTab(QWidget):
 
     def set_regimen(self, drugs: list[MedicineOption], included: set[str]) -> None:
         clear(self._regimen)
+        self._regimen_ids = {d.medicine_id for d in drugs}
+        self._regimen_model.setStringList(
+            [o.label for o in self._by_label.values() if o.medicine_id not in self._regimen_ids])
         if not drugs:
-            self._regimen.addWidget(wrapped("No drugs in the case regimen yet. Use Add drug "
+            self._regimen.addWidget(wrapped("No drugs in the case regimen yet. Search above "
                                             "to build the scenario.", "ixSmallMuted"))
             return
         for drug in drugs:

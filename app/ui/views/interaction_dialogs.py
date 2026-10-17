@@ -10,7 +10,7 @@ The dialogs only collect input. The controller validates and saves.
 
 from typing import Optional
 
-from PySide6.QtCore import QRect, Qt
+from PySide6.QtCore import QRect, QSize, Qt
 from PySide6.QtGui import QColor, QPainter
 from PySide6.QtWidgets import (
     QDialog,
@@ -185,11 +185,14 @@ class AddDrugDialog(OverlayDialog):
         field.setFixedHeight(38)
         self.body.addWidget(field)
 
+        self.count = QLabel("", objectName="ixFieldLabel")
+        self.body.addWidget(self.count)
         self.list = QListWidget()
         self.list.setObjectName("ixSuggestList")
-        self.list.setFixedHeight(260)
+        self.list.setMinimumHeight(420)
+        self.list.setVerticalScrollMode(QListWidget.ScrollMode.ScrollPerPixel)
         self.list.itemDoubleClicked.connect(lambda _item: self._choose())
-        self.body.addWidget(self.list)
+        self.body.addWidget(self.list, 1)
         self.empty = QLabel("", objectName="ixSmallMuted")
         self.empty.setWordWrap(True)
         self.body.addWidget(self.empty)
@@ -206,16 +209,39 @@ class AddDrugDialog(OverlayDialog):
             haystack = f"{option.label} {option.drug_class}".lower()
             if words and not all(w in haystack for w in words):
                 continue
-            item = QListWidgetItem(f"{option.name}    —  {option.drug_class or 'No class'}"
-                                   f"  ({'OTC' if option.is_otc else 'Rx'})")
+            item = QListWidgetItem()
             item.setData(Qt.ItemDataRole.UserRole, option.medicine_id)
+            row = self._row(option)
+            item.setSizeHint(QSize(0, 58))
             self.list.addItem(item)
-        if self.list.count():
+            self.list.setItemWidget(item, row)
+        shown = self.list.count()
+        self.count.setText(f"{shown} MEDICINE{'S' if shown != 1 else ''}"
+                           + (" MATCH" if words else " AVAILABLE"))
+        if shown:
             self.list.setCurrentRow(0)
             self.empty.setText("")
         else:
             self.empty.setText("No medicine in the reference data matches that search."
                                if self._options else "Every medicine is already in the case.")
+
+    @staticmethod
+    def _row(option: MedicineOption) -> QWidget:
+        """Name and class on two lines, with an Rx / OTC tag on the right."""
+        row = QWidget()
+        row.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
+        row.setFixedHeight(50)
+        layout = QHBoxLayout(row)
+        layout.setContentsMargins(10, 7, 10, 7)
+        layout.setSpacing(10)
+        text = QVBoxLayout()
+        text.setSpacing(2)
+        text.addWidget(QLabel(option.name, objectName="ixToggleTitle"))
+        text.addWidget(QLabel(option.drug_class or "No class listed", objectName="ixToggleSub"))
+        layout.addLayout(text, 1)
+        layout.addWidget(QLabel("OTC" if option.is_otc else "RX", objectName="ixChipTag"),
+                         0, Qt.AlignmentFlag.AlignVCenter)
+        return row
 
     def _choose(self) -> None:
         item = self.list.currentItem()

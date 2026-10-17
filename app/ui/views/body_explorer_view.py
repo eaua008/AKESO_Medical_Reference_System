@@ -53,11 +53,25 @@ PALETTE = [("#d63031", "Red"), ("#2e6bd9", "Blue"), ("#8e44ad", "Purple"),
 # Browse without clicking the model (and the fallback when 3D is unavailable).
 SYSTEMS = [("nervous", "Nervous"), ("cardiovascular", "Cardiovascular"),
            ("respiratory", "Respiratory"), ("digestive", "Digestive"), ("urinary", "Urinary"),
-           ("endocrine", "Endocrine"), ("musculoskeletal", "Musculoskeletal"),
+           ("endocrine", "Endocrine"), ("reproductive", "Reproductive"),
+           ("musculoskeletal", "Musculoskeletal"),
            ("integumentary", "Skin (integumentary)")]
 SYSTEM_KEYS = {key for key, _text in SYSTEMS}      # every one has parts in the 3D model
 SHOW_MAX = 8
 LAYER_INDEX = {"skin": 0, "muscle": 1, "bone": 2, "organ": 3}     # slider position / 100
+
+
+# Everyday names students type for parts the model files under their formal name.
+ALIASES = {"calcaneal tendon": "Achilles tendon", "pectoralis major": "chest muscle",
+           "iliotibial tract": "IT band"}
+
+
+def _shown(name: str) -> str:
+    """The part's name, plus the everyday name when it has one."""
+    for formal, common in ALIASES.items():
+        if formal in name and common.lower() not in name:
+            return f"{name} ({common})"
+    return name
 
 
 def search_index() -> dict[str, tuple[list[str], str]]:
@@ -90,7 +104,8 @@ def search_index() -> dict[str, tuple[list[str], str]]:
         index[f"{group[:1].upper()}{group[1:]} (whole)"] = (ids, layer_of["group:" + group])
     for name, ids in by_name.items():
         layer = layer_of[name]
-        index[f"{name[:1].upper()}{name[1:]} \u00b7 {LAYER_LABELS.get(layer, 'Part')}"] = (
+        shown = _shown(name)
+        index[f"{shown[:1].upper()}{shown[1:]} \u00b7 {LAYER_LABELS.get(layer, 'Part')}"] = (
             ids, layer)
     return dict(sorted(index.items(), key=lambda item: item[0].lower()))
 
@@ -314,6 +329,14 @@ class BodyExplorerView(QWidget):
             chip.toggled.connect(lambda on, k=key: self._set_extra(k, on))
             self.extra_buttons[key] = chip
             extras.addWidget(chip)
+        # Hair is part of the skin layer but off until asked for.
+        self.hair_button = QPushButton("Show hair")
+        self.hair_button.setObjectName("acChip")
+        self.hair_button.setCheckable(True)
+        self.hair_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.hair_button.toggled.connect(
+            lambda on: self._js(f"akeso.setHair({'true' if on else 'false'})"))
+        extras.addWidget(self.hair_button)
         extras.addStretch(1)
         layers.body.addLayout(extras)
         self.extra_note = LoadingLabel("", "acSmall", inline=True)
@@ -718,6 +741,9 @@ class BodyExplorerView(QWidget):
             grid.addWidget(label(how, "acSmall"), i, 1, Qt.AlignmentFlag.AlignTop)
         column.addLayout(grid)
         column.addWidget(label("Keys work after you click the 3D view once.", "acSmall"))
+        column.addWidget(label("Model: an adult male (BodyParts3D). It has no spinal cord (only "
+                               "its canal), body nerves (only the eye nerves), thyroid, "
+                               "parathyroid or lymph nodes, and no female anatomy.", "acSmall"))
         card.body.addWidget(self._guide)
         return card
 

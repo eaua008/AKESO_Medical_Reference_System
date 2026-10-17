@@ -16,7 +16,7 @@ const BASE = "";      // relative: akeso://anatomy/ in the app, any folder in te
 const LAYERS = ["skin", "muscle", "bone", "organ"];          // outer -> inner
 const SYSTEM_COLOURS = {
   nervous: 0xf2b8c6, cardiovascular: 0xc0392b, respiratory: 0xf5a3a3,
-  digestive: 0xd9915a, urinary: 0xe0c060, endocrine: 0xa98bd8,
+  digestive: 0xd9915a, urinary: 0xe0c060, endocrine: 0xa98bd8, reproductive: 0xd98fb0,
 };
 const LAYER_COLOURS = { skin: 0xe8b99a, muscle: 0xb04a4a, bone: 0xeee6d2 };
 // Blood vessels and nerves: switched on separately (not part of the peel
@@ -146,6 +146,7 @@ function material(part, id) {
   });
 }
 
+let hairOn = false;
 function applyLayers() {
   const hidden = new Set(), ghosts = new Set();
   for (const e of entries.values()) for (const id of e.ids) (e.kind === "hide" ? hidden : ghosts).add(id);
@@ -154,6 +155,7 @@ function applyLayers() {
     const layerOpacity = i === 3 ? 1 : Math.max(0, Math.min(1, 1 - (layerValue - i)));
     for (const m of byLayer[name]) {
       let opacity = isolated ? (isolated.ids.has(m.name) ? 1 : 0) : layerOpacity;
+      if (parts[m.name] && parts[m.name].hair && !hairOn) opacity = 0;   // hair stays off until asked for
       if (hidden.has(m.name)) opacity = 0;
       else if (ghosts.has(m.name)) opacity = Math.min(opacity, 0.16);   // see-through
       m.visible = opacity > 0.02;
@@ -524,6 +526,7 @@ window.akeso = {
   restore(key) { restore(key); },
   showAll() { showAll(); },
   setExtra(name, on) { setExtra(name, on); },
+  setHair(on) { hairOn = !!on; applyLayers(); },
   setColor(id, whole, hex) { setColour(id, !!whole, hex); },
   resetColor(id, whole) { resetColour(id, !!whole); },
   setKindColor(kind, hex) { setKindColour(kind, hex); },

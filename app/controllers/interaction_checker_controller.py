@@ -18,7 +18,7 @@ from app.core.theme import Theme
 from app.services.case_study_service import CaseStudyService, MedicineOption
 from app.services.drug_safety_service import DrugSafetyService, SafetyReport
 from app.ui.views.interaction_checker_view import InteractionCheckerView
-from app.ui.views.interaction_dialogs import AddDrugDialog, ConfirmDialog, SaveCaseDialog
+from app.ui.views.interaction_dialogs import ConfirmDialog, SaveCaseDialog
 from app.ui.views.interaction_widgets import VERDICTS
 
 
@@ -225,10 +225,9 @@ class InteractionCheckerController(QObject):
         self._excluded.discard(medicine_id)
         self._draw_checker()
 
-    def _add_drug(self) -> None:
-        dialog = AddDrugDialog(self._view, self._cases.medicine_options(), set(self._regimen))
-        if dialog.exec() == QDialog.DialogCode.Accepted and dialog.chosen is not None:
-            self._regimen.append(dialog.chosen.medicine_id)
+    def _add_drug(self, medicine_id: str) -> None:
+        if medicine_id and medicine_id not in self._regimen:
+            self._regimen.append(medicine_id)
             self._draw_checker()
 
     # ------------------------------------------------- linked to a note
