@@ -16,8 +16,9 @@ symptom scrolls that column instead of stretching the page.
 
 from typing import Optional
 
-from PySide6.QtCore import Qt, QTimer, Signal
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QTimer, Signal
 from PySide6.QtWidgets import (
+    QGraphicsOpacityEffect,
     QButtonGroup,
     QLayout,
     QCheckBox,
@@ -110,7 +111,9 @@ class MatchCard(QFrame):
 
         # The two weighted values the ranking really uses, then the plain
         # counts. Hover for the full breakdown (hallmarks, intensity, boosters).
-        why = "\n".join(match.why())
+        # An open card already shows this working in its body, so the hover
+        # text only appears on a closed one, and says what it is.
+        why = "" if expanded else "Why it ranks here:\n" + "\n".join(match.why())
         score = QVBoxLayout()
         score.setSpacing(2)
         headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}",
@@ -1193,6 +1196,21 @@ class SymptomCheckerView(QWidget):
             else:
                 bar.setValue(keep)
         QTimer.singleShot(0, settle)
+        self._fade_in(new)
+
+    @staticmethod
+    def _fade_in(card: QWidget) -> None:
+        """Ease a freshly opened or closed card in instead of snapping."""
+        effect = QGraphicsOpacityEffect(card)
+        effect.setOpacity(0.0)
+        card.setGraphicsEffect(effect)
+        anim = QPropertyAnimation(effect, b"opacity", card)
+        anim.setDuration(220)
+        anim.setStartValue(0.0)
+        anim.setEndValue(1.0)
+        anim.setEasingCurve(QEasingCurve.Type.OutCubic)
+        anim.finished.connect(lambda: card.setGraphicsEffect(None))
+        anim.start(QPropertyAnimation.DeletionPolicy.DeleteWhenStopped)
 
     def _build_triage(self, result: CheckerResult) -> QWidget:
         danger = result.triage_level in ("EMERGENCY", "URGENT")
@@ -1326,7 +1344,13 @@ class SymptomCheckerView(QWidget):
         middle = HScrollArea()
         middle.setObjectName("ccMxScroll")
         middle.setWidget(grid_host)
-        middle.fit_height()
+        # Exactly header + one fixed-height row per condition (+ the scroll bar).
+        # Asking the grid for its height here came back too short when there
+        # were many conditions, which cut off the last rows (#10, #11 showed
+        # no cells at all).
+        from app.core import soft_scale
+        middle.setFixedHeight(soft_scale.px(self.MX_HEAD) + len(matches) * soft_scale.px(self.MX_ROW)
+                              + middle.horizontalScrollBar().sizeHint().height() + 4)
 
         # ---- right, pinned: triage and match
         right, right_stack = column("ccMxPinRight", self.MX_TRIAGE_W + self.MX_MATCH_W)
@@ -1351,7 +1375,7 @@ class SymptomCheckerView(QWidget):
             slot.addStretch(1)
             row.addWidget(urgency_slot)
 
-            why = "\n".join(match.why())
+            why = "Why it ranks here:\n" + "\n".join(match.why())
             score = QVBoxLayout()
             score.setSpacing(1)
             headline = _label(f"covers {match.coverage:.0%} \u00b7 explains {match.explained:.0%}"

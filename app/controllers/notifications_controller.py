@@ -19,6 +19,7 @@ PAGE = 30
 
 class NotificationsController(QObject):
     open_post = Signal(str)
+    open_ref = Signal(str, str)              # ref kind, ref id (friends, shares, groups)
     unread_changed = Signal(int)
 
     def __init__(self, view: NotificationsView, service: NotificationService) -> None:
@@ -81,6 +82,8 @@ class NotificationsController(QObject):
             self._view.mark_row_read(notification.id)
         if notification.post_id:
             self.open_post.emit(notification.post_id)
+        elif notification.ref_kind:
+            self.open_ref.emit(notification.ref_kind, notification.ref_id or "")
 
     def _delete(self, notification: Notification) -> None:
         """The row's trash button (migration 016)."""

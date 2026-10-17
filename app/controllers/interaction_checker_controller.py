@@ -125,6 +125,7 @@ class InteractionCheckerController(QObject):
         tab.set_options(options)
         tab.set_quick(self._cases.quick_candidates(), self._candidate_id)
         tab.set_conditions(self._safety.conditions(), self._conditions)
+        tab.set_other_conditions(self._safety.disease_conditions(), self._conditions)
         tab.set_regimen([by_id[m] for m in self._regimen if m in by_id],
                         set(self._regimen) - self._excluded)
         candidate = by_id.get(self._candidate_id)
@@ -299,7 +300,7 @@ class InteractionCheckerController(QObject):
         """A case in words, for the Study Notebook's quick view. The verdict
         is worked out from today's reference data, never stored."""
         names = {o.medicine_id: o.name for o in self._cases.medicine_options()}
-        labels = {c.id: c.label for c in self._safety.conditions()}
+        labels = {c.id: c.label for c in self._safety.all_conditions()}
         report = self._evaluate(candidate_id, list(regimen_ids), set(condition_ids))
         text, tone = VERDICTS[report.verdict][:2]
         return {"candidate": names.get(candidate_id, ""),

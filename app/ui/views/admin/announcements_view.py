@@ -194,6 +194,7 @@ class AnnouncementsAdminView(QWidget):
     edit_requested = Signal(object)        # Announcement
     preview_requested = Signal(object)
     end_requested = Signal(object)
+    delete_requested = Signal(object)
 
     def __init__(self) -> None:
         super().__init__()
@@ -235,7 +236,7 @@ class AnnouncementsAdminView(QWidget):
             stats.addWidget(tile, 0, index)
         column.addLayout(stats)
 
-        self.table = DataTable(COLUMNS, stretch=[TITLE], fixed={ACTIONS: 120})
+        self.table = DataTable(COLUMNS, stretch=[TITLE], fixed={ACTIONS: 156})
         column.addWidget(self.table)
         self._empty = label("No announcements yet. Click New announcement to write one.",
                             "adEmpty")
@@ -268,6 +269,8 @@ class AnnouncementsAdminView(QWidget):
             if status in ("live", "scheduled"):
                 buttons.append(IconButton("x", "End now", Theme.token("DANGER"),
                                           lambda i=item: self.end_requested.emit(i)))
+            buttons.append(IconButton("trash-2", "Delete announcement", Theme.token("DANGER"),
+                                      lambda i=item: self.delete_requested.emit(i)))
             rows.append([
                 title_cell(item.title, snippet[:120]),
                 text_cell(AUDIENCE_LABELS[item.audience], subtitle=f"by {item.author}"

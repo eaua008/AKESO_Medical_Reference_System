@@ -320,7 +320,6 @@ class DiseaseEncyclopediaView(QWidget):
         self._page_layout.setContentsMargins(30, 18, 30, 30)
         self._page_layout.setSpacing(18)
 
-        self._page_layout.addWidget(self._build_toolbar())
         self._page_layout.addWidget(self._build_filter_bar())
         self._page_layout.addWidget(self._build_grid_container(), 1)
 
@@ -338,24 +337,6 @@ class DiseaseEncyclopediaView(QWidget):
 
     def take_page_header(self, header: QWidget) -> None:
         self._page_layout.removeWidget(header)
-
-    def _build_toolbar(self) -> QWidget:
-        """Just the refresh control now — the title moved to the page
-        header so it can sit above the Directory / Compare tabs."""
-        bar = QWidget()
-        bar.setObjectName("panel")
-
-        layout = QHBoxLayout(bar)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addStretch(1)
-
-        refresh = QPushButton("Refresh")
-        refresh.setObjectName("secondaryButton")
-        refresh.setCursor(Qt.CursorShape.PointingHandCursor)
-        refresh.setToolTip("Re-read the encyclopedia from Supabase")
-        refresh.clicked.connect(lambda _checked: self.refresh_requested.emit())
-        layout.addWidget(refresh)
-        return bar
 
     # ---------------------------------------------------------- filter bar
 

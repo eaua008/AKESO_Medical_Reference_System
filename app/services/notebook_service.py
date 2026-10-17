@@ -109,6 +109,8 @@ class NotebookService:
                 continue
             if f.library == "recent" and not self._is_recent(item):
                 continue
+            if f.library == "shared":
+                continue        # friends' shared notes are listed by the home view itself
             if f.subject_id and item.subject_id != f.subject_id:
                 continue
             if f.kind and not self._is_kind(item, f.kind):

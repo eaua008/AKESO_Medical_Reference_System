@@ -7,6 +7,7 @@ modified by whoever runs it.
 """
 
 import json
+import re
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -121,6 +122,26 @@ class AccountService:
         updated = Profile.from_row(self._profiles.update(diff))
         self._log("profile_updated", {"fields": sorted(diff)})
         return updated
+
+    # ------------------------------------------------- @handle (migration 043)
+
+    @staticmethod
+    def clean_handle(text: str) -> str:
+        return (text or "").strip().lstrip("@").strip().lower()
+
+    def check_handle(self, text: str) -> Optional[str]:
+        """Why this handle can't be used, or None when it can."""
+        handle = self.clean_handle(text)
+        if not re.fullmatch(r"[a-z0-9_]{3,20}", handle):
+            return "Use 3 to 20 lowercase letters, numbers or underscores."
+        return self._profiles.handle_check(handle)
+
+    def handle_change_info(self) -> dict:
+        return self._profiles.handle_change_info()
+
+    def change_handle(self, text: str) -> Profile:
+        self._profiles.change_handle(self.clean_handle(text))
+        return Profile.from_row(self._profiles.get())
 
     def set_avatar(self, png: bytes) -> Profile:
         if not png.startswith(PNG_SIGNATURE):

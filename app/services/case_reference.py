@@ -303,7 +303,7 @@ class CaseReference:
             return None
         names = {m.id: m.name for m in self._medicines.all_medicines()} \
             if self._medicines else {}
-        labels = {c.id: c.label for c in self._safety.conditions()}
+        labels = {c.id: c.label for c in self._safety.all_conditions()}
         candidate_id = case.get("candidate_id", "")
         regimen = list(case.get("regimen_ids", []))
         conditions = set(case.get("condition_ids", []))

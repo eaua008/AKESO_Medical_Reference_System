@@ -57,6 +57,33 @@ class ProfileRepository:
         return bool(self._do(lambda: self._s.rpc("handle_available", {"p_handle": handle})
                              .execute().data))
 
+    # Changing the handle (migration 043): only through these functions,
+    # which check the format, reserved words, taken handles and the
+    # once-every-30-days rule.
+    def handle_check(self, handle: str) -> Optional[str]:
+        return self._rpc_043("handle_check", {"p_handle": handle})
+
+    def handle_change_info(self) -> dict:
+        return self._rpc_043("handle_change_info", {}) or {}
+
+    def change_handle(self, handle: str) -> str:
+        return str(self._rpc_043("change_handle", {"p_handle": handle}))
+
+    def _rpc_043(self, function: str, params: dict):
+        def call():
+            return self._s.rpc(function, params).execute().data
+        try:
+            return self._s.run(call)
+        except AccountError:
+            raise
+        except Exception as exc:  # noqa: BLE001
+            text = (getattr(exc, "message", None) or str(exc)).lower()
+            if "could not find the function" in text or "schema cache" in text:
+                raise AccountError("Changing your handle isn't set up on Akeso's server yet. "
+                                   "The administrator needs to run "
+                                   "database/migrations/043_change_handle.sql.") from exc
+            raise AccountError(friendly(exc)) from exc
+
     # ------------------------------------------------------------- avatar
 
     def upload_avatar(self, png: bytes) -> str:

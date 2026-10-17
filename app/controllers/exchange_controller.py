@@ -35,6 +35,7 @@ class ExchangeController(QObject):
     notifications_changed = Signal()
     post_requested = Signal(str)             # open a post on top of the current page (shell)
     edit_profile_requested = Signal()        # "Edit my profile" -> Account Settings
+    profile_loaded = Signal(object)          # MemberProfile shown (Friends adds its buttons)
 
     def __init__(self, page: ExchangePage, service: ExchangeService,
                  notebook: Optional[NotebookService] = None,
@@ -438,6 +439,7 @@ class ExchangeController(QObject):
             initials = circle_pixmap(None, 88, profile.display_name or profile.handle,
                                      Theme.token("PRIMARY"), "#FFFFFF")
             view.show_profile(profile, initials)
+            self.profile_loaded.emit(profile)
             if profile.avatar_path and self._avatar_loader is not None:
                 path = profile.avatar_path
                 call_in_background(lambda: self._avatar_loader(path),

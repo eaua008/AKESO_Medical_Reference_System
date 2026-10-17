@@ -70,7 +70,7 @@ ACTION_LABELS = {
     "role": "Changed role", "suspend": "Suspended", "reactivate": "Reactivated",
     "delete_user": "Deleted account",
     "announce": "Announced", "announce_edit": "Edited announcement",
-    "announce_end": "Ended announcement",
+    "announce_end": "Ended announcement", "announce_delete": "Deleted announcement",
 }
 
 
@@ -100,6 +100,7 @@ class AdminUser:
     deletion_scheduled_for: Optional[datetime]
     registry_id: str
     is_me: bool
+    app_version: str = ""        # newest computer's Akeso version (migration 047)
 
     @classmethod
     def from_row(cls, row: dict) -> "AdminUser":
@@ -112,7 +113,8 @@ class AdminUser:
             suspended=bool(row.get("suspended")),
             suspended_reason=row.get("suspended_reason") or "",
             deletion_scheduled_for=parse_time(row.get("deletion_scheduled_for")),
-            registry_id=row.get("registry_id") or "", is_me=bool(row.get("is_me")))
+            registry_id=row.get("registry_id") or "", is_me=bool(row.get("is_me")),
+            app_version=(row.get("app_version") or "").strip())
 
     @property
     def status(self) -> str:
@@ -123,6 +125,12 @@ class AdminUser:
     @property
     def role_label(self) -> str:
         return ROLE_LABELS.get(self.role, self.role.title())
+
+    @property
+    def version_key(self) -> tuple:
+        """1.0.10 sorts after 1.0.9; unknown versions sort first."""
+        parts = [int(p) if p.isdigit() else 0 for p in self.app_version.split(".")] if self.app_version else []
+        return tuple(parts)
 
     @property
     def initial(self) -> str:

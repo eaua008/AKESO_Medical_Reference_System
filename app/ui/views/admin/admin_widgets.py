@@ -262,10 +262,24 @@ class DataTable(QTableWidget):
             self.setColumnWidth(column, width)
 
     def fit_height(self) -> None:
-        """Grow to show every row, so the page scrolls instead of the table."""
-        height = self.horizontalHeader().height() + 2
+        """Grow to show every row, so the page scrolls instead of the table.
+
+        The header's real height is only known once it is styled and shown,
+        so use its size hint too (a short header left the last rows behind an
+        inner scrollbar), and re-fit whenever the table is shown.
+        """
+        self._fit_wanted = True
+        header = self.horizontalHeader()
+        head = max(header.height(), header.sizeHint().height())
+        height = head + self.frameWidth() * 2 + 2
         height += sum(self.rowHeight(r) for r in range(self.rowCount()))
-        self.setFixedHeight(max(height, self.horizontalHeader().height() + ROW_HEIGHT))
+        self.setFixedHeight(max(height, head + ROW_HEIGHT))
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+    def showEvent(self, event) -> None:  # noqa: N802
+        super().showEvent(event)
+        if getattr(self, "_fit_wanted", False):
+            self.fit_height()
 
 
 def repolish_all(widget: QWidget) -> None:
