@@ -53,6 +53,8 @@ class ConditionCard(QFrame):
         self._bookmarked = bookmarked
 
         self.setObjectName("conditionCard")
+        # The whole card opens the entry, not just "Inspect Entry" (UAT).
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setMinimumWidth(CARD_MIN_WIDTH)
         self.setSizePolicy(
             QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
@@ -159,6 +161,14 @@ class ConditionCard(QFrame):
         return row
 
     # ----------------------------------------------------------- behaviour
+
+    def mouseReleaseEvent(self, event) -> None:
+        # Buttons on the card (bookmark, Inspect Entry) handle their own
+        # clicks, so this only fires for a click on the card itself.
+        if (event.button() == Qt.MouseButton.LeftButton
+                and self.rect().contains(event.position().toPoint())):
+            self.inspect_requested.emit(self._disease.id)
+        super().mouseReleaseEvent(event)
 
     def _toggle_bookmark(self) -> None:
         self._bookmarked = not self._bookmarked
@@ -310,7 +320,6 @@ class DiseaseEncyclopediaView(QWidget):
         self._page_layout.setContentsMargins(30, 18, 30, 30)
         self._page_layout.setSpacing(18)
 
-        self._page_layout.addWidget(self._build_toolbar())
         self._page_layout.addWidget(self._build_filter_bar())
         self._page_layout.addWidget(self._build_grid_container(), 1)
 
@@ -328,24 +337,6 @@ class DiseaseEncyclopediaView(QWidget):
 
     def take_page_header(self, header: QWidget) -> None:
         self._page_layout.removeWidget(header)
-
-    def _build_toolbar(self) -> QWidget:
-        """Just the refresh control now — the title moved to the page
-        header so it can sit above the Directory / Compare tabs."""
-        bar = QWidget()
-        bar.setObjectName("panel")
-
-        layout = QHBoxLayout(bar)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addStretch(1)
-
-        refresh = QPushButton("Refresh")
-        refresh.setObjectName("secondaryButton")
-        refresh.setCursor(Qt.CursorShape.PointingHandCursor)
-        refresh.setToolTip("Re-read the encyclopedia from Supabase")
-        refresh.clicked.connect(lambda _checked: self.refresh_requested.emit())
-        layout.addWidget(refresh)
-        return bar
 
     # ---------------------------------------------------------- filter bar
 

@@ -37,6 +37,7 @@ from app.models.drug_safety import (
 from app.repositories.cached_safety_repository import CachedSafetyRepository
 
 UNKNOWN = "unknown"          # no reference row for this pair
+DX = "dx:"                  # prefix of a condition from the Disease Encyclopedia
 
 # Verdict keys the view draws.
 VERDICT_COMPATIBLE = "compatible"      # everything checked and on record as safe
@@ -126,8 +127,10 @@ class SafetyReport:
 
 class DrugSafetyService:
     def __init__(self, medicines: Callable[[], Iterable] = list,
-                 repository: Optional[CachedSafetyRepository] = None) -> None:
+                 repository: Optional[CachedSafetyRepository] = None,
+                 diseases: Callable[[], Iterable] = list) -> None:
         self._medicines = medicines                  # MedicineService.all_medicines
+        self._diseases = diseases                    # DiseaseService.all_diseases
         self._repository = repository or CachedSafetyRepository()
 
     # --------------------------------------------------------------- data
@@ -137,6 +140,29 @@ class DrugSafetyService:
 
     def conditions(self) -> list[PatientCondition]:
         return sorted(self.reference().conditions, key=lambda c: c.sort_order)
+
+    def disease_conditions(self) -> list[PatientCondition]:
+        """Every Disease Encyclopedia condition, as an extra case condition
+        (its id is "dx:" + the disease id, so it can't clash with a comorbidity)."""
+        return sorted((PatientCondition(id=DX + d.id, label=d.name,
+                                        description=getattr(d, "scientific_name", "") or "")
+                       for d in self._diseases()), key=lambda c: c.label.lower())
+
+    def all_conditions(self) -> list[PatientCondition]:
+        return self.conditions() + self.disease_conditions()
+
+    def _disease_row(self, drug: Drug, condition: PatientCondition) -> Optional[ConditionSafety]:
+        """What the encyclopedia says about this medicine for this disease."""
+        disease_id = condition.id[len(DX):]
+        for disease in self._diseases():
+            if disease.id != disease_id:
+                continue
+            link = next((m for m in disease.medicines if m.id == drug.medicine_id), None)
+            if link is not None:
+                return ConditionSafety(medicine_id=drug.medicine_id, condition_id=condition.id,
+                                       safety=link.safety, summary=link.note,
+                                       source_attribution="Disease Encyclopedia")
+        return None
 
     def drug_for(self, name: str, medicine_id: str = "", is_candidate: bool = False) -> Drug:
         medicine = next((m for m in self._medicines() if m.id == medicine_id), None) \
@@ -155,7 +181,9 @@ class DrugSafetyService:
         """Run all three layers. candidate=None checks the regimen on its own
         (that is what the "Drug Safety Check" stat card shows)."""
         ref = self.reference()
-        chosen = [c for c in self.conditions() if c.id in set(condition_ids)]
+        wanted = set(condition_ids)
+        chosen = [c for c in self.conditions() if c.id in wanted]
+        chosen += [c for c in self.disease_conditions() if c.id in wanted]
         checkable = [d for d in regimen if d.medicine_id]
         report = SafetyReport(
             candidate=candidate or Drug(name="Current regimen"),
@@ -168,7 +196,8 @@ class DrugSafetyService:
         condition_targets = [candidate] if candidate and candidate.medicine_id else checkable
         for condition in chosen:
             for drug in condition_targets:
-                row = ref.safety_for(drug.medicine_id, condition.id)
+                row = (self._disease_row(drug, condition) if condition.id.startswith(DX)
+                       else ref.safety_for(drug.medicine_id, condition.id))
                 report.conditions.append(ConditionFinding(
                     condition=condition,
                     drug=drug,

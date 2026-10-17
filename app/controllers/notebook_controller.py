@@ -54,6 +54,8 @@ class NotebookController(QObject):
     edit_in_drug_checker = Signal(str)          # item id
     data_changed = Signal()                     # other modules may need a refresh
     share_requested = Signal(str)               # item id -> Clinical Exchange composer
+    # "Share…" / "Manage sharing…" with friends (migration 041): action, item id
+    social_action = Signal(str, str)
 
     def __init__(self, page: NotebookPage, service: NotebookService,
                  library: Optional[ReferenceLibrary] = None,
@@ -363,6 +365,10 @@ class NotebookController(QObject):
             return
         if action == "share":
             self.share_requested.emit(item_id)
+            return
+        if action in ("share_friends", "manage_sharing"):
+            self.pages.save_note(item_id)          # share what is on screen now
+            self.social_action.emit(action, item_id)
             return
         if action == "pin":
             self.service.set_pinned(item_id, not item.pinned)

@@ -3,9 +3,11 @@ the bell, the dashboard's "Announcements" card, and the sheet that opens
 by itself for Critical ones.
 
 Loads my_announcements() in the background shortly after the dashboard
-appears, and again at most every few minutes (returning to the dashboard,
-opening Notifications, or the bell's regular check), so one published
-mid-session still arrives.
+appears. Every 2 seconds after that it asks the server for a tiny
+fingerprint of the announcements this account can see (announcements_stamp,
+migration 047) and downloads the full list only when that changes, so one
+published, edited, ended or deleted mid-session shows up within seconds.
+Without migration 047 it falls back to a full check every 30 seconds.
 
     unread   live announcements this account has not opened yet: they count
              on the bell's badge and show as unread in Notifications
@@ -28,6 +30,8 @@ from app.ui.views.announcement_widgets import AnnouncementDialog, AnnouncementLi
 
 FIRST_CHECK_MS = 1500
 RECHECK_SECONDS = 5 * 60
+POLL_MS = 2000
+FALLBACK_SECONDS = 30
 
 
 class AnnouncementController(QObject):
@@ -45,10 +49,17 @@ class AnnouncementController(QObject):
         self._showing = False
         self._loaded_at = 0.0
         self._batch = (0, 0)                  # (shown, total) for "2 of 3"
+        self._stamp: Optional[str] = None     # last fingerprint seen
+        self._polling = False
+        self._stamp_works = True
+        self._timer = QTimer(self)
+        self._timer.setInterval(POLL_MS)
+        self._timer.timeout.connect(self._poll)
         card.opened.connect(self._open)
 
     def start(self) -> None:
         QTimer.singleShot(FIRST_CHECK_MS, self.refresh)
+        self._timer.start()
 
     def dashboard_shown(self) -> None:
         if self._loaded_at and time.monotonic() - self._loaded_at >= RECHECK_SECONDS:
@@ -99,6 +110,29 @@ class AnnouncementController(QObject):
         call_in_background(self._repo.mine, self._loaded, lambda _m: None, owner=self._card)
 
     # ------------------------------------------------------------ private
+
+    def _poll(self) -> None:
+        """The 2-second check: ask for the fingerprint, reload only on a change."""
+        if self._polling or not self._loaded_at or not self._card.window().isVisible():
+            return
+        if not self._stamp_works:
+            if time.monotonic() - self._loaded_at >= FALLBACK_SECONDS:
+                self.refresh()
+            return
+        self._polling = True
+
+        def got(stamp: str) -> None:
+            self._polling = False
+            if stamp != self._stamp:
+                self._stamp = stamp
+                self.refresh()
+
+        def failed(message: str) -> None:
+            self._polling = False
+            if "installed" in message:          # migration 047 missing; being offline just retries
+                self._stamp_works = False
+
+        call_in_background(self._repo.stamp, got, failed, owner=self._card)
 
     def _loaded(self, items: list[Announcement]) -> None:
         self._items = items

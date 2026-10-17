@@ -1,6 +1,6 @@
 import json, numpy as np, trimesh, sys
-D = "/var/tmp/bp3d/isa_BP3D_4.0_obj_99/"
-parts = json.load(open("/var/tmp/anat/build/parts.json"))
+D = "C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/bp3d/isa_BP3D_4.0_obj_99/"
+parts = json.load(open("C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/anat/parts.json"))
 def load(fj):
     v, f = [], []
     for line in open(D + fj + ".obj"):
@@ -15,5 +15,5 @@ for layer in sys.argv[1:] or ("skin", "bone", "organ", "muscle", "vessel", "nerv
         if p["layer"] == layer:
             m = load(fj)
             scene.add_geometry(m, node_name=fj, geom_name=fj)
-    scene.export(f"/var/tmp/anat/build/{layer}_raw.glb")
+    scene.export(f"C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/anat/{layer}_raw.glb")
     print(layer, len(scene.geometry), sum(len(g.faces) for g in scene.geometry.values()))

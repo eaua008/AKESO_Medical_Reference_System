@@ -182,6 +182,9 @@ class LibraryRail(QScrollArea):
     def __init__(self, filters: Filters) -> None:
         super().__init__()
         self.filters = filters
+        # Notes friends shared with me (migration 041); None = not signed in
+        # or sharing not set up, and the row isn't shown.
+        self.shared_count: Optional[int] = None
         self.setWidgetResizable(True)
         self.setFixedWidth(240)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -223,6 +226,12 @@ class LibraryRail(QScrollArea):
             row = RailRow(icon, text, counts.library.get(key, 0))
             row.set_on(f.library == key and not f.subject_id)
             row.clicked.connect(lambda k=key: self._set(library=k, subject_id=""))
+            self._col.addWidget(row)
+        if self.shared_count is not None:
+            row = RailRow("share-2", "Shared with me", self.shared_count)
+            row.set_on(f.library == "shared")
+            row.setToolTip("Read-only notes your friends shared with you")
+            row.clicked.connect(lambda: self._set(library="shared", subject_id=""))
             self._col.addWidget(row)
 
         new = QPushButton("+ New")
@@ -289,7 +298,7 @@ class NotebookCard(_Clickable):
     pin_clicked = Signal()
 
     def __init__(self, item: NotebookItem, subject: str, selected: bool,
-                 compact: bool) -> None:
+                 compact: bool, shared: bool = False) -> None:
         super().__init__("nbCard")
         self.item = item
         self.setProperty("selected", "true" if selected else "false")
@@ -334,6 +343,11 @@ class NotebookCard(_Clickable):
             meta.addWidget(tags, 1)
         else:
             meta.addStretch(1)
+        if shared:
+            # Shared with friends (migration 041): a small badge on the card.
+            badge = QLabel("Shared", objectName="acPill")
+            badge.setToolTip("Friends have a read-only copy. Right-click > Manage sharing.")
+            meta.addWidget(badge)
         meta.addWidget(QLabel(short_date(item.updated_at), objectName="nbCardMeta"))
 
         if compact:
@@ -393,6 +407,7 @@ class NotebookHome(QWidget):
     subject_new = Signal(object)                # NamePopup
     subject_menu = Signal(str, QPoint)
     view_mode_changed = Signal(str)             # grid | list
+    shared_shown = Signal()                     # "Shared with me" selected (migration 041)
 
     def __init__(self) -> None:
         super().__init__()
@@ -572,6 +587,16 @@ class NotebookHome(QWidget):
         wrap.addStretch(1)
         self.scroll.setWidget(grid_host)
         col.addWidget(self.scroll, 1)
+        # "Shared with me" (migration 041): shown instead of the cards.
+        from app.ui.views.social.share_views import SharedWithMeList
+        self.shared_list = SharedWithMeList()
+        self.shared_scroll = QScrollArea()
+        self.shared_scroll.setWidgetResizable(True)
+        self.shared_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.shared_scroll.setWidget(self.shared_list)
+        self.shared_scroll.hide()
+        col.addWidget(self.shared_scroll, 1)
+        self.shared_ids: set[str] = set()       # my notes shared with friends (badge)
         self.set_view_mode("grid")
         return host
 
@@ -613,6 +638,17 @@ class NotebookHome(QWidget):
 
     def show_items(self, items: list[NotebookItem], subjects: dict[str, str],
                    selected_id: str, total: int) -> None:
+        sharing = self.filters.library == "shared"
+        self.shared_scroll.setVisible(sharing)
+        self.scroll.setVisible(not sharing)
+        self.found.setVisible(not sharing)
+        if sharing:
+            for card in self._cards:
+                card.setParent(None)
+                card.deleteLater()
+            self._cards = []
+            self.shared_shown.emit()
+            return
         for card in self._cards:
             card.setParent(None)
             card.deleteLater()
@@ -620,7 +656,7 @@ class NotebookHome(QWidget):
         compact = self.view_mode == "list"
         for item in items:
             card = NotebookCard(item, subjects.get(item.subject_id, ""),
-                                item.id == selected_id, compact)
+                                item.id == selected_id, compact, item.id in self.shared_ids)
             card.clicked.connect(lambda iid=item.id: self.item_clicked.emit(iid))
             card.pin_clicked.connect(lambda iid=item.id: self.item_action.emit("pin", iid))
             card.right_clicked.connect(lambda where, it=item: self._card_menu(it, where))
@@ -632,9 +668,16 @@ class NotebookHome(QWidget):
         self.found.setText(f"{n} item{'s' if n != 1 else ''} found")
         self.empty.setVisible(n == 0)
         if total == 0:
-            self.empty_title.setText("Nothing here yet")
-            self.empty_text.setText("Write a note, or save a case from the Symptom Checker "
-                                    "or the Drug Interaction Checker.")
+            # A short guide, so a first-time user knows the notebook is for
+            # their own writing and how things get into it (UAT).
+            self.empty_title.setText("Your Study Notebook is empty")
+            self.empty_text.setText(
+                "This notebook is for your own study notes.\n\n"
+                "\u2022  Click \u201cNew Note\u201d at the top to write a note.\n"
+                "\u2022  Use \u201cNew Case\u201d to start a case study.\n"
+                "\u2022  Click \u201cSave to Notebook\u201d in the Symptom Checker, or "
+                "\u201cSave as Case Study\u201d in the Drug Interaction Checker, to keep "
+                "a run here and add your notes to it.")
         else:
             self.empty_title.setText("No items match")
             self.empty_text.setText("Try another search, subject, type or tag.")
@@ -664,6 +707,11 @@ class NotebookHome(QWidget):
         menu.addAction("Unpin" if item.pinned else "Pin",
                        lambda: self.item_action.emit("pin", item.id))
         menu.addAction("Duplicate", lambda: self.item_action.emit("duplicate", item.id))
+        if self.rail.shared_count is not None:
+            menu.addAction("Share…", lambda: self.item_action.emit("share_friends", item.id))
+            if item.id in self.shared_ids:
+                menu.addAction("Manage sharing…",
+                               lambda: self.item_action.emit("manage_sharing", item.id))
         if item.has_case_data:
             menu.addAction("Share to Clinical Exchange…",
                            lambda: self.item_action.emit("share", item.id))

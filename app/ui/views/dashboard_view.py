@@ -3,15 +3,16 @@
 Display only. It shows what DashboardController hands it and emits what
 the user clicked; it never loads anything itself.
 
-Layout ("clean + charts"):
+Layout (a hero, then a main column and a side column):
 
-    greeting, date, role, quick actions
+    hero: greeting, date, role, and four launch tiles
     announcements from the admins (only while any are live)
-    daily health tip (only when tips exist in data/health_tips.json)
-    Study activity: streak, 14-day chart, this week     | Finish your profile (until 100%)
-    Explore by body system: tiles with disease counts
-    Continue studying                                   | Clinical Exchange (+ unread)
-    Recent searches     |     Bookmarks     |     Reference library
+    main column                         | side column
+      Study activity (streak, chart)    |   Finish your profile (until 100%)
+      Explore by body system            |   Health tip of the day
+      Continue studying                 |   Clinical Exchange (+ unread)
+      Recent searches                   |   Bookmarks
+                                        |   Reference library
 """
 
 from dataclasses import dataclass
@@ -33,11 +34,12 @@ from app.ui.views.account.account_widgets import (
 from app.ui.views.account.overview_tab import STAT_ICONS
 
 QUICK_ACTIONS = [
-    ("symptom-checker", "Check symptoms", "stethoscope", "acPrimary"),
-    ("drug-checker", "Check interactions", "arrow-left-right", "acGhost"),
-    ("new-note", "New note", "notebook-pen", "acGhost"),
-    ("emergency", "Emergency Guide", "triangle-alert", "acDanger"),
+    ("symptom-checker", "Check symptoms", "Rank the likely conditions", "stethoscope", "primary"),
+    ("drug-checker", "Check interactions", "Medicines and conditions", "arrow-left-right", "info"),
+    ("new-note", "New note", "Start a study note", "notebook-pen", "good"),
+    ("emergency", "Emergency Guide", "First-aid protocols", "triangle-alert", "danger"),
 ]
+TILE_TOKENS = {"primary": "PRIMARY", "info": "ACCENT_2", "good": "SUCCESS", "danger": "DANGER"}
 LIBRARY = [
     ("diseases", "Diseases", "book-open"),
     ("symptoms", "Symptoms", "activity"),
@@ -211,6 +213,49 @@ class SystemTile(QFrame):
 
 # ------------------------------------------------------------------- lists
 
+class LaunchTile(QFrame):
+    """A big, clickable shortcut in the hero: coloured icon, title, one line."""
+
+    clicked = Signal(str)
+
+    def __init__(self, key: str, title: str, hint: str, icon: str, tone: str) -> None:
+        super().__init__()
+        self.setObjectName("acRow")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._key = key
+        row = QHBoxLayout(self)
+        row.setContentsMargins(14, 12, 14, 12)
+        row.setSpacing(12)
+        self._tone = tone
+        self._badge = QFrame()
+        self._badge.setFixedSize(40, 40)
+        inner = QVBoxLayout(self._badge)
+        inner.setContentsMargins(0, 0, 0, 0)
+        inner.addWidget(icon_label(icon, 20, "#FFFFFF"), 0, Qt.AlignmentFlag.AlignCenter)
+        row.addWidget(self._badge, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.restyle()
+        text = QVBoxLayout()
+        text.setSpacing(1)
+        name = label(title, "acRowTitle", wrap=False)
+        name.setMinimumWidth(40)
+        text.addWidget(name)
+        sub = label(hint, "acSmall", wrap=False)
+        sub.setMinimumWidth(40)
+        text.addWidget(sub)
+        row.addLayout(text, 1)
+
+    def restyle(self) -> None:
+        """The badge colour is a theme token, so redo it after a theme switch."""
+        colour = Theme.token(TILE_TOKENS.get(self._tone, "PRIMARY"))
+        self._badge.setStyleSheet(f"background-color: {colour}; border-radius: 12px;")
+
+    def mouseReleaseEvent(self, event) -> None:  # noqa: N802
+        if (event.button() == Qt.MouseButton.LeftButton
+                and self.rect().contains(event.position().toPoint())):
+            self.clicked.emit(self._key)
+        super().mouseReleaseEvent(event)
+
+
 class ListRow(QFrame):
     clicked = Signal(object)              # the DashRow
 
@@ -334,52 +379,51 @@ class DashboardView(QWidget):
         from app.ui.views.announcement_widgets import AnnouncementList
         self.announcements = AnnouncementList()
         column.addWidget(self.announcements)
-        self.tip = self._build_tip()
-        column.addWidget(self.tip)
 
-        top = QHBoxLayout()
-        top.setSpacing(16)
-        top.addWidget(self._build_activity(), 3)
-        self.profile = self._build_profile()
-        top.addWidget(self.profile, 2)
-        column.addLayout(top)
+        # Two columns: what you study on the left, what needs a look on the right.
+        columns = QHBoxLayout()
+        columns.setSpacing(16)
+        main = QVBoxLayout()
+        main.setSpacing(16)
+        side = QVBoxLayout()
+        side.setSpacing(16)
+        columns.addLayout(main, 5)
+        columns.addLayout(side, 3)
+        column.addLayout(columns)
 
-        column.addWidget(self._build_systems())
-
-        middle = QHBoxLayout()
-        middle.setSpacing(16)
+        main.addWidget(self._build_activity())
+        main.addWidget(self._build_systems())
         self.notes = ListCard("Continue studying", "Your most recent notes and cases.",
                               "notebook-pen", "Open notebook")
         self.notes.row_clicked.connect(lambda r: self.note_opened.emit(r.key))
         self.notes.see_all.connect(lambda: self.action_requested.emit("notebook"))
+        main.addWidget(self.notes)
+        self.searches = ListCard("Recent searches", "From the search bar.", "history")
+        self.searches.row_clicked.connect(self.search_opened.emit)
+        self.searches.see_all.connect(lambda: self.action_requested.emit("history"))
+        main.addWidget(self.searches)
+        main.addStretch(1)
+
+        self.profile = self._build_profile()
+        side.addWidget(self.profile)
+        self.tip = self._build_tip()
+        side.addWidget(self.tip)
         self.exchange = ListCard("Clinical Exchange", "Newest hypothetical cases.",
                                  "message-circle", "Open board")
         self.exchange.row_clicked.connect(lambda r: self.post_opened.emit(r.key))
         self.exchange.see_all.connect(lambda: self.action_requested.emit("exchange"))
-        middle.addWidget(self.notes, 1)
-        middle.addWidget(self.exchange, 1)
-        column.addLayout(middle)
-
-        bottom = QGridLayout()
-        bottom.setHorizontalSpacing(16)
-        bottom.setVerticalSpacing(16)
-        self.searches = ListCard("Recent searches", "From the search bar.", "history")
-        self.searches.row_clicked.connect(self.search_opened.emit)
-        self.searches.see_all.connect(lambda: self.action_requested.emit("history"))
+        side.addWidget(self.exchange)
         self.bookmarks = ListCard("Bookmarks", "Entries you starred.", "bookmark")
         self.bookmarks.row_clicked.connect(lambda r: self.bookmark_opened.emit(r.extra, r.key))
         self.bookmarks.see_all.connect(lambda: self.action_requested.emit("favorites"))
-        bottom.addWidget(self.searches, 0, 0)
-        bottom.addWidget(self.bookmarks, 0, 1)
-        bottom.addWidget(self._build_library(), 0, 2)
-        for i in range(3):
-            bottom.setColumnStretch(i, 1)
-        column.addLayout(bottom)
-        column.addStretch(1)
+        side.addWidget(self.bookmarks)
+        side.addWidget(self._build_library())
+        side.addStretch(1)
 
         self.scroll.setWidget(page)
         outer.addWidget(self.scroll)
         self.stat_grid.watch(self.scroll.viewport())
+        self.tile_grid.watch(self.scroll.viewport())
         self.system_grid.watch(self.scroll.viewport())
 
     # ------------------------------------------------------------- pieces
@@ -401,13 +445,14 @@ class DashboardView(QWidget):
         self.role = pill("", "acPill")
         top.addWidget(self.role, 0, Qt.AlignmentFlag.AlignTop)
         column.addLayout(top)
-        actions = QHBoxLayout()
-        actions.setSpacing(8)
-        for key, text_, icon, style in QUICK_ACTIONS:
-            actions.addWidget(button(text_, style, icon,
-                                     lambda k=key: self.action_requested.emit(k)))
-        actions.addStretch(1)
-        column.addLayout(actions)
+        tiles = []
+        for key, title, hint, icon, tone in QUICK_ACTIONS:
+            tile = LaunchTile(key, title, hint, icon, tone)
+            tile.clicked.connect(self.action_requested.emit)
+            tiles.append(tile)
+        self.tile_grid = ResponsiveGrid(210, max_columns=4, spacing=10, steps=(4, 2, 1))
+        self.tile_grid.set_cards(tiles)
+        column.addWidget(self.tile_grid)
         return hero
 
     def _build_tip(self) -> QFrame:
@@ -570,6 +615,8 @@ class DashboardView(QWidget):
         self.exchange.set_badge(f"{count} unread" if count else "")
 
     def refresh_theme(self) -> None:
+        for tile in self.findChildren(LaunchTile):
+            tile.restyle()
         refresh_icons(self)
         repolish(self)
         self.chart.update()

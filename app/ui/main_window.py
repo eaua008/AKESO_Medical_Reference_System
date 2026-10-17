@@ -140,6 +140,12 @@ class MainWindow(QMainWindow):
             lambda name: self.setWindowTitle(f"Akeso \u2014 {name}"))
         self._screens.addWidget(self.shell)
         self._screens.setCurrentWidget(self.shell)
+        # Opened from a study group invite link (akeso://join/<token>):
+        # join it now that someone is signed in. Used once.
+        token, self.pending_join = getattr(self, "pending_join", None), None
+        if token and getattr(self.shell, "social", None) is not None:
+            self.shell.show_tab("groups")
+            self.shell.social.groups.join_from_link(token)
         self.setWindowTitle(f"Akeso \u2014 {account.display_name}")
 
     @staticmethod

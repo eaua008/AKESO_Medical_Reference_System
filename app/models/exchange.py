@@ -55,6 +55,12 @@ NOTIFICATION_KINDS = {
     "moderation": ("shield-alert", "Moderation"),
     "mention": ("at-sign", "Mention"),
     "new_post": ("user-check", "Someone you follow posted"),
+    # Friends, shared notes and study groups (migrations 040-042)
+    "friend_request": ("user-check", "Friend request"),
+    "friend_accepted": ("user-check", "New friend"),
+    "notebook_shared": ("share-2", "Note shared with you"),
+    "group_invite": ("users", "Study group invite"),
+    "group_mention": ("at-sign", "Mentioned in a study group"),
 }
 
 
@@ -305,12 +311,17 @@ class Notification:
     message: str
     created_at: Optional[datetime]
     read: bool
+    # What a friend / sharing / study-group notification points at (040):
+    # friend | notebook_share | group_invite | group, and its id.
+    ref_kind: Optional[str] = None
+    ref_id: Optional[str] = None
 
     @classmethod
     def from_json(cls, d: dict) -> "Notification":
         return cls(id=int(d["id"]), kind=d.get("kind", "reply"), post_id=d.get("post_id"),
                    reply_id=d.get("reply_id"), message=d.get("message", ""),
-                   created_at=parse_time(d.get("created_at")), read=bool(d.get("read")))
+                   created_at=parse_time(d.get("created_at")), read=bool(d.get("read")),
+                   ref_kind=d.get("ref_kind"), ref_id=d.get("ref_id"))
 
     @property
     def icon(self) -> str:

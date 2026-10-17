@@ -60,6 +60,13 @@ def _repolish(widget: QWidget) -> None:
     widget.style().polish(widget)
 
 
+def _set_text(label: QLabel, text: str) -> None:
+    """Set a result line, hiding it when empty so no stale or blank line is
+    left behind from the previous result."""
+    label.setText(text or "")
+    label.setVisible(bool(text))
+
+
 def _panel_widget() -> QWidget:
     widget = QWidget()
     widget.setObjectName("panel")
@@ -146,14 +153,25 @@ class NumberField(QWidget):
         self.spin.setDecimals(decimals)
         self.spin.setSingleStep(step)
         self.spin.setValue(value)
-        self.spin.setSuffix(f" {unit}" if unit else "")
         self.spin.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.spin.setAlignment(Qt.AlignmentFlag.AlignRight)
-        self.spin.setFixedWidth(120)
+        self.spin.setFixedWidth(96)
         # Recalculate while typing (UAT: with tracking off, the BMI only
         # changed after Enter or leaving the box, so it looked stuck).
         self.spin.setKeyboardTracking(True)
+
+        # - and + step the value exactly, for anyone who finds the slider
+        # fiddly (UAT). The unit sits outside the box, so clearing the box
+        # to type a new number never has to fight a "cm" or "kg" suffix.
+        minus = self._step_button("\u2212", -1)
+        plus = self._step_button("+", 1)
+        row.addWidget(minus)
         row.addWidget(self.spin)
+        row.addWidget(plus)
+        self.unit_label = _label(unit, "wlFieldLabel", wrap=False)
+        self.unit_label.setMinimumWidth(44)
+        self.unit_label.setVisible(bool(unit))
+        row.addWidget(self.unit_label)
         layout.addLayout(row)
 
         self.slider: Optional[QSlider] = None
@@ -167,6 +185,18 @@ class NumberField(QWidget):
             layout.addWidget(self.slider)
 
         self.spin.valueChanged.connect(self._from_spin)
+
+    def _step_button(self, text: str, direction: int) -> QPushButton:
+        button = QPushButton(text)
+        button.setObjectName("wlStepButton")
+        button.setFixedSize(28, 28)
+        button.setCursor(Qt.CursorShape.PointingHandCursor)
+        button.setAutoRepeat(True)          # hold to keep stepping
+        button.setAutoRepeatDelay(350)
+        button.setAutoRepeatInterval(60)
+        button.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        button.clicked.connect(lambda _c=False: self.spin.stepBy(direction))
+        return button
 
     def value(self) -> float:
         return self.spin.value()
@@ -380,8 +410,21 @@ class _Panel(QFrame):
         self.inputs.addStretch(1)
 
     def _watch(self, *signals) -> None:
+        # A slider drag fires dozens of changes a second, and each one used to
+        # recalculate and re-lay-out the result card, so the result trailed
+        # behind the slider (UAT: "slider delay"). Changes are now gathered
+        # and the result is redrawn at most once per frame.
+        if not hasattr(self, "_pending"):
+            self._pending = QTimer(self)
+            self._pending.setSingleShot(True)
+            self._pending.setInterval(16)
+            self._pending.timeout.connect(self.changed.emit)
         for signal in signals:
-            signal.connect(lambda *_a: self.changed.emit())
+            signal.connect(self._schedule)
+
+    def _schedule(self, *_args) -> None:
+        if not self._pending.isActive():
+            self._pending.start()
 
 
 # ===================================================================== BMI
@@ -483,7 +526,7 @@ class BmiPanel(_Panel):
             )
         self.healthy.setVisible(bool(r.healthy_weight_kg))
         self._show_child(r)
-        self.message.setText(r.message)
+        _set_text(self.message, r.message)
         self.source.setText(f"Charts: {r.child.reference}" if r.child
                             else f"Cutoffs: {r.standard.source}")
         age = int(self.age.value())
@@ -599,8 +642,8 @@ class HydrationPanel(_Panel):
             f"About {r.glasses} glasses (250 mL). Total including water from "
             f"food: {r.total_litres:.1f} L."
         )
-        self.breakdown.setText("\n".join(r.breakdown))
-        self.caution.setText(r.caution)
+        _set_text(self.breakdown, "\n".join(r.breakdown))
+        _set_text(self.caution, r.caution)
 
 
 # =================================================================== sleep
@@ -713,7 +756,7 @@ class EnergyPanel(_Panel):
             if r.valid else ""
         )
         self.compare.setVisible(r.valid)
-        self.message.setText(r.message)
+        _set_text(self.message, r.message)
 
 
 # =============================================================== converter
@@ -756,9 +799,17 @@ class ConverterPanel(QFrame):
         self.input.setObjectName("wlConvInput")
         self.input.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.input.setRange(-100, 100000)
+        self.input.setKeyboardTracking(True)
         self.input.valueChanged.connect(lambda _v: self.changed.emit())
         box_layout.addWidget(self.input_label)
-        box_layout.addWidget(self.input)
+        input_row = QHBoxLayout()
+        input_row.setSpacing(8)
+        input_row.addWidget(self.input, 1)
+        # The unit sits beside the box, not inside it, so the number can be
+        # cleared and retyped without the unit getting in the way (UAT).
+        self.input_unit = _label("", "wlBigUnit", wrap=False)
+        input_row.addWidget(self.input_unit)
+        box_layout.addLayout(input_row)
         row.addWidget(box, 1)
 
         self.swap = QPushButton("\u21c4")
@@ -781,7 +832,7 @@ class ConverterPanel(QFrame):
         head.addWidget(self.copy)
         self.card.body.addLayout(head)
         self.number, self.unit = self.card.big_number()
-        self.extra = _label("", "wlStrong", wrap=False)
+        self.extra = _label("", "wlStrong")
         self.card.body.addWidget(self.extra)
         self.badge = Badge()
         self.card.body.addWidget(self.badge)
@@ -830,8 +881,8 @@ class ConverterPanel(QFrame):
         self.input.setDecimals(conv.decimals[1] if self._reverse else conv.decimals[0])
         self.input.setDecimals(max(self.input.decimals(), 1))
         self.input.setRange(-100 if conv.id == "temperature" else 0, 100000)
-        self.input.setSuffix(f" {src}")
         self.input.blockSignals(False)
+        self.input_unit.setText(src)
         self.input_label.setText(f"INPUT ({src.upper()})")
         self.result_label.setText(f"RESULT ({dst.upper()})")
         self.note.setText(conv.note)
@@ -874,8 +925,8 @@ class VitalSignsPanel(_Panel):
         self.sex = Segmented([("male", "Male"), ("female", "Female")], "male")
         self.systolic = self._optional("Systolic (upper)", 40, 260, "mmHg")
         self.diastolic = self._optional("Diastolic (lower)", 20, 160, "mmHg")
-        self.pulse = self._optional("Pulse", 20, 250, "/min")
-        self.breathing = self._optional("Breathing rate", 4, 90, "/min")
+        self.pulse = self._optional("Pulse", 20, 250, "bpm")
+        self.breathing = self._optional("Breathing rate", 4, 90, "breaths/min")
         self.temperature = self._optional("Temperature", 30, 44, "°C", decimals=1, step=0.1)
         self.site = ChoiceField("Measured in the", [
             ("oral", "Mouth"), ("axillary", "Armpit"), ("ear", "Ear"),
@@ -932,7 +983,7 @@ class VitalSignsPanel(_Panel):
                   decimals: int = 0, step: float = 1) -> NumberField:
         # One below the real minimum stands for "not measured".
         floor = minimum - step
-        field = NumberField(title, floor, maximum, floor, unit, decimals=decimals,
+        field = NumberField(f"{title} ({unit})", floor, maximum, floor, "", decimals=decimals,
                             step=step, slider=False)
         field.spin.setSpecialValueText("Not measured")
         field.floor = floor
@@ -993,5 +1044,5 @@ class VitalSignsPanel(_Panel):
             self.rows.addWidget(box)
             if reading.source and reading.source not in sources:
                 sources.append(reading.source)
-        self.advice.setText(r.advice)
-        self.sources.setText("Ranges: " + "; ".join(sources) if sources else "")
+        _set_text(self.advice, r.advice)
+        _set_text(self.sources, "Ranges: " + "; ".join(sources) if sources else "")

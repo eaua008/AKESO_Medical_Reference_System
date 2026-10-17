@@ -169,6 +169,7 @@ class DashboardShell(QWidget):
         self._account = account
         self.account_controller: Optional[AccountController] = None
         self.notebook_sync = None              # NotebookSyncController, once signed in
+        self.social = None                     # Friends, sharing, Study Groups (social_wiring.py)
         self.exchange_controller: Optional[ExchangeController] = None
         self.notifications_controller: Optional[NotificationsController] = None
         self._unread: dict[str, int] = {}          # bell badge, by source
@@ -274,6 +275,11 @@ class DashboardShell(QWidget):
         self._search_shortcut = QShortcut(QKeySequence("Ctrl+K"), self)
         self._search_shortcut.setContext(Qt.ShortcutContext.WindowShortcut)
         self._search_shortcut.activated.connect(self.header.focus_search)
+        # Ctrl+F: find on the page you are looking at (components/find_bar.py).
+        from app.ui.components import find_bar
+        self.find_bar = find_bar.install(self)
+        self.content.currentChanged.connect(lambda _i: self.find_bar.tab_changed())
+        self._theme_scope.add(self.find_bar, self.find_bar.refresh_theme)
 
         self.show_tab(start_tab)
         self._progress = lambda _step: None     # the build is over
@@ -569,7 +575,8 @@ class DashboardShell(QWidget):
         self._notebook_store = LocalNotebookStore()
         self._notebook_service = NotebookService(self._owner, self._notebook_store)
         self._notebook_service.import_legacy(default_case_path())
-        self._safety_service = DrugSafetyService(medicines=self._medicine_service.all_medicines)
+        self._safety_service = DrugSafetyService(medicines=self._medicine_service.all_medicines,
+                                              diseases=self._disease_service.all_diseases)
         # One correlation engine, shared by the Symptom Checker and the
         # notebook's saved symptom cases, so both always agree.
         self._engine = MatchingService(disease_source=self._disease_service.all_diseases,
@@ -750,6 +757,9 @@ class DashboardShell(QWidget):
         self.notebook_controller.data_changed.connect(lambda: bump("notebook_edits"))
         self._register_exchange(account)
         self._register_notebook_sync(account)
+        # Friends, notebook sharing and Study Groups (migrations 040-042).
+        from app.ui.social_wiring import register_social
+        self.social = register_social(self, account)
         if account.role == "admin":
             self._register_admin(account)
         self.checker_controller.case_saved.connect(lambda _id: bump("notebook_edits"))
@@ -858,6 +868,9 @@ class DashboardShell(QWidget):
         AvatarCache.loader = photos.download_avatar
         self.register_view("exchange", self.exchange_page)
         ex = self.exchange_controller
+        ex.author_name = account.display_name or ""
+        snapshot = account.snapshot
+        ex.author_photo_path = snapshot.profile.avatar_path if snapshot is not None else None
         # A post and the composer both slide in over the feed.
         self._post_sheet = self.add_sheet("exchange", keep_content=True)
         self.exchange_page.attach_sheet(self._post_sheet)
@@ -969,6 +982,8 @@ class DashboardShell(QWidget):
             self.account_controller.shutdown()
         if self.notifications_controller is not None:
             self.notifications_controller.shutdown()
+        if self.social is not None:
+            self.social.shutdown()                  # stops the group chat poller
 
     def _wire_bookmarks(self) -> None:
         """Every star in the app reports here, and reads its state from here.
@@ -980,6 +995,8 @@ class DashboardShell(QWidget):
 
         # Reading: a lookup per entity type, so an entry opens already starred.
         self.encyclopedia_page.grid_view.bookmark_lookup = (
+            lambda entry_id: service.is_bookmarked(DISEASE, entry_id))
+        self.encyclopedia_page.detail_view.bookmark_lookup = (
             lambda entry_id: service.is_bookmarked(DISEASE, entry_id))
         self.symptom_page.detail.bookmark_lookup = (
             lambda entry_id: service.is_bookmarked(SYMPTOM, entry_id))
@@ -1094,6 +1111,9 @@ class DashboardShell(QWidget):
         elif tab_id == "admin-announcements" and \
                 getattr(self, "announcement_admin_controller", None) is not None:
             self.announcement_admin_controller.shown()
+        # Friends, Study Groups, and the notebook's "Shared with me" count.
+        if self.social is not None and tab_id in ("friends", "groups", "notebook"):
+            self.social.on_tab(tab_id)
 
         # select_tab emits tabChanged, which is wired back to this method.
         # Blocking signals moves the highlight without the echo loop.

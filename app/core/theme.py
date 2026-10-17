@@ -127,6 +127,7 @@ class Theme:
         from app.core.exchange_styles import exchange_rules
         from app.core.admin_styles import admin_rules
         from app.core.article_styles import article_rules
+        from app.core.social_styles import social_rules
         check_image = checkmark_file("#FFFFFF")
         body_font = f"'{cls.FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         heading_font = f"'{cls.HEADING_FONT}', '{cls.FALLBACK_FONT}', sans-serif"
@@ -854,6 +855,24 @@ class Theme:
             font-size: 10px;
             font-weight: 700;
         }}
+        #cautionChip {{
+            background-color: rgba(251, 191, 36, 0.14);
+            color: #D97706;
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
+        #avoidChip {{
+            background-color: rgba(248, 113, 113, 0.14);
+            color: {p['DANGER']};
+            border: 1px solid rgba(248, 113, 113, 0.45);
+            border-radius: 5px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 700;
+        }}
         #otcChip {{
             background-color: rgba(52, 211, 153, 0.12);
             color: {p['SUCCESS']};
@@ -1324,4 +1343,4 @@ class Theme:
         #googleButton[googleState="cooldown"] {{
             color: {p['TEXT_MUTED']};
         }}
-        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font) + article_rules(p, heading_font)
+        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font) + article_rules(p, heading_font) + social_rules(p, heading_font)

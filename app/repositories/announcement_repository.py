@@ -35,6 +35,11 @@ class AnnouncementRepository:
     def mine(self) -> list[Announcement]:
         return [Announcement.from_row(r) for r in self._rpc("my_announcements") or []]
 
+    def stamp(self) -> str:
+        """A short fingerprint of what this account can see (migration 047).
+        Cheap enough to ask every couple of seconds."""
+        return str(self._rpc("announcements_stamp") or "")
+
     def dismiss(self, announcement_id: str) -> None:
         self._rpc("dismiss_announcement", {"p_id": announcement_id})
 
@@ -55,3 +60,7 @@ class AnnouncementRepository:
 
     def end(self, announcement_id: str) -> None:
         self._rpc("admin_end_announcement", {"p_id": announcement_id})
+
+    def delete(self, announcement_id: str) -> None:
+        """Remove it for good, for everyone (migration 047)."""
+        self._rpc("admin_delete_announcement", {"p_id": announcement_id})
