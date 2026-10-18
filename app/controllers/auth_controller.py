@@ -89,7 +89,7 @@ class AuthController(QObject):
             self._open_verification(resend=True)
             return
         except AuthError as exc:
-            self._show_auth_error(exc)
+            self._show_auth_error(exc, email=email, password=password)
         else:
             self._working = False
             self._signed_in(user)
@@ -214,11 +214,19 @@ class AuthController(QObject):
         account lands here). Never show its text as-is."""
         self._show_auth_error(auth_error_from_text(raw))
 
-    def _show_auth_error(self, exc: AuthError) -> None:
-        """A suspension gets a pop-up; everything else the red line."""
+    def _suspension_reason(self, email: str = "", password: str = "") -> str:
+        """What the admin wrote, from the server (best effort: "" if unknown)."""
+        try:
+            return wait_for(lambda: self._service.suspension_reason(email, password))
+        except Exception:  # noqa: BLE001
+            return ""
+
+    def _show_auth_error(self, exc: AuthError, email: str = "", password: str = "") -> None:
+        """A suspension gets a pop-up (with the admin's reason when known);
+        everything else the red line."""
         if isinstance(exc, AccountSuspended):
             self._view.clear_error()
-            show_suspended(self._view.window())
+            show_suspended(self._view.window(), self._suspension_reason(email, password))
         else:
             self._view.show_error(str(exc))
 
@@ -329,7 +337,7 @@ class AuthController(QObject):
             session_vault.clear()
             self._view.set_signing_in(None)
             if isinstance(exc, AccountSuspended):
-                show_suspended(self._view.window())
+                show_suspended(self._view.window(), self._suspension_reason())
             return False
         finally:
             self._working = False
