@@ -30,6 +30,11 @@ begin
     perform t.ok('suspension', r ->> 'reason' = 'Shared exam answers in a group', 'a registered computer gets the reason', r::text);
     r := public.suspension_notice_device('unknownkey' || x || repeat('b', 20));
     perform t.ok('suspension', r is null, 'an unknown computer key gets nothing', r::text);
+    -- a second, active account used the same computer later: still the suspended one's reason
+    insert into public.user_devices (user_id, device_key, last_seen)
+    values (t.mk_user('oth' || x), 'devkey' || x || repeat('a', 20), now() + interval '1 minute');
+    r := public.suspension_notice_device('devkey' || x || repeat('a', 20));
+    perform t.ok('suspension', r ->> 'reason' = 'Shared exam answers in a group', 'shared computer: the suspended account still gets its reason', r::text);
     update public.profiles set suspended_at = null where id = u;
     r := public.suspension_notice_device('devkey' || x || repeat('a', 20));
     perform t.ok('suspension', r is null, 'a computer of an account that is not suspended gets nothing', r::text);
