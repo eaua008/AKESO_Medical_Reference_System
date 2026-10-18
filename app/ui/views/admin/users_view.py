@@ -86,12 +86,11 @@ class UserManagementView(QWidget):
                                sortable=(NAME, EMAIL, ROLE, CREATED, LAST, STATUS, VERSION))
         self.table.header_clicked.connect(self._sort_by)
         self.table.show_sort(*self._sort)
-        column.addWidget(self.table)
+        column.addWidget(self.table, 1)          # the table takes the height that is left
         self._empty = label("No account matches these filters.", "adEmpty")
         self._empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._empty.hide()
         column.addWidget(self._empty)
-        column.addStretch(1)
 
         scroll.setWidget(page)
         outer.addWidget(scroll)

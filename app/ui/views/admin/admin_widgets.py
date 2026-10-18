@@ -5,7 +5,7 @@ from typing import Callable, Optional
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtWidgets import (
     QAbstractItemView, QFrame, QHBoxLayout, QHeaderView, QLabel, QPushButton,
-    QTableWidget, QVBoxLayout, QWidget,
+    QSizePolicy, QTableWidget, QVBoxLayout, QWidget,
 )
 
 from app.core import lucide
@@ -237,6 +237,10 @@ class DataTable(QTableWidget):
         for r, cells in enumerate(rows):
             for c, widget in enumerate(cells):
                 self.setCellWidget(r, c, widget)
+            # a row is as tall as its tallest cell wants (two-line titles, wrapped
+            # captions), never shorter than the usual row height
+            tallest = max([ROW_HEIGHT] + [w.sizeHint().height() for w in cells])
+            self.setRowHeight(r, tallest)
         self._fit_columns(rows)
         self.setUpdatesEnabled(True)
 
@@ -262,18 +266,17 @@ class DataTable(QTableWidget):
             self.setColumnWidth(column, width)
 
     def fit_height(self) -> None:
-        """Grow to show every row, so the page scrolls instead of the table.
-
-        The header's real height is only known once it is styled and shown,
-        so use its size hint too (a short header left the last rows behind an
-        inner scrollbar), and re-fit whenever the table is shown.
-        """
+        """At least tall enough to show every row (so the page scrolls rather than
+        the table), and taller still when the window is: the table then fills the
+        screen instead of leaving the lower half empty."""
         self._fit_wanted = True
         header = self.horizontalHeader()
         head = max(header.height(), header.sizeHint().height())
         height = head + self.frameWidth() * 2 + 2
         height += sum(self.rowHeight(r) for r in range(self.rowCount()))
-        self.setFixedHeight(max(height, head + ROW_HEIGHT))
+        self.setMinimumHeight(max(height, head + ROW_HEIGHT))
+        self.setMaximumHeight(16777215)
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
     def showEvent(self, event) -> None:  # noqa: N802
