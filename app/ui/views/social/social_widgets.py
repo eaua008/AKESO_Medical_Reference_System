@@ -67,8 +67,16 @@ class PersonRow(QFrame):
             self.setCursor(Qt.CursorShape.PointingHandCursor)
         top = QHBoxLayout()
         top.setSpacing(6)
-        name = label(person.name + (" (you)" if person.is_me else ""),
-                     "acValue" if title else "scRowTitle", wrap=False)
+        shown = person.name + (" (you)" if person.is_me else "")
+        target = person.handle or person.mention          # members may know a private handle
+        if target:
+            name = QPushButton(shown.replace("&", "&&"))
+            name.setObjectName("scNameLink")
+            name.setCursor(Qt.CursorShape.PointingHandCursor)
+            name.setToolTip(f"Open @{target}'s profile")
+            name.clicked.connect(lambda _c=False, h=target: self.profile_requested.emit(h))
+        else:
+            name = label(shown, "acValue" if title else "scRowTitle", wrap=False)
         top.addWidget(name)
         shown_badge = badge or person.badge
         if shown_badge:
@@ -88,7 +96,7 @@ class PersonRow(QFrame):
         self.actions.setSpacing(4)
         row.addLayout(self.actions)
         if person.handle and not person.is_me:
-            self.setToolTip(f"Double-click to open @{person.handle}'s profile")
+            self.setToolTip(f"Click the name or double-click to open @{person.handle}'s profile")
 
     def add_action(self, text: str, on_click: Callable[[], None], name: str = "acGhost",
                    icon: str = "", tip: str = "") -> QPushButton:
@@ -105,8 +113,9 @@ class PersonRow(QFrame):
         super().mouseReleaseEvent(event)
 
     def mouseDoubleClickEvent(self, event) -> None:  # noqa: N802
-        if self.person.handle and not self.person.is_me:
-            self.profile_requested.emit(self.person.handle)
+        target = self.person.handle or self.person.mention
+        if target and not self.person.is_me:
+            self.profile_requested.emit(target)
         super().mouseDoubleClickEvent(event)
 
 

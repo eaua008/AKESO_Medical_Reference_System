@@ -98,6 +98,11 @@ def social_rules(p: dict, heading_font: str) -> str:
             border-radius: 12px;
         }}
         #scBubbleName {{ font-size: 12px; font-weight: 700; color: {p['TEXT']}; }}
+        #scNameLink {{
+            background: transparent; border: none; padding: 0; text-align: left;
+            font-size: 12px; font-weight: 700; color: {p['TEXT']};
+        }}
+        #scNameLink:hover {{ color: {p['BADGE_TEXT']}; text-decoration: underline; }}
         #scBubbleText {{ font-size: 13px; color: {p['TEXT']}; }}
         #scBubbleTime {{ font-size: 11px; color: {p['TEXT_MUTED']}; }}
         #scNewLine {{ background-color: {p['PRIMARY']}; border: none; }}
