@@ -16,10 +16,10 @@ page is shown, not when Akeso starts.
 import json
 from typing import Optional
 
-from PySide6.QtCore import QObject, QStringListModel, Qt, QUrl, Signal, Slot
+from PySide6.QtCore import QEvent, QObject, QSize, QStringListModel, Qt, QUrl, Signal, Slot
 from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
-    QTreeWidget, QTreeWidgetItem,
+    QListWidget, QListWidgetItem, QTreeWidget, QTreeWidgetItem,
     QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton, QScrollArea,
     QSlider, QVBoxLayout, QWidget,
 )
@@ -465,15 +465,20 @@ class BodyExplorerView(QWidget):
         self.search.setPlaceholderText("Search a part, e.g. femur, aorta, liver\u2026")
         self.search.setClearButtonEnabled(True)
         self.search.setFixedHeight(36)
-        completer = QCompleter(QStringListModel(list(self._index)), self.search)
-        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-        completer.setFilterMode(Qt.MatchFlag.MatchContains)
-        completer.setMaxVisibleItems(10)
-        completer.activated.connect(self._find)
-        self.search.setCompleter(completer)
         self.search.returnPressed.connect(self._find_typed)
         self.search.textEdited.connect(lambda _t: (self.search_note.hide(), self.group_row.hide()))
+        self.search.textEdited.connect(self._suggest)
+        self.search.installEventFilter(self)
+        self.search.textChanged.connect(lambda t: self.suggest.hide() if not t.strip() else None)
         card.body.addWidget(self.search)
+        # Suggestions appear right under the box as you type (inline, so they always show).
+        self.suggest = QListWidget()
+        self.suggest.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.suggest.setUniformItemSizes(True)
+        self.suggest.itemClicked.connect(self._suggest_picked)
+        self.suggest.hide()
+        card.body.addWidget(self.suggest)
+        self._style_suggest()
         self.search_note = label("", "acSmall")
         self.search_note.hide()
         card.body.addWidget(self.search_note)
@@ -493,6 +498,73 @@ class BodyExplorerView(QWidget):
         if not self._index:
             self.search.setEnabled(False)
         return card
+
+    SUGGEST_MAX = 8
+    ROW_H = 28
+
+    def _style_suggest(self) -> None:
+        self.suggest.setStyleSheet(
+            f"QListWidget {{ background: {Theme.token('SURFACE_ALT')}; color: {Theme.token('TEXT')};"
+            f" border: 1px solid {Theme.token('BORDER')}; border-radius: 8px; outline: none; }}"
+            f"QListWidget::item {{ padding: 4px 8px; }}"
+            f"QListWidget::item:hover, QListWidget::item:selected {{"
+            f" background: {Theme.token('PRIMARY_SOFT')}; color: {Theme.token('TEXT')}; }}")
+
+    def _suggest(self, text: str) -> None:
+        """Part and group names that match what is typed: names starting with it first,
+        then words starting with it, then names that merely contain it."""
+        needle = text.strip().lower()
+        self.suggest.clear()
+        if not needle or not self._index:
+            self.suggest.hide()
+            return
+        starts, words, inside = [], [], []
+        for key in self._index:
+            low = key.lower()
+            if low.startswith(needle):
+                starts.append(key)
+            elif f" {needle}" in low or f"({needle}" in low:
+                words.append(key)
+            elif needle in low:
+                inside.append(key)
+        for bucket in (starts, words, inside):
+            bucket.sort(key=lambda k: (len(k), k))          # short, common names first
+        for key in (starts + words + inside)[:self.SUGGEST_MAX]:
+            item = QListWidgetItem(key)
+            item.setSizeHint(QSize(0, self.ROW_H))
+            self.suggest.addItem(item)
+        count = self.suggest.count()
+        if not count:
+            self.suggest.hide()
+            return
+        self.suggest.setCurrentRow(-1)
+        self.suggest.setFixedHeight(count * self.ROW_H + 4)
+        self.suggest.show()
+
+    def _suggest_picked(self, item) -> None:
+        key = item.text()
+        self.suggest.hide()
+        self.search.setText(key)
+        self._find(key)
+
+    def eventFilter(self, obj, event) -> bool:  # noqa: N802
+        """Up / Down walk the suggestions, Enter picks the highlighted one, Esc closes them."""
+        if obj is self.search and event.type() == QEvent.Type.KeyPress and self.suggest.isVisible():
+            key = event.key()
+            row = self.suggest.currentRow()
+            if key == Qt.Key.Key_Down:
+                self.suggest.setCurrentRow(min(row + 1, self.suggest.count() - 1))
+                return True
+            if key == Qt.Key.Key_Up:
+                self.suggest.setCurrentRow(max(row - 1, 0))
+                return True
+            if key in (Qt.Key.Key_Return, Qt.Key.Key_Enter) and row >= 0:
+                self._suggest_picked(self.suggest.item(row))
+                return True
+            if key == Qt.Key.Key_Escape:
+                self.suggest.hide()
+                return True
+        return super().eventFilter(obj, event)
 
     def _find_typed(self) -> None:
         """Enter: the exact entry, else the first suggestion that contains it."""
@@ -627,7 +699,7 @@ class BodyExplorerView(QWidget):
         if entry is None:
             return
         ids, layer, gid = entry
-        self.search.completer().popup().hide()
+        self.suggest.hide()
         self._show_entry(text.split(" \u00b7 ")[0], ids, layer, bool(gid))
 
     def _group_action(self, call: str) -> None:
@@ -1144,4 +1216,5 @@ class BodyExplorerView(QWidget):
         self._update_legend()
         self._mark_swatch()
         self._style_tree()
+        self._style_suggest()
         self._apply_theme()
