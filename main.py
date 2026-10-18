@@ -89,6 +89,19 @@ def main() -> None:
             pass
     app = QApplication(sys.argv)
     app.setApplicationName("Akeso")
+    # Only one Akeso at a time: a second start hands over its invite link (if
+    # any), lets the first one come to the front, and exits.
+    from app.core.single_instance import SingleInstance
+    single = SingleInstance()
+    link = next((a for a in sys.argv[1:] if a.lower().startswith("akeso://")), "show")
+    if not single.claim(link):
+        if sys.platform == "win32":
+            try:
+                import ctypes
+                ctypes.windll.user32.AllowSetForegroundWindow(-1)    # let the first one take focus
+            except (AttributeError, OSError):
+                pass
+        sys.exit(0)
     # 80% / 90%: Akeso's widgets shrink, the 3D explorer stays at 1
     # (app/core/soft_scale.py). Must run before any window is built.
     from app.core import soft_scale
@@ -108,6 +121,7 @@ def main() -> None:
     from app.ui.social_wiring import join_link_from_args
     window.pending_join = join_link_from_args(sys.argv)
     window.show()
+    single.message.connect(window.handle_second_launch)
 
     sys.exit(app.exec())
 
