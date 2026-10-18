@@ -84,6 +84,10 @@ def classify(n):
     # bones and cartilage
     if _has(n, "costal cartilage", "manubrium", "body of sternum", "xiphoid"):
         return "bone", "musculoskeletal", None, "", ""
+    # lips and eyelids sit just under the skin: they go with the muscle layer, so
+    # peeling to Bone no longer leaves them floating over the skull
+    if re.search(r"lip", n) or "subdivision of mouth" in n: return "muscle", "digestive", None, "", ""
+    if "tarsal plate" in n: return "muscle", "nervous", None, "", ""
     # eye and orbit
     if re.search(r"\bretina\b", n) or _has(n, "lacrimal", "corona ciliaris", "anterior chamber", "check ligament",
             "common tendinous ring", "tarsal plate", "trochlea"):
@@ -155,6 +159,19 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from group_engine import build_groups
 build_groups(parts, el, names, S)
+
+# ---- which region (head, chest, abdomen, arms, legs) each part sits in, by the middle
+# of its mesh; drives the "Browse by region" tree in the explorer
+import numpy as np
+_boxes = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "anatomy", "regions.json")))
+def _centre(fj):
+    v = np.array([l.split()[1:4] for l in open(D + fj + ".obj") if l.startswith("v ")], float)
+    return (v.min(0) + v.max(0)) / 2
+for fj, p_ in parts.items():
+    c = _centre(fj)
+    p_["region"] = next((k for k in ("head", "chest", "abdomen", "arms", "legs")
+                         if all(_boxes[k]["box"][0][i] <= c[i] <= _boxes[k]["box"][1][i] for i in range(3))), "body")
+print("regions:", collections.Counter(p_["region"] for p_ in parts.values()))
 json.dump(parts, open("C:/Users/eijki/AppData/Local/Temp/claude/C--Users-eijki-IdeaProjects-akeso/76cf4ddd-5c85-42a6-a063-3a7b46c16906/scratchpad/anat/parts.json", "w"), indent=0)
 c = collections.Counter(p["layer"] for p in parts.values()); print(c, len(parts))
 for fj in list(parts)[:3]: print(fj, parts[fj])

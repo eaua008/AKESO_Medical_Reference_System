@@ -19,6 +19,7 @@ from typing import Optional
 from PySide6.QtCore import QObject, QStringListModel, Qt, QUrl, Signal, Slot
 from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
+    QTreeWidget, QTreeWidgetItem,
     QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton, QScrollArea,
     QSlider, QVBoxLayout, QWidget,
 )
@@ -410,6 +411,8 @@ class BodyExplorerView(QWidget):
         self._side.addWidget(self.colours_card)
 
 
+        self._side.addWidget(self._build_tree())
+
         systems = Card("Browse by body system", "", "activity")
         from app.ui.views.compare_view import FlowLayout
         host = QWidget()
@@ -477,15 +480,14 @@ class BodyExplorerView(QWidget):
         # A group in the results ("Upper teeth", "Rotator cuff") can be shown alone or hidden.
         self.group_row = QWidget()
         self.group_row.setObjectName("panel")
-        group_line = QHBoxLayout(self.group_row)
-        group_line.setContentsMargins(0, 0, 0, 0)
-        group_line.setSpacing(6)
-        self._found_group = ("", "")
-        for text, icon, call in (("Show only", "target", "isolateGroup"), ("Hide", "eye-off", "hideGroup"),
-                                 ("See-through", "eye", "ghostGroup")):
+        from app.ui.views.compare_view import FlowLayout
+        group_line = FlowLayout(6, 6)                 # wraps inside the narrow side panel
+        self.group_row.setLayout(group_line)
+        self._found_group = ("", [])
+        for text, icon, call in (("Show only", "target", "isolateList"), ("Hide", "eye-off", "hideList"),
+                                 ("See-through", "eye", "ghostList")):
             group_line.addWidget(button(text, "acGhost", icon,
                                         lambda _c=False, c=call: self._group_action(c)))
-        group_line.addStretch(1)
         self.group_row.hide()
         card.body.addWidget(self.group_row)
         if not self._index:
@@ -511,32 +513,127 @@ class BodyExplorerView(QWidget):
                                      "e.g. \u201cheart\u201d or \u201cfemur\u201d.")
             self.search_note.show()
 
+    # ------------------------------------------------- browse the body (tree)
+
+    LAYER_NODE_NAMES = {"all_organ": "Organs", "all_bone": "Bones", "all_muscle": "Muscles",
+                        "all_vessel": "Blood vessels", "all_nerve": "Nerves", "all_skin": "Skin"}
+    LAYER_ORDER = ["all_organ", "all_bone", "all_muscle", "all_vessel", "all_nerve", "all_skin"]
+
+    def _build_tree(self) -> Card:
+        """Region -> organs / bones / muscles -> group -> smaller group -> the parts.
+        Built from parts.json (each part's group chain and its region)."""
+        card = Card("Browse the body", "Open a region, then a group, down to single parts. "
+                    "Click any line to find it in 3D.", "layers")
+        self.tree = QTreeWidget()
+        self.tree.setHeaderHidden(True)
+        self.tree.setMinimumHeight(320)
+        self.tree.setIndentation(14)
+        self.tree.setUniformRowHeights(True)
+        self.tree.itemExpanded.connect(self._tree_expanded)
+        self.tree.itemClicked.connect(self._tree_clicked)
+        self._tree_parts: dict = {}
+        for key, text in REGIONS[1:]:
+            item = QTreeWidgetItem([text])
+            item.setData(0, Qt.ItemDataRole.UserRole, {"kind": "region", "key": key})
+            item.addChild(QTreeWidgetItem(["\u2026"]))          # placeholder: filled on open
+            self.tree.addTopLevelItem(item)
+        card.body.addWidget(self.tree)
+        self._style_tree()
+        return card
+
+    def _style_tree(self) -> None:
+        self.tree.setStyleSheet(
+            f"QTreeWidget {{ background: transparent; border: 1px solid {Theme.token('BORDER')};"
+            f" border-radius: 8px; color: {Theme.token('TEXT')}; outline: none; }}"
+            f"QTreeWidget::item {{ padding: 3px 2px; }}"
+            f"QTreeWidget::item:hover {{ background: {Theme.token('PRIMARY_SOFT')}; }}"
+            f"QTreeWidget::item:selected {{ background: {Theme.token('PRIMARY_SOFT')};"
+            f" color: {Theme.token('TEXT')}; }}")
+
+    def _tree_expanded(self, item: QTreeWidgetItem) -> None:
+        data = item.data(0, Qt.ItemDataRole.UserRole) or {}
+        if data.get("kind") == "region" and item.childCount() == 1 and not item.child(0).data(
+                0, Qt.ItemDataRole.UserRole):
+            item.takeChild(0)
+            self._fill_region(item, data["key"])
+
+    def _fill_region(self, item: QTreeWidgetItem, region: str) -> None:
+        parts = _parts_json()
+        root: dict = {}
+        for fj, part in parts.items():
+            if part.get("region") != region:
+                continue
+            node_children = root
+            node = None
+            for group in reversed(part.get("groups") or []):         # broad -> small
+                node = node_children.setdefault(group["id"], {
+                    "label": group["label"], "children": {}, "leaves": {}, "ids": [],
+                    "layer": part.get("layer") or ""})
+                node["ids"].append(fj)
+                node_children = node["children"]
+            if node is not None:
+                node["leaves"].setdefault(part.get("name") or fj, []).append(fj)
+        order = {gid: i for i, gid in enumerate(self.LAYER_ORDER)}
+
+        def add(parent: QTreeWidgetItem, gid: str, node: dict, top: bool) -> None:
+            text = self.LAYER_NODE_NAMES.get(gid, node["label"]) if top else node["label"]
+            row = QTreeWidgetItem([f"{text[:1].upper()}{text[1:]} ({len(node['ids'])})"])
+            row.setData(0, Qt.ItemDataRole.UserRole, {
+                "kind": "group", "ids": node["ids"], "layer": node["layer"],
+                "gid": gid, "name": text})
+            parent.addChild(row)
+            for child_id, child in sorted(node["children"].items(),
+                                          key=lambda kv: kv[1]["label"].lower()):
+                add(row, child_id, child, False)
+            for name, ids in sorted(node["leaves"].items(), key=lambda kv: kv[0].lower()):
+                leaf = QTreeWidgetItem([f"{name[:1].upper()}{name[1:]}"
+                                        + (f" ({len(ids)} pieces)" if len(ids) > 1 else "")])
+                leaf.setData(0, Qt.ItemDataRole.UserRole, {
+                    "kind": "part", "ids": ids, "layer": node["layer"], "gid": "", "name": name})
+                row.addChild(leaf)
+
+        for gid, node in sorted(root.items(), key=lambda kv: order.get(kv[0], 99)):
+            add(item, gid, node, True)
+        if not item.childCount():
+            item.addChild(QTreeWidgetItem(["No parts in the model here."]))
+
+    def _tree_clicked(self, item: QTreeWidgetItem, _column: int = 0) -> None:
+        data = item.data(0, Qt.ItemDataRole.UserRole) or {}
+        kind = data.get("kind")
+        if kind == "region":
+            self.focus(data["key"])
+            return
+        if kind in ("group", "part"):
+            self._show_entry(data["name"], data["ids"], data["layer"], kind == "group")
+
+    def _show_entry(self, name: str, ids: list, layer: str, as_group: bool) -> None:
+        """Fly to and glow these parts (peeling to their layer first)."""
+        if not self._ready:
+            self.search_note.setText("The 3D body is still loading. Try again in a moment.")
+            self.search_note.show()
+            return
+        if layer in LAYER_INDEX:
+            self.slider.setValue(LAYER_INDEX[layer] * 100)
+        elif layer in self._extras and not self._extras[layer]:
+            self.extra_buttons[layer].setChecked(True)
+        self.search_note.setText(f"Showing: {name}.")
+        self.search_note.show()
+        self._found_group = (name, list(ids))
+        self.group_row.setVisible(as_group)
+        self._js(f"akeso.findParts({json.dumps(ids)})")
+
     def _find(self, text: str) -> None:
         entry = self._index.get(text)
         if entry is None:
             return
         ids, layer, gid = entry
         self.search.completer().popup().hide()
-        if not self._ready:
-            self.search_note.setText("The 3D body is still loading. Try again in a moment.")
-            self.search_note.show()
-            return
-        # Peel to the part's own layer: outer layers fade away, it stays solid.
-        if layer in LAYER_INDEX:
-            self.slider.setValue(LAYER_INDEX[layer] * 100)
-        elif layer in self._extras and not self._extras[layer]:
-            self.extra_buttons[layer].setChecked(True)      # loads vessels / nerves
-        name = text.split(" \u00b7 ")[0]
-        self.search_note.setText(f"Showing: {name}.")
-        self.search_note.show()
-        self._found_group = (gid, name)
-        self.group_row.setVisible(bool(gid))
-        self._js(f"akeso.findParts({json.dumps(ids)})")
+        self._show_entry(text.split(" \u00b7 ")[0], ids, layer, bool(gid))
 
     def _group_action(self, call: str) -> None:
-        gid, name = self._found_group
-        if gid:
-            self._js(f"akeso.{call}({json.dumps(gid)}, {json.dumps(name)})")
+        name, ids = self._found_group
+        if ids:
+            self._js(f"akeso.{call}({json.dumps(ids)}, {json.dumps(name)})")
 
     def _slider_moved(self, value: int) -> None:
         self._layer = value / 100
@@ -1046,4 +1143,5 @@ class BodyExplorerView(QWidget):
         repolish(self)
         self._update_legend()
         self._mark_swatch()
+        self._style_tree()
         self._apply_theme()
