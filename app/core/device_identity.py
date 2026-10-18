@@ -17,7 +17,7 @@ from typing import Optional
 
 from app.repositories.local_disease_cache import default_cache_path
 
-APP_VERSION = "1.0.7"
+APP_VERSION = "1.0.8"
 
 
 def identity_path() -> Path:
