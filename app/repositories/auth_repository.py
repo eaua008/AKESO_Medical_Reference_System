@@ -94,6 +94,30 @@ class AuthRepository:
             raise AuthError("Invalid email or password.")
         return User.from_supabase(response.user)
 
+    def suspension_reason_for_device(self, key: str) -> Optional[str]:
+        """The admin's reason for the account last used on this computer, if that
+        account is suspended (migration 048); None when there is nothing to say."""
+        try:
+            data = self._client.rpc("suspension_notice_device",
+                                    {"p_device_key": key}).execute().data
+        except Exception:  # noqa: BLE001
+            return None
+        if not isinstance(data, dict):
+            return None
+        return str(data.get("reason") or "").strip()
+
+    def suspension_reason(self, email: str, password: str) -> str:
+        """The reason an admin wrote when suspending this account (migration 048).
+        Only answered when the password is right; "" if there is none, the
+        migration is missing or anything else goes wrong: the pop-up then simply
+        has no reason line."""
+        try:
+            data = self._client.rpc("suspension_notice",
+                                    {"p_login": email, "p_password": password}).execute().data
+        except Exception:  # noqa: BLE001
+            return ""
+        return str((data or {}).get("reason") or "").strip() if isinstance(data, dict) else ""
+
     def sign_up(self, email: str, password: str, display_name: str) -> User:
         try:
             response = self._client.auth.sign_up(

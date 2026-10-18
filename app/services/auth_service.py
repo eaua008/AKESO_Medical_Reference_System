@@ -37,6 +37,18 @@ class AuthService:
 
     # ------------------------------------------------------------ password
 
+    def suspension_reason(self, email: str = "", password: str = "") -> str:
+        """What the admin wrote when suspending the account, or "". First by this
+        computer's key (works for Google sign-in and remembered sessions), then,
+        if a password was typed, by email + password."""
+        from app.core.device_identity import device_key
+        found = self._repository.suspension_reason_for_device(device_key())
+        if found is not None:
+            return found
+        if email and password:
+            return self._repository.suspension_reason(email.strip().lower(), password)
+        return ""
+
     def log_in(self, email: str, password: str) -> User:
         email = email.strip().lower()
 
