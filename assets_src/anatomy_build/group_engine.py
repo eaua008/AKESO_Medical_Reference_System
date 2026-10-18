@@ -19,7 +19,7 @@ NEAR = 1.15            # a bigger group that adds < 15% more parts is not worth 
 SKIP_AUTO = re.compile(r"^(human body|body|body proper|vasculature of body|trunk|thorax|vascular tree|"
                        r"cardiovascular system|respiratory system|alimentary system|nervous system|"
                        r"musculoskeletal system|skeletal system|skeleton|.*system$|.*tract$|"
-                       r"anatomical|set of|segment of|body compartment|compartment of|.*content$|content of|.*segment of trunk|head$|neck$|face$)", re.I)
+                       r"anatomical|set of|segment of|body compartment|compartment of|.*content$|content of|.*mediastinum|.*segment of trunk|head$|neck$|face$)", re.I)
 
 
 def side_of(name):

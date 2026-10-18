@@ -273,6 +273,14 @@ function groupAction(kind, gid, label) {
   entries.set(`${kind}:g:${gid}`, { label: text, kind, whole: true, ids: new Set(ids) });
   applyLayers(); report();
 }
+// Hide / see-through / show only for a list of part ids (the region tree, search).
+function listAction(kind, ids, label) {
+  ids = (ids || []).filter(id => parts[id]);
+  if (!ids.length) return;
+  if (kind === "isolate") { isolateIds(label, ids); return; }
+  entries.set(`${kind}:list:${label}:${ids[0]}`, { label, kind, whole: true, ids: new Set(ids) });
+  applyLayers(); report();
+}
 // Tint every part of a group, so the student sees what a level will affect.
 let previewMeshes = [], previewTimer = null;
 function clearPreview() {
@@ -602,6 +610,9 @@ window.akeso = {
   hide(id, whole, gid) { hidePart(id, !!whole, gid || null); },
   ghost(id, whole, gid) { ghostPart(id, !!whole, gid || null); },
   isolate(id, whole, gid) { isolatePart(id, !!whole, gid || null); },
+  hideList(ids, label) { listAction("hide", ids, String(label || "")); },
+  ghostList(ids, label) { listAction("ghost", ids, String(label || "")); },
+  isolateList(ids, label) { listAction("isolate", ids, String(label || "")); },
   hideGroup(gid, label) { groupAction("hide", String(gid), label); },
   ghostGroup(gid, label) { groupAction("ghost", String(gid), label); },
   isolateGroup(gid, label) { groupAction("isolate", String(gid), label); },
