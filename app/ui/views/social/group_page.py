@@ -126,6 +126,7 @@ class MessageBubble(QFrame):
 
     menu_requested = Signal(object, QPoint)       # GroupMessage, where
     picture_clicked = Signal(str)                 # storage path
+    name_clicked = Signal(object)                 # Person
     THUMB = (380, 260)
 
     def __init__(self, message: GroupMessage) -> None:
@@ -143,7 +144,12 @@ class MessageBubble(QFrame):
         avatar.setObjectName("panel")
         AvatarCache.apply(avatar, message.author.avatar_path, message.author.name, 20)
         top.addWidget(avatar)
-        top.addWidget(label(message.author.name, "scBubbleName", wrap=False))
+        name = QPushButton(message.author.name.replace("&", "&&"))
+        name.setObjectName("scNameLink")
+        name.setCursor(Qt.CursorShape.PointingHandCursor)
+        name.setToolTip("Open this member's profile")
+        name.clicked.connect(lambda _c=False, a=message.author: self.name_clicked.emit(a))
+        top.addWidget(name)
         if message.author.badge:
             top.addWidget(pill(message.author.badge, "acPillGood"))
         top.addStretch(1)
@@ -541,6 +547,7 @@ class GroupPage(QWidget):
             bubble = MessageBubble(message)
             bubble.menu_requested.connect(self.message_menu.emit)
             bubble.picture_clicked.connect(self.image_opened.emit)
+            bubble.name_clicked.connect(self._open_author)
             if bubble.picture is not None:
                 path = message.attachment
                 self._bubbles.setdefault(path, []).append(bubble)
@@ -617,6 +624,18 @@ class GroupPage(QWidget):
             self.mentions.setFixedHeight(height)
             self.mentions.move(top.x(), max(0, top.y() - height - 4))
             self.mentions.raise_()
+
+    def _open_author(self, person) -> None:
+        """A name in the chat: open that member's profile. A private profile has no
+        public handle, but group members can still see the one used for @mentions."""
+        handle = person.handle or person.mention
+        if not handle and self.group is not None:
+            member = next((m for m in self.group.members_list if m.id == person.id), None)
+            handle = (member.handle or member.mention) if member else None
+        if handle:
+            self.profile_requested.emit(handle)
+        else:
+            self.banner.show_message(f"{person.name} keeps their profile private.", "warn", "OK")
 
     def _insert_mention(self, handle: str) -> None:
         found = self._mention_query()
