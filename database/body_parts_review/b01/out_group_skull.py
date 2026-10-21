@@ -1,0 +1,37 @@
+PART = {
+    "key": "group:skull",
+    "aliases": [],
+    "summary_plain": "The skull is the bony framework of the head. It is made of the cranium, which surrounds the brain, and the bones of the face.",
+    "function_plain": "It is hard and protects the brain, and it forms the eye sockets, nose and jaws.",
+    "description": "The skull has the cranium above and behind and the face below and in front. The 8 cranial bones are the paired parietal and temporal bones and the single frontal, occipital, ethmoid and sphenoid bones. The 14 facial bones are the paired maxillae, zygomatic, nasal, palatine, lacrimal and inferior nasal conchae, plus the mandible and vomer. Most of its bones meet at fixed joints called sutures.",
+    "location": "Forms the head. The brain sits in the cranial cavity and joins the spinal cord through the foramen magnum in the occipital bone. The orbits and nasal cavity open on the front of the face.",
+    "details": {
+        "type": "flat",
+        "joints": "Sutures: coronal (frontal with parietals), sagittal (between parietals), lambdoid (parietals with occipital), squamosal (temporal with parietal). Temporomandibular joints on each side connect the lower jaw (mandible) to the skull.",
+        "landmarks": "Foramen magnum; anterior, middle and posterior cranial fossae; sella turcica holding the pituitary; optic foramen; orbits; zygomatic arch; mastoid process; temporal fossa; bregma and lambda, marking the anterior and posterior fontanelles of the fetal skull.",
+    },
+    "clinical": [
+        ("A closed head injury does not break through the skull; in an open (penetrating) injury an object pierces the skull and enters the brain.", ""),
+        ("Skull fractures are among the more severe head injuries, along with concussion and traumatic brain injury.", ""),
+        ("Temporomandibular disorders, over 30 conditions of the jaw joint and chewing muscles, cause jaw pain, stiffness and trouble chewing.", ""),
+    ],
+    "exam_tip": "The anterior fontanelle, the largest, is not fully closed until about the middle of the second year; the posterior fontanelle closes within a month or two after birth.",
+    "sources": [
+        ("Axial Skeleton - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/skeletal/divisions/axial.html", "Public domain"),
+        ("Classification of Bones - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/skeletal/classification.html", "Public domain"),
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), the skull as a whole - PubAnnotation GrayAnatomy doc 46", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/46", "Public domain"),
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), skull (interior of the base) - PubAnnotation GrayAnatomy doc 47", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/47", "Public domain"),
+        ("Head Injuries - MedlinePlus (NLM)", "https://medlineplus.gov/headinjuries.html", "Public domain"),
+        ("Temporomandibular Joint Dysfunction - MedlinePlus (NLM)", "https://medlineplus.gov/temporomandibularjointdysfunction.html", "Public domain"),
+        ("Central Nervous System - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/nervous/organization/cns.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/anatomy/skeletal/divisions/axial.html", "Skull lists 8 cranial bones (parietal 2, temporal 2, frontal, occipital, ethmoid, sphenoid), 14 facial bones (maxilla 2, zygomatic 2, mandible, nasal 2, palatine 2, inferior nasal concha 2, lacrimal 2, vomer) and 6 auditory ossicles; hyoid separate."),
+        ("https://training.seer.cancer.gov/anatomy/skeletal/classification.html", "Flat bones are thin, flattened, usually curved; most bones of the cranium are flat; some skull bones are irregular."),
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/46", "Skull consists of the cranium above and behind and the face below and in front; coronal suture between frontal and parietals; sagittal between parietals; lambdoid between parietals and occipital; squamosal between temporal squama and parietal; foramen magnum transmits medulla oblongata, vertebral arteries; orbits; zygomatic arch; mastoid process; temporal fossa; bregma and lambda mark anterior and posterior fontanelles of fetal skull."),
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/47", "Anterior, middle and posterior cranial fossae; sella turcica lodges the hypophysis; optic foramen; anterior fontanelle largest, not completely closed until about middle of second year; posterior and lateral fontanelles close within a month or two after birth."),
+        ("https://medlineplus.gov/headinjuries.html", "Skull is hard and protects the brain; closed injury does not break through the skull; open (penetrating) injury pierces skull and enters brain; skull fracture among more severe head injuries with concussion and TBI."),
+        ("https://medlineplus.gov/temporomandibularjointdysfunction.html", "Two TMJs, one on each side of the jaw, connect the lower jaw to the skull; TMDs are more than 30 conditions causing pain and trouble with jaw joint and chewing muscles."),
+        ("https://training.seer.cancer.gov/anatomy/nervous/organization/cns.html", "Brain in the cranium, continuous with the spinal cord at the foramen magnum."),
+    ],
+}

@@ -18,7 +18,7 @@ from app.models.medicine import MedicineMonograph, medicine_from_json, medicine_
 from app.repositories.local_disease_cache import default_cache_path
 from app.repositories.supabase_medicine_repository import SupabaseMedicineRepository
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2          # 2: entries carry updated_at
 
 
 def default_medicine_cache_path() -> Path:

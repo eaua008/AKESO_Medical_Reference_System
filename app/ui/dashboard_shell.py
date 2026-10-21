@@ -170,6 +170,7 @@ class DashboardShell(QWidget):
         self.account_controller: Optional[AccountController] = None
         self.notebook_sync = None              # NotebookSyncController, once signed in
         self.social = None                     # Friends, sharing, Study Groups (social_wiring.py)
+        self.study = None                      # Study Hub (study_wiring.py, migration 050)
         self.exchange_controller: Optional[ExchangeController] = None
         self.notifications_controller: Optional[NotificationsController] = None
         self._unread: dict[str, int] = {}          # bell badge, by source
@@ -351,6 +352,8 @@ class DashboardShell(QWidget):
             if article is None or not article.is_external:
                 self.show_tab("articles")      # an external link opens over the current tab
             self.articles_controller.open_article(target_id)
+        elif kind in ("deck", "study_card") and self.study is not None:
+            self.study.open_result(kind, target_id)
         else:
             self.show_tab(target_id)
 
@@ -679,13 +682,25 @@ class DashboardShell(QWidget):
         from app.controllers.body_explorer_controller import BodyExplorerController
         from app.ui.views.body_explorer_view import BodyExplorerView
         self.body_view = BodyExplorerView()
+        from app.services.body_part_service import BodyPartService
         self.body_controller = BodyExplorerController(
             self.body_view, self._disease_service, self._symptom_service, self._article_service,
-            discussions_for=lambda system_id: PeerDiscussionList("body_system", system_id))
+            discussions_for=lambda system_id: PeerDiscussionList("body_system", system_id),
+            body_parts=BodyPartService())
         # Whatever is clicked opens on top of the explorer, like everywhere else.
         self.body_view.disease_requested.connect(lambda i: self._inspect_here("disease", i))
         self.body_view.symptom_requested.connect(lambda i: self._inspect_here("symptom", i))
         self.body_view.article_requested.connect(self._open_article_here)
+        # A part's full description: a page over the Explorer, so its source
+        # links and conditions open on top of it and closing them comes back.
+        from app.ui.views.body_part_reader import BodyPartReader
+        self.body_reader = BodyPartReader()
+        self._body_reader_sheet = self.add_sheet("body-systems", keep_content=True)
+        self._body_reader_sheet.set_content(self.body_reader)
+        self._body_reader_sheet.close_requested.connect(self._body_reader_sheet.close_sheet)
+        self.body_reader.close_requested.connect(self._body_reader_sheet.close_sheet)
+        self.body_reader.disease_requested.connect(lambda i: self._inspect_here("disease", i))
+        self.body_view.read_requested.connect(self._read_body_part)
         self.register_view("body-systems", self.body_view)
 
         # --- Search History and Settings
@@ -760,6 +775,9 @@ class DashboardShell(QWidget):
         # Friends, notebook sharing and Study Groups (migrations 040-042).
         from app.ui.social_wiring import register_social
         self.social = register_social(self, account)
+        # Study Hub: flashcards (migration 050).
+        from app.ui.study_wiring import register_study
+        self.study = register_study(self, account)
         if account.role == "admin":
             self._register_admin(account)
         self.checker_controller.case_saved.connect(lambda _id: bump("notebook_edits"))
@@ -918,8 +936,13 @@ class DashboardShell(QWidget):
             AdminService(AdminRepository(account.session)))
         self.register_view("admin-users", self.admin_users_view)
         self.register_view("admin-content", self.admin_content_view)
+        self.admin_content_view.decks_requested.connect(
+            lambda: self.study is not None and self.study.open_official_decks())
         self.admin_controller.attach_sheet(self.add_sheet("admin-content"))
         self.admin_controller.content_changed.connect(self._content_edited)
+        # Body part descriptions: admins also see drafts in the Explorer (migration 054).
+        from app.repositories.supabase_body_part_repository import BodyPartDraftRepository
+        self.body_controller.enable_drafts(BodyPartDraftRepository(account.session).all_rows)
 
         # Announcements (migration 015): pop-ups on everyone's dashboard.
         from app.controllers.announcement_admin_controller import AnnouncementAdminController
@@ -1114,6 +1137,8 @@ class DashboardShell(QWidget):
         # Friends, Study Groups, and the notebook's "Shared with me" count.
         if self.social is not None and tab_id in ("friends", "groups", "notebook"):
             self.social.on_tab(tab_id)
+        if self.study is not None:
+            self.study.on_tab(tab_id)
 
         # select_tab emits tabChanged, which is wired back to this method.
         # Blocking signals moves the highlight without the echo loop.
@@ -1166,6 +1191,13 @@ class DashboardShell(QWidget):
             sheet.closed.connect(lambda s=sheet, h=home: self._rehome_sheet(s, h))
             sheet._akeso_rehomes = True
         sheet.opened_at = next(PageSheet._order)
+
+    def _read_body_part(self, about, clicked_name: str, disease_names) -> None:
+        self.body_reader.show_part(about, clicked_name, disease_names)
+        sheet = self._body_reader_sheet
+        sheet.open_sheet()
+        sheet.raise_()
+        sheet.tab.raise_()
 
     def _open_article_here(self, article_id: str) -> None:
         """A related article on a disease, symptom or medicine page: read it

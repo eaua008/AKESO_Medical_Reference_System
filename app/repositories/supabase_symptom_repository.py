@@ -102,6 +102,7 @@ class SupabaseSymptomRepository:
                 diagnostic_weight=int(row.get("diagnostic_weight") or 5),
                 weight_rationale=row.get("weight_rationale") or "",
                 source_attribution=row.get("source_attribution") or "",
+                updated_at=str(row.get("updated_at") or ""),
                 tags=list(row.get("tags") or []),
                 causes=causes.get(sid, []),
                 red_flags=red_flags.get(sid, []),

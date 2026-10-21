@@ -1,0 +1,35 @@
+PART = {
+    "key": "group:hamstrings",
+    "aliases": ["hamstring muscles", "posterior femoral muscles"],
+    "summary_plain": "The hamstrings are a group of three muscles that run down the back of the thigh, from the bottom of the pelvis to just below the knee.",
+    "function_plain": "They bend the knee, and they help the buttock muscle pull the trunk back upright after bending forward.",
+    "description": "The hamstrings (posterior femoral muscles) are the biceps femoris, with a long and a short head, the semitendinosus and the semimembranosus. Except for the short head of biceps, they arise from the ischial tuberosity. The biceps tendon forms the lateral hamstring; the semitendinosus and semimembranosus tendons form the medial hamstrings. They act against the quadriceps.",
+    "location": "In the back of the thigh. The biceps femoris lies on the lateral side and passes to the fibula; the semitendinosus and semimembranosus lie medially and pass to the tibia. The semitendinosus tendon runs along the medial side of the popliteal fossa behind the knee.",
+    "details": {
+        "origin": "Long head of biceps femoris and semitendinosus: lower medial impression on the ischial tuberosity. Semimembranosus: upper lateral impression on the ischial tuberosity, by a thick tendon. Short head of biceps: lateral lip of the linea aspera and the lateral intermuscular septum.",
+        "insertion": "Biceps femoris: lateral side of the head of the fibula, with a small slip to the lateral condyle of the tibia. Semitendinosus: upper medial surface of the tibial shaft, behind the sartorius and joined to the gracilis tendon. Semimembranosus: groove on the back of the medial tibial condyle.",
+        "action": "Flex the leg at the knee. With the knee half bent, the biceps turns the leg slightly outward and the semitendinosus (and a little the semimembranosus) turns it inward. They help the gluteus maximus restore the upright posture after stooping.",
+        "nerve_supply": "Sciatic nerve branches (L4 to S3): the tibial nerve to the semitendinosus, semimembranosus and long head of biceps; the common fibular (peroneal) nerve to the short head of biceps.",
+        "blood_supply": "Mainly the perforating branches of the deep femoral (profunda femoris) artery; the inferior gluteal artery supplies the muscles near their attachment to the ischial tuberosity.",
+    },
+    "clinical": [
+        ("Hamstring strains (stretched or torn muscle or tendon) are common; they cause pain, spasm, swelling and trouble moving the muscle.", ""),
+        ("Hamstring strains happen in sports with much running, jumping and sudden starts and stops, such as basketball, football and soccer.", ""),
+        ("Strains are first treated with rest, ice, compression and medicines; exercise and physical therapy may follow.", ""),
+    ],
+    "exam_tip": "The short head of biceps femoris is the only hamstring part supplied by the common fibular (peroneal) nerve; the others are supplied by the tibial nerve.",
+    "sources": [
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), Posterior Femoral Muscles and Arteries of the Lower Extremity - Internet Archive full text", "https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "Public domain"),
+        ("Muscles of the Lower Extremity - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/lower.html", "Public domain"),
+        ("Muscle Groups - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/", "Public domain"),
+        ("Sports Injuries - NIAMS", "https://www.niams.nih.gov/health-topics/sports-injuries", "Public domain"),
+        ("Sprains and Strains - MedlinePlus (NLM)", "https://medlineplus.gov/sprainsandstrains.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "pp. 478-480 '4. The Posterior Femoral Muscles (Hamstring Muscles)': long head of biceps from lower inner impression on ischial tuberosity; short head from lateral lip of linea aspera and lateral intermuscular septum; inserted into lateral side of head of fibula with slip to lateral tibial condyle; semitendinosus from lower medial impression on ischial tuberosity, inserted into upper medial surface of tibial body behind sartorius, below and united to gracilis tendon, lies along medial side of popliteal fossa; semimembranosus by thick tendon from upper outer impression, inserted mainly into horizontal groove on posterior medial aspect of medial tibial condyle; biceps tendon forms lateral hamstring, other two medial hamstrings; nerves L4, L5, S1-S3; short head from common peroneal, others tibial; flex leg on thigh; semiflexed knee: biceps rotates outward, semitendinosus and slightly semimembranosus inward. p. 478: gluteus maximus restores erect position after stooping, assisted by the hamstrings. Angiology pp. 608-636: second and third perforating arteries supply the posterior femoral muscles; first perforating to biceps femoris; inferior gluteal supplies muscles attached to ischial tuberosity."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/lower.html", "Hamstrings are antagonists to the quadriceps femoris and flex the leg at the knee."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/", "Muscle naming: biceps means two heads."),
+        ("https://www.niams.nih.gov/health-topics/sports-injuries", "Three muscles run along the back of the thigh and form the hamstring; hamstring strains with running, jumping, sudden starts and stops; basketball, football and soccer players commonly get them."),
+        ("https://medlineplus.gov/sprainsandstrains.html", "A strain is a stretched or torn muscle or tendon; back and hamstring strains are common; symptoms pain, spasm, swelling, trouble moving the muscle; treatment rest, ice, compression, medicines, later exercise and physical therapy."),
+    ],
+}

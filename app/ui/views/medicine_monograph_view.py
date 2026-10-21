@@ -21,6 +21,7 @@ from typing import Optional
 
 from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtWidgets import (
+    QSizePolicy,
     QApplication,
     QButtonGroup,
     QFrame,
@@ -175,6 +176,15 @@ class MedicineMonographView(QWidget):
         self._titles = TitlePair("detailTitle", "detailScientific")
         row.addWidget(self._titles, 1)
 
+        # "Updated Oct 19, 2026": when this entry last changed (its updated_at).
+        self._updated_badge = QLabel()
+        self._updated_badge.setObjectName("systemChip")
+        self._updated_badge.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+        self._updated_badge.setToolTip("When this entry was last updated in Akeso's library. "
+                               "Its sources are listed under References.")
+        self._updated_badge.hide()
+        row.addWidget(self._updated_badge)
+
         self._copy_button = QPushButton("Copy Clinical Monograph")
         self._copy_button.setObjectName("mdGhostAction")
         self._copy_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -318,6 +328,8 @@ class MedicineMonographView(QWidget):
         return grid
 
     def show_medicine(self, m: MedicineMonograph) -> None:
+        self._updated_badge.setText(f"Updated {m.updated_label}")
+        self._updated_badge.setVisible(bool(m.updated_label))
         self._medicine = m
         self._titles.set_texts(m.name, f"(Generic: {m.generic_label})")
         starred = bool(self.bookmark_lookup(m.id)) if self.bookmark_lookup else False
@@ -506,6 +518,8 @@ class MedicineMonographView(QWidget):
                                "book")
         layout.addWidget(_label(
             "Two-tier academic provenance for medical students and clinicians.", "mdMuted"))
+        if m.updated_label:
+            layout.addWidget(_label(f"Last updated: {m.updated_label}", "mdMuted"))
         # Every citation gets its own card, with a working link when it has a
         # URL (same layout as the Disease Encyclopedia).
         # The dosing table's sources sit with them, after the other citations,

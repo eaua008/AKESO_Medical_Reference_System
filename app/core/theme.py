@@ -128,6 +128,7 @@ class Theme:
         from app.core.admin_styles import admin_rules
         from app.core.article_styles import article_rules
         from app.core.social_styles import social_rules
+        from app.core.study_styles import study_rules
         check_image = checkmark_file("#FFFFFF")
         body_font = f"'{cls.FONT}', '{cls.FALLBACK_FONT}', sans-serif"
         heading_font = f"'{cls.HEADING_FONT}', '{cls.FALLBACK_FONT}', sans-serif"
@@ -1343,4 +1344,4 @@ class Theme:
         #googleButton[googleState="cooldown"] {{
             color: {p['TEXT_MUTED']};
         }}
-        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font) + article_rules(p, heading_font) + social_rules(p, heading_font)
+        """ + emergency_rules(p, heading_font) + wellness_rules(p, heading_font) + symptom_rules(p, heading_font) + medicine_rules(p, heading_font) + checker_rules(p, heading_font) + interaction_rules(p, heading_font) + notebook_rules(p, heading_font) + control_rules(p) + account_rules(p, heading_font) + exchange_rules(p, heading_font) + admin_rules(p, heading_font) + article_rules(p, heading_font) + social_rules(p, heading_font) + study_rules(p, heading_font)

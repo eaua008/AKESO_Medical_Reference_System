@@ -1,0 +1,38 @@
+PART = {
+    "key": "optic nerve",
+    "aliases": [],
+    "summary_plain": "The optic nerve is a cable of nerve fibers that runs from the back of each eye to the brain.",
+    "function_plain": "It carries signals from the retina to the brain, which turns them into the images you see.",
+    "description": "The optic nerve is a bundle of more than a million nerve fibers. Each eye has one, linking its retina to the brain. It is one of the cranial nerves serving a special sense (vision), and those nerves carry only sensory fibers. Damage to it can cause vision loss.",
+    "location": "It runs from the retina at the back of the eye to the brain, passing through the optic foramen at the apex of the orbit together with the ophthalmic artery. Inside the skull it lies above the tentorium (supratentorial).",
+    "details": {
+        "origin": "The retina at the back of the eye.",
+        "type": "sensory",
+        "supplies": "Carries visual signals from the retina to the brain.",
+    },
+    "clinical": [
+        ("Glaucoma damages the optic nerve, usually through slowly rising fluid pressure in the eye; it is a leading cause of blindness in the United States.", ""),
+        ("Optic neuritis is inflammation of the optic nerve, often from infection or immune conditions such as multiple sclerosis.", ""),
+        ("Optic nerve atrophy is degeneration of the nerve from poor blood flow, disease, injury or toxins.", ""),
+        ("Optic nerve head drusen are deposits of protein and calcium salts that build up in the nerve over time.", ""),
+    ],
+    "exam_tip": "Each optic nerve is a bundle of more than a million nerve fibers carrying visual signals.",
+    "sources": [
+        ("Optic Nerve Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/opticnervedisorders.html", "Public domain"),
+        ("How the Eyes Work - National Eye Institute", "https://www.nei.nih.gov/learn-about-eye-health/healthy-vision/how-eyes-work", "Public domain"),
+        ("Peripheral Nervous System - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/nervous/organization/pns.html", "Public domain"),
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), the skull as a whole - PubAnnotation GrayAnatomy doc 46", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/46", "Public domain"),
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), skull (interior of the base) - PubAnnotation GrayAnatomy doc 47", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/47", "Public domain"),
+        ("Tentorium - NCI SEER Training Modules", "https://training.seer.cancer.gov/cns/cns-anatomy/tentorium.html", "Public domain"),
+        ("Glaucoma - MedlinePlus (NLM)", "https://medlineplus.gov/glaucoma.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://medlineplus.gov/opticnervedisorders.html", "Optic nerve is a bundle of more than 1 million nerve fibers carrying visual messages; one connecting the back of each eye (retina) to the brain; damage causes vision loss; glaucoma is the leading cause of blindness in the United States, usually from increased eye pressure; optic neuritis (infections, immune diseases like MS); optic nerve atrophy (poor blood flow, disease, trauma, toxins); optic nerve head drusen (protein and calcium salts)."),
+        ("https://www.nei.nih.gov/learn-about-eye-health/healthy-vision/how-eyes-work", "Optic nerve carries electrical signals from the retina to the brain, which turns them into images."),
+        ("https://training.seer.cancer.gov/anatomy/nervous/organization/pns.html", "Twelve pairs of cranial nerves; three nerves associated with special senses of smell, vision, hearing and equilibrium have only sensory fibers (page does not name the optic nerve itself)."),
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/46", "Apex of the orbit corresponds to the optic foramen."),
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/47", "Optic foramen transmits the optic nerve and ophthalmic artery."),
+        ("https://training.seer.cancer.gov/cns/cns-anatomy/tentorium.html", "Optic nerve listed among supratentorial structures."),
+        ("https://medlineplus.gov/glaucoma.html", "Glaucoma damages the optic nerve; fluid pressure inside the eye slowly rises in the most common types."),
+    ],
+}

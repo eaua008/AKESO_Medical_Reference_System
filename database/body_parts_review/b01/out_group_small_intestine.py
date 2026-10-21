@@ -1,0 +1,37 @@
+PART = {
+    "key": "group:small_intestine",
+    "aliases": [],
+    "summary_plain": "The small intestine is a long, folded tube in the belly that connects the stomach to the large intestine.",
+    "function_plain": "It finishes digesting food and absorbs most of its nutrients and water into the body.",
+    "description": "The small intestine runs from the pyloric sphincter of the stomach to the ileocecal valve. It has three parts: the duodenum (first), the jejunum (middle) and the ileum (last). Its own juices mix with bile and pancreatic juice to finish digesting proteins, carbohydrates and fats. Circular folds (plicae circulares), villi and microvilli greatly increase its absorbing surface.",
+    "location": "Coiled in the abdomen between the stomach and the large intestine. The duodenum receives bile and pancreatic juice through the ampulla of Vater; the ileum empties into the large intestine at the ileocecal valve.",
+    "details": {
+        "functions": "Completes digestion and absorbs nutrients and water. Mucosal cells secrete mucus and enzymes (peptidase, sucrase, maltase, lactase, lipase, enterokinase); endocrine cells release secretin and cholecystokinin.",
+        "blood_supply": "Its venous blood goes to the liver through the portal vein.",
+        "nerve_supply": "The enteric nervous system in its wall controls muscle contractions and secretion when food stretches the wall; the brain and spinal cord also influence digestion.",
+    },
+    "clinical": [
+        ("A peptic ulcer can form in the lining of the duodenum (duodenal ulcer), most often from H. pylori infection or NSAID use.", "peptic_ulcer_disease"),
+        ("Celiac disease is an immune reaction to gluten that damages the small intestine and prevents nutrient absorption.", ""),
+        ("Other small intestine disorders include Crohn's disease, infections, bleeding, intestinal obstruction and cancer.", ""),
+    ],
+    "exam_tip": "The small intestine is the longest part of the digestive system, about 20 feet (roughly 6 metres), folded many times to fit in the abdomen.",
+    "sources": [
+        ("Small & Large Intestine - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/digestive/regions/intestine.html", "Public domain"),
+        ("Small Intestine Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/smallintestinedisorders.html", "Public domain"),
+        ("Your Digestive System & How It Works - NIDDK", "https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works", "Public domain"),
+        ("Anatomy of the Liver & Gallbladder - NCI SEER Training Modules", "https://training.seer.cancer.gov/biliary/anatomy/liver.html", "Public domain"),
+        ("Definition & Facts for Cirrhosis - NIDDK", "https://www.niddk.nih.gov/health-information/liver-disease/cirrhosis/definition-facts", "Public domain"),
+        ("Definition & Facts for Peptic Ulcers - NIDDK", "https://www.niddk.nih.gov/health-information/digestive-diseases/peptic-ulcers-stomach-ulcers/definition-facts", "Public domain"),
+        ("Definition & Facts for Celiac Disease - NIDDK", "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/definition-facts", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/anatomy/digestive/regions/intestine.html", "Extends from pyloric sphincter to ileocecal valve; duodenum, jejunum, ileum; plicae circulares, villi and microvilli increase surface; completes digestion, absorbs nutrients, passes residue to large intestine; mucosal secretions mucus, peptidase, sucrase, maltase, lactase, lipase, enterokinase; endocrine cells secrete cholecystokinin and secretin."),
+        ("https://medlineplus.gov/smallintestinedisorders.html", "Connects stomach to large intestine; longest part of the digestive system, about 20 feet; folds many times to fit in the abdomen; does most digestion; three sections duodenum, jejunum, ileum; disorders: bleeding, celiac disease, Crohn's disease, infections, intestinal cancer, obstruction, IBS, ulcers."),
+        ("https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works", "Duodenum first, jejunum middle, ileum end; own juice mixes with bile and pancreatic juice to complete breakdown of proteins, carbohydrates, fats; absorbs water and most nutrients; enteric nervous system in GI wall controls contractions and juice production when food stretches the wall; central nervous system controls some digestive functions."),
+        ("https://training.seer.cancer.gov/biliary/anatomy/liver.html", "Ampulla of Vater, a dilated duct under 1.5 cm long, empties into the duodenum."),
+        ("https://www.niddk.nih.gov/health-information/liver-disease/cirrhosis/definition-facts", "Portal vein carries blood from the stomach, intestines, spleen, gallbladder and pancreas to the liver."),
+        ("https://www.niddk.nih.gov/health-information/digestive-diseases/peptic-ulcers-stomach-ulcers/definition-facts", "Peptic ulcer is a sore on the lining of the stomach or duodenum (first part of small intestine); also called duodenal ulcer; most common causes H. pylori and NSAIDs."),
+        ("https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/definition-facts", "Celiac disease is a chronic digestive and immune disorder that damages the small intestine, triggered by gluten; can prevent the body getting nutrients."),
+    ],
+}

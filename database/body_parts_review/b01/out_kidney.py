@@ -1,0 +1,37 @@
+PART = {
+    "key": "kidney",
+    "aliases": [],
+    "summary_plain": "The kidneys are two bean-shaped organs, each about the size of a fist. They sit at the back of the belly, just below the ribs, one on each side of the spine.",
+    "function_plain": "They clean the blood by taking out wastes and extra water, which leave the body as urine.",
+    "description": "The kidneys are the main organs of the urinary system. Each adult kidney is roughly 12 cm long, 6 cm wide and 3 cm thick, with an indented medial border, the hilum. Inside, an outer cortex surrounds a medulla made of renal pyramids; urine drains through minor and major calyces into the renal pelvis and on into the ureter. Each kidney holds about a million nephrons, the filtering units.",
+    "location": "On the posterior abdominal wall, behind the peritoneum (retroperitoneal), between the 12th thoracic and 3rd lumbar vertebrae, partly shielded by the lower ribs. The right kidney usually sits a little lower than the left because the liver pushes it down.",
+    "details": {
+        "functions": "Filter the blood and remove wastes, extra fluid and acid in urine; balance water, sodium, potassium, calcium and phosphorus; make hormones that help control blood pressure, stimulate red blood cell production and support bone health. The juxtaglomerular apparatus secretes renin.",
+        "blood_supply": "The renal artery enters at the hilum and branches down to the nephrons; each glomerulus receives an afferent arteriole and is drained by an efferent arteriole. Filtered blood leaves through the renal vein at the hilum.",
+    },
+    "clinical": [
+        ("Chronic kidney disease slowly damages the nephrons over years; diabetes and high blood pressure are its most common causes, and many people have no symptoms until it is advanced.", "chronic_kidney_disease"),
+        ("Kidney failure is treated with dialysis or a kidney transplant.", "chronic_kidney_disease"),
+        ("Kidney stones are solid masses formed from substances in urine; a stuck stone can block urine flow and cause severe back or side pain and blood in the urine.", ""),
+        ("A urinary tract infection can reach the kidney (pyelonephritis); pain in the back or side below the ribs and fever are possible symptoms.", "urinary_tract_infection"),
+    ],
+    "exam_tip": "The right kidney usually lies slightly lower than the left, because the liver displaces it downward.",
+    "sources": [
+        ("Kidneys - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/urinary/components/kidney.html", "Public domain"),
+        ("Your Kidneys & How They Work - NIDDK", "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work", "Public domain"),
+        ("Your Urinary Tract & How It Works - NIDDK", "https://www.niddk.nih.gov/health-information/urologic-diseases/urinary-tract-how-it-works", "Public domain"),
+        ("Kidney Diseases - MedlinePlus (NLM)", "https://medlineplus.gov/kidneydiseases.html", "Public domain"),
+        ("Chronic Kidney Disease - MedlinePlus (NLM)", "https://medlineplus.gov/chronickidneydisease.html", "Public domain"),
+        ("Kidney Stones - MedlinePlus (NLM)", "https://medlineplus.gov/kidneystones.html", "Public domain"),
+        ("Urinary Tract Infections - MedlinePlus (NLM)", "https://medlineplus.gov/urinarytractinfections.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/anatomy/urinary/components/kidney.html", "Kidneys lie between T12 and L3; right slightly lower because liver displaces it; against posterior abdominal wall, protected by lower ribs; retroperitoneal; about 3 cm thick, 6 cm wide, 12 cm long; bean-shaped with medial indentation (hilum) leading to renal sinus; renal artery enters, ureter and renal vein leave at hilum; cortex, medulla of renal pyramids, renal columns; minor and major calyces drain into renal pelvis continuous with ureter; over a million nephrons; afferent arteriole enters and efferent leaves the renal corpuscle; primary organs of urinary system; juxtaglomerular apparatus secretes renin."),
+        ("https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work", "Bean-shaped, about the size of a fist, below the rib cage one on each side of the spine; about a million nephrons each; remove wastes, extra fluid and acid; balance water, sodium, calcium, phosphorus, potassium; make hormones for blood pressure, red blood cell production and bone health; renal artery brings blood in, renal vein takes filtered blood out."),
+        ("https://www.niddk.nih.gov/health-information/urologic-diseases/urinary-tract-how-it-works", "Kidneys are two bean-shaped, fist-sized organs below the rib cage on each side of the spine; filter about 120 to 150 quarts of blood a day making about 1 to 2 quarts of urine."),
+        ("https://medlineplus.gov/kidneydiseases.html", "Two kidneys, each about the size of a fist, near the middle of the back just below the rib cage; filter blood to make urine; urine travels through ureters to the bladder; kidney failure treated with dialysis or transplant."),
+        ("https://medlineplus.gov/chronickidneydisease.html", "CKD: damaged kidneys cannot filter blood well; diabetes and high blood pressure are the most common causes; slow damage over years, many have no symptoms until very advanced; may lead to kidney failure needing dialysis or transplant."),
+        ("https://medlineplus.gov/kidneystones.html", "Kidney stones are solid masses formed in the kidneys from substances in urine; a stuck stone can block urine flow and cause intense pain; warning signs include severe back or side pain and blood in urine."),
+        ("https://medlineplus.gov/urinarytractinfections.html", "Kidney infection (pyelonephritis) listed as a UTI type; symptoms include fever and pain in the back or side below the ribs; treatment with antibiotics."),
+    ],
+}

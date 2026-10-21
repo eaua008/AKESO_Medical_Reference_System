@@ -151,9 +151,9 @@ class AnnouncementList(Card):
         self._rows = QVBoxLayout()
         self._rows.setSpacing(6)
         self.body.addLayout(self._rows)
-        self._empty = label("No announcements right now. New ones from the Akeso team appear here "
-                            "within a few seconds.", "acMuted")
+        self._empty = label("No announcements right now.", "acMuted")
         self.body.addWidget(self._empty)
+        self.subtitle.hide()                   # shown again once one is live
 
     def set_items(self, items: list[Announcement]) -> None:
         while self._rows.count():
@@ -165,3 +165,6 @@ class AnnouncementList(Card):
             row.clicked.connect(self.opened.emit)
             self._rows.addWidget(row)
         self._empty.setVisible(not items)
+        # Nothing live: just the title and one line, so it takes little room.
+        if hasattr(self, "subtitle"):
+            self.subtitle.setVisible(bool(items))

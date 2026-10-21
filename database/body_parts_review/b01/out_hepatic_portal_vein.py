@@ -1,0 +1,38 @@
+PART = {
+    "key": "hepatic portal vein",
+    "aliases": ["portal vein"],
+    "summary_plain": "The hepatic portal vein is a short, thick vein in the belly that carries blood from the gut and nearby organs into the liver.",
+    "function_plain": "It brings nutrient-rich blood from digestion to the liver, so the liver handles it before it reaches the rest of the body.",
+    "description": "The hepatic portal vein is a short, thick vein formed by the union of the superior mesenteric vein and the splenic vein. It carries blood rich in absorbed products of digestion from the stomach, intestines, spleen, pancreas and gallbladder to the liver. The liver therefore gets blood from two sources: this vein and the common hepatic artery, which brings oxygenated blood.",
+    "location": "In the abdomen, running into the liver. At its far end it divides into the left and right portal veins.",
+    "details": {
+        "origin": "Formed by the union of the superior mesenteric vein and the splenic vein; drains into the liver, where it divides into the left and right portal veins.",
+        "territory": "Drains the stomach, intestines, spleen, pancreas and gallbladder.",
+        "branches": "Tributaries: the superior mesenteric vein and the splenic vein. Ends by dividing into the left and right portal veins.",
+    },
+    "clinical": [
+        ("Portal hypertension: scar tissue in a cirrhotic liver slows blood flow and raises pressure in the portal vein.", ""),
+        ("Portal hypertension can cause enlarged veins (varices) in the oesophagus, stomach or intestines, which may burst and bleed internally.", ""),
+        ("Portal hypertension can also cause fluid in the abdomen (ascites), swelling of the legs and confusion from toxins reaching the brain (hepatic encephalopathy).", ""),
+        ("A blood clot can form in the portal vein (portal vein thrombosis).", ""),
+    ],
+    "exam_tip": "The hepatic portal vein is formed by the union of the superior mesenteric vein and the splenic vein.",
+    "sources": [
+        ("Portal Vein - MeSH concept M0017339 (NLM)", "https://id.nlm.nih.gov/mesh/M0017339.json", "Public domain"),
+        ("portal vein - NCI Dictionary of Cancer Terms (glossary API)", "https://webapis.cancer.gov/glossary/v1/Terms/Cancer.gov/Patient/en/portal-vein", "Public domain"),
+        ("Portal Vein C33343 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C33343?include=definitions", "CC BY 4.0"),
+        ("Portal Vein Bifurcation C132413 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C132413?include=definitions", "CC BY 4.0"),
+        ("Portal Vein Thrombosis C78565 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C78565?include=definitions", "CC BY 4.0"),
+        ("Accessory Organs of the Digestive System - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/digestive/regions/accessory.html", "Public domain"),
+        ("Definition & Facts for Cirrhosis - NIDDK", "https://www.niddk.nih.gov/health-information/liver-disease/cirrhosis/definition-facts", "Public domain"),
+    ],
+    "checked": [
+        ("https://id.nlm.nih.gov/mesh/M0017339.json", "Scope note: a short thick vein formed by union of the superior mesenteric vein and the splenic vein."),
+        ("https://webapis.cancer.gov/glossary/v1/Terms/Cancer.gov/Patient/en/portal-vein", "A blood vessel carrying blood to the liver from the intestines, spleen, pancreas and gallbladder; also called hepatic portal vein."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C33343?include=definitions", "NCI definition: short thick trunk vein carrying blood with absorbed products of digestion from the intestines directly to the liver; synonym Hepatic Portal Vein."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C132413?include=definitions", "Distal end of the main portal vein branches into the left and right portal veins."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C78565?include=definitions", "Portal vein thrombosis: formation of a blood clot in the portal vein."),
+        ("https://training.seer.cancer.gov/anatomy/digestive/regions/accessory.html", "Liver receives blood from two sources: oxygenated blood via the common hepatic artery, nutrient-rich blood from the digestive tract via the hepatic portal vein."),
+        ("https://www.niddk.nih.gov/health-information/liver-disease/cirrhosis/definition-facts", "Portal vein carries blood from stomach, intestines, spleen, gallbladder and pancreas to the liver; portal hypertension when liver scar tissue slows flow and raises portal pressure; complications: ascites, oedema of legs/ankles/feet, varices in oesophagus/stomach/intestines that can burst and bleed, hepatic encephalopathy."),
+    ],
+}

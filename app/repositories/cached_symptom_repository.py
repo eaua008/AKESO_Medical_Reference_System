@@ -18,7 +18,7 @@ from app.models.symptom import Symptom, symptom_from_json, symptom_to_json
 from app.repositories.local_disease_cache import default_cache_path
 from app.repositories.supabase_symptom_repository import SupabaseSymptomRepository
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2          # 2: entries carry updated_at
 
 
 def default_symptom_cache_path() -> Path:

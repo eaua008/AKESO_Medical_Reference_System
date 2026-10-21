@@ -355,6 +355,14 @@ class DiseaseDetailView(QWidget):
         # wider than the screen. The full text is in the tooltip.
         self._titles = TitlePair("detailTitle", "detailScientific")
 
+        # "Updated Oct 19, 2026": when this entry last changed (its updated_at).
+        self._updated_badge = QLabel()
+        self._updated_badge.setObjectName("systemChip")
+        self._updated_badge.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+        self._updated_badge.setToolTip("When this entry was last updated in Akeso's library. "
+                               "Its sources are listed under References.")
+        self._updated_badge.hide()
+
         self._check_btn = QPushButton("  Check Symptoms")
         self._check_btn.setObjectName("primaryButton")
         self._check_btn.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -377,6 +385,7 @@ class DiseaseDetailView(QWidget):
 
         layout.addWidget(back)
         layout.addWidget(self._titles, 1)
+        layout.addWidget(self._updated_badge)
         layout.addWidget(self._check_btn)
         layout.addWidget(self._compare_btn)
         layout.addWidget(self._bookmark_btn)
@@ -509,6 +518,8 @@ class DiseaseDetailView(QWidget):
             f"({disease.scientific_name})" if disease.scientific_name else "",
         )
         self._refresh_bookmark_icon()
+        self._updated_badge.setText(f"Updated {disease.updated_label}")
+        self._updated_badge.setVisible(bool(disease.updated_label))
 
         self._clear()
         self._build_sections(disease)
@@ -943,6 +954,8 @@ class DiseaseDetailView(QWidget):
             )
         )
         layout.addLayout(header)
+        if d.updated_label:
+            layout.addWidget(_body(f"Last updated: {d.updated_label}", "bodyTextMuted"))
         layout.addWidget(
             _body(
                 "Structured academic provenance for medical students, "
