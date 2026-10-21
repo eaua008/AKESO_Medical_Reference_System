@@ -179,6 +179,7 @@ class Disease:
     related_disease_ids: list[str] = field(default_factory=list)
     source_attribution: str = ""
     clinical_references: list[ClinicalReference] = field(default_factory=list)
+    updated_at: str = ""                 # ISO timestamp of the last edit (diseases.updated_at)
 
     @classmethod
     def from_dict(cls, raw: dict[str, Any]) -> "Disease":
@@ -230,9 +231,17 @@ class Disease:
             source_attribution=pick(
                 "sourceAttribution", "source_attribution", ""
             ),
+            updated_at=str(pick("updatedAt", "updated_at", "") or ""),
         )
 
     # ------------------------------------------------------------ behaviour
+
+    @property
+    def updated_label(self) -> str:
+        """"Oct 19, 2026": when this entry was last changed in Supabase, or ""."""
+        from app.models.account import friendly_time, parse_time
+        when = parse_time(self.updated_at)
+        return friendly_time(when, with_time=False) if when else ""
 
     @property
     def hallmark_symptoms(self) -> list[SymptomLink]:

@@ -1,0 +1,37 @@
+PART = {
+    "key": "inferior vena cava",
+    "aliases": ["posterior vena cava", "caudal vena cava"],
+    "summary_plain": "The inferior vena cava is a large vein that runs up through the belly and empties into the heart.",
+    "function_plain": "It brings blood back to the heart from the legs and feet and from the organs of the belly and pelvis.",
+    "description": "The inferior vena cava is the large venous trunk that returns blood from the lower half of the body to the heart. It begins where the two common iliac veins join and receives veins such as the renal veins from the kidneys and the hepatic veins from the liver. Together with the superior vena cava, it drains into the right atrium.",
+    "location": "In the abdomen, starting at the right side of the fifth lumbar vertebra, where the two common iliac veins meet, and running up to empty into the right atrium of the heart.",
+    "details": {
+        "origin": "Formed by the union of the left and right common iliac veins near the right side of the fifth lumbar vertebra; drains into the right atrium.",
+        "territory": "Drains the lower limbs (legs and feet) and the organs of the abdomen and pelvis.",
+        "branches": "Main tributaries: the common iliac veins, the renal veins (from the kidneys) and the hepatic veins (from the liver).",
+    },
+    "clinical": [
+        ("A vena cava filter is a device placed in the inferior vena cava to stop blood clots from the deep veins of the legs travelling on to the lungs.", ""),
+    ],
+    "exam_tip": "The inferior vena cava begins where the left and right common iliac veins join, near the right side of the fifth lumbar vertebra.",
+    "sources": [
+        ("inferior vena cava - NCI Dictionary of Cancer Terms (glossary API)", "https://webapis.cancer.gov/glossary/v1/Terms/Cancer.gov/Patient/en/inferior-vena-cava", "Public domain"),
+        ("Vena Cava, Inferior - MeSH concept M0022584 (NLM)", "https://id.nlm.nih.gov/mesh/M0022584.json", "Public domain"),
+        ("Vena Cava Filters - MeSH concept M0024920 (NLM)", "https://id.nlm.nih.gov/mesh/M0024920.json", "Public domain"),
+        ("Inferior Vena Cava C12815 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C12815?include=definitions,synonyms", "CC BY 4.0"),
+        ("Common Iliac Vein C32359 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32359?include=definitions", "CC BY 4.0"),
+        ("Hepatic Vein C32736 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32736?include=definitions", "CC BY 4.0"),
+        ("Renal Vein C33462 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C33462?include=definitions", "CC BY 4.0"),
+        ("Circulatory Pathways - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/cardiovascular/blood/pathways.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://webapis.cancer.gov/glossary/v1/Terms/Cancer.gov/Patient/en/inferior-vena-cava", "A large vein that empties into the heart; carries blood from the legs and feet and from organs in the abdomen and pelvis."),
+        ("https://id.nlm.nih.gov/mesh/M0022584.json", "Scope note: venous trunk receiving blood from the lower extremities and the pelvic and abdominal organs."),
+        ("https://id.nlm.nih.gov/mesh/M0024920.json", "Vena cava filters: mechanical devices placed in the inferior vena cava to stop clots from the deep veins of the leg travelling to the lungs."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C12815?include=definitions,synonyms", "NCI definition: large vein returning blood from the lower half of the body to the heart; synonyms Caudal Vena Cava, Posterior Vena Cava (CDISC)."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32359?include=definitions", "Common iliac vein formed by internal and external iliac veins at the pelvic brim; ends at the right side of the fifth lumbar vertebra, joining its fellow to form the inferior vena cava."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32736?include=definitions", "Hepatic veins carry blood from the central veins of the liver to the inferior vena cava."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C33462?include=definitions", "Renal veins return blood from the kidneys to the vena cava."),
+        ("https://training.seer.cancer.gov/anatomy/cardiovascular/blood/pathways.html", "Superior and inferior vena cava both drain into the right atrium."),
+    ],
+}

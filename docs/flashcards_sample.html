@@ -1,0 +1,322 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Flashcards sample</title><style>:root{color-scheme:light dark}body{font-family:'Segoe UI',system-ui,sans-serif;max-width:900px;margin:32px auto;padding:0 16px;color:#17171f;background:#f7f7fa;line-height:1.5}h2{margin-top:32px;border-bottom:1px solid #e1e1e8;padding-bottom:6px}h3{margin-top:24px;color:#5c4bd1}table{border-collapse:collapse;width:100%}td,th{border:1px solid #e1e1e8;padding:6px 10px;text-align:left}th{background:#f0f0f4}code{background:#f0f0f4;padding:1px 5px;border-radius:4px;font-size:12px}.li{margin:3px 0}.step{font-family:Consolas,monospace;margin-left:28px}@media (prefers-color-scheme: dark){body{background:#0d0d13;color:#f3f4f6}td,th{border-color:#2a2a38}th,code{background:#1a1a24}h3{color:#a29bfe}}</style></head><body><h1>Auto flashcards v2: sample report</h1>
+<p>Built from this computer&#x27;s cached encyclopedia: 40 diseases, 62 medicines, 96 symptoms.</p>
+<p><b>826 cards</b> pass the quality gates, in 57 auto decks. Cards rejected by the gates: 10 (needs 2 to 4 distractors: 1, answer appears in the question: 4, front too long: 5).</p>
+<p>Old auto cards (<code>auto:</code> keys) are retired: no longer built, their review history is kept.</p>
+<h2>Data coverage</h2>
+<table>
+<tr><th>Template</th><th>Name</th><th>Entries with at least 1 card</th><th>Out of</th></tr>
+<tr><td><code>dz_picture</code></td><td>Clinical picture</td><td>35</td><td>40 diseases</td></tr>
+<tr><td><code>dz_vs</code></td><td>Tell them apart</td><td>40</td><td>40 diseases</td></tr>
+<tr><td><code>dz_mech</code></td><td>Mechanism</td><td>8</td><td>40 diseases</td></tr>
+<tr><td><code>dz_redflag</code></td><td>Red flag</td><td>39</td><td>40 diseases</td></tr>
+<tr><td><code>dz_tx</code></td><td>Treatment</td><td>39</td><td>40 diseases</td></tr>
+<tr><td><code>dz_feature</code></td><td>Key features</td><td>0</td><td>40 diseases</td></tr>
+<tr><td><code>rx_calc</code></td><td>Dose calculation</td><td>25</td><td>62 medicines</td></tr>
+<tr><td><code>rx_dose</code></td><td>Dose recall</td><td>61</td><td>62 medicines</td></tr>
+<tr><td><code>rx_class</code></td><td>Drug class</td><td>59</td><td>62 medicines</td></tr>
+<tr><td><code>rx_se</code></td><td>Side effects</td><td>62</td><td>62 medicines</td></tr>
+<tr><td><code>rx_contra</code></td><td>Contraindications</td><td>61</td><td>62 medicines</td></tr>
+<tr><td><code>rx_renal</code></td><td>Kidney / liver dosing</td><td>20</td><td>62 medicines</td></tr>
+<tr><td><code>rx_ix</code></td><td>Interactions</td><td>30</td><td>62 medicines</td></tr>
+<tr><td><code>sx_cause</code></td><td>Causes</td><td>96</td><td>96 symptoms</td></tr>
+<tr><td><code>sx_redflag</code></td><td>Red flag</td><td>0</td><td>96 symptoms</td></tr>
+</table>
+<h2>Templates skipped</h2>
+<div class='li' style='margin-left:0px'>• <code>dz_feature</code> (key features / criteria): <b>needs a diagnostic criteria field.</b> No authored list of key features exists, and building one from symptom links is not allowed.</div>
+<div class='li' style='margin-left:0px'>• <code>sx_redflag</code>: <b>needs non-red-flag features of the symptom</b> to use as distractors. Symptoms only have causes and red flags, and red flags of unrelated conditions are not allowed.</div>
+<h2>Sample cards</h2>
+<h3>Acute Rheumatic Fever and Rheumatic Heart Disease (disease, 7 cards)</h3>
+<p><b>[dz_picture] Clinical picture</b> · difficulty: clinical · source: <code>symptoms</code> · key: <code>auto2:disease:rheumatic_fever:dz_picture</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> A patient has fever, joint pain (arthralgia) and joint swelling. Symptoms begin about 2-4 weeks after the sore throat. Most likely diagnosis?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Acute Appendicitis — <i>Shares fever, but not typical: joint pain (arthralgia)</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Influenza — <i>Shares fever and joint pain (arthralgia), but not typical: joint swelling</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Dengue — <i>Shares fever and joint pain (arthralgia), but not typical: joint swelling</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Acute Rheumatic Fever and Rheumatic Heart Disease — <i>Acute rheumatic fever (ARF) is an autoimmune inflammatory illness that follows untreated group A streptococcal throat infection, mainly in children aged 5-15 in low- and middle-income settings.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Acute Rheumatic Fever and Rheumatic Heart Disease</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Acute rheumatic fever (ARF) is an autoimmune inflammatory illness that follows untreated group A streptococcal throat infection, mainly in children aged 5-15 in low- and middle-income settings.</div>
+<div class='li' style='margin-left:0px'>• <b>Don&#x27;t confuse with:</b></div>
+<div class='li' style='margin-left:20px'>• Dengue: Shares fever and joint pain (arthralgia), but not typical: joint swelling</div>
+<div class='li' style='margin-left:20px'>• Influenza: Shares fever and joint pain (arthralgia), but not typical: joint swelling</div>
+<div class='li' style='margin-left:20px'>• Acute Appendicitis: Shares fever, but not typical: joint pain (arthralgia)</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Cardiovascular System</div>
+<p><b>[dz_vs] Tell them apart</b> · difficulty: clinical · source: <code>differential_diagnosis</code> · key: <code>auto2:disease:rheumatic_fever:dz_vs:septic-arthritis</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Acute Rheumatic Fever and Rheumatic Heart Disease vs Septic arthritis: what&#x27;s the key difference?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Usually one hot joint with high fever; organisms in joint fluid; does not migrate</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Acute rheumatic fever (ARF) is an autoimmune inflammatory illness that follows untreated group A streptococcal throat infection, mainly in children aged 5-15 in low- and middle-income settings.</div>
+<p><b>[dz_redflag] Red flag</b> · difficulty: clinical · source: <code>emergency_warning_signs</code> · key: <code>auto2:disease:rheumatic_fever:dz_redflag</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> In Acute Rheumatic Fever and Rheumatic Heart Disease, which finding means urgent care is needed?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Pink ring-shaped rash on the trunk (erythema marginatum) — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Chest pain or a racing, irregular heartbeat — <i>A warning sign listed for this condition.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Sore throat — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Fatigue &amp; malaise — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Chest pain or a racing, irregular heartbeat</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> A child or young person with fever and migrating joint pain or swelling, new chorea, or a new heart murmur weeks after a sore throat needs prompt medical assessment, including echocardiography.</div>
+<p><b>[dz_tx] Treatment</b> · difficulty: clinical · source: <code>medicines</code> · key: <code>auto2:disease:rheumatic_fever:dz_tx:use</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which medicine is used for Acute Rheumatic Fever and Rheumatic Heart Disease?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Oseltamivir — <i>Listed for Influenza, not for Acute Rheumatic Fever and Rheumatic Heart Disease.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Allopurinol — <i>Listed for Gout, not for Acute Rheumatic Fever and Rheumatic Heart Disease.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Benzathine Penicillin G — <i>Single IM dose eradicates group A strep; repeated every 3-4 weeks as secondary prophylaxis (WHO, AHA). Never give IV.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Zinc Sulfate — <i>Listed for Acute Infectious Gastroenteritis (Acute Diarrhea), not for Acute Rheumatic Fever and Rheumatic Heart Disease.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Benzathine Penicillin G</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Single IM dose eradicates group A strep; repeated every 3-4 weeks as secondary prophylaxis (WHO, AHA). Never give IV.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Long-acting penicillin (beta-lactam)</div>
+<h3>Dengue (disease, 7 cards)</h3>
+<p><b>[dz_picture] Clinical picture</b> · difficulty: clinical · source: <code>symptoms</code> · key: <code>auto2:disease:dengue:dz_picture</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> A patient has fever, muscle aches (myalgia) and retro-orbital pain (pain behind the eyes). Most likely diagnosis?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Acute Infectious Gastroenteritis (Acute Diarrhea) — <i>Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Community-Acquired Pneumonia — <i>Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Chickenpox (Varicella) — <i>Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Dengue — <i>Dengue is an acute mosquito-borne viral infection caused by four antigenically distinct dengue virus serotypes and transmitted mainly by Aedes aegypti and Aedes albopictus.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Dengue</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Dengue is an acute mosquito-borne viral infection caused by four antigenically distinct dengue virus serotypes and transmitted mainly by Aedes aegypti and Aedes albopictus.</div>
+<div class='li' style='margin-left:0px'>• <b>Don&#x27;t confuse with:</b></div>
+<div class='li' style='margin-left:20px'>• Acute Infectious Gastroenteritis (Acute Diarrhea): Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</div>
+<div class='li' style='margin-left:20px'>• Chickenpox (Varicella): Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</div>
+<div class='li' style='margin-left:20px'>• Community-Acquired Pneumonia: Shares fever and muscle aches (myalgia), but not typical: retro-orbital pain (pain behind the eyes)</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Multisystem (Systemic Infection)</div>
+<p><b>[dz_vs] Tell them apart</b> · difficulty: clinical · source: <code>differential_diagnosis</code> · key: <code>auto2:disease:dengue:dz_vs:chikungunya</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Dengue vs Chikungunya: what&#x27;s the key difference?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Arthralgia more prominent. Bleeding and marked thrombocytopenia are relatively more specific for dengue</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Dengue is an acute mosquito-borne viral infection caused by four antigenically distinct dengue virus serotypes and transmitted mainly by Aedes aegypti and Aedes albopictus. Chikungunya is an acute mosquito-borne viral illness caused by chikungunya virus, an alphavirus transmitted mainly by Aedes aegypti and Aedes albopictus, the same vectors that spread dengue.</div>
+<p><b>[dz_redflag] Red flag</b> · difficulty: clinical · source: <code>emergency_warning_signs</code> · key: <code>auto2:disease:dengue:dz_redflag</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> In Dengue, which finding means urgent care is needed?</div>
+<div class='li' style='margin-left:20px'>• ✅ Cold, pale, clammy skin or other signs of shock — <i>A warning sign listed for this condition.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Skin rash — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Chills / rigors — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Dizziness / lightheadedness — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Cold, pale, clammy skin or other signs of shock</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Acute febrile illness compatible with dengue without warning signs warrants prompt clinical review with CBC. Any warning sign (severe abdominal pain, persistent vomiting, mucosal bleeding, lethargy/restlessness, fluid accumulation, rising hematocrit with falling platelets) or signs of shock, severe bleeding or organ impairment place the presentation in the EMERGENCY tier.</div>
+<p><b>[dz_tx] Treatment</b> · difficulty: clinical · source: <code>medicines</code> · key: <code>auto2:disease:dengue:dz_tx:use</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which medicine is used for Dengue?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Doxycycline — <i>Listed for Cholera, not for Dengue.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Oral Rehydration Salts (reduced osmolarity) — <i>Oral fluids such as ORS support hydration in outpatient dengue without warning signs.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Colchicine — <i>Listed for Gout, not for Dengue.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Prednisone — <i>Listed for Gout, not for Dengue.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Oral Rehydration Salts (reduced osmolarity)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Oral fluids such as ORS support hydration in outpatient dengue without warning signs.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Oral rehydration solution</div>
+<h3>Acute Appendicitis (disease, 8 cards)</h3>
+<p><b>[dz_picture] Clinical picture</b> · difficulty: clinical · source: <code>symptoms</code> · key: <code>auto2:disease:acute_appendicitis:dz_picture</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> A patient has right lower abdominal pain (right lower quadrant) and abdominal pain. Most likely diagnosis?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Hepatitis A — <i>Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Dengue — <i>Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Acute Appendicitis — <i>Acute appendicitis is inflammation of the vermiform appendix, usually triggered by obstruction of its lumen.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Acute Infectious Gastroenteritis (Acute Diarrhea) — <i>Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Acute Appendicitis</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Acute appendicitis is inflammation of the vermiform appendix, usually triggered by obstruction of its lumen.</div>
+<div class='li' style='margin-left:0px'>• <b>Don&#x27;t confuse with:</b></div>
+<div class='li' style='margin-left:20px'>• Acute Infectious Gastroenteritis (Acute Diarrhea): Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</div>
+<div class='li' style='margin-left:20px'>• Dengue: Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</div>
+<div class='li' style='margin-left:20px'>• Hepatitis A: Shares abdominal pain, but not typical: right lower abdominal pain (right lower quadrant)</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Digestive System</div>
+<p><b>[dz_vs] Tell them apart</b> · difficulty: clinical · source: <code>differential_diagnosis</code> · key: <code>auto2:disease:acute_appendicitis:dz_vs:mesenteric-adenitis</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Acute Appendicitis vs Mesenteric adenitis: what&#x27;s the key difference?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Usually children with a recent viral illness; enlarged mesenteric nodes with a normal appendix on imaging</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Acute appendicitis is inflammation of the vermiform appendix, usually triggered by obstruction of its lumen.</div>
+<p><b>[dz_mech] Mechanism</b> · difficulty: advanced · source: <code>pathophysiology</code> · key: <code>auto2:disease:acute_appendicitis:dz_mech:1</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Acute Appendicitis: Obstruction of the appendiceal lumen by an appendicolith ([ … ]), lymphoid hyperplasia (most common in children), parasites or tumor raises intraluminal and wall pressure.</div>
+<div class='li' style='margin-left:0px'>• <b>Full sentence:</b> Acute Appendicitis: Obstruction of the appendiceal lumen by an appendicolith (fecalith), lymphoid hyperplasia (most common in children), parasites or tumor raises intraluminal and wall pressure.</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> fecalith</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Venous and lymphatic outflow are blocked, the appendix distends and becomes ischemic, and bacteria such as Escherichia coli, Bacteroides, Peptostreptococcus and Pseudomonas overgrow and invade the wall.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Starts with “F”</div>
+<p><b>[dz_redflag] Red flag</b> · difficulty: clinical · source: <code>emergency_warning_signs</code> · key: <code>auto2:disease:acute_appendicitis:dz_redflag</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> In Acute Appendicitis, which finding means urgent care is needed?</div>
+<div class='li' style='margin-left:20px'>• ✅ High fever with chills — <i>A warning sign listed for this condition.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Diarrhea — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Epigastric pain — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Urinary frequency &amp; urgency — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> High fever with chills</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Suspected appendicitis (abdominal pain migrating to the right lower quadrant with anorexia, nausea or fever) needs same-day emergency assessment for surgical evaluation. Signs of perforation or peritonitis (rigid abdomen, high fever, rapid pulse, low blood pressure) need immediate care.</div>
+<h3>Typhoid Fever (disease, 7 cards)</h3>
+<p><b>[dz_picture] Clinical picture</b> · difficulty: clinical · source: <code>symptoms</code> · key: <code>auto2:disease:typhoid_fever:dz_picture</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> A patient has fever, abdominal pain and headache. Most likely diagnosis?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Acute Appendicitis — <i>Shares fever and abdominal pain, but not typical: headache</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Typhoid Fever — <i>Typhoid fever is a systemic infection caused by the exclusively human pathogen Salmonella enterica serovar Typhi.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Acute Infectious Gastroenteritis (Acute Diarrhea) — <i>Shares fever and abdominal pain, but not typical: headache</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Bacterial Meningitis — <i>Shares fever and headache, but not typical: abdominal pain</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Typhoid Fever</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Typhoid fever is a systemic infection caused by the exclusively human pathogen Salmonella enterica serovar Typhi.</div>
+<div class='li' style='margin-left:0px'>• <b>Don&#x27;t confuse with:</b></div>
+<div class='li' style='margin-left:20px'>• Acute Appendicitis: Shares fever and abdominal pain, but not typical: headache</div>
+<div class='li' style='margin-left:20px'>• Acute Infectious Gastroenteritis (Acute Diarrhea): Shares fever and abdominal pain, but not typical: headache</div>
+<div class='li' style='margin-left:20px'>• Bacterial Meningitis: Shares fever and headache, but not typical: abdominal pain</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Multisystem (Systemic Infection)</div>
+<p><b>[dz_vs] Tell them apart</b> · difficulty: clinical · source: <code>differential_diagnosis</code> · key: <code>auto2:disease:typhoid_fever:dz_vs:malaria</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Typhoid Fever vs Malaria: what&#x27;s the key difference?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Paroxysmal fever with rigors after exposure in an endemic area. Parasites on smear or positive RDT</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Typhoid fever is a systemic infection caused by the exclusively human pathogen Salmonella enterica serovar Typhi.</div>
+<p><b>[dz_redflag] Red flag</b> · difficulty: clinical · source: <code>emergency_warning_signs</code> · key: <code>auto2:disease:typhoid_fever:dz_redflag</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> In Typhoid Fever, which finding means urgent care is needed?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Constipation — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Skin rash — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Diarrhea — <i>A usual symptom of the illness, not a warning sign.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Sudden severe abdominal pain, rigidity or distension (possible intestinal perforation) — <i>A warning sign listed for this condition.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Sudden severe abdominal pain, rigidity or distension (possible intestinal perforation)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> A prolonged or stepwise-rising fever with abdominal symptoms in someone exposed to unsafe water or food warrants prompt evaluation with blood culture. The EMERGENCY tier applies to severe abdominal pain or peritonism (possible perforation), gastrointestinal bleeding, delirium or other altered mental status, or hemodynamic instability, typically in the 2nd-3rd week.</div>
+<p><b>[dz_tx] Treatment</b> · difficulty: clinical · source: <code>medicines</code> · key: <code>auto2:disease:typhoid_fever:dz_tx:use</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which medicine is used for Typhoid Fever?</div>
+<div class='li' style='margin-left:20px'>• ✅ Ceftriaxone — <i>IV therapy of choice for severe typhoid or where fluoroquinolone resistance prevails (ineffective against XDR strains).</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Aspirin (low-dose) — <i>Listed for Acute Ischemic Stroke, not for Typhoid Fever.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Oral Rehydration Salts (reduced osmolarity) — <i>Listed for Acute Infectious Gastroenteritis (Acute Diarrhea), not for Typhoid Fever.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Propranolol — <i>Listed for Essential Hypertension, not for Typhoid Fever.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Ceftriaxone</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> IV therapy of choice for severe typhoid or where fluoroquinolone resistance prevails (ineffective against XDR strains).</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Antibiotic (third-generation cephalosporin)</div>
+<h3>Amoxicillin (medicine, 8 cards)</h3>
+<p><b>[rx_calc] Dose calculation</b> · difficulty: clinical · source: <code>doses</code> · key: <code>auto2:medicine:med_amoxicillin:rx_calc:typhoid-and-paratyphoid-fever:20</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Child, 20 kg, Typhoid and paratyphoid fever: Amoxicillin dose per intake?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 667 mg every 8 h (13 mL)</div>
+<div class='li' style='margin-left:0px'>• <b>Steps:</b></div>
+<div class='li step'>1. 100 mg/kg/day × 20 kg = 2,000 mg a day</div>
+<div class='li step'>2. ÷ 3 doses = 667 mg per dose</div>
+<div class='li step'>3. No maximum is listed in Akeso for this row</div>
+<div class='li step'>4. As 250 mg/5 mL liquid: 13 mL per dose</div>
+<div class='li step'>5. Practice calculation: always check the prescriber and product insert.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Work out mg per kg × weight first, then split into the doses.</div>
+<p><b>[rx_dose] Dose recall</b> · difficulty: basic · source: <code>doses</code> · key: <code>auto2:medicine:med_amoxicillin:rx_dose:acute-bacterial-sinusitis</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Amoxicillin for Acute bacterial sinusitis (adult): dose and how often?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 250–500 mg every 8 h (or 750 mg – 1 g every 12 h)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Duration: As short as possible; follow guidelines Also asymptomatic bacteriuria in pregnancy. Adults and children 40 kg and over</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Route: PO</div>
+<p><b>[rx_class] Drug class</b> · difficulty: basic · source: <code>drug_class</code> · key: <code>auto2:medicine:med_amoxicillin:rx_class</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Amoxicillin belongs to which drug class?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Potassium-sparing diuretic (mineralocorticoid receptor antagonist) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Antibiotic (aminopenicillin) — <i>Amoxicillin: Antibiotic (aminopenicillin).</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ SGLT2 inhibitor — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Antiviral (neuraminidase inhibitor) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Antibiotic (aminopenicillin)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Used for: infections of the ear, nose and throat (including streptococcal pharyngitis, otitis media).</div>
+<p><b>[rx_se] Side effects</b> · difficulty: clinical · source: <code>adverse</code> · key: <code>auto2:medicine:med_amoxicillin:rx_se</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is NOT an adverse effect of Amoxicillin?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Rash (maculopapular rash common in infectious mononucleosis) — <i>A listed adverse effect of Amoxicillin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Diarrhea, nausea, vomiting — <i>A listed adverse effect of Amoxicillin.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Hypophosphatemia with prolonged high-dose aluminium use — <i>Listed for Aluminium hydroxide + Magnesium hydroxide, not for Amoxicillin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Anaphylaxis and serious hypersensitivity — <i>A listed adverse effect of Amoxicillin.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Hypophosphatemia with prolonged high-dose aluminium use</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> “Hypophosphatemia with prolonged high-dose aluminium use” comes from Aluminium hydroxide + Magnesium hydroxide&#x27;s list.</div>
+<h3>Paracetamol (medicine, 8 cards)</h3>
+<p><b>[rx_calc] Dose calculation</b> · difficulty: clinical · source: <code>doses</code> · key: <code>auto2:medicine:med_paracetamol:rx_calc:underweight-or-malnourished-child:20</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Child, 20 kg, Underweight or malnourished child: Paracetamol dose per intake?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 200 mg every 4–6 h, or longer apart</div>
+<div class='li' style='margin-left:0px'>• <b>Steps:</b></div>
+<div class='li step'>1. 10 mg/kg × 20 kg = 200 mg per dose</div>
+<div class='li step'>2. Max 60 mg/kg/day = 1,200 mg/day: keep the day&#x27;s total under it</div>
+<div class='li step'>3. Practice calculation: always check the prescriber and product insert.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Work out mg per kg × weight first, then split into the doses.</div>
+<p><b>[rx_dose] Dose recall</b> · difficulty: basic · source: <code>doses</code> · key: <code>auto2:medicine:med_paracetamol:rx_dose:fever-mild-to-moderate-pain</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Paracetamol for Fever, mild to moderate pain (adult): dose and how often?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 500 mg – 1 g every 4–6 h as needed, at least 4 h apart</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Duration: As needed Max: 1 g/dose · 4 g/day</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Route: PO</div>
+<p><b>[rx_class] Drug class</b> · difficulty: basic · source: <code>drug_class</code> · key: <code>auto2:medicine:med_paracetamol:rx_class</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Paracetamol belongs to which drug class?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Antiviral (SARS-CoV-2 protease inhibitor, ritonavir-boosted) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Antibiotic (aminopenicillin) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Mineral supplement (zinc) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Analgesic / antipyretic (para-aminophenol) — <i>Paracetamol: Analgesic / antipyretic (para-aminophenol).</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Analgesic / antipyretic (para-aminophenol)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Used for: mild-to-moderate pain (headache, musculoskeletal pain, dysmenorrhea, toothache).</div>
+<p><b>[rx_se] Side effects</b> · difficulty: clinical · source: <code>adverse</code> · key: <code>auto2:medicine:med_paracetamol:rx_se</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is NOT an adverse effect of Paracetamol?</div>
+<div class='li' style='margin-left:20px'>• ✅ Pharyngitis — <i>Listed for Cetirizine, not for Paracetamol.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Generally well tolerated at therapeutic doses — <i>A listed adverse effect of Paracetamol.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Anaphylaxis and hypersensitivity reactions — <i>A listed adverse effect of Paracetamol.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Hepatotoxicity / acute liver failure (overdose, chronic excess, alcohol use) — <i>A listed adverse effect of Paracetamol.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Pharyngitis</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> “Pharyngitis” comes from Cetirizine&#x27;s list.</div>
+<h3>Ciprofloxacin (medicine, 8 cards)</h3>
+<p><b>[rx_calc] Dose calculation</b> · difficulty: clinical · source: <code>doses</code> · key: <code>auto2:medicine:med_ciprofloxacin:rx_calc:shigellosis-1-month:20</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Child, 20 kg, Shigellosis (≥1 month): Ciprofloxacin dose per intake?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 300 mg 2× a day (150 mL)</div>
+<div class='li' style='margin-left:0px'>• <b>Steps:</b></div>
+<div class='li step'>1. 15 mg/kg × 20 kg = 300 mg per dose</div>
+<div class='li step'>2. 2 doses a day = 600 mg a day</div>
+<div class='li step'>3. Max 500 mg/dose: within the limit</div>
+<div class='li step'>4. As 400 mg/200 mL liquid: 150 mL per dose</div>
+<div class='li step'>5. Practice calculation: always check the prescriber and product insert.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Work out mg per kg × weight first, then split into the doses.</div>
+<p><b>[rx_dose] Dose recall</b> · difficulty: basic · source: <code>doses</code> · key: <code>auto2:medicine:med_ciprofloxacin:rx_dose:uncomplicated-cystitis</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Ciprofloxacin for Uncomplicated cystitis (adult): dose and how often?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 250–500 mg 2× a day</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Duration: 3 days Pre-menopausal women: a single 500 mg dose may be used</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Route: PO</div>
+<p><b>[rx_class] Drug class</b> · difficulty: basic · source: <code>drug_class</code> · key: <code>auto2:medicine:med_ciprofloxacin:rx_class</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Ciprofloxacin belongs to which drug class?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Antiplatelet (salicylate) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Antidiarrheal (opioid receptor agonist) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Biguanide antidiabetic — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Antibiotic (fluoroquinolone) — <i>Ciprofloxacin: Antibiotic (fluoroquinolone).</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Antibiotic (fluoroquinolone)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Used for: complicated urinary tract infections and pyelonephritis.</div>
+<p><b>[rx_se] Side effects</b> · difficulty: clinical · source: <code>adverse</code> · key: <code>auto2:medicine:med_ciprofloxacin:rx_se</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is NOT an adverse effect of Ciprofloxacin?</div>
+<div class='li' style='margin-left:20px'>• ✅ Acute kidney injury from crystal nephropathy (mainly high-dose IV therapy, dehydration or pre-existing renal impairment) — <i>Listed for Aciclovir, not for Ciprofloxacin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Nausea, diarrhea, vomiting, rash; abnormal liver function tests — <i>A listed adverse effect of Ciprofloxacin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Peripheral neuropathy (boxed) — <i>A listed adverse effect of Ciprofloxacin.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Acute kidney injury from crystal nephropathy (mainly high-dose IV therapy, dehydration or pre-existing renal impairment)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> “Acute kidney injury from crystal nephropathy (mainly high-dose IV therapy, dehydration or pre-existing renal impairment)” comes from Aciclovir&#x27;s list.</div>
+<h3>Azithromycin (medicine, 8 cards)</h3>
+<p><b>[rx_calc] Dose calculation</b> · difficulty: clinical · source: <code>doses</code> · key: <code>auto2:medicine:med_azithromycin:rx_calc:acute-otitis-media-6-mo:20</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Child, 20 kg, Acute otitis media (≥6 mo): Azithromycin dose per intake?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 600 mg single dose (15 mL)</div>
+<div class='li' style='margin-left:0px'>• <b>Steps:</b></div>
+<div class='li step'>1. 30 mg/kg × 20 kg = 600 mg per dose</div>
+<div class='li step'>2. 1 dose a day = 600 mg a day</div>
+<div class='li step'>3. Max 1,500 mg/dose: within the limit</div>
+<div class='li step'>4. As 200 mg/5 mL liquid: 15 mL per dose</div>
+<div class='li step'>5. Practice calculation: always check the prescriber and product insert.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Work out mg per kg × weight first, then split into the doses.</div>
+<p><b>[rx_dose] Dose recall</b> · difficulty: basic · source: <code>doses</code> · key: <code>auto2:medicine:med_azithromycin:rx_dose:cap-sinusitis-pharyngitis-skin-infection</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Azithromycin for CAP, sinusitis, pharyngitis, skin infections (adult): dose and how often?</div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> 500 mg once a day</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Duration: 3 days Max: 1.5 g/course Or 500 mg day 1, then 250 mg days 2–5</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Route: PO</div>
+<p><b>[rx_class] Drug class</b> · difficulty: basic · source: <code>drug_class</code> · key: <code>auto2:medicine:med_azithromycin:rx_class</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Azithromycin belongs to which drug class?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Oral iron replacement — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Antibiotic (macrolide) — <i>Azithromycin: Antibiotic (macrolide).</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Biguanide antidiabetic — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Antiplatelet (P2Y12 inhibitor) — <i>Another drug class in Akeso.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Antibiotic (macrolide)</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Used for: community-acquired pneumonia (including atypical pathogens).</div>
+<p><b>[rx_se] Side effects</b> · difficulty: clinical · source: <code>adverse</code> · key: <code>auto2:medicine:med_azithromycin:rx_se</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is NOT an adverse effect of Azithromycin?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Diarrhea, nausea, abdominal pain — <i>A listed adverse effect of Azithromycin.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ GI ulceration, bleeding and perforation — <i>Listed for Ibuprofen, not for Azithromycin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Exacerbation of myasthenia gravis — <i>A listed adverse effect of Azithromycin.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ QT prolongation and torsades de pointes — <i>A listed adverse effect of Azithromycin.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> GI ulceration, bleeding and perforation</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> “GI ulceration, bleeding and perforation” comes from Ibuprofen&#x27;s list.</div>
+<h3>Abdominal pain (symptom, 1 cards)</h3>
+<p><b>[sx_cause] Causes</b> · difficulty: basic · source: <code>causes</code> · key: <code>auto2:symptom:sym_abdominal_pain:sx_cause</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is a common cause of abdominal pain?</div>
+<div class='li' style='margin-left:20px'>• ✅ Acute pancreatitis — <i>Listed as a cause of abdominal pain.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Migraine aura — <i>A cause of blurred vision, not listed for abdominal pain.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Cluster headache — <i>A cause of headache, not listed for abdominal pain.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Hematuria — <i>A cause of dark urine, not listed for abdominal pain.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Acute pancreatitis</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Other causes listed: gastroenteritis, constipation or gas and peptic ulcer disease or gastritis.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Digestive System</div>
+<h3>Cough (symptom, 1 cards)</h3>
+<p><b>[sx_cause] Causes</b> · difficulty: basic · source: <code>causes</code> · key: <code>auto2:symptom:sym_cough:sx_cause</code></p>
+<div class='li' style='margin-left:0px'>• <b>Front:</b> Which is a common cause of cough?</div>
+<div class='li' style='margin-left:20px'>• ▫️ Metastatic cancer — <i>A cause of swollen lymph nodes (lymphadenopathy), not listed for cough.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Meckel&#x27;s diverticulum (children) — <i>A cause of blood in stool (hematochezia), not listed for cough.</i></div>
+<div class='li' style='margin-left:20px'>• ▫️ Appendicitis — <i>A cause of abdominal pain, not listed for cough.</i></div>
+<div class='li' style='margin-left:20px'>• ✅ Heart failure — <i>Listed as a cause of cough.</i></div>
+<div class='li' style='margin-left:0px'>• <b>Answer:</b> Heart failure</div>
+<div class='li' style='margin-left:0px'>• <b>Why:</b> Other causes listed: upper respiratory tract infection, acute bronchitis or pneumonia and asthma.</div>
+<div class='li' style='margin-left:0px'>• <b>Hint:</b> Think: Respiratory System</div>
+<h2>Content gaps (for a content batch)</h2>
+<div class='li' style='margin-left:0px'>• Diseases with <b>no differential distinguishing features</b> (no tell-apart cards): 0</div>
+<div class='li' style='margin-left:0px'>• Diseases with <b>no mechanism cloze</b> (no short mechanism sentence or no clear term): 32 of 40</div>
+<div class='li' style='margin-left:0px'>• Diseases with <b>no &quot;avoid&quot; medicine link</b>: 17 of 40</div>
+<div class='li' style='margin-left:0px'>• Diseases with <b>no red-flag card</b> (no red flags, or fewer than 2 symptoms that are clearly not red flags): 1 of 40</div>
+<div class='li' style='margin-left:0px'>• Medicines with weight-based child doses but <b>no calculation card</b> (ambiguous strings such as &quot;40–90 mg/kg/day, divided&quot;, frequency ranges, or complex maximums): 14: Benzathine Penicillin G, Co-trimoxazole (Sulfamethoxazole + Trimethoprim), Ethambutol, Ferrous Sulfate, Hydrochlorothiazide, Ibuprofen, Ivermectin, Losartan, Metoprolol, Oral Rehydration Salts (reduced osmolarity), Prednisone, Pyrazinamide, Rabies Immunoglobulin (HRIG / ERIG), Spironolactone</div>
+<div class='li' style='margin-left:0px'>• <b>No diagnostic criteria field</b> on diseases (e.g. Jones criteria), which <code>dz_feature</code> needs.</div>
+<div class='li' style='margin-left:0px'>• Medicines have <b>no description field</b>: <code>rx_class</code> explains with the first indication instead.</div>
+<h2>Things to decide</h2>
+<div class='li' style='margin-left:0px'>• <b>Dose calculation without a listed maximum:</b> the spec asks for rows &quot;with a parseable max&quot;. Many child rows (e.g. amoxicillin for typhoid) list none. These cards are built and say &quot;No maximum is listed in Akeso for this row&quot;. Say if you&#x27;d rather skip them.</div>
+<div class='li' style='margin-left:0px'>• <code>dz_picture</code> adds one context sentence when the clinicopathologic text has a timing or trigger (e.g. &quot;Symptoms begin about 2-4 weeks after the sore throat.&quot;), and only if it doesn&#x27;t name the disease.</div>
+<div class='li' style='margin-left:0px'>• Distractors are filtered more strictly than the spec asks: a distractor that shares a key word with a true fact (&quot;Leg swelling&quot; vs the red flag &quot;Swelling of the legs&quot;) is dropped, and treatment distractors never come from the same drug family as this disease&#x27;s medicines.</div>
+<p><i>34 sample cards shown.</i></p></body></html>

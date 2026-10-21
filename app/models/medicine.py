@@ -124,6 +124,14 @@ class MedicineMonograph:
     doses: list[DoseRow] = field(default_factory=list)
     dose_notes: list[DoseNote] = field(default_factory=list)
     dose_sources: list[DoseSource] = field(default_factory=list)
+    updated_at: str = ""                 # ISO timestamp of the last edit (medicines.updated_at)
+
+    @property
+    def updated_label(self) -> str:
+        """"Oct 19, 2026": when this entry was last changed in Supabase, or ""."""
+        from app.models.account import friendly_time, parse_time
+        when = parse_time(self.updated_at)
+        return friendly_time(when, with_time=False) if when else ""
 
     @property
     def has_dose_table(self) -> bool:

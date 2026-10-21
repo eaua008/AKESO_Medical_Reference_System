@@ -1,0 +1,35 @@
+PART = {
+    "key": "trapezius",
+    "aliases": [],
+    "summary_plain": "The trapezius is a large, flat, triangle-shaped muscle on the upper back. It covers the back of the neck and the tops of the shoulders.",
+    "function_plain": "It pulls the shoulder blades back, lifts the shoulders when carrying weight, and helps pull the head backward or to one side.",
+    "description": "The trapezius is a flat, triangular muscle in the top layer of the back muscles, which move the scapula. Its upper (descending) fibers run down and outward, its middle (transverse) fibers run across, and its lower (ascending) fibers run up and outward toward the shoulder girdle. The right and left muscles together form a diamond-shaped figure, with corners at the shoulders, the external occipital protuberance and the twelfth thoracic spine.",
+    "location": "Back of the neck and upper back, from the base of the skull down to the twelfth thoracic vertebra and out to the clavicle and scapula. It lies superficially; its front edge forms the back border of the posterior triangle of the neck, behind the sternocleidomastoid.",
+    "details": {
+        "origin": "External occipital protuberance and medial third of the superior nuchal line; ligamentum nuchae; spinous process of C7 and the spinous processes of all thoracic vertebrae, with the supraspinous ligament.",
+        "insertion": "Upper fibers: posterior border of the lateral third of the clavicle. Middle fibers: medial margin of the acromion and upper lip of the spine of the scapula. Lower fibers: by an aponeurosis to a tubercle at the medial end of the scapular spine.",
+        "action": "Retracts the scapula and braces the shoulder back. Upper fibers raise the point of the shoulder, as in carrying weights; lower fibers help depress the scapula; middle and lower fibers rotate it, raising the acromion. With shoulders fixed, both draw the head back; one tilts it sideways.",
+        "nerve_supply": "Accessory nerve, with branches from the third and fourth cervical nerves.",
+        "blood_supply": "Branches of the transverse cervical artery (its ascending and descending branches) and the descending branch of the occipital artery.",
+    },
+    "clinical": [
+        ("Neck pain is often due to strained or tense neck muscles, for example after long computer work, sleeping in an awkward position or overdoing exercise.", ""),
+    ],
+    "exam_tip": "Named for its shape: the right and left trapezius together look like a trapezium, a four-sided figure.",
+    "sources": [
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), Myology: Trapezius (p. 432-434) and Angiology: occipital and transverse cervical arteries - Internet Archive full text", "https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "Public domain"),
+        ("Superficial Back Muscles - MeSH (NLM)", "https://meshb.nlm.nih.gov/record/ui?ui=D064171", "Public domain"),
+        ("Muscle Groups - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/", "Public domain"),
+        ("Upper Extremity (Muscle Groups) - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/upper.html", "Public domain"),
+        ("Head and Neck (Muscle Groups) - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/head_neck.html", "Public domain"),
+        ("Neck Injuries and Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/neckinjuriesanddisorders.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "Read at offset 1418000: Trapezius is a flat, triangular muscle covering upper back of neck and shoulders; arises from external occipital protuberance, medial third of superior nuchal line, ligamentum nuchae, spine of C7 and all thoracic spines, supraspinal ligament; superior fibers downward to posterior border of lateral third of clavicle, middle horizontal to acromion and spine of scapula, inferior upward to tubercle at medial end of spine; two muscles resemble a trapezium/diamond with angles at shoulders, occipital protuberance and T12 spine; accessory nerve plus C3, C4; retracts scapula, upper fibers elevate shoulder as in supporting weights, lower depress scapula, middle and lower rotate scapula raising acromion; shoulders fixed: head drawn back, or to same side if one acts. Offset 1847000: descending branch of occipital artery supplies Trapezius. Offset 1963000: ascending and descending branches of transverse cervical supply Trapezius. Offset 1269000: posterior triangle bounded behind by Trapezius."),
+        ("https://meshb.nlm.nih.gov/record/ui?ui=D064171", "Superficial back muscles: top layer of back muscles whose function is to move the scapula; includes trapezius."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/", "Trapezius named for its shape, like a trapezoid, a four-sided figure."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/upper.html", "Muscles that move the shoulder and arm include the trapezius."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/head_neck.html", "Trapezius named as one of the obvious superficial neck muscles."),
+        ("https://medlineplus.gov/neckinjuriesanddisorders.html", "Muscle strain or tension often causes neck pain; neck muscles can be strained by sleeping awkwardly or overdoing exercise; long computer use."),
+    ],
+}

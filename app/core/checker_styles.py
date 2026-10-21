@@ -55,6 +55,19 @@ def checker_rules(p: dict, heading_font: str) -> str:
             border: 1px solid {p['BORDER']};
             border-radius: 14px;
         }}
+        /* the bar pinned under the checker: count, specificity, Reset, Calculate */
+        #ccActionBar {{
+            background-color: {p['SURFACE']};
+            border: none;
+            border-top: 1px solid {p['BORDER']};
+        }}
+        /* the numbered step headings (1 Symptoms, 2 Context, 3 Results) */
+        #ccStepNumber {{
+            background-color: {p['PRIMARY']};
+            color: #FFFFFF;
+            border-radius: 13px;
+            font-size: 13px; font-weight: 800;
+        }}
         #ccRedCard {{
             background-color: {p['DANGER_SOFT']};
             border: 1px solid {p['DANGER']};

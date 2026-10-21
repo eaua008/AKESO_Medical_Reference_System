@@ -172,6 +172,15 @@ class SymptomDetailView(QWidget):
         self._titles = TitlePair("detailTitle", "detailScientific")
         row.addWidget(self._titles, 1)
 
+        # "Updated Oct 19, 2026": when this entry last changed (its updated_at).
+        self._updated_badge = QLabel()
+        self._updated_badge.setObjectName("systemChip")
+        self._updated_badge.setSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+        self._updated_badge.setToolTip("When this entry was last updated in Akeso's library. "
+                               "Its sources are listed under References.")
+        self._updated_badge.hide()
+        row.addWidget(self._updated_badge)
+
         self._session_button = QPushButton("\u26a1  Add to Active Session")
         self._session_button.setObjectName("syPrimaryAction")
         self._session_button.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -302,6 +311,8 @@ class SymptomDetailView(QWidget):
     def show_symptom(self, s: Symptom) -> None:
         self._symptom = s
         self._titles.set_texts(s.name, f"({s.scientific_name})" if s.scientific_name else "")
+        self._updated_badge.setText(f"Updated {s.updated_label}")
+        self._updated_badge.setVisible(bool(s.updated_label))
         starred = bool(self.bookmark_lookup(s.id)) if self.bookmark_lookup else False
         self._bookmark.blockSignals(True)
         self._bookmark.setChecked(starred)
@@ -451,6 +462,8 @@ class SymptomDetailView(QWidget):
         layout = self._section("references", 8, "Academic Citations & Mother Book References", "book")
         layout.addWidget(_label(
             "Two-tier academic provenance for medical students and clinicians.", "syMuted"))
+        if s.updated_label:
+            layout.addWidget(_label(f"Last updated: {s.updated_label}", "syMuted"))
         # Every citation gets its own card, with a working link when it has a
         # URL (same layout as the Disease Encyclopedia).
         layout.addWidget(reference_grid(s.references, "sy", self._scroll.viewport()))

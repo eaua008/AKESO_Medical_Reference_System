@@ -3,8 +3,9 @@
 Left: the 3D view (assets/anatomy/anatomy.html in the built-in browser
 engine, three.js). Right: regions, the layer slider, the blood vessel and
 nerve switches (colour coded, recolourable), and what you clicked:
-its name and body system, then the diseases, symptoms, articles and peer
-discussions for that body system.
+its name and body system, a short description (the full text opens as a
+readable page over the Explorer, body_part_reader.py), then the diseases, symptoms, articles
+and peer discussions for that body system.
 
 Display only. BodyExplorerController decides what the lists contain; the
 shell opens whatever is clicked on top of this page.
@@ -20,7 +21,8 @@ from PySide6.QtCore import QEvent, QObject, QSize, QStringListModel, Qt, QUrl, S
 from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
     QListWidget, QListWidgetItem, QTreeWidget, QTreeWidgetItem,
-    QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton, QScrollArea,
+    QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton,
+    QScrollArea, QStackedWidget,
     QSlider, QVBoxLayout, QWidget,
 )
 
@@ -28,12 +30,14 @@ from app.core.anatomy_colours import AnatomyColourStore
 from app.ui.components.akeso_loader import LoaderOverlay, LoadingHold, LoadingLabel
 from app.core.theme import Theme
 from app.ui.views.account.account_widgets import (
-    Card, button, icon_label, label, pill, refresh_icons, repolish,
+    Card, button, icon_label, label, pill, refresh_icons, repolish, set_text,
 )
 
 REGIONS = [("body", "Whole body"), ("head", "Head"), ("chest", "Chest"),
            ("abdomen", "Abdomen"), ("arms", "Arms"), ("legs", "Legs")]
 LAYER_NAMES = ["Skin", "Muscle", "Bone", "Organs"]
+# Side-panel tabs: each is its own short page instead of one long scroll.
+TABS = [("explore", "Explore"), ("part", "Part"), ("related", "Related"), ("help", "Help")]
 LAYER_LABELS = {"skin": "Skin", "muscle": "Muscle", "bone": "Bone", "organ": "Organ",
                 "vessel": "Blood vessel", "nerve": "Nerve"}
 # Switched on separately from the slider (the page loads them on first use).
@@ -271,6 +275,7 @@ class BodyExplorerView(QWidget):
     repair_requested = Signal()             # a 3D file is missing: Settings > Repair
     symptom_requested = Signal(str)
     article_requested = Signal(str)
+    read_requested = Signal(object, str, object)   # PartDescription, clicked name, disease names
 
     def __init__(self) -> None:
         super().__init__()
@@ -301,32 +306,78 @@ class BodyExplorerView(QWidget):
         self._stage_layout.addWidget(self._placeholder)
         row.addWidget(self._stage, 1)
 
-        side = QScrollArea()
-        side.setWidgetResizable(True)
-        side.setFrameShape(QFrame.Shape.NoFrame)
-        side.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        # The side column: a fixed title and tab row, then one short scrolling
+        # page per tab (Explore / Part / Related / Help) instead of one long list.
+        side = QWidget()
+        side.setObjectName("panel")
         side.setFixedWidth(370)
-        panel = QWidget()
-        panel.setObjectName("panel")
-        panel.setMaximumWidth(356)             # the column minus its scrollbar: text wraps
-        self._side = QVBoxLayout(panel)
-        self._side.setContentsMargins(18, 20, 20, 24)
-        self._side.setSpacing(14)
-        side.setWidget(panel)
+        column = QVBoxLayout(side)
+        column.setContentsMargins(0, 0, 0, 0)
+        column.setSpacing(0)
+        self._side_header = QVBoxLayout()
+        self._side_header.setContentsMargins(18, 20, 20, 10)
+        self._side_header.setSpacing(10)
+        column.addLayout(self._side_header)
+        self._stack = QStackedWidget()
+        self._stack.setObjectName("panel")
+        column.addWidget(self._stack, 1)
+        self._pages: dict[str, tuple[QScrollArea, QVBoxLayout]] = {}
+        for key, _text in TABS:
+            self._pages[key] = self._make_page()
+        self._side = self._pages["explore"][1]
         row.addWidget(side)
         self._build_side()
 
     # ------------------------------------------------------------ side panel
 
-    def _build_side(self) -> None:
+    def _make_page(self) -> tuple[QScrollArea, QVBoxLayout]:
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.Shape.NoFrame)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        panel = QWidget()
+        panel.setObjectName("panel")
+        panel.setMaximumWidth(356)             # the column minus its scrollbar: text wraps
+        layout = QVBoxLayout(panel)
+        layout.setContentsMargins(18, 4, 20, 24)
+        layout.setSpacing(14)
+        scroll.setWidget(panel)
+        self._stack.addWidget(scroll)
+        return scroll, layout
+
+    def _build_tabs(self) -> None:
         title = QVBoxLayout()
         title.setSpacing(3)
         title.addWidget(label("Body System Explorer", "acTitle"))
-        title.addWidget(label("Click a region to zoom in, slide to peel the layers, then click "
-                              "a part to see related conditions.", "acSubtitle"))
-        self._side.addLayout(title)
-        self._side.addWidget(self._build_search())       # above the long guide: in view
-        self._side.addWidget(self._build_guide())
+        title.addWidget(label("Zoom into a region, peel the layers, then click a part.",
+                              "acSubtitle"))
+        self._side_header.addLayout(title)
+        line = QHBoxLayout()
+        line.setSpacing(6)
+        self._tab_group = QButtonGroup(self)
+        self._tab_group.setExclusive(True)
+        self.tab_buttons: dict[str, QPushButton] = {}
+        for key, text in TABS:
+            chip = QPushButton(text)
+            chip.setObjectName("acChip")
+            chip.setCheckable(True)
+            chip.setCursor(Qt.CursorShape.PointingHandCursor)
+            chip.clicked.connect(lambda _c=False, k=key: self.show_tab(k))
+            self._tab_group.addButton(chip)
+            self.tab_buttons[key] = chip
+            line.addWidget(chip)
+        line.addStretch(1)
+        self._side_header.addLayout(line)
+
+    def show_tab(self, key: str) -> None:
+        """Bring one side-panel page to the front."""
+        scroll, _layout = self._pages[key]
+        self._stack.setCurrentWidget(scroll)
+        self.tab_buttons[key].setChecked(True)
+
+    def _build_side(self) -> None:
+        self._build_tabs()
+        self._side.addWidget(self._build_search())
 
         nav = Card("Regions", "", "layout-grid")
         host = QWidget()
@@ -430,11 +481,18 @@ class BodyExplorerView(QWidget):
         systems.body.addWidget(host)
         self._side.addWidget(systems)
 
+        self._side.addStretch(1)
+
+        # Part: what was clicked, its description, and what is hidden.
+        part_page = self._pages["part"][1]
         self.part_card = Card("Selected", "", "search")
         self._part_body = QVBoxLayout()
         self._part_body.setSpacing(8)
         self.part_card.body.addLayout(self._part_body)
-        self._side.addWidget(self.part_card)
+        part_page.addWidget(self.part_card)
+        self._about = QVBoxLayout()
+        self._about.setSpacing(14)
+        part_page.addLayout(self._about)
 
         self.hidden_card = Card("Hidden & see-through", "Click Show to bring one back.", "eye-off")
         self._hidden_body = QVBoxLayout()
@@ -444,14 +502,23 @@ class BodyExplorerView(QWidget):
                                                lambda: self._js("akeso.showAll()")),
                                         0, Qt.AlignmentFlag.AlignLeft)
         self.hidden_card.hide()
-        self._side.addWidget(self.hidden_card)
+        part_page.addWidget(self.hidden_card)
+        part_page.addStretch(1)
 
+        # Related: the body system's conditions, symptoms, articles, posts.
+        related = self._pages["related"][1]
         self._lists = QVBoxLayout()
         self._lists.setSpacing(14)
-        self._side.addLayout(self._lists)
-        self._side.addStretch(1)
-        self._side.addWidget(label("3D models: BodyParts3D, © The Database Center for Life "
-                                   "Science (CC BY 4.0). Educational reference only.", "acSmall"))
+        related.addLayout(self._lists)
+        related.addStretch(1)
+
+        # Help: how to use it, and the model's credit.
+        help_page = self._pages["help"][1]
+        help_page.addWidget(self._build_guide())
+        help_page.addStretch(1)
+        help_page.addWidget(label("3D models: BodyParts3D, © The Database Center for Life "
+                                  "Science (CC BY 4.0). Educational reference only.", "acSmall"))
+        self.show_tab("explore")
         self.show_part(None)
 
     # ---------------------------------------------------------------- search
@@ -873,15 +940,25 @@ class BodyExplorerView(QWidget):
         self._js(f"akeso.focus({json.dumps(key)})")
 
     def show_part(self, part: Optional[dict], system_label: str = "", diseases=(),
-                  symptoms=(), articles=(), discussions: Optional[QWidget] = None) -> None:
+                  symptoms=(), articles=(), discussions: Optional[QWidget] = None,
+                  about=None, disease_names: Optional[dict] = None) -> None:
+        """about: a PartDescription (BodyPartService.describe) or None.
+        disease_names: disease id -> name, for its clinical notes' links."""
         self._clear(self._part_body)
+        self._clear(self._about)
         self._clear(self._lists)
+        new = not part or not self._part or (
+            (part.get("id"), part.get("name")) != (self._part.get("id"), self._part.get("name")))
         self._part = part
         self._swatches = None
         if not part:
             self._part_body.addWidget(label(
                 "Nothing selected yet. Zoom into a region, then click any bone, muscle or "
                 "organ.", "acMuted"))
+            self._lists.addWidget(label(
+                "Click a part, or pick a body system under Explore, to see its conditions, "
+                "symptoms and articles here.", "acMuted"))
+            set_text(self.tab_buttons["related"], "Related")
             return
         name = (part.get("name") or "").strip()
         browsing = bool(part.get("browse"))
@@ -927,6 +1004,11 @@ class BodyExplorerView(QWidget):
                     self._part_body.addLayout(self._actions(part["id"], True,
                                                             f"Whole {group}"))
 
+        if about is not None:
+            self._about.addWidget(self._about_card(about, disease_names or {}))
+        elif not browsing and part.get("fma"):
+            self._part_body.addWidget(label("No description yet.", "acSmall"))
+
         self._list_card(f"Conditions · {system_label}" if system_label else "Conditions",
                         "book-open", diseases, self.disease_requested,
                         "No conditions are filed under this body system yet.")
@@ -939,6 +1021,43 @@ class BodyExplorerView(QWidget):
                         "system.", "message-circle")
             card.body.addWidget(discussions)
             self._lists.addWidget(card)
+        found = len(list(diseases)) + len(list(symptoms)) + len(list(articles))
+        set_text(self.tab_buttons["related"], f"Related \u00b7 {found}" if found else "Related")
+        if new:
+            # A new pick: show it (a browsed body system is all about its lists).
+            self.show_tab("related" if browsing else "part")
+            for scroll, _layout in self._pages.values():
+                scroll.verticalScrollBar().setValue(0)
+
+    # ---------------------------------------------------------- description
+
+    def _about_card(self, about, disease_names: dict) -> Card:
+        """A short summary; the full description opens as a readable page."""
+        info = about.info
+        card = Card(info.display_name if about.exact else f"Part of {info.display_name}",
+                    "", "info")
+        if info.is_draft:
+            card.head.addWidget(pill("Draft", "acPillWarn"), 0, Qt.AlignmentFlag.AlignTop)
+        if info.aliases:
+            card.body.addWidget(label("Also called " + ", ".join(info.aliases) + ".", "acSmall"))
+        if info.summary_plain:
+            card.body.addWidget(label(info.summary_plain, "acValue"))
+        if info.function_plain:
+            card.body.addWidget(label(info.function_plain, "acMuted"))
+        more = [what for what, has in (("for students", info.has_student_text()),
+                                       ("clinical notes", bool(info.clinical)),
+                                       ("an exam tip", bool(info.exam_tip)))
+                if has]
+        if more:
+            card.body.addWidget(label("Inside: " + ", ".join(more) + ".", "acSmall"))
+        card.body.addWidget(button("Read full description", "acPrimary", "book-open",
+                                   lambda _c=False: self._read(about, disease_names)),
+                            0, Qt.AlignmentFlag.AlignLeft)
+        return card
+
+    def _read(self, about, disease_names: dict) -> None:
+        """The shell opens the full description as a page over the Explorer."""
+        self.read_requested.emit(about, (self._part or {}).get("name") or "", disease_names)
 
     def focus_system(self, key: str, title: str) -> None:
         """Show only the parts of one body system (Show all brings the rest
