@@ -1,0 +1,102 @@
+classDiagram
+direction LR
+class DiseaseController {
+  +load()
+  +inspect(disease_id)
+  +start_sync()
+}
+class DiseaseService {
+  -repository
+  +search(query) list~Disease~
+  +get(id) Disease
+  +related_diseases(disease)
+}
+class CachedDiseaseRepository {
+  -cache
+  -remote_factory
+  +all_diseases()
+  +get_disease(id)
+  +sync()
+}
+class QObject {
+  <<Qt>>
+  +Signal
+}
+class LocalDiseaseCache {
+  <<SQLite>>
+  +load_diseases()
+  +replace_all(data)
+}
+class SupabaseDiseaseRepository {
+  <<online>>
+  +all_diseases()
+  +get_disease(id)
+  +content_version()
+}
+class Disease {
+  +name
+  +severity
+  +urgency
+  +hallmark_symptoms
+  +matches(query) bool
+}
+class SymptomController {
+  +load()
+  +inspect(symptom_id)
+  +start_sync()
+}
+class SymptomService {
+  -repository
+  +search(query, system_id)
+  +get(id) Symptom
+  +tiers()
+}
+class CachedSymptomRepository {
+  -cache
+  -remote_factory
+  +all()
+  +sync()
+}
+class Symptom {
+  +name
+  +is_red_flag
+  +diagnostic_weight
+  +causes
+}
+class MedicineController {
+  +load()
+  +inspect(medicine_id)
+  +start_sync()
+}
+class MedicineService {
+  -repository
+  +search(query, regulatory_class)
+  +get(id) MedicineMonograph
+}
+class CachedMedicineRepository {
+  -cache
+  -remote_factory
+  +all()
+  +sync()
+}
+class MedicineMonograph {
+  +generic_name
+  +drug_class
+  +ph_brands
+  +dose_groups()
+  +has_black_box
+}
+DiseaseController --> DiseaseService
+DiseaseService o-- CachedDiseaseRepository
+CachedDiseaseRepository *-- LocalDiseaseCache
+CachedDiseaseRepository o-- SupabaseDiseaseRepository
+CachedDiseaseRepository ..> Disease : returns
+SymptomController --> SymptomService
+SymptomService o-- CachedSymptomRepository
+CachedSymptomRepository ..> Symptom : returns
+MedicineController --> MedicineService
+MedicineService o-- CachedMedicineRepository
+CachedMedicineRepository ..> MedicineMonograph : returns
+QObject <|-- DiseaseController
+QObject <|-- SymptomController
+QObject <|-- MedicineController

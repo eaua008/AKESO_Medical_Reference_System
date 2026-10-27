@@ -237,13 +237,12 @@ class AnnouncementsAdminView(QWidget):
         column.addLayout(stats)
 
         self.table = DataTable(COLUMNS, stretch=[TITLE], fixed={ACTIONS: 156})
-        column.addWidget(self.table)
+        column.addWidget(self.table, 1)          # the table takes the height that is left
         self._empty = label("No announcements yet. Click New announcement to write one.",
                             "adEmpty")
         self._empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self._empty.hide()
         column.addWidget(self._empty)
-        column.addStretch(1)
         scroll.setWidget(page)
         outer.addWidget(scroll)
 

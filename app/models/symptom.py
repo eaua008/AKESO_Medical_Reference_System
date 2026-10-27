@@ -57,6 +57,14 @@ class Symptom:
     red_flags: list[str] = field(default_factory=list)
     references: list[SymptomReference] = field(default_factory=list)
     conditions: list[AssociatedCondition] = field(default_factory=list)
+    updated_at: str = ""                 # ISO timestamp of the last edit (symptoms.updated_at)
+
+    @property
+    def updated_label(self) -> str:
+        """"Oct 19, 2026": when this entry was last changed in Supabase, or ""."""
+        from app.models.account import friendly_time, parse_time
+        when = parse_time(self.updated_at)
+        return friendly_time(when, with_time=False) if when else ""
 
     @property
     def system_label(self) -> str:

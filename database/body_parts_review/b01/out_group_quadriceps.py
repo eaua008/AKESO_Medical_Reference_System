@@ -1,0 +1,35 @@
+PART = {
+    "key": "group:quadriceps",
+    "aliases": ["quadriceps", "quadriceps extensor"],
+    "summary_plain": "The quadriceps is the big group of four muscles on the front of the thigh. It covers the front and sides of the thigh bone and ends in a tendon at the kneecap.",
+    "function_plain": "It straightens the knee, and one of its parts, the rectus femoris, also helps bend the hip.",
+    "description": "The quadriceps femoris is the great extensor of the knee, a large fleshy mass covering the front and sides of the femur. It has four parts: the rectus femoris in the middle of the thigh, and three vasti (lateralis, medialis and intermedius) that cover the femoral shaft from the trochanters to the condyles. Vastus lateralis is the largest. Their tendons join into one quadriceps tendon above the knee.",
+    "location": "Front and sides of the thigh, between the hip and the knee. Rectus femoris lies in the middle front; vastus lateralis on the outer side, vastus medialis on the inner side, and vastus intermedius in front, lying directly on the femur.",
+    "details": {
+        "origin": "Rectus femoris: anterior inferior iliac spine (straight head) and a groove above the acetabulum (reflected head). Vasti: the femoral shaft, including the intertrochanteric line, greater trochanter, gluteal tuberosity, linea aspera, and (intermedius) the front and lateral surfaces.",
+        "insertion": "The four tendons unite into the quadriceps tendon on the base of the patella; the patellar ligament continues from the patella to the tibial tuberosity as the true tendon of insertion. Vastus lateralis and medialis also attach to the patellar borders.",
+        "action": "Extends the knee. Rectus femoris also helps flex the hip and supports the pelvis and trunk on the femur; vastus medialis pulls the patella medially as well as upward.",
+        "nerve_supply": "Femoral nerve (second, third and fourth lumbar nerves).",
+        "blood_supply": "Lateral femoral circumflex artery, a branch of the deep femoral artery; its descending branch runs behind rectus femoris and supplies vastus lateralis.",
+    },
+    "clinical": [
+        ("Patellar tendinitis ('jumper's knee') is swelling of the tendon below the kneecap that carries the quadriceps' pull to the tibia; it usually follows repeated strain, often in sport.", ""),
+    ],
+    "exam_tip": "The quadriceps (named for its four heads) straightens the knee; the hamstrings at the back of the thigh are its antagonists and bend the knee.",
+    "sources": [
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), Myology: Quadriceps femoris (p. 470-471) and Angiology: lateral femoral circumflex artery - Internet Archive full text", "https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "Public domain"),
+        ("Quadriceps Muscle - MeSH (NLM)", "https://meshb.nlm.nih.gov/record/ui?ui=D052097", "Public domain"),
+        ("Lower Extremity (Muscle Groups) - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/lower.html", "Public domain"),
+        ("Muscle Groups - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/", "Public domain"),
+        ("Tendinitis - MedlinePlus (NLM)", "https://medlineplus.gov/tendinitis.html", "Public domain"),
+        ("Knee Injuries and Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/kneeinjuriesanddisorders.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://archive.org/download/anatomyofhumanbo1918gray/anatomyofhumanbo1918gray_djvu.txt", "Read at offset 1550000: Quadriceps femoris (Quadriceps extensor) is the great extensor of the leg, large fleshy mass covering front and sides of femur; Rectus femoris in middle, from anterior inferior iliac spine and groove above acetabulum, inserted into base of patella; three vasti cover femur from trochanters to condyles; Vastus lateralis the largest, from intertrochanteric line, greater trochanter, gluteal tuberosity, linea aspera, into lateral border of patella; Vastus medialis into medial border; Vastus intermedius from front and lateral surfaces of femur; tendons unite into one tendon into base of patella; patella a sesamoid bone in the tendon; ligamentum patellae from patella apex to tibial tuberosity is proper tendon of insertion; femoral nerve, L2-L4; extends leg; rectus femoris supports pelvis and trunk, flexes thigh; vastus medialis draws patella medially and upward. Offset 2124500: lateral femoral circumflex from profunda; descending branch behind rectus femoris supplies vastus lateralis."),
+        ("https://meshb.nlm.nih.gov/record/ui?ui=D052097", "Quadriceps femoris: collective name of the four-headed skeletal muscle of the thigh: rectus femoris, vastus intermedius, vastus lateralis, vastus medialis."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/lower.html", "Quadriceps femoris group straightens the leg at the knee; hamstrings are antagonists to the quadriceps and flex the leg at the knee."),
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/", "Muscle naming: quadriceps means four heads (number of origins); vastus means huge; rectus means straight."),
+        ("https://medlineplus.gov/tendinitis.html", "Tendinitis is severe swelling of a tendon; tendons connect muscle to bone; patellar tendinitis ('jumper's knee'); usually after repeated injury; some forms named after sports that raise risk."),
+        ("https://medlineplus.gov/kneeinjuriesanddisorders.html", "Lists patellar tendinitis among knee problems; muscles and tendons help the knee move."),
+    ],
+}

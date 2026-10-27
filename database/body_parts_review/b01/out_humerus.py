@@ -1,0 +1,36 @@
+PART = {
+    "key": "humerus",
+    "aliases": ["arm bone", "upper arm bone"],
+    "summary_plain": "The humerus is the upper arm bone. It runs from the shoulder down to the elbow and is the longest and largest bone of the arm.",
+    "function_plain": "It links the shoulder to the elbow, forms part of both joints and gives muscles of the shoulder, arm and forearm a place to attach.",
+    "description": "The humerus is a long bone with a shaft and two ends. Its upper end has a rounded head, the anatomical and surgical necks and the greater and lesser tubercles, with the intertubercular groove between them. Its lower end widens into the capitulum and trochlea, which meet the forearm bones, with an epicondyle on each side.",
+    "location": "In the upper arm, between the shoulder and the elbow. The head meets the glenoid cavity of the scapula above; the lower end meets the radius and ulna at the elbow. The radial nerve runs in a shallow spiral groove on the shaft.",
+    "details": {
+        "type": "long",
+        "joints": "Shoulder joint: the head meets the glenoid cavity of the scapula. Elbow joint: the capitulum meets the head of the radius and the trochlea meets the trochlear notch of the ulna.",
+        "landmarks": "Head; anatomical and surgical necks; greater and lesser tubercles; intertubercular (bicipital) groove for the long head of biceps; deltoid tuberosity; radial groove for the radial nerve; capitulum; trochlea; medial and lateral epicondyles; coronoid, radial and olecranon fossae.",
+    },
+    "clinical": [
+        ("The surgical neck, just below the tubercles, is a frequent site of fracture; fracture of the anatomical neck is rare.", ""),
+        ("Tennis elbow (lateral epicondylitis) is overuse damage of the tendons on the outer elbow, where the common extensor tendon attaches to the lateral epicondyle.", ""),
+        ("Golfer's elbow (medial epicondylitis) is tendinitis on the inner elbow, the side of the medial epicondyle and the common flexor tendon, from repeated wrist use or gripping.", ""),
+        ("The ulnar nerve runs in a groove behind the medial epicondyle.", ""),
+    ],
+    "exam_tip": "Gray's Anatomy calls the humerus the longest and largest bone of the upper limb.",
+    "sources": [
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), The Humerus (Arm Bone) - PubAnnotation GrayAnatomy doc 51", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/51", "Public domain"),
+        ("Gray's Anatomy of the Human Body, 20th ed. (1918), General classification of bones - PubAnnotation GrayAnatomy doc 17", "https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/17", "Public domain"),
+        ("Classification of Bones - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/skeletal/classification.html", "Public domain"),
+        ("Arm Injuries and Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/arminjuriesanddisorders.html", "Public domain"),
+        ("Shoulder Injuries and Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/shoulderinjuriesanddisorders.html", "Public domain"),
+        ("Sports Injuries - NIAMS", "https://www.niams.nih.gov/health-topics/sports-injuries", "Public domain"),
+    ],
+    "checked": [
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/51", "Heading 'Arm Bone'; longest and largest bone of the upper extremity; body and two extremities; head articulates with glenoid cavity of scapula; anatomical neck; surgical neck below tubercles frequently fractured, anatomical neck fracture rare; greater and lesser tubercles; intertubercular (bicipital) groove holds long head of biceps; deltoid tuberosity; radial (musculospiral) sulcus carries radial nerve and profunda artery; capitulum articulates with radial head; trochlea with semilunar notch of ulna; medial epicondyle with common flexor tendon and ulnar nerve groove behind it; lateral epicondyle with common extensor tendon; coronoid, radial and olecranon fossae."),
+        ("https://pubannotation.org/docs/sourcedb/GrayAnatomy/sourceid/17", "Long bones listed include the humerus, radius and ulna; central shaft with two expanded ends."),
+        ("https://training.seer.cancer.gov/anatomy/skeletal/classification.html", "Long bones are longer than they are wide; examples include the bones of the arm and forearm."),
+        ("https://medlineplus.gov/arminjuriesanddisorders.html", "The arm is made up of three bones: humerus, radius and ulna; injuries include dislocations and broken bones."),
+        ("https://medlineplus.gov/shoulderinjuriesanddisorders.html", "Shoulder is made of clavicle, scapula and upper arm bone (humerus); dislocations and fractures listed."),
+        ("https://www.niams.nih.gov/health-topics/sports-injuries", "Tennis elbow (lateral epicondylitis): small tendon tears and inflammation from repeated forearm use, pain on the outside of the elbow; golfer's elbow (medial epicondylitis): tendinitis on the inner elbow from repeated wrist use or finger clenching."),
+    ],
+}

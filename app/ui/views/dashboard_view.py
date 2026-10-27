@@ -5,14 +5,19 @@ the user clicked; it never loads anything itself.
 
 Layout (a hero, then a main column and a side column):
 
-    hero: greeting, date, role, and four launch tiles
-    announcements from the admins (only while any are live)
+    hero: greeting, date, role
+          TODAY: flashcards due (Start review), streak, unread posts
+          four launch tiles
+    announcements from the admins (one line when none are live)
     main column                         | side column
       Study activity (streak, chart)    |   Finish your profile (until 100%)
       Explore by body system            |   Health tip of the day
-      Continue studying                 |   Clinical Exchange (+ unread)
-      Recent searches                   |   Bookmarks
-                                        |   Reference library
+      Continue studying | Recent        |   Clinical Exchange (+ unread)
+        (side by side when there is     |   Bookmarks
+         room, stacked when narrow)     |   Reference library
+
+The most actionable things (what is due today) sit at the top; everything
+else is one glance below. Long names end in "..." with the full text on hover.
 """
 
 from dataclasses import dataclass
@@ -27,7 +32,7 @@ from PySide6.QtWidgets import (
 
 from app.core.theme import Theme
 from app.models.account import ACTIVITY_FIELDS
-from app.ui.components.fluid import ResponsiveGrid
+from app.ui.components.fluid import ElidedLabel, ResponsiveGrid
 from app.ui.views.account.account_widgets import (
     Card, ProgressRing, button, icon_label, label, pill, refresh_icons, repolish,
 )
@@ -180,7 +185,8 @@ class SystemTile(QFrame):
         column.setContentsMargins(12, 10, 12, 10)
         column.setSpacing(6)
         top = QHBoxLayout()
-        title = label(name, "acRowTitle", wrap=False)
+        title = ElidedLabel(name, "acRowTitle")          # "Infectious & Trop..."
+        title.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Preferred)
         title.setMinimumWidth(30)
         top.addWidget(title, 1)
         top.addWidget(label(str(count), "acRowTitle", wrap=False))
@@ -270,11 +276,13 @@ class ListRow(QFrame):
         layout.addWidget(icon_label(row.icon, 16), 0, Qt.AlignmentFlag.AlignVCenter)
         text = QVBoxLayout()
         text.setSpacing(1)
-        title = label(row.title, "acRowTitle", wrap=False)
+        title = ElidedLabel(row.title, "acRowTitle")
+        title.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Preferred)
         title.setMinimumWidth(40)
         text.addWidget(title)
         if row.subtitle:
-            sub = label(row.subtitle, "acSmall", wrap=False)
+            sub = ElidedLabel(row.subtitle, "acSmall")
+            sub.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Preferred)
             sub.setMinimumWidth(40)
             text.addWidget(sub)
         layout.addLayout(text, 1)
@@ -397,11 +405,13 @@ class DashboardView(QWidget):
                               "notebook-pen", "Open notebook")
         self.notes.row_clicked.connect(lambda r: self.note_opened.emit(r.key))
         self.notes.see_all.connect(lambda: self.action_requested.emit("notebook"))
-        main.addWidget(self.notes)
         self.searches = ListCard("Recent searches", "From the search bar.", "history")
         self.searches.row_clicked.connect(self.search_opened.emit)
         self.searches.see_all.connect(lambda: self.action_requested.emit("history"))
-        main.addWidget(self.searches)
+        # Side by side when the column is wide enough, stacked when it is not.
+        self.list_grid = ResponsiveGrid(320, max_columns=2, spacing=16, steps=(2, 1))
+        self.list_grid.set_cards([self.notes, self.searches])
+        main.addWidget(self.list_grid)
         main.addStretch(1)
 
         self.profile = self._build_profile()
@@ -425,6 +435,7 @@ class DashboardView(QWidget):
         self.stat_grid.watch(self.scroll.viewport())
         self.tile_grid.watch(self.scroll.viewport())
         self.system_grid.watch(self.scroll.viewport())
+        self.list_grid.watch(self.scroll.viewport())
 
     # ------------------------------------------------------------- pieces
 
@@ -445,6 +456,7 @@ class DashboardView(QWidget):
         self.role = pill("", "acPill")
         top.addWidget(self.role, 0, Qt.AlignmentFlag.AlignTop)
         column.addLayout(top)
+        column.addWidget(self._build_today())
         tiles = []
         for key, title, hint, icon, tone in QUICK_ACTIONS:
             tile = LaunchTile(key, title, hint, icon, tone)
@@ -454,6 +466,57 @@ class DashboardView(QWidget):
         self.tile_grid.set_cards(tiles)
         column.addWidget(self.tile_grid)
         return hero
+
+    def _build_today(self) -> QWidget:
+        """TODAY: what is due (Study Hub), the streak and unread posts, as
+        chips. Each appears once its number is known; the row hides when
+        there is nothing to show."""
+        from app.ui.views.compare_view import FlowLayout
+        self.today = QWidget()
+        self.today.setObjectName("panel")
+        row = QHBoxLayout(self.today)
+        row.setContentsMargins(0, 0, 0, 0)
+        row.setSpacing(12)
+        caption = label("TODAY", "acFieldLabel", wrap=False)
+        row.addWidget(caption, 0, Qt.AlignmentFlag.AlignVCenter)
+        chips = QWidget()
+        chips.setObjectName("panel")
+        flow = FlowLayout(8, 8)
+        chips.setLayout(flow)
+        row.addWidget(chips, 1)
+
+        from app.ui.views.announcement_widgets import level_colour
+
+        def chip(icon: str, colour=None) -> tuple[QFrame, QHBoxLayout, QLabel]:
+            frame = QFrame()
+            frame.setObjectName("acRow")
+            frame.setFixedHeight(46)               # all chips as tall as the one with a button
+            line = QHBoxLayout(frame)
+            line.setContentsMargins(12, 0, 6 if icon == "graduation-cap" else 14, 0)
+            line.setSpacing(8)
+            line.addWidget(icon_label(icon, 16, colour), 0, Qt.AlignmentFlag.AlignVCenter)
+            text = label("", "acRowTitle", wrap=False)
+            line.addWidget(text, 0, Qt.AlignmentFlag.AlignVCenter)
+            frame.hide()
+            flow.addWidget(frame)
+            return frame, line, text
+
+        self.due_chip, line, self.due_text = chip("graduation-cap")
+        line.addWidget(button("Start review", "acPrimary", "play",
+                              lambda: self.action_requested.emit("study-hub")),
+                       0, Qt.AlignmentFlag.AlignVCenter)
+        self.streak_chip, _line, self.streak_text = chip("flame", level_colour("important"))
+        self.unread_chip, _line, self.unread_text = chip("message-circle")
+        self.unread_chip.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.unread_chip.mouseReleaseEvent = (
+            lambda e: self.action_requested.emit("exchange")
+            if e.button() == Qt.MouseButton.LeftButton else None)
+        self.today.hide()
+        return self.today
+
+    def _refresh_today(self) -> None:
+        self.today.setVisible(any(c.isVisibleTo(self.today) for c in
+                                  (self.due_chip, self.streak_chip, self.unread_chip)))
 
     def _build_tip(self) -> QFrame:
         tip = QFrame()
@@ -481,7 +544,9 @@ class DashboardView(QWidget):
                             0, Qt.AlignmentFlag.AlignTop)
         line = QHBoxLayout()
         line.setSpacing(10)
-        line.addWidget(pill("\U0001F525 Streak", "acPillWarn"))
+        from app.ui.views.announcement_widgets import level_colour
+        line.addWidget(icon_label("flame", 16, level_colour("important")))
+        line.addWidget(label("Streak", "acRowTitle", wrap=False))
         self.streak = label("—", "acCardTitle", wrap=False)
         line.addWidget(self.streak)
         self.activity_total = label("", "acSmall")
@@ -573,6 +638,9 @@ class DashboardView(QWidget):
         self.activity_note.setVisible(bool(note))
         for key, stat in self._stats.items():
             stat.set_number(int(week.get(key, 0)) if has else "—")
+        self.streak_text.setText(f"{streak}-day streak" if has else "")
+        self.streak_chip.setVisible(bool(has and streak))
+        self._refresh_today()
 
     def show_profile(self, percent: Optional[int], steps: list[tuple[str, str]]) -> None:
         """steps: (label, account tab) still to do. Hidden at 100% or unknown."""
@@ -611,8 +679,19 @@ class DashboardView(QWidget):
         self.library_note.setText(note)
         self.library_note.setVisible(bool(note))
 
+    def show_study(self, due: int, new: int) -> None:
+        """Study Hub: flashcards due today and new ones waiting."""
+        if due or new:
+            parts = [f"{due} due"] + ([f"{new} new"] if new else [])
+            self.due_text.setText("Flashcards: " + " \u00b7 ".join(parts))
+        self.due_chip.setVisible(bool(due or new))
+        self._refresh_today()
+
     def set_unread(self, count: int) -> None:
         self.exchange.set_badge(f"{count} unread" if count else "")
+        self.unread_text.setText(f"{count} unread post{'s' if count != 1 else ''}")
+        self.unread_chip.setVisible(bool(count))
+        self._refresh_today()
 
     def refresh_theme(self) -> None:
         for tile in self.findChildren(LaunchTile):

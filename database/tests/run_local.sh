@@ -1,6 +1,6 @@
 #!/bin/bash
 # LOCAL TEST DATABASE ONLY. Rebuilds a throwaway Postgres database with the
-# Supabase stand-ins, migrations 002-017 and 040-047 (each new one twice),
+# Supabase stand-ins, migrations 002-017 and 040-054 (each new one twice),
 # then runs the SQL test suites. Needs PostgreSQL 16+ (psql) and a server
 # you can reach as postgres on localhost (set PGPORT, default 55432).
 set -e
@@ -15,11 +15,11 @@ MIG="$HERE/../migrations"
 for n in 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017; do
     "$PSQL" $DB -d akeso_test -q -v ON_ERROR_STOP=1 -f "$(ls "$MIG"/${n}_*.sql | head -1)" > /dev/null
 done
-for m in 040_friends 041_notebook_sharing 042_study_groups 043_change_handle 044_group_read_marker 045_group_images 046_group_mention_handles 047_admin_version_announcement_delete; do
+for m in 040_friends 041_notebook_sharing 042_study_groups 043_change_handle 044_group_read_marker 045_group_images 046_group_mention_handles 047_admin_version_announcement_delete 048_suspension_notice 049_suspension_notice_device_fix 050_study_hub_flashcards 051_flashcard_teaching_fields 052_body_part_info 053_body_parts_01 054_body_part_preview; do
     "$PSQL" $DB -d akeso_test -q -v ON_ERROR_STOP=1 -f "$MIG/$m.sql" > /dev/null
     "$PSQL" $DB -d akeso_test -q -v ON_ERROR_STOP=1 -f "$MIG/$m.sql" > /dev/null   # safe to re-run
 done
 "$PSQL" $DB -d akeso_test -q -v ON_ERROR_STOP=1 -f "$HERE/t_harness.sql"
-for t in friends sharing groups handles readmarker images mentions admin47; do "$PSQL" $DB -d akeso_test -q -f "$HERE/t_$t.sql" > /dev/null; done
+for t in friends sharing groups handles readmarker images mentions admin47 suspension study study51 bodyparts; do "$PSQL" $DB -d akeso_test -q -f "$HERE/t_$t.sql" > /dev/null; done
 "$PSQL" $DB -d akeso_test -tA -c "select suite, count(*) filter (where ok) || '/' || count(*) from t.results group by suite"
 "$PSQL" $DB -d akeso_test -tA -c "select suite, label, detail from t.results where not ok"

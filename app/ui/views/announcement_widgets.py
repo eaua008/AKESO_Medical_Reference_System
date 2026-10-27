@@ -140,7 +140,8 @@ class _Row(QFrame):
 
 
 class AnnouncementList(Card):
-    """The dashboard's "Announcements" card. Hidden when nothing is live."""
+    """The dashboard's "Announcements" card. Always shown, so it is easy to find:
+    it says so when nothing is live."""
 
     opened = Signal(object)          # Announcement
 
@@ -150,7 +151,9 @@ class AnnouncementList(Card):
         self._rows = QVBoxLayout()
         self._rows.setSpacing(6)
         self.body.addLayout(self._rows)
-        self.hide()
+        self._empty = label("No announcements right now.", "acMuted")
+        self.body.addWidget(self._empty)
+        self.subtitle.hide()                   # shown again once one is live
 
     def set_items(self, items: list[Announcement]) -> None:
         while self._rows.count():
@@ -161,4 +164,7 @@ class AnnouncementList(Card):
             row = _Row(item)
             row.clicked.connect(self.opened.emit)
             self._rows.addWidget(row)
-        self.setVisible(bool(items))
+        self._empty.setVisible(not items)
+        # Nothing live: just the title and one line, so it takes little room.
+        if hasattr(self, "subtitle"):
+            self.subtitle.setVisible(bool(items))

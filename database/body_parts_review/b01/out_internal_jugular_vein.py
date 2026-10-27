@@ -1,0 +1,36 @@
+PART = {
+    "key": "internal jugular vein",
+    "aliases": [],
+    "summary_plain": "The internal jugular vein is a large vein in the neck. It starts at the base of the skull and runs down the neck to join another large vein.",
+    "function_plain": "It carries blood away from the brain, face and neck back toward the heart.",
+    "description": "The internal jugular vein is one of the jugular veins, the veins of the neck that drain the brain, face and neck. It begins as a continuation of the sigmoid sinus, a venous channel of the dura mater, and leaves the skull through the jugular foramen. It then joins the subclavian vein to form the brachiocephalic vein, which leads to the superior vena cava.",
+    "location": "In the neck. It leaves the skull base through the jugular foramen, where the temporal and occipital bones meet, and ends by joining the subclavian vein.",
+    "details": {
+        "origin": "Continues from the sigmoid sinus of the dura mater; drains into the brachiocephalic vein (formed with the subclavian vein).",
+        "territory": "Drains the brain, face and neck (as stated for the jugular veins).",
+    },
+    "clinical": [
+        ("Jugular venous distension: when superior vena cava pressure rises, the jugular vein bulges and can be seen higher in the neck than usual.", ""),
+        ("Jugular venous distension is one of the signs of heart failure, along with breathlessness and fluid build-up.", "heart_failure"),
+        ("Jugular venous pressure is estimated from the height of the jugular venous pulse above the right atrium, viewed with the patient lying back with the neck at 45 degrees.", ""),
+    ],
+    "exam_tip": "The internal jugular vein leaves the skull through the jugular foramen together with the glossopharyngeal, vagus and accessory nerves (cranial nerves IX, X and XI).",
+    "sources": [
+        ("Internal Jugular Vein C32849 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32849?include=definitions,synonyms", "CC BY 4.0"),
+        ("Jugular Foramen C12496 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C12496?include=definitions", "CC BY 4.0"),
+        ("Jugular Veins - MeSH concept M0011872 (NLM)", "https://id.nlm.nih.gov/mesh/M0011872.json", "Public domain"),
+        ("Left Brachiocephalic Vein C32964 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32964?include=definitions", "CC BY 4.0"),
+        ("Jugular Venous Distension C191482 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C191482?include=definitions", "CC BY 4.0"),
+        ("Jugular Venous Pressure C191459 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C191459?include=definitions", "CC BY 4.0"),
+        ("Heart Failure C50577 - NCI Thesaurus (EVS API)", "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C50577?include=definitions", "CC BY 4.0"),
+    ],
+    "checked": [
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32849?include=definitions,synonyms", "NCI definition: continuation of the sigmoid sinus of the dura mater; joins the subclavian vein to form the brachiocephalic vein."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C12496?include=definitions", "Jugular foramen: opening at the skull base between temporal and occipital bones, transmitting cranial nerves IX, X and XI, the inferior petrosal sinus and the internal jugular vein."),
+        ("https://id.nlm.nih.gov/mesh/M0011872.json", "Jugular veins: veins in the neck which drain the brain, face and neck into the brachiocephalic or subclavian veins."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C32964?include=definitions", "Left brachiocephalic vein joins the right innominate vein to form the superior vena cava."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C191482?include=definitions", "Jugular venous distension: jugular vein bulges from raised SVC pressure and is visible higher in the neck than usual."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C191459?include=definitions", "JVP: estimated height of the mean jugular venous pulse above the right atrium, observed with the patient supine and neck at 45 degrees."),
+        ("https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C50577?include=definitions", "Heart failure: heart cannot pump enough blood for tissue needs; signs include breathlessness on mild exertion, orthopnoea, fluid retention, jugular venous distension, pulmonary oedema."),
+    ],
+}

@@ -148,6 +148,28 @@ class MainWindow(QMainWindow):
             self.shell.social.groups.join_from_link(token)
         self.setWindowTitle(f"Akeso \u2014 {account.display_name}")
 
+    def handle_second_launch(self, text: str) -> None:
+        """Akeso was started again (a shortcut, or an akeso://join/... link):
+        come to the front instead of opening a second copy."""
+        if self.isMinimized():
+            self.showNormal()
+        self.show()
+        self.raise_()
+        self.activateWindow()
+        if not text.lower().startswith("akeso://"):
+            return
+        from app.ui.social_wiring import parse_invite
+        token = parse_invite(text)
+        if not token:
+            return
+        shell = getattr(self, "shell", None)
+        if (shell is not None and self._screens.currentWidget() is shell
+                and getattr(shell, "social", None) is not None):
+            shell.show_tab("groups")
+            shell.social.groups.join_from_link(token)
+        else:
+            self.pending_join = token                # used right after sign-in
+
     @staticmethod
     def _breathe(_step: str = "") -> None:
         """Let the window repaint and answer Windows between build steps.

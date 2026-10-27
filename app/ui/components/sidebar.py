@@ -105,6 +105,8 @@ NAV_SECTIONS = [
         "header": "MY WORKSPACE",
         "items": [
             {"id": "notebook", "label": "Study Notebook", "icon": "notebook"},
+            # Migration 050: flashcards (Today | Courses | Decks); the badge is cards due.
+            {"id": "study-hub", "label": "Study Hub", "icon": "graduation-cap"},
             {"id": "favorites", "label": "Bookmarks", "icon": "star"},
             {"id": "history", "label": "Search History", "icon": "clock"},
             {"id": "notifications", "label": "Notifications", "icon": "bell"},
@@ -222,8 +224,41 @@ class NavButton(QPushButton):
             self._dot = on
             self.update()
 
+    def set_count(self, count: int) -> None:
+        """A number on the row (Study Hub: cards due today); 0 hides it."""
+        count = max(0, int(count or 0))
+        if count != getattr(self, "_count", 0):
+            self._count = count
+            self.update()
+
+    def _paint_count(self) -> None:
+        count = getattr(self, "_count", 0)
+        if not count:
+            return
+        from PySide6.QtCore import QRectF
+        from PySide6.QtGui import QColor, QFont, QPainter
+        text = "99+" if count > 99 else str(count)
+        p = QPainter(self)
+        p.setRenderHint(QPainter.RenderHint.Antialiasing)
+        font = QFont(self.font())
+        font.setPixelSize(10)
+        font.setBold(True)
+        p.setFont(font)
+        width = max(18, p.fontMetrics().horizontalAdvance(text) + 10)
+        if self.property("collapsed"):
+            rect = QRectF((self.width() - 17) / 2 + 8, (self.height() - 17) / 2 - 6, width, 15)
+        else:
+            rect = QRectF(self.width() - width - 12, (self.height() - 16) / 2, width, 16)
+        p.setPen(Qt.PenStyle.NoPen)
+        p.setBrush(QColor(Theme.token("PRIMARY")))
+        p.drawRoundedRect(rect, rect.height() / 2, rect.height() / 2)
+        p.setPen(QColor("#FFFFFF"))
+        p.drawText(rect, Qt.AlignmentFlag.AlignCenter, text)
+        p.end()
+
     def paintEvent(self, event) -> None:  # noqa: N802
         super().paintEvent(event)
+        self._paint_count()
         if not getattr(self, "_dot", False):
             return
         from PySide6.QtGui import QColor, QPainter, QPen
@@ -518,6 +553,11 @@ class AkesoSidebarNav(QFrame):
         button = self.nav_buttons.get(tab_id)
         if button is not None:
             button.set_dot(on)
+
+    def set_count(self, tab_id: str, count: int) -> None:
+        button = self.nav_buttons.get(tab_id)
+        if button is not None:
+            button.set_count(count)
 
     def refresh_theme(self) -> None:
         """Redraw icons after a palette switch — they are baked pixmaps."""

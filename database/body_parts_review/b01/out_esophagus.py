@@ -1,0 +1,38 @@
+PART = {
+    "key": "esophagus",
+    "aliases": [],
+    "summary_plain": "The oesophagus is a muscular tube about 25 cm long that runs from the throat down through the chest to the stomach.",
+    "function_plain": "It moves swallowed food and drink down to the stomach by waves of muscle squeezing, without digesting it.",
+    "description": "The oesophagus is a collapsible muscular tube linking the pharynx to the stomach. Its wall has a mucosa, submucosa, muscularis and an outer adventitia; it has no serosa. The muscle is striated in the upper third, mixed in the middle third and smooth in the lower third. Upper and lower oesophageal sphincters control food entering and leaving it.",
+    "location": "Begins at the lower end of the pharynx (about the sixth cervical vertebra, lower border of the cricoid cartilage), descends through the mediastinum behind the trachea and heart and in front of the vertebral column, then passes through the oesophageal hiatus of the diaphragm to join the stomach.",
+    "details": {
+        "functions": "Carries food from the pharynx to the stomach by peristalsis; glands in its lining make mucus that lubricates the passage. No digestive juices are added. The lower oesophageal sphincter relaxes to let food in and stays closed to stop stomach contents flowing back.",
+        "lymph_drainage": "Cervical part: deep cervical (internal jugular), supraclavicular and paratracheal nodes. Upper and middle thoracic: tracheobronchial, carinal, hilar, posterior mediastinal and periesophageal nodes. Lower thoracic: left gastric, cardial and perigastric nodes.",
+        "nerve_supply": "Swallowing becomes automatic once started: the brain signals the oesophageal muscles to begin peristalsis, helped by nerves in the gut wall.",
+    },
+    "clinical": [
+        ("GERD, where stomach acid flows back into the oesophagus, is its most common problem; it can happen when the muscle at the lower end is weak or relaxes at the wrong time.", "gerd"),
+        ("Long-term GERD can inflame and scar the oesophagus and change its lining (Barrett's oesophagus).", "gerd"),
+        ("In achalasia the lower oesophageal muscle does not relax properly, causing trouble swallowing.", ""),
+        ("About half of oesophageal cancers arise in the lower third, 40% in the middle third and 10% in the upper third.", ""),
+    ],
+    "exam_tip": "The oesophagus has no serosa; its outer layer is adventitia, connective tissue that blends with nearby structures.",
+    "sources": [
+        ("Anatomy of the Esophagus - NCI SEER Training Modules", "https://training.seer.cancer.gov/ugi/anatomy/esophagus.html", "Public domain"),
+        ("Layers of the UGI Organs - NCI SEER Training Modules", "https://training.seer.cancer.gov/ugi/anatomy/layers.html", "Public domain"),
+        ("Regional Lymph Nodes - NCI SEER Training Modules", "https://training.seer.cancer.gov/ugi/anatomy/lymph-nodes.html", "Public domain"),
+        ("Pharynx & Esophagus - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/digestive/regions/pharynx.html", "Public domain"),
+        ("Your Digestive System & How It Works - NIDDK", "https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works", "Public domain"),
+        ("Esophagus Disorders - MedlinePlus (NLM)", "https://medlineplus.gov/esophagusdisorders.html", "Public domain"),
+        ("GERD - MedlinePlus (NLM)", "https://medlineplus.gov/gerd.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/ugi/anatomy/esophagus.html", "Muscular tube about 10 inches (25 cm) from hypopharynx to stomach; posterior to trachea and heart; passes through mediastinum and the hiatus in the diaphragm; no serosal layer, surrounded by adventitia; cervical part begins at level of 6th vertebra or lower border of cricoid; upper third 10%, middle 40%, lower third 50% of esophageal cancers."),
+        ("https://training.seer.cancer.gov/ugi/anatomy/layers.html", "Four layers mucosa, submucosa, muscularis, adventitia; striated muscle upper third, striated and smooth middle third, smooth lower third; adventitia merges with surrounding connective tissue."),
+        ("https://training.seer.cancer.gov/ugi/anatomy/lymph-nodes.html", "Regional nodes: cervical - superior mediastinal, anterior deep cervical (internal jugular), supraclavicular, lowest paratracheal, periesophageal; upper/middle thoracic - tracheobronchial, peritracheal, carinal, hilar, posterior mediastinal, periesophageal; lower thoracic - left gastric, cardial, perigastric, posterior mediastinal."),
+        ("https://training.seer.cancer.gov/anatomy/digestive/regions/pharynx.html", "Collapsible muscular tube between pharynx and stomach; behind trachea and in front of vertebral column; passes through esophageal hiatus of diaphragm; mucosal glands secrete lubricating mucus; upper and lower esophageal sphincters; lower sometimes called cardiac sphincter at esophagogastric junction."),
+        ("https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works", "Esophagus connects mouth to stomach; after swallowing starts the brain signals esophageal muscles and peristalsis begins; no digestive juices added; lower esophageal sphincter relaxes to let food into stomach and normally stays closed to prevent backflow; nerves and brain control the movements."),
+        ("https://medlineplus.gov/esophagusdisorders.html", "Esophagus is the tube moving food from mouth to stomach; GERD most common esophagus problem; Barrett's esophagus; achalasia, lower esophageal muscle does not relax properly; esophageal cancer."),
+        ("https://medlineplus.gov/gerd.html", "GERD when the muscle at the end of the esophagus does not close properly, becomes weak or relaxes at the wrong time; untreated can cause inflammation, scarring and Barrett's esophagus."),
+    ],
+}

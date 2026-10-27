@@ -1,0 +1,37 @@
+PART = {
+    "key": "diaphragm",
+    "aliases": [],
+    "summary_plain": "The diaphragm is a thin, dome-shaped muscle at the base of the lungs. It forms a wall between the chest and the belly.",
+    "function_plain": "It is the main muscle for breathing: it tightens and moves down to pull air in, then relaxes to let air out.",
+    "description": "The diaphragm is a dome-shaped sheet of muscle that separates the thoracic cavity from the abdominal cavity. It has three openings that let structures pass from chest to abdomen, including the oesophageal hiatus. Its contraction drives breathing in; breathing out at rest is mostly passive.",
+    "location": "Below the lungs and above the abdominal organs; the stomach lies just beneath it on the left. It is crossed by the oesophagus through the oesophageal hiatus.",
+    "details": {
+        "action": "Contracts and moves down during inhalation, enlarging the chest cavity so the lungs expand and air flows in; relaxes during exhalation, so elastic recoil shrinks the chest and pushes air out.",
+    },
+    "clinical": [
+        ("A hiatal hernia occurs when the top of the stomach pushes up through the diaphragm's opening; risk rises after age 50 and with obesity and smoking.", "gerd"),
+        ("Hiccups are sudden involuntary movements of the diaphragm with quick closing of the vocal cords, often triggered by something irritating the diaphragm.", ""),
+        ("Damage to nerves in the upper spinal cord, as in spinal cord injury or stroke, can impair diaphragm movement and lead to respiratory failure.", ""),
+    ],
+    "exam_tip": "Breathing in is active because the diaphragm contracts; quiet breathing out is passive and needs no muscle effort.",
+    "sources": [
+        ("Muscle Groups: Trunk - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/muscular/groups/trunk.html", "Public domain"),
+        ("Mechanics of Ventilation - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/respiratory/mechanics.html", "Public domain"),
+        ("How the Lungs Work: What Breathing Does for the Body - NHLBI", "https://www.nhlbi.nih.gov/health/lungs/breathing-benefits", "Public domain"),
+        ("How the Lungs Work: How Your Body Controls Breathing - NHLBI", "https://www.nhlbi.nih.gov/health/lungs/body-controls-breathing", "Public domain"),
+        ("Pharynx & Esophagus - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/digestive/regions/pharynx.html", "Public domain"),
+        ("Anatomy of the Stomach - NCI SEER Training Modules", "https://training.seer.cancer.gov/ugi/anatomy/stomach.html", "Public domain"),
+        ("Hiatal Hernia - MedlinePlus (NLM)", "https://medlineplus.gov/hiatalhernia.html", "Public domain"),
+        ("Hiccups - MedlinePlus (NLM)", "https://medlineplus.gov/hiccups.html", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/anatomy/muscular/groups/trunk.html", "Diaphragm is a dome-shaped muscle forming a partition between thorax and abdomen; has three openings for structures passing from thorax to abdomen."),
+        ("https://training.seer.cancer.gov/anatomy/respiratory/mechanics.html", "Inspiration active: diaphragm contracts, thoracic volume increases, intraalveolar pressure falls, air flows in; expiration passive: diaphragm relaxes, elastic recoil decreases thoracic volume, air forced out."),
+        ("https://www.nhlbi.nih.gov/health/lungs/breathing-benefits", "On inhaling the diaphragm contracts and moves downward, increasing chest cavity space, lungs expand; on exhaling it relaxes; breathing out requires no effort unless lung disease or physical activity."),
+        ("https://www.nhlbi.nih.gov/health/lungs/body-controls-breathing", "Diaphragm is the main breathing muscle; damage to nerves in upper spinal cord (spinal cord injury, stroke, muscular dystrophy) can interfere with diaphragm movement and lead to respiratory failure; phrenic nerve not named."),
+        ("https://training.seer.cancer.gov/anatomy/digestive/regions/pharynx.html", "Esophagus passes through an opening in the diaphragm called the esophageal hiatus."),
+        ("https://training.seer.cancer.gov/ugi/anatomy/stomach.html", "Stomach lies just below the diaphragm, mainly left of midline."),
+        ("https://medlineplus.gov/hiatalhernia.html", "Diaphragm is a thin muscle separating chest from abdomen; hiatal hernia when top of stomach pushes up through an opening in it; risk higher over 50, obesity and smoking."),
+        ("https://medlineplus.gov/hiccups.html", "Diaphragm is a muscle at the base of the lungs and the main muscle used for breathing; hiccup is involuntary diaphragm movement plus quick closing of vocal cords; often when something irritates the diaphragm."),
+    ],
+}

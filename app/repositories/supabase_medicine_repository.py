@@ -151,6 +151,7 @@ class SupabaseMedicineRepository:
                 storage=row.get("storage") or "",
                 black_box_warning=row.get("black_box_warning") or "",
                 source_attribution=row.get("source_attribution") or "",
+                updated_at=str(row.get("updated_at") or ""),
                 ph_brands=grouped[BRAND_PH].get(mid, []),
                 intl_brands=grouped[BRAND_INTL].get(mid, []),
                 indications=grouped[INDICATION].get(mid, []),

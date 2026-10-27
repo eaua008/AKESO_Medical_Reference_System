@@ -3,8 +3,9 @@
 Left: the 3D view (assets/anatomy/anatomy.html in the built-in browser
 engine, three.js). Right: regions, the layer slider, the blood vessel and
 nerve switches (colour coded, recolourable), and what you clicked:
-its name and body system, then the diseases, symptoms, articles and peer
-discussions for that body system.
+its name and body system, a short description (the full text opens as a
+readable page over the Explorer, body_part_reader.py), then the diseases, symptoms, articles
+and peer discussions for that body system.
 
 Display only. BodyExplorerController decides what the lists contain; the
 shell opens whatever is clicked on top of this page.
@@ -16,10 +17,12 @@ page is shown, not when Akeso starts.
 import json
 from typing import Optional
 
-from PySide6.QtCore import QObject, QStringListModel, Qt, QUrl, Signal, Slot
+from PySide6.QtCore import QEvent, QObject, QSize, QStringListModel, Qt, QUrl, Signal, Slot
 from PySide6.QtGui import QColor, QIcon, QPixmap
 from PySide6.QtWidgets import (
-    QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton, QScrollArea,
+    QListWidget, QListWidgetItem, QTreeWidget, QTreeWidgetItem,
+    QButtonGroup, QCompleter, QFrame, QHBoxLayout, QLineEdit, QMenu, QPushButton,
+    QScrollArea, QStackedWidget,
     QSlider, QVBoxLayout, QWidget,
 )
 
@@ -27,12 +30,14 @@ from app.core.anatomy_colours import AnatomyColourStore
 from app.ui.components.akeso_loader import LoaderOverlay, LoadingHold, LoadingLabel
 from app.core.theme import Theme
 from app.ui.views.account.account_widgets import (
-    Card, button, icon_label, label, pill, refresh_icons, repolish,
+    Card, button, icon_label, label, pill, refresh_icons, repolish, set_text,
 )
 
 REGIONS = [("body", "Whole body"), ("head", "Head"), ("chest", "Chest"),
            ("abdomen", "Abdomen"), ("arms", "Arms"), ("legs", "Legs")]
 LAYER_NAMES = ["Skin", "Muscle", "Bone", "Organs"]
+# Side-panel tabs: each is its own short page instead of one long scroll.
+TABS = [("explore", "Explore"), ("part", "Part"), ("related", "Related"), ("help", "Help")]
 LAYER_LABELS = {"skin": "Skin", "muscle": "Muscle", "bone": "Bone", "organ": "Organ",
                 "vessel": "Blood vessel", "nerve": "Nerve"}
 # Switched on separately from the slider (the page loads them on first use).
@@ -270,6 +275,7 @@ class BodyExplorerView(QWidget):
     repair_requested = Signal()             # a 3D file is missing: Settings > Repair
     symptom_requested = Signal(str)
     article_requested = Signal(str)
+    read_requested = Signal(object, str, object)   # PartDescription, clicked name, disease names
 
     def __init__(self) -> None:
         super().__init__()
@@ -300,32 +306,78 @@ class BodyExplorerView(QWidget):
         self._stage_layout.addWidget(self._placeholder)
         row.addWidget(self._stage, 1)
 
-        side = QScrollArea()
-        side.setWidgetResizable(True)
-        side.setFrameShape(QFrame.Shape.NoFrame)
-        side.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        # The side column: a fixed title and tab row, then one short scrolling
+        # page per tab (Explore / Part / Related / Help) instead of one long list.
+        side = QWidget()
+        side.setObjectName("panel")
         side.setFixedWidth(370)
-        panel = QWidget()
-        panel.setObjectName("panel")
-        panel.setMaximumWidth(356)             # the column minus its scrollbar: text wraps
-        self._side = QVBoxLayout(panel)
-        self._side.setContentsMargins(18, 20, 20, 24)
-        self._side.setSpacing(14)
-        side.setWidget(panel)
+        column = QVBoxLayout(side)
+        column.setContentsMargins(0, 0, 0, 0)
+        column.setSpacing(0)
+        self._side_header = QVBoxLayout()
+        self._side_header.setContentsMargins(18, 20, 20, 10)
+        self._side_header.setSpacing(10)
+        column.addLayout(self._side_header)
+        self._stack = QStackedWidget()
+        self._stack.setObjectName("panel")
+        column.addWidget(self._stack, 1)
+        self._pages: dict[str, tuple[QScrollArea, QVBoxLayout]] = {}
+        for key, _text in TABS:
+            self._pages[key] = self._make_page()
+        self._side = self._pages["explore"][1]
         row.addWidget(side)
         self._build_side()
 
     # ------------------------------------------------------------ side panel
 
-    def _build_side(self) -> None:
+    def _make_page(self) -> tuple[QScrollArea, QVBoxLayout]:
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.Shape.NoFrame)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        panel = QWidget()
+        panel.setObjectName("panel")
+        panel.setMaximumWidth(356)             # the column minus its scrollbar: text wraps
+        layout = QVBoxLayout(panel)
+        layout.setContentsMargins(18, 4, 20, 24)
+        layout.setSpacing(14)
+        scroll.setWidget(panel)
+        self._stack.addWidget(scroll)
+        return scroll, layout
+
+    def _build_tabs(self) -> None:
         title = QVBoxLayout()
         title.setSpacing(3)
         title.addWidget(label("Body System Explorer", "acTitle"))
-        title.addWidget(label("Click a region to zoom in, slide to peel the layers, then click "
-                              "a part to see related conditions.", "acSubtitle"))
-        self._side.addLayout(title)
-        self._side.addWidget(self._build_search())       # above the long guide: in view
-        self._side.addWidget(self._build_guide())
+        title.addWidget(label("Zoom into a region, peel the layers, then click a part.",
+                              "acSubtitle"))
+        self._side_header.addLayout(title)
+        line = QHBoxLayout()
+        line.setSpacing(6)
+        self._tab_group = QButtonGroup(self)
+        self._tab_group.setExclusive(True)
+        self.tab_buttons: dict[str, QPushButton] = {}
+        for key, text in TABS:
+            chip = QPushButton(text)
+            chip.setObjectName("acChip")
+            chip.setCheckable(True)
+            chip.setCursor(Qt.CursorShape.PointingHandCursor)
+            chip.clicked.connect(lambda _c=False, k=key: self.show_tab(k))
+            self._tab_group.addButton(chip)
+            self.tab_buttons[key] = chip
+            line.addWidget(chip)
+        line.addStretch(1)
+        self._side_header.addLayout(line)
+
+    def show_tab(self, key: str) -> None:
+        """Bring one side-panel page to the front."""
+        scroll, _layout = self._pages[key]
+        self._stack.setCurrentWidget(scroll)
+        self.tab_buttons[key].setChecked(True)
+
+    def _build_side(self) -> None:
+        self._build_tabs()
+        self._side.addWidget(self._build_search())
 
         nav = Card("Regions", "", "layout-grid")
         host = QWidget()
@@ -410,6 +462,8 @@ class BodyExplorerView(QWidget):
         self._side.addWidget(self.colours_card)
 
 
+        self._side.addWidget(self._build_tree())
+
         systems = Card("Browse by body system", "", "activity")
         from app.ui.views.compare_view import FlowLayout
         host = QWidget()
@@ -427,11 +481,18 @@ class BodyExplorerView(QWidget):
         systems.body.addWidget(host)
         self._side.addWidget(systems)
 
+        self._side.addStretch(1)
+
+        # Part: what was clicked, its description, and what is hidden.
+        part_page = self._pages["part"][1]
         self.part_card = Card("Selected", "", "search")
         self._part_body = QVBoxLayout()
         self._part_body.setSpacing(8)
         self.part_card.body.addLayout(self._part_body)
-        self._side.addWidget(self.part_card)
+        part_page.addWidget(self.part_card)
+        self._about = QVBoxLayout()
+        self._about.setSpacing(14)
+        part_page.addLayout(self._about)
 
         self.hidden_card = Card("Hidden & see-through", "Click Show to bring one back.", "eye-off")
         self._hidden_body = QVBoxLayout()
@@ -441,14 +502,23 @@ class BodyExplorerView(QWidget):
                                                lambda: self._js("akeso.showAll()")),
                                         0, Qt.AlignmentFlag.AlignLeft)
         self.hidden_card.hide()
-        self._side.addWidget(self.hidden_card)
+        part_page.addWidget(self.hidden_card)
+        part_page.addStretch(1)
 
+        # Related: the body system's conditions, symptoms, articles, posts.
+        related = self._pages["related"][1]
         self._lists = QVBoxLayout()
         self._lists.setSpacing(14)
-        self._side.addLayout(self._lists)
-        self._side.addStretch(1)
-        self._side.addWidget(label("3D models: BodyParts3D, © The Database Center for Life "
-                                   "Science (CC BY 4.0). Educational reference only.", "acSmall"))
+        related.addLayout(self._lists)
+        related.addStretch(1)
+
+        # Help: how to use it, and the model's credit.
+        help_page = self._pages["help"][1]
+        help_page.addWidget(self._build_guide())
+        help_page.addStretch(1)
+        help_page.addWidget(label("3D models: BodyParts3D, © The Database Center for Life "
+                                  "Science (CC BY 4.0). Educational reference only.", "acSmall"))
+        self.show_tab("explore")
         self.show_part(None)
 
     # ---------------------------------------------------------------- search
@@ -462,35 +532,106 @@ class BodyExplorerView(QWidget):
         self.search.setPlaceholderText("Search a part, e.g. femur, aorta, liver\u2026")
         self.search.setClearButtonEnabled(True)
         self.search.setFixedHeight(36)
-        completer = QCompleter(QStringListModel(list(self._index)), self.search)
-        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-        completer.setFilterMode(Qt.MatchFlag.MatchContains)
-        completer.setMaxVisibleItems(10)
-        completer.activated.connect(self._find)
-        self.search.setCompleter(completer)
         self.search.returnPressed.connect(self._find_typed)
         self.search.textEdited.connect(lambda _t: (self.search_note.hide(), self.group_row.hide()))
+        self.search.textEdited.connect(self._suggest)
+        self.search.installEventFilter(self)
+        self.search.textChanged.connect(lambda t: self.suggest.hide() if not t.strip() else None)
         card.body.addWidget(self.search)
+        # Suggestions appear right under the box as you type (inline, so they always show).
+        self.suggest = QListWidget()
+        self.suggest.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.suggest.setUniformItemSizes(True)
+        self.suggest.itemClicked.connect(self._suggest_picked)
+        self.suggest.hide()
+        card.body.addWidget(self.suggest)
+        self._style_suggest()
         self.search_note = label("", "acSmall")
         self.search_note.hide()
         card.body.addWidget(self.search_note)
         # A group in the results ("Upper teeth", "Rotator cuff") can be shown alone or hidden.
         self.group_row = QWidget()
         self.group_row.setObjectName("panel")
-        group_line = QHBoxLayout(self.group_row)
-        group_line.setContentsMargins(0, 0, 0, 0)
-        group_line.setSpacing(6)
-        self._found_group = ("", "")
-        for text, icon, call in (("Show only", "target", "isolateGroup"), ("Hide", "eye-off", "hideGroup"),
-                                 ("See-through", "eye", "ghostGroup")):
+        from app.ui.views.compare_view import FlowLayout
+        group_line = FlowLayout(6, 6)                 # wraps inside the narrow side panel
+        self.group_row.setLayout(group_line)
+        self._found_group = ("", [])
+        for text, icon, call in (("Show only", "target", "isolateList"), ("Hide", "eye-off", "hideList"),
+                                 ("See-through", "eye", "ghostList")):
             group_line.addWidget(button(text, "acGhost", icon,
                                         lambda _c=False, c=call: self._group_action(c)))
-        group_line.addStretch(1)
         self.group_row.hide()
         card.body.addWidget(self.group_row)
         if not self._index:
             self.search.setEnabled(False)
         return card
+
+    SUGGEST_MAX = 8
+    ROW_H = 28
+
+    def _style_suggest(self) -> None:
+        self.suggest.setStyleSheet(
+            f"QListWidget {{ background: {Theme.token('SURFACE_ALT')}; color: {Theme.token('TEXT')};"
+            f" border: 1px solid {Theme.token('BORDER')}; border-radius: 8px; outline: none; }}"
+            f"QListWidget::item {{ padding: 4px 8px; }}"
+            f"QListWidget::item:hover, QListWidget::item:selected {{"
+            f" background: {Theme.token('PRIMARY_SOFT')}; color: {Theme.token('TEXT')}; }}")
+
+    def _suggest(self, text: str) -> None:
+        """Part and group names that match what is typed: names starting with it first,
+        then words starting with it, then names that merely contain it."""
+        needle = text.strip().lower()
+        self.suggest.clear()
+        if not needle or not self._index:
+            self.suggest.hide()
+            return
+        starts, words, inside = [], [], []
+        for key in self._index:
+            low = key.lower()
+            if low.startswith(needle):
+                starts.append(key)
+            elif f" {needle}" in low or f"({needle}" in low:
+                words.append(key)
+            elif needle in low:
+                inside.append(key)
+        for bucket in (starts, words, inside):
+            bucket.sort(key=lambda k: (len(k), k))          # short, common names first
+        for key in (starts + words + inside)[:self.SUGGEST_MAX]:
+            item = QListWidgetItem(key)
+            item.setSizeHint(QSize(0, self.ROW_H))
+            self.suggest.addItem(item)
+        count = self.suggest.count()
+        if not count:
+            self.suggest.hide()
+            return
+        self.suggest.setCurrentRow(-1)
+        self.suggest.setFixedHeight(count * self.ROW_H + 4)
+        self.suggest.show()
+
+    def _suggest_picked(self, item) -> None:
+        key = item.text()
+        self.suggest.hide()
+        self.search.setText(key)
+        self._find(key)
+
+    def eventFilter(self, obj, event) -> bool:  # noqa: N802
+        """Up / Down walk the suggestions, Enter picks the highlighted one, Esc closes them."""
+        if obj is self.search and event.type() == QEvent.Type.KeyPress and self.suggest.isVisible():
+            key = event.key()
+            row = self.suggest.currentRow()
+            if key == Qt.Key.Key_Down:
+                self.suggest.setCurrentRow(min(row + 1, self.suggest.count() - 1))
+                return True
+            if key == Qt.Key.Key_Up:
+                self.suggest.setCurrentRow(max(row - 1, 0))
+                return True
+            if key in (Qt.Key.Key_Return, Qt.Key.Key_Enter) and row >= 0:
+                self._suggest_picked(self.suggest.item(row))
+                return True
+            if key == Qt.Key.Key_Escape:
+                self.suggest.hide()
+                return True
+        return super().eventFilter(obj, event)
 
     def _find_typed(self) -> None:
         """Enter: the exact entry, else the first suggestion that contains it."""
@@ -511,32 +652,127 @@ class BodyExplorerView(QWidget):
                                      "e.g. \u201cheart\u201d or \u201cfemur\u201d.")
             self.search_note.show()
 
+    # ------------------------------------------------- browse the body (tree)
+
+    LAYER_NODE_NAMES = {"all_organ": "Organs", "all_bone": "Bones", "all_muscle": "Muscles",
+                        "all_vessel": "Blood vessels", "all_nerve": "Nerves", "all_skin": "Skin"}
+    LAYER_ORDER = ["all_organ", "all_bone", "all_muscle", "all_vessel", "all_nerve", "all_skin"]
+
+    def _build_tree(self) -> Card:
+        """Region -> organs / bones / muscles -> group -> smaller group -> the parts.
+        Built from parts.json (each part's group chain and its region)."""
+        card = Card("Browse the body", "Open a region, then a group, down to single parts. "
+                    "Click any line to find it in 3D.", "layers")
+        self.tree = QTreeWidget()
+        self.tree.setHeaderHidden(True)
+        self.tree.setMinimumHeight(320)
+        self.tree.setIndentation(14)
+        self.tree.setUniformRowHeights(True)
+        self.tree.itemExpanded.connect(self._tree_expanded)
+        self.tree.itemClicked.connect(self._tree_clicked)
+        self._tree_parts: dict = {}
+        for key, text in REGIONS[1:]:
+            item = QTreeWidgetItem([text])
+            item.setData(0, Qt.ItemDataRole.UserRole, {"kind": "region", "key": key})
+            item.addChild(QTreeWidgetItem(["\u2026"]))          # placeholder: filled on open
+            self.tree.addTopLevelItem(item)
+        card.body.addWidget(self.tree)
+        self._style_tree()
+        return card
+
+    def _style_tree(self) -> None:
+        self.tree.setStyleSheet(
+            f"QTreeWidget {{ background: transparent; border: 1px solid {Theme.token('BORDER')};"
+            f" border-radius: 8px; color: {Theme.token('TEXT')}; outline: none; }}"
+            f"QTreeWidget::item {{ padding: 3px 2px; }}"
+            f"QTreeWidget::item:hover {{ background: {Theme.token('PRIMARY_SOFT')}; }}"
+            f"QTreeWidget::item:selected {{ background: {Theme.token('PRIMARY_SOFT')};"
+            f" color: {Theme.token('TEXT')}; }}")
+
+    def _tree_expanded(self, item: QTreeWidgetItem) -> None:
+        data = item.data(0, Qt.ItemDataRole.UserRole) or {}
+        if data.get("kind") == "region" and item.childCount() == 1 and not item.child(0).data(
+                0, Qt.ItemDataRole.UserRole):
+            item.takeChild(0)
+            self._fill_region(item, data["key"])
+
+    def _fill_region(self, item: QTreeWidgetItem, region: str) -> None:
+        parts = _parts_json()
+        root: dict = {}
+        for fj, part in parts.items():
+            if part.get("region") != region:
+                continue
+            node_children = root
+            node = None
+            for group in reversed(part.get("groups") or []):         # broad -> small
+                node = node_children.setdefault(group["id"], {
+                    "label": group["label"], "children": {}, "leaves": {}, "ids": [],
+                    "layer": part.get("layer") or ""})
+                node["ids"].append(fj)
+                node_children = node["children"]
+            if node is not None:
+                node["leaves"].setdefault(part.get("name") or fj, []).append(fj)
+        order = {gid: i for i, gid in enumerate(self.LAYER_ORDER)}
+
+        def add(parent: QTreeWidgetItem, gid: str, node: dict, top: bool) -> None:
+            text = self.LAYER_NODE_NAMES.get(gid, node["label"]) if top else node["label"]
+            row = QTreeWidgetItem([f"{text[:1].upper()}{text[1:]} ({len(node['ids'])})"])
+            row.setData(0, Qt.ItemDataRole.UserRole, {
+                "kind": "group", "ids": node["ids"], "layer": node["layer"],
+                "gid": gid, "name": text})
+            parent.addChild(row)
+            for child_id, child in sorted(node["children"].items(),
+                                          key=lambda kv: kv[1]["label"].lower()):
+                add(row, child_id, child, False)
+            for name, ids in sorted(node["leaves"].items(), key=lambda kv: kv[0].lower()):
+                leaf = QTreeWidgetItem([f"{name[:1].upper()}{name[1:]}"
+                                        + (f" ({len(ids)} pieces)" if len(ids) > 1 else "")])
+                leaf.setData(0, Qt.ItemDataRole.UserRole, {
+                    "kind": "part", "ids": ids, "layer": node["layer"], "gid": "", "name": name})
+                row.addChild(leaf)
+
+        for gid, node in sorted(root.items(), key=lambda kv: order.get(kv[0], 99)):
+            add(item, gid, node, True)
+        if not item.childCount():
+            item.addChild(QTreeWidgetItem(["No parts in the model here."]))
+
+    def _tree_clicked(self, item: QTreeWidgetItem, _column: int = 0) -> None:
+        data = item.data(0, Qt.ItemDataRole.UserRole) or {}
+        kind = data.get("kind")
+        if kind == "region":
+            self.focus(data["key"])
+            return
+        if kind in ("group", "part"):
+            self._show_entry(data["name"], data["ids"], data["layer"], kind == "group")
+
+    def _show_entry(self, name: str, ids: list, layer: str, as_group: bool) -> None:
+        """Fly to and glow these parts (peeling to their layer first)."""
+        if not self._ready:
+            self.search_note.setText("The 3D body is still loading. Try again in a moment.")
+            self.search_note.show()
+            return
+        if layer in LAYER_INDEX:
+            self.slider.setValue(LAYER_INDEX[layer] * 100)
+        elif layer in self._extras and not self._extras[layer]:
+            self.extra_buttons[layer].setChecked(True)
+        self.search_note.setText(f"Showing: {name}.")
+        self.search_note.show()
+        self._found_group = (name, list(ids))
+        self.group_row.setVisible(as_group)
+        self._js(f"akeso.findParts({json.dumps(ids)})")
+
     def _find(self, text: str) -> None:
         entry = self._index.get(text)
         if entry is None:
             return
         ids, layer, gid = entry
-        self.search.completer().popup().hide()
-        if not self._ready:
-            self.search_note.setText("The 3D body is still loading. Try again in a moment.")
-            self.search_note.show()
-            return
-        # Peel to the part's own layer: outer layers fade away, it stays solid.
-        if layer in LAYER_INDEX:
-            self.slider.setValue(LAYER_INDEX[layer] * 100)
-        elif layer in self._extras and not self._extras[layer]:
-            self.extra_buttons[layer].setChecked(True)      # loads vessels / nerves
-        name = text.split(" \u00b7 ")[0]
-        self.search_note.setText(f"Showing: {name}.")
-        self.search_note.show()
-        self._found_group = (gid, name)
-        self.group_row.setVisible(bool(gid))
-        self._js(f"akeso.findParts({json.dumps(ids)})")
+        self.suggest.hide()
+        self._show_entry(text.split(" \u00b7 ")[0], ids, layer, bool(gid))
 
     def _group_action(self, call: str) -> None:
-        gid, name = self._found_group
-        if gid:
-            self._js(f"akeso.{call}({json.dumps(gid)}, {json.dumps(name)})")
+        name, ids = self._found_group
+        if ids:
+            self._js(f"akeso.{call}({json.dumps(ids)}, {json.dumps(name)})")
 
     def _slider_moved(self, value: int) -> None:
         self._layer = value / 100
@@ -704,15 +940,25 @@ class BodyExplorerView(QWidget):
         self._js(f"akeso.focus({json.dumps(key)})")
 
     def show_part(self, part: Optional[dict], system_label: str = "", diseases=(),
-                  symptoms=(), articles=(), discussions: Optional[QWidget] = None) -> None:
+                  symptoms=(), articles=(), discussions: Optional[QWidget] = None,
+                  about=None, disease_names: Optional[dict] = None) -> None:
+        """about: a PartDescription (BodyPartService.describe) or None.
+        disease_names: disease id -> name, for its clinical notes' links."""
         self._clear(self._part_body)
+        self._clear(self._about)
         self._clear(self._lists)
+        new = not part or not self._part or (
+            (part.get("id"), part.get("name")) != (self._part.get("id"), self._part.get("name")))
         self._part = part
         self._swatches = None
         if not part:
             self._part_body.addWidget(label(
                 "Nothing selected yet. Zoom into a region, then click any bone, muscle or "
                 "organ.", "acMuted"))
+            self._lists.addWidget(label(
+                "Click a part, or pick a body system under Explore, to see its conditions, "
+                "symptoms and articles here.", "acMuted"))
+            set_text(self.tab_buttons["related"], "Related")
             return
         name = (part.get("name") or "").strip()
         browsing = bool(part.get("browse"))
@@ -758,6 +1004,11 @@ class BodyExplorerView(QWidget):
                     self._part_body.addLayout(self._actions(part["id"], True,
                                                             f"Whole {group}"))
 
+        if about is not None:
+            self._about.addWidget(self._about_card(about, disease_names or {}))
+        elif not browsing and part.get("fma"):
+            self._part_body.addWidget(label("No description yet.", "acSmall"))
+
         self._list_card(f"Conditions · {system_label}" if system_label else "Conditions",
                         "book-open", diseases, self.disease_requested,
                         "No conditions are filed under this body system yet.")
@@ -770,6 +1021,43 @@ class BodyExplorerView(QWidget):
                         "system.", "message-circle")
             card.body.addWidget(discussions)
             self._lists.addWidget(card)
+        found = len(list(diseases)) + len(list(symptoms)) + len(list(articles))
+        set_text(self.tab_buttons["related"], f"Related \u00b7 {found}" if found else "Related")
+        if new:
+            # A new pick: show it (a browsed body system is all about its lists).
+            self.show_tab("related" if browsing else "part")
+            for scroll, _layout in self._pages.values():
+                scroll.verticalScrollBar().setValue(0)
+
+    # ---------------------------------------------------------- description
+
+    def _about_card(self, about, disease_names: dict) -> Card:
+        """A short summary; the full description opens as a readable page."""
+        info = about.info
+        card = Card(info.display_name if about.exact else f"Part of {info.display_name}",
+                    "", "info")
+        if info.is_draft:
+            card.head.addWidget(pill("Draft", "acPillWarn"), 0, Qt.AlignmentFlag.AlignTop)
+        if info.aliases:
+            card.body.addWidget(label("Also called " + ", ".join(info.aliases) + ".", "acSmall"))
+        if info.summary_plain:
+            card.body.addWidget(label(info.summary_plain, "acValue"))
+        if info.function_plain:
+            card.body.addWidget(label(info.function_plain, "acMuted"))
+        more = [what for what, has in (("for students", info.has_student_text()),
+                                       ("clinical notes", bool(info.clinical)),
+                                       ("an exam tip", bool(info.exam_tip)))
+                if has]
+        if more:
+            card.body.addWidget(label("Inside: " + ", ".join(more) + ".", "acSmall"))
+        card.body.addWidget(button("Read full description", "acPrimary", "book-open",
+                                   lambda _c=False: self._read(about, disease_names)),
+                            0, Qt.AlignmentFlag.AlignLeft)
+        return card
+
+    def _read(self, about, disease_names: dict) -> None:
+        """The shell opens the full description as a page over the Explorer."""
+        self.read_requested.emit(about, (self._part or {}).get("name") or "", disease_names)
 
     def focus_system(self, key: str, title: str) -> None:
         """Show only the parts of one body system (Show all brings the rest
@@ -1046,4 +1334,6 @@ class BodyExplorerView(QWidget):
         repolish(self)
         self._update_legend()
         self._mark_swatch()
+        self._style_tree()
+        self._style_suggest()
         self._apply_theme()

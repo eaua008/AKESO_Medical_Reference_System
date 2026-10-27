@@ -37,7 +37,7 @@ from app.models.disease import (
     SymptomLink,
 )
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2          # 2: entries carry updated_at
 
 
 def default_cache_path() -> Path:

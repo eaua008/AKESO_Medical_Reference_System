@@ -168,6 +168,7 @@ RULES: list[Rule] = [
     R("larynx_muscles", "Laryngeal muscles", "muscle", r"(crico-arytenoid|arytenoid$|thyro-arytenoid|vocalis|conus elasticus)", sided=True),
     R("suprahyoid", "Suprahyoid muscles", "muscle", r"(digastric|mylohyoid|geniohyoid|stylohyoid|intermediate tendon)", sided=True),
     R("infrahyoid", "Infrahyoid muscles", "muscle", r"(sternohyoid|omohyoid|sternothyroid|thyrohyoid)", sided=True),
+    R("face_soft", "Lips, mouth and eyelids", "muscle", r"(lip|subdivision of mouth|tarsal plate)", sided=True),
     R("neck_muscles", "Neck muscles", "muscle",
       r"(sternocleidomastoid|scalenus|platysma|longus capitis|longus colli|rectus capitis|obliquus capitis|splenius|longissimus capitis)", sided=True),
     U("trunk_wall_muscles", "Trunk wall muscles", "muscle", ["abdominal_wall", "thoracic_wall"], sided=True),
@@ -182,7 +183,7 @@ RULES: list[Rule] = [
     U("trunk_muscles", "Trunk muscles", "muscle",
       ["trunk_wall_muscles", "back_muscles", "pelvic_floor"], sided=True),
     U("head_neck_muscles", "Head and neck muscles", "muscle",
-      ["extraocular", "throat_muscles", "neck_muscles"], sided=True),
+      ["extraocular", "face_soft", "throat_muscles", "neck_muscles"], sided=True),
     # alternative: by side only
     R("muscles_left", "Left-side muscles", "muscle", r"(^|\W)left\W", alt=True),
     R("muscles_right", "Right-side muscles", "muscle", r"(^|\W)right\W", alt=True),

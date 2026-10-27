@@ -1,0 +1,82 @@
+classDiagram
+direction LR
+class QObject {
+  <<Qt>>
+  +Signal
+}
+class SymptomCheckerController {
+  +add_symptom(id)
+  +calculate()
+  +save_case()
+}
+class MatchingService {
+  -diseases
+  -symptoms
+  +evaluate(CheckerInput) CheckerResult
+  -score()
+  -set_triage()
+}
+class CheckerInput {
+  +symptoms
+  +vitals
+  +age
+  +sex
+}
+class CheckerResult {
+  +matches
+  +triage_level
+  +top
+}
+class InteractionCheckerController {
+  +new_case()
+  +refresh()
+  +open_case(id)
+}
+class DrugSafetyService {
+  -medicines
+  -repository
+  +evaluate(candidate, regimen, conditions) SafetyReport
+  +interactions_for(medicine_id)
+}
+class SafetyReport {
+  +pairs
+  +conditions
+  +rules
+  +verdict
+}
+class NotebookController {
+  +open_item(id)
+  +new_note()
+  +save_now()
+}
+class NotebookService {
+  -store
+  +create_note()
+  +create_case()
+  +filtered(filters)
+  +save_body(id, text)
+}
+class LocalNotebookStore {
+  <<SQLite>>
+  +save_item(item)
+  +list_items()
+  +pending()
+  +mark_synced()
+}
+class NotebookItem {
+  +kind
+  +title
+  +body
+  +tags
+}
+SymptomCheckerController --> MatchingService
+MatchingService ..> CheckerInput : reads
+MatchingService ..> CheckerResult : creates
+InteractionCheckerController --> DrugSafetyService
+DrugSafetyService ..> SafetyReport : creates
+NotebookController --> NotebookService
+NotebookService o-- LocalNotebookStore
+LocalNotebookStore ..> NotebookItem : stores
+QObject <|-- SymptomCheckerController
+QObject <|-- InteractionCheckerController
+QObject <|-- NotebookController

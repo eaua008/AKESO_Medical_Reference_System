@@ -83,6 +83,7 @@ class ContentManagementView(QWidget):
     edit_requested = Signal(str, str)              # kind, id
     publish_requested = Signal(str, str, bool)     # kind, id, published
     audit_requested = Signal()                     # the Audit Trail tab was opened
+    decks_requested = Signal()                     # Study Hub's official decks (migration 050)
 
     def __init__(self) -> None:
         super().__init__()
@@ -111,6 +112,9 @@ class ContentManagementView(QWidget):
             "Author, edit, validate and curate clinical monographs. Saved changes reach "
             "the encyclopedias and checkers on every computer at their next sync.")
         right.addWidget(self._section_tabs(), 0, Qt.AlignmentFlag.AlignTop)
+        decks = button("Decks", "acGhost", "layers", self.decks_requested.emit)
+        decks.setToolTip("Study Hub: official flashcard decks and card reports")
+        right.addWidget(decks, 0, Qt.AlignmentFlag.AlignTop)
         column.addWidget(header)
 
         self.banner = Banner()

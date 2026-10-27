@@ -1,0 +1,37 @@
+PART = {
+    "key": "group:fma_FMA50801_o",
+    "aliases": [],
+    "summary_plain": "The brain is the body's control center. It sits inside the skull and joins the spinal cord at a large opening in the base of the skull.",
+    "function_plain": "It controls thinking, memory, speech and movement, and helps run many of the body's organs.",
+    "description": "The brain and spinal cord form the central nervous system. The cerebrum, the largest part, is split into right and left hemispheres joined by the corpus callosum; each has frontal, parietal, occipital and temporal lobes plus the deep insula. The diencephalon (thalamus, hypothalamus, epithalamus) lies centrally. The brainstem (midbrain, pons, medulla oblongata) links it to the spinal cord, and the cerebellum is the second largest part.",
+    "location": "In the cranial cavity of the skull. It is continuous with the spinal cord at the foramen magnum. A fold of dura, the tentorium, separates the cerebrum above from the cerebellum and brainstem below. It is wrapped by three meninges: dura mater, arachnoid and pia mater.",
+    "details": {
+        "functions": "Controls thought, memory, speech and movement and helps regulate many organs. The thalamus relays sensory signals (except smell) to the cerebral cortex; the hypothalamus helps keep homeostasis by regulating visceral activities; all ascending and descending tracts pass through the medulla oblongata.",
+    },
+    "clinical": [
+        ("A stroke is a loss of blood flow to part of the brain; brain cells start dying within minutes. About 80% of strokes are ischemic (a clot blocks a vessel).", "ischemic_stroke"),
+        ("A hemorrhagic stroke happens when a blood vessel breaks and bleeds into the brain.", ""),
+        ("Meningitis is inflammation of the meninges; bacterial meningitis is rare but can be deadly and can cause hearing loss or brain damage.", "bacterial_meningitis"),
+        ("Brain tumors are named supratentorial when in the cerebral lobes and infratentorial when in the cerebellum or brainstem.", ""),
+        ("Degenerative diseases such as Alzheimer's and Parkinson's disease, encephalitis and traumatic brain injury are other important brain disorders.", ""),
+    ],
+    "exam_tip": "The cerebrum is the largest part of the brain and the cerebellum the second largest; the thalamus makes up about 80 percent of the diencephalon.",
+    "sources": [
+        ("Central Nervous System - NCI SEER Training Modules", "https://training.seer.cancer.gov/anatomy/nervous/organization/cns.html", "Public domain"),
+        ("Brain Diseases - MedlinePlus (NLM)", "https://medlineplus.gov/braindiseases.html", "Public domain"),
+        ("Stroke - MedlinePlus (NLM)", "https://medlineplus.gov/stroke.html", "Public domain"),
+        ("Meningitis - MedlinePlus (NLM)", "https://medlineplus.gov/meningitis.html", "Public domain"),
+        ("Tentorium - NCI SEER Training Modules", "https://training.seer.cancer.gov/cns/cns-anatomy/tentorium.html", "Public domain"),
+        ("Brain and Spine Tumor Anatomy - National Cancer Institute", "https://www.cancer.gov/rare-brain-spine-tumor/tumors/anatomy", "Public domain"),
+        ("The Nervous System - NCI SEER Training Modules", "https://training.seer.cancer.gov/cns/nervous-system/", "Public domain"),
+    ],
+    "checked": [
+        ("https://training.seer.cancer.gov/anatomy/nervous/organization/cns.html", "Brain in cranium, continuous with spinal cord at foramen magnum; meninges dura, arachnoid, pia; CSF in subarachnoid space; cerebrum largest, two hemispheres, longitudinal fissure, corpus callosum; frontal, parietal, occipital, temporal lobes and insula; diencephalon with thalamus (about 80%, relays sensory except smell), hypothalamus (homeostasis, visceral activities), epithalamus; brainstem midbrain, pons, medulla (all ascending and descending fibers pass); cerebellum second largest, below occipital lobes; ventricles with CSF."),
+        ("https://medlineplus.gov/braindiseases.html", "Brain is the control center; controls thoughts, memory, speech, movement, regulates many organs; types of brain disease: tumors, degenerative diseases (Alzheimer's, Parkinson's), encephalitis, genetic disorders, stroke, traumatic brain injury."),
+        ("https://medlineplus.gov/stroke.html", "Stroke is loss of blood flow to part of brain; brain cells begin to die within minutes; ischemic (clot) about 80% of strokes; hemorrhagic is a vessel breaking and bleeding into brain."),
+        ("https://medlineplus.gov/meningitis.html", "Meningitis is inflammation of the meninges around brain and spinal cord; viral most common; bacterial rare but can be deadly; can cause stroke, hearing loss, brain damage."),
+        ("https://training.seer.cancer.gov/cns/cns-anatomy/tentorium.html", "Tentorium is a dural fold separating cerebellum from cerebrum; cerebrum supratentorial; cerebellum and brainstem infratentorial."),
+        ("https://www.cancer.gov/rare-brain-spine-tumor/tumors/anatomy", "Tumors in the lobes are supratentorial; tumors in cerebellum or brainstem are infratentorial; four lobes per hemisphere."),
+        ("https://training.seer.cancer.gov/cns/nervous-system/", "Brain and spinal cord make up the CNS; brain in the cranial vault; continuous with spinal cord at foramen magnum."),
+    ],
+}
